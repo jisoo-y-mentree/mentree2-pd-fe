@@ -58,7 +58,7 @@ jobs:
             echo "found=true" >> "$GITHUB_OUTPUT"
           else
             echo "found=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::design-system 이 아직 없어 건너뜁니다(S5 이전)."
+            echo "::notice::design-system 이 아직 없어 건너뜁니다(S6 이전)."
           fi
 
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
