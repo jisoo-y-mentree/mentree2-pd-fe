@@ -1,0 +1,116 @@
+name: CI
+
+# 트리거는 pull_request 만 둔다. main 으로의 push 는 PR 경유로만 일어난다.
+on:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # 훅과 스킬이 조용히 망가지는 것을 막는다.
+  # 훅은 사람이 눈으로 확인할 기회가 없으므로 자기검사가 유일한 방어선이다.
+  # ---------------------------------------------------------------------------
+  checks:
+    name: Repo checks (hooks & docs)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Self-test the git guard
+        run: bash .claude/hooks/guard-git.test.sh
+
+      - name: Self-test the PR guard
+        run: bash .claude/hooks/guard-pr.test.sh
+
+      - name: Self-test the merge-conflict hook
+        run: bash .claude/hooks/check-merge-conflict.test.sh
+
+      - name: Self-test the Korean writing checker
+        run: bash .claude/hooks/check-korean.test.sh
+
+      - name: Check docs
+        run: python3 scripts/check-docs.py
+
+  # ---------------------------------------------------------------------------
+  # 디자인 시스템. packages/design-system 이 없으면 통째로 건너뛴다.
+  # ---------------------------------------------------------------------------
+  node:
+    name: Design system (lint, typecheck, test, a11y)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Detect workspace
+        id: detect
+        run: |
+          if [ -f packages/design-system/package.json ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::design-system 이 아직 없어 건너뜁니다(S5 이전)."
+          fi
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        if: steps.detect.outputs.found == 'true'
+        with:
+          node-version-file: ".nvmrc"
+
+      # pnpm 은 Node 동봉의 corepack 으로 준비한다(서드파티 Action 을 늘리지 않는다).
+      # 버전의 정본은 루트 package.json 의 packageManager 다.
+      - name: Enable corepack (pnpm)
+        if: steps.detect.outputs.found == 'true'
+        run: |
+          corepack enable
+          pnpm --version
+
+      - name: Install
+        if: steps.detect.outputs.found == 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint (oxlint)
+        if: steps.detect.outputs.found == 'true'
+        run: pnpm lint
+
+      - name: Typecheck
+        if: steps.detect.outputs.found == 'true'
+        run: pnpm typecheck
+
+      - name: Test (Vitest)
+        if: steps.detect.outputs.found == 'true'
+        run: pnpm test
+
+      # a11y 회귀 검출. 전 Story 에 axe 를 대고, 기존 부적합에서 늘면 떨어뜨린다.
+      # 기존분은 packages/design-system/a11y-baseline.json 이 갖는다.
+      # 고쳤으면 `pnpm test:a11y:update` 로 갱신한다.
+      #
+      # lint(oxlint 의 jsx-a11y)는 정적 해석이다. 대비비·접근 가능한 이름의 실효값은
+      # 그려보지 않으면 못 재므로 양쪽 다 필요하다.
+      #
+      # 브라우저는 캐시하지 않는다. headless shell 만 넣는다(--only-shell).
+      - name: Install Chromium (headless shell)
+        if: steps.detect.outputs.found == 'true'
+        working-directory: packages/design-system
+        run: pnpm exec playwright-core install --only-shell --no-progress chromium
+
+      - name: Build Storybook
+        if: steps.detect.outputs.found == 'true'
+        working-directory: packages/design-system
+        env:
+          STORYBOOK_DISABLE_TELEMETRY: "1"
+        run: pnpm build-storybook
+
+      - name: A11y (axe over Storybook)
+        if: steps.detect.outputs.found == 'true'
+        working-directory: packages/design-system
+        run: pnpm test:a11y

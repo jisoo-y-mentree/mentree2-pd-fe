@@ -1,8 +1,10 @@
-# SETUP.md — mentree2-pd-fe 환경 구축 순서
+# SETUP.md — mentree2-pd-fe 환경 구축
 
 > 이 문서는 **설치를 실행하는 사람(또는 Claude 세션)이 읽는 절차서**다.
 > 대상 리포: `jisoo-y-mentree/mentree2-pd-fe`
-> 출처: DataSpace-v2(`radarlab-inc/DataSpace-v2`)의 디자인 파이프라인을 이식한 것. 이식 판단의 근거는 §7에 남긴다.
+> 출처: DataSpace-v2(`radarlab-inc/DataSpace-v2`)의 디자인 파이프라인을 이식했다. 이식 판단의 근거는 §8에 남긴다.
+
+**세션을 새로 열었다면 §3(진행 상황)부터 읽어라.** 어디까지 됐는지가 거기에 있다.
 
 ## 0. 이 리포가 맡는 것 / 맡지 않는 것
 
@@ -10,143 +12,279 @@
 |---|---|
 | 디자인 산출물(UI-SPEC·template·리뷰 기록)을 둔다 | ✅ 이 리포 `design/` |
 | 디자인 시스템(토큰·컴포넌트·Storybook)을 둔다 | ✅ 이 리포 `packages/design-system/` |
-| 제품 앱(Next.js 실장 빌드)을 둔다 | ❌ **미정.** 구현 빌드의 행선지가 미정이다. 이 리포에 `apps/`를 만들지 않는다 |
+| 제품 앱(Next.js 구현 빌드)을 둔다 | ❌ **미정.** 이 리포에 `apps/` 를 만들지 않는다 |
 | 백엔드 | ❌ 엔지니어 리포 |
 
-**`apps/`를 지금 만들지 않는 것이 이 설계의 핵심이다.** 실장 빌드의 행선지가 논의 전이므로, 디자인 시스템을 **어느 리포에서도 소비 가능한 패키지**(`@mentree/design-system`)로 두고 앱은 나중에 붙인다.
+**`apps/` 를 지금 만들지 않는 것이 이 설계의 핵심이다.** 구현 빌드의 행선지가 논의 전이므로, 디자인 시스템을 **어느 리포에서도 소비 가능한 패키지**(`@mentree/design-system`)로 두고 앱은 나중에 붙인다.
 
 ## 1. 사전 준비 (사람이 하는 것)
 
 - [ ] Node 24 이상 / pnpm(corepack) 사용 가능
-- [ ] VS Code + Claude Code 확장 설치
-- [ ] Claude Code를 **mentree 계정으로** 기동할 수 있는 상태 (radarlab 계정과 분리)
+- [ ] VS Code ＋ Claude Code 확장
 - [ ] 리포를 로컬에 clone
+
+### gh 계정 전환 (실제로 막혔던 지점)
+
+`jisoo-y-mentree` 는 `jisoo-y` 와 **별개 계정**이다. gh 의 활성 계정이 다르면 push 가 404 로 막힌다.
+
+```sh
+gh auth switch --hostname github.com --user jisoo-y-mentree
+gh auth status          # Active account: true 확인
+gh auth setup-git       # 이것을 빼면 git 이 keychain 의 옛 자격증명을 계속 쓴다
+```
+
+되돌릴 때는 `--user jisoo-y` 로 같은 명령을 쓴다.
+
+### 이 리포의 스크립트가 만족해야 하는 것
+
+**둘 다 실제로 터졌던 것이고, CI 로는 절대 잡히지 않는다.** CI 는 Python 3.12·bash 5.x 이고 macOS 는 3.9·3.2 다.
+
+| 대상 | 요건 | 지키는 법 |
+|---|---|---|
+| Python | **3.9(macOS 시스템 파이썬)에서 동작할 것** | `str \| None`(PEP 604)은 3.10 부터다. 파일 앞에 `from __future__ import annotations` 를 넣는다 |
+| bash | **3.2(macOS 기본)에서 동작할 것** | `$var` 뒤에 공백 없이 비ASCII 가 오면 변수명으로 삼켜진다. `${var}` 로 감싼다 |
 
 ## 2. 설치 순서
 
-각 단계는 **1 PR**로 끊는다. 한 번에 넣지 않는다.
+각 단계는 **1 PR** 로 끊는다. 한 번에 넣지 않는다.
 
-| 단계 | 넣는 것 | 끝났다고 판정하는 조건 |
+**실행 순서는 S1 → S2 → S3 → S4 → S5 → S8 → S6 → S7 이다.** 단계 ID 는 PR·커밋에서 참조하므로 바꾸지 않는다.
+
+| ID | 넣는 것 | 끝났다고 판정하는 조건 |
 |---|---|---|
-| **S1** | `CLAUDE.md`·`README.md`·`.gitignore`·`.github/pull_request_template.md`·`.github/CODEOWNERS` | PR을 만들면 템플릿이 뜬다 |
-| **S2** | `.claude/hooks/` **훅 4본 ＋ 자기검사 4본 ＋ `guard-pr.wiring.py`** ＋ `.claude/settings.json` | 4본의 `*.test.sh` 가 전부 통과한다(feature 브랜치에서) |
-| **S3** | `docs/guidelines/korean-writing-rules.md`·`designer-workflow.md` | S2의 훅이 가리키는 정본이 존재한다 |
-| **S4** | `design/` 문서 6본 ＋ `docs/adr/README.md` ＋ **`scripts/check-docs.py`** | `python3 scripts/check-docs.py` 가 exit 0 |
-| **S5** | `.claude/skills/` **3본**(`design-bolt`·`pr`·`pr-review`) | `/design-bolt` 를 부를 수 있다 |
+| **S1** | `CLAUDE.md`·`README.md`·`.gitignore`·`.github/pull_request_template.md`·`.github/CODEOWNERS` | PR 을 만들면 템플릿이 뜬다 |
+| **S2** | `.claude/hooks/` 10본 ＋ `.claude/settings.json` | 4본의 `*.test.sh` 가 전부 실패 0 |
+| **S3** | `docs/guidelines/` 2본 | 훅과 `CLAUDE.md` 가 거는 링크가 실재한다 |
+| **S4** | `design/` 문서 8본 ＋ `docs/adr/README.md` ＋ `scripts/check-docs.py` | `python3 scripts/check-docs.py` 가 exit 0 |
+| **S5** | `.claude/skills/` 3본 | `/design-bolt` 를 부르면 세션이 로드한다 |
+| **S8** | `.github/workflows/ci.yml` | PR 에서 `checks` 가 녹색. `node` 는 skip |
 | **S6** | `package.json`·`pnpm-workspace.yaml`·`.nvmrc` ＋ `packages/design-system/` 스캐폴드 ＋ Storybook | `pnpm storybook` 이 뜬다 |
-| **S7** | a11y 하니스(`scripts/a11y.mjs`·`a11y-baseline.mjs`) ＋ 베이스라인 생성 | `pnpm test:a11y` 가 exit 0 |
-| **S8** | `.github/workflows/ci.yml` | PR에서 `checks`·`node` 2잡이 녹색 |
+| **S7** | a11y 하니스 ＋ 베이스라인 생성 | `pnpm test:a11y` 가 exit 0 |
 
-### 순서를 이렇게 잡은 이유
+### 왜 S8 을 S6 보다 먼저 넣는가
 
-**`ci.yml` 을 마지막에 넣는다.** `checks` 잡이 훅의 자기검사 4본(S2)과 `check-docs.py`(S4)를 부르고, `node` 잡이 design-system(S6·S7)을 쓴다. **먼저 넣으면 아직 없는 파일을 불러 빨갛게 된다.**
+`ci.yml` 은 잡이 2개다.
 
-**S6 이전에 S7을 시도하지 않는다.** 검사할 대상이 없으면 a11y 하니스는 아무것도 안 잡는다.
+- **`checks`** — 훅 자기검사(S2)와 `check-docs.py`(S4)를 부른다. **둘 다 이미 있으므로 지금 돈다.**
+- **`node`** — `packages/design-system/package.json` 이 없으면 **전 단계를 건너뛰고 녹색으로 끝난다.**
 
-### S2의 주의 — 훅 자기검사는 실행 위치에 따라 거짓 실패한다
+즉 S6 이전에 넣어도 안전하고, 넣으면 **그때부터 모든 PR 에 CI 가 붙는다.** 넣기 전까지는 체크 0개로 나간다.
 
-`guard-git.test.sh`는 **git 리포 안 + feature 브랜치**를 전제한다. 그 밖에서 돌리면 실패가 나오는데 결함이 아니다.
+### 왜 S6 를 뒤로 미루는가
 
-| 실행 위치 | 결과 | 이유 |
+S6 에서 정하는 토큰은 **Claude Design 의 디자인 시스템 작업의 결과물**이어야 한다. 먼저 정하면 두 번 정하게 된다.
+
+### 훅 자기검사의 기본 브랜치 해석
+
+`guard-git.test.sh` 는 `guard-git.sh:53-55` 와 **같은 3단 폴백**으로 기본 브랜치를 해석한다(origin/HEAD → init.defaultBranch → main).
+
+이 폴백이 없으면 detached HEAD(CI)나 origin/HEAD 미설정 환경에서 `current_branch` 와 `default_branch` 가 둘 다 빈 문자열이 되어 우연히 같아진다. 테스트가 그것을 「기본 브랜치 위에 있다」로 오인해 차단을 기대하고, 훅은 판정 재료가 없어 허용하므로 거짓 실패가 난다.
+
+**통과 개수는 조건부 블록 때문에 환경마다 다르다. 판정 기준은 「실패 0」이다.**
+
+---
+
+## 3. 진행 상황
+
+| 단계 | 상태 | 비고 |
 |---|---|---|
-| feature 브랜치 | 전부 통과 | 정상 |
-| **기본 브랜치(main)** | `git push` 계열이 실패로 나온다 | 훅이 **정상적으로 차단**하는데 테스트는 허용을 기대한다 |
-| **git 리포 밖** | `git push` 계열이 실패로 나온다 | 브랜치 판정 재료가 없어 **설계대로 허용 측으로 떨어진다** |
+| S1 기본 문서 | ✅ PR #1 | |
+| S2 훅 10본 | ✅ PR #2 | **버그 2건 수정** — §1 의 Python·bash 요건이 여기서 나왔다 |
+| S3 규약 2본 | ✅ PR #3 | 훅 라이브 스모크 통과(세션에 실제로 배선됨을 확인) |
+| S4 design 문서 ＋ 검사기 | ✅ PR #4 | RED→GREEN 3건. python 3.9.6 에서 동작 실증 |
+| S5 스킬 3본 | ✅ PR #5 | `/design-bolt` 로드 확인 |
+| **S8 CI** | ✅ PR #6 | 순서를 앞당겼다(위 §2). `guard-git.test.sh` 폴백 버그 1건 수정 |
+| **S6 design-system** | ⏸ **대기** | **Claude Design 의 작업이 끝날 때까지 착수하지 않는다** |
+| S7 a11y 베이스라인 | ⏸ | S6 이후 |
 
-**설치 직후에 이 실패를 보고 훅을 고치지 않는다.** feature 브랜치에서 다시 돌려 확인한다. CI(S7)는 항상 feature 브랜치에서 돌므로 문제되지 않는다.
+### 미검증으로 남은 것
 
-## 3. S6의 스캐폴드
+- `check-docs.py` 의 **UI-SPEC 상태欄 검사**와 **`template/SOURCE.md` 존재 검사** — `design/screens/<id>/` 가 없어 코드 경로 자체가 안 돈다. **첫 화면 작업 때 실제로 먹는지 확인한다.**
 
-킷에 `package.json`·`pnpm-workspace.yaml`·`packages/design-system/package.json` 의 뼈대가 들어 있다. shadcn 스캐폴드는 `packages/design-system` 안에서 실행한다.
+### S6 재개 시 정할 것
 
-**토큰 프리셋은 mentree용으로 새로 고른다.** DataSpace의 프리셋(Vega·Mist·Blue·radius 0.875rem)은 B2B 고밀도 전제이므로 그대로 쓰지 않는다.
+팔레트 / 타이포 스케일 / 폰트 / radius. **Claude Design 산출물이 입력이다.**
 
-**결정해야 하는 것**: 팔레트 / 타이포 스케일 / 폰트 / radius. 이것은 `design/DESIGN.md` 의 첫 내용이 된다.
+기존 스캐폴드에 있던 `Vega` 프리셋은 B2B 고밀도용이라 그대로 쓰지 않는다. mentree 는 일반 사용자가 가끔 쓰는 B2C 이므로 **밀도를 낮추고 글자를 키우는 쪽**이 맞는다.
+
+---
+
+## 4. S6 의 절차 — Claude Design 산출물을 토큰으로 옮긴다
+
+**S6 은 이 설치에서 유일하게 디자이너의 판단이 필요한 단계다.** 나머지는 승인만 하면 된다.
+
+### 4.1 입력 — Claude Design 에서 읽어오는 것
+
+| 읽는 것 | 무엇을 |
+|---|---|
+| 색 | 주색·중립 램프·의미색 4종(성공·경고·위험·정보)의 **단계 번호** |
+| 타이포 | 본문 크기·행간·자간, 제목 단수 |
+| radius | 값 1개(부품마다 다르게 하지 않는다) |
+| 폰트 | 한국어 본문 서체와 폴백 스택 |
+
+### 4.2 옮기지 않는 것
+
+> **Claude Design 의 산출물은 디자인 의도의 참조이며 CSS 의 이식원이 아니다.**
+
+- **CSS 를 복사하지 않는다.** 값이 아니라 **의도**(어느 단계·어느 비율)를 읽어 shadcn 토큰으로 다시 쓴다
+- Claude Design 이 뱉은 `tokens.css`·`components.css` 를 소스로 쓰지 않는다. 그것은 Tailwind 빌드가 없는 환경의 전사물이다
+- **이것을 어기면 토큰 체계가 두 갈래로 갈라진다.** 이 리포에서 가장 지키기 어려운 규칙이다
+
+### 4.3 순서
+
+1. **스캐폴드** — `packages/design-system` 안에서 shadcn 을 깐다. 킷에 `package.json`·`pnpm-workspace.yaml` 의 뼈대가 있다
+2. **토큰을 덮어쓴다** — 프리셋의 기본값을 4.1 의 값으로 바꾼다. 리터럴 색값을 남기지 않고 팔레트 참조로 쓴다
+3. **대비를 잰다** — 아래 4.4
+4. **Storybook 에 올린다** — 여기까지가 S6 이다
+5. **a11y 베이스라인 생성** — S7
+
+### 4.4 판정 — 토큰을 확정하기 전에 재는 것
+
+**토큰 층에서 한 번 재면 전 화면에 먹는다.** 화면마다 재지 않는다.
+
+| 대상 | 기준 | 근거 |
+|---|---|---|
+| 본문 텍스트 대 배경 | **4.5:1** 이상 | WCAG 1.4.3 |
+| 부차 텍스트 대 배경 | 4.5:1 이상 | 같음 |
+| 의미색 텍스트 대 그 면 | 4.5:1 이상 | 같음 |
+| 포커스 표시 대 인접색 | **3:1** 이상 | WCAG 1.4.11 |
+| 부품 경계·상태 표시 | 3:1 이상 | 같음 |
+
+**재는 면을 여러 개 잡는다.** 배경·카드·팝오버·muted 면 위에서 각각 재야 한다. 흰 배경에서만 재면 카드 위에서 미달이 나온다.
+
+### 4.5 프리셋을 고르는 기준
+
+기존 스캐폴드에 있던 `Vega` 는 **B2B 고밀도용**이라 그대로 쓰지 않는다. mentree 는 일반 사용자가 가끔 쓰는 B2C 다.
+
+| 판정 조건 | 아크션 |
+|---|---|
+| Claude Design 산출물에 팔레트·타이포가 확정돼 있다 | **프리셋을 고르지 말고 토큰을 직접 쓴다.** 프리셋은 출발점일 뿐이다 |
+| 산출물이 방향만 있고 값이 없다 | 프리셋을 하나 고르고 4.1 의 4가지만 덮어쓴다 |
+| 본문 크기를 정한다 | **16px 를 기준으로 잡는다.** DataSpace 는 14px 지만 그것은 업무 화면 전제다 |
+| radius 를 정한다 | 값 1개로 통일한다. 부품마다 다르게 하지 않는다 |
+| 의미색을 정한다 | 성공·경고·위험·정보 4종. **`chart-*` 를 상태색으로 전용하지 않는다**(전부 같은 색 계열이라 사고가 난다) |
+
+### 4.6 결정을 기록한다
+
+정한 값은 **`design/DESIGN.md` 의 첫 내용**이 된다. 지금 그 파일은 골격만 있고 §1~6 이 비어 있다.
+
+**값 자체를 쓰지 않는다.** 값의 정본은 토큰이다. `DESIGN.md` 에는 **의미와 규칙**을 쓰고 값은 토큰을 가리킨다(DESIGN-CHARTER 원칙 4).
+
+### 4.7 패키지 이름
 
 `packages/design-system/package.json` 의 `name`·`exports` 는 **바꾸지 않는다.** 나중에 다른 리포가 `@mentree/design-system` 을 소비할 수 있게 하려고 지금 잡아둔 것이다.
 
-## 4. 첫 왕복으로 파이프라인을 실증한다 (S8 이후)
+## 5. 첫 왕복으로 파이프라인을 실증한다 (S7 이후)
 
 화면 1장으로 아래를 한 바퀴 돌린다. **여기서 나온 어긋남을 고치는 것까지가 환경 구축이다.**
 
 ```
-UI-SPEC §1~5 작성 → 승인 → Claude Design 생성 → template/ 배치 + SOURCE.md
+UI-SPEC §1~5 작성 → UX승인 → Claude Design 생성 → template/ 배치 + SOURCE.md
   → UI-SPEC §6~11 작성 → 6품질축 감사 → UI-REVIEW.md
-  → DS-nn 기표(디자인 시스템에 부족한 것) → 구현 → Storybook
-  → 지수 대조 → Approve = 사인오프 → 완료
+  → DS-nn 기표 → 구현 → Storybook → 대조 → Approve = 사인오프 → 완료
 ```
 
-DataSpace도 「첫 디자인 Bolt의 회고로 가이드를 고칠 전제」로 출발했고, 실제로 DS-update-list 상태 기계는 한 번 크게 고쳐졌다. **처음부터 완성형을 노리지 않는다.**
+DataSpace 도 「첫 디자인 Bolt 의 회고로 가이드를 고칠 전제」로 출발했고, 실제로 DS-update-list 상태 기계는 한 번 크게 고쳐졌다. **처음부터 완성형을 노리지 않는다.**
 
-## 5. 역할
+## 6. 역할
 
 | 역할 | 담당 | 하는 일 |
 |---|---|---|
-| 요구 | 지수 | DS-nn 기표·UI-SPEC 작성·사인오프 |
+| 요구·사인오프 | 디자이너(지수·Hyeok) | `DS-nn` 기표·UI-SPEC 작성·사인오프 |
 | 구현 | Claude Code | 디자인 시스템 구현·PR 기표 |
-| 검토 | 별도 Claude 세션 | Draft PR에 `/pr-review` 1회 |
+| 검토 | **별도 Claude 세션** | Draft PR 에 `/pr-review` 1회 |
 | BE | 엔지니어 | 별도 리포. 이 리포의 규약을 따르지 않아도 된다 |
 
-**「구현」과 「검토」를 같은 세션에서 하지 않는다.** DataSpace는 사람 둘(구현·승인)의 상호 견제가 있었으나 여기는 Claude 하나이므로, **세션 분리가 유일한 견제 장치**다.
+**「구현」과 「검토」를 같은 세션에서 하지 않는다.** 구현자가 Claude 하나이므로 세션 분리가 견제 장치다.
 
-## 6. 하지 않는 것 (DataSpace에서 가져오지 않은 것)
+### 두 사람이 화면을 나눌 때
+
+화면은 디렉터리가 갈리므로 충돌하지 않는다(`design/screens/<screen-id>/`).
+
+**사인오프는 요구자와 승인자를 가른다.**
+
+| 판정 조건 | 아크션 |
+|---|---|
+| Hyeok 이 `DS-nn` 을 기표했다 | **지수가 사인오프** |
+| 지수가 `DS-nn` 을 기표했다 | **Hyeok 이 사인오프** |
+| 둘 다 관여했다 | 둘 중 하나. 판단이 갈리면 둘 다 |
+
+**충돌하는 곳은 공유 표 3개뿐이다** — `DS-update-list.md`·`UX-PATTERNS.md`·`screen-inventory.md`.
+
+**index 파일을 손으로 병합하지 않는다.** DataSpace 가 한 PR 에서 7번 겪은 사고다.
+
+```sh
+git checkout origin/main -- design/DS-update-list.md
+# 자기 행만 다시 추가한다
+git diff origin/main   # 의도한 행만 있는지 확인한다
+```
+
+### Hyeok 합류 시 할 일
+
+1. **GitHub 계정에 이 리포 접근 권한 부여** (🖐 사람이 한다)
+2. `.github/CODEOWNERS` 에 핸들 추가
+3. `CLAUDE.md` 역할표를 두 명 구조로 개정
+
+## 7. 하지 않는 것 (DataSpace 에서 가져오지 않은 것)
 
 | 대상 | 가져오지 않는 이유 |
 |---|---|
-| AI-DLC 전체(`/inception`·`/bolt`·`/prebolt`·spec 상태 기계) | 8컨텍스트 규모에서 나온 것. 3인 팀에 과중하다 |
-| 별도 `specs/` 층 | UI-SPEC 자체를 spec으로 삼는다(§7-③) |
+| AI-DLC 전체(`/inception`·`/bolt`·`/prebolt`·spec 상태 기계) | 8컨텍스트 규모에서 나온 것. 소수 팀에 과중하다 |
+| 별도 `specs/` 층 | UI-SPEC 자체를 spec 으로 삼는다(§8-③) |
 | `contracts/`·유비쿼터스 언어 3칼럼 표 | 다국어·다컨텍스트 사정에서 나온 구조 |
-| PD 트래커 | DataSpace가 88행까지 늘어 2026-08-28에 스스로 축소 재정했다. 처음부터 만들지 않는다 |
-| 해시 채번·완료 spec 취급 규칙·post-camp 절차 | 전부 규모에서 파생된 것 |
+| PD 트래커 | DataSpace 가 88행까지 늘어 스스로 축소 재정했다. 처음부터 만들지 않는다 |
+| 해시 채번·완료 spec 취급 규칙 | 전부 규모에서 파생된 것 |
 
-## 7. DataSpace와 의도적으로 다르게 한 것
+## 8. DataSpace 와 의도적으로 다르게 한 것
 
-**①  `webui/` 층을 두지 않는다.** DataSpace는 Java(Maven) 레인과 Node 레인을 가르려고 `webui/`를 만들었다. 이 리포는 FE 전용이므로 pnpm workspace를 리포 루트에 둔다.
+**① `webui/` 층을 두지 않는다.** DataSpace 는 Java(Maven) 레인과 Node 레인을 가르려고 `webui/` 를 만들었다. 이 리포는 FE 전용이므로 pnpm workspace 를 리포 루트에 둔다.
 
-**② `frontend/`가 아니라 `design/`.** DataSpace에서 `frontend/`(디자인 산출물)와 `webui/`(구현)를 이름만 보고 혼동하는 사고가 있었다.
+**② `frontend/` 가 아니라 `design/`.** DataSpace 에서 `frontend/`(디자인 산출물)와 `webui/`(구현)를 이름만 보고 혼동하는 사고가 있었다.
 
-**③ 별도 spec 층을 두지 않고 UI-SPEC을 spec으로 삼는다.**
-- DataSpace는 `specs/frontend/`의 승인된 UoW를 `/design-bolt`의 입력으로 삼는다.
-- UI-SPEC v2의 §1~5가 요건 그 자체다(화면의 사명·대상 사용자·액션 방침·구성과 하이어라키·적용 패턴).
-- 3인 팀에서는 중복이다. **§1~5를 먼저 승인하고 §6~11로 진행하는 2단 승인**으로 대체한다.
+**③ 별도 spec 층을 두지 않고 UI-SPEC 을 spec 으로 삼는다.**
+- DataSpace 는 `specs/frontend/` 의 승인된 UoW 를 `/design-bolt` 의 입력으로 삼는다.
+- UI-SPEC 의 §1~5 가 요건 그 자체다(화면의 사명·대상 사용자·액션 방침·구성과 하이어라키·적용 패턴).
+- 소수 팀에서는 중복이다. **§1~5 를 먼저 승인하고 §6~11 로 진행하는 2단 승인**으로 대체한다.
 
-**④ HtmlTemplate의 JS·CSS 제약을 폐지한다.**
-- DataSpace의 제약은 정적 HTML/CSS만·JS 전량 제거·4상태 4파일·CSS 공통화다.
-- 근거는 「기술 스택 확정 전에도 작업 가능한 형태를 유지한다」였다. mentree는 Next.js+shadcn 확정이므로 근거가 없다.
-- **대신 남기는 원칙**: `template/`은 React 구현의 **시각적 참조**이지 **코드 이식원이 아니다**. CSS를 그대로 옮기지 않는다.
-- **추가**: `template/SOURCE.md`(Claude Design 링크·생성일·대응 UI-SPEC)를 둔다. 없으면 템플릿과 UI-SPEC의 정합을 판정할 수 없다.
+**④ HtmlTemplate 의 JS·CSS 제약을 폐지한다.**
+- DataSpace 의 제약은 정적 HTML/CSS 만·JS 전량 제거·4상태 4파일·CSS 공통화다.
+- 근거는 「기술 스택 확정 전에도 작업 가능한 형태를 유지한다」였다. mentree 는 Next.js+shadcn 확정이므로 근거가 없다.
+- **대신 남기는 원칙**: `template/` 은 React 구현의 **시각적 참조**이지 **코드 이식원이 아니다**. CSS 를 그대로 옮기지 않는다.
+- **추가**: `template/SOURCE.md`(Claude Design 링크·생성일·대응 UI-SPEC)를 둔다. 없으면 템플릿과 UI-SPEC 의 정합을 판정할 수 없다.
 
-**⑤ 사인오프는 지수 1명 원칙.** DataSpace는 「원칙 2명, 부재 시 1명」이나 3인 팀에는 무겁다. 판단이 갈릴 때만 Hyeok을 넣는다.
+**⑤ 사인오프의 주체를 요구자와 가른다.** DataSpace 는 「원칙 2명, 부재 시 1명」이다. 여기는 §6 의 표를 따른다.
 
-**⑥ DS-update-list의 「반영」을 Storybook 등재 시점으로 고정한다.** 구현 빌드의 행선지가 미정이다. 「앱에 반영되었는가」를 기준으로 삼으면 리포가 갈린 순간 상태 기계가 무너진다.
+**⑥ DS-update-list 의 「반영」을 Storybook 등재 시점으로 고정한다.** 구현 빌드의 행선지가 미정이다. 「앱에 반영되었는가」를 기준으로 삼으면 리포가 갈린 순간 상태 기계가 무너진다.
 
-## 8. 멘트리 세션에 붙여넣는 첫 프롬프트
+**⑦ a11y 의 블로커를 기계 검출로 한정한다.**
+- DataSpace 는 공공조달 요건(JIS X 8341-3)이 있어 WCAG 2.1 AA 미대응을 전부 블로커로 삼는다.
+- mentree 는 민간 B2C 다. 기준선은 2.1 AA 로 두되 **블로커는 axe 베이스라인 증가에 한정**한다.
+- 나머지는 `DS-nn` 기표나 기록으로 보낸다.
 
-리포 루트에서 킷을 푼 뒤, VS Code 의 Claude Code 에 아래를 그대로 붙여넣는다.
+## 9. 세션을 새로 열 때 쓰는 프롬프트
 
 ```
-이 리포(jisoo-y-mentree/mentree2-pd-fe)에 디자인 파이프라인을 설치한다.
+이 리포(jisoo-y-mentree/mentree2-pd-fe)의 디자인 파이프라인 설치를 이어서 한다.
 
-루트의 SETUP.md 가 절차서다. 먼저 전부 읽어라. 특히 §2(설치 순서)와
-§7(DataSpace 와 의도적으로 다르게 한 것)을 읽고 나서 움직여라.
+루트의 SETUP.md 가 절차서다. 먼저 전부 읽어라.
+§3(진행 상황)에 어디까지 됐는지가 있다. 거기서부터 이어라.
 
 진행 방식:
-- S1 부터 순서대로. 각 단계를 1 PR 로 끊는다. 한꺼번에 넣지 않는다
+- 각 단계를 1 PR 로 끊는다. 한꺼번에 넣지 않는다
 - 각 단계의 「끝났다고 판정하는 조건」을 실제로 실행해서 확인한 뒤 다음으로 간다
-- 순서를 바꾸지 않는다. ci.yml 이 마지막인 데는 이유가 있다(§2)
+- 실행 순서는 §2 를 따른다. S8 이 S6 보다 앞인 데는 이유가 있다
 - 판단이 필요한 점이 나오면 멈추고 선택지와 추천을 제시해라. 혼자 정하지 마라
+- 개수·수치는 내 말보다 네 실측을 정본으로 삼아라
 
-먼저 S1 의 계획만 제시해라. 승인 전에 파일을 고치지 마라.
+다음 단계의 계획만 제시해라. 승인 전에 파일을 고치지 마라.
 제시의 말미는 「A) 수정을 의뢰한다 / B) 진행한다」 2택으로.
 ```
 
-**S1 이전에 `git switch -c` 로 작업 브랜치를 만들어야 한다.** `guard-git.sh` 가 기본 브랜치로의 push 를 막는다.
-
-## 9. 남은 미결
+## 10. 남은 미결
 
 | 항목 | 언제 정하는가 |
 |---|---|
-| 토큰 프리셋(팔레트·타이포·폰트·radius) | S6 |
+| 토큰 프리셋(팔레트·타이포·폰트·radius) | S6. **Claude Design 작업 완료 후** |
 | 구현 빌드의 행선지(이 리포 / 엔지니어 리포) | 엔지니어와 논의 후. **이 리포의 설계는 어느 쪽이어도 깨지지 않는다** |
-| `@mentree/design-system`의 배포 방식(npm / git 참조 / workspace) | 위가 정해진 뒤 |
-| FE 인원 추가 시의 역할 재배치 | 추가가 확정된 뒤 |
+| `@mentree/design-system` 의 배포 방식(npm / git 참조 / workspace) | 위가 정해진 뒤 |
+| 이 문서의 종단 | 전 단계 완료 후 §8 을 `docs/adr/0001-*.md` 로 옮기고 이 파일을 삭제한다. 전문은 git 이력에 남는다 |

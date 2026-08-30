@@ -36,6 +36,8 @@ print(json.dumps({"tool_input": {"command": sys.stdin.read()}}))')
 }
 
 default_branch=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null | sed 's#^origin/##')
+[ -n "$default_branch" ] || default_branch=$(git config --get init.defaultBranch 2>/dev/null)
+[ -n "$default_branch" ] || default_branch=main
 current_branch=$(git symbolic-ref --short HEAD 2>/dev/null)
 echo "既定ブランチ: ${default_branch:-（解決できず）}"
 echo "現在ブランチ: ${current_branch:-（解決できず）}"
