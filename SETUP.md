@@ -74,11 +74,11 @@ gh auth setup-git       # 이것을 빼면 git 이 keychain 의 옛 자격증명
 
 ### 왜 S6 를 뒤로 미루는가
 
-S6 에서 정하는 토큰은 **Claude Design 의 디자인 시스템 작업의 결과물**이어야 한다. 먼저 정하면 두 번 정하게 된다.
+S6 이 적재하는 토큰은 **Claude Design 의 디자인 시스템 작업의 결과물**이다. 먼저 손대면 두 번 만지게 된다.
 
 ### 훅 자기검사의 기본 브랜치 해석
 
-`guard-git.test.sh` 는 `guard-git.sh:53-55` 와 **같은 3단 폴백**으로 기본 브랜치를 해석한다(origin/HEAD → init.defaultBranch → main).
+`guard-git.test.sh` 는 `guard-git.sh` 의 기본 브랜치 해석과 **같은 3단 폴백**으로 기본 브랜치를 해석한다(origin/HEAD → init.defaultBranch → main).
 
 이 폴백이 없으면 detached HEAD(CI)나 origin/HEAD 미설정 환경에서 `current_branch` 와 `default_branch` 가 둘 다 빈 문자열이 되어 우연히 같아진다. 테스트가 그것을 「기본 브랜치 위에 있다」로 오인해 차단을 기대하고, 훅은 판정 재료가 없어 허용하므로 거짓 실패가 난다.
 
@@ -110,7 +110,7 @@ S6 에서 정하는 토큰은 **Claude Design 의 디자인 시스템 작업의 
 | S9 SOURCES ＋ `.gitignore` ＋ `CLAUDE.md` 판정 표 | ✅ PR #9 |
 | S10 용어집 | ⏸ |
 | S11 `docs/PRODUCT.md` | ⏸ |
-| S12 screen-inventory ＋ DS-nn 8행 ＋ ADR 3건 | ✅ PR #9 (DS-nn·ADR). screen-inventory 는 미착수 |
+| S12 screen-inventory ＋ DS-nn 8행 ＋ ADR 3건 | 🔄 ADR 3건·DS 8행 완료(PR #9) / screen-inventory 미착수(Figma 필요) |
 | S13 UI-SPEC §1~5 | ⏸ |
 | S14 team-members ＋ CODEOWNERS | ⏸ |
 | S15 UX 라이팅의 그릇 | ⏸ 보류 |
@@ -252,8 +252,9 @@ git diff origin/main   # 의도한 행만 있는지 확인한다
 
 | 항목 | 언제 정하는가 |
 |---|---|
-| 토큰 프리셋(팔레트·타이포·폰트·radius) | S6. **Claude Design 작업 완료 후** |
+| S6 관련 미결 | **정본은 [docs/SOURCES.md](docs/SOURCES.md) 「제품의 전제」다.** |
 | 구현 빌드의 행선지(이 리포 / 엔지니어 리포) | 엔지니어와 논의 후. **이 리포의 설계는 어느 쪽이어도 깨지지 않는다** |
 | `@mentree/design-system` 의 소비 방식 | **정본은 [ADR-0003](docs/adr/0003-design-system-package-placement.md) 의 「귀결」이다.** `docs/PRODUCT.md` 는 S11 이라 아직 없다. 신설하면 그쪽 「미결」 절로 이관한다 |
-| 이 문서의 종단 | 전 단계 완료 후 §8 을 `docs/adr/0001-*.md` 로 옮기고 이 파일을 삭제한다. 전문은 git 이력에 남는다 |
-| Draft·`/pr-review` 의 예외 조항 | 같은 종류가 3건 쌓이면 그때 경계를 긋는다. `CLAUDE.md:61` 은 예외를 두지 않는다. PR #7(문서·주석의 문자열 치환 3행)은 Draft 없이 냈으므로 규칙 위반이다. **예외를 넣지 않기로 정했다.** 경계 후보는 「diff 가 문서·주석·설정값의 문자열 치환에 그치고 코드의 거동을 바꾸지 않는다」이고, `.claude/hooks/`·`scripts/`·`.github/workflows/` 의 로직 변경은 아무리 작아도 예외에 넣지 않는다 |
+| 이 문서의 종단 | 전 단계 완료 후 §8 을 ADR 로 옮기고 이 파일을 삭제한다. 전문은 git 이력에 남는다 |
+| CODEOWNERS 의 실효성 | **자동 리뷰 요청까지만 하고 강제하지 않는다.** 강제하려면 리포를 공개로 바꾸거나 GitHub Pro 가 필요하다. hyeok 이 PR 을 내기 시작하면 자동 요청이 발화한다 |
+| Draft·`/pr-review` 의 예외 조항 | 같은 종류가 3건 쌓이면 그때 경계를 긋는다. `CLAUDE.md` 「Git」은 예외를 두지 않는다. PR #7(문서·주석의 문자열 치환 3행)은 Draft 없이 냈으므로 규칙 위반이다. **예외를 넣지 않기로 정했다.** 경계 후보는 「diff 가 문서·주석·설정값의 문자열 치환에 그치고 코드의 거동을 바꾸지 않는다」이고, `.claude/hooks/`·`scripts/`·`.github/workflows/` 의 로직 변경은 아무리 작아도 예외에 넣지 않는다 |
