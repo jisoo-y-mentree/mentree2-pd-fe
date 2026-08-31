@@ -41,4 +41,6 @@
 
 | ID | 제목 | 상태 |
 |---|---|---|
-| | | |
+| [ADR-0001](0001-ssot-is-implementation-repo.md) | SSoT는 실장 리포다. Claude Design은 작업·검증 환경이다 | 승인 |
+| [ADR-0002](0002-rebuild-design-system-instead-of-sharing.md) | 디자인 시스템을 공유하지 않고 mentree 계정에 새로 세운다 | 승인 |
+| [ADR-0003](0003-design-system-package-placement.md) | 디자인 시스템을 `packages/design-system` 에 커스터마이즈 형태로 둔다 | 승인 |
