@@ -58,6 +58,7 @@
 ## 코딩 규약
 
 - **컴포넌트는 순수 React ＋ 토큰 참조다**(ADR-0003). 디자인 시스템의 어휘(토큰·컴포지션)의 연장으로 만든다. 형태(인라인 style 유지 / Tailwind 변환)는 S6에서 정한다.
+- **코드의 식별자는 [용어집](docs/glossary/ubiquitous-language.md) English 열을 그대로 쓴다.** 표에 없는 영어명을 발명하지 않는다.
 - **색·치수의 정본은 토큰이다.** 리터럴 색값(raw hex 등)을 컴포넌트에 남기지 않는다.
 - **`design/screens/*/template/` 의 CSS를 그대로 옮기지 않는다.** 그것은 시각적 참조이지 이식원이 아니다.
 - 디자인 시스템에 없는 요소를 화면에서 즉석으로 만들지 않는다. [DS-update-list.md](design/DS-update-list.md) 에 기표한다.
