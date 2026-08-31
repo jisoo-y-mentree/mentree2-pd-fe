@@ -142,7 +142,7 @@ DESIGN-CHARTER 원칙 8은 모든 규칙에 근거를 한 줄 붙이라고 요�
 
 | 문서 | 출처 종류 | 내용은 어디서 | 채우는 방식 | 단계 |
 |---|---|---|---|---|
-| `design/docs/screen-inventory.md` | Figma · 텍스트 ＋ **현행 앱** | 화면 목록 ＋ 현행 mentree의 as-is 조사 | 10덩어리를 전부 목록화한다. **계승 / 폐지 / 신규 구분이 필수**다 | S12 |
+| `design/docs/screen-inventory.md` | Figma · 텍스트 | 화면 목록 | 와이어의 덩어리를 전부 목록화한다. **as-is 조사는 하지 않는다**([ADR-0004](../docs/adr/0004-no-as-is-survey.md)) | S12 |
 | `design/DS-update-list.md` | **Claude Design 경위** | 재개 팩의 OPEN ＋ DS-GAP **8건** | **지금 기표한다.** 아래 「지금 기표하는 8행」 참조 | S12 |
 | `docs/adr/` | **Claude Design 경위** | 재개 팩의 결정 **3건** | 아래 「지금 남기는 ADR 3건」 참조 | S12 |
 | `design/screens/<id>/UI-SPEC.md` §1~5 | Figma · 텍스트 | 기획 문서 ＋ 와이어에 붙은 주석·조건문 | **플로우 단위. 1플로우 ＝ 1PR.** `<id>` 의 영어는 **용어집에서 딴다**. 문구는 **키 기반**으로 짠다 | S13 |
