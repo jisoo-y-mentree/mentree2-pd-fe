@@ -273,3 +273,4 @@ DESIGN-CHARTER 원칙 8은 모든 규칙에 근거를 한 줄 붙이라고 요�
 | 옮긴 것 | 원본 | 반입 일시 | 출처의 식별 | SHA-256 | 옮긴 그릇 | 컷오버일 | PR |
 |---|---|---|---|---|---|---|---|
 | OPEN·DS-GAP 8건 / 결정 3건 | Claude Design 재개 팩 | 2026-08-31 | Claude Design 재개 팩(radarlab 계정) | — (붙여넣기 반입) | `DS-update-list.md` DS-01〜08 · `docs/adr/` 0001〜0003 | 2026-08-31 | #9 |
+| DS export 번들(컴포넌트 30본·토큰 6본·guidelines 17본) | Claude Design 화면 프로토타입·디자인 시스템 | 2026-08-31 | radarlab 계정 / `Mentree2 Design System-handoff.zip` | `5e43bc6d53deaf104c3338fd9c2cea298b9b1ec0e55275492030658dcca6014c` | `design/_import/`(커밋하지 않는다) | — (컷오버 전) | — |
