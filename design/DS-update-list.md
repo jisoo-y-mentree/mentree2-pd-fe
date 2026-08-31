@@ -54,7 +54,14 @@
 
 | ID | 대상 | 무엇을·왜 | 요구원 | 상태 | 반영PR | 사인오프 | 종단 이유 |
 |---|---|---|---|---|---|---|---|
-| | | | | | | | |
+| DS-01 | `Pagination` | 목록 화면에 쓸 Pagination이 없다. 없으면 화면마다 즉석으로 만들게 되어 거동이 갈린다 | Claude Design 재개 팩 DS-GAP | 요구 | | | |
+| DS-02 | `Tabs` | 화면 안의 전환에 쓸 Tabs가 없다. 이유는 DS-01과 같다 | Claude Design 재개 팩 DS-GAP | 요구 | | | |
+| DS-03 | （토큰）radius | 대형 카드(bento grid)의 radius가 미정이다. 카드 지오메트리는 card-radius 22를 쓰지만 대형 카드에 그대로 쓸지 정하지 않았다 | Claude Design 재개 팩 OPEN #2 | 요구 | | | |
+| DS-04 | （토큰）accent | accent를 green으로 유지할지 미정이다. 브랜드 green과 같은 색이면 강조가 브랜드에 묻힌다 | Claude Design 재개 팩 OPEN #4 | 요구 | | | |
+| DS-05 | 아이콘 | 헤더·진입의 28px 컬러 SVG 세트가 placeholder다. 확정 자산으로 교체한다. 판정: HugeIcons 모노와 병존하는 예외이므로 **어디에 쓰는지의 규칙을 함께 정한다** | Claude Design 재개 팩 OPEN #10 | 요구 | | | |
+| DS-06 | `Badge` | 펼침 팝오버가 카드 미디어 오버레이 안에서 잘릴 수 있다. 부모의 overflow에 걸린다. 판정: MentorCard 실사용에서 확인한다 | Claude Design 재개 팩 OPEN | 요구 | | | |
+| DS-07 | `InterviewCard` | 모바일 세로형이 없다. 가로형만 있어 768 이하에서 배치가 깨진다 | Claude Design 재개 팩 보류 | 요구 | | | |
+| DS-08 | `CtaSection` | 컴포넌트화하지 않았다. 샘플이 1개뿐이라 공통 규칙을 뽑을 수 없었다. 판정: **2번째 사례가 나오면 컴포넌트로 올린다** | Claude Design 재개 팩 OPEN | 요구 | | | |
 
 ## 기표할 때의 규칙
 

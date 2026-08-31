@@ -21,6 +21,9 @@ ms-playwright/
 # 개인 설정(팀 공유는 .claude/settings.json)
 .claude/settings.local.json
 
+# Claude Design 산출물·경위의 반입 자리(docs/SOURCES.md 「반입 방법」)
+design/_import/
+
 # OS·에디터
 .DS_Store
 Thumbs.db
