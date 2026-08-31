@@ -66,6 +66,8 @@
 | 화면 HTML(`TOP.html`) | **`template/` 으로 export한다**(핸드오프 6단위 ⑤·정확도 B+). 시각적 참조이며 CSS 를 React 구현으로 옮기지 않는다 |
 | 컴포넌트 사양 | **Storybook stories 로 만든다.** `.prompt.md` 는 생성 규칙이라 검증 정답지와 다르다 |
 
+**토큰을 다시 쓰면 토큰 체계가 두 갈래로 갈라진다.**
+
 ### Claude Design 경위 — 근거를 여기서 딴다
 
 DESIGN-CHARTER 원칙 8은 모든 규칙에 근거를 한 줄 붙이라고 요구한다. 산출물에는 결과만 있고 근거가 없다.

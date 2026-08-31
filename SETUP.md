@@ -50,6 +50,8 @@ gh auth setup-git       # 이것을 빼면 git 이 keychain 의 옛 자격증명
 
 **실행 순서는 S1 → S2 → S3 → S4 → S5 → S8 → S6 → S7 이다.** 단계 ID 는 PR·커밋에서 참조하므로 바꾸지 않는다.
 
+**이 문서는 킷 설치 단계(S1~S8)의 ID 를 정의한다. S9 이후는 [docs/SOURCES.md](docs/SOURCES.md) 가 정의한다.**
+
 | ID | 넣는 것 | 끝났다고 판정하는 조건 |
 |---|---|---|
 | **S1** | `CLAUDE.md`·`README.md`·`.gitignore`·`.github/pull_request_template.md`·`.github/CODEOWNERS` | PR 을 만들면 템플릿이 뜬다 |
@@ -72,11 +74,11 @@ gh auth setup-git       # 이것을 빼면 git 이 keychain 의 옛 자격증명
 
 ### 왜 S6 를 뒤로 미루는가
 
-S6 에서 정하는 토큰은 **Claude Design 의 디자인 시스템 작업의 결과물**이어야 한다. 먼저 정하면 두 번 정하게 된다.
+S6 이 적재하는 토큰은 **Claude Design 의 디자인 시스템 작업의 결과물**이다. 먼저 손대면 두 번 만지게 된다.
 
 ### 훅 자기검사의 기본 브랜치 해석
 
-`guard-git.test.sh` 는 `guard-git.sh:53-55` 와 **같은 3단 폴백**으로 기본 브랜치를 해석한다(origin/HEAD → init.defaultBranch → main).
+`guard-git.test.sh` 는 `guard-git.sh` 의 기본 브랜치 해석과 **같은 3단 폴백**으로 기본 브랜치를 해석한다(origin/HEAD → init.defaultBranch → main).
 
 이 폴백이 없으면 detached HEAD(CI)나 origin/HEAD 미설정 환경에서 `current_branch` 와 `default_branch` 가 둘 다 빈 문자열이 되어 우연히 같아진다. 테스트가 그것을 「기본 브랜치 위에 있다」로 오인해 차단을 기대하고, 훅은 판정 재료가 없어 허용하므로 거짓 실패가 난다.
 
@@ -86,6 +88,8 @@ S6 에서 정하는 토큰은 **Claude Design 의 디자인 시스템 작업의 
 
 ## 3. 진행 상황
 
+### 킷 설치 (S1~S8)
+
 | 단계 | 상태 | 비고 |
 |---|---|---|
 | S1 기본 문서 | ✅ PR #1 | |
@@ -94,88 +98,49 @@ S6 에서 정하는 토큰은 **Claude Design 의 디자인 시스템 작업의 
 | S4 design 문서 ＋ 검사기 | ✅ PR #4 | RED→GREEN 3건. python 3.9.6 에서 동작 실증 |
 | S5 스킬 3본 | ✅ PR #5 | `/design-bolt` 로드 확인 |
 | **S8 CI** | ✅ PR #6 | 순서를 앞당겼다(위 §2). `guard-git.test.sh` 폴백 버그 1건 수정 |
-| **S6 design-system** | ⏸ **대기** | **Claude Design 의 작업이 끝날 때까지 착수하지 않는다** |
+| **S6 design-system** | ⏸ | **Claude Design 재개작업 6번(repo 적재)이다. S13 뒤.** 컷오버 시점이기도 하다([ADR-0001](docs/adr/0001-ssot-is-implementation-repo.md)) |
 | S7 a11y 베이스라인 | ⏸ | S6 이후 |
+
+### 문서·내용 (S9~S15)
+
+단계별 내용의 정본은 [docs/SOURCES.md](docs/SOURCES.md) 「순서」 절이다. 여기에 복제하지 않는다.
+
+| 단계 | 상태 |
+|---|---|
+| S9 SOURCES ＋ `.gitignore` ＋ `CLAUDE.md` 판정 표 | ✅ PR #9 |
+| S10 용어집 | ⏸ |
+| S11 `docs/PRODUCT.md` | ⏸ |
+| S12 screen-inventory ＋ DS-nn 8행 ＋ ADR 3건 | 🔄 ADR 3건·DS 8행 완료(PR #9) / screen-inventory 미착수(Figma 필요) |
+| S13 UI-SPEC §1~5 | ⏸ |
+| S14 team-members ＋ CODEOWNERS | ⏸ |
+| S15 UX 라이팅의 그릇 | ⏸ 보류 |
+
+### 끼워지는 순서
+
+```
+S9~S12 → (Claude Design 재개작업 1~4 · 리포 밖 · 병행) → S13 → S6 → S7
+```
 
 ### 미검증으로 남은 것
 
 - `check-docs.py` 의 **UI-SPEC 상태欄 검사**와 **`template/SOURCE.md` 존재 검사** — `design/screens/<id>/` 가 없어 코드 경로 자체가 안 돈다. **첫 화면 작업 때 실제로 먹는지 확인한다.**
 
-### S6 재개 시 정할 것
-
-팔레트 / 타이포 스케일 / 폰트 / radius. **Claude Design 산출물이 입력이다.**
-
-기존 스캐폴드에 있던 `Vega` 프리셋은 B2B 고밀도용이라 그대로 쓰지 않는다. mentree 는 일반 사용자가 가끔 쓰는 B2C 이므로 **밀도를 낮추고 글자를 키우는 쪽**이 맞는다.
-
 ---
 
-## 4. S6 의 절차 — Claude Design 산출물을 토큰으로 옮긴다
+## 4. S6 — Claude Design 산출물을 리포로 적재한다
 
-**S6 은 이 설치에서 유일하게 디자이너의 판단이 필요한 단계다.** 나머지는 승인만 하면 된다.
+**절차의 정본은 [docs/SOURCES.md](docs/SOURCES.md) 「Claude Design 산출물」 표와 「컷오버」 절이다.** 여기에 복제하지 않는다.
 
-### 4.1 입력 — Claude Design 에서 읽어오는 것
+이 문서가 고유하게 갖는 것은 2가지다.
 
-| 읽는 것 | 무엇을 |
+| | |
 |---|---|
-| 색 | 주색·중립 램프·의미색 4종(성공·경고·위험·정보)의 **단계 번호** |
-| 타이포 | 본문 크기·행간·자간, 제목 단수 |
-| radius | 값 1개(부품마다 다르게 하지 않는다) |
-| 폰트 | 한국어 본문 서체와 폴백 스택 |
+| **착수 조건** | Claude Design 재개작업 5번까지 끝났다 |
+| **완료 판정** | `pnpm storybook` 이 뜬다 |
 
-### 4.2 옮기는 것과 옮기지 않는 것
+### 4.1 패키지 이름
 
-> **토큰과 컴포넌트는 이식원이다. 화면 HTML 은 이식원이 아니다.**
-
-대상별 방식의 정본은 [docs/SOURCES.md](docs/SOURCES.md) 「Claude Design 산출물」 표다. 여기에 복제하지 않는다.
-
-- **토큰은 무손실 복사한다.** 값을 읽어 다시 쓰지 않는다
-- **컴포넌트는 소스 이식한다.** 인라인 style → className 변환은 S6 에서 정한다
-- **화면 HTML 의 CSS 를 React 구현으로 옮기지 않는다.** 그것은 시각적 참조다
-- **토큰을 다시 쓰면 토큰 체계가 두 갈래로 갈라진다.** 이 리포에서 가장 지키기 어려운 규칙이다
-
-### 4.3 순서
-
-1. **스캐폴드** — `packages/design-system` 을 세운다. 킷에 `package.json`·`pnpm-workspace.yaml` 의 뼈대가 있다
-2. **토큰을 무손실 복사한다** — 값을 읽어 다시 쓰지 않는다. 리터럴 색값을 남기지 않고 팔레트 참조로 쓴다
-3. **대비를 잰다** — 아래 4.4
-4. **Storybook 에 올린다** — 여기까지가 S6 이다
-5. **a11y 베이스라인 생성** — S7
-
-### 4.4 판정 — 토큰을 확정하기 전에 재는 것
-
-**토큰 층에서 한 번 재면 전 화면에 먹는다.** 화면마다 재지 않는다.
-
-| 대상 | 기준 | 근거 |
-|---|---|---|
-| 본문 텍스트 대 배경 | **4.5:1** 이상 | WCAG 1.4.3 |
-| 부차 텍스트 대 배경 | 4.5:1 이상 | 같음 |
-| 의미색 텍스트 대 그 면 | 4.5:1 이상 | 같음 |
-| 포커스 표시 대 인접색 | **3:1** 이상 | WCAG 1.4.11 |
-| 부품 경계·상태 표시 | 3:1 이상 | 같음 |
-
-**재는 면을 여러 개 잡는다.** 배경·카드·팝오버·muted 면 위에서 각각 재야 한다. 흰 배경에서만 재면 카드 위에서 미달이 나온다.
-
-### 4.5 프리셋을 고르는 기준
-
-기존 스캐폴드에 있던 `Vega` 는 **B2B 고밀도용**이라 그대로 쓰지 않는다. mentree 는 일반 사용자가 가끔 쓰는 B2C 다.
-
-| 판정 조건 | 아크션 |
-|---|---|
-| Claude Design 산출물에 팔레트·타이포가 확정돼 있다 | **프리셋을 고르지 말고 토큰을 직접 쓴다.** 프리셋은 출발점일 뿐이다 |
-| 산출물이 방향만 있고 값이 없다 | 프리셋을 하나 고르고 4.1 의 4가지만 덮어쓴다 |
-| 본문 크기를 정한다 | **16px 를 기준으로 잡는다.** DataSpace 는 14px 지만 그것은 업무 화면 전제다 |
-| radius 를 정한다 | 값 1개로 통일한다. 부품마다 다르게 하지 않는다 |
-| 의미색을 정한다 | 성공·경고·위험·정보 4종. **`chart-*` 를 상태색으로 전용하지 않는다**(전부 같은 색 계열이라 사고가 난다) |
-
-### 4.6 결정을 기록한다
-
-정한 값은 **`design/DESIGN.md` 의 첫 내용**이 된다. 지금 그 파일은 골격만 있고 §1~6 이 비어 있다.
-
-**값 자체를 쓰지 않는다.** 값의 정본은 토큰이다. `DESIGN.md` 에는 **의미와 규칙**을 쓰고 값은 토큰을 가리킨다(DESIGN-CHARTER 원칙 4).
-
-### 4.7 패키지 이름
-
-`packages/design-system/package.json` 의 `name`·`exports` 는 **바꾸지 않는다.** 나중에 다른 리포가 `@mentree/design-system` 을 소비할 수 있게 하려고 지금 잡아둔 것이다.
+`packages/design-system/package.json` 의 `name`·`exports` 는 **바꾸지 않는다.** 나중에 다른 리포가 `@mentree/design-system` 을 소비할 수 있게 하려고 지금 잡아둔 것이다([ADR-0003](docs/adr/0003-design-system-package-placement.md)).
 
 ## 5. 첫 왕복으로 파이프라인을 실증한다 (S7 이후)
 
@@ -251,7 +216,7 @@ git diff origin/main   # 의도한 행만 있는지 확인한다
 
 **④ HtmlTemplate 의 JS·CSS 제약을 폐지한다.**
 - DataSpace 의 제약은 정적 HTML/CSS 만·JS 전량 제거·4상태 4파일·CSS 공통화다.
-- 근거는 「기술 스택 확정 전에도 작업 가능한 형태를 유지한다」였다. mentree 는 Next.js+shadcn 확정이므로 근거가 없다.
+- 근거는 「기술 스택 확정 전에도 작업 가능한 형태를 유지한다」였다. mentree 는 React 확정이므로 근거가 없다.
 - **대신 남기는 원칙**: `template/` 은 React 구현의 **시각적 참조**이지 **코드 이식원이 아니다**. CSS 를 그대로 옮기지 않는다.
 - **추가**: `template/SOURCE.md`(Claude Design 링크·생성일·대응 UI-SPEC)를 둔다. 없으면 템플릿과 UI-SPEC 의 정합을 판정할 수 없다.
 
@@ -287,7 +252,9 @@ git diff origin/main   # 의도한 행만 있는지 확인한다
 
 | 항목 | 언제 정하는가 |
 |---|---|
-| 토큰 프리셋(팔레트·타이포·폰트·radius) | S6. **Claude Design 작업 완료 후** |
+| S6 관련 미결 | **정본은 [docs/SOURCES.md](docs/SOURCES.md) 「제품의 전제」다.** |
 | 구현 빌드의 행선지(이 리포 / 엔지니어 리포) | 엔지니어와 논의 후. **이 리포의 설계는 어느 쪽이어도 깨지지 않는다** |
-| `@mentree/design-system` 의 배포 방식(npm / git 참조 / workspace) | 위가 정해진 뒤 |
-| 이 문서의 종단 | 전 단계 완료 후 §8 을 `docs/adr/0001-*.md` 로 옮기고 이 파일을 삭제한다. 전문은 git 이력에 남는다 |
+| `@mentree/design-system` 의 소비 방식 | **정본은 [ADR-0003](docs/adr/0003-design-system-package-placement.md) 의 「귀결」이다.** `docs/PRODUCT.md` 는 S11 이라 아직 없다. 신설하면 그쪽 「미결」 절로 이관한다 |
+| 이 문서의 종단 | 전 단계 완료 후 §8 을 ADR 로 옮기고 이 파일을 삭제한다. 전문은 git 이력에 남는다 |
+| CODEOWNERS 의 실효성 | **자동 리뷰 요청까지만 하고 강제하지 않는다.** 강제하려면 리포를 공개로 바꾸거나 GitHub Pro 가 필요하다. hyeok 이 PR 을 내기 시작하면 자동 요청이 발화한다 |
+| Draft·`/pr-review` 의 예외 조항 | 같은 종류가 3건 쌓이면 그때 경계를 긋는다. `CLAUDE.md` 「Git」은 예외를 두지 않는다. PR #7(문서·주석의 문자열 치환 3행)은 Draft 없이 냈으므로 규칙 위반이다. **예외를 넣지 않기로 정했다.** 경계 후보는 「diff 가 문서·주석·설정값의 문자열 치환에 그치고 코드의 거동을 바꾸지 않는다」이고, `.claude/hooks/`·`scripts/`·`.github/workflows/` 의 로직 변경은 아무리 작아도 예외에 넣지 않는다 |
