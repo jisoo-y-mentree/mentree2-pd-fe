@@ -40,7 +40,7 @@ description: 지정된 PR 1본을 리뷰한다. PR 내용의 해설과, 그대�
 | 차분의 경로 | 관점 |
 |---|---|
 | `design/**`·`docs/**` | `CLAUDE.md` 상설 지시와의 정합 ／ **[한국어 규약](../../../docs/guidelines/korean-writing-rules.md) 의 R1·R2·R5·R7~R9**(결론을 먼저·두 값·미확정·군더더기·제목과 문단·말의 고르기) ／ **차분과 PR 본문 양쪽**에 적용한다 ／ `DESIGN-CHARTER.md` 8원칙 테스트 ／ UI-SPEC과 template의 어긋남 ／ `DS-nn` 의 상태와 실물의 어긋남 |
-| `packages/design-system/**` | 토큰이 정본인가(리터럴 색값이 남지 않았는가) ／ shadcn 작법의 연장인가(독자 부품을 만들지 않았는가) ／ Storybook에 올라갔는가 ／ **axe 베이스라인이 늘지 않았는가** ／ `template/` 의 CSS를 그대로 옮기지 않았는가 |
+| `packages/design-system/**` | 토큰이 정본인가(리터럴 색값이 남지 않았는가) ／ 디자인 시스템의 어휘(토큰·컴포지션)의 연장인가(독자 부품을 만들지 않았는가) ／ Storybook에 올라갔는가 ／ **axe 베이스라인이 늘지 않았는가** ／ `template/` 의 CSS를 그대로 옮기지 않았는가 |
 | `.github/**`·`scripts/**`·`.claude/**` | `GITHUB_TOKEN` 권한 최소화와 액션의 **SHA 고정** ／ CODEOWNERS 보호 범위 ／ 시크릿의 취급 ／ **AI에게 허용하는 조작이 바뀌지 않았는가** |
 
 **R3·R4·R6**(애매어·140자·LLM 말투)은 훅이 본다.
