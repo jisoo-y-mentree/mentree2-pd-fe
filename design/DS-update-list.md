@@ -5,8 +5,9 @@
 
 ## 방향 원칙
 
-- 구현의 트렁크는 `packages/design-system` 의 **shadcn ＋ Tailwind** 다.
-- **Claude Design의 산출물은 디자인 의도의 참조이며 CSS의 이식원이 아니다.**
+- 구현의 트렁크는 `packages/design-system` 이다. 컴포넌트의 형태(인라인 style 유지 / Tailwind 변환)는 S6에서 정한다.
+- **Claude Design의 디자인 시스템 산출물은 이식원이다** — 토큰은 무손실 복사, 컴포넌트는 소스 이식한다(`docs/SOURCES.md` 「Claude Design 산출물」).
+- **`template/`(Figma 비주얼 export)은 이식원이 아니다.** 시각적 참조이며 CSS를 옮기지 않는다.
 - 요구는 전부 shadcn+Tailwind의 작법(cva variant·컴포지션·토큰)의 연장으로 구현한다.
 - 반영 순서는 **토큰 층 → 컴포넌트 층**이다. 토큰이 흔들리면 컴포넌트를 두 번 만지게 된다.
 
