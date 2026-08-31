@@ -3,5 +3,6 @@
 
 # AI 상설 지시·훅·CI — 바꾸면 전체 거동이 바뀐다
 /CLAUDE.md              @jisoo-y
+/docs/                  @jisoo-y
 /.claude/               @jisoo-y
 /.github/workflows/     @jisoo-y
