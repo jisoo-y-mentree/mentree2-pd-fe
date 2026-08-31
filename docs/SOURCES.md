@@ -262,4 +262,4 @@ DESIGN-CHARTER 원칙 8은 모든 규칙에 근거를 한 줄 붙이라고 요�
 
 | 옮긴 것 | 원본 | 옮긴 그릇 | 컷오버일 | PR |
 |---|---|---|---|---|
-| OPEN·DS-GAP 8건 / 결정 3건 | Claude Design 재개 팩(2026-08-31 반입) | `DS-update-list.md` DS-01〜08 · `docs/adr/` 0001〜0003 | 2026-08-31 | (이 PR 번호) |
+| OPEN·DS-GAP 8건 / 결정 3건 | Claude Design 재개 팩(2026-08-31 반입) | `DS-update-list.md` DS-01〜08 · `docs/adr/` 0001〜0003 | 2026-08-31 | #9 |
