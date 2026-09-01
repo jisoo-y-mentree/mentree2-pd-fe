@@ -110,12 +110,6 @@ gh auth setup-git       # 이것을 빼면 git 이 keychain 의 옛 자격증명
 | S15 UX 라이팅의 그릇 | ⏸ 보류 |
 | **S16** `DESIGN.md` 파운데이션 | ⏸ **신설**(ADR-0005). 입력은 `design/ds-export/project/guidelines/` |
 
-### 끼워지는 순서
-
-```
-S9~S12 → S10 → 고아 분석 → DS 갱신·재export → S16 ∥ S13
-```
-
 ### 미검증으로 남은 것
 
 - `check-docs.py` 의 **UI-SPEC 상태欄 검사**와 **`template/SOURCE.md` 존재 검사** — `design/screens/<id>/` 가 없어 코드 경로 자체가 안 돈다. **첫 화면 작업 때 실제로 먹는지 확인한다.**

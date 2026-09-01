@@ -19,7 +19,7 @@
 <!-- 채우는 순서
      ⓐ 도메인 개념 — S12·S11 의 Figma 스캔 중에 모은다
      ⓑ 화면 ID     — S12 의 screen-inventory 에서 확정된 뒤 옮긴다
-     ⓒ 컴포넌트 명칭 — design/_import/ 의 Claude Design 산출물에서 옮긴다
+     ⓒ 컴포넌트 명칭 — design/ds-export/project/components/ 에서 옮긴다
 
      English 가 이미 정해진 것(컴포넌트)은 그대로 쓴다. 새로 짓지 않는다.
      한국어 명칭이 갈리는 것은 정하지 말고 모아서 한 번에 사람에게 묻는다. -->

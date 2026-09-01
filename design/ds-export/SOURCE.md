@@ -1,7 +1,8 @@
 # ds-export — 출처와 범위
 
 > 이 디렉터리가 답하는 것: **디자인 시스템의 값과 사양은 무엇인가.**
-> 디자인 시스템 사양의 정본이다. FE 인계의 입력이다([ADR-0005](../../docs/adr/0005-design-team-deliverables.md)).
+> **참조의 정본**이다 — 값을 알려면 여기를 본다. 값을 바꾸려면 **Claude Design**(편집의 정본)으로 간다.
+> 두 축의 정의는 [docs/SOURCES.md](../../docs/SOURCES.md) 「정본의 두 축」이 갖는다. FE 인계의 입력이다([ADR-0005](../../docs/adr/0005-design-team-deliverables.md)).
 
 - 출처: Claude Design (radarlab 계정)
 - 원본: `Mentree2 Design System-handoff.zip`

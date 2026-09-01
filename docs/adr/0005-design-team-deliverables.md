@@ -40,14 +40,14 @@
 
 | 어디 | 무엇이 바뀌는가 |
 |---|---|
-| [ADR-0001](0001-ssot-is-implementation-repo.md) | **컷오버가 없어진다.** 디자인 시스템의 정본은 Claude Design 이고, `ds-export/` 가 그 사본이다 |
+| [ADR-0001](0001-ssot-is-implementation-repo.md) | **컷오버가 없어진다.** 대신 정본에 축이 둘이 된다 — **편집은 Claude Design, 참조는 `ds-export/`**(`docs/SOURCES.md` 「정본의 두 축」) |
 | [ADR-0003](0003-design-system-package-placement.md) | **폐기한다.** `packages/design-system` 을 만들지 않는다 |
 | [DS-update-list.md](../../design/DS-update-list.md) | 「반영 ＝ Storybook 등재」가 성립하지 않는다. **상태 기계를 5단에서 3단으로** 재정의한다 |
 | [DESIGN-CHARTER.md](../../design/DESIGN-CHARTER.md) 원칙 5 | 집행층의 `[lint]` 가 **문서 검사로 좁혀진다.** 토큰·DS·a11y 의 기계 검출이 없어진다 |
 | `.claude/skills/design-bolt` 페이즈 3 | a11y 블로커가 없어진다. `template/` 이 **JS 없는 4파일**로 고정된다 |
 | `.github/workflows/ci.yml` | `node` 잡을 지운다. 영구히 건너뛰는 잡은 가짜 그린이다 |
 
-**위 6곳을 따라가는 문언 수정이 12곳 더 있다** — `CLAUDE.md` · `README.md` · `SETUP.md` · `docs/SOURCES.md` · `docs/guidelines/designer-workflow.md` · `design/screens/README.md` · `design/DESIGN.md` · `.claude/skills/pr-review` · `.github/pull_request_template.md` · `.claude/settings.json` · `.gitignore` · `package.json`(삭제).
+**위 6곳을 따라가는 문언 수정이 14곳 더 있다** — `CLAUDE.md` · `README.md` · `SETUP.md` · `docs/SOURCES.md` · `docs/glossary/ubiquitous-language.md` · `docs/guidelines/designer-workflow.md` · `design/screens/README.md` · `design/DESIGN.md` · `.claude/skills/pr-review` · `.claude/hooks/check-korean.py` · `.github/pull_request_template.md` · `.claude/settings.json` · `.gitignore` · `package.json`(삭제).
 
 그 밖의 귀결.
 

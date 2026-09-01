@@ -14,9 +14,27 @@
 |---|---|
 | 요건·규칙·판단의 근거 | 리포의 md |
 | 개념과 컴포넌트의 **이름** | **용어집** |
-| 디자인 시스템의 토큰·컴포넌트 | **Claude Design.** 리포는 [`design/ds-export/`](../design/ds-export/SOURCE.md) 로 사본을 갖는다 |
+| 디자인 시스템의 토큰·컴포넌트 | **아래 「정본의 두 축」** |
 | 비주얼(배치·크기·간격) | Figma → Claude Design 화면 프로토타입 → `template/` |
 | 구현 | **이 리포 밖**(엔지니어) |
+
+### 정본의 두 축 — 고치는 곳과 읽는 곳
+
+디자인 시스템만 축이 둘이다. **물음이 둘이라 답도 둘이다.**
+
+| 물음 | 이름 | 어디 |
+|---|---|---|
+| 값을 **바꾸려면** 어디로 가나 | **편집의 정본** | **Claude Design** |
+| 값을 **알려면** 어디를 보나 | **참조의 정본** | **[`design/ds-export/`](../design/ds-export/SOURCE.md)** |
+
+| 판정 조건 | 아크션 |
+|---|---|
+| 토큰 값·컴포넌트 구조를 바꾼다 | **Claude Design 에서 한다.** 리포에서 고치지 않는다 |
+| 값이 무엇인지 알고 싶다 | **`ds-export/` 를 본다.** Claude Design 을 열지 않는다 |
+| `ds-export/` 와 Claude Design 이 다르다 | **Claude Design 이 맞다.** 재export 해서 `ds-export/` 를 통째로 교체한다 |
+| `ds-export/` 를 손으로 고치고 싶다 | **고치지 않는다.** 고치면 두 축이 갈린다 |
+
+**이 두 이름을 다른 문서에서 다시 정의하지 않는다.** 여기를 가리킨다.
 
 **매체로 가르지 않고 층으로 가른다.** Figma의 와이어 프레임 하나에서 두 가지가 나온다 — 붙어 있는 주석·조건문은 md로 옮기고, 배치는 옮기지 않는다.
 
@@ -24,13 +42,13 @@
 
 **이 리포는 디자인 시스템을 구현하지 않는다**([ADR-0005](adr/0005-design-team-deliverables.md)). 리포가 디자인 시스템의 정본이 되는 시점이 오지 않는다.
 
-| 무엇 | 정본 | 리포의 역할 |
+| 무엇 | 편집의 정본 | 참조의 정본 |
 |---|---|---|
-| 토큰·컴포넌트·원칙 | **Claude Design** | `design/ds-export/` 가 **사본**이자 **인계 산출물**이다 |
-| 화면의 사양 | **리포** (`UI-SPEC.md`) | 처음부터 리포가 정본이다 |
-| 화면의 비주얼 | **리포** (`template/`) | 처음부터 리포가 정본이다 |
+| 토큰·컴포넌트·원칙 | **Claude Design** | **`design/ds-export/`** — 인계 산출물이기도 하다 |
+| 화면의 사양 | **리포** (`UI-SPEC.md`) | 같음. 축이 하나다 |
+| 화면의 비주얼 | **리포** (`template/`) | 같음. 축이 하나다 |
 
-**값·구조를 고칠 곳은 언제나 Claude Design 이다.** 고친 뒤 재export 해서 `ds-export/` 를 통째로 교체한다. 손으로 고치면 갈린다.
+**축이 둘인 것은 디자인 시스템뿐이다.** 위 「정본의 두 축」이 정본이다.
 
 ### 예외 — 이름은 용어집이 정본이다
 
@@ -72,10 +90,10 @@
 
 | 대상 | 어디에 |
 |---|---|
-| `tokens/*.css` · `styles.css` | `ds-export/project/tokens/` — **무손실 사본.** 값의 정본이다 |
-| 컴포넌트 `.jsx` · `.d.ts` · `.card.html` | `ds-export/project/components/` — **무손실 사본** |
+| `tokens/*.css` · `styles.css` | `ds-export/project/tokens/` — **무손실 복사.** 값을 읽을 곳이다 |
+| 컴포넌트 `.jsx` · `.d.ts` · `.card.html` | `ds-export/project/components/` — **무손실 복사** |
 | 컴포넌트·요소의 **명칭** | 용어집 English 열과 `DS-update-list` 의 입력이다 |
-| 원칙·의도(`guidelines/*.html`) | 사본은 `ds-export/project/guidelines/`. **규칙만 골라 `DESIGN.md` 로 옮긴다**(실측값은 쓰지 않는다) |
+| 원칙·의도(`guidelines/*.html`) | `ds-export/project/guidelines/`. **규칙만 골라 `DESIGN.md` 로 옮긴다**(실측값은 쓰지 않는다) |
 | 화면 HTML | **`design/screens/<id>/template/` 으로 export한다.** 정적 HTML/CSS 4파일, JS 없음 |
 | 미구현·미정 | `DS-update-list.md` 의 `DS-nn` |
 
@@ -110,7 +128,7 @@ DESIGN-CHARTER 원칙 8은 모든 규칙에 근거를 한 줄 붙이라고 요�
 
 #### SHA 운용
 
-**원본 zip 의 SHA-256 을 남긴다.** 정본은 `ds-export/SOURCE.md` 이고, 아래 「컷오버 기록」에도 같은 값을 적는다.
+**원본 zip 의 SHA-256 을 남긴다.** 적는 곳은 `ds-export/SOURCE.md` 이고, 아래 「반입 기록」에도 같은 값을 적는다.
 
 **SHA 는 「어느 시점 사본인가」를 고정할 뿐 「지금도 같은가」는 알려주지 않는다.**
 
@@ -304,5 +322,5 @@ DESIGN-CHARTER 원칙 8은 모든 규칙에 근거를 한 줄 붙이라고 요�
 | 옮긴 것 | 원본 | 반입 일시 | 출처의 식별 | SHA-256 | 옮긴 그릇 | 머지일 | PR |
 |---|---|---|---|---|---|---|---|
 | OPEN·DS-GAP 8건 / 결정 3건 | Claude Design 재개 팩 | 2026-08-31 | Claude Design 재개 팩(radarlab 계정) | — (붙여넣기 반입) | `DS-update-list.md` DS-01〜08 · `docs/adr/` 0001〜0003 | 2026-08-31 | #9 |
-| DS export 번들 — 컴포넌트 30본·토큰 6본·guidelines 17본 | Claude Design 디자인 시스템 | 2026-08-31 | radarlab 계정 / `Mentree2 Design System-handoff.zip` | `5e43bc6d53deaf104c3338fd9c2cea298b9b1ec0e55275492030658dcca6014c` | **`design/ds-export/`(커밋한다)** — 정본은 [SOURCE.md](../design/ds-export/SOURCE.md) | | |
+| DS export 번들 — 컴포넌트 30본·토큰 6본·guidelines 17본 | Claude Design 디자인 시스템 | 2026-08-31 | radarlab 계정 / `Mentree2 Design System-handoff.zip` | `5e43bc6d53deaf104c3338fd9c2cea298b9b1ec0e55275492030658dcca6014c` | **`design/ds-export/`(커밋한다)** — 상세는 [SOURCE.md](../design/ds-export/SOURCE.md) | | |
 | 재개 팩 5본(이관·파이프라인·반응형·상태) | Claude Design 경위 | 2026-08-31 | radarlab 계정 | — | `design/_import/`(커밋하지 않는다) | — | — |

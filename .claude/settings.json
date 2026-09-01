@@ -5,7 +5,12 @@
       "Bash(git status:*)",
       "Bash(git diff:*)",
       "Bash(git log:*)",
-      "Bash(python3 scripts/check-docs.py:*)"
+      "Bash(python3 scripts/check-docs.py:*)",
+      "Bash(bash .claude/hooks/guard-git.test.sh)",
+      "Bash(bash .claude/hooks/guard-pr.test.sh)",
+      "Bash(bash .claude/hooks/check-merge-conflict.test.sh)",
+      "Bash(bash .claude/hooks/check-korean.test.sh)",
+      "Bash(python3 .claude/hooks/guard-pr.wiring.py:*)"
     ],
     "deny": [
       "Read(.env)",

@@ -61,8 +61,9 @@
 산출물은 **6종으로 끝난다**([ADR-0005](docs/adr/0005-design-team-deliverables.md)) — `design/ds-export/` · `DS-update-list.md` · `DESIGN.md` · `UX-PATTERNS.md` · 화면당 `UI-SPEC.md` · 화면당 `template/`.
 
 - **식별자는 [용어집](docs/glossary/ubiquitous-language.md) English 열을 그대로 쓴다.** 표에 없는 영어명을 발명하지 않는다.
-- **색·치수의 정본은 토큰이다**(`design/ds-export/project/tokens/`). 문서에 값을 복제하지 않는다.
-- **`design/ds-export/` 를 손으로 고치지 않는다.** Claude Design 에서 고치고 통째로 교체한다.
+- **정본에 축이 둘이다** — 값을 **바꾸려면 Claude Design**(편집의 정본), 값을 **알려면 `design/ds-export/`**(참조의 정본). 정의는 [docs/SOURCES.md](docs/SOURCES.md) 「정본의 두 축」이다.
+- **색·치수를 문서에 복제하지 않는다.** `design/ds-export/project/tokens/` 를 가리킨다.
+- **`design/ds-export/` 를 손으로 고치지 않는다.** 고치면 두 축이 갈린다.
 - **`template/` 은 정적 HTML/CSS 4파일이다.** JS 를 남기지 않는다. 빌드가 필요한 것을 넣지 않는다.
 - **`template/` 의 CSS를 다른 곳으로 옮기지 않는다.** 그것은 시각적 참조이지 이식원이 아니다.
 - 디자인 시스템에 없는 요소를 화면에서 즉석으로 만들지 않는다. [DS-update-list.md](design/DS-update-list.md) 에 기표한다.
