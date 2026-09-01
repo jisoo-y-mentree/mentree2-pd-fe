@@ -40,77 +40,12 @@ jobs:
       - name: Check docs
         run: python3 scripts/check-docs.py
 
-  # ---------------------------------------------------------------------------
-  # 디자인 시스템. packages/design-system 이 없으면 통째로 건너뛴다.
-  # ---------------------------------------------------------------------------
-  node:
-    name: Design system (lint, typecheck, test, a11y)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Detect workspace
-        id: detect
-        run: |
-          if [ -f packages/design-system/package.json ]; then
-            echo "found=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "found=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::design-system 이 아직 없어 건너뜁니다(S6 이전)."
-          fi
-
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        if: steps.detect.outputs.found == 'true'
-        with:
-          node-version-file: ".nvmrc"
-
-      # pnpm 은 Node 동봉의 corepack 으로 준비한다(서드파티 Action 을 늘리지 않는다).
-      # 버전의 정본은 루트 package.json 의 packageManager 다.
-      - name: Enable corepack (pnpm)
-        if: steps.detect.outputs.found == 'true'
-        run: |
-          corepack enable
-          pnpm --version
-
-      - name: Install
-        if: steps.detect.outputs.found == 'true'
-        run: pnpm install --frozen-lockfile
-
-      - name: Lint (oxlint)
-        if: steps.detect.outputs.found == 'true'
-        run: pnpm lint
-
-      - name: Typecheck
-        if: steps.detect.outputs.found == 'true'
-        run: pnpm typecheck
-
-      - name: Test (Vitest)
-        if: steps.detect.outputs.found == 'true'
-        run: pnpm test
-
-      # a11y 회귀 검출. 전 Story 에 axe 를 대고, 기존 부적합에서 늘면 떨어뜨린다.
-      # 기존분은 packages/design-system/a11y-baseline.json 이 갖는다.
-      # 고쳤으면 `pnpm test:a11y:update` 로 갱신한다.
-      #
-      # lint(oxlint 의 jsx-a11y)는 정적 해석이다. 대비비·접근 가능한 이름의 실효값은
-      # 그려보지 않으면 못 재므로 양쪽 다 필요하다.
-      #
-      # 브라우저는 캐시하지 않는다. headless shell 만 넣는다(--only-shell).
-      - name: Install Chromium (headless shell)
-        if: steps.detect.outputs.found == 'true'
-        working-directory: packages/design-system
-        run: pnpm exec playwright-core install --only-shell --no-progress chromium
-
-      - name: Build Storybook
-        if: steps.detect.outputs.found == 'true'
-        working-directory: packages/design-system
-        env:
-          STORYBOOK_DISABLE_TELEMETRY: "1"
-        run: pnpm build-storybook
-
-      - name: A11y (axe over Storybook)
-        if: steps.detect.outputs.found == 'true'
-        working-directory: packages/design-system
-        run: pnpm test:a11y
+# -----------------------------------------------------------------------------
+# 잡은 checks 하나뿐이다.
+#
+# 디자인 시스템 잡(lint·typecheck·test·a11y)은 지웠다. 이 리포는 디자인 시스템을
+# 구현하지 않으므로 돌릴 것이 없다(docs/adr/0005-design-team-deliverables.md).
+# 영구히 건너뛰는 잡을 남기면 가짜 그린이 된다.
+#
+# 산출물은 마크다운과 정적 HTML 뿐이라 빌드가 없다. 검사할 것은 문서의 정합성이다.
+# -----------------------------------------------------------------------------

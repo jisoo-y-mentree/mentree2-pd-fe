@@ -1,0 +1,19 @@
+<!-- @dsCard group="Foundations" viewport="700x160" name="시맨틱 — 텍스트·경계·포커스" subtitle="foreground, muted-foreground, border, input, ring" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:18px 16px;background:var(--background);display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+  .txt{display:flex;flex-direction:column;gap:2px}
+  .big{font-size:20px;font-weight:600}
+  .sm{font-size:12px}
+  .lab{font-size:10.5px;color:var(--muted-foreground);margin-top:2px}
+  .line{width:130px;height:0;border-top:1px solid var(--border)}
+  .box{width:120px;height:38px;border-radius:var(--radius-md);border:1px solid var(--input);background:var(--card)}
+  .ring{width:120px;height:38px;border-radius:var(--radius-md);border:1px solid var(--ring);background:var(--card);box-shadow:0 0 0 3px color-mix(in oklch,var(--ring) 30%,transparent)}
+</style></head>
+<body>
+  <div class="txt"><span class="big" style="color:var(--foreground)">본문 Aa 가</span><span class="sm" style="color:var(--muted-foreground)">보조 텍스트 · muted</span><span class="lab">--foreground / --muted-foreground</span></div>
+  <div class="txt"><div class="line"></div><span class="lab">--border · sage-200</span></div>
+  <div class="txt"><div class="box"></div><span class="lab">--input</span></div>
+  <div class="txt"><div class="ring"></div><span class="lab">--ring (focus)</span></div>
+</body></html>

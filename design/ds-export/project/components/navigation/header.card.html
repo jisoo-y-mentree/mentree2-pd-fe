@@ -1,0 +1,39 @@
+<!-- @dsCard group="Navigation" viewport="1100x360" name="Header" subtitle="제품 기본 상단 네비(sticky) — 좌 로고 / 중 메뉴3(28px 컬러 아이콘 슬롯·활성 green) / 우 회원가입·로그인+기업서비스" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  html, body { margin: 0; }
+  body { background: var(--background); color: var(--foreground); font-family: var(--font-sans); padding: 0 0 24px; }
+  .cap { font-size: var(--text-caption); color: var(--muted-foreground); padding: 16px 24px 6px; }
+  .stage { padding: 20px 24px; max-width: 1200px; margin: 0 auto; color: var(--muted-foreground); font-size: var(--text-caption); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Header } = window.MentreeDesignSystem_2f86cf;
+  function Demo() {
+    const [active, setActive] = React.useState("mentors");
+    const nav = (item) => { if (!item.external && item.href && item.href.startsWith("/")) setActive(item.key); };
+    return (
+      <div>
+        <div className="cap">비로그인(guest) — 활성: 멘토 찾기. 우측: 회원가입/로그인(green 하나) + 기업 서비스(파랑 아웃라인 ↗)</div>
+        <Header activeKey={active} authState="guest" onNavigate={nav} />
+        <div className="stage">중앙 메뉴 3개, 각 좌측 28px 컬러 아이콘 슬롯(placeholder — 오리지널 컬러 SVG 예정). 활성 메뉴는 primary green.</div>
+
+        <div className="cap">로그인 상태 분기 — mentor / mentee (분기 자리만, 미구현 placeholder)</div>
+        <Header activeKey="qna" authState="mentor" onNavigate={nav} />
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

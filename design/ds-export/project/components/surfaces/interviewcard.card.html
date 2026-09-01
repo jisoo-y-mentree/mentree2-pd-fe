@@ -1,0 +1,47 @@
+<!-- @dsCard group="Components" viewport="840x520" name="InterviewCard" subtitle="인물 인터뷰 카드(가로형) — featured/compact size 변형. 북마크 없음, 카드 전체 링크" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .stack { display: flex; flex-direction: column; gap: 16px; max-width: 640px; }
+  .cell { display: flex; flex-direction: column; gap: 8px; }
+  .cap { font-size: var(--text-caption); color: var(--muted-foreground); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { InterviewCard } = window.MentreeDesignSystem_2f86cf;
+  const PORTRAIT = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Crect width='320' height='320' fill='%23cdd3ce'/%3E%3Ccircle cx='160' cy='124' r='60' fill='%23bcc3bd'/%3E%3Crect x='70' y='210' width='180' height='150' rx='70' fill='%23bcc3bd'/%3E%3C/svg%3E";
+  function Demo() {
+    return (
+      <div className="stack">
+        <div className="cell">
+          <InterviewCard size="featured" href="#" image={PORTRAIT}
+            country="south-korea" countryLabel="대한민국" field="디자인"
+            title="10년 차 디자이너가 말하는 성장의 변곡점"
+            excerpt="주니어에서 리드로 넘어가던 시기에 가장 크게 바뀐 건 관점이었습니다. 문제를 보는 층위가 달라지자 팀과의 대화도 달라졌어요."
+            personName="박지훈" company="네이버" jobTitle="Design Lead" />
+          <div className="cap">featured — 대형, 발췌 있음</div>
+        </div>
+        <div className="cell">
+          <InterviewCard size="compact" href="#"
+            country="japan" countryLabel="일본" field="엔지니어링"
+            title="해외 취업, 준비는 이력서가 아니라 문제 정의부터"
+            personName="다나카 미오" jobTitle="Product Manager" company="메르카리" />
+          <div className="cap">compact — 소형, 발췌 없음, placeholder</div>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

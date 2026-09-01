@@ -1,0 +1,16 @@
+<!-- @dsCard group="Foundations" viewport="700x150" name="브랜드 — Primary & Accent" subtitle="프리셋 Green — 프라이머리 버튼·포커스·활성 네비" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:16px;background:var(--background);display:flex;gap:14px;flex-wrap:wrap}
+  .sw{display:flex;flex-direction:column;gap:6px}
+  .chip{width:150px;height:64px;border-radius:var(--radius-md);border:1px solid var(--border);display:flex;align-items:flex-end;padding:8px;box-sizing:border-box}
+  .n{font-size:12px;font-weight:600;color:var(--foreground)}
+  .v{font-size:11px;color:var(--muted-foreground);font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+  <div class="sw"><div class="chip" style="background:var(--primary)"><span style="color:var(--primary-foreground);font-size:12px;font-weight:600">primary-fg</span></div><div class="n">--primary</div><div class="v">oklch(.527 .154 150)</div></div>
+  <div class="sw"><div class="chip" style="background:var(--accent)"><span style="color:var(--accent-foreground);font-size:12px;font-weight:600">accent-fg</span></div><div class="n">--accent</div><div class="v">= primary (green)</div></div>
+  <div class="sw"><div class="chip" style="background:var(--sidebar-primary)"></div><div class="n">--sidebar-primary</div><div class="v">oklch(.627 .194 149)</div></div>
+  <div class="sw"><div class="chip" style="background:var(--brand-ink)"></div><div class="n">--brand-ink</div><div class="v">#004418 · 로고 (canon)</div></div>
+</body></html>

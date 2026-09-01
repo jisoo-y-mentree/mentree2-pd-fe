@@ -5,11 +5,7 @@
       "Bash(git status:*)",
       "Bash(git diff:*)",
       "Bash(git log:*)",
-      "Bash(pnpm lint:*)",
-      "Bash(pnpm typecheck:*)",
-      "Bash(pnpm test:*)",
-      "Bash(pnpm storybook:*)",
-      "Bash(pnpm build-storybook:*)"
+      "Bash(python3 scripts/check-docs.py:*)"
     ],
     "deny": [
       "Read(.env)",

@@ -1,0 +1,78 @@
+<!-- @dsCard group="Components" viewport="820x520" name="Banner" subtitle="인라인 둥근 프로모(자유 영역) — radius 22·폰트·禁則만 고정, 배경·효과·CTA 자유" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .stack { display: flex; flex-direction: column; gap: 16px; max-width: 680px; margin: 0 auto; }
+  .cap { font-size: var(--text-caption); color: var(--muted-foreground); margin-bottom: 4px; }
+  /* 자유 효과 예시: 흐르는 그라데이션 아웃라인(정적으로도 무방) — background-clip 이중 배경 */
+  @keyframes banner-flow { to { background-position: 0 0, 200% 0; } }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Banner, Button, Icon } = window.MentreeDesignSystem_2f86cf;
+  function Demo() {
+    return (
+      <div className="stack">
+        {/* ① 그라데이션 아웃라인 + 아이콘 + 텍스트 (전체 클리커블, CTA 없음) */}
+        <div>
+          <div className="cap">① 그라데이션 아웃라인 + 아이콘 + 텍스트 (전체 클리커블 · 애니메이션 옵션)</div>
+          <Banner href="#" background="transparent" padding={16} style={{ border: "2px solid transparent", background: "linear-gradient(var(--card), var(--card)) padding-box, linear-gradient(100deg, var(--primary), var(--badge-indigo-700), var(--primary)) border-box", backgroundSize: "100% 100%, 200% 100%", animation: "banner-flow 4s linear infinite" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <Icon name="ai-magic" size={22} style={{ color: "var(--primary)" }} />
+                <div>
+                  <div style={{ fontSize: "var(--text-h3)", fontWeight: 600 }}>나의 성향 분석 베타 오픈</div>
+                  <div style={{ fontSize: "var(--text-caption)", color: "var(--muted-foreground)" }}>3분 진단으로 맞는 멘토를 추천받으세요</div>
+                </div>
+              </div>
+          </Banner>
+        </div>
+
+        {/* ② 진한 브랜드 배경 + 제목/부제 + 우측 CTA 버튼 */}
+        <div>
+          <div className="cap">② 진한 브랜드 배경 + 일러스트 슬롯 + 제목/부제 + 우측 CTA</div>
+          <Banner href="#" background="var(--primary)" style={{ color: "var(--primary-foreground)" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                <div style={{ width: 44, height: 44, borderRadius: "var(--radius-md)", background: "color-mix(in oklch, white 22%, transparent)", display: "flex", alignItems: "center", justifyContent: "center", flex: "0 0 auto" }}>
+                  <Icon name="rocket-01" size={24} style={{ color: "var(--primary-foreground)" }} />
+                </div>
+                <div>
+                  <div style={{ fontSize: "var(--text-h3)", fontWeight: 600 }}>첫 멘토링 30% 할인</div>
+                  <div style={{ fontSize: "var(--text-caption)", opacity: 0.85 }}>지금 신청하고 커리어를 시작하세요</div>
+                </div>
+              </div>
+              <Button variant="secondary" size="md">신청하기</Button>
+            </div>
+          </Banner>
+        </div>
+
+        {/* ③ 옅은 tint 배경 + 심플 텍스트 + 인라인 링크 */}
+        <div>
+          <div className="cap">③ 옅은 tint 배경 + 심플 텍스트 + 인라인 링크</div>
+          <Banner background="var(--badge-amber-50)">
+            <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+              <Icon name="gift" size={18} style={{ color: "var(--badge-amber-800)" }} />
+              <span style={{ color: "var(--badge-amber-800)", fontWeight: 500 }}>친구를 초대하면 둘 다 크레딧을 받아요.</span>
+              <a href="#" style={{ display: "inline-flex", alignItems: "center", gap: 2, color: "var(--badge-amber-800)", fontWeight: 600, textDecoration: "underline", textUnderlineOffset: 2 }}>
+                초대하기 <Icon name="arrow-right-01" size={15} style={{ color: "var(--badge-amber-800)" }} />
+              </a>
+            </div>
+          </Banner>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

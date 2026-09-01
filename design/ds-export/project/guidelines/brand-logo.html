@@ -1,0 +1,18 @@
+<!-- @dsCard group="Foundations" viewport="700x160" name="로고" subtitle="mentree 워드마크 — brand-ink #004418. on white / on card / reversed on --primary" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:0;background:var(--background);display:flex;height:160px}
+  .cell{flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px}
+  .on-green{background:var(--primary)}
+  .l{font-size:10.5px;color:var(--muted-foreground)}
+  .on-green .l{color:color-mix(in oklch,white 80%,transparent)}
+  img{height:30px}
+  /* brand-ink 워드마크를 --primary 위에서 흰색으로 반전 */
+  .white img{filter:brightness(0) invert(1)}
+</style></head>
+<body>
+  <div class="cell"><img src="../assets/logo/mentree-logo.svg" alt="mentree"><div class="l">on white (배경)</div></div>
+  <div class="cell"><div style="background:#fff;padding:14px 20px;border-radius:var(--radius-lg);border:1px solid var(--border)"><img src="../assets/logo/mentree-logo.svg" alt="mentree"></div><div class="l">on card (white)</div></div>
+  <div class="cell on-green white"><img src="../assets/logo/mentree-logo.svg" alt="mentree"><div class="l">reversed on --primary</div></div>
+</body></html>

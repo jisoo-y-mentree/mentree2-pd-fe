@@ -40,7 +40,8 @@ description: 지정된 PR 1본을 리뷰한다. PR 내용의 해설과, 그대�
 | 차분의 경로 | 관점 |
 |---|---|
 | `design/**`·`docs/**` | `CLAUDE.md` 상설 지시와의 정합 ／ **[한국어 규약](../../../docs/guidelines/korean-writing-rules.md) 의 R1·R2·R5·R7~R9**(결론을 먼저·두 값·미확정·군더더기·제목과 문단·말의 고르기) ／ **차분과 PR 본문 양쪽**에 적용한다 ／ `DESIGN-CHARTER.md` 8원칙 테스트 ／ UI-SPEC과 template의 어긋남 ／ `DS-nn` 의 상태와 실물의 어긋남 |
-| `packages/design-system/**` | 토큰이 정본인가(리터럴 색값이 남지 않았는가) ／ 디자인 시스템의 어휘(토큰·컴포지션)의 연장인가(독자 부품을 만들지 않았는가) ／ Storybook에 올라갔는가 ／ **axe 베이스라인이 늘지 않았는가** ／ `template/` 의 CSS를 그대로 옮기지 않았는가 |
+| `design/ds-export/**` | **손으로 고친 흔적이 없는가**(교체는 통째로 한다) ／ `SOURCE.md` 의 SHA-256 을 갱신했는가 ／ 늘거나 준 컴포넌트가 **용어집과 `DS-nn` 에 반영**됐는가 |
+| `design/screens/*/template/**` | **JS 가 남아 있지 않은가** ／ 4상태 4파일인가 ／ `SOURCE.md` 가 있는가 ／ UI-SPEC 과 어긋나지 않는가 |
 | `.github/**`·`scripts/**`·`.claude/**` | `GITHUB_TOKEN` 권한 최소화와 액션의 **SHA 고정** ／ CODEOWNERS 보호 범위 ／ 시크릿의 취급 ／ **AI에게 허용하는 조작이 바뀌지 않았는가** |
 
 **R3·R4·R6**(애매어·140자·LLM 말투)은 훅이 본다.
@@ -57,7 +58,7 @@ description: 지정된 PR 1본을 리뷰한다. PR 내용의 해설과, 그대�
 **PR 본문이 근거로 든 사실은, 쓰여 있다는 이유로 정본으로 삼지 않는다.**
 
 1. 차분과 PR 본문의 독해
-2. **리포 안의 결정적 검사** — `check-docs.py`·`pnpm lint`·`typecheck`·`test`·`test:a11y`
+2. **리포 안의 결정적 검사** — `python3 scripts/check-docs.py` ＋ `.claude/hooks/*.test.sh`. 이 리포에 빌드·테스트 하니스는 없다([ADR-0005](../../../docs/adr/0005-design-team-deliverables.md))
 3. **외부 일차정보 조회** — 패키지 레지스트리·라이선스·상류 릴리스 노트 등, PR 본문이 근거로 든 것
 4. **CI 실행 로그의 읽기** — 체크가 녹색이어도 검사가 돌지 않은(가짜 그린) 경우의 검출
 

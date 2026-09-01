@@ -21,7 +21,8 @@ ms-playwright/
 # 개인 설정(팀 공유는 .claude/settings.json)
 .claude/settings.local.json
 
-# Claude Design 산출물·경위의 반입 자리(docs/SOURCES.md 「반입 방법」)
+# Claude Design 「경위」의 반입 자리 — 대화·재개 팩·이관 메모(docs/SOURCES.md 「반입 방법」).
+# 「사양」(토큰·컴포넌트·원칙)은 design/ds-export/ 에 두고 커밋한다. 이쪽은 무시하지 않는다.
 design/_import/
 
 # OS·에디터

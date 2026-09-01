@@ -1,0 +1,45 @@
+<!-- @dsCard group="Components" viewport="800x420" name="ArticlePreview" subtitle="투명 콘텐츠 프리뷰(카드 아님) — 썸네일이 경계. 16:9 + radius 14, hover 시 sage-50 틴트" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .row { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+  .cell { display: flex; flex-direction: column; gap: 8px; width: 300px; }
+  .cap { font-size: var(--text-caption); color: var(--muted-foreground); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { ArticlePreview } = window.MentreeDesignSystem_2f86cf;
+  const COVER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180'%3E%3Crect width='320' height='180' fill='%23d7dbd6'/%3E%3Cg stroke='%23c4c9c2' stroke-width='16'%3E%3Cpath d='M-40 60 L80 -40 M-40 160 L160 -40 M20 200 L220 -20 M120 200 L320 0'/%3E%3C/g%3E%3C/svg%3E";
+  function Demo() {
+    return (
+      <div className="row">
+        <div className="cell">
+          <ArticlePreview href="#" image={COVER}
+            title="좋은 멘토링 관계를 만드는 다섯 가지 신호"
+            excerpt="멘토와 멘티가 오래 함께 성장하는 관계에는 공통점이 있습니다. 첫 만남에서 서로의 기대를 맞추고, 정기적인 리듬을 만들며, 피드백을 두려워하지 않는 것이 시작입니다." />
+          <div className="cap">투명 — 썸네일이 경계 (indigo·amber)</div>
+        </div>
+        <div className="cell">
+          <ArticlePreview href="#"
+            title="비전공자에서 프로덕트 디자이너로: 6개월 회고"
+            excerpt="부트캠프 수료 후 첫 취업까지의 기록. 포트폴리오 구성, 멘토링에서 얻은 것, 그리고 다시 돌아간다면 바꾸고 싶은 선택들에 대해 정리했습니다."
+            tags={[{label:"커리어",hue:"teal"},{label:"회고",hue:"rose"}]} />
+          <div className="cap">이미지 없음 → sage placeholder</div>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

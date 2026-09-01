@@ -1,0 +1,48 @@
+<!-- @dsCard group="Components" viewport="900x460" name="Carousel" subtitle="범용 스크롤/스냅 컨테이너 — SectionHeader 화살표와 조합. 카드 종류 무관, gap 주입" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .wrap { display: flex; flex-direction: column; gap: 16px; }
+  .cap { font-size: var(--text-caption); color: var(--muted-foreground); }
+  /* 데모 카드 — 실제 카드 대신 폭만 가진 대표 박스 */
+  .demo-card { width: 240px; height: 150px; background: var(--card); border: 1px solid var(--sage-200); border-radius: var(--card-radius); box-shadow: var(--card-shadow); display: flex; align-items: center; justify-content: center; font-size: var(--text-h2); font-weight: 600; color: var(--sage-400); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Carousel, SectionHeader } = window.MentreeDesignSystem_2f86cf;
+  function Demo() {
+    const car = React.useRef(null);
+    const [edges, setEdges] = React.useState({ atStart: true, atEnd: false });
+    return (
+      <div className="wrap">
+        <SectionHeader
+          title="이달의 인터뷰"
+          carousel
+          onPrev={() => car.current && car.current.scrollPrev()}
+          onNext={() => car.current && car.current.scrollNext()}
+          prevDisabled={edges.atStart}
+          nextDisabled={edges.atEnd}
+        />
+        <Carousel ref={car} gap={16} onEdgeChange={setEdges}>
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div className="demo-card" key={i}>{i + 1}</div>
+          ))}
+        </Carousel>
+        <div className="cap">화살표(SectionHeader)로 1단위 이동 · 자유 스크롤 · 카드 스냅 · 끝에서 화살표 disabled</div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

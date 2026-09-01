@@ -8,10 +8,10 @@
 |---|---|---|
 | 화면의 정본(UI-SPEC·template·리뷰 기록) | `design/screens/` | 디자이너 |
 | 디자인 규칙(요소·패턴·갱신 요구·심사 기준) | `design/*.md` | 디자이너 |
-| 디자인 시스템 구현 | `packages/design-system/` | Claude Code |
-| 제품 앱·백엔드 | **이 리포 밖** | 엔지니어 |
+| 디자인 시스템 사양 | `design/ds-export/` | 디자이너(Claude Design 에서 갱신) |
+| 디자인 시스템 구현·제품 앱·백엔드 | **이 리포 밖** | 엔지니어 |
 
-**`apps/` 를 이 리포에 만들지 않는다.** 구현 빌드의 행선지가 미정이다.
+**이 리포는 구현하지 않는다**([ADR-0005](docs/adr/0005-design-team-deliverables.md)). `apps/` 도 `packages/` 도 만들지 않는다. 산출물은 전부 마크다운과 정적 HTML 이다.
 
 ## 일하는 방식
 
@@ -36,9 +36,10 @@
 | 역할 | 담당 |
 |---|---|
 | 요구·사인오프 | 디자이너(지수). 판단이 갈리면 Hyeok을 넣는다 |
-| 구현 | Claude Code |
+| 문서 작성 | Claude Code |
+| **Claude Design 조작** | **디자이너.** AI 는 조작할 수 없다. Claude Code 는 프롬프트를 쓴다 |
 | 검토 | **별 세션의** Claude (`/pr-review`) |
-| 백엔드 | 엔지니어(별 리포) |
+| 실장·백엔드 | 엔지니어(별 리포) |
 
 ⚠️ **구현과 검토를 같은 세션에서 하지 않는다.** 구현자가 Claude 하나이므로 세션 분리가 유일한 견제 장치다.
 
@@ -55,14 +56,17 @@
 - 성과물은 AI가 가공 없이 읽을 수 있는 형식으로 통일한다. 문서＝마크다운, 도식＝Mermaid.
 - `design/` 문서군에 규칙을 추가·개정할 때는 [DESIGN-CHARTER.md](design/DESIGN-CHARTER.md) 의 8원칙 테스트를 통과시킨다.
 
-## 코딩 규약
+## 산출물 규약
 
-- **컴포넌트는 순수 React ＋ 토큰 참조다**(ADR-0003). 디자인 시스템의 어휘(토큰·컴포지션)의 연장으로 만든다. 형태(인라인 style 유지 / Tailwind 변환)는 S6에서 정한다.
-- **코드의 식별자는 [용어집](docs/glossary/ubiquitous-language.md) English 열을 그대로 쓴다.** 표에 없는 영어명을 발명하지 않는다.
-- **색·치수의 정본은 토큰이다.** 리터럴 색값(raw hex 등)을 컴포넌트에 남기지 않는다.
-- **`design/screens/*/template/` 의 CSS를 그대로 옮기지 않는다.** 그것은 시각적 참조이지 이식원이 아니다.
+산출물은 **6종으로 끝난다**([ADR-0005](docs/adr/0005-design-team-deliverables.md)) — `design/ds-export/` · `DS-update-list.md` · `DESIGN.md` · `UX-PATTERNS.md` · 화면당 `UI-SPEC.md` · 화면당 `template/`.
+
+- **식별자는 [용어집](docs/glossary/ubiquitous-language.md) English 열을 그대로 쓴다.** 표에 없는 영어명을 발명하지 않는다.
+- **색·치수의 정본은 토큰이다**(`design/ds-export/project/tokens/`). 문서에 값을 복제하지 않는다.
+- **`design/ds-export/` 를 손으로 고치지 않는다.** Claude Design 에서 고치고 통째로 교체한다.
+- **`template/` 은 정적 HTML/CSS 4파일이다.** JS 를 남기지 않는다. 빌드가 필요한 것을 넣지 않는다.
+- **`template/` 의 CSS를 다른 곳으로 옮기지 않는다.** 그것은 시각적 참조이지 이식원이 아니다.
 - 디자인 시스템에 없는 요소를 화면에서 즉석으로 만들지 않는다. [DS-update-list.md](design/DS-update-list.md) 에 기표한다.
-- 변경한 코드에는 테스트를 동반시킨다. 생성 후에는 스스로 테스트·lint·타입 검사를 돌리고 나서 리뷰에 낸다.
+- 문서를 고치면 `python3 scripts/check-docs.py` 를 돌리고 나서 리뷰에 낸다.
 
 ## Git
 

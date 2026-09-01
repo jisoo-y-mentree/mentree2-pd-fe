@@ -1,0 +1,41 @@
+<!-- @dsCard group="Foundations" viewport="700x300" name="동심원 중첩 (Concentric Nesting)" subtitle="바깥 radius = 안쪽 radius + 간격 · 오버레이 radius = 면 radius. 카드군에 인스턴스화" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 22px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); display: flex; gap: 28px; align-items: flex-start; flex-wrap: wrap; }
+  .principle { max-width: 300px; display: flex; flex-direction: column; gap: 12px; }
+  .h { font-size: var(--text-h3); font-weight: 600; }
+  .p { font-size: var(--text-body); color: var(--muted-foreground); line-height: 1.7; }
+  .formula { font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: var(--foreground); background: var(--secondary); padding: 6px 10px; border-radius: var(--radius-sm); width: fit-content; }
+  /* 동심원 다이어그램 — 실제 카드 토큰 사용 */
+  .diagram { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+  .outer { padding: var(--card-media-margin); border-radius: var(--card-radius); background: var(--card); border: 1px solid var(--sage-200); box-shadow: var(--card-shadow); }
+  .inner { width: 200px; height: 120px; border-radius: var(--card-media-radius); background: var(--sage-100); position: relative; }
+  .ovl { position: absolute; top: 8px; right: 8px; width: 30px; height: 30px; border-radius: var(--radius-md); background: color-mix(in oklch, white 82%, transparent); box-shadow: 0 0 0 1px color-mix(in oklch, var(--sage-950) 8%, transparent); display: flex; align-items: center; justify-content: center; }
+  .ovl .hgi { font-size: 16px; color: var(--muted-foreground); }
+  .cap { font-size: 11px; color: var(--muted-foreground); }
+  .tok { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: var(--muted-foreground); line-height: 1.9; }
+  .tok b { color: var(--foreground); font-weight: 600; }
+</style></head>
+<body>
+  <div class="principle">
+    <div class="h">동심원 중첩</div>
+    <div class="p">중첩 요소는 <b>바깥 radius = 안쪽 radius + 사이 간격</b>을 지킨다. 면 위에 얹히는 오버레이의 radius는 그 면의 radius에 맞춘다. 이 관계를 지키는 한 값들은 함께 조정 가능하며, 카드뿐 아니라 <b>모든 요소–싸개–컨테이너</b> 중첩에 적용된다.</div>
+    <div class="formula">card-radius 22 = media-radius 14 + margin 8</div>
+    <div class="p" style="font-size:12px"><b>하위 규칙(오버레이 아이콘 버튼)</b> — 미디어 위 오버레이 아이콘 버튼은 IconButton default(38 / radius-md)를 그대로 쓰고, 미디어 안쪽 <b>8px 인셋</b>에 정렬한다. 오버레이용 radius를 임의 생성하지 않는다.</div>
+    <div class="tok">
+      <b>카드군 인스턴스</b> (원시 radius 스케일은 수정 금지)<br>
+      --card-media-radius: 14px<br>
+      --card-media-margin: 8px<br>
+      --card-radius: 22px<br>
+      --card-content-inset: 10px<br>
+      --card-content-padding: 18px (=8+10)<br>
+      --card-media-gap: featured 24 / compact 12<br>
+      --card-shadow: elevation(shadow-sm)
+    </div>
+  </div>
+  <div class="diagram">
+    <div class="outer"><div class="inner"><span class="ovl"><span class="hgi" style="--hgi:url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/bookmark-02.svg')"></span></span></div></div>
+    <div class="cap">바깥 카드(22) ⊃ 8px 간격 ⊃ 미디어 면(14) · 오버레이 아이콘 버튼 = IconButton default(radius-md)</div>
+  </div>
+</body></html>

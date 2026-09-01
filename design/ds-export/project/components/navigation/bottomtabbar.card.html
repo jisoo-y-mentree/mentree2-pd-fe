@@ -1,0 +1,40 @@
+<!-- @dsCard group="Navigation" viewport="420x260" name="BottomTabBar" subtitle="Mobile 전용 하단 고정 4탭 — 모노 아이콘+caption 라벨, 활성 green, safe-area 대응" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  html, body { margin: 0; }
+  body { background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .cap { font-size: var(--text-caption); color: var(--muted-foreground); padding: 16px 20px 6px; }
+  /* 카드 데모: fixed를 스테이지 안에 가두기 */
+  .stage { position: relative; height: 90px; overflow: hidden; border-top: 1px dashed var(--border); }
+  .stage .mt-tabbar { position: absolute !important; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { BottomTabBar } = window.MentreeDesignSystem_2f86cf;
+  function Demo() {
+    const [active, setActive] = React.useState("mentors");
+    return (
+      <div>
+        <div className="cap">Mobile(~768) 전용 — 활성 탭 green, guest의 MY 멘트리는 로그인 유도(자리만)</div>
+        <div className="stage">
+          <BottomTabBar activeKey={active} authState="guest"
+            onNavigate={(t) => setActive(t.key)}
+            onAuth={() => alert("로그인 유도 (자리만 — OPEN #9)")} />
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

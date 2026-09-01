@@ -1,0 +1,62 @@
+<!-- @dsCard group="Components" viewport="700x420" name="폼 — Input, Field, Select, Checkbox, Radio, Switch, Toggle" subtitle="Field / FieldGroup로 조합한 컨트롤" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { padding: 20px 22px; background: var(--background); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 28px; align-items: start; }
+  .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted-foreground); margin-bottom: 10px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Input, Field, FieldGroup, Select, Checkbox, RadioGroup, Switch, ToggleGroup } = window.MentreeDesignSystem_2f86cf;
+  function Demo() {
+    const [agree, setAgree] = React.useState(true);
+    const [cadence, setCadence] = React.useState("주 1회");
+    const [notify, setNotify] = React.useState(true);
+    const [view, setView] = React.useState("list");
+    const [field, setField] = React.useState("");
+    return (
+      <div className="grid">
+        <div>
+          <div className="label">Field · Input · Select</div>
+          <FieldGroup>
+            <Field label="이름" htmlFor="n" required>
+              <Input id="n" placeholder="홍길동" iconLeft="user" />
+            </Field>
+            <Field label="이메일" htmlFor="e" error="올바른 이메일이 아닙니다">
+              <Input id="e" invalid defaultValue="mentor@" />
+            </Field>
+            <Field label="관심 분야" description="하나만 선택하세요">
+              <Select placeholder="분야 선택" value={field} onChange={(e)=>setField(e.target.value)} options={["디자인","개발","기획","데이터"]} />
+            </Field>
+          </FieldGroup>
+        </div>
+        <div>
+          <div className="label">Checkbox · Radio · Switch · Toggle</div>
+          <FieldGroup gap={16}>
+            <Checkbox checked={agree} onChange={setAgree} label="약관에 동의합니다" />
+            <Field label="멘토링 주기">
+              <RadioGroup options={["주 1회","주 2회","격주"]} value={cadence} onChange={setCadence} />
+            </Field>
+            <Switch checked={notify} onChange={setNotify} label="알림 받기" />
+            <ToggleGroup
+              options={[{value:"list",label:"목록",icon:"menu-01"},{value:"grid",label:"격자",icon:"dashboard-square-01"}]}
+              value={view} onChange={setView} />
+          </FieldGroup>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

@@ -2,6 +2,20 @@
 
 - 상태: 승인
 - 날짜: 2026-08-31
+- 개정: 2026-09-01 [ADR-0005](0005-design-team-deliverables.md) — **컷오버가 없어졌다.** 아래 「개정」 절
+
+## 개정 (2026-09-01)
+
+**이 리포는 디자인 시스템을 구현하지 않는다**([ADR-0005](0005-design-team-deliverables.md)). 그래서 아래 2가지가 바뀐다.
+
+| 원문 | 개정 후 |
+|---|---|
+| 컷오버 시점은 repo 적재(재개작업 6번)다 | **컷오버는 없다.** 디자인 시스템의 정본은 Claude Design 이다 |
+| 컷오버 이후 고칠 곳은 리포다 | **고칠 곳은 언제나 Claude Design 이다.** `design/ds-export/` 는 그 사본이며 손으로 고치지 않는다 |
+
+**바뀌지 않는 것**: 「SSoT 는 실장 리포다」는 그대로다. 다만 그 실장 리포는 **엔지니어의 리포**이며 이 리포가 아니다. 이 리포는 그 입력을 만든다.
+
+이름이 컷오버 전부터 용어집이 정본이라는 예외도 그대로다.
 
 ## 문맥
 
@@ -25,7 +39,7 @@
 
 ## 귀결
 
-- 컷오버 이후 Claude Design에서 값을 고쳐도 리포에 반영되지 않는다. 고칠 곳은 리포다.
-- 컷오버 전에는 리포의 `DESIGN.md`와 `packages/design-system`이 비어 있는 것이 정상이다.
+- ~~컷오버 이후 Claude Design에서 값을 고쳐도 리포에 반영되지 않는다. 고칠 곳은 리포다.~~ → 위 「개정」
+- ~~컷오버 전에는 리포의 `DESIGN.md`와 `packages/design-system`이 비어 있는 것이 정상이다.~~ → `packages/design-system` 은 만들지 않는다
 - 되돌리려면 토큰·컴포넌트·문서의 참조를 전부 되돌려야 한다.
-- 관련: [ADR-0003](0003-design-system-package-placement.md), `docs/SOURCES.md` 「컷오버」 절
+- 관련: [ADR-0005](0005-design-team-deliverables.md), `docs/SOURCES.md` 「컷오버」 절
