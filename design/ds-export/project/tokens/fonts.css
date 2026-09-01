@@ -1,0 +1,13 @@
+/* ============================================================================
+   mentree — fonts.css
+   Pretendard JP Variable — KR + JP + Latin. The ONLY UI/body font.
+   Inter / DM Sans / Nunito are forbidden by DESIGN.md.
+   ========================================================================== */
+@font-face {
+  font-family: "Pretendard JP Variable";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../assets/fonts/PretendardJPVariable.ttf") format("truetype-variations"),
+       url("../assets/fonts/PretendardJPVariable.ttf") format("truetype");
+}

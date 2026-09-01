@@ -1,0 +1,52 @@
+<!-- @dsCard group="Components" viewport="900x460" name="SectionHeader" subtitle="배치 컴포넌트 — 좌 제목 / 우 액션 양끝 정렬. 아이콘·강조·부가스트링·배지·전체보기·캐러셀 슬롯" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 28px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .stack { display: flex; flex-direction: column; gap: 26px; max-width: 780px; }
+  .cap { font-size: var(--text-caption); color: var(--muted-foreground); margin-top: 8px; }
+  .divider { height: 1px; background: var(--sage-200); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { SectionHeader, Badge } = window.MentreeDesignSystem_2f86cf;
+  function Row({ children, cap }) {
+    return (
+      <div>
+        {children}
+        <div className="cap">{cap}</div>
+        <div className="divider" style={{ marginTop: 14 }} />
+      </div>
+    );
+  }
+  function Demo() {
+    return (
+      <div className="stack">
+        <Row cap="아이콘 칩 + green 강조 + 부가 스트링 + 전체보기">
+          <SectionHeader icon="user-group" title="지금 주목받는 " titleAccent="Q&A 멘토링" suffix="3,200명의 멘토" viewAll />
+        </Row>
+        <Row cap="배지 슬롯 + 캐러셀 화살표(왼쪽 끝 → 이전 disabled)">
+          <SectionHeader title="이달의 인터뷰" badge={<Badge variant="tag" hue="indigo" size="sm">NEW</Badge>} carousel prevDisabled />
+        </Row>
+        <Row cap="전체보기 + 캐러셀 둘 다">
+          <SectionHeader title="추천 아티클" viewAll carousel />
+        </Row>
+        <Row cap="액션 없음 — 제목만">
+          <SectionHeader icon="chart-line-data-01" title="나의 성향 분석" />
+        </Row>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

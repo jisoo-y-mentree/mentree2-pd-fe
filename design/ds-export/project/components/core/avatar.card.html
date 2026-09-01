@@ -1,0 +1,76 @@
+<!-- @dsCard group="Components" viewport="820x420" name="Avatar / AvatarGroup" subtitle="원형 아바타 + 이니셜 fallback(sage) · 겹침 그룹 + 흰 링 + '+K' 오버플로우 [DS-GAP]" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: 20px; display: flex; flex-direction: column; gap: 20px; }
+  .row { display: flex; flex-direction: column; gap: 10px; }
+  .lbl { font-size: var(--text-caption); font-weight: 600; color: var(--muted-foreground); letter-spacing: 0.02em; }
+  .items { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .cap { font-size: 11px; color: var(--muted-foreground); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 0; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const NS = window.MentreeDesignSystem_2f86cf;
+  const { Avatar, AvatarGroup } = NS;
+  const IMG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect width='80' height='80' fill='%23c9cfca'/%3E%3Cg stroke='%23b0b7b1' stroke-width='9'%3E%3Cpath d='M-10 20 L20 -10 M-10 50 L50 -10 M-10 80 L80 -10 M10 90 L90 10 M40 90 L90 40'/%3E%3C/g%3E%3C/svg%3E";
+  const people = [
+    { name: "박지훈" }, { src: IMG, name: "김도윤" }, { name: "이서연" },
+    { name: "John Doe" }, { name: "최유진" }, { src: IMG, name: "정하늘" },
+  ];
+  function Demo() {
+    return (
+      <div className="card">
+        <div className="row">
+          <div className="lbl">크기 — xs 20 · sm 24 · md 32 · lg 40</div>
+          <div className="items">
+            {["xs","sm","md","lg"].map((s) => (
+              <div className="cell" key={s}><Avatar src={IMG} name="김도윤" size={s} /><span className="cap">{s}</span></div>
+            ))}
+          </div>
+        </div>
+        <hr />
+        <div className="row">
+          <div className="lbl">Fallback — 이니셜 (sage-100 / sage-700)</div>
+          <div className="items">
+            <div className="cell"><Avatar name="박지훈" size="lg" /><span className="cap">박지훈 → 박</span></div>
+            <div className="cell"><Avatar name="John Doe" size="lg" /><span className="cap">John Doe → JD</span></div>
+            <div className="cell"><Avatar name="이서연" size="lg" /><span className="cap">이서연 → 이</span></div>
+          </div>
+        </div>
+        <hr />
+        <div className="row">
+          <div className="lbl">상태</div>
+          <div className="items">
+            <div className="cell"><Avatar name="정하늘" size="lg" /><span className="cap">이미지 없음 → 이니셜</span></div>
+            <div className="cell"><Avatar src="https://invalid.example/x.png" name="정하늘" size="lg" /><span className="cap">이미지 실패 → 이니셜</span></div>
+            <div className="cell"><Avatar src={IMG} name="김도윤" size="lg" /><span className="cap">이미지 로드됨</span></div>
+          </div>
+        </div>
+        <hr />
+        <div className="row">
+          <div className="lbl">AvatarGroup — 겹침 + 흰 링 + '+K' 오버플로우</div>
+          <div className="items">
+            <div className="cell"><AvatarGroup items={people} max={4} size="md" /><span className="cap">6명, max 4 → +2</span></div>
+            <div className="cell"><AvatarGroup items={people.slice(0,3)} max={5} size="md" /><span className="cap">3명, 초과 없음</span></div>
+            <div className="cell"><AvatarGroup items={people} max={4} size="sm" /><span className="cap">size sm</span></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

@@ -23,9 +23,16 @@ import re
 import sys
 
 # 규약 그 자체는 금지어를 예시로 싣기 때문에 검사에서 뺀다.
-EXEMPT_SUFFIXES = ("docs/guidelines/korean-writing-rules.md",)
+# ds-export/README.md 는 Claude Design 이 생성한 것이라 손대지 않는다(ADR-0005).
+EXEMPT_SUFFIXES = (
+    "docs/guidelines/korean-writing-rules.md",
+    "design/ds-export/README.md",
+)
 # 원문 그대로 남기는 영역(인용·조사 노트).
-EXEMPT_DIRS = ("docs/research/",)
+# design/ds-export/project/ 는 Claude Design 의 생성물이다. 고치지 말라고 3곳에
+# 써 두었으므로, 검사해서 손 편집을 요구하면 규칙끼리 충돌한다.
+# design/ds-export/SOURCE.md 는 우리가 쓰는 문서라 여기 넣지 않는다 — 검사에 남긴다.
+EXEMPT_DIRS = ("docs/research/", "design/ds-export/project/")
 
 # 1문의 상한(자). 규약 R4.
 #

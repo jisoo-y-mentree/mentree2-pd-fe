@@ -1,0 +1,43 @@
+<!-- @dsCard group="Foundations" viewport="720x400" name="표면 규칙 (Surface Rule)" subtitle="카드(흰 표면+테두리+그림자) vs 투명 컨테이너 2단 판별" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .wrap { display: flex; flex-direction: column; gap: 18px; max-width: 660px; }
+  .h { font-size: var(--text-h3); font-weight: 600; }
+  .lead { font-size: var(--text-body); color: var(--muted-foreground); line-height: 1.7; }
+  .steps { display: flex; flex-direction: column; gap: 12px; }
+  .step { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; background: var(--card); border: 1px solid var(--sage-200); border-radius: var(--radius-lg); box-shadow: var(--shadow-xs); }
+  .num { flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: var(--primary); color: var(--primary-foreground); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .body { display: flex; flex-direction: column; gap: 6px; font-size: var(--text-body); line-height: 1.6; }
+  .body b { font-weight: 600; }
+  .branch { font-size: var(--text-caption); color: var(--muted-foreground); line-height: 1.7; }
+  .branch .k { color: var(--foreground); font-weight: 600; }
+  .ex { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: var(--muted-foreground); }
+  .note { font-size: 11px; color: var(--muted-foreground); }
+</style></head>
+<body>
+  <div class="wrap">
+    <div class="h">표면 규칙 — 카드 vs 투명 컨테이너</div>
+    <div class="lead">컴포넌트가 카드(흰 표면 + 테두리 + 그림자)인지 투명 컨테이너인지 다음 2단으로 판별한다. 콘텐츠 종류가 늘어도 동일하게 적용한다.</div>
+    <div class="steps">
+      <div class="step">
+        <span class="num">1</span>
+        <div class="body">
+          <div><b>인물·엔티티가 주인공</b>이거나 <b>액션(북마크·저장 등)이 붙는 객체</b> → <b>카드</b></div>
+          <div class="ex">예: MentorCard, InterviewCard</div>
+        </div>
+      </div>
+      <div class="step">
+        <span class="num">2</span>
+        <div class="body">
+          <div>그 외 콘텐츠 프리뷰는 <b>미디어 유무</b>로 결정:</div>
+          <div class="branch"><span class="k">· 자체 미디어(썸네일)가 시각 경계를 만들면</span> → 투명 컨테이너 <span class="ex">(예: ArticlePreview)</span></div>
+          <div class="branch"><span class="k">· 미디어 없이 텍스트 중심이면</span> → 카드(경계를 테두리로 부여) <span class="ex">(예: QnaCard)</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="note">MentorCard · QnaCard는 이 규칙상 카드가 맞다. ArticlePreview는 썸네일이 경계를 만들어 투명 컨테이너.</div>
+    <div class="note" style="border-top:1px solid var(--border);padding-top:12px"><b style="color:var(--foreground)">hover 하위 규칙</b> — 투명 컨테이너(프리뷰)의 hover는 배경 틴트가 아니라, 경계를 가진 미디어 요소(썸네일)에 elevation을 얹어 신호한다. 위치 이동/확대 없이 shadow만.</div>
+  </div>
+</body></html>

@@ -1,0 +1,24 @@
+<!-- @dsCard group="Foundations" viewport="700x150" name="Tabular 숫자 & 禁則処理" subtitle="데이터는 tabular-nums; break-all 금지" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:18px 22px;background:var(--background);color:var(--foreground);display:flex;gap:40px;flex-wrap:wrap}
+  table{border-collapse:collapse;font-size:13px}
+  td{padding:3px 14px 3px 0;text-align:right}
+  .lab{font-size:10.5px;color:var(--muted-foreground);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+  .prop{font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+  <div>
+    <div class="lab">.tabular (tabular-nums)</div>
+    <table class="prop">
+      <tr><td>세션</td><td>1,204</td></tr>
+      <tr><td>완료</td><td>1,180</td></tr>
+      <tr><td>대기</td><td>24</td></tr>
+    </table>
+  </div>
+  <div>
+    <div class="lab">禁則 — overflow-wrap</div>
+    <div style="width:200px;font-size:13px;line-height:1.7">긴한국어단어와とても長い日本語のテキストも word-break:keep-all 로 어절 단위로만 줄바꿈됩니다.</div>
+  </div>
+</body></html>

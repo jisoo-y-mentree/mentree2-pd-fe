@@ -1,0 +1,50 @@
+<!-- @dsCard group="Components" viewport="700x300" name="오버레이 — Dialog, Sheet" subtitle="dim sage 스크림 위 모달 + 엣지 드로어" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { padding: 24px 22px; background: var(--background); }
+  .row { display: flex; gap: 12px; align-items: center; }
+  .hint { margin-top: 14px; font-size: var(--text-caption); color: var(--muted-foreground); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const NS = window.MentreeDesignSystem_2f86cf;
+  const { Dialog, Sheet, Button, Field, Input, RadioGroup } = NS;
+  function Demo() {
+    const [dlg, setDlg] = React.useState(false);
+    const [sheet, setSheet] = React.useState(false);
+    const [freq, setFreq] = React.useState("주 1회");
+    return (
+      <div>
+        <div className="row">
+          <Button variant="destructive" iconLeft="delete-02" onClick={()=>setDlg(true)}>세션 취소 (Dialog)</Button>
+          <Button variant="outline" iconLeft="filter" onClick={()=>setSheet(true)}>필터 (Sheet)</Button>
+        </div>
+        <div className="hint">클릭하면 스크림 위로 열립니다. 스크림 또는 ✕ 로 닫기.</div>
+        <Dialog open={dlg} onClose={()=>setDlg(false)}
+          title="멘토링 취소" description="이 작업은 되돌릴 수 없습니다."
+          footer={<><Button variant="ghost" onClick={()=>setDlg(false)}>닫기</Button><Button variant="destructive" onClick={()=>setDlg(false)}>취소하기</Button></>}>
+          예약된 <b>1:1 포트폴리오 리뷰</b> 세션을 취소하시겠어요?
+        </Dialog>
+        <Sheet open={sheet} onClose={()=>setSheet(false)} side="right" title="필터" description="멘토링 세션 조건"
+          footer={<Button fullWidth onClick={()=>setSheet(false)}>적용</Button>}>
+          <Field label="키워드"><Input placeholder="주제 검색" iconLeft="search-01" /></Field>
+          <div style={{height:14}} />
+          <Field label="주기"><RadioGroup options={["주 1회","주 2회","격주"]} value={freq} onChange={setFreq} /></Field>
+        </Sheet>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

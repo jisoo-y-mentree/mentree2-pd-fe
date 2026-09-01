@@ -1,0 +1,17 @@
+<!-- @dsCard group="Foundations" viewport="700x160" name="시맨틱 — 표면" subtitle="background, card, popover, secondary, muted" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:16px;background:var(--background);display:flex;gap:12px;flex-wrap:wrap}
+  .sw{display:flex;flex-direction:column;gap:6px}
+  .chip{width:120px;height:64px;border-radius:var(--radius-md);border:1px solid var(--border)}
+  .n{font-size:11.5px;font-weight:600;color:var(--foreground)}
+  .v{font-size:10.5px;color:var(--muted-foreground)}
+</style></head>
+<body>
+  <div class="sw"><div class="chip" style="background:var(--background)"></div><div class="n">--background</div><div class="v">white</div></div>
+  <div class="sw"><div class="chip" style="background:var(--card)"></div><div class="n">--card</div><div class="v">white</div></div>
+  <div class="sw"><div class="chip" style="background:var(--popover)"></div><div class="n">--popover</div><div class="v">white</div></div>
+  <div class="sw"><div class="chip" style="background:var(--secondary)"></div><div class="n">--secondary</div><div class="v">sage-100</div></div>
+  <div class="sw"><div class="chip" style="background:var(--muted)"></div><div class="n">--muted</div><div class="v">sage-100</div></div>
+</body></html>

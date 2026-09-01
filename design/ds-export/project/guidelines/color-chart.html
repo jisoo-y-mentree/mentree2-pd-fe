@@ -1,0 +1,25 @@
+<!-- @dsCard group="Foundations" viewport="700x150" name="차트 스케일 & Destructive" subtitle="초록 chart-1…5 (프리셋) + destructive 레드" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:16px;background:var(--background);display:flex;gap:14px;align-items:flex-end}
+  .bars{display:flex;gap:8px;align-items:flex-end}
+  .b{width:44px;border-radius:8px 8px 4px 4px}
+  .sw{display:flex;flex-direction:column;gap:6px;margin-left:20px}
+  .chip{width:130px;height:52px;border-radius:var(--radius-md);border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+  .n{font-size:11.5px;font-weight:600;color:var(--foreground)}
+  .cap{font-size:10.5px;color:var(--muted-foreground);margin-top:8px;text-align:center}
+</style></head>
+<body>
+  <div>
+    <div class="bars">
+      <div class="b" style="height:44px;background:var(--chart-1)"></div>
+      <div class="b" style="height:66px;background:var(--chart-2)"></div>
+      <div class="b" style="height:88px;background:var(--chart-3)"></div>
+      <div class="b" style="height:70px;background:var(--chart-4)"></div>
+      <div class="b" style="height:54px;background:var(--chart-5)"></div>
+    </div>
+    <div class="cap">--chart-1 … --chart-5</div>
+  </div>
+  <div class="sw"><div class="chip" style="background:var(--destructive)"><span style="color:var(--destructive-foreground);font-size:12px;font-weight:600">destructive</span></div><div class="n" style="text-align:center">--destructive</div></div>
+</body></html>

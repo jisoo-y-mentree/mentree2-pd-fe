@@ -1,0 +1,40 @@
+<!-- @dsCard group="Components" viewport="560x280" name="Table" subtitle="경계형 데이터 테이블 — sage 헤더 + sage 행 호버, 우측 정렬은 tabular" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { padding: 24px; background: var(--background); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Table, Badge } = window.MentreeDesignSystem_2f86cf;
+  function Demo() {
+    const rows = [
+      { name: "김서연", topic: "포트폴리오 리뷰", count: 4, status: "진행중" },
+      { name: "田中 誠", topic: "이력서 첨삭", count: 2, status: "대기" },
+      { name: "이준호", topic: "커리어 상담", count: 7, status: "진행중" },
+    ];
+    return (
+      <Table
+        columns={[
+          { key:"name", header:"멘티" },
+          { key:"topic", header:"주제" },
+          { key:"count", header:"세션", align:"right" },
+          { key:"status", header:"상태", render:(r)=> <Badge variant="status" status={r.status==="진행중"?"active":"waiting"} leading="dot">{r.status}</Badge> },
+        ]}
+        data={rows}
+      />
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!-- @dsCard group="Components" viewport="700x140" name="IconButton" subtitle="정사각 아이콘 전용 버튼 — primary·secondary·outline·ghost / sm·md·lg" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { padding: 20px 22px; background: var(--background); }
+  .row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+  .label { width: 100%; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted-foreground); margin-bottom: 2px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { IconButton } = window.MentreeDesignSystem_2f86cf;
+  function Demo() {
+    return (
+      <React.Fragment>
+        <div className="row"><span className="label">variants</span>
+          <IconButton icon="add-01" variant="primary" ariaLabel="추가" />
+          <IconButton icon="settings-01" variant="secondary" ariaLabel="설정" />
+          <IconButton icon="search-01" variant="outline" ariaLabel="검색" />
+          <IconButton icon="notification-01" variant="ghost" ariaLabel="알림" />
+        </div>
+        <div className="row"><span className="label">sizes — 32 · 38 · 44</span>
+          <IconButton icon="search-01" size="sm" variant="outline" ariaLabel="검색" />
+          <IconButton icon="search-01" size="md" variant="outline" ariaLabel="검색" />
+          <IconButton icon="search-01" size="lg" variant="outline" ariaLabel="검색" />
+        </div>
+      </React.Fragment>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

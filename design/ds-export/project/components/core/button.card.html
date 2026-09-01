@@ -1,0 +1,43 @@
+<!-- @dsCard group="Components" viewport="700x180" name="Button" subtitle="primary · secondary · outline · ghost · destructive / 크기 sm·md·lg" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { padding: 20px 22px; background: var(--background); }
+  .row { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+  .label { width: 100%; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted-foreground); margin-bottom: 2px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Button } = window.MentreeDesignSystem_2f86cf;
+  function Demo() {
+    return (
+      <React.Fragment>
+        <div className="row"><span className="label">variants</span>
+          <Button variant="primary" iconLeft="add-01">멘토 찾기</Button>
+          <Button variant="secondary">보관함</Button>
+          <Button variant="outline">취소</Button>
+          <Button variant="ghost">더보기</Button>
+          <Button variant="destructive" iconLeft="delete-02">삭제</Button>
+          <Button variant="primary" disabled>비활성</Button>
+        </div>
+        <div className="row"><span className="label">sizes</span>
+          <Button size="sm" variant="outline">Small</Button>
+          <Button size="md" variant="outline">Medium</Button>
+          <Button size="lg" variant="outline">Large</Button>
+        </div>
+      </React.Fragment>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

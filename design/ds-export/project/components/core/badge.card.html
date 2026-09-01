@@ -1,0 +1,109 @@
+<!-- @dsCard group="Components" viewport="860x640" name="Badge" subtitle="계열 3(분류·상태·질적태그) × leading 4 × 8색 + new·+N 펼침·labelHidden" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: 22px; display: flex; flex-direction: column; gap: 22px; }
+  .sec { display: flex; flex-direction: column; gap: 12px; }
+  .lbl { font-size: var(--text-caption); font-weight: 600; color: var(--foreground); letter-spacing: 0.02em; }
+  .lbl span { color: var(--muted-foreground); font-weight: 400; }
+  .matrix { display: grid; grid-template-columns: 90px repeat(4, 1fr); gap: 12px 14px; align-items: center; }
+  .head { font-size: 11px; color: var(--muted-foreground); text-transform: uppercase; letter-spacing: 0.06em; }
+  .rlab { font-size: var(--text-caption); font-weight: 600; color: var(--muted-foreground); }
+  .items { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .tagcell { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+  .cap { font-size: 10px; color: var(--muted-foreground); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 0; }
+  .note { font-size: 11px; color: var(--muted-foreground); line-height: 1.6; }
+  code { background: var(--secondary); padding: 1px 5px; border-radius: 5px; font-size: 10.5px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Badge } = window.MentreeDesignSystem_2f86cf;
+  const HUES = ["neutral","gray","blue","sky","indigo","amber","rose","purple","teal"];
+  function Demo() {
+    return (
+      <div className="card">
+        {/* 계열 × leading 매트릭스 (size md) */}
+        <div className="sec">
+          <div className="lbl">계열 × leading <span>— size md 기준</span></div>
+          <div className="matrix">
+            <div className="head"></div>
+            <div className="head">none</div>
+            <div className="head">dot</div>
+            <div className="head">flag</div>
+            <div className="head">avatar</div>
+
+            <div className="rlab">분류</div>
+            <div className="items"><Badge>프로덕트 디자이너</Badge></div>
+            <div className="items"><Badge leading="dot">서울</Badge></div>
+            <div className="items"><Badge leading="flag" flag="south-korea">대한민국</Badge><Badge leading="flag" flag="thailand">미등록</Badge></div>
+            <div className="items"><Badge leading="avatar" avatar={{ name: "박지훈" }}>박지훈</Badge></div>
+
+            <div className="rlab">상태</div>
+            <div className="items"><Badge variant="status" status="closed">마감</Badge><Badge variant="status" status="new">신규 멘토</Badge></div>
+            <div className="items"><Badge variant="status" status="active" leading="dot">진행중</Badge></div>
+            <div className="items"><Badge variant="status" status="waiting" leading="flag" flag="japan">대기</Badge></div>
+            <div className="items"><Badge variant="status" status="active" leading="avatar" avatar={{ name: "김도윤" }}>담당</Badge></div>
+
+            <div className="rlab">질적태그</div>
+            <div className="items"><Badge variant="tag" hue="blue">blue</Badge></div>
+            <div className="items"><Badge variant="tag" hue="rose" leading="dot">rose</Badge></div>
+            <div className="items"><Badge variant="tag" hue="teal" leading="flag" flag="united-states">teal</Badge></div>
+            <div className="items"><Badge variant="tag" hue="purple" leading="avatar" avatar={{ name: "이서연" }}>purple</Badge></div>
+          </div>
+        </div>
+        <hr />
+        {/* 질적태그 8색 팔레트 */}
+        <div className="sec">
+          <div className="lbl">질적태그 9색 <span>— --badge-&#123;hue&#125; · 배경 50 / 아웃라인 200 / 라벨 700(amber 800). neutral=white · gray=무채색</span></div>
+          <div className="items">
+            {HUES.map((h) => (
+              <div className="tagcell" key={h}>
+                <Badge variant="tag" hue={h}>{h}</Badge>
+                <span className="cap">{h}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <hr />
+        {/* 사이즈 */}
+        <div className="sec">
+          <div className="lbl">사이즈 <span>— sm · md · lg</span></div>
+          <div className="items">
+            <Badge variant="tag" hue="indigo" leading="dot" size="sm">indigo</Badge>
+            <Badge variant="tag" hue="indigo" leading="dot" size="md">indigo</Badge>
+            <Badge variant="tag" hue="indigo" leading="dot" size="lg">indigo</Badge>
+          </div>
+        </div>
+        <hr />
+        {/* 다중 값 +N 펼침 · labelHidden */}
+        <div className="sec">
+          <div className="lbl">다중 값 “+N ⌄” 펼침 · labelHidden <span>— extraItems 배열 → 카운트 자동 · 클릭/탭 토글(카드 클릭 전파 차단)</span></div>
+          <div className="items">
+            <Badge leading="flag" flag="south-korea" extraItems={["미국", "싱가포르"]}>대한민국</Badge>
+            <Badge leading="flag" flag="south-korea" labelHidden extraItems={["미국", "싱가포르"]}>대한민국</Badge>
+            <Badge leading="flag" flag="japan" labelHidden>일본</Badge>
+            <span className="cap">labelHidden: 라벨만 숨김(언제 켤지는 사용처 결정) · +N·펼침은 유지</span>
+          </div>
+        </div>
+        <div className="note">
+          계열 = <b>분류</b>(뉴트럴 sage) · <b>상태</b>(green/destructive/muted) · <b>질적태그</b>(<code>--badge-*</code> 8색).
+          leading 슬롯은 전 계열 공통. 형태는 radius 6/8/10px(높이 22→6px 앵커, 완전 pill 아님). green 제외·blue는 Biz 파랑과 구분. 국기는 원형(미등록은 빈 원형). status="new"는 active와 동일 green tint(사진 오버레이 가독성 — solid 금지). ⚠ 실제 태그↔색 매핑은 하지 않음.
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

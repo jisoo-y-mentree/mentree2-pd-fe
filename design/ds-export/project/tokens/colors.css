@@ -1,0 +1,108 @@
+/* ============================================================================
+   mentree — colors.css
+   Base: shadcn/ui + preset b4Ea0IP4Ey (Style=Vega, Theme=Green, Radius=Large)
+   Delta: base color Mist → Sage (neutral chrome), white background.
+   Light theme only. Values are the SSoT — do not round or edit.
+   ========================================================================== */
+
+:root {
+  /* --------------------------------------------------------------------------
+     PRIMITIVES — raw palette. These are the source of truth.
+     ------------------------------------------------------------------------ */
+
+  /* sage — neutral chrome (hue 150, low-chroma) */
+  --sage-50:  oklch(0.985 0.003 150);   /* #f9fbf9 */
+  --sage-100: oklch(0.967 0.005 150);   /* #f2f5f2 */
+  --sage-200: oklch(0.925 0.007 150);   /* #e3e8e4 */
+  --sage-300: oklch(0.868 0.009 150);   /* #d0d5d0 */
+  --sage-400: oklch(0.705 0.010 150);   /* #9ca29d */
+  --sage-500: oklch(0.575 0.010 150);   /* #757b76 */
+  --sage-600: oklch(0.462 0.009 150);   /* #555a56 */
+  --sage-700: oklch(0.378 0.007 150);   /* #3f4340 */
+  --sage-800: oklch(0.272 0.005 150);   /* #252826 */
+  --sage-900: oklch(0.222 0.004 150);   /* #1a1c1a */
+  --sage-950: oklch(0.1795 0.0038 164.6); /* #101211 */
+
+  /* green — brand (preset Theme=Green). Used by primary/accent/chart/sidebar-primary */
+  --green-primary: oklch(0.527 0.154 150.069);   /* #2f6b45-ish — primary & accent */
+  --green-on:      oklch(0.982 0.018 155.826);   /* near-white foreground on green */
+
+  /* --------------------------------------------------------------------------
+     SEMANTIC TOKENS — LIGHT (:root)
+     Green theme tokens = preset values / Sage neutral chrome / bg = white
+     ------------------------------------------------------------------------ */
+
+  --background: oklch(1 0 0);           /* white — default for all screens; sage-50 accents are per-section (Hero·WorldMap) */
+  --foreground: var(--sage-950);
+
+  --card: oklch(1 0 0);                 /* white — same as bg; elevation via border/shadow */
+  --card-foreground: var(--sage-950);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--sage-950);
+
+  --primary: var(--green-primary);
+  --primary-foreground: var(--green-on);
+  --accent: var(--green-primary);       /* preset accent = green (same as primary) */
+  --accent-foreground: var(--green-on); /* hover/selected surfaces read green */
+
+  --secondary: var(--sage-100);
+  --secondary-foreground: var(--sage-800);
+  --muted: var(--sage-100);
+  --muted-foreground: var(--sage-500);
+
+  --destructive: oklch(0.577 0.245 27.325);          /* preset red */
+  --destructive-foreground: oklch(0.985 0 0);
+
+  --border: var(--sage-200);
+  --input: var(--sage-200);
+  --ring: var(--sage-400);
+
+  /* chart — green scale (preset) */
+  --chart-1: oklch(0.871 0.15 154.449);
+  --chart-2: oklch(0.723 0.219 149.579);
+  --chart-3: oklch(0.627 0.194 149.214);
+  --chart-4: oklch(0.527 0.154 150.069);
+  --chart-5: oklch(0.448 0.119 151.328);
+
+  /* sidebar — sage neutral chrome, green primary */
+  --sidebar: var(--sage-50);
+  --sidebar-foreground: var(--sage-900);
+  --sidebar-primary: oklch(0.627 0.194 149.214);
+  --sidebar-primary-foreground: var(--green-on);
+  --sidebar-accent: var(--sage-100);
+  --sidebar-accent-foreground: var(--sage-800);
+  --sidebar-border: var(--sage-200);
+  --sidebar-ring: var(--sage-400);
+
+  /* brand ink — 로고 워드마크 잉크색 (canon). mentree 워드마크(assets/logo/mentree-logo.svg)에 사용. */
+  --brand-ink: #004418;
+
+  /* --------------------------------------------------------------------------
+     BIZ — 서브브랜드(파랑). mentree 본체는 green/sage.
+     '기업 서비스(Biz)'는 외부 사이트로 나가는 출구이며, 파랑은 실제 서브브랜드색.
+     ⚠ 격리 규칙: 이 --biz-* 토큰은 오직 Biz 진입점/밴드에만 사용한다.
+     본체 시맨틱 토큰(primary/accent/chart 등)에 파랑을 절대 섞지 말 것.
+     ------------------------------------------------------------------------ */
+  --biz-primary: oklch(0.548 0.196 264.4);          /* Biz 파랑 (진입점·CTA) */
+  --biz-primary-foreground: oklch(0.985 0.006 264); /* Biz 파랑 위 전경(near-white) */
+  --biz-surface: oklch(0.955 0.022 264);            /* Biz 밴드 배경 틴트 */
+  --biz-border: oklch(0.905 0.035 264);             /* Biz 밴드 경계 */
+
+  /* --------------------------------------------------------------------------
+     BADGE — 질적 태그 9색 팔레트. --badge-{hue}-{50/200/700} (밝은 hue는 라벨 800).
+     배지 = 배경 {hue}-50 · 아웃라인 1px {hue}-200 · 라벨 {hue}-700(amber 등 밝은 hue 800).
+     neutral = white 배경(sage 아웃라인/라벨), gray = 무채색. green은 상태배지(진행중)와
+     겹쳐 질적태그에서 제외. blue는 Biz --biz-*(vivid, hue 264)와 채도·명도로 구분.
+     저채도로 차분하되 9색이 서로는 구분되게. hex 금지 — 이 토큰만.
+     ⚠ 실제 태그↔색 매핑은 하지 않는다(팔레트만 정의).
+     ------------------------------------------------------------------------ */
+  --badge-neutral-50: oklch(1 0 0);           --badge-neutral-200: var(--sage-200);   --badge-neutral-700: var(--sage-700);  /* white 배경 */
+  --badge-gray-50:    oklch(0.975 0 0);       --badge-gray-200:    oklch(0.900 0 0);   --badge-gray-700:    oklch(0.440 0 0);  /* 무채색 그레이 */
+  --badge-blue-50:    oklch(0.963 0.022 250); --badge-blue-200:    oklch(0.889 0.045 250); --badge-blue-700:    oklch(0.468 0.088 250);
+  --badge-sky-50:     oklch(0.965 0.024 220); --badge-sky-200:     oklch(0.893 0.048 220); --badge-sky-700:     oklch(0.470 0.078 220);
+  --badge-indigo-50:  oklch(0.961 0.024 278); --badge-indigo-200:  oklch(0.886 0.047 278); --badge-indigo-700:  oklch(0.460 0.092 278);
+  --badge-amber-50:   oklch(0.968 0.038 78);  --badge-amber-200:   oklch(0.905 0.068 78);  --badge-amber-800:   oklch(0.440 0.072 78);
+  --badge-rose-50:    oklch(0.963 0.026 15);  --badge-rose-200:    oklch(0.893 0.052 15);  --badge-rose-700:    oklch(0.480 0.098 15);
+  --badge-purple-50:  oklch(0.961 0.024 308); --badge-purple-200:  oklch(0.887 0.046 308); --badge-purple-700:  oklch(0.468 0.088 308);
+  --badge-teal-50:    oklch(0.963 0.024 195); --badge-teal-200:    oklch(0.890 0.044 195); --badge-teal-700:    oklch(0.452 0.062 195);
+}

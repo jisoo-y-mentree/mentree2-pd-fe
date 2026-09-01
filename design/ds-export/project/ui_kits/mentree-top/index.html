@@ -1,0 +1,444 @@
+<!-- @dsCard group="mentree Web" viewport="1280x900" name="TOP (메인)" subtitle="Header · Hero · 멘토/Q&A/인사이트 캐러셀 · Biz CTA · Footer" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>mentree — TOP</title>
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  html, body { margin: 0; }
+  body { background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  a { color: var(--primary); }
+  a:hover { color: color-mix(in oklch, var(--primary) 82%, black); }
+  /* 콘텐츠 컨테이너 — 이후 모든 섹션 공통 기준 */
+  .container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-pad); box-sizing: border-box; }
+  .section { padding: 56px 0; }
+  /* Hero — 연속 반응형(clamp/vw). 지구본은 항상 일부만 보이게 밴드 밖으로 오버플로우. */
+  .hero-band { position: relative; overflow: hidden; background: var(--sage-50); }
+  .hero-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) clamp(300px, 30vw, 420px); gap: 32px; align-items: center; padding-top: 56px; padding-bottom: 56px; }
+  .hero-copy { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 20px; }
+  .hero-spacer { min-height: 340px; }
+  /* 지구본: 원 중심이 화면 밖(오른쪽) — 좌측 arc만 보임. 폭 감소 시 우측→우상단 이동 */
+  .hero-globe { position: absolute; z-index: 0; top: 50%; right: calc(-0.45 * clamp(560px, 52vw, 760px)); transform: translateY(-50%); width: clamp(560px, 52vw, 760px); aspect-ratio: 1; }
+  .hero-entries { display: flex; gap: 12px; margin-top: 8px; }
+  .hero-entry { width: 110px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none; color: var(--foreground); }
+  .hero-entry .hero-entry-emoji { font-size: 52px; line-height: 1; }
+  .hero-entry .hero-entry-label { font-size: 14px; font-weight: 500; text-align: center; letter-spacing: -0.01em; }
+  @media (max-width: 768px) {
+    .hero-grid { display: flex; flex-direction: column; align-items: stretch; gap: 18px; padding-top: calc(clamp(240px, 55vw, 420px) - clamp(60px, 16vw, 120px) + 16px); padding-bottom: 36px; }
+    .hero-spacer { display: none; }
+    .hero-globe { width: clamp(240px, 55vw, 420px); top: calc(-1 * clamp(60px, 16vw, 120px)); right: calc(-1 * clamp(70px, 20vw, 150px)); transform: none; }
+    .hero-entries { width: 100%; gap: 8px; }
+    .hero-entry { width: auto; flex: 1; }
+    .hero-entry .hero-entry-emoji { font-size: 40px; }
+    .hero-entry .hero-entry-label { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const NS = window.MentreeDesignSystem_2f86cf;
+  const { Header, SectionHeader, Carousel, InterviewCard, MentorCard, QnaCard, ArticlePreview, Badge, FilterChip, Button, Footer, Icon } = NS;
+
+  const PORTRAIT = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Crect width='320' height='320' fill='%23cdd3ce'/%3E%3Ccircle cx='160' cy='124' r='58' fill='%23bcc3bd'/%3E%3Crect x='72' y='210' width='176' height='150' rx='68' fill='%23bcc3bd'/%3E%3C/svg%3E";
+  const MENTOR_PHOTO = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='264' height='198'%3E%3Crect width='264' height='198' fill='%23c9cfca'/%3E%3Cg stroke='%23b0b7b1' stroke-width='14'%3E%3Cpath d='M-40 40 L40 -40 M-40 120 L120 -40 M-40 200 L200 -40 M40 220 L220 40 M120 240 L280 80'/%3E%3C/g%3E%3C/svg%3E";
+
+  // 멘토 8명 (peek 캐러셀)
+  const MENTORS = [
+    { name: "박지훈", role: "시니어 프로덕트 디자이너", company: "네이버", field: "디자인", country: "south-korea", countryLabel: "대한민국", photo: MENTOR_PHOTO, bookmarked: true },
+    { name: "Sarah Kim", role: "Staff Engineer", company: "Stripe", field: "엔지니어링", country: "united-states", countryLabel: "미국", photo: MENTOR_PHOTO },
+    { name: "다나카 미오", role: "프로덕트 매니저", company: "라쿠텐", field: "기획", country: "japan", countryLabel: "일본", photo: MENTOR_PHOTO },
+    { name: "이서연", role: "브랜드 디자이너", company: "카카오", field: "디자인", country: "south-korea", countryLabel: "대한민국", photo: MENTOR_PHOTO },
+    { name: "정하늘", role: "UX Researcher", company: "Google", field: "리서치", country: "united-states", countryLabel: "미국", photo: MENTOR_PHOTO },
+    { name: "최유진", role: "Engineering Manager", company: "LINE", field: "엔지니어링", country: "japan", countryLabel: "일본", photo: MENTOR_PHOTO },
+    { name: "김도윤", role: "데이터 사이언티스트", company: "Meta", field: "데이터", country: "united-states", countryLabel: "미국", photo: MENTOR_PHOTO },
+    { name: "한지민", role: "프론트엔드 엔지니어", company: "Mercari", field: "엔지니어링", country: "japan", countryLabel: "일본", photo: MENTOR_PHOTO },
+  ];
+
+  // Q&A 6개 (snap-fit, 4개 딱 맞음)
+  const QNAS = [
+    { category: "커리어", views: 1280, likes: 34, title: "주니어 디자이너인데 이직 타이밍이 고민입니다. 조언 부탁드려요", excerpt: "지금 회사에서 2년 차인데 성장이 정체된 느낌이에요. 포트폴리오는 어느 정도 정리했는데 지금이 옮길 때인지 확신이 안 섭니다.", answerers: [{name:"박지훈"},{name:"김도윤"},{name:"이서연"},{name:"최유진"},{name:"정하늘"}], answerCount: 5 },
+    { category: "해외취업", views: 890, likes: 21, title: "미국 빅테크 취업, 비자 스폰서는 언제부터 협의하나요?", excerpt: "현지 인터뷰까지 갔을 때 비자 얘기를 먼저 꺼내야 할지, 오퍼 이후가 나을지 순서가 헷갈립니다.", answerers: [{name:"Sarah Kim"},{name:"정하늘"},{name:"김도윤"}], answerCount: 3 },
+    { category: "포트폴리오", views: 412, likes: 8, title: "비전공자 포트폴리오 첫 페이지 구성 팁이 궁금해요", excerpt: "부트캠프 수료 후 첫 포트폴리오를 만들고 있습니다. 표지에서 뭘 강조해야 할지 모르겠어요.", answerers: [{name:"한지민"}], answerCount: 1 },
+    { category: "이직", views: 640, likes: 15, title: "연봉 협상, 첫 오퍼 대비 어느 선까지 요구해도 될까요?", excerpt: "경력 5년 차 첫 이직인데 시장가를 잘 몰라 협상 레인지를 잡기 어렵습니다.", answerers: [{name:"최유진"},{name:"다나카 미오"}], answerCount: 2 },
+    { category: "성장", views: 528, likes: 12, title: "시니어로 넘어가는 시점, 무엇을 증명해야 하나요?", excerpt: "실무는 익숙해졌는데 리드 역할을 맡기 위해 어떤 경험을 더 쌓아야 할지 방향이 안 잡힙니다.", answerers: [{name:"박지훈"},{name:"이서연"},{name:"최유진"},{name:"정하늘"},{name:"김도윤"}], answerCount: 6 },
+    { category: "온보딩", views: 301, likes: 5, title: "해외 팀 첫 3개월, 신뢰를 빠르게 쌓는 법", excerpt: "언어 장벽이 있는 상태에서 초반에 어떻게 존재감을 만들었는지 경험을 듣고 싶어요.", answerers: [{name:"Sarah Kim"},{name:"정하늘"}], answerCount: 2 },
+  ];
+
+  // 필터칩(정적) — 국가/직무. 대부분 뉴트럴 아웃라인, 선택 시연으로 '디자인'만 green 반전.
+  const COUNTRY_FILTERS = [
+    { label: "일본", flag: "japan" },
+    { label: "미국", flag: "united-states" },
+    { label: "대한민국", flag: "south-korea" },
+  ];
+  const JOB_FILTERS = ["개발", "디자인", "기획", "데이터"];
+
+  // 인사이트 아티클 4개 (snap-fit, 딱 맞음). 16:9 썸네일 placeholder.
+  const ARTICLE_THUMB = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='288' height='162'%3E%3Crect width='288' height='162' fill='%23c9cfca'/%3E%3Cg stroke='%23b0b7b1' stroke-width='16'%3E%3Cpath d='M-40 40 L60 -60 M-40 140 L160 -60 M-20 200 L260 -80 M60 220 L300 -20 M180 220 L340 60'/%3E%3C/g%3E%3C/svg%3E";
+  const ARTICLES = [
+    { title: "해외 취업 지원, 이력서보다 먼저 정리해야 할 것", excerpt: "지원 서류의 완성도보다 지원 동기와 문제 정의가 먼저다. 내가 왜 이 시장에서 일하려는지부터 썼야 길이 보인다.", tags: [{ label: "해외취업", hue: "indigo" }, { label: "가이드", hue: "amber" }], image: ARTICLE_THUMB },
+    { title: "포트폴리오, 개수보다 케이스 하나의 밀도", excerpt: "수십 개의 얕은 케이스보다 과정이 드러나는 하나가 강하다. 의사결정의 근거를 얼마나 솔직히 보여주느냐가 핵심.", tags: [{ label: "디자인", hue: "teal" }, { label: "커리어", hue: "sky" }], image: ARTICLE_THUMB },
+    { title: "언어 장벽 속에서 신뢰를 쌓는 법", excerpt: "완벽한 영어보다 명확한 맥락과 꾸준함이 먼저다. 초반 신뢰는 문장력이 아니라 약속의 이행에서 온다.", tags: [{ label: "온보딩", hue: "purple" }, { label: "커뮤니케이션", hue: "rose" }], image: ARTICLE_THUMB },
+    { title: "시니어로 넘어가는 사람들의 공통점", excerpt: "실무력은 시작점일 뿐, 관점의 층위를 올리는 사람이 리드가 된다. 문제를 보는 단위가 달라지는 순간을 살핀다.", tags: [{ label: "성장", hue: "blue" }, { label: "리더십", hue: "amber" }], image: ARTICLE_THUMB },
+  ];
+
+  // 멘토 섹션 필터칩 줄 — DS FilterChip 컴포넌트. 국가=flag leading / 직무=none. 선택 예시 1개(디자인).
+  function FilterRow() {
+    const [country, setCountry] = React.useState(null);
+    const [job, setJob] = React.useState("디자인");
+    const labelStyle = { fontSize: 14, fontWeight: 600, color: "var(--muted-foreground)", flex: "0 0 auto" };
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 22 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+          <span style={labelStyle}>국가</span>
+          {COUNTRY_FILTERS.map((c) => (
+            <FilterChip key={c.flag} leading="flag" flag={c.flag}
+              selected={country === c.flag}
+              onChange={() => setCountry(country === c.flag ? null : c.flag)}>{c.label}</FilterChip>
+          ))}
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+          <span style={labelStyle}>직무</span>
+          {JOB_FILTERS.map((j) => (
+            <FilterChip key={j} selected={job === j}
+              onChange={() => setJob(job === j ? null : j)}>{j}</FilterChip>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // AI 밴드(placeholder) — 그라데이션 아웃라인 느낌, 전체 클리커블 인상. 실제 Banner는 코드로 별도 구현.
+  function AiBand() {
+    return (
+      <div className="section" style={{ paddingTop: 0, paddingBottom: 0 }}>
+        <div className="container">
+          <a href="#" style={{ display: "block", textDecoration: "none", borderRadius: "var(--card-radius)",
+            padding: 2, background: "linear-gradient(120deg, var(--primary), oklch(0.64 0.13 232) 55%, oklch(0.66 0.12 300))" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 20, background: "var(--card)",
+              borderRadius: "calc(var(--card-radius) - 2px)", padding: "22px 26px" }}>
+              <span style={{ width: 48, height: 48, flex: "0 0 auto", borderRadius: "var(--radius-md)",
+                display: "flex", alignItems: "center", justifyContent: "center", color: "var(--primary-foreground)",
+                background: "linear-gradient(135deg, var(--primary), oklch(0.64 0.13 232))" }}>
+                <Icon name="ai-magic" size={26} />
+              </span>
+              <div style={{ display: "flex", flexDirection: "column", gap: 5, minWidth: 0, flex: "1 1 auto" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <span style={{ fontSize: "var(--text-h2)", fontWeight: 600, color: "var(--foreground)" }}>나의 해외 커리어 상황 분석하기</span>
+                  <span style={{ display: "inline-flex", alignItems: "center", height: 22, padding: "0 9px", borderRadius: 8,
+                    fontSize: "var(--text-caption)", fontWeight: 700, letterSpacing: "0.02em", color: "var(--primary-foreground)",
+                    background: "linear-gradient(135deg, var(--primary), oklch(0.64 0.13 232))" }}>AI</span>
+                </div>
+                <span style={{ fontSize: "var(--text-body)", color: "var(--muted-foreground)" }}>상황에 따라 딱 맞는 멘토와 정보를 추천해드려요</span>
+              </div>
+              <Icon name="arrow-right-01" size={22} style={{ color: "var(--sage-400)", flex: "0 0 auto" }} />
+            </div>
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  function MentorSection() {
+    const carRef = React.useRef(null);
+    const [edges, setEdges] = React.useState({ atStart: true, atEnd: false });
+    return (
+      <div className="section">
+        <div className="container">
+          <SectionHeader
+            icon="user-group"
+            title="멘토 "
+            titleAccent="둘러보기"
+            suffix={MENTORS.length + "명의 멘토"}
+            viewAll onViewAll={() => {}}
+            carousel
+            onPrev={() => carRef.current && carRef.current.scrollPrev()}
+            onNext={() => carRef.current && carRef.current.scrollNext()}
+            prevDisabled={edges.atStart}
+            nextDisabled={edges.atEnd}
+            style={{ marginBottom: 16 }}
+          />
+          <FilterRow />
+          <Carousel ref={carRef} mode="peek" gap={20} onEdgeChange={setEdges}>
+            {MENTORS.map((m, i) => (
+              <MentorCard key={i} href="#" {...m} />
+            ))}
+          </Carousel>
+        </div>
+      </div>
+    );
+  }
+
+  function QnaSection() {
+    const carRef = React.useRef(null);
+    const [edges, setEdges] = React.useState({ atStart: true, atEnd: false });
+    return (
+      <div className="section">
+        <div className="container">
+          <SectionHeader
+            icon="message-question"
+            title="지금 주목받는 "
+            titleAccent="Q&A 멘토링"
+            viewAll onViewAll={() => {}}
+            carousel
+            onPrev={() => carRef.current && carRef.current.scrollPrev()}
+            onNext={() => carRef.current && carRef.current.scrollNext()}
+            prevDisabled={edges.atStart}
+            nextDisabled={edges.atEnd}
+            style={{ marginBottom: 20 }}
+          />
+          <Carousel ref={carRef} mode="snap-fit" gap={20} onEdgeChange={setEdges}>
+            {QNAS.map((q, i) => (
+              <QnaCard key={i} href="#" style={{ width: 292 }} {...q} />
+            ))}
+          </Carousel>
+        </div>
+      </div>
+    );
+  }
+
+  // 진입 아이콘 4개 — 카드 없음, 이모지 placeholder(컴러 SVG 교체는 나중)
+  const ENTRIES = [
+    { key: "apply", label: "멘토링 신청", emoji: "🤝" },
+    { key: "ask", label: "무엇이든 질문", emoji: "💬" },
+    { key: "reads", label: "필독 컨텐츠", emoji: "📚" },
+    { key: "events", label: "이벤트", emoji: "🎉" },
+  ];
+
+  // 인터뷰 1단위 = featured 1 + compact 2(우측 세로 2단). featured 336 / compact 160×2 + 16 = 336.
+  const UNITS = [
+    {
+      featured: { title: "10년 차 디자이너가 말하는 성장의 변곡점", excerpt: "주니어에서 리드로 넘어가던 시기에 가장 크게 바뀐 건 관점이었습니다. 문제를 보는 층위가 달라지자 팀과의 대화도 달라졌어요.", personName: "박지훈", company: "네이버", jobTitle: "Design Lead", field: "디자인", country: "south-korea", countryLabel: "대한민국", image: PORTRAIT },
+      compact: [
+        { title: "해외 취업, 준비는 이력서가 아니라 문제 정의부터", personName: "다나카 미오", company: "메르카리", jobTitle: "PM", field: "기획", country: "japan", countryLabel: "일본" },
+        { title: "비전공자에서 5년, 시니어 엔지니어가 되기까지", personName: "Sarah Kim", company: "Stripe", jobTitle: "Staff Eng", field: "엔지니어링", country: "united-states", countryLabel: "미국" },
+      ],
+    },
+    {
+      featured: { title: "브랜드 디자이너의 포트폴리오는 무엇이 다른가", excerpt: "케이스 스터디의 밀도가 곧 설득력입니다. 과정을 얼마나 정직하게 보여주느냐가 첫인상을 좌우해요.", personName: "이서연", company: "카카오", jobTitle: "Brand Lead", field: "디자인", country: "south-korea", countryLabel: "대한민국", image: PORTRAIT },
+      compact: [
+        { title: "글로벌 팀에서 살아남는 커뮤니케이션", personName: "정하늘", company: "Google", jobTitle: "UXR", field: "리서치", country: "united-states", countryLabel: "미국" },
+        { title: "첫 매니저가 되고 배운 것들", personName: "최유진", company: "라인", jobTitle: "EM", field: "엔지니어링", country: "japan", countryLabel: "일본" },
+      ],
+    },
+  ];
+
+  // 지구본 placeholder — 실제 WebGL 구현은 Claude Code. 우측에서 잘린 arc, 아시아~오세아니아 + 플래그 밀집(좌반부 = 보이는 영역).
+  function GlobePlaceholder() {
+    const FLAGS = [
+      { src: "../../assets/flags/china.svg", x: 20, y: 30 },
+      { src: "../../assets/flags/south-korea.svg", x: 34, y: 27 },
+      { src: "../../assets/flags/japan.svg", x: 44, y: 33 },
+      { src: "../../assets/flags/hong-kong.svg", x: 27, y: 44 },
+      { src: "../../assets/flags/taiwan.svg", x: 38, y: 47 },
+      { src: "../../assets/flags/malaysia.svg", x: 24, y: 58 },
+      { src: "../../assets/flags/australia.svg", x: 44, y: 72 },
+    ];
+    return (
+      <div className="hero-globe" aria-hidden="true">
+        <svg viewBox="0 0 400 400" style={{ width: "100%", height: "100%", display: "block" }}>
+          <defs>
+            <radialGradient id="heroSea" cx="30%" cy="35%" r="80%">
+              <stop offset="0%" stopColor="#e9f2f7" />
+              <stop offset="100%" stopColor="#c6dcea" />
+            </radialGradient>
+            <clipPath id="heroGlobeClip"><circle cx="200" cy="200" r="200" /></clipPath>
+          </defs>
+          <circle cx="200" cy="200" r="200" fill="url(#heroSea)" />
+          <g clipPath="url(#heroGlobeClip)" style={{ fill: "color-mix(in oklch, var(--primary) 20%, white)" }}>
+            {/* 대륙 실루엣(추상 blob) — 아시아 대륙 / 동남아 도서 / 호주. 좌반부 배치. */}
+            <path d="M28,150 Q50,60 150,58 Q240,60 250,120 Q258,172 200,184 Q140,196 96,180 Q44,176 28,150 Z" />
+            <ellipse cx="140" cy="222" rx="15" ry="8" />
+            <ellipse cx="168" cy="236" rx="11" ry="6" />
+            <ellipse cx="118" cy="238" rx="9" ry="5" />
+            <ellipse cx="182" cy="300" rx="48" ry="32" />
+          </g>
+        </svg>
+        {FLAGS.map((f) => (
+          <span key={f.src} style={{ position: "absolute", left: `${f.x}%`, top: `${f.y}%`, transform: "translate(-50%, -50%)", width: "clamp(28px, 2.2vw + 14px, 40px)", aspectRatio: "1", borderRadius: "50%", border: "2px solid #ffffff", boxSizing: "border-box", background: `url(${f.src}) center / cover no-repeat`, boxShadow: "var(--shadow-md)" }}></span>
+        ))}
+      </div>
+    );
+  }
+
+  function Hero() {
+    return (
+      <div className="hero-band">
+        <GlobePlaceholder />
+        <div className="container hero-grid">
+          {/* 카피 + 진입 아이콘 */}
+          <div className="hero-copy">
+            <h1 style={{ fontSize: "var(--text-display)", fontWeight: 600, lineHeight: "var(--text-display--line-height)", letterSpacing: "var(--text-display--letter-spacing)", margin: 0 }}>
+              당신의 <span style={{ color: "var(--primary)" }}>해외 커리어</span>가<br />시작되는 곳
+            </h1>
+            <p style={{ fontSize: "clamp(16px, 1vw + 12px, 20px)", fontWeight: 400, color: "var(--muted-foreground)", margin: 0, lineHeight: 1.6 }}>
+              <span style={{ fontWeight: 700, color: "var(--primary)" }}>200+명</span>의 글로벌 멘토들이 여러분을 기다리고 있어요
+            </p>
+            {/* 진입 4개 — 카드 없음. Desktop: 110px 고정폭 좌측 정렬 / Mobile: fill 균등 */}
+            <div className="hero-entries">
+              {ENTRIES.map((e) => (
+                <a key={e.key} href="#" className="hero-entry">
+                  <span className="hero-entry-emoji">{e.emoji}</span>
+                  <span className="hero-entry-label">{e.label}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+          {/* 우측 지구본 자리 확보(데스크톱) — 지구본 본체는 밴드 절대배치 */}
+          <div className="hero-spacer"></div>
+        </div>
+      </div>
+    );
+  }
+
+  function InterviewSection() {
+    const carRef = React.useRef(null);
+    const [edges, setEdges] = React.useState({ atStart: true, atEnd: false });
+    return (
+      <div className="section">
+        <div className="container">
+          <SectionHeader
+            icon="quill-write-02"
+            title="멘토의 이야기를 읽어보세요"
+            viewAll onViewAll={() => {}}
+            carousel
+            onPrev={() => carRef.current && carRef.current.scrollPrev()}
+            onNext={() => carRef.current && carRef.current.scrollNext()}
+            prevDisabled={edges.atStart}
+            nextDisabled={edges.atEnd}
+            style={{ marginBottom: 20 }}
+          />
+        </div>
+        {/* 캐러셀은 컨테이너 폭 안에서. 1단위 스냅. */}
+        <div className="container">
+          <Carousel ref={carRef} snap="unit" mode="snap-fit" gap={24} onEdgeChange={setEdges}>
+            {UNITS.map((u, i) => (
+              <div key={i} style={{ flex: "0 0 100%", display: "grid", gridTemplateColumns: "2fr 1fr", gap: 16 }}>
+                <InterviewCard size="featured" href="#" {...u.featured} />
+                <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                  {u.compact.map((c, j) => (
+                    <InterviewCard key={j} size="compact" href="#" {...c} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      </div>
+    );
+  }
+
+  function InsightSection() {
+    const carRef = React.useRef(null);
+    const [edges, setEdges] = React.useState({ atStart: true, atEnd: false });
+    return (
+      <div className="section">
+        <div className="container">
+          <SectionHeader
+            icon="book-open-01"
+            title="놓치면 아까운 "
+            titleAccent="멘트리 인사이트"
+            viewAll onViewAll={() => {}}
+            carousel
+            onPrev={() => carRef.current && carRef.current.scrollPrev()}
+            onNext={() => carRef.current && carRef.current.scrollNext()}
+            prevDisabled={edges.atStart}
+            nextDisabled={edges.atEnd}
+            style={{ marginBottom: 20 }}
+          />
+          <Carousel ref={carRef} mode="snap-fit" gap={24} onEdgeChange={setEdges}>
+            {ARTICLES.map((a, i) => (
+              <ArticlePreview key={i} href="#" style={{ width: 288 }} {...a} />
+            ))}
+          </Carousel>
+        </div>
+      </div>
+    );
+  }
+
+  // 세계지도 섹션 — 이 섹션만 sage-50 톤 킱. 중앙정렬 헤더(개별대응, SectionHeader 아님) + 지도 placeholder.
+  function WorldMapSection() {
+    return (
+      <div style={{ background: "var(--sage-50)" }}>
+        <div className="section container" style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", paddingRight: 24, paddingLeft: 24 }}>
+          <span style={{ width: 56, height: 56, borderRadius: "50%", background: "var(--card)", border: "1px solid var(--sage-200)", boxShadow: "var(--card-shadow)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--primary)", marginBottom: 20 }}>
+            <Icon name="globe-02" size={28} />
+          </span>
+          <h2 style={{ fontSize: "var(--text-h0)", fontWeight: 600, lineHeight: "var(--text-h0--line-height)", letterSpacing: "var(--text-h0--letter-spacing)", margin: 0 }}>
+            세계에서 활약하고 있는 <span style={{ color: "var(--primary)" }}>207명</span>의 멘토
+          </h2>
+          <p style={{ fontSize: "var(--text-h3)", color: "var(--muted-foreground)", margin: "12px 0 24px", lineHeight: 1.6 }}>
+            나라를 선택하면 멘토 일람 페이지로 이동해요
+          </p>
+          <Button variant="primary" size="lg" iconRight="arrow-right-01">멘토 찾기 페이지</Button>
+          {/* 세계지도 placeholder */}
+          <div style={{ width: "100%", height: 460, marginTop: 40, background: "var(--sage-100)", border: "1px dashed var(--sage-300)", borderRadius: "var(--card-radius)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8, color: "var(--muted-foreground)" }}>
+            <Icon name="globe-02" size={52} style={{ color: "var(--sage-400)" }} />
+            <div style={{ fontSize: "var(--text-body)", fontWeight: 600 }}>세계지도 영역</div>
+            <div style={{ fontSize: "var(--text-caption)", fontFamily: "ui-monospace, monospace" }}>WebGL · 실제 구현은 Claude Code</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Mentree Biz CTA — 인스턴스(CtaSection 컴포넌트 아님). blue 서브브랜드 — --biz-* 격리 색.
+  // 풀블리드 섹션: 배경(--biz-surface)이 화면 좌우 끝까지, radius 없음(각진). 콘텐츠만 1280 컨테이너.
+  function BizCta() {
+    return (
+      <div style={{ background: "var(--biz-surface)" }}>
+        <div className="section">
+          <div className="container" style={{ display: "grid", gridTemplateColumns: "1.15fr 0.85fr", gap: 40, alignItems: "center" }}>
+            {/* 좌: 카피 + 버튼 2개 */}
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 0 }}>
+              <span style={{ fontSize: "var(--text-caption)", fontWeight: 700, letterSpacing: "0.04em", color: "var(--biz-primary)", marginBottom: 12 }}>Mentree Biz</span>
+              <h2 style={{ fontSize: "var(--text-h0)", fontWeight: 600, lineHeight: "var(--text-h0--line-height)", letterSpacing: "var(--text-h0--letter-spacing)", margin: 0, color: "var(--foreground)" }}>
+                해외 진출 기업을 위한<br />비즈니스 서포트 서비스
+              </h2>
+              <p style={{ fontSize: "var(--text-h3)", color: "var(--muted-foreground)", lineHeight: 1.6, margin: "14px 0 28px" }}>
+                현지 경력이 풍부한 각 분야별 전문가가<br />사업의 개별적인 상황에 따른 맞춤형 서포트를 제공합니다
+              </p>
+              <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                <Button variant="outline" size="lg">자세히 알아보기</Button>
+                <Button variant="primary" size="lg" iconRight="sent-02"
+                  style={{ background: "var(--biz-primary)", color: "var(--biz-primary-foreground)", border: "1px solid transparent" }}>문의하기</Button>
+              </div>
+            </div>
+            {/* 우: 입고된 SVG 통째로. Claude가 그린 조형 없이 원본 그대로. */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <img src="../../assets/logo/biz.svg" alt="Mentree Biz" style={{ width: 280, height: "auto", display: "block" }} />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  function TOP() {
+    const [active, setActive] = React.useState(null);
+    return (
+      <div>
+        <Header authState="guest" activeKey={active} onNavigate={(item) => { if (!item.external && item.href && item.href.startsWith("/")) setActive(item.key); }} />
+        <Hero />
+        <InterviewSection />
+        <AiBand />
+        <MentorSection />
+        <QnaSection />
+        <InsightSection />
+        <WorldMapSection />
+        <BizCta />
+        <Footer onNavigate={() => {}} />
+      </div>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(<TOP />);
+</script>
+</body>
+</html>

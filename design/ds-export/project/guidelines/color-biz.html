@@ -1,0 +1,20 @@
+<!-- @dsCard group="Foundations" viewport="700x180" name="Biz — 서브브랜드(파랑, 격리)" subtitle="외부 '기업 서비스(Biz)' 전용. 파랑은 Biz에만 — 본체 시맨틱 토큰과 혼용 금지" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:0;background:var(--background)}
+  .wrap{padding:16px;display:flex;gap:14px;flex-wrap:wrap}
+  .sw{display:flex;flex-direction:column;gap:6px}
+  .chip{width:150px;height:60px;border-radius:var(--radius-md);border:1px solid var(--border);display:flex;align-items:flex-end;padding:8px;box-sizing:border-box}
+  .n{font-size:12px;font-weight:600;color:var(--foreground)}
+  .v{font-size:11px;color:var(--muted-foreground);font-variant-numeric:tabular-nums}
+  .note{padding:8px 14px;font-size:11px;color:var(--muted-foreground);border-top:1px solid var(--border);background:var(--secondary)}
+</style></head>
+<body>
+  <div class="wrap">
+    <div class="sw"><div class="chip" style="background:var(--biz-primary)"><span style="color:var(--biz-primary-foreground);font-size:12px;font-weight:600">진입점 · CTA</span></div><div class="n">--biz-primary</div><div class="v">oklch(.548 .196 264)</div></div>
+    <div class="sw"><div class="chip" style="background:var(--biz-surface);border-color:var(--biz-border)"><span style="color:var(--biz-primary);font-size:12px;font-weight:600">Biz 밴드</span></div><div class="n">--biz-surface</div><div class="v">밴드 배경 틴트</div></div>
+    <div class="sw"><div class="chip" style="background:var(--biz-border)"></div><div class="n">--biz-border</div><div class="v">Biz 밴드 경계</div></div>
+  </div>
+  <div class="note">⚠ 격리: <code>--biz-*</code> 는 오직 Biz 진입점/밴드에만. 본체는 green/sage — <code>primary/accent/chart</code> 등에 파랑을 절대 섞지 말 것.</div>
+</body></html>

@@ -1,0 +1,13 @@
+/* ============================================================================
+   mentree — styles.css  (global CSS entry point)
+   Consumers link ONLY this file. It is a list of @import lines.
+   Base: shadcn/ui + preset b4Ea0IP4Ey · base=Sage · bg=white
+   font=Pretendard JP Variable · icons=HugeIcons · light theme only.
+   ========================================================================== */
+
+@import "./tokens/fonts.css";
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
+@import "./tokens/icons.css";
+@import "./tokens/base.css";

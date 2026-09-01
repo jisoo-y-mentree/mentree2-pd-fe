@@ -18,18 +18,19 @@
 - 실시일:  ／ 리뷰 대상 커밋:
 - 지적 내역: 수정 ○건 ／ 후속 ○건
 
-> 구현자가 Claude 하나이므로 **세션 분리가 유일한 견제 장치**다. 같은 세션에서 리뷰하지 않는다.
+> 작성자가 Claude 하나이므로 **세션 분리가 유일한 견제 장치**다. 같은 세션에서 리뷰하지 않는다.
 
 ### 디자인
 
 - [ ] `design/` 의 변경을 포함한다 → 디자이너 리뷰 필요
-- [ ] `DS-nn` 의 상태를 바꾼다 → **이 PR의 Approve 가 사인오프**가 된다
-- [ ] `template/` 을 추가·갱신했다 → `SOURCE.md` 가 있다
+- [ ] `DS-nn` 을 완료로 바꾼다 → **이 PR의 Approve 가 사인오프**가 된다. 표에는 「완료일」만 적는다(별도 칸 없음)
+- [ ] `template/` 을 추가·갱신했다 → `SOURCE.md` 가 있다 ／ **JS 가 없다** ／ 4상태 4파일이다
+- [ ] `ds-export/` 를 교체했다 → **통째로 교체했다** ／ `SOURCE.md` 의 SHA-256 을 갱신했다
 
 ### 검사
 
-- [ ] `pnpm lint` ／ `pnpm typecheck` ／ `pnpm test`
-- [ ] `pnpm test:a11y` (axe 베이스라인이 늘지 않았다)
+- [ ] `python3 scripts/check-docs.py` 가 exit 0
+- [ ] `.claude/` 를 고쳤으면 해당 `*.test.sh` 가 실패 0
 
 ## 비고
 

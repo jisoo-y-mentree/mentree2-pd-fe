@@ -22,7 +22,11 @@ import os
 import re
 import sys
 
-SKIP_DIRS = {".git", "node_modules", "storybook-static", ".next", "dist", "build"}
+# `_import` 는 커밋하지 않는 반입 자리다. 우리가 고칠 수 없는 파일이므로 검사하지 않는다.
+SKIP_DIRS = {
+    ".git", "node_modules", "storybook-static", ".next", "dist", "build",
+    "_import",
+}
 
 CONFLICT = re.compile(r"^(<{7}|={7}|>{7})(\s|$)")
 # 마크다운 링크 중 리포 안을 가리키는 것만 본다(http·mailto·앵커만인 것은 제외).
