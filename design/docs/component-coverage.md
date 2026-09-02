@@ -123,11 +123,13 @@
 
 **우선순위는 요구 화면 수로 매긴다.** 위에서부터 만들면 덮이는 화면이 빨리 는다.
 
+**`*` 글롭을 펼쳐서 센다** — `mypage-*` 는 2, `mentoring-detail-*` 도 2다. 접어서 세면 순위가 뒤집힌다.
+
 | `DS-nn` | 요소 | 화면 수 | 어느 화면이 요구하나 | 근거 |
 |---|---|---|---|---|
-| `DS-02` | **Tabs** | **7** | `mentor-detail`(4탭) · `mypage-mentee`(9) · `mypage-mentor`(10) · `qna-feed` · `qna-detail` · `insight-list` · `mentoring-detail-*` | 기존. **가장 많이 쓰인다.** 카운트 배지를 함께 쓴다 |
+| `DS-02` | **Tabs** | **8** | `mentor-detail`(4탭) · `mypage-mentee`(9) · `mypage-mentor`(10) · `qna-feed` · `qna-detail` · `insight-list` · `mentoring-detail-mentee` · `mentoring-detail-mentor` | 기존. **가장 많이 쓰인다.** 카운트 배지를 함께 쓴다 |
 | `DS-11` | **EmptyState** | **5** | `mentor-search` · `qna-feed` · `notification` · `mypage-mentee` · `mypage-mentor` | 「찾으시는 결과값의 멘토가 아직 없습니다」·「아직 질문이 없으시네요!」·「새 알림이 없습니다」 |
-| `DS-01` | **Pagination** | **4** | `insight-list` · `notice-list` · `qna-feed` · `mypage-*` | 기존. 와이어에 「시작/중간/끝」 3형태가 있다 |
+| `DS-01` | **Pagination** | **5** | `insight-list` · `notice-list` · `qna-feed` · `mypage-mentee` · `mypage-mentor` | 기존. 와이어에 「시작/중간/끝」 3형태가 있다 |
 | `DS-18` | **MentoringCard** | **4** | `mypage-mentee` · `mypage-mentor` · `mentoring-detail-mentee` · `mentoring-detail-mentor` | 상태 배지 ＋ 제목 ＋ 상대 미니카드 ＋ 상태 문구 ＋ 액션 1~2개. **`MentorCard` 와 다르다** |
 | `DS-10` | **Skeleton** | **3** | `mentor-search` · `qna-feed` · `article-detail` | 「로딩: 스켈레톤 UI」가 3화면의 주석에 있다 |
 | `DS-12` | **Popover** | **3** | `mentor-detail` · `qna-detail` · `article-detail` | 「웹의 경우 popover → 링크 복사/공유하기」 |
@@ -140,7 +142,9 @@
 
 **＋ `DS-19` `Sidebar` 제거** — 요구 화면 0.
 
-**위 4건(`Tabs`·`EmptyState`·`Pagination`·`MentoringCard`)만 만들어도 21화면 중 절반 이상이 덮인다.**
+**위 4건(`Tabs`·`EmptyState`·`Pagination`·`MentoringCard`)만 만들어도 21화면 중 11화면이 덮인다.**
+
+합집합을 펼치면 — `mentor-detail` · `mypage-mentee` · `mypage-mentor` · `qna-feed` · `qna-detail` · `insight-list` · `mentoring-detail-mentee` · `mentoring-detail-mentor` · `mentor-search` · `notification` · `notice-list` **＝ 11/21.**
 
 ### 보류 후보 — 1화면만 요구한다
 
@@ -193,7 +197,7 @@
 | 1 | 갭 12건 ＋ `Sidebar` 제거를 **`DS-nn` 으로 기표** | ✅ `DS-09`〜`DS-19` |
 | 2 | `Sidebar` 의 정체를 가른다 | ✅ 위 「정정」 |
 | 3 | `mentor-detail` 의 부품을 화면에서 추출 | ✅ 보류 후보 5건 |
-| 4 | **화면 수 순으로 Claude Design 에서 만든다** | ⏸ `Tabs` → `EmptyState` → `Pagination` → `MentoringCard` |
+| 4 | **화면 수 순으로 Claude Design 에서 만든다** | ⏸ `Tabs`(8) → `EmptyState`(5) → `Pagination`(5) → `MentoringCard`(4) |
 | 5 | 아이콘 **6계통**을 HugeIcon 으로 모은다 | ⏸ 화면마다 |
 | 6 | **1.0 계통 3덩어리를 다시 그릴지** | ⏸ **대기.** 아래 |
 
@@ -209,6 +213,8 @@
 | 그 전에 부품을 만든다 | **만들지 않는다.** 1.0 계통의 `Stepper`·`Slider` 는 형태가 바뀔 수 있다 |
 
 `DS-14`(`Stepper`)는 기표하되 **사양을 비워둔다.** 1.0 계통 판정이 끝난 뒤에 정한다.
+
+**「판정:」이 붙은 6행은 착수 대상이 아니다** — `DS-05`·`DS-06`·`DS-08`·`DS-12`·`DS-14`·`DS-15`. 무엇을 기다리는지가 그 칸에 적혀 있다([DS-update-list](../DS-update-list.md) 「사양이 미정인 행은 착수 대상이 아니다」). 위 4건에는 하나도 걸리지 않는다.
 
 ### 사양은 어디서 따오나
 
