@@ -102,9 +102,9 @@ gh auth setup-git       # 이것을 빼면 git 이 keychain 의 옛 자격증명
 | 단계 | 상태 |
 |---|---|
 | S9 SOURCES ＋ `.gitignore` ＋ `CLAUDE.md` 판정 표 | ✅ PR #9 |
-| S10 용어집 | ⏸ |
-| S11 `docs/PRODUCT.md` | ⏸ |
-| S12 screen-inventory ＋ DS-nn 8행 ＋ ADR 3건 | 🔄 ADR 3건·DS 8행 완료(PR #9) / screen-inventory 미착수 |
+| S10 용어집 | 🔄 **72행 채움.** 한국어 명칭 충돌 4건이 「미결」에 남았다 |
+| S11 `docs/PRODUCT.md` | 🔄 **기안 완료.** 미결 5건 |
+| S12 screen-inventory ＋ component-coverage ＋ DS-nn 8행 ＋ ADR 3건 | 🔄 ADR 3건·DS 8행 완료(PR #9) / **21화면 목록화 ＋ 커버리지 완료** |
 | S13 UI-SPEC §1~5 ＋ `template/` | ⏸ |
 | S14 team-members ＋ CODEOWNERS | ⏸ |
 | S15 UX 라이팅의 그릇 | ⏸ 보류 |
