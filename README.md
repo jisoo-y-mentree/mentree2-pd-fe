@@ -18,12 +18,15 @@ mentree 리뉴얼의 **디자인과 디자인 시스템** 리포다.
 
 | 순 | 파일 | 무엇을 알 수 있는가 |
 |---|---|---|
-| 1 | [CLAUDE.md](CLAUDE.md) | 이 리포의 규약 전체 |
-| 2 | [designer-workflow.md](docs/guidelines/designer-workflow.md) | 화면 1장을 만드는 흐름 |
-| 3 | [DESIGN-CHARTER.md](design/DESIGN-CHARTER.md) | 디자인 문서를 심사하는 8원칙 |
-| 4 | [ADR-0005](docs/adr/0005-design-team-deliverables.md) | 무엇까지 만들고 무엇을 넘기는가 |
-| 5 | [DS-update-list.md](design/DS-update-list.md) | 디자인 시스템의 미비·미정 |
-| 6 | [korean-writing-rules.md](docs/guidelines/korean-writing-rules.md) | 문장 규약 |
+| 1 | [PRODUCT.md](docs/PRODUCT.md) | **무엇을 만드는가.** 제품 전제와 MVP 범위 |
+| 2 | [screen-inventory.md](design/docs/screen-inventory.md) | **화면 21장의 목록과 만드는 차례** |
+| 3 | [CLAUDE.md](CLAUDE.md) | 이 리포의 규약 전체 |
+| 4 | [designer-workflow.md](docs/guidelines/designer-workflow.md) | 화면 1장을 만드는 흐름 |
+| 5 | [ADR-0005](docs/adr/0005-design-team-deliverables.md) | 무엇까지 만들고 무엇을 넘기는가 |
+| 6 | [DESIGN-CHARTER.md](design/DESIGN-CHARTER.md) | 디자인 문서를 심사하는 8원칙 |
+| 7 | [ubiquitous-language.md](docs/glossary/ubiquitous-language.md) | **이름의 정본.** 개념·화면 ID·컴포넌트 |
+| 8 | [DS-update-list.md](design/DS-update-list.md) | 디자인 시스템의 미비·미정 |
+| 9 | [korean-writing-rules.md](docs/guidelines/korean-writing-rules.md) | 문장 규약 |
 
 환경 구축 순서는 [SETUP.md](SETUP.md) 에 있다.
 
