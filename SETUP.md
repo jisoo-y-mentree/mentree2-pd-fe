@@ -99,16 +99,28 @@ gh auth setup-git       # 이것을 빼면 git 이 keychain 의 옛 자격증명
 
 단계별 내용의 정본은 [docs/SOURCES.md](docs/SOURCES.md) 「순서」 절이다. 여기에 복제하지 않는다.
 
-| 단계 | 상태 |
+**이 표는 「순서」의 전 항목을 갖는다.** 빠진 행이 있으면 §9 가 그 단계에 도달하지 못한다.
+
+| 기호 | 뜻 |
 |---|---|
-| S9 SOURCES ＋ `.gitignore` ＋ `CLAUDE.md` 판정 표 | ✅ PR #9 |
-| S10 용어집 | 🔄 **88행.** 명칭 충돌 4건 결착. 새 이름이 나올 때마다 는다 |
-| S11 `docs/PRODUCT.md` | 🔄 **기안 완료.** 미결 **2건**(환불 규정·로그인 후 전이도) |
-| S12 screen-inventory ＋ component-coverage ＋ DS-nn ＋ ADR 3건 | 🔄 **21화면 목록화 ＋ 커버리지 ＋ `DS-01`〜`DS-19` 기표 완료** |
-| S13 UI-SPEC §1~5 ＋ `template/` | ⏸ |
-| S14 team-members ＋ CODEOWNERS | ⏸ |
-| S15 UX 라이팅의 그릇 | ⏸ 보류 |
-| **S16** `DESIGN.md` 파운데이션 | ⏸ **신설**(ADR-0005). 입력은 `design/ds-export/project/guidelines/` |
+| ✅ | **이 단계의 작업이 끝났다.** 문서가 나중에 더 자라는 것과 무관하다 |
+| 🔄 | **남은 작업이 있다** |
+| ⏸ | 착수 전 |
+| ⛔ | 하지 않는다 |
+
+| 순 | 단계 | 상태 |
+|---|---|---|
+| — | S9 SOURCES ＋ `.gitignore` ＋ `CLAUDE.md` 판정 표 | ✅ PR #9 |
+| **①** | export 반입 — `ds-export/` ＋ `_import/` | ✅ PR #14 |
+| **②** | Figma 정리 | ✅ 09-01 반입 / **09-02 에 13섹션으로 늘었다** |
+| **③** | S12 screen-inventory ＋ component-coverage ＋ `DS-nn` ／ S11 `docs/PRODUCT.md` | ✅ 21화면 ＋ 커버리지 ＋ `DS-01`〜`DS-19`. **미결 2건은 사람 대기이지 남은 작업이 아니다** |
+| **④** | S10 용어집 | ✅ 88행. 명칭 충돌 4건 결착 |
+| **⑤** | 고아 분석 → `DS-nn` 기표 | ✅ 갭 12건 ＋ 보류 후보 6건 |
+| **⑥** | **DS 갱신 — Claude Design 작업 ＋ 재export** | ⏸ **🖐 디자이너.** 차례는 `Tabs` → `EmptyState` → `Pagination` → `MentoringCard` |
+| **⑦** | **S16** `DESIGN.md` 파운데이션 | ⏸ 입력은 `design/ds-export/project/guidelines/` |
+| **⑧** | S13 UI-SPEC §1~5 ＋ `template/` | ⏸ 첫 화면은 `notice-list` |
+| — | S14 team-members ＋ CODEOWNERS | ⏸ 독립 |
+| — | S15 UX 라이팅의 그릇 | ⏸ 보류 |
 
 ### 미검증으로 남은 것
 
