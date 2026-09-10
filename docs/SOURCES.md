@@ -184,14 +184,16 @@ DESIGN-CHARTER 원칙 8은 모든 규칙에 근거를 한 줄 붙이라고 요�
 | 문서 | 출처 종류 | 채우는 방식 | 시점 |
 |---|---|---|---|
 | `design/ds-export/` | Claude Design · 산출물 | **통째로 교체하고** `SOURCE.md` 의 SHA 를 갱신한다 | 재export 할 때마다 |
-| `design/DESIGN.md` | Claude Design · 산출물 ＋ 경위 | 아래 「`DESIGN.md` 의 절 구성」대로 고친 뒤 채운다 | **S16** |
+| `design/DESIGN.md` | Claude Design · 산출물 ＋ 경위 | 파운데이션은 S16 에서 채웠다. 이후에는 **화면에서 승격된 규칙**이 붙는다(헌장 원칙 7) | S16 ／ 이후 2화면째마다 |
 | `design/screens/<id>/template/` | Claude Design · 산출물(화면 프로토타입) | export한다. `SOURCE.md` 에 출처·생성일·대응 UI-SPEC을 적는다 | 화면마다 |
 
 `packages/design-system` 과 `a11y-baseline.json` 은 **만들지 않는다**([ADR-0005](adr/0005-design-team-deliverables.md)).
 
 ## `DESIGN.md` 의 절 구성
 
-현행 6절은 실제 파운데이션을 담지 못한다. 아래로 고친다.
+**2026-09-10 에 11절로 고쳐 채웠다**(S16). 아래는 그때 쓴 계획이며 실물은 [DESIGN.md](../design/DESIGN.md) 다.
+
+초판의 6절은 실제 파운데이션을 담지 못했다.
 
 | 절 | 담는 것 | 현행 |
 |---|---|---|
