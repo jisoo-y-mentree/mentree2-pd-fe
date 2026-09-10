@@ -22,12 +22,16 @@
 | 도메인 개념 | PascalCase | `Mentor` · `Flower` |
 | 화면 ID | 소문자와 하이픈 | `qna-feed` · `mypage-mentee` |
 | 컴포넌트 | PascalCase | `MentorCard` · `BottomTabBar` |
+| **모달** | PascalCase ＋ `Modal` | `MentoringDetailModal` |
+
+**소문자와 하이픈은 화면에만 쓴다.** 모달은 URL 을 갖지 않으므로 화면 ID 의 표기를 쓰지 않는다.
 
 ## 용어
 
 <!-- 채운 순서
      ⓐ 도메인 개념 — Figma 「Mentree 2.0 (Claude)」 전 플로우 1회 스캔(2026-09-01)
-     ⓑ 화면 ID     — design/docs/screen-inventory.md 에서 확정한 21화면
+     ⓑ 화면 ID     — design/docs/screen-inventory.md 에서 확정한 19화면
+                     (초판은 21화면이었다. 09-10 에 멘토링 상세 2화면이 모달로 내려갔다)
      ⓒ 컴포넌트 명칭 — design/ds-export/project/components/ 의 30본
 
      English 가 이미 정해진 것(컴포넌트)은 그대로 쓴다. 새로 짓지 않는다.
@@ -65,9 +69,8 @@
 | 멘토 찾기 | `mentor-search` | 화면 |
 | 멘토 카드 | `MentorCard` | 컴포넌트. surfaces. 296 고정·미디어 3:2/5:4 |
 | 멘토링 | `Mentoring` | 1:1 유료 세션. 신청 → 수락 → 일정 확정 → 완료 |
-| 멘토링 상세(멘토) | `mentoring-detail-mentor` | 화면. 상태 6 |
-| 멘토링 상세(멘티) | `mentoring-detail-mentee` | 화면. 상태 6 |
-| 멘토링 신청 | `mentoring-apply` | 화면. 2스텝 ＋ 결제 |
+| 멘토링 상세 모달 | `MentoringDetailModal` | **모달.** 상태 6. `mypage-mentee`·`mypage-mentor` 의 §6 이다. 역할로 액션이 갈린다 |
+| 멘토링 신청 | `mentoring-apply` | 화면. 2스텝 ＋ 결제. 진입은 `mentor-detail` |
 | 멘토링 카드 | `MentoringCard` | **미구현**(`DS-18`). 멘토링 1건의 상태·상대·액션. `MentorCard` 와 다르다 |
 | 멘트리 인사이트 | `Insight` | 멘트리가 발행하는 아티클 카테고리의 하나 |
 | 멘트리 인사이트 목록 | `insight-list` | 화면. 카테고리 4 |
@@ -126,7 +129,9 @@
 | 헤더 | `Header` | 컴포넌트. navigation. 반응형·오버레이 |
 | 회원가입 | `signup` | 화면. 이메일 ／ 소셜 2경로 |
 
-**89행** — 개념 26 · 화면 21 · 컴포넌트 30 · **미구현 12**.
+**88행** — 개념 **27**(모달 1 포함) · 화면 **19** · 컴포넌트 30 · **미구현 12**.
+
+> **09-10 에 89행에서 1행 줄었다.** `mentoring-detail-mentee`·`mentoring-detail-mentor` 2행을 `MentoringDetailModal` 1행으로 합쳤다. 부모 화면이 이미 역할을 가르므로 이름에 역할을 다시 넣지 않는다.
 
 「미구현」은 `ds-export/` 에 아직 없는 것이다. **이름을 먼저 정하고 Claude Design 에서 만든다**(`docs/SOURCES.md` 「예외 — 이름은 용어집이 정본이다」).
 

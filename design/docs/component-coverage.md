@@ -5,8 +5,8 @@
 
 - 상태: 기안
 - 기안일: 2026-09-02
-- 실측 대상: Figma 「Mentree 2.0 (Claude)」 **13섹션** ／ `design/ds-export/project/components/` **30본**
-- **섹션의 목록과 id 는 [screen-inventory](screen-inventory.md) 「스캔의 범위」가 정본이다.** 여기에 복제하지 않는다
+- 실측 대상: Figma 「Mentree 2.0 (Claude)」 **13섹션**(2026-09-02 시점) ／ `design/ds-export/project/components/` **30본**
+- **섹션의 목록과 id 는 [screen-inventory](screen-inventory.md) 「스캔의 범위」가 정본이다.** 여기에 복제하지 않는다. **09-10 에 14섹션이 됐으나 늘어난 것은 화면이 아니라 진척 보드다** — 실측을 다시 하지 않았다
 
 ## 읽는 방법
 
@@ -50,7 +50,7 @@
 |---|---|
 | 1.0 계통 화면의 UI-SPEC 을 쓴다 | **와이어를 사양으로 읽지 않는다.** 1.0 의 실동작을 확인해야 §7·§8 이 채워진다 |
 | 1.0 계통 화면의 부품을 세운다 | **shadcn 계통으로 다시 그린다.** 두 계통을 그대로 두면 부품이 두 벌이 된다 |
-| 온보딩처럼 **경계(51%)** 다 | **화면 단위로 판정한다.** 섹션 단위로 뭉뚱그리지 않는다 |
+| 비율이 얼마든 | **같다.** 온보딩의 51% 도 멘토 상세의 100% 도 다시 그린다(아래 「1.0 계통 — 구성만 답습한다」) |
 
 ### `mentor-detail` 은 섹션이 둘이다
 
@@ -123,28 +123,32 @@
 
 **우선순위는 요구 화면 수로 매긴다.** 위에서부터 만들면 덮이는 화면이 빨리 는다.
 
-**`*` 글롭을 펼쳐서 센다** — `mypage-*` 는 2, `mentoring-detail-*` 도 2다. 접어서 세면 순위가 뒤집힌다.
+**`*` 글롭을 펼쳐서 센다** — `mypage-*` 는 2다. 접어서 세면 순위가 뒤집힌다.
+
+**모달은 부모 화면으로 센다.** `MentoringDetailModal` 이 요구하는 것은 `mypage-mentee`·`mypage-mentor` 의 요구다. 따로 세면 2중 계상이 된다.
 
 | `DS-nn` | 요소 | 화면 수 | 어느 화면이 요구하나 | 근거 |
 |---|---|---|---|---|
-| `DS-02` | **Tabs** | **8** | `mentor-detail`(4탭) · `mypage-mentee`(9) · `mypage-mentor`(10) · `qna-feed` · `qna-detail` · `insight-list` · `mentoring-detail-mentee` · `mentoring-detail-mentor` | 기존. **가장 많이 쓰인다.** 카운트 배지를 함께 쓴다 |
+| `DS-02` | **Tabs** | **6** | `mentor-detail`(4탭) · `mypage-mentee`(9) · `mypage-mentor`(10) · `qna-feed` · `qna-detail` · `insight-list` | 기존. **가장 많이 쓰인다.** 카운트 배지를 함께 쓴다 |
 | `DS-11` | **EmptyState** | **5** | `mentor-search` · `qna-feed` · `notification` · `mypage-mentee` · `mypage-mentor` | 「찾으시는 결과값의 멘토가 아직 없습니다」·「아직 질문이 없으시네요!」·「새 알림이 없습니다」 |
 | `DS-01` | **Pagination** | **5** | `insight-list` · `notice-list` · `qna-feed` · `mypage-mentee` · `mypage-mentor` | 기존. 와이어에 「시작/중간/끝」 3형태가 있다 |
-| `DS-18` | **MentoringCard** | **4** | `mypage-mentee` · `mypage-mentor` · `mentoring-detail-mentee` · `mentoring-detail-mentor` | 상태 배지 ＋ 제목 ＋ 상대 미니카드 ＋ 상태 문구 ＋ 액션 1~2개. **`MentorCard` 와 다르다** |
+| `DS-18` | **MentoringCard** | **2** | `mypage-mentee` · `mypage-mentor` | 상태 배지 ＋ 제목 ＋ 상대 미니카드 ＋ 상태 문구 ＋ 액션 1~2개. **`MentorCard` 와 다르다** |
 | `DS-10` | **Skeleton** | **3** | `mentor-search` · `qna-feed` · `article-detail` | 「로딩: 스켈레톤 UI」가 3화면의 주석에 있다 |
 | `DS-12` | **Popover** | **3** | `mentor-detail` · `qna-detail` · `article-detail` | 「웹의 경우 popover → 링크 복사/공유하기」 |
 | `DS-14` | **Stepper** | **3** | `signup` · `onboarding-survey` · `mentoring-apply` | 1.0 계통이 `Stepper / 1-2`·`2-2`·`3-3` 을 쓴다 |
 | `DS-17` | **VerticalNav** | **3** | `mypage-mentee` · `mypage-mentor` · `insight-list` | 마이페이지 좌측 7~8항목 · 아티클 좌측 카테고리 4항목. 선택 시 초록 강조 |
 | `DS-09` | **Toast** | **2** | `mentor-search` · `article-detail` | 「완료 토스트 노출 3초·해제 문구·실행취소」 ／ 와이어에 `Sonner` |
-| `DS-13` | **Calendar** | **2** | `mentoring-detail-mentee` · `mentoring-detail-mentor` | 일정 확정·재조정. 와이어에 월 달력이 있다 |
+| `DS-13` | **Calendar** | **2** | `mypage-mentee` · `mypage-mentor` | 일정 확정·재조정. 와이어에 월 달력이 있다. **`MentoringDetailModal` 안에서 쓴다** |
 | `DS-15` | **RichTextEditor** | **2** | `qna-compose` · `qna-detail`(답변) | 「텍스트 에디터, 0/1000자」. 와이어가 blocknote 를 링크한다 |
 | `DS-16` | **Breadcrumb** | **2** | `qna-detail` · `article-detail` | 「Q&A 목록 ＜ 상세」·「멘트리 인사이트 ＜ 상세」 |
 
 **＋ `DS-19` `Sidebar` 제거** — 요구 화면 0.
 
-**위 4건(`Tabs`·`EmptyState`·`Pagination`·`MentoringCard`)만 만들어도 21화면 중 11화면이 덮인다.**
+**위 3건(`Tabs`·`EmptyState`·`Pagination`)만 만들어도 19화면 중 9화면이 덮인다.**
 
-합집합을 펼치면 — `mentor-detail` · `mypage-mentee` · `mypage-mentor` · `qna-feed` · `qna-detail` · `insight-list` · `mentoring-detail-mentee` · `mentoring-detail-mentor` · `mentor-search` · `notification` · `notice-list` **＝ 11/21.**
+합집합을 펼치면 — `mentor-detail` · `mypage-mentee` · `mypage-mentor` · `qna-feed` · `qna-detail` · `insight-list` · `mentor-search` · `notification` · `notice-list` **＝ 9/19.**
+
+**4번째는 3화면짜리가 4건 동률이다** — `Skeleton`·`Popover`·`Stepper`·`VerticalNav`. 화면 수로는 안 갈리므로 **먼저 착수하는 화면이 요구하는 것**을 고른다.
 
 ### 보류 후보 — 1화면만 요구한다
 
@@ -197,24 +201,26 @@
 | 1 | 갭 12건 ＋ `Sidebar` 제거를 **`DS-nn` 으로 기표** | ✅ `DS-09`〜`DS-19` |
 | 2 | `Sidebar` 의 정체를 가른다 | ✅ 위 「정정」 |
 | 3 | `mentor-detail` 의 부품을 화면에서 추출 | ✅ 보류 후보 5건 |
-| 4 | **화면 수 순으로 Claude Design 에서 만든다** | ⏸ `Tabs`(8) → `EmptyState`(5) → `Pagination`(5) → `MentoringCard`(4) |
+| 4 | **화면 수 순으로 Claude Design 에서 만든다** | ⏸ `Tabs`(6) → `EmptyState`(5) → `Pagination`(5) → 3화면짜리 4건 |
 | 5 | 아이콘 **6계통**을 HugeIcon 으로 모은다 | ⏸ 화면마다 |
-| 6 | **1.0 계통 3덩어리를 다시 그릴지** | ⏸ **대기.** 아래 |
+| 6 | **1.0 계통 3덩어리를 다시 그릴지** | ✅ **결착.** 아래 |
 
-### 1.0 계통 — 지금 다시 그리지 않는다
+### 1.0 계통 — 구성만 답습한다
 
-**해당 화면을 작업할 시점에 정리한다.** 지금 손대면 쓰지도 않을 부품을 만들게 된다.
+**2026-09-10 에 결착됐다.** 화면마다 판정하지 않는다.
 
-대상은 **3덩어리**다 — 온보딩(1.0 51%) · 멘토링 신청/확정(84%) · **멘토 상세**(100%). 온보딩은 경계이므로 **화면 단위로** 판정한다.
+> **와이어의 1.0 컴포넌트는 구성의 지시이지 UI 의 지시가 아니다.** 정보의 배치와 순서만 따르고, 요소는 전부 `ds-export` 의 것으로 다시 그린다.
+
+대상은 **3덩어리**다 — 온보딩(1.0 51%) · 멘토링 신청/확정(84%) · **멘토 상세**(100%).
 
 | 판정 조건 | 아크션 |
 |---|---|
-| 온보딩 · 멘토링 신청/확정 · 멘토 상세를 착수한다 | **그때 shadcn 계통으로 정리한다.** `screen-inventory` 의 「착수 전 준비」에 **1.0 계통 판정**으로 적혀 있다 |
-| 그 전에 부품을 만든다 | **만들지 않는다.** 1.0 계통의 `Stepper`·`Slider` 는 형태가 바뀔 수 있다 |
+| 와이어가 1.0 컴포넌트로 그려져 있다 | **`ds-export` 의 것으로 바꿔 그린다.** 형태를 그대로 옮기지 않는다 |
+| 요소의 수와 종류까지 다르다 | **구성의 차이다.** 위 규칙으로 안 풀린다 — 디자이너에게 낸다(예: `mentor-detail` 의 헤더) |
 
-`DS-14`(`Stepper`)는 기표하되 **사양을 비워둔다.** 1.0 계통 판정이 끝난 뒤에 정한다.
+`DS-14`(`Stepper`)의 「판정:」을 지웠다. 쓰이는 곳이 `signup`(3스텝) · `onboarding-survey`(3스텝) · `mentoring-apply`(2스텝)로 확정됐으므로 **착수 대상이 됐다.**
 
-**「판정:」이 붙은 6행은 착수 대상이 아니다** — `DS-05`·`DS-06`·`DS-08`·`DS-12`·`DS-14`·`DS-15`. 무엇을 기다리는지가 그 칸에 적혀 있다([DS-update-list](../DS-update-list.md) 「사양이 미정인 행은 착수 대상이 아니다」). 위 4건에는 하나도 걸리지 않는다.
+**「판정:」이 붙은 5행은 착수 대상이 아니다** — `DS-05`·`DS-06`·`DS-08`·`DS-12`·`DS-15`. 무엇을 기다리는지가 그 칸에 적혀 있다([DS-update-list](../DS-update-list.md) 「사양이 미정인 행은 착수 대상이 아니다」). 위 3건에는 하나도 걸리지 않는다.
 
 ### 사양은 어디서 따오나
 
