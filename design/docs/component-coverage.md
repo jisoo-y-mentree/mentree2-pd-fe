@@ -119,7 +119,7 @@
 
 **목록은 지금 확정하고, 사양은 화면에서 나온다.** 실사용 없이 사양을 정하면 안 맞는다 — 재개 팩이 이미 겪었다(「`CtaSection` 컴포넌트화 보류. **샘플이 1개뿐이라 공통 규칙을 뽑을 수 없었다**」).
 
-### 기표한다 — 12건
+### 기표한다 — 15건
 
 **우선순위는 요구 화면 수로 매긴다.** 위에서부터 만들면 덮이는 화면이 빨리 는다.
 
@@ -141,14 +141,31 @@
 | `DS-13` | **Calendar** | **2** | `mypage-mentee` · `mypage-mentor` | 일정 확정·재조정. 와이어에 월 달력이 있다. **`MentoringDetailModal` 안에서 쓴다** |
 | `DS-15` | **RichTextEditor** | **2** | `qna-compose` · `qna-detail`(답변) | 「텍스트 에디터, 0/1000자」. 와이어가 blocknote 를 링크한다 |
 | `DS-16` | **Breadcrumb** | **2** | `qna-detail` · `article-detail` | 「Q&A 목록 ＜ 상세」·「멘트리 인사이트 ＜ 상세」 |
+| **`DS-20`** | **Chip** | **4** | `qna-feed` · `qna-detail` · `top` · `mentor-search` | 「해시태그(노출 개수 5개 ＋ 오버플로)」 ／ 필터 모달의 「걸린 조건 해제」. **눌리지만 켜지지 않는다** |
+| **`DS-21`** | **CountToggle** | **3** | `qna-feed` · `qna-detail` · `top` | 「**도움돼요·스크랩은 표시이자 액션 버튼**」. `BookmarkToggle` 은 카운트를 못 받는다 |
+| **`DS-22`** | **카드 4종의 루트 요소** | **4컴포넌트** | `QnaCard` · `MentorCard` · `InterviewCard` · `ArticlePreview` | 루트가 `<a>` 라 안에 버튼·링크를 못 넣는다. **`DS-21` 이 들어가는 순간 깨진다** |
 
 **＋ `DS-19` `Sidebar` 제거** — 요구 화면 0.
 
-**위 3건(`Tabs`·`EmptyState`·`Pagination`)만 만들어도 19화면 중 9화면이 덮인다.**
+> **`DS-20`〜`DS-22` 는 09-02 스캔이 놓친 것이다.** 주석에 「해시태그」·「액션 버튼」이 적혀 있었으나 **요소가 아니라 거동으로 적혀 있어** 요소 표에 안 걸렸다. `QnaCard` 를 실제로 조립해보고 나왔다(2026-09-11).
+>
+> | 판정 조건 | 아크션 |
+> |---|---|
+> | 주석이 요소가 아니라 **거동**으로 적혀 있다 | **부품이 있는지 따로 확인한다.** 「눌린다」·「액션 버튼」·「해제 가능」은 요소명이 없어도 부품을 요구한다 |
 
-합집합을 펼치면 — `mentor-detail` · `mypage-mentee` · `mypage-mentor` · `qna-feed` · `qna-detail` · `insight-list` · `mentor-search` · `notification` · `notice-list` **＝ 9/19.**
+**위 4건(`Tabs`·`EmptyState`·`Pagination`·`Chip`)만 만들어도 19화면 중 10화면이 덮인다.**
 
-**4번째는 3화면짜리가 4건 동률이다** — `Skeleton`·`Popover`·`Stepper`·`VerticalNav`. 화면 수로는 안 갈리므로 **먼저 착수하는 화면이 요구하는 것**을 고른다.
+합집합을 펼치면 — `mentor-detail` · `mypage-mentee` · `mypage-mentor` · `qna-feed` · `qna-detail` · `insight-list` · `mentor-search` · `notification` · `notice-list` · `top` **＝ 10/19.**
+
+**5번째는 3화면짜리가 5건 동률이다** — `CountToggle`·`Skeleton`·`Popover`·`Stepper`·`VerticalNav`.
+
+| 판정 조건 | 아크션 |
+|---|---|
+| 화면 수가 갈린다 | **많은 것부터 만든다** |
+| **화면 수가 동률이다** | **지금 착수 중인 화면이 요구하는 것**을 고른다 |
+| **착수 중인 화면이 막혔다** | **화면 수를 무시하고 그것부터 만든다.** 순위는 기본값이지 잠금이 아니다 |
+
+**09-11 에 세 번째 행이 적용됐다** — Q&A 화면이 먼저 들어가서 `Chip`·`CountToggle`·`QnaCard`·`DS-22` 를 먼저 만든다.
 
 ### 보류 후보 — 1화면만 요구한다
 
@@ -162,6 +179,7 @@
 | **QuoteBlock** | `mentor-detail` | 멘토의 인용문 블록 |
 | **QaPairItem** | `mentor-detail` | 「멘토 N문N답」 — Q/A 쌍 그리드 |
 | **목차(우측 앵커)** | `article-detail` | 「H2 자동 추출 · 현재 섹션 하이라이트」. **화면 고유의 조립**으로 본다 |
+| **`FilterChip` 의 trailing 슬롯** | `mentor-search` | 모달을 여는 필터 칩(「정규직 **외 2** ▾」)과 그 값 표시. **`mentor-search` 착수 때 정한다** — 값이 걸렸을 때의 시각과 「외 N」 규칙이 그 와이어에서 나온다 |
 
 **`mentor-detail` 에서 4건이 나온다.** 전부 **열람 면**의 부품이다. 이 면은 제품 고유성이 높아 상용 패턴 참조의 대상이 아니다.
 
@@ -198,10 +216,10 @@
 
 | 순 | 무엇 | 상태 |
 |---|---|---|
-| 1 | 갭 12건 ＋ `Sidebar` 제거를 **`DS-nn` 으로 기표** | ✅ `DS-09`〜`DS-19` |
+| 1 | 갭을 **`DS-nn` 으로 기표** | ✅ `DS-09`〜`DS-19` ／ **09-11 에 `DS-20`〜`DS-22` 추가** |
 | 2 | `Sidebar` 의 정체를 가른다 | ✅ 위 「정정」 |
 | 3 | `mentor-detail` 의 부품을 화면에서 추출 | ✅ 보류 후보 5건 |
-| 4 | **화면 수 순으로 Claude Design 에서 만든다** | ⏸ `Tabs`(6) → `EmptyState`(5) → `Pagination`(5) → 3화면짜리 4건 |
+| 4 | **Claude Design 에서 만든다** | 🔄 **화면 수 순이 기본이나 착수 중인 화면이 이긴다.** 아래 |
 | 5 | 아이콘 **6계통**을 HugeIcon 으로 모은다 | ⏸ 화면마다 |
 | 6 | **1.0 계통 3덩어리를 다시 그릴지** | ✅ **결착.** 아래 |
 
