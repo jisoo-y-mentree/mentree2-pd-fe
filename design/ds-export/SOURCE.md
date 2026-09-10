@@ -4,10 +4,22 @@
 > **참조의 정본**이다 — 값을 알려면 여기를 본다. 값을 바꾸려면 **Claude Design**(편집의 정본)으로 간다.
 > 두 축의 정의는 [docs/SOURCES.md](../../docs/SOURCES.md) 「정본의 두 축」이 갖는다. FE 인계의 입력이다([ADR-0005](../../docs/adr/0005-design-team-deliverables.md)).
 
-- 출처: Claude Design (radarlab 계정)
-- 원본: `Mentree2 Design System-handoff.zip`
-- 반입일: 2026-08-31
-- 원본 SHA-256: `5e43bc6d53deaf104c3338fd9c2cea298b9b1ec0e55275492030658dcca6014c`
+- 출처: Claude Design (radarlab 계정) — 프로젝트 이름 **`M2 Design System`**
+- 원본: `M2-Design-System-handoff.zip`
+- **반입일: 2026-09-10**
+- 원본 SHA-256: `727c5d60feaf7ca6846455c5ebe358725a1340f738b732077563af3c76799080`
+
+### 교체 이력
+
+| 반입일 | 원본 | SHA-256 앞 12자 | 무엇이 바뀌었나 |
+|---|---|---|---|
+| 2026-08-31 | `Mentree2 Design System-handoff.zip` | `5e43bc6d53de` | 첫 반입 |
+| **2026-09-10** | `M2-Design-System-handoff.zip` | `727c5d60feaf` | **컴포넌트·토큰·guidelines 는 무변경**(166본 바이트 동일). 아래 2건만 |
+
+**2026-09-10 의 실질 변경은 2건이다.**
+
+- `README.md` — 폴더·프로젝트 이름이 `mentree-design-system` / `mentree Design System` 에서 **`m2-design-system` / `M2 Design System`** 으로 바뀌었다
+- `project/readme.md` — **linen 배경 문단이 삭제됐다**(「평평한 따뜻한 린넨 … `#fefaf1`」). 재개 팩의 「linen 완전 폐지 → white 기반」이 문서에도 반영됐다. 그 밖은 마크다운 이스케이프·표 구분선 서식 차이다
 
 ## 취급
 
