@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """문서의 기계적 정합성을 검사한다(CI 의 checks 잡에서 부른다).
 
-검사하는 것은 4가지뿐이다. **사람이 눈으로 못 잡는 것만** 넣는다.
+검사하는 것은 5가지뿐이다. **사람이 눈으로 못 잡는 것만** 넣는다.
   ① 해결되지 않은 충돌 마커
   ② 리포 안 링크의 끊김
   ③ `DS-nn`·`P-nn` 의 중복과 형식
   ④ UI-SPEC 상태欄의 어휘
+  ⑤ 용어집이 버린 말
+
+⑤ 의 규칙은 코드에 없다. **용어집의 「쓰지 않는 말」 표가 정본**이고 이 파일은 그것을
+읽기만 한다. 말을 더할 때 이 파일을 고치지 않는다.
 
 의미 판단(규칙이 타당한가·문장이 좋은가)은 넣지 않는다. 그것은 `/pr-review` 의 일이다.
 
@@ -36,6 +40,20 @@ P_ID = re.compile(r"^\|\s*(P-\d+)\s*\|")
 STATE = re.compile(r"^-\s*상태:\s*(.+)$")
 
 UI_SPEC_STATES = {"기안", "UX승인", "확정", "구현인계"}
+
+# 용어집의 「쓰지 않는 말」 표. 규칙은 저 문서가 갖고 여기는 읽기만 한다.
+GLOSSARY = os.path.join("docs", "glossary", "ubiquitous-language.md")
+BANNED_HEADING = "## 쓰지 않는 말"
+BANNED_ROW = re.compile(r"^\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*([^|]*?)\s*\|\s*$")
+# 표의 머리와 구분선은 행이 아니다.
+BANNED_SKIP = {"쓰지 않는 말", "판정 조건", "어디", "무엇"}
+# 사본과 반입 자리는 우리가 고치지 않는다. 용어집 자신은 버린 말을 적는 곳이다.
+BANNED_EXEMPT = (
+    os.path.join("design", "ds-export") + os.sep,
+    os.path.join("design", "_import") + os.sep,
+)
+# 백틱 안은 「그 말을 쓰는 것」이 아니라 「그 말을 가리키는 것」이다. 검사하지 않는다.
+INLINE_CODE = re.compile(r"`[^`]*`")
 
 problems: list[str] = []
 warnings: list[str] = []
@@ -158,6 +176,61 @@ def check_ui_spec_states(root: str) -> None:
             problems.append(f"design/screens/{entry}/template/ 에 SOURCE.md 가 없다")
 
 
+def load_banned_terms(root: str) -> list[tuple[str, str]]:
+    """용어집의 「쓰지 않는 말」 표를 읽는다. 표가 없으면 검사를 하지 않는다."""
+    text = read(os.path.join(root, GLOSSARY))
+    if text is None:
+        return []
+    pairs: list[tuple[str, str]] = []
+    inside = False
+    for line in text.splitlines():
+        if line.startswith("## "):
+            # 다른 2단 제목이 나오면 절이 끝난 것이다
+            inside = line.strip() == BANNED_HEADING
+            continue
+        if not inside or not line.startswith("|"):
+            continue
+        m = BANNED_ROW.match(line)
+        if not m:
+            continue
+        banned, instead = m.group(1).strip(), m.group(2).strip()
+        # 구분선(|---|)과 표의 머리를 거른다
+        if set(banned) <= set("-: ") or banned in BANNED_SKIP:
+            continue
+        if not banned or not instead:
+            continue
+        pairs.append((banned, instead))
+    return pairs
+
+
+def check_banned_terms(root: str, files: list[str]) -> None:
+    """용어집이 버린 말이 남아 있는지 본다. 고치지는 않는다."""
+    pairs = load_banned_terms(root)
+    if not pairs:
+        return
+    for path in files:
+        rel = os.path.relpath(path, root)
+        if rel == GLOSSARY or rel.startswith(BANNED_EXEMPT):
+            continue
+        text = read(path)
+        if text is None:
+            continue
+        in_fence = False
+        for i, line in enumerate(text.splitlines(), 1):
+            if line.lstrip().startswith(("```", "~~~")):
+                in_fence = not in_fence
+                continue
+            if in_fence:
+                continue
+            # 백틱 안을 지운 뒤에 본다. 버린 말을 「가리키는」 문장을 잡지 않기 위해서다.
+            bare = INLINE_CODE.sub("", line)
+            for banned, instead in pairs:
+                if banned in bare:
+                    problems.append(
+                        f"{rel}:{i} 쓰지 않는 말: 「{banned}」 → 「{instead}」"
+                    )
+
+
 def main() -> int:
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     files = markdown_files(root)
@@ -166,6 +239,7 @@ def main() -> int:
     check_links(root, files)
     check_ids(root)
     check_ui_spec_states(root)
+    check_banned_terms(root, files)
 
     for w in warnings:
         print(f"⚠️  {w}")
