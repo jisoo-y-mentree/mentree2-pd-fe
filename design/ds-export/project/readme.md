@@ -44,7 +44,7 @@
 
 제품은 **한국어 우선**(부분적으로 일본어·라틴 폴백)이며, 타입스케일도 CJK 글리프 안정성을 기준으로 선택했습니다.
 
-- **톤:** 차분하고 담백한, 지시적인 문장. 규칙은 “~하지 말 것 / ~만 사용” 형태로 명료하게.
+- **톤:** 차분하고 담백한, 지시적인 문장. 규칙은 “\~하지 말 것 / \~만 사용” 형태로 명료하게.
 - **호칭:** 사용자에게는 존댓말 레지스터로 담백하게. 수다스럽지 않게.
 - **케이싱:** UI 라벨·제목은 문장형. 전부 대문자(외침) 금지. 라틴 약어는 그대로.
 - **숫자·데이터:** 항상 tabular(`.tabular`, `tabular-nums`)로 열·카운터가 흔들리지 않게.
@@ -67,15 +67,13 @@
 
 **간격.** 4px 베이스 스케일. 카드 안쪽은 넉넉하게, 답답하지 않게.
 
-**라운드.** Large — 베이스 `--radius: 0.875rem`(14px). 버튼 ~11px(`md`), 카드 ~14px(`lg`). vega/Large 프리셋의 시그니처.
-
-**배경.** 평평한 따뜻한 린넨. **그라데이션·이미지·텍스처·패턴 없음.** `#fefaf1`과 흰 카드의 따뜻함이 곧 깊이.
+**라운드.** Large — 베이스 `--radius: 0.875rem`(14px). 버튼 \~11px(`md`), 카드 \~14px(`lg`). vega/Large 프리셋의 시그니처.
 
 **엘리베이션.** 부드러운 sage 틴트 그림자, 낮은 불투명도(`xs`→`lg`). 카드는 보통 헤어라인 sage 경계 + `shadow-sm`.
 
 **경계.** `--border`(sage-200) 1px 헤어라인. 구조는 경계가, 리프트는 그림자가.
 
-**애니메이션.** 절제. 짧은(~150–200ms) ease. 바운스·무한 루프 없음.
+**애니메이션.** 절제. 짧은(\~150–200ms) ease. 바운스·무한 루프 없음.
 
 **투명/블러.** 드물게. 오버레이는 `sage-950` 저알파 스크림 + 옵션 블러. 글래스모피즘 아님.
 
@@ -90,12 +88,15 @@
 **HugeIcons만 사용합니다.** Lucide / Heroicons / 이모지 / 유니코드-아이콘 **금지**.
 
 - 프로덕션은 `hugeicons-react`에서 import.
+
 - HTML/프로토타입에서는 jsDelivr 정적 SVG: `https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/<name>.svg`.
+
 - 정적 SVG는 하드코딩 stroke(`#141B34`, width 1.5)라서, `.hgi` CSS 마스크(`tokens/icons.css`)로 `currentColor` 재색칠:
 
   ```html
   <span class="hgi" style="--hgi:url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/home-01.svg'); font-size:20px; color:var(--muted-foreground)"></span>
   ```
+
 - `Icon` 컴포넌트가 이 패턴을 감쌉니다.
 
 ---
@@ -106,7 +107,7 @@
 
 카드가 의존할 기반 프리미티브 3종:
 
-- **Avatar / AvatarGroup** [DS-GAP] — 원형 아바타(이미지 + 이니셜 fallback, sage) + 겹침 그룹(흰 링 + `+K` 오버플로우).
+- **Avatar / AvatarGroup** \[DS-GAP\] — 원형 아바타(이미지 + 이니셜 fallback, sage) + 겹침 그룹(흰 링 + `+K` 오버플로우).
 - **Badge** — 계열(분류 뉴트럴 / 상태 green·destructive·muted / 질적태그 9색 `--badge-*`) × leading(none·dot·flag·avatar) × 사이즈. 질적태그는 green 제외·blue는 Biz 파랑과 구분. 실제 태그↔색 매핑은 미정.
 - **BookmarkToggle** — Toggle 기반 아이콘 토글(aria-pressed). 미선택=outline / 선택=fill, 색은 `--foreground`(초록 아님).
 - **FilterChip** — Toggle 계열 텍스트 칩(BookmarkToggle의 형제, 아이콘형↔텍스트칩형). 선택 가능한 필터 요소(정적 Badge와 구분). 버튼 sm 기하(높이 32·radius-md·caption/500, pill 아님). "selected=반전" 공통 원칙 상속 — FilterChip은 primary green 반전. leading none·flag(원형 국기 재사용).
@@ -119,7 +120,7 @@
 - **Carousel** — 범용 스크롤/스냅 컨테이너(담는 카드 종류 무관). 조작부 없음 — 화살표는 SectionHeader가 담당, Carousel은 스크롤/스냅만. gap prop 주입, 표시 개수 컨테이너 폭에 유동, 카드/1단위 스냅. ref(scrollPrev/scrollNext)·onEdgeChange로 SectionHeader 화살표 연동. 데스크톱 기본 거동만(리스폰시브는 범위 밖).
 - **CalloutBar** — 블리드 풀폭 띠(각진 radius 0). 헤더 위/아래 공지·안내·상태·경고. info(sage)·success(green)·warning(amber)·error(destructive) 4종, 옅은 배경+진한 텍스트(Badge 50/700 상속). 아이콘·인라인 링크·닫기 독립 옵션, 정렬 center/left, 2줄까지 허용.
 - **Banner** — 인라인 둥근 프로모/유도 블록(자유 영역 slot). CalloutBar와 구분(둥근 인라인). 외곽 최소 규칙만 고정(radius 22·인라인·기본 패딩 16·전체 클리커블·폰트/禁則/시맨틱 상속), 배경(과감한 색·그라데이션)·효과·레이아웃·CTA는 자유. variant 없음.
-- **BottomTabBar** — Mobile(~768) 전용 하단 고정 4탭 네비(56 + safe-area). 멘토 찾기·Q&A 멘토링·멘트리 인사이트·MY 멘트리. HugeIcons 모노(헤더 오버레이의 컬러 SVG와 별개), 활성=green/비활성=muted, frosted(linen-50 반투명+blur) 배경+상단 sage hairline 풀블리드. Desktop(769+) 숨김. guest의 MY 탭은 로그인 유도 자리만(OPEN #9).
+- **BottomTabBar** — Mobile(\~768) 전용 하단 고정 4탭 네비(56 + safe-area). 멘토 찾기·Q&A 멘토링·멘트리 인사이트·MY 멘트리. HugeIcons 모노(헤더 오버레이의 컬러 SVG와 별개), 활성=green/비활성=muted, frosted(linen-50 반투명+blur) 배경+상단 sage hairline 풀블리드. Desktop(769+) 숨김. guest의 MY 탭은 로그인 유도 자리만(OPEN #9).
 
 ### 조립 카드 (프리미티브 조합)
 
@@ -145,10 +146,10 @@
 ## 브레이크포인트 (3구간)
 
 | 구간 | 폭 | 핵심 차이 |
-|---|---|---|
+| --- | --- | --- |
 | **Desktop L** | 1280+ | 컨테이너 1280. 헤더 풀메뉴(기업 서비스 버튼 포함). |
 | **Desktop S** | 769–1279 | 헤더에서 **기업 서비스 버튼만 숨김**. |
-| **Mobile** | ~768 | 헤더 축약(로고+회원가입/로그인+햄버거) + 하단 탭바 4탭. |
+| **Mobile** | \~768 | 헤더 축약(로고+회원가입/로그인+햄버거) + 하단 탭바 4탭. |
 
 - 컨테이너: `--container-max` 1280 / `--container-pad` 24 → 16(Mobile). 배경 풀블리드, 콘텐츠만 1280 정렬. Header·본문·Footer 공통 참조로 좌우 끝선 일치.
 - 타입스케일 반응형: display 40 → 24, h0 30 → 20. 나머지(h1 24 / h2 20 / h3 16 / body 14 / caption 12)는 고정.
