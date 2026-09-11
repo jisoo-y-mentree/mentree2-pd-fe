@@ -118,7 +118,7 @@ gh auth setup-git       # 이것을 빼면 git 이 keychain 의 옛 자격증명
 | **⑤** | 고아 분석 → `DS-nn` 기표 | ✅ 갭 **16건** ＋ 보류 후보 **7건**. `DS-01`〜`DS-23` |
 | **⑥** | **DS 갱신 — Claude Design 작업 ＋ 재export** | 🔄 **🖐 디자이너.** Q&A 착수로 **`Chip`·`CountToggle`·`AnswerCard`·`QnaCard`·`DS-22` 를 먼저** 만든다 |
 | **⑦** | **S16** `DESIGN.md` 파운데이션 | ✅ **11절 채움.** 입력은 `guidelines/` 17본 |
-| **⑧** | S13 UI-SPEC §1~5 ＋ `template/` | ⏸ 첫 화면은 `notice-list` |
+| **⑧** | S13 UI-SPEC §1~5 ＋ `template/` | ⏸ **분담했다** — 지수 `top`→`mentor-search`→`mentor-detail` ／ 혁 `qna-feed`→`qna-detail`→`qna-compose`. **파이프라인 실증은 먼저 끝나는 1장이 겸한다** |
 | — | S14 team-members ＋ CODEOWNERS | ⏸ 독립 |
 | — | S15 UX 라이팅의 그릇 | ⏸ 보류 |
 
