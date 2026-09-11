@@ -117,7 +117,7 @@ gh auth setup-git       # 이것을 빼면 git 이 keychain 의 옛 자격증명
 | **④** | S10 용어집 | ✅ 88행. 명칭 충돌 4건 결착 |
 | **⑤** | 고아 분석 → `DS-nn` 기표 | ✅ 갭 12건 ＋ 보류 후보 6건 |
 | **⑥** | **DS 갱신 — Claude Design 작업 ＋ 재export** | ⏸ **🖐 디자이너.** 차례는 `Tabs` → `EmptyState` → `Pagination` → `MentoringCard` |
-| **⑦** | **S16** `DESIGN.md` 파운데이션 | ⏸ 입력은 `design/ds-export/project/guidelines/` |
+| **⑦** | **S16** `DESIGN.md` 파운데이션 | ✅ **11절 채움.** 입력은 `guidelines/` 17본 |
 | **⑧** | S13 UI-SPEC §1~5 ＋ `template/` | ⏸ 첫 화면은 `notice-list` |
 | — | S14 team-members ＋ CODEOWNERS | ⏸ 독립 |
 | — | S15 UX 라이팅의 그릇 | ⏸ 보류 |
