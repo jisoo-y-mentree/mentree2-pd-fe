@@ -12,9 +12,9 @@ export interface ArticleTag {
  *
  * 배경 투명 · 테두리/그림자/카드 마진 없음(카드 셸 상속 안 함). 동심원 기하는 미디어에만(썸네일 16:9 + radius 14).
  * 좌우 패딩 없이 썸네일 폭 정렬, 요소 간 수직 리듬만. hover 시 썸네일에만 elevation 한 단계 상승(배경 틴트 아님).
- * 카드 전체 클릭 → 아티클 상세.
+ * 카드 전체 클릭 → 아티클 상세. 루트는 <article>(스트레치 링크) — <a>가 아니다. href는 제목 링크로 넘어간다.
  */
-export interface ArticlePreviewProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "title"> {
+export interface ArticlePreviewProps extends Omit<React.HTMLAttributes<HTMLElement>, "title"> {
   title: string;
   /** 발췌(body muted, 3줄 고정). */
   excerpt?: string;

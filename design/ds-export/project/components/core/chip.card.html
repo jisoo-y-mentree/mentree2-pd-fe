@@ -1,0 +1,80 @@
+<!-- @dsCard group="Components" viewport="820x420" name="Chip" subtitle="비상태 칩 — --muted 채움 + 아웃라인 없음. href(이동)·onRemove(제거)·표시 전용. selected 없음(FilterChip과 구분)" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .stack { display: flex; flex-direction: column; gap: 22px; }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .lbl { font-size: var(--text-caption); font-weight: 600; color: var(--muted-foreground); width: 110px; flex: 0 0 auto; }
+  .cap { font-size: var(--text-caption); color: var(--muted-foreground); }
+  .note { font-size: var(--text-caption); color: var(--muted-foreground); border-top: 1px solid var(--border); padding-top: 14px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Chip, FilterChip } = window.MentreeDesignSystem_2f86cf;
+
+  function Demo() {
+    const [tags, setTags] = React.useState(["서울", "5년차", "리모트"]);
+    const removeTag = (t) => setTags((ts) => ts.filter((x) => x !== t));
+
+    return (
+      <div className="stack">
+        <div className="row">
+          <span className="lbl">sm · prefix="#"</span>
+          {["일본취업", "디자인", "커리어", "이직", "포트폴리오"].map((t) => (
+            <Chip key={t} size="sm" prefix="#" href={"/tags/" + t}>{t}</Chip>
+          ))}
+          <Chip size="sm" href="#">+3</Chip>
+          <span className="cap">Q&A 카드 해시태그 5개 + 오버플로 — 접는 방식은 qna-feed UI-SPEC §6에서 정한다(DS-06과 같은 층)</span>
+        </div>
+
+        <div className="row">
+          <span className="lbl">md · onRemove</span>
+          <span className="cap" style={{ width: "100%", marginBottom: -4 }}>필터 모달의 "지금 걸린 조건" — prefix 없음, ×를 눌러도 칩 본체 이동은 일어나지 않는다</span>
+          {tags.map((t) => (
+            <Chip key={t} size="md" onRemove={() => removeTag(t)}>{t}</Chip>
+          ))}
+          {tags.length === 0 && <span className="cap">전부 제거됨</span>}
+        </div>
+
+        <div className="row">
+          <span className="lbl">md · 표시 전용</span>
+          <Chip size="md">읽기 전용</Chip>
+          <Chip size="sm">읽기 전용 sm</Chip>
+        </div>
+
+        <div className="row">
+          <span className="lbl">FilterChip과 한 줄</span>
+          <Chip size="md" href="#">서울</Chip>
+          <Chip size="md" onRemove={() => {}}>5년차</Chip>
+          <FilterChip>리모트</FilterChip>
+          <FilterChip selected>일본</FilterChip>
+          <span className="cap">md=32 공유 — Chip은 --muted 채움·아웃라인 없음(안 켜짐), FilterChip은 흰 면+--border 아웃라인→green 반전(켜짐)</span>
+        </div>
+
+        <div className="row">
+          <span className="lbl">상태 시연</span>
+          <Chip size="md" href="#상태">default→hover(직접 마우스올리기)</Chip>
+          <Chip size="md" onRemove={() => {}} disabled>disabled</Chip>
+        </div>
+
+        <div className="note">
+          Badge=안 눌림(분류·상태, 흰 면+sage 아웃라인) · FilterChip=눌리고 켜짐(흰 면+sage 아웃라인→green 반전) ·
+          Chip=눌리지만 안 켜짐(--muted 채움, 아웃라인 없음). Chip에는 selected가 없다.
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

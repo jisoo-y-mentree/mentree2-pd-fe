@@ -57,7 +57,7 @@
 | 꽃송이 | `Flower` | 멘토링 대가의 단위. **1송이 ＝ 10달러.** 멘토링 시간에 따라 최소 송이 수가 정해진다 |
 | 다이얼로그 | `Dialog` | 컴포넌트. overlays |
 | 달력 | `Calendar` | **미구현**(`DS-13`). 멘토링 일정 선택 |
-| 답변 카드 | `AnswerCard` | **미구현**(`DS-23`). Q&A 상세의 멘토 답변 1건. 카드 전체가 클릭 대상이 아니다 |
+| 답변 카드 | `AnswerCard` | 컴포넌트. surfaces. Q&A 상세의 멘토 답변 1건. **카드 전체가 클릭 대상이 아니다** — `href` 를 받지 않는다 |
 | 도움돼요 | `Helpful` | Q&A 답변에 누르는 표시 겸 액션. 아이콘은 하트다. **질문자가 누르면 텍스트 배지가 붙고** 그것이 실질적인 채택이다. 정렬 최우선 |
 | 라디오 그룹 | `RadioGroup` | 컴포넌트. forms |
 | 로그인 | `login` | 화면 |
@@ -80,16 +80,16 @@
 | 배너 | `Banner` | 컴포넌트. navigation |
 | 배지 | `Badge` | 컴포넌트. core. new 상태·+N 펼침·labelHidden |
 | 버튼 | `Button` | 컴포넌트. core |
-| 북마크 토글 | `BookmarkToggle` | 컴포넌트. core. 스크랩의 UI 다 |
+| 북마크 토글 | `BookmarkToggle` | **폐지했다**(`DS-24`, 2026-09-11). 후계는 `CountToggle` 이다 |
 | 브레드크럼 | `Breadcrumb` | **미구현**(`DS-16`). 목록 ＜ 상세 |
 | 비밀번호 찾기·재설정 | `password-reset` | 화면 |
-| 빈 상태 | `EmptyState` | **미구현**(`DS-11`). 0건일 때의 표시와 다음 행동 유도 |
+| 빈 상태 | `EmptyState` | 컴포넌트. surfaces. 0건일 때의 표시와 다음 행동 유도. **기본 문구를 갖지 않는다** |
 | 사이드바 | `Sidebar` | 컴포넌트. navigation. **제거 대상**(`DS-19`) — 앱 네비 레일이며 어느 화면도 쓰지 않는다 |
 | 세로 내비 | `VerticalNav` | **미구현**(`DS-17`). 마이페이지 좌측 · 아티클 카테고리 |
 | 섹션 헤더 | `SectionHeader` | 컴포넌트. navigation |
 | 셀렉트 | `Select` | 컴포넌트. forms |
 | 스위치 | `Switch` | 컴포넌트. forms |
-| 스켈레톤 | `Skeleton` | **미구현**(`DS-10`). 로딩 중의 자리표시 |
+| 스켈레톤 | `Skeleton` | 컴포넌트. surfaces. 로딩 중의 자리표시. **덩어리 하나의 프리미티브**이며 카드 모양은 화면이 만든다 |
 | 스크랩 | `Scrap` | Q&A·아티클을 모아두는 것. 비로그인은 로그인으로 유도한다 |
 | 스테퍼 | `Stepper` | **미구현**(`DS-14`). 다단계 플로우의 진행 표시 |
 | 시트 | `Sheet` | 컴포넌트. overlays |
@@ -110,21 +110,21 @@
 | 직무 | `JobTitle` | 개인의 직책. 「사업 프로듀서」처럼 멘토 카드에 뜬다 |
 | 직종 | `JobCategory` | 분류축. 필터와 온보딩 설문이 쓴다. 대분류-소분류 계층이다 |
 | 체크박스 | `Checkbox` | 컴포넌트. forms |
-| 칩 | `Chip` | **미구현**(`DS-20`). **데이터를 나타내고 눌리지만 켜지지 않는다** — 해시태그·걸린 조건. 행동이면 `Button` 이다([DESIGN.md](../../design/DESIGN.md) §12) |
+| 칩 | `Chip` | 컴포넌트. core. **데이터를 나타내고 눌리지만 켜지지 않는다** — 해시태그·걸린 조건. 행동이면 `Button` 이다([DESIGN.md](../../design/DESIGN.md) §12) |
 | 카드 | `Card` | 컴포넌트. surfaces. 하위 5본을 함께 export 한다 |
-| 카운트 토글 | `CountToggle` | **미구현**(`DS-21`). 아이콘 ＋ 카운트 토글. 도움돼요·스크랩이 이것 하나다 |
+| 카운트 토글 | `CountToggle` | 컴포넌트. core. 아이콘 ＋ 카운트 토글. **도움돼요·스크랩이 이것 하나다.** 카운트가 없어도 선다 |
 | 캐러셀 | `Carousel` | 컴포넌트. navigation |
 | 커리어 Phase | `Phase` | 온보딩 설문이 묻는 4단계. **추천의 입력값이다.** 진단 컨텐츠는 MVP 밖이다([PRODUCT.md](../PRODUCT.md) 「MVP 범위 밖」) |
 | 콜아웃 바 | `CalloutBar` | 컴포넌트. navigation |
 | 키워드 | `Keyword` | 질문의 대분류 태그. 국가와 함께 가장 큰 분류축이다 |
 | 태그 | `Tag` | 자유입력 해시태그. 질문당 최대 10개 |
-| 탭 | `Tabs` | **미구현**(`DS-02`). 같은 셸에서 내용을 바꾼다. 카운트 배지를 함께 쓴다. **가장 많이 쓰인다** |
+| 탭 | `Tabs` | 컴포넌트. navigation. 같은 셸에서 내용을 바꾼다. `TabPanel` 을 함께 export 한다. **가장 많이 쓰인다** |
 | 테이블 | `Table` | 컴포넌트. surfaces |
 | 토글 그룹 | `ToggleGroup` | 컴포넌트. forms |
 | 토스트 | `Toast` | **미구현**(`DS-09`). 완료·실행취소 알림. 3초 |
 | 팔로워 | `Follower` | 멘토를 팔로우한 사람. 멘토 마이페이지에 보인다 |
 | 팝오버 | `Popover` | **미구현**(`DS-12`). 공유·펼침 메뉴 |
-| 페이지네이션 | `Pagination` | **미구현**(`DS-01`). 목록의 쪽 이동. 시작·중간·끝 3형태 |
+| 페이지네이션 | `Pagination` | 컴포넌트. navigation. 목록의 쪽 이동. 시작·중간·끝 3형태 |
 | 푸터 | `Footer` | 컴포넌트. navigation |
 | 프로모션 코드 | `PromotionCode` | 결제 시 쓰는 쿠폰 |
 | 필드 | `Field` | 컴포넌트. forms. `FieldGroup` 을 함께 export 한다 |
@@ -133,11 +133,13 @@
 | 헤더 | `Header` | 컴포넌트. navigation. 반응형·오버레이 |
 | 회원가입 | `signup` | 화면. 이메일 ／ 소셜 2경로 |
 
-**92행** — 개념 **28**(모달 1 포함) · 화면 **19** · 컴포넌트 30 · **미구현 15**.
+**92행** — 개념 **28**(모달 1 포함) · 화면 **19** · 컴포넌트 **36** · **미구현 7** · **폐지 1**.
 
 > **09-10 에 89행에서 1행 줄었다.** `mentoring-detail-mentee`·`mentoring-detail-mentor` 2행을 `MentoringDetailModal` 1행으로 합쳤다. 부모 화면이 이미 역할을 가르므로 이름에 역할을 다시 넣지 않는다.
 >
 > **09-11 에 4행 늘었다.** `Chip`(`DS-20`) · `CountToggle`(`DS-21`) · `AnswerCard`(`DS-23`) ＋ **`ThanksNote`**. 마지막은 **말이 겹쳐서 가른 것**이다 — 와이어가 Q&A 답변에 보내는 글도 「리뷰」라고 불렀는데, `Review` 는 1:1 멘토링의 **공개** 리뷰다. Q&A 쪽은 화면에 안 뜨고 멘토에게 직접 간다. 화면 문구를 따라 「감사인사」로 이름을 붙였다.
+
+> **09-11 에 7본이 「미구현」에서 빠졌다.** `Chip`·`CountToggle`·`AnswerCard`·`Tabs`·`EmptyState`·`Pagination`·`Skeleton` 이 `ds-export/` 에 들어왔다. `BookmarkToggle` 은 폐지됐다.
 
 「미구현」은 `ds-export/` 에 아직 없는 것이다. **이름을 먼저 정하고 Claude Design 에서 만든다**(`docs/SOURCES.md` 「예외 — 이름은 용어집이 정본이다」).
 

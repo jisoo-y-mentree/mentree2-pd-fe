@@ -5,18 +5,33 @@
 > 두 축의 정의는 [docs/SOURCES.md](../../docs/SOURCES.md) 「정본의 두 축」이 갖는다. FE 인계의 입력이다([ADR-0005](../../docs/adr/0005-design-team-deliverables.md)).
 
 - 출처: Claude Design (radarlab 계정) — 프로젝트 이름 **`M2 Design System`**
-- 원본: `M2-Design-System-handoff.zip`
-- **반입일: 2026-09-10**
-- 원본 SHA-256: `727c5d60feaf7ca6846455c5ebe358725a1340f738b732077563af3c76799080`
+- 원본: `M2 Design System 260911.zip`
+- **반입일: 2026-09-11**
+- 원본 SHA-256: `1883a5874eb2acd355c140f4a62166ec5f31949e18daa99c105ecc777eb2d232`
 
 ### 교체 이력
 
 | 반입일 | 원본 | SHA-256 앞 12자 | 무엇이 바뀌었나 |
 |---|---|---|---|
 | 2026-08-31 | `Mentree2 Design System-handoff.zip` | `5e43bc6d53de` | 첫 반입 |
-| **2026-09-10** | `M2-Design-System-handoff.zip` | `727c5d60feaf` | **컴포넌트·토큰·guidelines 는 무변경**(166본 바이트 동일). 아래 2건만 |
+| 2026-09-10 | `M2-Design-System-handoff.zip` | `727c5d60feaf` | **컴포넌트·토큰·guidelines 는 무변경**(166본 바이트 동일). 아래 2건만 |
+| **2026-09-11** | `M2 Design System 260911.zip` | `1883a5874eb2` | **컴포넌트가 30본에서 36본이 됐다.** 아래 |
 
-**2026-09-10 의 실질 변경은 2건이다.**
+### 2026-09-11 — 컴포넌트 7본이 늘고 1본이 빠졌다
+
+**Q&A 착수로 하루에 10건이 들어왔다.** 상세는 [DS-update-list.md](../DS-update-list.md) 다.
+
+| 무엇 | 어느 요구 |
+|---|---|
+| **신규 7본** — `Chip` · `CountToggle` · `AnswerCard` · `Tabs` · `EmptyState` · `Pagination` · `Skeleton` | `DS-20`·`DS-21`·`DS-23`·`DS-02`·`DS-11`·`DS-01`·`DS-10` |
+| **제거 1본** — `BookmarkToggle` | `DS-24`. `CountToggle` 이 흡수했다 |
+| **개정** — `QnaCard` | `DS-25`. 배지 2개 · 해시태그 `+N` · 아바타 3명 · 토글 2개 · `compact` |
+| **개정** — 카드 4종의 루트가 `<article>` 이 됐다 | `DS-22`. `QnaCard`·`MentorCard`·`InterviewCard`·`ArticlePreview` |
+| **부수** — `FilterChip` 의 `BookmarkToggle` 참조가 `CountToggle` 로 바뀌었다 | `DS-24` 의 뒤처리 |
+
+**`MentorCard` 의 미디어 위 오버레이가 바뀌었다.** `IconButton` 형태에서 **반투명 받침 ＋ `CountToggle`** 이 됐다. 이것이 미디어 위 오버레이의 정본이며 [DESIGN.md](../DESIGN.md) §7 이 그렇게 가리킨다.
+
+**2026-09-10 의 실질 변경은 2건이었다.**
 
 - `README.md` — 폴더·프로젝트 이름이 `mentree-design-system` / `mentree Design System` 에서 **`m2-design-system` / `M2 Design System`** 으로 바뀌었다
 - `project/readme.md` — **linen 배경 문단이 삭제됐다**(「평평한 따뜻한 린넨 … `#fefaf1`」). 재개 팩의 「linen 완전 폐지 → white 기반」이 문서에도 반영됐다. 그 밖은 마크다운 이스케이프·표 구분선 서식 차이다
@@ -38,16 +53,16 @@
 |---|---|---|
 | `project/tokens/` | 토큰 6본 — base · colors · typography · spacing · icons · fonts | ① 값의 정본 |
 | `project/styles.css` | 토큰을 묶는 진입점 | ① |
-| `project/components/` | 컴포넌트 30본. 각 `.jsx` ＋ `.d.ts` ＋ `.prompt.md` ＋ `.card.html` | ② 소스 |
-| `project/_ds_bundle.js` | 컴포넌트 41 export 번들 | ② |
+| `project/components/` | **컴포넌트 36본.** 각 `.jsx` ＋ `.d.ts` ＋ `.prompt.md` ＋ `.card.html` | ② 소스 |
+| `project/_ds_bundle.js` | 컴포넌트 **48 export** 번들 | ② |
 | `project/_ds_manifest.json` | 컴포넌트·카드·토큰·폰트의 목록 | ② |
-| `project/guidelines/` | 원칙 16본(HTML) — 색 · 타입 · 간격 · 표면 · 동심중첩 · 브랜드 ／ **`03-responsive.md` — 반응형 3구간의 통합 지침** | ③ 원칙 |
+| `project/guidelines/` | 원칙 17본(HTML·md) — 색 · 타입 · 간격 · 표면 · 동심중첩 · 브랜드 ／ **`03-responsive.md` — 반응형 3구간의 통합 지침** | ③ 원칙 |
 | `project/readme.md` · `SKILL.md` | DS 전체 서술과 빠른 참조 | ③ |
 | `project/assets/` | 국기 SVG 19본 · 로고 2본 | 자산 |
 | `project/ui_kits/mentree-top/` | TOP 화면 조립 예시(HTML) | ⑤ 화면 정적 |
 | `project/_adherence.oxlintrc.json` | Claude Design 쪽 lint 설정 | 참고 |
 
-컴포넌트가 30본인데 export 가 41개인 이유는 **하위 export** 때문이다. `Avatar`/`AvatarGroup`, `Card` 계열 6, `nav-ia.js` 의 `NAV_*` 4, `Field`/`FieldGroup` 이 별도로 세어진다.
+컴포넌트가 36본인데 export 가 48개인 이유는 **하위 export** 때문이다. `Avatar`/`AvatarGroup`, `Card` 계열 6, `nav-ia.js` 의 `NAV_*` 4, `Field`/`FieldGroup`, `Tabs`/`TabPanel` 이 별도로 세어진다.
 
 ## 무엇을 뺐는가
 
@@ -63,6 +78,6 @@
 
 | 무엇 | 어디에 있는가 |
 |---|---|
-| 미구현·미정 8건 | [DS-update-list.md](../DS-update-list.md) `DS-01`〜`DS-08` |
+| 미구현·미정 | [DS-update-list.md](../DS-update-list.md). **09-11 시점에 남은 것은 `DS-03`~`DS-09`·`DS-12`~`DS-19` 다** |
 | 화면별 사양 | `design/screens/<id>/UI-SPEC.md` |
 | 이관 경위·파이프라인·진행 상태 | `design/_import/resume-pack/`(커밋하지 않는다) |

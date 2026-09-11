@@ -5,8 +5,9 @@ import { Icon } from "../core/Icon.jsx";
 /**
  * InterviewCard — 인물 인터뷰 카드(표면 규칙 1단계: 인물 객체 → 카드).
  *  카드 셸·elevation·동심원 기하 상속. 좌우 가로 분할(좌 미디어 1:1 / 우 정보). TOP용 가로형.
- *  카드 전체 클릭 → 인터뷰 상세. 북마크 없음(후킹 섹션, 저장 액션 없음).
- *  size 변형: "featured"(대형, 발췌 있음) / "compact"(소형, 발췌 없음). 별개 컴포넌트 아님.
+ *  북마크 없음(후킹 섹션, 저장 액션 없음). size 변형: "featured"(대형, 발췌 있음) / "compact"(소형, 발췌 없음).
+ * [스트레치 링크] 루트는 <article>(position:relative) — <a>가 아니다. 제목에만 <a>를 걸고 그 ::after가
+ *  카드 전면을 덮어 카드 전체 클릭을 낸다. 카드의 접근 이름 = 제목 링크 텍스트.
  */
 const SIZES = {
   featured: {
@@ -35,6 +36,18 @@ const clamp = (lines) => ({
   overflowWrap: "break-word", // 禁則: break-all 금지
 });
 
+if (typeof document !== "undefined" && !document.getElementById("mt-card-link-style")) {
+  const s = document.createElement("style");
+  s.id = "mt-card-link-style";
+  s.textContent =
+    ".mt-card-link{color:inherit;text-decoration:none;-webkit-user-drag:none;}" +
+    ".mt-card-link::after{content:'';position:absolute;inset:0;z-index:1;}" +
+    ".mt-card-link:focus-visible{outline:none;}" +
+    // 포커스 링은 제목 글자가 아니라 카드 테두리에 그린다 — 무엇이 선택됐는지 보이게.
+    "article:has(.mt-card-link:focus-visible){outline:2px solid var(--ring);outline-offset:2px;}";
+  document.head.appendChild(s);
+}
+
 export function InterviewCard({
   size = "featured",
   title,
@@ -56,17 +69,16 @@ export function InterviewCard({
   const showImg = image && !imgError;
 
   return (
-    <a
-      href={href}
+    <article
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
+        position: "relative",
         display: "flex",
         gap: 0,
         width: "100%",
         height: s.card,           // TOP 변형 한정: 미디어가 카드 높이 결정(featured 336 / compact 160)
         boxSizing: "border-box",
-        textDecoration: "none",
         color: "var(--foreground)",
         fontFamily: "var(--font-sans)",
         background: "var(--card)",
@@ -75,7 +87,6 @@ export function InterviewCard({
         boxShadow: hover ? "var(--shadow-md)" : "var(--card-shadow)",
         overflow: "hidden",
         transition: "box-shadow 150ms ease",
-        cursor: "pointer",
         ...style,
       }}
       {...rest}
@@ -96,13 +107,13 @@ export function InterviewCard({
       {/* 우: 텍스트 — 미디어 높이에 맞춰 space-between(상단 top-align / 하단 bottom-align).
           card-media-gap 간격, content-padding이 상·우·하에 걸려 미디어 높이에 맞게 끝난다. */}
       <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 10, padding: "var(--card-content-padding) var(--card-content-padding) var(--card-content-padding) 0", paddingLeft: s.gap }}>
-        {/* 상단 블록 — 미디어 top 정렬: 배지 + 제목 (+ 발췌) */}
+        {/* 상단 블록 — 미디어 top 정렬: 배지 + 제목(카드의 유일한 링크) + 발췌 */}
         <div style={{ display: "flex", flexDirection: "column", gap: 8, minWidth: 0 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
             {(country || countryLabel) && <Badge size="sm" leading="flag" flag={country}>{countryLabel}</Badge>}
             {field && <Badge size="sm">{field}</Badge>}
           </div>
-          <div style={{ fontSize: `var(${s.titleVar})`, fontWeight: 700, letterSpacing: "0.01em", lineHeight: 1.35, ...clamp(s.titleClamp) }}>{title}</div>
+          <a href={href} className="mt-card-link" style={{ display: "block", fontSize: `var(${s.titleVar})`, fontWeight: 700, letterSpacing: "0.01em", lineHeight: 1.35, ...clamp(s.titleClamp) }}>{title}</a>
           {s.excerpt && excerpt && (
             <div style={{ fontSize: s.excerptSize, fontWeight: 400, color: "var(--muted-foreground)", lineHeight: 1.6, ...clamp(2) }}>{excerpt}</div>
           )}
@@ -127,6 +138,6 @@ export function InterviewCard({
           </div>
         )}
       </div>
-    </a>
+    </article>
   );
 }

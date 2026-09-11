@@ -5,7 +5,7 @@
 
 - 상태: 기안
 - 기안일: 2026-09-02
-- 실측 대상: Figma 「Mentree 2.0 (Claude)」 **13섹션**(2026-09-02 시점) ／ `design/ds-export/project/components/` **30본**
+- 실측 대상: Figma 「Mentree 2.0 (Claude)」 **13섹션**(2026-09-02 시점) ／ `design/ds-export/project/components/` **36본**(2026-09-11 시점)
 - **섹션의 목록과 id 는 [screen-inventory](screen-inventory.md) 「스캔의 범위」가 정본이다.** 여기에 복제하지 않는다. **09-10 에 14섹션이 됐으나 늘어난 것은 화면이 아니라 진척 보드다** — 실측을 다시 하지 않았다
 
 ## 읽는 방법
@@ -103,10 +103,20 @@
 | 스위치 | `mypage-*`(알림 설정) | ✅ `Switch` | |
 | 토글 그룹 | `qna-feed` · `insight-list` | ✅ `ToggleGroup` | |
 | 다이얼로그 | `qna-*` · `mentoring-*` · `login` | ✅ `Dialog` | |
-| 시트 | `insight-list`(지역 팝업) | ✅ `Sheet` | |
+| 시트 | `insight-list`(국가 팝업) | ✅ `Sheet` | **국가 토큰 다중 선택**(OR). `qna-feed` 는 단일 선택이다 |
 | 테이블 | `mypage-*`(결제·정산 이력) | ✅ `Table` | |
-| 북마크 토글 | `mentor-search` · `qna-*` · `article-detail` | ✅ `BookmarkToggle` | |
+| 카운트 토글 | `mentor-search` · `qna-*` · `article-detail` · `top` | ✅ `CountToggle` | **`BookmarkToggle` 을 흡수했다**(`DS-24`). 카운트가 없어도 선다 |
 | 사이드바 | **어느 화면도 요구하지 않는다** | ⛔ `Sidebar` | **제거 대상**(`DS-19`). 아래 「정정」 참조 |
+
+### 2026-09-11 — 갭 16건 중 8건이 메워졌다
+
+**하루에 들어온 것이 8건이다.** 아래 표의 판정은 09-02 실측 시점이며, 지금 상태는 [DS-update-list.md](../DS-update-list.md) 가 갖는다.
+
+| 메워진 것 | 남은 것 |
+|---|---|
+| `Tabs` · `EmptyState` · `Pagination` · `Skeleton` · `Chip` · `CountToggle` · `AnswerCard` ＋ 카드 4종의 루트 | `Toast` · `Popover` · `Calendar` · `Stepper` · `RichTextEditor` · `Breadcrumb` · `VerticalNav` · `MentoringCard` |
+
+**「위 4건만 만들어도 10화면이 덮인다」가 실현됐다** — `Tabs`·`EmptyState`·`Pagination`·`Chip` 이 전부 들어왔다.
 
 ## 갭 후보 — `ds-export` 에 없다
 
