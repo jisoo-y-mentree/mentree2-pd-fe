@@ -112,13 +112,13 @@ gh auth setup-git       # 이것을 빼면 git 이 keychain 의 옛 자격증명
 |---|---|---|
 | — | S9 SOURCES ＋ `.gitignore` ＋ `CLAUDE.md` 판정 표 | ✅ PR #9 |
 | **①** | export 반입 — `ds-export/` ＋ `_import/` | ✅ PR #14 |
-| **②** | Figma 정리 | ✅ 09-01 반입 / **09-02 에 13섹션으로 늘었다** |
-| **③** | S12 screen-inventory ＋ component-coverage ＋ `DS-nn` ／ S11 `docs/PRODUCT.md` | ✅ 21화면 ＋ 커버리지 ＋ `DS-01`〜`DS-19`. **미결 2건은 사람 대기이지 남은 작업이 아니다** |
-| **④** | S10 용어집 | ✅ 88행. 명칭 충돌 4건 결착 |
-| **⑤** | 고아 분석 → `DS-nn` 기표 | ✅ 갭 12건 ＋ 보류 후보 6건 |
-| **⑥** | **DS 갱신 — Claude Design 작업 ＋ 재export** | ⏸ **🖐 디자이너.** 차례는 `Tabs` → `EmptyState` → `Pagination` → `MentoringCard` |
+| **②** | Figma 정리 | ✅ 09-01 반입 / **09-10 에 14섹션으로 늘었다** |
+| **③** | S12 screen-inventory ＋ component-coverage ＋ **transition-map** ＋ `DS-nn` ／ S11 `docs/PRODUCT.md` | ✅ **19화면** ＋ 커버리지 ＋ 로그인 후 전이도 ＋ `DS-01`〜`DS-19`. **미결 3건은 사람 대기이지 남은 작업이 아니다** |
+| **④** | S10 용어집 | ✅ **92행**. 명칭 충돌 4건 결착 ＋ 「리뷰」의 중복을 `ThanksNote` 로 갈랐다 |
+| **⑤** | 고아 분석 → `DS-nn` 기표 | ✅ 갭 **16건** ＋ 보류 후보 **7건**. `DS-01`〜`DS-23` |
+| **⑥** | **DS 갱신 — Claude Design 작업 ＋ 재export** | 🔄 **🖐 디자이너.** Q&A 착수로 **`Chip`·`CountToggle`·`AnswerCard`·`QnaCard`·`DS-22` 를 먼저** 만든다 |
 | **⑦** | **S16** `DESIGN.md` 파운데이션 | ✅ **11절 채움.** 입력은 `guidelines/` 17본 |
-| **⑧** | S13 UI-SPEC §1~5 ＋ `template/` | ⏸ 첫 화면은 `notice-list` |
+| **⑧** | S13 UI-SPEC §1~5 ＋ `template/` | ⏸ **분담했다** — 지수 `top`→`mentor-search`→`mentor-detail` ／ 혁 `qna-feed`→`qna-detail`→`qna-compose`. **파이프라인 실증은 먼저 끝나는 1장이 겸한다** |
 | — | S14 team-members ＋ CODEOWNERS | ⏸ 독립 |
 | — | S15 UX 라이팅의 그릇 | ⏸ 보류 |
 

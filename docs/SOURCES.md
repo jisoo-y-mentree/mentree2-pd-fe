@@ -164,6 +164,7 @@ DESIGN-CHARTER 원칙 8은 모든 규칙에 근거를 한 줄 붙이라고 요�
 | `docs/glossary/ubiquitous-language.md` | Figma · 텍스트 ＋ **Claude Design 산출물** | 전 플로우 1회 스캔 ＋ `ds-export` 의 컴포넌트 명칭 ＋ `screen-inventory` 의 화면 ID | **개념 · 화면 ID · 컴포넌트를 한 표에.** 한국어가 갈리는 것은 정하지 말고 「미결」에 모은다 | S10 |
 | `docs/PRODUCT.md` | Figma · 텍스트 | 기획 문서 | 발췌·재구성한다. 정제 중 드러난 모순은 「미결」 절에 적는다 | S11 |
 | `design/docs/component-coverage.md` | Figma · 텍스트 ＋ **Claude Design 산출물** | 화면별 요소 실측 ＋ `ds-export` 의 30본 | **고아 분석의 입력이다.** 갭을 후보로만 적고 `DS-nn` 기표는 하지 않는다 | S12 |
+| `design/docs/transition-map.md` | Figma · 텍스트 ＋ **사람의 결정** | 비로그인 천이도(`1065:80793`) ＋ 각 화면의 주석 | **로그인 후만 여기가 정본이다.** 비로그인은 Figma 를 가리키고 복제하지 않는다. 각 UI-SPEC 의 §9 가 여기를 가리킨다 | S12 |
 | `docs/guidelines/team-members.md` | 사람의 결정 | jisoo | 직접 쓴다. GitHub 핸들은 **추측하지 않고 본인에게 확인한다** | S14 |
 | (이름 미정) UX 라이팅 | 사람의 결정 | hyeok | **형태를 확인하기 전에는 만들지 않는다.** 범위가 한/일 2개국어다 | S15 보류 |
 
@@ -192,6 +193,8 @@ DESIGN-CHARTER 원칙 8은 모든 규칙에 근거를 한 줄 붙이라고 요�
 ## `DESIGN.md` 의 절 구성
 
 **2026-09-10 에 11절로 고쳐 채웠다**(S16). 아래는 그때 쓴 계획이며 실물은 [DESIGN.md](../design/DESIGN.md) 다.
+
+**09-11 에 §12 「데이터인가 행동인가」가 붙어 12절이 됐다.** 화면에서 실증된 규칙이 파운데이션에 올라온 첫 사례다(헌장 원칙 7).
 
 초판의 6절은 실제 파운데이션을 담지 못했다.
 

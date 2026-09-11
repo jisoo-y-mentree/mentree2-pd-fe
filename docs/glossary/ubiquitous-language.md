@@ -22,12 +22,16 @@
 | 도메인 개념 | PascalCase | `Mentor` · `Flower` |
 | 화면 ID | 소문자와 하이픈 | `qna-feed` · `mypage-mentee` |
 | 컴포넌트 | PascalCase | `MentorCard` · `BottomTabBar` |
+| **모달** | PascalCase ＋ `Modal` | `MentoringDetailModal` |
+
+**소문자와 하이픈은 화면에만 쓴다.** 모달은 URL 을 갖지 않으므로 화면 ID 의 표기를 쓰지 않는다.
 
 ## 용어
 
 <!-- 채운 순서
      ⓐ 도메인 개념 — Figma 「Mentree 2.0 (Claude)」 전 플로우 1회 스캔(2026-09-01)
-     ⓑ 화면 ID     — design/docs/screen-inventory.md 에서 확정한 21화면
+     ⓑ 화면 ID     — design/docs/screen-inventory.md 에서 확정한 19화면
+                     (초판은 21화면이었다. 09-10 에 멘토링 상세 2화면이 모달로 내려갔다)
      ⓒ 컴포넌트 명칭 — design/ds-export/project/components/ 의 30본
 
      English 가 이미 정해진 것(컴포넌트)은 그대로 쓴다. 새로 짓지 않는다.
@@ -42,6 +46,7 @@
 | Q&A 카드 | `QnaCard` | 컴포넌트. surfaces |
 | Q&A 피드 | `qna-feed` | 화면 |
 | TOP | `top` | 화면. 허브 |
+| 감사인사 | `ThanksNote` | Q&A 질문자가 개별 답변에 보내는 글. **화면에 표시하지 않고 멘토에게 직접 전달한다.** `Review` 와 다르다 — 그쪽은 공개다 |
 | 격려 메세지 | `EncouragementMessage` | 멘토링 완료 후 멘토가 멘티에게 보내는 메시지. 리뷰와 짝을 이룬다 |
 | 공지사항 | `Notice` | 운영 알림. 진입은 푸터다 |
 | 공지사항 목록 | `notice-list` | 화면 |
@@ -52,7 +57,8 @@
 | 꽃송이 | `Flower` | 멘토링 대가의 단위. **1송이 ＝ 10달러.** 멘토링 시간에 따라 최소 송이 수가 정해진다 |
 | 다이얼로그 | `Dialog` | 컴포넌트. overlays |
 | 달력 | `Calendar` | **미구현**(`DS-13`). 멘토링 일정 선택 |
-| 도움돼요 | `Helpful` | Q&A 답변에 누르는 표시 겸 액션. **질문자가 누르면 질문자 아이콘이 병기**되고 그것이 실질적인 채택이다. 정렬 최우선 |
+| 답변 카드 | `AnswerCard` | **미구현**(`DS-23`). Q&A 상세의 멘토 답변 1건. 카드 전체가 클릭 대상이 아니다 |
+| 도움돼요 | `Helpful` | Q&A 답변에 누르는 표시 겸 액션. 아이콘은 하트다. **질문자가 누르면 텍스트 배지가 붙고** 그것이 실질적인 채택이다. 정렬 최우선 |
 | 라디오 그룹 | `RadioGroup` | 컴포넌트. forms |
 | 로그인 | `login` | 화면 |
 | 리뷰 | `Review` | 멘토링 완료 후 멘티가 쓴다. 멘토 상세에 쌓인다 |
@@ -65,9 +71,8 @@
 | 멘토 찾기 | `mentor-search` | 화면 |
 | 멘토 카드 | `MentorCard` | 컴포넌트. surfaces. 296 고정·미디어 3:2/5:4 |
 | 멘토링 | `Mentoring` | 1:1 유료 세션. 신청 → 수락 → 일정 확정 → 완료 |
-| 멘토링 상세(멘토) | `mentoring-detail-mentor` | 화면. 상태 6 |
-| 멘토링 상세(멘티) | `mentoring-detail-mentee` | 화면. 상태 6 |
-| 멘토링 신청 | `mentoring-apply` | 화면. 2스텝 ＋ 결제 |
+| 멘토링 상세 모달 | `MentoringDetailModal` | **모달.** 상태 6. `mypage-mentee`·`mypage-mentor` 의 §6 이다. 역할로 액션이 갈린다 |
+| 멘토링 신청 | `mentoring-apply` | 화면. 2스텝 ＋ 결제. 진입은 `mentor-detail` |
 | 멘토링 카드 | `MentoringCard` | **미구현**(`DS-18`). 멘토링 1건의 상태·상대·액션. `MentorCard` 와 다르다 |
 | 멘트리 인사이트 | `Insight` | 멘트리가 발행하는 아티클 카테고리의 하나 |
 | 멘트리 인사이트 목록 | `insight-list` | 화면. 카테고리 4 |
@@ -105,7 +110,9 @@
 | 직무 | `JobTitle` | 개인의 직책. 「사업 프로듀서」처럼 멘토 카드에 뜬다 |
 | 직종 | `JobCategory` | 분류축. 필터와 온보딩 설문이 쓴다. 대분류-소분류 계층이다 |
 | 체크박스 | `Checkbox` | 컴포넌트. forms |
+| 칩 | `Chip` | **미구현**(`DS-20`). **데이터를 나타내고 눌리지만 켜지지 않는다** — 해시태그·걸린 조건. 행동이면 `Button` 이다([DESIGN.md](../../design/DESIGN.md) §12) |
 | 카드 | `Card` | 컴포넌트. surfaces. 하위 5본을 함께 export 한다 |
+| 카운트 토글 | `CountToggle` | **미구현**(`DS-21`). 아이콘 ＋ 카운트 토글. 도움돼요·스크랩이 이것 하나다 |
 | 캐러셀 | `Carousel` | 컴포넌트. navigation |
 | 커리어 Phase | `Phase` | 온보딩 설문이 묻는 4단계. **추천의 입력값이다.** 진단 컨텐츠는 MVP 밖이다([PRODUCT.md](../PRODUCT.md) 「MVP 범위 밖」) |
 | 콜아웃 바 | `CalloutBar` | 컴포넌트. navigation |
@@ -126,7 +133,11 @@
 | 헤더 | `Header` | 컴포넌트. navigation. 반응형·오버레이 |
 | 회원가입 | `signup` | 화면. 이메일 ／ 소셜 2경로 |
 
-**89행** — 개념 26 · 화면 21 · 컴포넌트 30 · **미구현 12**.
+**92행** — 개념 **28**(모달 1 포함) · 화면 **19** · 컴포넌트 30 · **미구현 15**.
+
+> **09-10 에 89행에서 1행 줄었다.** `mentoring-detail-mentee`·`mentoring-detail-mentor` 2행을 `MentoringDetailModal` 1행으로 합쳤다. 부모 화면이 이미 역할을 가르므로 이름에 역할을 다시 넣지 않는다.
+>
+> **09-11 에 4행 늘었다.** `Chip`(`DS-20`) · `CountToggle`(`DS-21`) · `AnswerCard`(`DS-23`) ＋ **`ThanksNote`**. 마지막은 **말이 겹쳐서 가른 것**이다 — 와이어가 Q&A 답변에 보내는 글도 「리뷰」라고 불렀는데, `Review` 는 1:1 멘토링의 **공개** 리뷰다. Q&A 쪽은 화면에 안 뜨고 멘토에게 직접 간다. 화면 문구를 따라 「감사인사」로 이름을 붙였다.
 
 「미구현」은 `ds-export/` 에 아직 없는 것이다. **이름을 먼저 정하고 Claude Design 에서 만든다**(`docs/SOURCES.md` 「예외 — 이름은 용어집이 정본이다」).
 
