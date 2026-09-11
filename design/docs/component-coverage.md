@@ -105,7 +105,7 @@
 | 다이얼로그 | `qna-*` · `mentoring-*` · `login` | ✅ `Dialog` | |
 | 시트 | `insight-list`(지역 팝업) | ✅ `Sheet` | |
 | 테이블 | `mypage-*`(결제·정산 이력) | ✅ `Table` | |
-| 북마크 토글 | `mentor-search` · `qna-*` · `article-detail` | ✅ `BookmarkToggle` | |
+| 북마크 토글 | `mentor-search` · `qna-*` · `article-detail` | ⛔ `BookmarkToggle` | **제거 대상**(`DS-24`). `CountToggle` 이 흡수한다(`DS-21`) |
 | 사이드바 | **어느 화면도 요구하지 않는다** | ⛔ `Sidebar` | **제거 대상**(`DS-19`). 아래 「정정」 참조 |
 
 ## 갭 후보 — `ds-export` 에 없다

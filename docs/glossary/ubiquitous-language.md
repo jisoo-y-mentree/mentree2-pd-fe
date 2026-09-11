@@ -80,7 +80,7 @@
 | 배너 | `Banner` | 컴포넌트. navigation |
 | 배지 | `Badge` | 컴포넌트. core. new 상태·+N 펼침·labelHidden |
 | 버튼 | `Button` | 컴포넌트. core |
-| 북마크 토글 | `BookmarkToggle` | 컴포넌트. core. 스크랩의 UI 다 |
+| 북마크 토글 | `BookmarkToggle` | 컴포넌트. core. **폐지한다**(`DS-24`). 후계는 `CountToggle` 이다 |
 | 브레드크럼 | `Breadcrumb` | **미구현**(`DS-16`). 목록 ＜ 상세 |
 | 비밀번호 찾기·재설정 | `password-reset` | 화면 |
 | 빈 상태 | `EmptyState` | **미구현**(`DS-11`). 0건일 때의 표시와 다음 행동 유도 |
