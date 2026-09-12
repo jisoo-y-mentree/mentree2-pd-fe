@@ -62,7 +62,7 @@
 | 라디오 그룹 | `RadioGroup` | 컴포넌트. forms |
 | 로그인 | `login` | 화면 |
 | 리뷰 | `Review` | 멘토링 완료 후 멘티가 쓴다. 멘토 상세에 쌓인다 |
-| 리치 텍스트 에디터 | `RichTextEditor` | **미구현**(`DS-15`). Q&A 질문·답변 작성 |
+| 리치 텍스트 에디터 | `RichTextEditor` | **DS 밖**(`DS-15` 각하 2026-09-12). Q&A 질문·답변 작성. **blocknote 를 FE 가 직접 붙인다** — 사양은 그 화면의 `UI-SPEC.md` 가 갖는다 |
 | 마이페이지(멘토) | `mypage-mentor` | 화면. 탭 10 |
 | 마이페이지(멘티) | `mypage-mentee` | 화면. 탭 9 |
 | 멘토 | `Mentor` | 해외에서 활동하는 한국인. 답변·인터뷰·멘토링을 제공한다 |
@@ -81,7 +81,7 @@
 | 배지 | `Badge` | 컴포넌트. core. new 상태·+N 펼침·labelHidden |
 | 버튼 | `Button` | 컴포넌트. core |
 | 북마크 토글 | `BookmarkToggle` | 컴포넌트. core. 스크랩의 UI 다 |
-| 브레드크럼 | `Breadcrumb` | **미구현**(`DS-16`). 목록 ＜ 상세 |
+| 브레드크럼 | `Breadcrumb` | **미구현**(`DS-16`). 목록 ＞ 상세. 깊이 2단이고 마지막은 링크가 아니다 |
 | 비밀번호 찾기·재설정 | `password-reset` | 화면 |
 | 빈 상태 | `EmptyState` | 컴포넌트. surfaces. 0건일 때의 표시와 다음 행동 유도 |
 | 사이드바 | `Sidebar` | 컴포넌트. navigation. **제거 대상**(`DS-19`) — 앱 네비 레일이며 어느 화면도 쓰지 않는다 |
@@ -134,17 +134,21 @@
 | 헤더 | `Header` | 컴포넌트. navigation. 반응형·오버레이 |
 | 회원가입 | `signup` | 화면. 이메일 ／ 소셜 2경로 |
 
-**93행** — 개념 **28**(모달 1 포함) · 화면 **19** · 컴포넌트 **40** · **미구현 6**.
+**93행** — 개념 **28**(모달 1 포함) · 화면 **19** · 컴포넌트 **40** · **미구현 5** · **DS 밖 1**.
 
 > **09-12 에 미구현 9본이 실물이 됐다** — `Pagination`·`Tabs`·`Toast`·`Skeleton`·`EmptyState`·`Popover`·`Chip`·`CountToggle`·`AnswerCard`. 행 수는 그대로이고 설명만 바뀐다.
 >
-> **같은 날 `TagInput` 1행이 늘었고 바로 실물이 됐다**(`DS-26`). 컴포넌트는 **40본**, 미구현은 **6본**이다 — `Calendar`·`Stepper`·`RichTextEditor`·`Breadcrumb`·`VerticalNav`·`MentoringCard`.
+> **같은 날 `TagInput` 1행이 늘었고 바로 실물이 됐다**(`DS-26`). 컴포넌트는 **40본**이다.
+>
+> **같은 날 `RichTextEditor` 가 미구현에서 빠졌다**(`DS-15` 각하). 미구현은 **5본**이다 — `Calendar`·`Stepper`·`Breadcrumb`·`VerticalNav`·`MentoringCard`.
 
 > **09-10 에 89행에서 1행 줄었다.** `mentoring-detail-mentee`·`mentoring-detail-mentor` 2행을 `MentoringDetailModal` 1행으로 합쳤다. 부모 화면이 이미 역할을 가르므로 이름에 역할을 다시 넣지 않는다.
 >
 > **09-11 에 4행 늘었다.** `Chip`(`DS-20`) · `CountToggle`(`DS-21`) · `AnswerCard`(`DS-23`) ＋ **`ThanksNote`**. 마지막은 **말이 겹쳐서 가른 것**이다 — 와이어가 Q&A 답변에 보내는 글도 「리뷰」라고 불렀는데, `Review` 는 1:1 멘토링의 **공개** 리뷰다. Q&A 쪽은 화면에 안 뜨고 멘토에게 직접 간다. 화면 문구를 따라 「감사인사」로 이름을 붙였다.
 
-「미구현」은 `ds-export/` 에 아직 없는 것이다. **이름을 먼저 정하고 Claude Design 에서 만든다**(`docs/SOURCES.md` 「예외 — 이름은 용어집이 정본이다」).
+「미구현」은 `ds-export/` 에 **아직** 없는 것이다. **이름을 먼저 정하고 Claude Design 에서 만든다**(`docs/SOURCES.md` 「예외 — 이름은 용어집이 정본이다」).
+
+**「DS 밖」은 `ds-export/` 에 앞으로도 안 만드는 것이다.** 라이브러리가 UI 와 상태 기계를 통째로 갖고 우리가 정할 것이 기능의 on/off 뿐인 경우다(`docs/SOURCES.md` 「그래도 부품을 만드는가」). **이름은 여기 남는다** — 화면 UI-SPEC 이 그 이름으로 부른다.
 
 ## 쓰지 않는 말
 
