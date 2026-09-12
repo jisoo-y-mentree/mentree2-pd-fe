@@ -118,6 +118,7 @@
 | 콜아웃 바 | `CalloutBar` | 컴포넌트. navigation |
 | 키워드 | `Keyword` | **테마 태그의 대분류.** 국가와 함께 가장 큰 분류축이다. **목록은 상정 중이며 바뀐다**(2026-09-11). 값에 의존하는 판단을 UI-SPEC 에 쓰지 않는다 |
 | 태그 | `Tag` | 자유입력 해시태그. 질문당 최대 10개 |
+| 태그 입력 | `TagInput` | **미구현**(`DS-26`). forms. 태그를 넣고 빼는 폼 필드. 안에 세우는 태그는 `Chip` 이다 |
 | 탭 | `Tabs` | 컴포넌트. navigation. 같은 셸에서 내용을 바꾼다. 카운트 배지를 함께 쓴다 |
 | 테이블 | `Table` | 컴포넌트. surfaces |
 | 토글 그룹 | `ToggleGroup` | 컴포넌트. forms |
@@ -133,9 +134,11 @@
 | 헤더 | `Header` | 컴포넌트. navigation. 반응형·오버레이 |
 | 회원가입 | `signup` | 화면. 이메일 ／ 소셜 2경로 |
 
-**92행** — 개념 **28**(모달 1 포함) · 화면 **19** · 컴포넌트 **39** · **미구현 6**.
+**93행** — 개념 **28**(모달 1 포함) · 화면 **19** · 컴포넌트 **39** · **미구현 7**.
 
-> **09-12 에 미구현 9본이 실물이 됐다** — `Pagination`·`Tabs`·`Toast`·`Skeleton`·`EmptyState`·`Popover`·`Chip`·`CountToggle`·`AnswerCard`. 행 수는 그대로이고 설명만 바뀐다. 남은 미구현은 **6본**이다 — `Calendar`·`Stepper`·`RichTextEditor`·`Breadcrumb`·`VerticalNav`·`MentoringCard`.
+> **09-12 에 미구현 9본이 실물이 됐다** — `Pagination`·`Tabs`·`Toast`·`Skeleton`·`EmptyState`·`Popover`·`Chip`·`CountToggle`·`AnswerCard`. 행 수는 그대로이고 설명만 바뀐다.
+>
+> **같은 날 `TagInput` 1행이 늘었다**(`DS-26`). 미구현은 **7본**이다 — `Calendar`·`Stepper`·`RichTextEditor`·`Breadcrumb`·`VerticalNav`·`MentoringCard`·`TagInput`.
 
 > **09-10 에 89행에서 1행 줄었다.** `mentoring-detail-mentee`·`mentoring-detail-mentor` 2행을 `MentoringDetailModal` 1행으로 합쳤다. 부모 화면이 이미 역할을 가르므로 이름에 역할을 다시 넣지 않는다.
 >
