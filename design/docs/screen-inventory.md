@@ -199,6 +199,6 @@
 |---|---|
 | 분담과 위 차례가 어긋난다 | **분담이 이긴다.** 차례는 「누가 무엇을」이 없을 때의 기본값이다 |
 | `DS-nn` 을 기표할 일이 생겼다 | **화면 담당이 기표하고 지수가 만든다.** 화면 담당이 Claude Design 의 DS 를 직접 고치지 않는다 |
-| 혁의 화면이 미구현 부품을 기다린다 | **그 `DS-nn` 이 혁의 레인을 막는다.** 지금 `qna-detail` 이 `DS-16` `Breadcrumb`, `qna-compose` 가 `DS-15` `RichTextEditor` 를 기다린다 |
+| 혁의 화면이 미구현 부품을 기다린다 | **그 `DS-nn` 이 혁의 레인을 막는다.** 지금은 `qna-detail` 이 `DS-16` `Breadcrumb` 를 기다리는 1건뿐이다. **`qna-compose` 는 안 기다린다** — `RichTextEditor` 는 각하했고 blocknote 를 FE 가 직접 붙인다(`DS-15`) |
 | **파이프라인 실증**(`SETUP.md` §5)을 누가 하나 | **먼저 끝나는 1장이 겸한다.** `notice-list` 를 위해 따로 1장을 더 만들지 않는다 |
 | 두 사람이 같은 표를 고친다 | `DS-update-list`·`UX-PATTERNS`·`screen-inventory` **3개뿐이다.** 손으로 병합하지 않는다(`SETUP.md` §6) |

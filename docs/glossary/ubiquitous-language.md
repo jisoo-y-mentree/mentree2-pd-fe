@@ -138,7 +138,9 @@
 
 > **09-12 에 미구현 9본이 실물이 됐다** — `Pagination`·`Tabs`·`Toast`·`Skeleton`·`EmptyState`·`Popover`·`Chip`·`CountToggle`·`AnswerCard`. 행 수는 그대로이고 설명만 바뀐다.
 >
-> **같은 날 `TagInput` 1행이 늘었고 바로 실물이 됐다**(`DS-26`). 컴포넌트는 **40본**, 미구현은 **6본**이다 — `Calendar`·`Stepper`·`RichTextEditor`·`Breadcrumb`·`VerticalNav`·`MentoringCard`.
+> **같은 날 `TagInput` 1행이 늘었고 바로 실물이 됐다**(`DS-26`). 컴포넌트는 **40본**이다.
+>
+> **같은 날 `RichTextEditor` 가 미구현에서 빠졌다**(`DS-15` 각하). 미구현은 **5본**이다 — `Calendar`·`Stepper`·`Breadcrumb`·`VerticalNav`·`MentoringCard`.
 
 > **09-10 에 89행에서 1행 줄었다.** `mentoring-detail-mentee`·`mentoring-detail-mentor` 2행을 `MentoringDetailModal` 1행으로 합쳤다. 부모 화면이 이미 역할을 가르므로 이름에 역할을 다시 넣지 않는다.
 >
