@@ -5,9 +5,9 @@
 > 두 축의 정의는 [docs/SOURCES.md](../../docs/SOURCES.md) 「정본의 두 축」이 갖는다. FE 인계의 입력이다([ADR-0005](../../docs/adr/0005-design-team-deliverables.md)).
 
 - 출처: Claude Design (radarlab 계정) — 프로젝트 이름 **`M2 Design System`**
-- 원본: `M2 Design System-handoff (5).zip`
+- 원본: `M2 Design System-handoff (6).zip`
 - **반입일: 2026-09-12**
-- 원본 SHA-256: `cb8079013e45301418f6f54a5dc0a93ba3607372f1ec7cf43796e178da7f345d`
+- 원본 SHA-256: `06a76b378765d09db1936a3c0471f8b99d9c6df69505f141e63d28f97b5b7890`
 
 ### 교체 이력
 
@@ -16,7 +16,7 @@
 | 2026-08-31 | `Mentree2 Design System-handoff.zip` | `5e43bc6d53de` | 첫 반입 |
 | **2026-09-10** | `M2-Design-System-handoff.zip` | `727c5d60feaf` | **컴포넌트·토큰·guidelines 는 무변경**(166본 바이트 동일). 아래 2건만 |
 | **2026-09-12** | `M2 Design System-handoff (3).zip` | `26a7c12eb6d2` | **컴포넌트가 30본에서 39본이 됐다.** 아래 |
-| **2026-09-12** | `M2 Design System-handoff (5).zip` | `cb8079013e45` | **`TagInput` 1본이 늘어 40본이 됐다.** ＋ `Chip` 개정. 아래 |
+| **2026-09-12** | `M2 Design System-handoff (6).zip` | `06a76b378765` | **`TagInput` 1본이 늘어 40본이 됐다.** ＋ `Chip` 개정. 아래 |
 
 ### 2026-09-12(2) — TagInput 이 들어왔다
 
@@ -32,6 +32,15 @@
 **바깥 상자는 `Input` 의 값을 그대로 쓴다** — `--input`·`--ring`·`--destructive`·`--radius-md` 와 boxShadow·transition 이 문자열까지 같다. 새 값을 안 만들었다.
 
 **조합 중에는 아무 키도 가로채지 않는다.** 한글은 마지막 글자가 조합 중으로 남아, 안 막으면 Enter 가 조합보다 먼저 확정을 돌린다. 리포에서 키를 가로채는 첫 부품이다.
+
+**`Chip` 의 「모양은 안 바뀐다」를 두 번 만에 지켰다.** 첫 판은 `<button>` 리셋으로 `font: "inherit"` 를 넣었는데, **`font` 는 단축 속성이라 `outer` 가 정한 `fontSize`·`fontWeight`·`lineHeight`·`fontFamily` 를 전부 되돌린다.** `onRemove` 분기에는 그 줄이 없어서 **같은 `Chip` 이 ✕ 유무로 글자가 갈렸다.**
+
+| 판정 조건 | 아크션 |
+|---|---|
+| 「모양이 안 바뀐다」를 확인한다 | **상수만 보지 않는다.** `SIZES` 가 그대로여도 뒤에 오는 선언이 덮으면 렌더는 바뀐다 |
+| 리셋 선언을 넣는다 | **단축 속성을 쓰지 않는다.** `font`·`background`·`border` 는 옆의 개별 선언을 같이 지운다 |
+
+버튼 리셋으로 남긴 것은 `border: "none"` 뿐이다 — 타이포는 `outer` 가 이미 넷을 다 명시한다.
 
 ### 2026-09-12 — 컴포넌트 9본이 늘었다
 

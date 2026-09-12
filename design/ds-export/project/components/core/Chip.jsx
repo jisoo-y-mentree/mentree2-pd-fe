@@ -98,8 +98,6 @@ export function Chip({
           color: labelColor,
           textDecoration: "none",
           border: "none",
-          font: "inherit",
-          fontFamily: "inherit",
           cursor: disabled ? "not-allowed" : href || onClick ? "pointer" : "default",
           ...style,
         }}
