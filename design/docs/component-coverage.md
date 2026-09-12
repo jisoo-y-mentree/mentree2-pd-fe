@@ -131,7 +131,7 @@
 
 ### 기표한다 — 16건 ／ **09-12 에 12건 완료**
 
-**남은 것은 6건이다** — `DS-13` `Calendar` · `DS-14` `Stepper` · `DS-15` `RichTextEditor` · `DS-16` `Breadcrumb` · `DS-17` `VerticalNav` · `DS-18` `MentoringCard`. **＋ `DS-19` `Sidebar` 제거**도 남았다.
+**남은 것은 5건이다** — `DS-13` `Calendar` · `DS-14` `Stepper` · `DS-16` `Breadcrumb` · `DS-17` `VerticalNav` · `DS-18` `MentoringCard`. **＋ `DS-19` `Sidebar` 제거**도 남았다. **`DS-15` `RichTextEditor` 는 각하했다**(2026-09-12).
 
 아래 표는 **무엇이 왜 필요했는가의 기록**이다. 지금 상태는 [DS-update-list](../DS-update-list.md) 가 갖는다.
 
@@ -153,8 +153,8 @@
 | `DS-17` | **VerticalNav** | **3** | `mypage-mentee` · `mypage-mentor` · `insight-list` | 마이페이지 좌측 7~8항목 · 아티클 좌측 카테고리 4항목. 선택 시 초록 강조 |
 | `DS-09` | **Toast** | **2** | `mentor-search` · `article-detail` | 「완료 토스트 노출 3초·해제 문구·실행취소」 ／ 와이어에 `Sonner` |
 | `DS-13` | **Calendar** | **2** | `mypage-mentee` · `mypage-mentor` | 일정 확정·재조정. 와이어에 월 달력이 있다. **`MentoringDetailModal` 안에서 쓴다** |
-| `DS-15` | **RichTextEditor** | **2** | `qna-compose` · `qna-detail`(답변) | 「텍스트 에디터, 0/1000자」. 와이어가 blocknote 를 링크한다 |
-| `DS-16` | **Breadcrumb** | **2** | `qna-detail` · `article-detail` | 「Q&A 목록 ＜ 상세」·「멘트리 인사이트 ＜ 상세」 |
+| ~~`DS-15`~~ | **RichTextEditor** | **2** | `qna-compose` · `qna-detail`(답변) | 「텍스트 에디터, 0/1000자」. **각하**(2026-09-12) — blocknote 를 FE 가 직접 붙인다 |
+| `DS-16` | **Breadcrumb** | **2** | `qna-detail` · `article-detail` | 「Q&A 목록 ＞ 상세」·「멘트리 인사이트 ＞ 상세」 |
 | **`DS-20`** | **Chip** | **4** | `qna-feed` · `qna-detail` · `top` · `mentor-search` | 「해시태그(노출 개수 5개 ＋ 오버플로)」 ／ 필터 모달의 「걸린 조건 해제」. **눌리지만 켜지지 않는다** |
 | **`DS-21`** | **CountToggle** | **3** | `qna-feed` · `qna-detail` · `top` | 「**도움돼요·스크랩은 표시이자 액션 버튼**」. `BookmarkToggle` 은 카운트를 못 받는다 |
 | **`DS-22`** | **카드 4종의 루트 요소** | **4컴포넌트** | `QnaCard` · `MentorCard` · `InterviewCard` · `ArticlePreview` | 루트가 `<a>` 라 안에 버튼·링크를 못 넣는다. **`DS-21` 이 들어가는 순간 깨진다** |
