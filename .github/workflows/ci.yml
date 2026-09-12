@@ -37,6 +37,9 @@ jobs:
       - name: Self-test the Korean writing checker
         run: bash .claude/hooks/check-korean.test.sh
 
+      - name: Self-test the docs checker
+        run: bash scripts/check-docs.test.sh
+
       - name: Check docs
         run: python3 scripts/check-docs.py
 

@@ -103,7 +103,7 @@
 | 스위치 | `mypage-*`(알림 설정) | ✅ `Switch` | |
 | 토글 그룹 | `qna-feed` · `insight-list` | ✅ `ToggleGroup` | |
 | 다이얼로그 | `qna-*` · `mentoring-*` · `login` | ✅ `Dialog` | |
-| 시트 | `insight-list`(지역 팝업) | ✅ `Sheet` | |
+| 시트 | `insight-list`(국가 팝업) | ✅ `Sheet` | **국가 토큰 다중 선택**(OR). `qna-feed` 는 단일 선택이다 |
 | 테이블 | `mypage-*`(결제·정산 이력) | ✅ `Table` | |
 | 북마크 토글 | `mentor-search` · `qna-*` · `article-detail` | ✅ `BookmarkToggle` | |
 | 사이드바 | **어느 화면도 요구하지 않는다** | ⛔ `Sidebar` | **제거 대상**(`DS-19`). 아래 「정정」 참조 |
