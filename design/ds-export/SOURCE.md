@@ -5,9 +5,9 @@
 > 두 축의 정의는 [docs/SOURCES.md](../../docs/SOURCES.md) 「정본의 두 축」이 갖는다. FE 인계의 입력이다([ADR-0005](../../docs/adr/0005-design-team-deliverables.md)).
 
 - 출처: Claude Design (radarlab 계정) — 프로젝트 이름 **`M2 Design System`**
-- 원본: `M2 Design System-handoff (6).zip`
-- **반입일: 2026-09-12**
-- 원본 SHA-256: `06a76b378765d09db1936a3c0471f8b99d9c6df69505f141e63d28f97b5b7890`
+- 원본: `M2 Design System-handoff (9).zip`
+- **반입일: 2026-09-13**
+- 원본 SHA-256: `19556138721b60ef83cb6155c4436595337d0e945b4987aaf054a05234aa69f4`
 
 ### 교체 이력
 
@@ -17,6 +17,23 @@
 | **2026-09-10** | `M2-Design-System-handoff.zip` | `727c5d60feaf` | **컴포넌트·토큰·guidelines 는 무변경**(166본 바이트 동일). 아래 2건만 |
 | **2026-09-12** | `M2 Design System-handoff (3).zip` | `26a7c12eb6d2` | **컴포넌트가 30본에서 39본이 됐다.** 아래 |
 | **2026-09-12** | `M2 Design System-handoff (6).zip` | `06a76b378765` | **`TagInput` 1본이 늘어 40본이 됐다.** ＋ `Chip` 개정. 아래 |
+| **2026-09-13** | `M2 Design System-handoff (9).zip` | `19556138721b` | **3본이 늘어 43본이 됐다** — `Breadcrumb` · `FilterSelect` · `SearchInput`. 아래 |
+
+### 2026-09-13 — mentor-search·qna-detail 이 3본을 몰고 왔다
+
+`DS-16` · `DS-27` · `DS-28` 이다. **기존 부품은 한 줄도 안 바뀌었다.**
+
+| 무엇 | 어느 요구 | 무엇을 쓰나 |
+|---|---|---|
+| **`Breadcrumb`**(`navigation`) | `DS-16` | `Icon`. 깊이 2단 · 마지막은 `<span aria-current="page">` |
+| **`FilterSelect`**(`core`) | `DS-27` | **`Dialog` ＋ `FilterChip` ＋ `Chip` ＋ `Button`.** 새로 만든 것은 트리거와 조립뿐이다 |
+| **`SearchInput`**(`forms`) | `DS-28` | `Icon` ＋ `IconButton` ＋ `Chip`. 갈아끼우는 구조는 `TagInput` 과 같다 |
+
+**`FilterSelect` 가 `Popover` 를 안 쓴다.** 첫 판이 팝오버였는데 **국가만 19개**라 앵커에 붙는 껍데기(기본 `minWidth` 168)에 안 들어갔다. `Tabs` 도 안 쓴다 — 그쪽은 「내용 자체가 바뀐다」이고 여기는 한 스크롤이다.
+
+**`SearchInput` 이 리포에서 두 번째로 키를 가로챈다.** `isComposing` 가드가 `TagInput` 에 이어 붙었다.
+
+**남은 지적 2건은 `DS-29` 로 보냈다** — `SearchInput` 의 `role="listbox"` 에 `option` 이 0개인 것과 최근 검색어를 키보드로 못 고르는 것. 기능은 돌아가고 마우스로는 문제가 없다.
 
 ### 2026-09-12(2) — TagInput 이 들어왔다
 
@@ -55,7 +72,7 @@
 | **부수** — `AnswerCard` 가 자체 팝오버를 버리고 `Popover` 를 쓴다 | `DS-12` 의 뒤처리 |
 | **이름** — `bookmark.card.html` → `bookmarktoggle.card.html` | — |
 
-**외부 의존성은 여전히 0이다.** `Toast` 는 실장에서 `sonner` 로 가지만 **사양으로 지정만 하고 import 하지 않는다**([SOURCES.md](../../docs/SOURCES.md) 「외부 라이브러리를 쓰기로 한 부품」). **40본의 `import` 가 `react` 와 서로뿐임을 실측했다.**
+**외부 의존성은 여전히 0이다.** `Toast` 는 실장에서 `sonner` 로 가지만 **사양으로 지정만 하고 import 하지 않는다**([SOURCES.md](../../docs/SOURCES.md) 「외부 라이브러리를 쓰기로 한 부품」). **43본의 `import` 가 `react` 와 서로뿐임을 실측했다.**
 
 **2026-09-10 의 실질 변경은 2건이다.**
 
@@ -79,8 +96,8 @@
 |---|---|---|
 | `project/tokens/` | 토큰 6본 — base · colors · typography · spacing · icons · fonts | ① 값의 정본 |
 | `project/styles.css` | 토큰을 묶는 진입점 | ① |
-| `project/components/` | 컴포넌트 **40본**. 각 `.jsx` ＋ `.d.ts` ＋ `.prompt.md` ＋ `.card.html` | ② 소스 |
-| `project/_ds_bundle.js` | 컴포넌트 **52 export** 번들 | ② |
+| `project/components/` | 컴포넌트 **43본**. 각 `.jsx` ＋ `.d.ts` ＋ `.prompt.md` ＋ `.card.html` | ② 소스 |
+| `project/_ds_bundle.js` | 컴포넌트 **55 export** 번들 | ② |
 | `project/_ds_manifest.json` | 컴포넌트·카드·토큰·폰트의 목록 | ② |
 | `project/guidelines/` | 원칙 16본(HTML) — 색 · 타입 · 간격 · 표면 · 동심중첩 · 브랜드 ／ **`03-responsive.md` — 반응형 3구간의 통합 지침** | ③ 원칙 |
 | `project/readme.md` · `SKILL.md` | DS 전체 서술과 빠른 참조 | ③ |
@@ -88,7 +105,7 @@
 | `project/ui_kits/mentree-top/` | TOP 화면 조립 예시(HTML) | ⑤ 화면 정적 |
 | `project/_adherence.oxlintrc.json` | Claude Design 쪽 lint 설정 | 참고 |
 
-컴포넌트가 40본인데 export 가 52개인 이유는 **하위 export** 때문이다. `Avatar`/`AvatarGroup`, `Card` 계열 6, `nav-ia.js` 의 `NAV_*` 4, `Field`/`FieldGroup` 이 별도로 세어진다.
+컴포넌트가 43본인데 export 가 55개인 이유는 **하위 export** 때문이다. `Avatar`/`AvatarGroup`, `Card` 계열 6, `nav-ia.js` 의 `NAV_*` 4, `Field`/`FieldGroup` 이 별도로 세어진다.
 
 ## 무엇을 뺐는가
 

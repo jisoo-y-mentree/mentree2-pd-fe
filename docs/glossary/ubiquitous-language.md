@@ -47,7 +47,7 @@
 | Q&A 피드 | `qna-feed` | 화면 |
 | TOP | `top` | 화면. 허브 |
 | 감사인사 | `ThanksNote` | Q&A 질문자가 개별 답변에 보내는 글. **화면에 표시하지 않고 멘토에게 직접 전달한다.** `Review` 와 다르다 — 그쪽은 공개다 |
-| 검색 입력 | `SearchInput` | **미구현**(`DS-28`). forms. 자동완성 ＋ 최근 검색어가 붙는 검색창. 갈아끼우는 구조는 `TagInput` 과 같다 |
+| 검색 입력 | `SearchInput` | 컴포넌트. forms. 자동완성 ＋ 최근 검색어가 붙는 검색창. **한 자리를 갈아끼운다** — `TagInput` 과 같은 골격이고 제안이 상자 밖에 뜨는 것만 다르다 |
 | 격려 메세지 | `EncouragementMessage` | 멘토링 완료 후 멘토가 멘티에게 보내는 메시지. 리뷰와 짝을 이룬다 |
 | 공지사항 | `Notice` | 운영 알림. 진입은 푸터다 |
 | 공지사항 목록 | `notice-list` | 화면 |
@@ -82,7 +82,7 @@
 | 배지 | `Badge` | 컴포넌트. core. new 상태·+N 펼침·labelHidden |
 | 버튼 | `Button` | 컴포넌트. core |
 | 북마크 토글 | `BookmarkToggle` | 컴포넌트. core. 스크랩의 UI 다 |
-| 브레드크럼 | `Breadcrumb` | **미구현**(`DS-16`). 목록 ＞ 상세. 깊이 2단이고 마지막은 링크가 아니다 |
+| 브레드크럼 | `Breadcrumb` | 컴포넌트. navigation. 목록 ＞ 상세. 깊이 2단이고 **마지막은 `href` 를 넘겨도 링크가 아니다** — 부품이 강제한다 |
 | 비밀번호 찾기·재설정 | `password-reset` | 화면 |
 | 빈 상태 | `EmptyState` | 컴포넌트. surfaces. 0건일 때의 표시와 다음 행동 유도 |
 | 사이드바 | `Sidebar` | 컴포넌트. navigation. **제거 대상**(`DS-19`) — 앱 네비 레일이며 어느 화면도 쓰지 않는다 |
@@ -107,7 +107,7 @@
 | 인터뷰 카드 | `InterviewCard` | 컴포넌트. surfaces. 모바일 세로형 미구현(`DS-07`) |
 | 인풋 | `Input` | 컴포넌트. forms |
 | 정산 | `Settlement` | 멘토가 받은 꽃송이를 현금으로 받는 것 |
-| 조건 선택 | `FilterSelect` | **미구현**(`DS-27`). core. 조건 축의 트리거와 그 모달. 누르면 `Dialog` 가 열리고 안은 그룹으로 나눈 `FilterChip` 이다. 트리거에 「일본 외 2」로 요약한다 |
+| 조건 선택 | `FilterSelect` | 컴포넌트. core. 조건 축의 트리거와 그 모달. 누르면 `Dialog` 가 열리고 안은 그룹으로 나눈 `FilterChip` 이다. 트리거에 「일본 외 2」로 요약하고 **「적용」 전까지 바깥에 반영하지 않는다** |
 | 지역 | `Region` | `Country` 의 대분류 계층. 유럽·아시아/중동·북미/오세아니아. **필터의 축이 아니다** — 축은 `Country` 하나다(2026-09-11). **모달 안의 그룹 제목으로만 화면에 나온다**(2026-09-12) — 국가가 19개라 안 나누면 못 고른다 |
 | 직무 | `JobTitle` | 개인의 직책. 「사업 프로듀서」처럼 멘토 카드에 뜬다 |
 | 직종 | `JobCategory` | 분류축. 필터와 온보딩 설문이 쓴다. 대분류-소분류 계층이다 |
@@ -136,7 +136,7 @@
 | 헤더 | `Header` | 컴포넌트. navigation. 반응형·오버레이 |
 | 회원가입 | `signup` | 화면. 이메일 ／ 소셜 2경로 |
 
-**95행** — 개념 **28**(모달 1 포함) · 화면 **19** · 컴포넌트 **40** · **미구현 7** · **DS 밖 1**.
+**95행** — 개념 **28**(모달 1 포함) · 화면 **19** · 컴포넌트 **43** · **미구현 4** · **DS 밖 1**.
 
 > **09-12 에 미구현 9본이 실물이 됐다** — `Pagination`·`Tabs`·`Toast`·`Skeleton`·`EmptyState`·`Popover`·`Chip`·`CountToggle`·`AnswerCard`. 행 수는 그대로이고 설명만 바뀐다.
 >
@@ -144,7 +144,9 @@
 >
 > **같은 날 `RichTextEditor` 가 미구현에서 빠졌다**(`DS-15` 각하). 미구현은 **5본**이다 — `Calendar`·`Stepper`·`Breadcrumb`·`VerticalNav`·`MentoringCard`.
 >
-> **`mentor-search` 착수로 2행이 늘었다**(2026-09-12) — `SearchInput`(`DS-28`) · `FilterSelect`(`DS-27`). 미구현은 **7본**이다.
+> **`mentor-search` 착수로 2행이 늘었다**(2026-09-12) — `SearchInput`(`DS-28`) · `FilterSelect`(`DS-27`).
+>
+> **09-13 에 3본이 실물이 됐다** — `Breadcrumb`·`FilterSelect`·`SearchInput`. 컴포넌트는 **43본**, 미구현은 **4본**이다 — `Calendar`·`Stepper`·`VerticalNav`·`MentoringCard`.
 
 > **09-10 에 89행에서 1행 줄었다.** `mentoring-detail-mentee`·`mentoring-detail-mentor` 2행을 `MentoringDetailModal` 1행으로 합쳤다. 부모 화면이 이미 역할을 가르므로 이름에 역할을 다시 넣지 않는다.
 >

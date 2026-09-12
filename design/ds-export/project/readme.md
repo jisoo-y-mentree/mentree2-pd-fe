@@ -103,7 +103,7 @@
 
 ## 컴포넌트
 
-관습적 프리미티브는 현 토큰 기준으로 정돈해 유지합니다: **Button · IconButton · Icon · Badge · Chip · Avatar/AvatarGroup · BookmarkToggle · CountToggle · FilterChip · Input · Field/FieldGroup · TagInput · Select · Checkbox · RadioGroup · Switch · ToggleGroup · Card · Table · Dialog · Sheet · Popover · Toast**. 네비게이션은 **Header · Footer**(canon), **Sidebar**(참조·레거시).
+관습적 프리미티브는 현 토큰 기준으로 정돈해 유지합니다: **Button · IconButton · Icon · Badge · Chip · Avatar/AvatarGroup · BookmarkToggle · CountToggle · FilterChip · FilterSelect · Input · Field/FieldGroup · TagInput · SearchInput · Select · Checkbox · RadioGroup · Switch · ToggleGroup · Card · Table · Dialog · Sheet · Popover · Toast · Breadcrumb**. 네비게이션은 **Header · Footer**(canon), **Sidebar**(참조·레거시).
 
 카드가 의존할 기반 프리미티브 3종:
 
@@ -113,8 +113,10 @@
 - **BookmarkToggle** — 미디어 오버레이 전용 아이콘 토글(사진 위·단독·반전). IconButton default 형태 그대로(박스 38·아이콘 18). CountToggle과 경계는 "카운트 유무"가 아니라 "어디에 놓이는가"(2026-09-11 CountToggle로 흡수 → 09-12 되돌림).
 - **CountToggle** — 메타 줄 인라인 전용 아이콘+카운트 토글(도움돼요·스크랩 공용, count 필수). selected는 반전하지 않음(아이콘 fill + tone 색만, green 없음) — 목록 다수 노출 시 반전 과다를 피하는 예외.
 - **FilterChip** — Toggle 계열 텍스트 칩(BookmarkToggle의 형제, 아이콘형↔텍스트칩형). 선택 가능한 필터 요소(정적 Badge와 구분). 버튼 sm 기하(높이 32·radius-md·caption/500, pill 아님). "selected=반전" 공통 원칙 상속 — FilterChip은 primary green 반전. leading none·flag(원형 국기 재사용).
+- **FilterSelect** — 조건 축의 트리거+모달 한 벌(Dialog width=600). 선택지가 많아 팝오버에 안 들어가 Dialog로 간다 — 새로 만든 건 트리거와 조립뿐, Dialog·FilterChip·Chip·Button을 그대로 감싼다. 트리거는 Button sm 기하, 0개=투명+muted-foreground, 1개 이상=--muted 채움+1px --sage-400+foreground 600(green 반전 없음). 모달 안 선택은 "N개 적용하기"를 눌러야 반영(즉시 반영 없음), "초기화"는 모달만 비운다. 그룹별로 나열, 하단 요약 칩+초기화/적용 바.
+- **SearchInput** — 자동완성·최근 검색어 검색창. TagInput과 같은 골격(한 자리를 갈아끼운다) — 다른 점은 제안 줄이 상자 밖 드롭다운이라는 것. 포커스+빈값=최근 검색어(Chip md+onRemove), 입력 중=자동완성(일치 부분 --primary 600), 둘을 쌓지 않는다. 정렬·필터·개수 제한은 화면의 일.
 
-`window.MentreeDesignSystem_2f86cf`에서 읽습니다(47개). 각 컴포넌트의 `*.prompt.md` 참조.
+`window.MentreeDesignSystem_2f86cf`에서 읽습니다(50개). 각 컴포넌트의 `*.prompt.md` 참조.
 
 ### 배치 컴포넌트
 
