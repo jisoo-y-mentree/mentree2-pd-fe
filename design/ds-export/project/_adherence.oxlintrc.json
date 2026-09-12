@@ -118,8 +118,8 @@
         "message": "<Checkbox> doesn't accept that prop. Declared props: checked, onChange, disabled, label, id."
       },
       {
-        "selector": "JSXOpeningElement[name.name='Chip'] > JSXAttribute > JSXIdentifier[name!=/^(?:href|prefix|onRemove|disabled|size|children|key|ref|className|style|children)$/]",
-        "message": "<Chip> doesn't accept that prop. Declared props: href, prefix, onRemove, disabled, size, children."
+        "selector": "JSXOpeningElement[name.name='Chip'] > JSXAttribute > JSXIdentifier[name!=/^(?:href|removeAriaLabel|onClick|prefix|onRemove|disabled|size|children|key|ref|className|style|children)$/]",
+        "message": "<Chip> doesn't accept that prop. Declared props: href, removeAriaLabel, onClick, prefix, onRemove, disabled, size, children."
       },
       {
         "selector": "JSXOpeningElement[name.name='Chip'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md)$/]",
@@ -274,6 +274,10 @@
         "message": "<TabItem> doesn't accept that prop. Declared props: value, label, count, disabled."
       },
       {
+        "selector": "JSXOpeningElement[name.name='TagInput'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|onChange|suggestions|completions|max|placeholder|disabled|invalid|inputValue|onInputChange|id|key|ref|className|style|children)$/]",
+        "message": "<TagInput> doesn't accept that prop. Declared props: value, onChange, suggestions, completions, max, placeholder, disabled, invalid, inputValue, onInputChange, id."
+      },
+      {
         "selector": "JSXOpeningElement[name.name='ToastAction'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|onClick|emphasis|key|ref|className|style|children)$/]",
         "message": "<ToastAction> doesn't accept that prop. Declared props: label, onClick, emphasis."
       },
@@ -412,6 +416,9 @@
         "replaces": []
       },
       "TabItem": {
+        "replaces": []
+      },
+      "TagInput": {
         "replaces": []
       },
       "ToastAction": {
