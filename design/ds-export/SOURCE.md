@@ -86,15 +86,30 @@
 | 뺀 것 | 크기 | 이유 |
 |---|---|---|
 | `assets/fonts/PretendardJPVariable.ttf` | 13MB | **폰트 바이너리를 리포에 넣지 않는다.** 아래 참조 |
-| `uploads/` | 13MB | `assets/` 와 같은 파일의 평면 사본이다 |
+| `uploads/` | 13MB | **Claude Design 에 올린 입력물이 쌓이는 자리다.** 사양이 아니다. 아래 |
 | `ui_kits/mentree-app-legacy/` | 10.5MB | 2.0 데모다. 사양이 아니다([ADR-0004](../../docs/adr/0004-no-as-is-survey.md)) |
 
 **폰트**: `Pretendard JP Variable` 을 쓴다. 지정의 정본은 `project/tokens/fonts.css` 다. 바이너리는 위 원본 zip 에 들어 있다. 배포 방식(웹폰트 호스팅 / 번들)은 FE 가 정한다.
+
+### `uploads/` 를 통째로 빼는 판정 조건
+
+**한 가지가 아니다.** 09-12 판의 27본에는 두 종류가 섞여 있다.
+
+- **자산의 평면 사본** — 국기 SVG 19본 · 로고 · 폰트 `.ttf`. `assets/` 와 같은 파일이다
+- **Claude Design 에 올린 프롬프트** — `DS-01-pagination.md` · `DS-10-skeleton.md` · `DS-11-empty-state.md`. Claude Code 가 쓰고 디자이너가 올린 것이다
+
+| 판정 조건 | 아크션 |
+|---|---|
+| `assets/` 와 같은 파일이다 | **뺀다.** 사본이다 |
+| **Claude Design 에 올린 프롬프트다** | **뺀다.** 결과는 그 부품의 `.prompt.md` 가 갖고 **그것이 참조의 정본**이다. 입력까지 들이면 정본이 둘이 되고, 갈렸을 때 어느 쪽을 믿을지가 안 정해진다 |
+| **위 둘 중 어느 것도 아니다** | **멈추고 묻는다.** 근거 없이 빼지 않는다 |
+
+**「평면 사본이다」 한 줄로 빼고 있었다**(2026-09-12 리뷰 지적). `.md` 3본에는 그 근거가 성립하지 않았다.
 
 ## 여기에 없는 것
 
 | 무엇 | 어디에 있는가 |
 |---|---|
-| 미구현·미정 13건 | [DS-update-list.md](../DS-update-list.md) 의 상태 `요구` 인 행 |
+| 미구현·미정 | [DS-update-list.md](../DS-update-list.md) 의 상태 `요구` 인 행 |
 | 화면별 사양 | `design/screens/<id>/UI-SPEC.md` |
 | 이관 경위·파이프라인·진행 상태 | `design/_import/resume-pack/`(커밋하지 않는다) |
