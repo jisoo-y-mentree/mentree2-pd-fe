@@ -135,13 +135,13 @@
 
 | `DS-nn` | 무엇 | 확인한 것 |
 |---|---|---|
-| `DS-24` | `BookmarkToggle` 제거 | **파일 4본이 사라졌다.** `MentorCard` 가 `CountToggle` 로 옮겨졌다. **행은 다른 브랜치에 있다**(PR #20) — 거기서 상태를 올린다 |
+| — | `BookmarkToggle` 제거 | **파일 4본이 사라졌다.** `MentorCard` 가 `CountToggle` 로 옮겨졌다. **09-12 에 이 결정이 취소됐다** — 되돌림은 `DS-24` 가 갖는다 |
 | `DS-02` | `Tabs` | `components/navigation/` 에 들어왔다 |
 | `DS-11` | `EmptyState` | `components/surfaces/` 에 들어왔다 |
 
 **남은 것은 `DS-01` `Pagination` 과 `DS-10` `Skeleton` 둘뿐이다.**
 
-**미디어 위 오버레이의 정본이 이 과정에서 바뀌었다.** `MentorCard` 우상단의 스크랩이 `IconButton` 형태에서 **반투명 받침 ＋ `CountToggle`** 이 됐다. [DESIGN.md](DESIGN.md) §7 을 실물에 맞춰 고쳤다 — **문서가 부품을 따라간다.**
+**미디어 위 오버레이는 09-12 에 원래대로 돌아갔다.** `MentorCard` 우상단의 스크랩이 `IconButton` 형태에서 **반투명 받침 ＋ `CountToggle`** 로 바뀌었다가 **취소됐다**(`DS-24`). 한때 [DESIGN.md](DESIGN.md) §7 을 실물에 맞춰 고쳤으나 **되돌렸다** — 부품이 되돌아갔으므로 문서도 되돌아간다.
 
 ## 기표할 때의 규칙
 
