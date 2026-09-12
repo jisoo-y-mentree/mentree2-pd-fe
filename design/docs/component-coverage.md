@@ -105,7 +105,16 @@
 | 다이얼로그 | `qna-*` · `mentoring-*` · `login` | ✅ `Dialog` | |
 | 시트 | `insight-list`(국가 팝업) | ✅ `Sheet` | **국가 토큰 다중 선택**(OR). `qna-feed` 는 단일 선택이다 |
 | 테이블 | `mypage-*`(결제·정산 이력) | ✅ `Table` | |
-| 북마크 토글 | `mentor-search` · `qna-*` · `article-detail` | ✅ `BookmarkToggle` | |
+| 북마크 토글 | `top` · `mentor-search` · `mypage-*` | ✅ `BookmarkToggle` | **미디어 오버레이 전용**. 메타 줄은 `CountToggle` 이다([DESIGN.md](../DESIGN.md) §8.1) |
+| 칩 | `qna-feed` · `qna-detail` · `top` · `mentor-search` | ✅ `Chip` | **09-12 신규**(`DS-20`). 해시태그·걸린 조건 |
+| 카운트 토글 | `qna-*` · `top` | ✅ `CountToggle` | **09-12 신규**(`DS-21`). 도움돼요·스크랩 |
+| 답변 카드 | `qna-detail` | ✅ `AnswerCard` | **09-12 신규**(`DS-23`) |
+| 탭 | `mentor-detail` · `mypage-*` · `qna-*` · `insight-list` | ✅ `Tabs` | **09-12 신규**(`DS-02`) |
+| 페이지네이션 | `insight-list` · `notice-list` · `qna-feed` · `mypage-*` | ✅ `Pagination` | **09-12 신규**(`DS-01`) |
+| 빈 상태 | `mentor-search` · `qna-feed` · `notification` · `mypage-*` | ✅ `EmptyState` | **09-12 신규**(`DS-11`) |
+| 스켈레톤 | `mentor-search` · `qna-feed` · `article-detail` | ✅ `Skeleton` | **09-12 신규**(`DS-10`) |
+| 팝오버 | `mentor-detail` · `qna-detail` · `article-detail` | ✅ `Popover` | **09-12 신규**(`DS-12`). `Badge` 의 「+N 펼침」은 범위 밖 |
+| 토스트 | `mentor-search` · `article-detail` · `qna-*` | ✅ `Toast` | **09-12 신규**(`DS-09`). 실장은 `sonner` | |
 | 사이드바 | **어느 화면도 요구하지 않는다** | ⛔ `Sidebar` | **제거 대상**(`DS-19`). 아래 「정정」 참조 |
 
 ## 갭 후보 — `ds-export` 에 없다
@@ -120,7 +129,11 @@
 
 **목록은 지금 확정하고, 사양은 화면에서 나온다.** 실사용 없이 사양을 정하면 안 맞는다 — 재개 팩이 이미 겪었다(「`CtaSection` 컴포넌트화 보류. **샘플이 1개뿐이라 공통 규칙을 뽑을 수 없었다**」).
 
-### 기표한다 — 16건
+### 기표한다 — 16건 ／ **09-12 에 12건 완료**
+
+**남은 것은 6건이다** — `DS-13` `Calendar` · `DS-14` `Stepper` · `DS-15` `RichTextEditor` · `DS-16` `Breadcrumb` · `DS-17` `VerticalNav` · `DS-18` `MentoringCard`. **＋ `DS-19` `Sidebar` 제거**도 남았다.
+
+아래 표는 **무엇이 왜 필요했는가의 기록**이다. 지금 상태는 [DS-update-list](../DS-update-list.md) 가 갖는다.
 
 **우선순위는 요구 화면 수로 매긴다.** 위에서부터 만들면 덮이는 화면이 빨리 는다.
 
@@ -155,7 +168,7 @@
 > |---|---|
 > | 주석이 요소가 아니라 **거동**으로 적혀 있다 | **부품이 있는지 따로 확인한다.** 「눌린다」·「액션 버튼」·「해제 가능」은 요소명이 없어도 부품을 요구한다 |
 
-**위 4건(`Tabs`·`EmptyState`·`Pagination`·`Chip`)만 만들어도 19화면 중 10화면이 덮인다.**
+**위 4건(`Tabs`·`EmptyState`·`Pagination`·`Chip`)만 만들어도 19화면 중 10화면이 덮인다** — **09-12 에 넷 다 들어왔다.**
 
 합집합을 펼치면 — `mentor-detail` · `mypage-mentee` · `mypage-mentor` · `qna-feed` · `qna-detail` · `insight-list` · `mentor-search` · `notification` · `notice-list` · `top` **＝ 10/19.**
 
@@ -221,7 +234,7 @@
 | 1 | 갭을 **`DS-nn` 으로 기표** | ✅ `DS-09`〜`DS-19` ／ **09-11 에 `DS-20`〜`DS-23` 추가** |
 | 2 | `Sidebar` 의 정체를 가른다 | ✅ 위 「정정」 |
 | 3 | `mentor-detail` 의 부품을 화면에서 추출 | ✅ 보류 후보 5건 |
-| 4 | **Claude Design 에서 만든다** | 🔄 **화면 수 순이 기본이나 착수 중인 화면이 이긴다.** 아래 |
+| 4 | **Claude Design 에서 만든다** | 🔄 **12건 완료**(09-11·09-12). 남은 6건은 아래 |
 | 5 | 아이콘 **6계통**을 HugeIcon 으로 모은다 | ⏸ 화면마다 |
 | 6 | **1.0 계통 3덩어리를 다시 그릴지** | ✅ **결착.** 아래 |
 

@@ -1,14 +1,15 @@
 import React from "react";
 
 /**
- * FilterChip — Toggle 계열 텍스트 칩(aria-pressed 반영). BookmarkToggle의 형제.
- *  같은 Toggle 조상을 공유하되 형태가 다르다: 아이콘형=BookmarkToggle / 텍스트칩형=FilterChip.
+ * FilterChip — Toggle 계열 텍스트 칩(aria-pressed 반영).
+ *  같은 Toggle 조상을 공유하는 형제: 아이콘형=BookmarkToggle / 텍스트칩형=FilterChip.
+ *  둘 다 "selected=반전" 공통 원칙을 따른다 — CountToggle이 그 예외다(메타 줄 인라인, 반전 안 함).
  *  Badge(정적·인터랙션 불가)와 구분 — FilterChip은 클릭·선택 가능한 필터 요소.
  *
  * [크기·형태] 버튼 sm 체계(높이 32 · padding 0 12 · radius-md=12 · caption/500). pill 미사용.
  * [상태 — Toggle 공통 "selected=반전"] default: card 배경 + sage 아웃라인 + sage-700 텍스트 /
  *  hover: 옅은 sage 틴트(--secondary) / selected: primary green 반전(흰 텍스트) ←
- *  BookmarkToggle이 sage-900 반전인 것과 달리 FilterChip은 green 반전(필터 활성=브랜드 액션) /
+ *  CountToggle이 반전하지 않는 것과 달리 FilterChip은 green 반전(필터 활성=브랜드 액션) /
  *  focus-visible: --ring / disabled: 흐리게.
  * [leading] none(직무 등) · flag(국가 — Badge flag leading의 원형 국기 SVG 재사용).
  *  selected 시 국기는 고유색 유지(green 배경 위 국기 그대로).

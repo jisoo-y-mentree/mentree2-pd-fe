@@ -42,6 +42,10 @@
         "message": "Font not provided by the design system. Available: Pretendard JP Variable."
       },
       {
+        "selector": "JSXOpeningElement[name.name='AnswerCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:mentorName|mentorPhoto|country|countryLabel|activityLocation|headline|mentorProfileHref|mentorAnswersHref|body|date|liked|onLikeChange|likeCount|answerUrl|onCopyLink|accepted|isQuestionerView|onThanks|isMine|onEdit|onDelete|key|ref|className|style|children)$/]",
+        "message": "<AnswerCard> doesn't accept that prop. Declared props: mentorName, mentorPhoto, country, countryLabel, activityLocation, headline, mentorProfileHref, mentorAnswersHref, body, date, liked, onLikeChange, likeCount, answerUrl, onCopyLink, accepted, isQuestionerView, onThanks, isMine, onEdit, onDelete."
+      },
+      {
         "selector": "JSXOpeningElement[name.name='ArticleTag'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|hue|key|ref|className|style|children)$/]",
         "message": "<ArticleTag> doesn't accept that prop. Declared props: label, hue."
       },
@@ -70,12 +74,8 @@
         "message": "<Banner> doesn't accept that prop. Declared props: href, background, padding, clickable, children."
       },
       {
-        "selector": "JSXOpeningElement[name.name='BookmarkToggle'] > JSXAttribute > JSXIdentifier[name!=/^(?:selected|onChange|disabled|size|ariaLabel|key|ref|className|style|children)$/]",
-        "message": "<BookmarkToggle> doesn't accept that prop. Declared props: selected, onChange, disabled, size, ariaLabel."
-      },
-      {
-        "selector": "JSXOpeningElement[name.name='BookmarkToggle'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg)$/]",
-        "message": "<BookmarkToggle> size must be one of 'sm' | 'md' | 'lg'."
+        "selector": "JSXOpeningElement[name.name='BookmarkToggle'] > JSXAttribute > JSXIdentifier[name!=/^(?:selected|onChange|disabled|ariaLabel|key|ref|className|style|children)$/]",
+        "message": "<BookmarkToggle> doesn't accept that prop. Declared props: selected, onChange, disabled, ariaLabel."
       },
       {
         "selector": "JSXOpeningElement[name.name='BottomTabBar'] > JSXAttribute > JSXIdentifier[name!=/^(?:activeKey|authState|onNavigate|onAuth|style|key|ref|className|style|children)$/]",
@@ -118,8 +118,36 @@
         "message": "<Checkbox> doesn't accept that prop. Declared props: checked, onChange, disabled, label, id."
       },
       {
+        "selector": "JSXOpeningElement[name.name='Chip'] > JSXAttribute > JSXIdentifier[name!=/^(?:href|prefix|onRemove|disabled|size|children|key|ref|className|style|children)$/]",
+        "message": "<Chip> doesn't accept that prop. Declared props: href, prefix, onRemove, disabled, size, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Chip'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md)$/]",
+        "message": "<Chip> size must be one of 'sm' | 'md'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='CountToggle'] > JSXAttribute > JSXIdentifier[name!=/^(?:icon|tone|selected|onChange|count|disabled|ariaLabel|key|ref|className|style|children)$/]",
+        "message": "<CountToggle> doesn't accept that prop. Declared props: icon, tone, selected, onChange, count, disabled, ariaLabel."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='CountToggle'] > JSXAttribute[name.name='icon'] > Literal[value!=/^(?:favourite|bookmark)$/]",
+        "message": "<CountToggle> icon must be one of 'favourite' | 'bookmark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='CountToggle'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:rose|dark)$/]",
+        "message": "<CountToggle> tone must be one of 'rose' | 'dark'."
+      },
+      {
         "selector": "JSXOpeningElement[name.name='Dialog'] > JSXAttribute > JSXIdentifier[name!=/^(?:open|onClose|title|description|footer|width|children|key|ref|className|style|children)$/]",
         "message": "<Dialog> doesn't accept that prop. Declared props: open, onClose, title, description, footer, width, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='EmptyState'] > JSXAttribute > JSXIdentifier[name!=/^(?:icon|title|description|action|size|key|ref|className|style|children)$/]",
+        "message": "<EmptyState> doesn't accept that prop. Declared props: icon, title, description, action, size."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='EmptyState'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:md|sm)$/]",
+        "message": "<EmptyState> size must be one of 'md' | 'sm'."
       },
       {
         "selector": "JSXOpeningElement[name.name='Field'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|htmlFor|description|error|required|key|ref|className|style|children)$/]",
@@ -178,6 +206,22 @@
         "message": "<MentorCard> doesn't accept that prop. Declared props: name, role, company, intro, field, country, countryLabel, countryExtra, publishedAt, photo, href, bookmarked, onBookmarkChange."
       },
       {
+        "selector": "JSXOpeningElement[name.name='Pagination'] > JSXAttribute > JSXIdentifier[name!=/^(?:page|totalPages|onPageChange|key|ref|className|style|children)$/]",
+        "message": "<Pagination> doesn't accept that prop. Declared props: page, totalPages, onPageChange."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Popover'] > JSXAttribute > JSXIdentifier[name!=/^(?:open|onClose|side|align|minWidth|role|triggerRef|children|key|ref|className|style|children)$/]",
+        "message": "<Popover> doesn't accept that prop. Declared props: open, onClose, side, align, minWidth, role, triggerRef, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Popover'] > JSXAttribute[name.name='side'] > Literal[value!=/^(?:top|bottom|left|right)$/]",
+        "message": "<Popover> side must be one of 'top' | 'bottom' | 'left' | 'right'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Popover'] > JSXAttribute[name.name='align'] > Literal[value!=/^(?:start|end)$/]",
+        "message": "<Popover> align must be one of 'start' | 'end'."
+      },
+      {
         "selector": "JSXOpeningElement[name.name='QnaAnswerer'] > JSXAttribute > JSXIdentifier[name!=/^(?:src|name|alt|key|ref|className|style|children)$/]",
         "message": "<QnaAnswerer> doesn't accept that prop. Declared props: src, name, alt."
       },
@@ -206,6 +250,14 @@
         "message": "<SidebarItem> doesn't accept that prop. Declared props: key, label, icon, badge, section."
       },
       {
+        "selector": "JSXOpeningElement[name.name='Skeleton'] > JSXAttribute > JSXIdentifier[name!=/^(?:width|height|radius|count|key|ref|className|style|children)$/]",
+        "message": "<Skeleton> doesn't accept that prop. Declared props: width, height, radius, count."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Skeleton'] > JSXAttribute[name.name='radius'] > Literal[value!=/^(?:sm|md|full)$/]",
+        "message": "<Skeleton> radius must be one of 'sm' | 'md' | 'full'."
+      },
+      {
         "selector": "JSXOpeningElement[name.name='Switch'] > JSXAttribute > JSXIdentifier[name!=/^(?:checked|onChange|disabled|label|key|ref|className|style|children)$/]",
         "message": "<Switch> doesn't accept that prop. Declared props: checked, onChange, disabled, label."
       },
@@ -216,6 +268,18 @@
       {
         "selector": "JSXOpeningElement[name.name='TableColumn'] > JSXAttribute[name.name='align'] > Literal[value!=/^(?:left|right|center)$/]",
         "message": "<TableColumn> align must be one of 'left' | 'right' | 'center'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TabItem'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|label|count|disabled|key|ref|className|style|children)$/]",
+        "message": "<TabItem> doesn't accept that prop. Declared props: value, label, count, disabled."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ToastAction'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|onClick|emphasis|key|ref|className|style|children)$/]",
+        "message": "<ToastAction> doesn't accept that prop. Declared props: label, onClick, emphasis."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ToastAction'] > JSXAttribute[name.name='emphasis'] > Literal[value!=/^(?:primary)$/]",
+        "message": "<ToastAction> emphasis must be one of 'primary'."
       },
       {
         "selector": "JSXOpeningElement[name.name='ToggleGroup'] > JSXAttribute > JSXIdentifier[name!=/^(?:options|value|onChange|multiple|size|key|ref|className|style|children)$/]",
@@ -239,6 +303,9 @@
   ],
   "x-omelette": {
     "components": {
+      "AnswerCard": {
+        "replaces": []
+      },
       "ArticleTag": {
         "replaces": []
       },
@@ -272,7 +339,16 @@
       "Checkbox": {
         "replaces": []
       },
+      "Chip": {
+        "replaces": []
+      },
+      "CountToggle": {
+        "replaces": []
+      },
       "Dialog": {
+        "replaces": []
+      },
+      "EmptyState": {
         "replaces": []
       },
       "Field": {
@@ -302,6 +378,12 @@
       "MentorCard": {
         "replaces": []
       },
+      "Pagination": {
+        "replaces": []
+      },
+      "Popover": {
+        "replaces": []
+      },
       "QnaAnswerer": {
         "replaces": []
       },
@@ -320,10 +402,19 @@
       "SidebarItem": {
         "replaces": []
       },
+      "Skeleton": {
+        "replaces": []
+      },
       "Switch": {
         "replaces": []
       },
       "TableColumn": {
+        "replaces": []
+      },
+      "TabItem": {
+        "replaces": []
+      },
+      "ToastAction": {
         "replaces": []
       },
       "ToggleGroup": {

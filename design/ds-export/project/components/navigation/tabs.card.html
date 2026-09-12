@@ -1,0 +1,106 @@
+<!-- @dsCard group="Navigation" viewport="880x620" name="Tabs" subtitle="같은 셸 안에서 내용을 바꾸는 전환 — 선택 탭에 --primary 밑줄(면 채움 아님, ToggleGroup과 구별). 카운트 배지·가로 스크롤·WAI-ARIA 탭 패턴" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .stack { display: flex; flex-direction: column; gap: 26px; }
+  .block { display: flex; flex-direction: column; gap: 8px; max-width: 760px; }
+  .lbl { font-size: var(--text-caption); font-weight: 600; color: var(--muted-foreground); }
+  .cap { font-size: var(--text-caption); color: var(--muted-foreground); }
+  .panel { font-size: var(--text-body); color: var(--muted-foreground); }
+  .note { font-size: var(--text-caption); color: var(--muted-foreground); border-top: 1px solid var(--border); padding-top: 14px; line-height: 1.6; max-width: 760px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Tabs, TabPanel, ToggleGroup } = window.MentreeDesignSystem_2f86cf;
+
+  const TEN = [
+    { value: "q", label: "내가 질문한", count: 12 },
+    { value: "a", label: "받은 답변", count: 34 },
+    { value: "s", label: "스크랩", count: 8 },
+    { value: "m", label: "내 멘토링" },
+    { value: "p", label: "결제 내역" },
+    { value: "r", label: "리뷰", count: 3 },
+    { value: "n", label: "알림 설정" },
+    { value: "c", label: "계정" },
+    { value: "b", label: "차단 목록" },
+    { value: "h", label: "활동 내역", count: 120 },
+  ];
+
+  function Demo() {
+    const [two, setTwo] = React.useState("all");
+    const [four, setFour] = React.useState("answers");
+    const [ten, setTen] = React.useState("q");
+    const [mixed, setMixed] = React.useState("profile");
+    const [cond, setCond] = React.useState("done");
+
+    return (
+      <div className="stack">
+        <div className="block">
+          <span className="lbl">2탭 · 카운트 없음</span>
+          <Tabs idBase="feed" ariaLabel="Q&A 피드" value={two} onChange={setTwo}
+            items={[{ value: "all", label: "전체 질문" }, { value: "mine", label: "내 관심 분야" }]} />
+          <TabPanel idBase="feed" value={two} className="panel">선택: {two}</TabPanel>
+        </div>
+
+        <div className="block">
+          <span className="lbl">4탭 · 카운트 있음 (멘토 상세)</span>
+          <Tabs idBase="mentor" ariaLabel="멘토 상세" value={four} onChange={setFour}
+            items={[
+              { value: "intro", label: "소개" },
+              { value: "answers", label: "답변", count: 48 },
+              { value: "reviews", label: "후기", count: 12 },
+              { value: "sessions", label: "멘토링", count: 3 },
+            ]} />
+          <TabPanel idBase="mentor" value={four} className="panel">선택: {four} — 선택 탭의 배지는 green tint, 미선택은 뉴트럴</TabPanel>
+        </div>
+
+        <div className="block" style={{ maxWidth: 520 }}>
+          <span className="lbl">10탭 · 넘쳐서 가로 스크롤 (마이페이지)</span>
+          <Tabs idBase="mypage" ariaLabel="마이페이지" value={ten} onChange={setTen} items={TEN} />
+          <TabPanel idBase="mypage" value={ten} className="panel">선택: {ten} — 줄바꿈하지 않는다. 가장자리 페이드가 더 있다는 신호. ←/→ 로 끝까지 이동해 보세요</TabPanel>
+        </div>
+
+        <div className="block">
+          <span className="lbl">disabled 섞임</span>
+          <Tabs idBase="acct" ariaLabel="계정" value={mixed} onChange={setMixed}
+            items={[
+              { value: "profile", label: "프로필", count: 2 },
+              { value: "pay", label: "결제 내역", disabled: true },
+              { value: "noti", label: "알림 설정" },
+              { value: "close", label: "탈퇴", disabled: true },
+            ]} />
+          <TabPanel idBase="acct" value={mixed} className="panel">선택: {mixed} — 화살표 이동은 disabled 탭을 건너뛴다</TabPanel>
+        </div>
+
+        <div className="block">
+          <span className="lbl">ToggleGroup과 나란히</span>
+          <Tabs idBase="cmp" ariaLabel="비교" value={four} onChange={setFour}
+            items={[{ value: "intro", label: "소개" }, { value: "answers", label: "답변", count: 48 }]} />
+          <div style={{ paddingTop: 12 }}>
+            <ToggleGroup size="sm" value={cond} onChange={setCond}
+              options={[{ value: "done", label: "답변 완료된 질문" }, { value: "waiting", label: "답변 기다리는 질문" }]} />
+          </div>
+          <span className="cap">위=Tabs(내용이 바뀐다·밑줄) / 아래=ToggleGroup(같은 목록의 조건이 바뀐다·면 채움)</span>
+        </div>
+
+        <div className="note">
+          WAI-ARIA 탭 패턴 — role=tablist/tab/tabpanel · aria-selected · aria-controls · roving tabindex(선택 탭만 Tab 순서) ·
+          ←/→ 이동, Home/End. 선택 표시는 밑줄 + 라벨 굵기 + 색으로, 색만으로 가르지 않는다.
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

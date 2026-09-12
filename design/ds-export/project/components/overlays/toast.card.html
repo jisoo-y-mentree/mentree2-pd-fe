@@ -1,0 +1,53 @@
+<!-- @dsCard group="Components" viewport="900x420" name="Toast" subtitle="잠깐 떴다 사라지는 알림 — 액션 수(0/1/2)가 종류와 체류 시간(3s/6s)을 정한다. hover·focus 시 정지. 실장은 sonner" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .cap { margin-top: 12px; font-size: var(--text-caption); color: var(--muted-foreground); line-height: 1.6; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Toast, Button } = window.MentreeDesignSystem_2f86cf;
+
+  function Demo() {
+    const [a, setA] = React.useState(false);
+    const [b, setB] = React.useState(false);
+    const [c, setC] = React.useState(false);
+    const [log, setLog] = React.useState("");
+
+    return (
+      <div>
+        <div className="row">
+          <Button size="sm" variant="outline" onClick={() => setA(true)}>A. 스크랩(실행취소 1개, 3s)</Button>
+          <Button size="sm" variant="outline" onClick={() => setB(true)}>B. 공유 대체(액션 0개, 3s)</Button>
+          <Button size="sm" variant="outline" onClick={() => setC(true)}>C. 알람 질문(2개, 6s)</Button>
+        </div>
+        <div className="cap">{log || "버튼을 눌러 토스트를 띄우세요. 토스트에 마우스를 올리면 타이머가 멈춥니다."}</div>
+
+        <Toast open={a} message="스크랩했습니다"
+          actions={[{ label: "실행취소", emphasis: "primary", onClick: () => { setLog("실행취소 클릭"); setA(false); } }]}
+          onDismiss={() => setA(false)} />
+        <Toast open={b} message="링크를 복사했습니다" onDismiss={() => setB(false)} />
+        <Toast open={c} message="답변이 달리면 알람을 받을까요?"
+          actions={[
+            { label: "받기", onClick: () => { setLog("받기 선택"); setC(false); } },
+            { label: "괜찮아요", onClick: () => { setLog("괜찮아요 선택"); setC(false); } },
+          ]}
+          onDismiss={() => { setLog("응답 없음 → 기본값 '안 받음'으로 확정(화면 책임)"); setC(false); }} />
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

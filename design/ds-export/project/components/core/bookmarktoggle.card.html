@@ -1,0 +1,58 @@
+<!-- @dsCard group="Components" viewport="820x260" name="BookmarkToggle" subtitle="미디어 오버레이 아이콘 토글 — IconButton default 형태, selected는 반전(--sage-900+--sage-50). CountToggle과 경계는 '어디에 놓이는가'" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .stack { display: flex; flex-direction: column; gap: 22px; }
+  .row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .lbl { font-size: var(--text-caption); font-weight: 600; color: var(--muted-foreground); width: 110px; flex: 0 0 auto; }
+  .cap { font-size: var(--text-caption); color: var(--muted-foreground); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { BookmarkToggle } = window.MentreeDesignSystem_2f86cf;
+
+  function Live({ initial }) {
+    const [on, setOn] = React.useState(initial);
+    return <BookmarkToggle selected={on} onChange={setOn} />;
+  }
+
+  function Demo() {
+    return (
+      <div className="stack">
+        <div className="row">
+          <span className="lbl">기본</span>
+          <Live initial={false} />
+          <Live initial={true} />
+          <span className="cap">미선택=outline · 선택=반전(--sage-900 + --sage-50)</span>
+        </div>
+        <div className="row">
+          <span className="lbl">disabled</span>
+          <BookmarkToggle disabled />
+          <BookmarkToggle selected disabled />
+        </div>
+        <div className="row">
+          <span className="lbl">사진 위</span>
+          <div style={{ position: "relative", width: 180, height: 110, borderRadius: "var(--radius-md)", overflow: "hidden", background: "linear-gradient(135deg, var(--sage-400), var(--sage-700))" }}>
+            <div style={{ position: "absolute", top: 8, right: 8 }}>
+              <Live initial={false} />
+            </div>
+          </div>
+          <span className="cap">미디어 오버레이 단독 액션 — IconButton과 같은 박스라 사진 위에서도 또렷하다</span>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

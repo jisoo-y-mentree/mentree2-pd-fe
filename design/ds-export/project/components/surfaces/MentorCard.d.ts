@@ -7,11 +7,13 @@ import React from "react";
  * 미디어(Desktop 3:2 · Mobile 5:4, cover 크롭)는 --card-media-margin 인셋 + --card-media-radius. hover 시 shadow-md만(이동 없음, ~150ms).
  * 카드 전체가 멘토 상세 링크; 미디어 오버레이 3종은 각각 독립(전파 차단):
  *  좌상단 "신규 멘토"(green status 배지, publishedAt 기준 공개 후 1달 노출) ·
- *  우상단 BookmarkToggle(IconButton default 형태, 8px 인셋) ·
+ *  우상단 스크랩(BookmarkToggle — 미디어 오버레이 전용, IconButton default 형태·반전, 8px 인셋) ·
  *  하단 배지 행 — 국가 배지(flag + 라벨 + "+N ⌄" 정적, 펼침은 Badge 확장 OPEN) + 직무 배지(뉴트럴 sm).
  * 텍스트 오버플로: 이름·직무·회사·소개 1줄 …; Mobile(~768) 국가 배지는 국기만, 소개는 2줄 허용.
+ *
+ * 루트는 <article>(스트레치 링크) — <a>가 아니다. href는 이름 링크로 넘어간다.
  */
-export interface MentorCardProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "onChange"> {
+export interface MentorCardProps extends React.HTMLAttributes<HTMLElement> {
   name: string;
   /** 직무(본문, 14px medium). */
   role?: string;

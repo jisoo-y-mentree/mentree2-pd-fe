@@ -12,4 +12,4 @@ export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   ariaLabel?: string;
 }
 
-export function IconButton(props: IconButtonProps): JSX.Element;
+export const IconButton: React.ForwardRefExoticComponent<IconButtonProps & React.RefAttributes<HTMLButtonElement>>;

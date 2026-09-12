@@ -103,16 +103,18 @@
 
 ## 컴포넌트
 
-관습적 프리미티브는 현 토큰 기준으로 정돈해 유지합니다: **Button · IconButton · Icon · Badge · Avatar/AvatarGroup · BookmarkToggle · FilterChip · Input · Field/FieldGroup · Select · Checkbox · RadioGroup · Switch · ToggleGroup · Card · Table · Dialog · Sheet**. 네비게이션은 **Header · Footer**(canon), **Sidebar**(참조·레거시).
+관습적 프리미티브는 현 토큰 기준으로 정돈해 유지합니다: **Button · IconButton · Icon · Badge · Chip · Avatar/AvatarGroup · BookmarkToggle · CountToggle · FilterChip · Input · Field/FieldGroup · Select · Checkbox · RadioGroup · Switch · ToggleGroup · Card · Table · Dialog · Sheet · Popover · Toast**. 네비게이션은 **Header · Footer**(canon), **Sidebar**(참조·레거시).
 
 카드가 의존할 기반 프리미티브 3종:
 
 - **Avatar / AvatarGroup** \[DS-GAP\] — 원형 아바타(이미지 + 이니셜 fallback, sage) + 겹침 그룹(흰 링 + `+K` 오버플로우).
 - **Badge** — 계열(분류 뉴트럴 / 상태 green·destructive·muted / 질적태그 9색 `--badge-*`) × leading(none·dot·flag·avatar) × 사이즈. 질적태그는 green 제외·blue는 Biz 파랑과 구분. 실제 태그↔색 매핑은 미정.
-- **BookmarkToggle** — Toggle 기반 아이콘 토글(aria-pressed). 미선택=outline / 선택=fill, 색은 `--foreground`(초록 아님).
+- **Chip** — 눌리지만 켜지지 않는 칩(selected 없음). `--muted` 채움 + 아웃라인 없음 — Badge(흰 면+sage 아웃라인, 안 눌림)·FilterChip(흰 면+sage 아웃라인→green 반전, 눌리고 켜짐)과 구분. href(이동)·onRemove(제거)·표시 전용.
+- **BookmarkToggle** — 미디어 오버레이 전용 아이콘 토글(사진 위·단독·반전). IconButton default 형태 그대로(박스 38·아이콘 18). CountToggle과 경계는 "카운트 유무"가 아니라 "어디에 놓이는가"(2026-09-11 CountToggle로 흡수 → 09-12 되돌림).
+- **CountToggle** — 메타 줄 인라인 전용 아이콘+카운트 토글(도움돼요·스크랩 공용, count 필수). selected는 반전하지 않음(아이콘 fill + tone 색만, green 없음) — 목록 다수 노출 시 반전 과다를 피하는 예외.
 - **FilterChip** — Toggle 계열 텍스트 칩(BookmarkToggle의 형제, 아이콘형↔텍스트칩형). 선택 가능한 필터 요소(정적 Badge와 구분). 버튼 sm 기하(높이 32·radius-md·caption/500, pill 아님). "selected=반전" 공통 원칙 상속 — FilterChip은 primary green 반전. leading none·flag(원형 국기 재사용).
 
-`window.MentreeDesignSystem_2f86cf`에서 읽습니다(41개). 각 컴포넌트의 `*.prompt.md` 참조.
+`window.MentreeDesignSystem_2f86cf`에서 읽습니다(46개). 각 컴포넌트의 `*.prompt.md` 참조.
 
 ### 배치 컴포넌트
 
@@ -127,15 +129,24 @@
 - **MentorCard** — 세로형 멘토 카드. Badge·BookmarkToggle 조립. 카드 공통 셸(white·1px sage-200·shadow-sm·radius-lg, hover 시 shadow-md만)을 정의 — 이후 다른 카드가 상속. 카드 전체=상세 링크, 우상단 북마크=독립 클릭.
 - **QnaCard** — 미디어 없는 Q&A 텍스트 카드. 카드 기하·elevation·동심원 상속(패딩 --card-content-padding 통일). 상단 카테고리 배지 + 조회수/좋아요(무상태 카운트), 제목 h3·발췌 2줄 고정(line-clamp), 하단 답변자 AvatarGroup + "멘토 답변 N개".
 - **ArticlePreview** — **투명 콘텐츠 프리뷰(카드 아님)**. 표면 규칙상 썸네일이 경계를 만들어 카드 셸 미상속(배경 투명·테두리/그림자/마진 없음). 동심원 기하는 미디어에만(16:9 + radius 14). 제목 h3 2줄·발췌 3줄 고정, 하단 컬러 태그(질적태그 팔레트만). hover 시 썸네일에만 elevation(이동 없음). 카드 전체=아티클 상세 링크.
-- **InterviewCard** — 인물 인터뷰 카드(표면 규칙 1단계). 좌우 가로 분할(좌 1:1 미디어 / 우 정보), 카드 셸·동심원 상속. featured(대형·발췌 있음)/compact(소형·발췌 없음) size 변형. 국기+직무 배지, 제목, 인물명(강조)·회사·직함(muted). 카드 전체=인터뷰 상세, 북마크 없음.
+- **InterviewCard** — 인물 인터뷰 카드(표면 규칙 1단계). 좌우 가로 분할(좌 1:1 미디어 / 우 정보), 카드 셸·동심원 상속. featured(대형·발췌 있음)/compact(소
+- **AnswerCard** — Q&A 상세의 멘토 답변 1건. QnaCard(질문·카드 전체 클릭)와 달리 갈 곳이 없어 스트레치 링크 없음(href 없음). 멘토 헤더(전환 핵심 루트)+본문 전문+도움돼요(rose)+공유+채택 표시+감사인사. 스크랩 없음(목록 단위가 질문이라 질문 카드에만).형·발췌 없음) size 변형. 국기+직무 배지, 제목, 인물명(강조)·회사·직함(muted). 카드 전체=인터뷰 상세, 북마크 없음.
+
+### 표면 (surfaces)
+
+- **EmptyState** — 목록 0건 자리에 서는 부품. 아이콘(HugeIcons·선택)·제목(필수)·설명(선택)·액션(Button 0~1개) 4단 가운데 정렬 슬롯 구성. "아직 없다"/"찾았는데 없다"를 prop으로 가르지 않고 화면이 문구로 정합니다(기본 문구 하드코딩 없음 — 한/일 2개국어). 크기 md(목록 전체)·sm(위젯·드롭다운, 아이콘 축소·설명 생략 가능). 배경·테두리 없음(카드 셸 미상속), 제목 `--foreground` / 설명·아이콘 `--muted-foreground`, 채도·일러스트 금지.
+- **Skeleton** — 로딩 중 자리를 잡아두는 회색 덩어리 **프리미티브 하나**(`width`·`height`·`radius` sm/md/full·`count`). 카드/목록 모양 부품을 만들지 않습니다 — 형태는 화면이 배치해서 만듭니다(`SkeletonCard` 금지). `count`≥2는 줄 간격을 두고 쌓이며 마지막 줄 폭 60%. 스피너 대체. 은은한 펄스 하나만(shimmer 금지 — 한 화면 12장이 동시에 훑으면 시끄러움), `prefers-reduced-motion`에서 정지. 색은 `--muted`만. 자신은 `aria-hidden`, 감싸는 영역의 `aria-busy`는 화면의 일. 개수도 화면 사양이 정합니다(Q&A 피드 1페이지 6장·이후 12장).
+
+### 내비게이션
+
+- **Pagination** — 목록의 쪽 이동(번호 — 「더보기」 아님). 아티클 목록·공지사항·Q&A 피드·마이페이지 탭이 **같은 규칙**을 씁니다. 접기 「1 … 현재±2 … 끝」(모바일 ±1, 와이어 근거 없음), 「…」이 1페이지만 가리면 접지 않음. 처음·끝 점프 « » 는 **마지막 번호 뒤에 나란히**(‹ › 없음), 양 끝에서 비활성. 현재 페이지=`--primary` 채움 + `aria-current`(버튼 아님·눌리지 않음). 보이는 사각형 40 / 누르는 면 44x44, tabular 숫자. 제어형(`page`·`totalPages`·`onPageChange` — URL에 page를 담는 화면이 있음).
+- **Tabs** — 같은 셸 안에서 내용을 바꾸는 전환(WAI-ARIA 탭 패턴). 선택 탭에 `--primary` 밑줄 + 라벨 굵기·색(색만으로 가르지 않음) — 면을 채우는 ToggleGroup(같은 목록의 조건 변경)과 구별된다. 라벨 뒤 카운트 Badge(선택=green tint / 미선택=뉴트럴), 탭 2~10개는 줄바꿈 없이 가로 스크롤 + 가장자리 페이드. 제어형.
 
 ### DS-GAP 후보 (아직 만들지 않음 — 메모만)
 
 리스트/필터 화면에 필요할 수 있으나 확정 와이어프레임 전까지 **구현하지 않습니다**. shadcn/ui·이 시스템에 아직 없는 후보:
 
-- **Filter chip** — 리스트/검색 필터 토글 칩
-- **Pagination** — 목록 페이지 이동
-- **Tabs** — 상세/섹션 탭 전환
+(**Filter chip** → `FilterChip`, **Tabs** → `Tabs`, **Pagination** → `Pagination`, 빈 상태 → `EmptyState`, 로딩 → `Skeleton`으로 구현 완료. 남은 후보 없음.)
 
 필요해지면 `{/* DS-GAP: [컴포넌트명] — shadcn/ui 에 해당 없음, 커스텀 */}`로 명시 후 구현하고, 시각 구조는 별도 제공되는 와이어프레임을 참조합니다.
 

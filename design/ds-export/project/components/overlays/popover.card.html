@@ -1,0 +1,73 @@
+<!-- @dsCard group="Components" viewport="760x260" name="Popover" subtitle="앵커에 붙는 오버레이 껍데기 — 위치·면·닫기(바깥클릭·ESC)·포커스 복귀만. 메뉴로 쓸 때 popoverMenuItemStyle" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .row { display: flex; align-items: flex-start; gap: 40px; }
+  .cap { margin-top: 10px; font-size: var(--text-caption); color: var(--muted-foreground); max-width: 220px; }
+  .note { margin-top: 20px; font-size: var(--text-caption); color: var(--muted-foreground); border-top: 1px solid var(--border); padding-top: 14px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Popover, popoverMenuItemStyle, IconButton } = window.MentreeDesignSystem_2f86cf;
+
+  function MoreMenu() {
+    const [open, setOpen] = React.useState(false);
+    const ref = React.useRef(null);
+    return (
+      <div style={{ position: "relative" }}>
+        <IconButton ref={ref} icon="more-horizontal-circle-01" ariaLabel="더보기" onClick={() => setOpen(v => !v)} />
+        <Popover open={open} onClose={() => setOpen(false)} role="menu" side="bottom" align="end" triggerRef={ref}>
+          <button type="button" className="mt-popover-menuitem" style={popoverMenuItemStyle} onClick={() => setOpen(false)}>수정</button>
+          <button type="button" className="mt-popover-menuitem" style={{ ...popoverMenuItemStyle, color: "var(--destructive)" }} onClick={() => setOpen(false)}>삭제</button>
+        </Popover>
+      </div>
+    );
+  }
+
+  function ShareMenu() {
+    const [open, setOpen] = React.useState(false);
+    const ref = React.useRef(null);
+    return (
+      <div style={{ position: "relative" }}>
+        <IconButton ref={ref} icon="share-08" ariaLabel="공유" onClick={() => setOpen(v => !v)} />
+        <Popover open={open} onClose={() => setOpen(false)} role="menu" side="bottom" align="start" triggerRef={ref}>
+          <button type="button" className="mt-popover-menuitem" style={popoverMenuItemStyle} onClick={() => setOpen(false)}>이 답변 링크 복사</button>
+        </Popover>
+      </div>
+    );
+  }
+
+  function Demo() {
+    return (
+      <div>
+        <div className="row">
+          <div>
+            <ShareMenu />
+            <div className="cap">공유 — align="start". PC 전용(모바일은 화면이 OS 공유로 대체)</div>
+          </div>
+          <div>
+            <MoreMenu />
+            <div className="cap">더보기 — align="end". 파괴적 항목은 --destructive</div>
+          </div>
+        </div>
+        <div className="note">
+          클릭해서 열고, 바깥 클릭 또는 ESC로 닫아보세요 — 닫히면 포커스가 트리거(⋮ 아이콘)로 돌아갑니다.
+          Tab으로 항목 이동(항목이 2~3개라 화살표 키 내비게이션은 없음).
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>
