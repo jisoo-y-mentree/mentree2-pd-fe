@@ -10,6 +10,10 @@ import React from "react";
 export interface ChipProps extends React.HTMLAttributes<HTMLElement> {
   /** 링크로 렌더(<a>). hover 시 라벨이 --primary. onRemove와 함께 쓰면 형제로 배치된다. */
   href?: string;
+  /** ✕ 버튼의 접근명. 기본 "삭제" — 목록에 여러 Chip이 있으면 "<태그명> 삭제"처럼 구체적으로 넘긴다(TagInput 등). */
+  removeAriaLabel?: string;
+  /** href·onRemove가 없을 때만 <button type="button">으로 렌더. 눌려도 켜지지 않음(라벨 색 안 바뀜) — 상태 없이 "더한다·고른다"에 쓴다. 켜짐이 필요하면 FilterChip. */
+  onClick?: () => void;
   /** 라벨 앞에 붙는 문자(해시태그는 "#"). 기본값 없음 — 라벨 문자열에 #를 넣지 않는다. */
   prefix?: string;
   /** 제거 콜백. 있으면 trailing에 ✕(HugeIcons cancel-01) 버튼이 별도 엘리먼트로 붙는다. */

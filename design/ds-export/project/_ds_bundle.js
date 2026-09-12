@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"MentreeDesignSystem_2f86cf","components":[{"name":"Avatar","sourcePath":"components/core/Avatar.jsx"},{"name":"AvatarGroup","sourcePath":"components/core/Avatar.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"BookmarkToggle","sourcePath":"components/core/BookmarkToggle.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Chip","sourcePath":"components/core/Chip.jsx"},{"name":"CountToggle","sourcePath":"components/core/CountToggle.jsx"},{"name":"FilterChip","sourcePath":"components/core/FilterChip.jsx"},{"name":"Icon","sourcePath":"components/core/Icon.jsx"},{"name":"IconButton","sourcePath":"components/core/IconButton.jsx"},{"name":"Checkbox","sourcePath":"components/forms/Checkbox.jsx"},{"name":"Field","sourcePath":"components/forms/Field.jsx"},{"name":"FieldGroup","sourcePath":"components/forms/Field.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"RadioGroup","sourcePath":"components/forms/RadioGroup.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"},{"name":"ToggleGroup","sourcePath":"components/forms/ToggleGroup.jsx"},{"name":"Banner","sourcePath":"components/navigation/Banner.jsx"},{"name":"BottomTabBar","sourcePath":"components/navigation/BottomTabBar.jsx"},{"name":"CalloutBar","sourcePath":"components/navigation/CalloutBar.jsx"},{"name":"Carousel","sourcePath":"components/navigation/Carousel.jsx"},{"name":"Footer","sourcePath":"components/navigation/Footer.jsx"},{"name":"Header","sourcePath":"components/navigation/Header.jsx"},{"name":"Pagination","sourcePath":"components/navigation/Pagination.jsx"},{"name":"SectionHeader","sourcePath":"components/navigation/SectionHeader.jsx"},{"name":"Sidebar","sourcePath":"components/navigation/Sidebar.jsx"},{"name":"Tabs","sourcePath":"components/navigation/Tabs.jsx"},{"name":"TabPanel","sourcePath":"components/navigation/Tabs.jsx"},{"name":"NAV_PRIMARY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_AUTH","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_UTILITY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_DETAIL","sourcePath":"components/navigation/nav-ia.js"},{"name":"Dialog","sourcePath":"components/overlays/Dialog.jsx"},{"name":"Popover","sourcePath":"components/overlays/Popover.jsx"},{"name":"Sheet","sourcePath":"components/overlays/Sheet.jsx"},{"name":"Toast","sourcePath":"components/overlays/Toast.jsx"},{"name":"AnswerCard","sourcePath":"components/surfaces/AnswerCard.jsx"},{"name":"ArticlePreview","sourcePath":"components/surfaces/ArticlePreview.jsx"},{"name":"Card","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardHeader","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardTitle","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardDescription","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardContent","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardFooter","sourcePath":"components/surfaces/Card.jsx"},{"name":"EmptyState","sourcePath":"components/surfaces/EmptyState.jsx"},{"name":"InterviewCard","sourcePath":"components/surfaces/InterviewCard.jsx"},{"name":"MentorCard","sourcePath":"components/surfaces/MentorCard.jsx"},{"name":"QnaCard","sourcePath":"components/surfaces/QnaCard.jsx"},{"name":"Skeleton","sourcePath":"components/surfaces/Skeleton.jsx"},{"name":"Table","sourcePath":"components/surfaces/Table.jsx"}],"sourceHashes":{"components/core/Avatar.jsx":"0f3ffc5f31ff","components/core/Badge.jsx":"c7b9be0e02f2","components/core/BookmarkToggle.jsx":"7ea2c991107e","components/core/Button.jsx":"a5114fd5d2aa","components/core/Chip.jsx":"e1c1f9b42269","components/core/CountToggle.jsx":"aca1e44ee376","components/core/FilterChip.jsx":"3c34090cb434","components/core/Icon.jsx":"021313e06cd9","components/core/IconButton.jsx":"e1db1fbc8c1b","components/forms/Checkbox.jsx":"f7c99f0c94f3","components/forms/Field.jsx":"fec68edbf693","components/forms/Input.jsx":"d0a1ec848714","components/forms/RadioGroup.jsx":"f8e7f8aaa3ba","components/forms/Select.jsx":"6b9e34922aed","components/forms/Switch.jsx":"f3bca0c8c43a","components/forms/ToggleGroup.jsx":"c7a2bba81517","components/navigation/Banner.jsx":"897c8f74939c","components/navigation/BottomTabBar.jsx":"25ee0db58c82","components/navigation/CalloutBar.jsx":"092df60cda63","components/navigation/Carousel.jsx":"17be8b079c53","components/navigation/Footer.jsx":"071aa679b475","components/navigation/Header.jsx":"323047247fb7","components/navigation/Pagination.jsx":"ca08ef086066","components/navigation/SectionHeader.jsx":"9092de3b1569","components/navigation/Sidebar.jsx":"d290d8096d0f","components/navigation/Tabs.jsx":"93fd0080e9ef","components/navigation/nav-ia.js":"00ab9777819d","components/overlays/Dialog.jsx":"6851075179eb","components/overlays/Popover.jsx":"7a3071566620","components/overlays/Sheet.jsx":"219e7b9172f9","components/overlays/Toast.jsx":"18da6504e680","components/surfaces/AnswerCard.jsx":"21af1ca32fc6","components/surfaces/ArticlePreview.jsx":"e9a45a89b3cd","components/surfaces/Card.jsx":"155a05c05916","components/surfaces/EmptyState.jsx":"d3665e72f51e","components/surfaces/InterviewCard.jsx":"4e535f7526a6","components/surfaces/MentorCard.jsx":"8e23d0cd3232","components/surfaces/QnaCard.jsx":"9a4940c9725b","components/surfaces/Skeleton.jsx":"5816ddc5bd5d","components/surfaces/Table.jsx":"cd55307893a4"},"inlinedExternals":[],"unexposedExports":[{"name":"popoverMenuItemStyle","sourcePath":"components/overlays/Popover.jsx"}]} */
+/* @ds-bundle: {"format":4,"namespace":"MentreeDesignSystem_2f86cf","components":[{"name":"Avatar","sourcePath":"components/core/Avatar.jsx"},{"name":"AvatarGroup","sourcePath":"components/core/Avatar.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"BookmarkToggle","sourcePath":"components/core/BookmarkToggle.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Chip","sourcePath":"components/core/Chip.jsx"},{"name":"CountToggle","sourcePath":"components/core/CountToggle.jsx"},{"name":"FilterChip","sourcePath":"components/core/FilterChip.jsx"},{"name":"Icon","sourcePath":"components/core/Icon.jsx"},{"name":"IconButton","sourcePath":"components/core/IconButton.jsx"},{"name":"Checkbox","sourcePath":"components/forms/Checkbox.jsx"},{"name":"Field","sourcePath":"components/forms/Field.jsx"},{"name":"FieldGroup","sourcePath":"components/forms/Field.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"RadioGroup","sourcePath":"components/forms/RadioGroup.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"},{"name":"TagInput","sourcePath":"components/forms/TagInput.jsx"},{"name":"ToggleGroup","sourcePath":"components/forms/ToggleGroup.jsx"},{"name":"Banner","sourcePath":"components/navigation/Banner.jsx"},{"name":"BottomTabBar","sourcePath":"components/navigation/BottomTabBar.jsx"},{"name":"CalloutBar","sourcePath":"components/navigation/CalloutBar.jsx"},{"name":"Carousel","sourcePath":"components/navigation/Carousel.jsx"},{"name":"Footer","sourcePath":"components/navigation/Footer.jsx"},{"name":"Header","sourcePath":"components/navigation/Header.jsx"},{"name":"Pagination","sourcePath":"components/navigation/Pagination.jsx"},{"name":"SectionHeader","sourcePath":"components/navigation/SectionHeader.jsx"},{"name":"Sidebar","sourcePath":"components/navigation/Sidebar.jsx"},{"name":"Tabs","sourcePath":"components/navigation/Tabs.jsx"},{"name":"TabPanel","sourcePath":"components/navigation/Tabs.jsx"},{"name":"NAV_PRIMARY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_AUTH","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_UTILITY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_DETAIL","sourcePath":"components/navigation/nav-ia.js"},{"name":"Dialog","sourcePath":"components/overlays/Dialog.jsx"},{"name":"Popover","sourcePath":"components/overlays/Popover.jsx"},{"name":"Sheet","sourcePath":"components/overlays/Sheet.jsx"},{"name":"Toast","sourcePath":"components/overlays/Toast.jsx"},{"name":"AnswerCard","sourcePath":"components/surfaces/AnswerCard.jsx"},{"name":"ArticlePreview","sourcePath":"components/surfaces/ArticlePreview.jsx"},{"name":"Card","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardHeader","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardTitle","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardDescription","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardContent","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardFooter","sourcePath":"components/surfaces/Card.jsx"},{"name":"EmptyState","sourcePath":"components/surfaces/EmptyState.jsx"},{"name":"InterviewCard","sourcePath":"components/surfaces/InterviewCard.jsx"},{"name":"MentorCard","sourcePath":"components/surfaces/MentorCard.jsx"},{"name":"QnaCard","sourcePath":"components/surfaces/QnaCard.jsx"},{"name":"Skeleton","sourcePath":"components/surfaces/Skeleton.jsx"},{"name":"Table","sourcePath":"components/surfaces/Table.jsx"}],"sourceHashes":{"components/core/Avatar.jsx":"0f3ffc5f31ff","components/core/Badge.jsx":"c7b9be0e02f2","components/core/BookmarkToggle.jsx":"7ea2c991107e","components/core/Button.jsx":"a5114fd5d2aa","components/core/Chip.jsx":"61062bba476b","components/core/CountToggle.jsx":"aca1e44ee376","components/core/FilterChip.jsx":"3c34090cb434","components/core/Icon.jsx":"021313e06cd9","components/core/IconButton.jsx":"e1db1fbc8c1b","components/forms/Checkbox.jsx":"f7c99f0c94f3","components/forms/Field.jsx":"fec68edbf693","components/forms/Input.jsx":"d0a1ec848714","components/forms/RadioGroup.jsx":"f8e7f8aaa3ba","components/forms/Select.jsx":"6b9e34922aed","components/forms/Switch.jsx":"f3bca0c8c43a","components/forms/TagInput.jsx":"8a0c0bddf356","components/forms/ToggleGroup.jsx":"c7a2bba81517","components/navigation/Banner.jsx":"897c8f74939c","components/navigation/BottomTabBar.jsx":"25ee0db58c82","components/navigation/CalloutBar.jsx":"092df60cda63","components/navigation/Carousel.jsx":"17be8b079c53","components/navigation/Footer.jsx":"071aa679b475","components/navigation/Header.jsx":"323047247fb7","components/navigation/Pagination.jsx":"ca08ef086066","components/navigation/SectionHeader.jsx":"9092de3b1569","components/navigation/Sidebar.jsx":"d290d8096d0f","components/navigation/Tabs.jsx":"93fd0080e9ef","components/navigation/nav-ia.js":"00ab9777819d","components/overlays/Dialog.jsx":"6851075179eb","components/overlays/Popover.jsx":"7a3071566620","components/overlays/Sheet.jsx":"219e7b9172f9","components/overlays/Toast.jsx":"18da6504e680","components/surfaces/AnswerCard.jsx":"21af1ca32fc6","components/surfaces/ArticlePreview.jsx":"e9a45a89b3cd","components/surfaces/Card.jsx":"155a05c05916","components/surfaces/EmptyState.jsx":"d3665e72f51e","components/surfaces/InterviewCard.jsx":"4e535f7526a6","components/surfaces/MentorCard.jsx":"8e23d0cd3232","components/surfaces/QnaCard.jsx":"9a4940c9725b","components/surfaces/Skeleton.jsx":"5816ddc5bd5d","components/surfaces/Table.jsx":"cd55307893a4"},"inlinedExternals":[],"unexposedExports":[{"name":"popoverMenuItemStyle","sourcePath":"components/overlays/Popover.jsx"}]} */
 
 (() => {
 
@@ -936,6 +936,8 @@ function Chip({
   href,
   prefix,
   onRemove,
+  onClick,
+  removeAriaLabel = "삭제",
   disabled = false,
   size = "md",
   children,
@@ -952,7 +954,7 @@ function Chip({
     document.head.appendChild(s);
   }, []);
   const s = SIZES[size] || SIZES.md;
-  const interactive = !disabled && (href || onRemove);
+  const interactive = !disabled && (href || onRemove || onClick);
   const bg = hover && !disabled ? "var(--sage-200)" : "var(--muted)";
   const labelColor = href && hover && !disabled ? "var(--primary)" : "var(--sage-700)";
   const outer = {
@@ -981,8 +983,8 @@ function Chip({
     }
   } : {};
   if (!onRemove) {
-    // 슬롯 없음(표시 전용) 또는 href만 — 단일 엘리먼트.
-    const Tag = href ? "a" : "span";
+    // 슬롯 없음(표시 전용) 또는 href만 또는 onClick만 — 단일 엘리먼트.
+    const Tag = href ? "a" : onClick ? "button" : "span";
     const tagProps = href ? disabled ? {
       "aria-disabled": true,
       tabIndex: -1,
@@ -991,18 +993,25 @@ function Chip({
       }
     } : {
       href
+    } : onClick ? {
+      type: "button",
+      disabled,
+      onClick: disabled ? undefined : onClick
     } : {};
     return /*#__PURE__*/React.createElement(Tag, _extends({
       className: "mt-chip"
     }, hoverHandlers, {
-      onMouseDown: href && !disabled ? () => setPressed(true) : undefined,
-      onMouseUp: href ? () => setPressed(false) : undefined,
+      onMouseDown: (href || onClick) && !disabled ? () => setPressed(true) : undefined,
+      onMouseUp: href || onClick ? () => setPressed(false) : undefined,
       style: {
         ...outer,
         padding: `0 ${s.pad}px`,
         color: labelColor,
         textDecoration: "none",
-        cursor: disabled ? "not-allowed" : href ? "pointer" : "default",
+        border: "none",
+        font: "inherit",
+        fontFamily: "inherit",
+        cursor: disabled ? "not-allowed" : href || onClick ? "pointer" : "default",
         ...style
       }
     }, tagProps, rest), prefix, children);
@@ -1038,7 +1047,7 @@ function Chip({
   }, prefix, children), /*#__PURE__*/React.createElement("button", {
     type: "button",
     className: "mt-chip-remove",
-    "aria-label": "\uC0AD\uC81C",
+    "aria-label": removeAriaLabel,
     disabled: disabled,
     onClick: e => {
       e.stopPropagation();
@@ -1543,6 +1552,236 @@ function Switch({
 }
 Object.assign(__ds_scope, { Switch });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/Switch.jsx", error: String((e && e.message) || e) }); }
+
+// components/forms/TagInput.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * TagInput — 태그를 넣고 빼는 폼 필드. qna-compose의 본체.
+ *  Chip을 대체하지 않는다 — Chip을 담는다. 화면에 보이는 태그는 전부 Chip md다(입력된 것=onRemove,
+ *  제안=onClick, 둘 다 --muted 기본색 그대로 — 같은 "태그" 데이터가 화면마다 색이 다르면 안 된다).
+ *  자리와 ✕ 유무로만 가른다: 입력된 것은 위(입력 줄)에 있고 ✕가 붙는다, 제안은 아래(제안 줄)에 있고 ✕가 없다.
+ *
+ *  바깥 상자는 Input의 테두리·radius·포커스 링 값을 그대로 가져와 쓴다(새 토큰 없음). 안쪽 어디에
+ *  포커스가 있어도(칩의 ✕ 버튼, 텍스트 입력) 링은 상자 자체에 그린다 — focusin/focusout을 상자 레벨에서 추적.
+ *
+ *  제안 줄은 하나뿐이고 갈아끼운다(쌓지 않음) — 입력 0~1글자="추천 태그"(suggestions 최대 5),
+ *  2글자 이상="이런 태그가 있어요"(completions 최대 3, 0건이면 "+ "<입력값>" 추가" 칩 1개로 자유입력 허용).
+ *  정렬·필터·글자수 판정 이상의 로직은 부품이 하지 않는다 — suggestions/completions는 바깥이 이미 정렬해
+ *  넘긴 배열이고, 부품은 ①자르기 ②이미 넣은 것 빼기 ③어느 목록을 보일지 고르기만 한다.
+ *
+ *  10개(max)가 차면 입력·+ 버튼을 비활성하고 제안 줄을 숨긴다. 카운터는 --primary로(에러 아닌 한계라 빨강 아님).
+ */
+function TagInput({
+  value,
+  onChange,
+  suggestions = [],
+  completions = [],
+  max = 10,
+  placeholder = "태그 입력하기",
+  disabled = false,
+  invalid = false,
+  inputValue,
+  onInputChange,
+  id,
+  style,
+  ...rest
+}) {
+  const [internalInput, setInternalInput] = React.useState("");
+  const [highlightIndex, setHighlightIndex] = React.useState(-1);
+  const [expanded, setExpanded] = React.useState(true);
+  const [boxFocused, setBoxFocused] = React.useState(false);
+  const boxRef = React.useRef(null);
+  const counterId = id ? `${id}-count` : undefined;
+  const current = inputValue !== undefined ? inputValue : internalInput;
+  const setCurrent = v => {
+    if (onInputChange) onInputChange(v);else setInternalInput(v);
+  };
+  const atMax = value.length >= max;
+  const trimmed = current.trim();
+  const already = new Set(value);
+  const mode = trimmed.length >= 2 ? "completion" : "suggestion";
+  const rawList = (mode === "completion" ? completions : suggestions).filter(t => !already.has(t));
+  const list = mode === "completion" ? rawList.slice(0, 3) : rawList.slice(0, 5);
+  const showAddCustom = mode === "completion" && list.length === 0 && trimmed.length > 0;
+  const items = showAddCustom ? [{
+    type: "add",
+    value: trimmed
+  }] : list.map(t => ({
+    type: "tag",
+    value: t
+  }));
+  const suggestionLabel = mode === "completion" ? "이런 태그가 있어요" : "추천 태그";
+  const showSuggestionRow = !atMax && !disabled && expanded && items.length > 0;
+  const commit = raw => {
+    const cleaned = raw.trim().replace(/^#+/, "").trim();
+    setHighlightIndex(-1);
+    if (!cleaned) return;
+    if (atMax) return;
+    if (already.has(cleaned)) {
+      setCurrent("");
+      return;
+    }
+    onChange([...value, cleaned]);
+    setCurrent("");
+    setExpanded(true);
+  };
+  const handleKeyDown = e => {
+    if (e.nativeEvent.isComposing) return; // 조합 중에는 아무 키도 가로채지 않는다
+    if (disabled || atMax) return;
+    if (e.key === "Escape") {
+      setExpanded(false);
+      setHighlightIndex(-1);
+      return;
+    }
+    if (e.key === "ArrowDown") {
+      if (items.length) {
+        e.preventDefault();
+        setExpanded(true);
+        setHighlightIndex(i => (i + 1) % items.length);
+      }
+      return;
+    }
+    if (e.key === "ArrowUp") {
+      if (items.length) {
+        e.preventDefault();
+        setExpanded(true);
+        setHighlightIndex(i => i <= 0 ? items.length - 1 : i - 1);
+      }
+      return;
+    }
+    if (e.key === "Enter") {
+      e.preventDefault();
+      commit(highlightIndex >= 0 && items[highlightIndex] ? items[highlightIndex].value : current);
+      return;
+    }
+    if (e.key === "," || e.key === " ") {
+      e.preventDefault();
+      commit(current);
+      return;
+    }
+    if (e.key === "Backspace" && current === "") {
+      if (value.length) onChange(value.slice(0, -1));
+      return;
+    }
+  };
+  const handleInputChange = e => {
+    setCurrent(e.target.value);
+    setHighlightIndex(-1);
+    setExpanded(true);
+  };
+  const borderColor = invalid ? "var(--destructive)" : boxFocused ? "var(--ring)" : "var(--input)";
+  return /*#__PURE__*/React.createElement("div", _extends({
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 4,
+      ...style
+    }
+  }, rest), /*#__PURE__*/React.createElement("div", {
+    ref: boxRef,
+    role: "group",
+    "aria-disabled": disabled || undefined,
+    "aria-label": "\uD0DC\uADF8",
+    onFocus: () => setBoxFocused(true),
+    onBlur: e => {
+      if (!e.currentTarget.contains(e.relatedTarget)) setBoxFocused(false);
+    },
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      background: disabled ? "var(--muted)" : "var(--card)",
+      border: `1px solid ${borderColor}`,
+      borderRadius: "var(--radius-md)",
+      boxShadow: boxFocused ? "0 0 0 3px color-mix(in oklch, var(--ring) 30%, transparent)" : "none",
+      transition: "border-color 150ms ease, box-shadow 150ms ease",
+      opacity: disabled ? 0.6 : 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexWrap: "wrap",
+      alignItems: "center",
+      gap: 6,
+      padding: "8px 8px 8px 11px",
+      minHeight: 38
+    }
+  }, value.map((tag, i) => /*#__PURE__*/React.createElement(__ds_scope.Chip, {
+    key: tag + i,
+    size: "md",
+    prefix: "#",
+    removeAriaLabel: `${tag} 삭제`,
+    onRemove: disabled ? undefined : () => onChange(value.filter((_, idx) => idx !== i))
+  }, tag)), /*#__PURE__*/React.createElement("input", {
+    id: id,
+    type: "text",
+    value: current,
+    disabled: disabled || atMax,
+    placeholder: value.length === 0 ? placeholder : "",
+    "aria-label": placeholder,
+    "aria-describedby": counterId,
+    onChange: handleInputChange,
+    onKeyDown: handleKeyDown,
+    style: {
+      flex: "1 1 80px",
+      minWidth: 80,
+      border: "none",
+      outline: "none",
+      background: "transparent",
+      fontFamily: "var(--font-sans)",
+      fontSize: "var(--text-body)",
+      letterSpacing: "-0.01em",
+      color: "var(--foreground)"
+    }
+  }), /*#__PURE__*/React.createElement(__ds_scope.IconButton, {
+    icon: "add-01",
+    variant: "ghost",
+    size: "sm",
+    ariaLabel: "\uD0DC\uADF8 \uCD94\uAC00",
+    disabled: disabled || atMax || !current.trim(),
+    onClick: () => commit(current)
+  })), showSuggestionRow && /*#__PURE__*/React.createElement("div", {
+    "aria-live": "polite",
+    style: {
+      display: "flex",
+      flexWrap: "wrap",
+      alignItems: "center",
+      gap: 8,
+      padding: "10px 11px 11px",
+      borderTop: "1px solid var(--border)"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: "var(--text-caption)",
+      color: "var(--muted-foreground)",
+      flex: "0 0 auto"
+    }
+  }, suggestionLabel), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 6
+    }
+  }, items.map((it, i) => /*#__PURE__*/React.createElement(__ds_scope.Chip, {
+    key: it.value + i,
+    size: "md",
+    prefix: it.type === "add" ? "+" : "#",
+    onClick: () => commit(it.value),
+    style: highlightIndex === i ? {
+      boxShadow: "inset 0 0 0 1px var(--ring)"
+    } : undefined
+  }, it.type === "add" ? `"${it.value}" 추가` : it.value))))), /*#__PURE__*/React.createElement("span", {
+    id: counterId,
+    style: {
+      alignSelf: "flex-end",
+      fontSize: "var(--text-caption)",
+      color: atMax ? "var(--primary)" : "var(--muted-foreground)",
+      fontWeight: atMax ? 600 : 400
+    }
+  }, value.length, "/", max));
+}
+Object.assign(__ds_scope, { TagInput });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/TagInput.jsx", error: String((e && e.message) || e) }); }
 
 // components/forms/ToggleGroup.jsx
 try { (() => {
@@ -5426,6 +5665,8 @@ __ds_ns.RadioGroup = __ds_scope.RadioGroup;
 __ds_ns.Select = __ds_scope.Select;
 
 __ds_ns.Switch = __ds_scope.Switch;
+
+__ds_ns.TagInput = __ds_scope.TagInput;
 
 __ds_ns.ToggleGroup = __ds_scope.ToggleGroup;
 

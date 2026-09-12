@@ -1,0 +1,62 @@
+<!-- @dsCard group="Components" viewport="640x420" name="TagInput" subtitle="Chip을 담는 태그 입력 — 상자는 Input과 같은 테두리·링. 제안 줄은 1개뿐(추천↔자동완성 갈아끼움). 10개에서 잠김" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .stack { display: flex; flex-direction: column; gap: 26px; max-width: 420px; }
+  .cap { font-size: var(--text-caption); color: var(--muted-foreground); line-height: 1.6; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { TagInput, Field } = window.MentreeDesignSystem_2f86cf;
+  const SUGGESTIONS = ["이력서", "면접", "포트폴리오", "이직", "커리어전환"];
+  const ALL_TAGS = ["이력서", "면접", "포트폴리오", "이직", "커리어전환", "일본어", "영어회화", "유학", "네트워킹", "번역"];
+
+  function Demo() {
+    const [tags, setTags] = React.useState(["일본어", "면접"]);
+    const [inputValue, setInputValue] = React.useState("");
+    const [full, setFull] = React.useState(Array.from({ length: 10 }, (_, i) => "태그" + (i + 1)));
+    const [fullInput, setFullInput] = React.useState("");
+
+    const trimmed = inputValue.trim();
+    const completions = trimmed.length >= 2 ? ALL_TAGS.filter((t) => t.includes(trimmed)) : [];
+
+    return (
+      <div className="stack">
+        <Field label="태그" description="최대 10개까지 태그 설정이 가능합니다">
+          <TagInput
+            id="tags-demo"
+            value={tags}
+            onChange={setTags}
+            inputValue={inputValue}
+            onInputChange={setInputValue}
+            suggestions={SUGGESTIONS}
+            completions={completions}
+          />
+        </Field>
+        <div className="cap">"일본" 등 2글자 이상 입력해보세요 — 자동완성으로 갈아끼워집니다. 목록에 없는 글자를 치면 "+ 추가" 칩이 뜹니다.</div>
+
+        <Field label="태그(가득 찼을 때)">
+          <TagInput id="tags-full" value={full} onChange={setFull} inputValue={fullInput} onInputChange={setFullInput} suggestions={SUGGESTIONS} />
+        </Field>
+        <div className="cap">10/10 — 입력·＋가 비활성되고 제안 줄이 숨습니다. 카운터는 --primary(에러 아닌 한계).</div>
+
+        <Field label="태그(비활성)">
+          <TagInput value={["이력서", "면접"]} onChange={() => {}} disabled />
+        </Field>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

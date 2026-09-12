@@ -103,7 +103,7 @@
 
 ## 컴포넌트
 
-관습적 프리미티브는 현 토큰 기준으로 정돈해 유지합니다: **Button · IconButton · Icon · Badge · Chip · Avatar/AvatarGroup · BookmarkToggle · CountToggle · FilterChip · Input · Field/FieldGroup · Select · Checkbox · RadioGroup · Switch · ToggleGroup · Card · Table · Dialog · Sheet · Popover · Toast**. 네비게이션은 **Header · Footer**(canon), **Sidebar**(참조·레거시).
+관습적 프리미티브는 현 토큰 기준으로 정돈해 유지합니다: **Button · IconButton · Icon · Badge · Chip · Avatar/AvatarGroup · BookmarkToggle · CountToggle · FilterChip · Input · Field/FieldGroup · TagInput · Select · Checkbox · RadioGroup · Switch · ToggleGroup · Card · Table · Dialog · Sheet · Popover · Toast**. 네비게이션은 **Header · Footer**(canon), **Sidebar**(참조·레거시).
 
 카드가 의존할 기반 프리미티브 3종:
 
@@ -114,7 +114,7 @@
 - **CountToggle** — 메타 줄 인라인 전용 아이콘+카운트 토글(도움돼요·스크랩 공용, count 필수). selected는 반전하지 않음(아이콘 fill + tone 색만, green 없음) — 목록 다수 노출 시 반전 과다를 피하는 예외.
 - **FilterChip** — Toggle 계열 텍스트 칩(BookmarkToggle의 형제, 아이콘형↔텍스트칩형). 선택 가능한 필터 요소(정적 Badge와 구분). 버튼 sm 기하(높이 32·radius-md·caption/500, pill 아님). "selected=반전" 공통 원칙 상속 — FilterChip은 primary green 반전. leading none·flag(원형 국기 재사용).
 
-`window.MentreeDesignSystem_2f86cf`에서 읽습니다(46개). 각 컴포넌트의 `*.prompt.md` 참조.
+`window.MentreeDesignSystem_2f86cf`에서 읽습니다(47개). 각 컴포넌트의 `*.prompt.md` 참조.
 
 ### 배치 컴포넌트
 

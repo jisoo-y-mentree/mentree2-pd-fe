@@ -5,9 +5,9 @@
 > 두 축의 정의는 [docs/SOURCES.md](../../docs/SOURCES.md) 「정본의 두 축」이 갖는다. FE 인계의 입력이다([ADR-0005](../../docs/adr/0005-design-team-deliverables.md)).
 
 - 출처: Claude Design (radarlab 계정) — 프로젝트 이름 **`M2 Design System`**
-- 원본: `M2 Design System-handoff (3).zip`
+- 원본: `M2 Design System-handoff (5).zip`
 - **반입일: 2026-09-12**
-- 원본 SHA-256: `26a7c12eb6d27b6334efd53e177b02f8419eae7e875411caeb0bcbc8024cfcb1`
+- 원본 SHA-256: `cb8079013e45301418f6f54a5dc0a93ba3607372f1ec7cf43796e178da7f345d`
 
 ### 교체 이력
 
@@ -16,6 +16,22 @@
 | 2026-08-31 | `Mentree2 Design System-handoff.zip` | `5e43bc6d53de` | 첫 반입 |
 | **2026-09-10** | `M2-Design-System-handoff.zip` | `727c5d60feaf` | **컴포넌트·토큰·guidelines 는 무변경**(166본 바이트 동일). 아래 2건만 |
 | **2026-09-12** | `M2 Design System-handoff (3).zip` | `26a7c12eb6d2` | **컴포넌트가 30본에서 39본이 됐다.** 아래 |
+| **2026-09-12** | `M2 Design System-handoff (5).zip` | `cb8079013e45` | **`TagInput` 1본이 늘어 40본이 됐다.** ＋ `Chip` 개정. 아래 |
+
+### 2026-09-12(2) — TagInput 이 들어왔다
+
+`DS-26` 이다. `qna-compose` 의 태그 입력 필드다.
+
+| 무엇 | 내용 |
+|---|---|
+| **신규** — `TagInput`(`forms`) | 상자 ＋ 입력 칸 ＋ 제안 줄 ＋ 10개 제한. **안에 세우는 태그는 전부 `Chip md`** 다 |
+| **개정** — `Chip` | `href`·`onRemove` 가 없고 `onClick` 만 있으면 `<button type="button">` 으로 렌더한다. **모양은 안 바뀐다.** ＋ `removeAriaLabel` |
+
+**`Chip` 을 안 늘리고 감쌌다.** 상자·키 처리·개수 제한은 **목록 전체를 알아야 하는 일**이라 칩 하나가 못 한다. 넣었으면 `QnaCard`·`AnswerCard` 의 해시태그가 그 무게를 같이 진다.
+
+**바깥 상자는 `Input` 의 값을 그대로 쓴다** — `--input`·`--ring`·`--destructive`·`--radius-md` 와 boxShadow·transition 이 문자열까지 같다. 새 값을 안 만들었다.
+
+**조합 중에는 아무 키도 가로채지 않는다.** 한글은 마지막 글자가 조합 중으로 남아, 안 막으면 Enter 가 조합보다 먼저 확정을 돌린다. 리포에서 키를 가로채는 첫 부품이다.
 
 ### 2026-09-12 — 컴포넌트 9본이 늘었다
 
@@ -30,7 +46,7 @@
 | **부수** — `AnswerCard` 가 자체 팝오버를 버리고 `Popover` 를 쓴다 | `DS-12` 의 뒤처리 |
 | **이름** — `bookmark.card.html` → `bookmarktoggle.card.html` | — |
 
-**외부 의존성은 여전히 0이다.** `Toast` 는 실장에서 `sonner` 로 가지만 **사양으로 지정만 하고 import 하지 않는다**([SOURCES.md](../../docs/SOURCES.md) 「외부 라이브러리를 쓰기로 한 부품」). 39본의 `import` 가 `react` 와 서로뿐임을 실측했다.
+**외부 의존성은 여전히 0이다.** `Toast` 는 실장에서 `sonner` 로 가지만 **사양으로 지정만 하고 import 하지 않는다**([SOURCES.md](../../docs/SOURCES.md) 「외부 라이브러리를 쓰기로 한 부품」). **40본의 `import` 가 `react` 와 서로뿐임을 실측했다.**
 
 **2026-09-10 의 실질 변경은 2건이다.**
 
@@ -54,8 +70,8 @@
 |---|---|---|
 | `project/tokens/` | 토큰 6본 — base · colors · typography · spacing · icons · fonts | ① 값의 정본 |
 | `project/styles.css` | 토큰을 묶는 진입점 | ① |
-| `project/components/` | 컴포넌트 30본. 각 `.jsx` ＋ `.d.ts` ＋ `.prompt.md` ＋ `.card.html` | ② 소스 |
-| `project/_ds_bundle.js` | 컴포넌트 41 export 번들 | ② |
+| `project/components/` | 컴포넌트 **40본**. 각 `.jsx` ＋ `.d.ts` ＋ `.prompt.md` ＋ `.card.html` | ② 소스 |
+| `project/_ds_bundle.js` | 컴포넌트 **52 export** 번들 | ② |
 | `project/_ds_manifest.json` | 컴포넌트·카드·토큰·폰트의 목록 | ② |
 | `project/guidelines/` | 원칙 16본(HTML) — 색 · 타입 · 간격 · 표면 · 동심중첩 · 브랜드 ／ **`03-responsive.md` — 반응형 3구간의 통합 지침** | ③ 원칙 |
 | `project/readme.md` · `SKILL.md` | DS 전체 서술과 빠른 참조 | ③ |
@@ -63,7 +79,7 @@
 | `project/ui_kits/mentree-top/` | TOP 화면 조립 예시(HTML) | ⑤ 화면 정적 |
 | `project/_adherence.oxlintrc.json` | Claude Design 쪽 lint 설정 | 참고 |
 
-컴포넌트가 30본인데 export 가 41개인 이유는 **하위 export** 때문이다. `Avatar`/`AvatarGroup`, `Card` 계열 6, `nav-ia.js` 의 `NAV_*` 4, `Field`/`FieldGroup` 이 별도로 세어진다.
+컴포넌트가 40본인데 export 가 52개인 이유는 **하위 export** 때문이다. `Avatar`/`AvatarGroup`, `Card` 계열 6, `nav-ia.js` 의 `NAV_*` 4, `Field`/`FieldGroup` 이 별도로 세어진다.
 
 ## 무엇을 뺐는가
 
@@ -79,6 +95,6 @@
 
 | 무엇 | 어디에 있는가 |
 |---|---|
-| 미구현·미정 8건 | [DS-update-list.md](../DS-update-list.md) `DS-01`〜`DS-08` |
+| 미구현·미정 13건 | [DS-update-list.md](../DS-update-list.md) 의 상태 `요구` 인 행 |
 | 화면별 사양 | `design/screens/<id>/UI-SPEC.md` |
 | 이관 경위·파이프라인·진행 상태 | `design/_import/resume-pack/`(커밋하지 않는다) |
