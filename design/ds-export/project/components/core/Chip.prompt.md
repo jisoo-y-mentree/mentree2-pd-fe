@@ -35,7 +35,10 @@
 - `href` → `<a>`로 렌더. hover 시 라벨이 `--primary`(green).
 - `onRemove` → trailing에 ✕(HugeIcons `cancel-01`)를 단다. ✕는 별도 `<button>` —
   칩 본체가 링크일 때 링크 안에 버튼이 들어가지 않도록 **형제**로 둔다.
-- 둘 다 없으면 표시 전용 `<span>`.
+- `href`·`onRemove`가 없고 `onClick`만 있으면 `<button type="button">`으로 렌더한다.
+  눌려도 켜지지 않는다 — 「더한다·고른다」처럼 칩 자신에게 상태가 남지 않는 쓰임에 쓴다.
+  켜짐이 필요하면 FilterChip이다.
+- 셋 다 없으면 표시 전용 `<span>`.
 - **leading 슬롯 없음** — 지금 쓰는 데가 없다.
 
 ## 상태

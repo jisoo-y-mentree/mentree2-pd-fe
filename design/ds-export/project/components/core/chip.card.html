@@ -47,6 +47,14 @@
         </div>
 
         <div className="row">
+          <span className="lbl">sm · onClick</span>
+          {["일본어", "면접", "이력서"].map((t) => (
+            <Chip key={t} size="sm" prefix="#" onClick={() => {}}>{t}</Chip>
+          ))}
+          <span className="cap">추천 태그 — 누르면 목록에 "더한다", 눌려도 라벨 색은 안 바뀜(href와 구분, 칩 자신은 켜지지 않음)</span>
+        </div>
+
+        <div className="row">
           <span className="lbl">md · 표시 전용</span>
           <Chip size="md">읽기 전용</Chip>
           <Chip size="sm">읽기 전용 sm</Chip>

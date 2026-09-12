@@ -22,6 +22,8 @@ export function Chip({
   href,
   prefix,
   onRemove,
+  onClick,
+  removeAriaLabel = "삭제",
   disabled = false,
   size = "md",
   children,
@@ -44,7 +46,7 @@ export function Chip({
   }, []);
 
   const s = SIZES[size] || SIZES.md;
-  const interactive = !disabled && (href || onRemove);
+  const interactive = !disabled && (href || onRemove || onClick);
   const bg = hover && !disabled ? "var(--sage-200)" : "var(--muted)";
   const labelColor = href && hover && !disabled ? "var(--primary)" : "var(--sage-700)";
 
@@ -75,25 +77,28 @@ export function Chip({
     : {};
 
   if (!onRemove) {
-    // 슬롯 없음(표시 전용) 또는 href만 — 단일 엘리먼트.
-    const Tag = href ? "a" : "span";
+    // 슬롯 없음(표시 전용) 또는 href만 또는 onClick만 — 단일 엘리먼트.
+    const Tag = href ? "a" : onClick ? "button" : "span";
     const tagProps = href
       ? disabled
         ? { "aria-disabled": true, tabIndex: -1, style: { pointerEvents: "none" } }
         : { href }
-      : {};
+      : onClick
+        ? { type: "button", disabled, onClick: disabled ? undefined : onClick }
+        : {};
     return (
       <Tag
         className="mt-chip"
         {...hoverHandlers}
-        onMouseDown={href && !disabled ? () => setPressed(true) : undefined}
-        onMouseUp={href ? () => setPressed(false) : undefined}
+        onMouseDown={(href || onClick) && !disabled ? () => setPressed(true) : undefined}
+        onMouseUp={href || onClick ? () => setPressed(false) : undefined}
         style={{
           ...outer,
           padding: `0 ${s.pad}px`,
           color: labelColor,
           textDecoration: "none",
-          cursor: disabled ? "not-allowed" : href ? "pointer" : "default",
+          border: "none",
+          cursor: disabled ? "not-allowed" : href || onClick ? "pointer" : "default",
           ...style,
         }}
         {...tagProps}
@@ -137,7 +142,7 @@ export function Chip({
       <button
         type="button"
         className="mt-chip-remove"
-        aria-label="삭제"
+        aria-label={removeAriaLabel}
         disabled={disabled}
         onClick={(e) => { e.stopPropagation(); if (!disabled) onRemove(); }}
         onMouseDown={!disabled ? () => setPressed(true) : undefined}
