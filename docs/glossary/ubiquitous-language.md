@@ -47,6 +47,7 @@
 | Q&A 피드 | `qna-feed` | 화면 |
 | TOP | `top` | 화면. 허브 |
 | 감사인사 | `ThanksNote` | Q&A 질문자가 개별 답변에 보내는 글. **화면에 표시하지 않고 멘토에게 직접 전달한다.** `Review` 와 다르다 — 그쪽은 공개다 |
+| 검색 입력 | `SearchInput` | **미구현**(`DS-28`). forms. 자동완성 ＋ 최근 검색어가 붙는 검색창. 갈아끼우는 구조는 `TagInput` 과 같다 |
 | 격려 메세지 | `EncouragementMessage` | 멘토링 완료 후 멘토가 멘티에게 보내는 메시지. 리뷰와 짝을 이룬다 |
 | 공지사항 | `Notice` | 운영 알림. 진입은 푸터다 |
 | 공지사항 목록 | `notice-list` | 화면 |
@@ -106,6 +107,7 @@
 | 인터뷰 카드 | `InterviewCard` | 컴포넌트. surfaces. 모바일 세로형 미구현(`DS-07`) |
 | 인풋 | `Input` | 컴포넌트. forms |
 | 정산 | `Settlement` | 멘토가 받은 꽃송이를 현금으로 받는 것 |
+| 조건 선택 | `FilterSelect` | **미구현**(`DS-27`). core. 조건 축의 트리거. 누르면 `Popover` 가 열리고 안은 `FilterChip` 이다. 트리거에 「일본 외 2」로 요약한다 |
 | 지역 | `Region` | `Country` 의 대분류 계층. 유럽·아시아/중동·북미/오세아니아. **필터의 축이 아니고 화면 라벨로도 쓰지 않는다** — 축과 라벨은 「국가」로 통일한다(2026-09-11) |
 | 직무 | `JobTitle` | 개인의 직책. 「사업 프로듀서」처럼 멘토 카드에 뜬다 |
 | 직종 | `JobCategory` | 분류축. 필터와 온보딩 설문이 쓴다. 대분류-소분류 계층이다 |
@@ -134,13 +136,15 @@
 | 헤더 | `Header` | 컴포넌트. navigation. 반응형·오버레이 |
 | 회원가입 | `signup` | 화면. 이메일 ／ 소셜 2경로 |
 
-**93행** — 개념 **28**(모달 1 포함) · 화면 **19** · 컴포넌트 **40** · **미구현 5** · **DS 밖 1**.
+**95행** — 개념 **28**(모달 1 포함) · 화면 **19** · 컴포넌트 **40** · **미구현 7** · **DS 밖 1**.
 
 > **09-12 에 미구현 9본이 실물이 됐다** — `Pagination`·`Tabs`·`Toast`·`Skeleton`·`EmptyState`·`Popover`·`Chip`·`CountToggle`·`AnswerCard`. 행 수는 그대로이고 설명만 바뀐다.
 >
 > **같은 날 `TagInput` 1행이 늘었고 바로 실물이 됐다**(`DS-26`). 컴포넌트는 **40본**이다.
 >
 > **같은 날 `RichTextEditor` 가 미구현에서 빠졌다**(`DS-15` 각하). 미구현은 **5본**이다 — `Calendar`·`Stepper`·`Breadcrumb`·`VerticalNav`·`MentoringCard`.
+>
+> **`mentor-search` 착수로 2행이 늘었다**(2026-09-12) — `SearchInput`(`DS-28`) · `FilterSelect`(`DS-27`). 미구현은 **7본**이다.
 
 > **09-10 에 89행에서 1행 줄었다.** `mentoring-detail-mentee`·`mentoring-detail-mentor` 2행을 `MentoringDetailModal` 1행으로 합쳤다. 부모 화면이 이미 역할을 가르므로 이름에 역할을 다시 넣지 않는다.
 >
