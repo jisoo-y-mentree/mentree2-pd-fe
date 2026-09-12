@@ -21,8 +21,8 @@ user-invocable: true
 - **아이콘:** HugeIcons만. HTML에서는 정적 SVG CDN + `.hgi` 마스크 또는 `Icon` 컴포넌트. 이모지/Lucide/Heroicons 금지.
 - **禁則:** `word-break: break-all` 금지 → `keep-all` + `overflow-wrap: break-word` 전역 강제.
 - **AI 밴드:** 보라/틴트 그라데이션 금지 → sage/green 시맨틱 토큰으로만.
-- **컴포넌트:** `window.MentreeDesignSystem_2f86cf` (41개) — Button · IconButton · Icon · Badge · Avatar/AvatarGroup · BookmarkToggle · FilterChip · Input · Field/FieldGroup · Select · Checkbox · RadioGroup · Switch · ToggleGroup · Card(+Header/Title/Description/Content/Footer) · Table · Dialog · Sheet · Header · Footer · SectionHeader · Carousel · CalloutBar · Banner · BottomTabBar · MentorCard · QnaCard · ArticlePreview · InterviewCard · Sidebar(레거시). `components/*/*.prompt.md` 참조.
-- **DS-GAP 후보(미구현):** Filter chip, Pagination, Tabs.
+- **컴포넌트:** `window.MentreeDesignSystem_2f86cf` (41개) — Button · IconButton · Icon · Badge · Avatar/AvatarGroup · CountToggle · FilterChip · Input · Field/FieldGroup · Select · Checkbox · RadioGroup · Switch · ToggleGroup · Card(+Header/Title/Description/Content/Footer) · Table · Dialog · Sheet · Header · Footer · SectionHeader · Carousel · CalloutBar · Banner · BottomTabBar · MentorCard · QnaCard · ArticlePreview · InterviewCard · Sidebar(레거시). `components/*/*.prompt.md` 참조.
+- **DS-GAP 후보(미구현):** Pagination.
 - **타입 상단:** display 40 / h0 30 (모바일 24 / 20).
 - **브레이크포인트:** Desktop L 1280+ / Desktop S 769–1279(헤더에서 기업 서비스 버튼만 숨김) / Mobile ~768(헤더 축약 + 하단 탭바 4탭). 상세는 `guidelines/03-responsive.md`.
 - **컨테이너:** max 1280, 좌우 패딩 24(모바일 16). 배경 풀블리드, 콘텐츠만 1280 정렬.

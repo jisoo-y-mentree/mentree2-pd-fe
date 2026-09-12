@@ -7,8 +7,10 @@ import React from "react";
  * TOP 변형 한정 절대 높이: featured 미디어 320 → 카드 336, compact 미디어 144 → 카드 160(미디어가 높이 결정).
  * 카드 전체 클릭 → 인터뷰 상세. 북마크 없음. featured/compact는 같은 컴포넌트의 size 변형.
  * 인물 위계: 이름 강조 > 회사·직함 muted.
+ *
+ * 루트는 <article>(스트레치 링크) — <a>가 아니다. href는 제목 링크로 넘어간다.
  */
-export interface InterviewCardProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "title"> {
+export interface InterviewCardProps extends Omit<React.HTMLAttributes<HTMLElement>, "title"> {
   /** 크기 변형. featured=대형(발췌 있음) · compact=소형(발췌 없음). 기본 featured. */
   size?: "featured" | "compact";
   /** 제목(featured h2 / compact h3, 2줄 고정). */

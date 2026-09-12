@@ -1,0 +1,77 @@
+<!-- @dsCard group="Components" viewport="900x560" name="Skeleton" subtitle="로딩 자리표시 프리미티브 하나 — width·height·radius·count만. 카드 모양은 화면이 배치해서 만든다. 펄스만(shimmer 없음), --muted, aria-hidden" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .row { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; }
+  .cell { display: flex; flex-direction: column; gap: 8px; }
+  .cap { font-size: var(--text-caption); color: var(--muted-foreground); max-width: 300px; }
+  .shell { background: var(--card); border: 1px solid var(--sage-200); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: var(--card-content-padding, 20px); }
+  .note { font-size: var(--text-caption); color: var(--muted-foreground); border-top: 1px solid var(--border); padding-top: 14px; margin-top: 22px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Skeleton } = window.MentreeDesignSystem_2f86cf;
+
+  function Demo() {
+    return (
+      <React.Fragment>
+        <div className="row">
+          <div className="cell" style={{ width: 260 }}>
+            <Skeleton />
+            <span className="cap">한 줄 — 기본(폭 100%, 본문 한 줄 높이)</span>
+          </div>
+
+          <div className="cell" style={{ width: 260 }}>
+            <Skeleton count={3} />
+            <span className="cap">count=3 — 줄 간격을 두고 쌓이고 마지막 줄은 폭 60%(문단의 끝처럼)</span>
+          </div>
+
+          <div className="cell" style={{ width: 220 }}>
+            <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+              <Skeleton width={40} height={40} radius="full" />
+              <Skeleton width={110} />
+            </div>
+            <span className="cap">radius="full" — 아바타 자리</span>
+          </div>
+        </div>
+
+        <div className="row" style={{ marginTop: 24 }}>
+          <div className="cell" style={{ width: 300 }}>
+            <div className="shell" aria-busy="true">
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                <Skeleton width={72} height={22} radius="md" />
+                <Skeleton height={20} />
+                <Skeleton count={3} />
+                <div style={{ display: "flex", gap: 8, alignItems: "center", marginTop: 4 }}>
+                  <Skeleton width={28} height={28} radius="full" />
+                  <Skeleton width={120} />
+                </div>
+              </div>
+            </div>
+            <span className="cap">조립 예시 — QnaCard 자리를 흉내낸 것. 이 배치는 <b>화면의 일</b>이다(부품에 SkeletonCard는 없다). 감싸는 셸에 aria-busy="true"</span>
+          </div>
+        </div>
+
+        <div className="note">
+          펄스 하나만 쓴다 — 좌우로 훑는 shimmer는 없다(한 화면에 카드 12장이 깔리면 시끄럽다).
+          prefers-reduced-motion이 켜져 있으면 멈춘다. 색은 --muted만(채도 없음).
+          덩어리 자체는 aria-hidden="true" — aria-busy는 감싸는 영역에 화면이 붙인다.
+          몇 개를 세우는지는 부품이 정하지 않는다(Q&A 피드는 1페이지 6장, 2페이지부터 12장 — 화면 사양).
+        </div>
+      </React.Fragment>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

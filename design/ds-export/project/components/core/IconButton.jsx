@@ -14,7 +14,7 @@ const VARIANTS = {
 /**
  * IconButton — square button with a single HugeIcons glyph.
  */
-export function IconButton({
+export const IconButton = React.forwardRef(function IconButton({
   icon,
   variant = "ghost",
   size = "md",
@@ -22,11 +22,12 @@ export function IconButton({
   ariaLabel,
   style,
   ...rest
-}) {
+}, ref) {
   const dim = SIZES[size] || SIZES.md;
   const v = VARIANTS[variant] || VARIANTS.ghost;
   return (
     <button
+      ref={ref}
       disabled={disabled}
       aria-label={ariaLabel || icon}
       style={{
@@ -49,4 +50,4 @@ export function IconButton({
       <Icon name={icon} size={ICON[size] || ICON.md} />
     </button>
   );
-}
+});

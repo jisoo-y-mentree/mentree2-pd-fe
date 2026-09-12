@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="800x360" name="QnaCard" subtitle="미디어 없는 Q&A 텍스트 카드 — 동심원 기하 상속. 답변 다수(+N) / 답변 1명 변형" -->
+<!-- @dsCard group="Components" viewport="820x560" name="QnaCard" subtitle="Q&A 텍스트 카드 — 상단 분류(국가+키워드 Badge) · 해시태그 Chip sm 5개+&quot;+N&quot; Badge · 답변 요약(아바타 3 + 실제 N) · 하단 반응(조회수 표시 전용 + 도움돼요·스크랩 CountToggle 제어형). variant는 compact 하나" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -19,28 +19,62 @@
 <script src="../../_ds_bundle.js"></script>
 <script type="text/babel">
   const { QnaCard } = window.MentreeDesignSystem_2f86cf;
+  const TAGS7 = ["이직", "포트폴리오", "커리어전환", "주니어", "성장정체", "면접", "연봉협상"];
+
   function Demo() {
+    const [liked, setLiked] = React.useState(false);
+    const [scrapped, setScrapped] = React.useState(true);
     return (
       <div className="row">
         <div className="cell">
           <QnaCard
-            href="#" category="커리어" views={1280} likes={34}
+            href="#" country="south-korea" countryLabel="대한민국" keyword="이직"
             title="주니어 디자이너인데 이직 타이밍이 고민입니다. 조언 부탁드려요"
             excerpt="지금 회사에서 2년 차인데 성장이 정체된 느낌이에요. 포트폴리오는 어느 정도 정리했는데 지금이 옮길 때인지 확신이 안 섭니다."
-            answerers={[{name:"박지훈"},{name:"김도윤"},{name:"이서연"},{name:"최유진"},{name:"정하늘"}]}
-            answerCount={5}
+            tags={["이직", "포트폴리오", "커리어전환"]}
+            answerers={[{ name: "박지훈" }, { name: "김도윤" }, { name: "이서연" }]}
+            answerCount={3}
+            views={2489}
+            liked={liked} likes={liked ? 21 : 20} onLikeChange={setLiked}
+            scrapped={scrapped} scraps={scrapped ? 20 : 19} onScrapChange={setScrapped}
           />
-          <div className="cap">답변 다수 — AvatarGroup + "+1"</div>
+          <div className="cap">기본형 — 해시태그 3개. 도움돼요·스크랩은 제어형(눌러 보세요)</div>
         </div>
         <div className="cell">
           <QnaCard
-            href="#" category="포트폴리오" views={412} likes={8}
-            title="비전공자 포트폴리오 첫 페이지 구성 팁"
-            excerpt="부트캠프 수료 후 첫 포트폴리오를 만들고 있습니다. 표지에서 뭘 강조해야 할지 궁금해요."
-            answerers={[{name:"한지민"}]}
-            answerCount={1}
+            href="#" country="united-states" countryLabel="미국" keyword="비자"
+            title="미국 빅테크 취업, 비자 스폰서는 언제부터 협의하나요?"
+            excerpt="현지 인터뷰까지 갔을 때 비자 얘기를 먼저 꺼내야 할지, 오퍼 이후로 미뤄야 할지 감이 안 옵니다."
+            tags={TAGS7}
+            answerers={[{ name: "한지민" }, { name: "정하늘" }, { name: "최유진" }, { name: "박지훈" }, { name: "김도윤" }]}
+            answerCount={5}
+            views={412} likes={8} scraps={3}
           />
-          <div className="cap">답변 1명 — 아바타 1개, "+N" 없음</div>
+          <div className="cap">해시태그 7개 → Chip 5개 + "+2" Badge(안 눌림·펼치지 않음) · 아바타 3장 + "+2", N은 5 그대로</div>
+        </div>
+        <div className="cell">
+          <QnaCard
+            href="#" keyword="포트폴리오"
+            title="비전공자 포트폴리오 첫 페이지 구성 팁이 궁금합니다"
+            excerpt="부트캠프 수료 후 첫 포트폴리오를 만들고 있습니다. 표지에서 뭘 강조해야 할지 궁금해요."
+            tags={["포트폴리오", "비전공자"]}
+            answerCount={0}
+            views={96} likes={1} scraps={0}
+          />
+          <div className="cap">답변 0건 — "아직 작성된 답변이 없습니다"(자리를 비우지 않는다)</div>
+        </div>
+        <div className="cell" style={{ width: 280 }}>
+          <QnaCard
+            compact
+            href="#" country="japan" countryLabel="일본" keyword="이주"
+            title="도쿄 이주 후 첫 3개월, 뭐부터 준비해야 할까요"
+            excerpt="비자는 나왔는데 주거·통신·은행 순서를 어떻게 잡아야 할지 막막합니다."
+            tags={["해외이주", "도쿄", "생활정보"]}
+            answerers={[{ name: "정하늘" }, { name: "최유진" }]}
+            answerCount={2}
+            views={640} likes={12} scraps={5}
+          />
+          <div className="cap">compact — 우측 위젯 "나의 Q&A". tags를 넘겨도 해시태그 행이 뜨지 않는다</div>
         </div>
       </div>
     );
