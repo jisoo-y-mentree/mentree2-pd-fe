@@ -1,0 +1,56 @@
+/* ============================================================================
+   mentree — radius.css + spacing.css concerns
+   Radius derived from preset --radius (Large = 0.875rem).
+   ========================================================================== */
+
+:root {
+  --radius: 0.875rem;                        /* preset: Large (14px) */
+  --radius-sm: 8px;
+  --radius-md: 12px;                          /* IconButton radius와 일치 */
+  --radius-lg: 14px;                          /* 미디어·카드 기준 (기존과 동일) */
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: calc(var(--radius) * 2.2);   /* 30.8px */
+
+  /* layout container — 전역 단일 폭 기준. 배경은 풀블리드, 콘텐츠만 이 폭에 정렬 */
+  --container-max: 1280px;   /* 콘텐츠 최대 폭 */
+  --container-pad: 24px;     /* 좌우 패딩 (Desktop 기준; Mobile 16px은 리스폰시브 단계) */
+
+  /* spacing — 4px base scale (Tailwind default; DESIGN.md defers to it) */
+  --space-1: 0.25rem;   /* 4px  */
+  --space-2: 0.5rem;    /* 8px  */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+
+  /* elevation — soft, warm-neutral shadows */
+  --shadow-xs: 0 1px 2px 0 oklch(0.222 0.004 150 / 0.05);
+  --shadow-sm: 0 1px 3px 0 oklch(0.222 0.004 150 / 0.08), 0 1px 2px -1px oklch(0.222 0.004 150 / 0.08);
+  --shadow-md: 0 4px 12px -2px oklch(0.222 0.004 150 / 0.10), 0 2px 6px -2px oklch(0.222 0.004 150 / 0.06);
+  --shadow-lg: 0 12px 28px -6px oklch(0.222 0.004 150 / 0.14), 0 4px 10px -4px oklch(0.222 0.004 150 / 0.08);
+
+  /* --------------------------------------------------------------------------
+     카드 기하(Card Geometry) — 크기가 아니라 관계로 정의.
+     [규칙] 카드가 커지거나 작아져도 media-margin 8 · media-radius 14 · card-radius 22 는
+            고정이며, 동심원 관계(card-radius = media-margin + media-radius)만 유지하면 된다.
+            미디어 있는 모든 카드는 media-margin 8 을 공통 상속한다.
+            텍스트 영역은 미디어 기준선에서 content-inset(10) 더 안쪽,
+            즉 카드 벽에서 content-padding(18) 지점에 정렬한다.
+     ⚠ 원시 radius 스케일(--radius-*)은 수정하지 않는다. (동심원 원칙의 카드군 인스턴스)
+     ------------------------------------------------------------------------ */
+  --card-media-margin: 8px;         /* 미디어를 카드 벽에서 8 띄움. 미디어 있는 전 카드 공통 상속 */
+  --card-media-radius: 14px;        /* 미디어 면 radius = 오버레이(IconButton default) radius와 일치 */
+  --card-radius: 22px;              /* = media-margin + media-radius (크기 무관 고정, 동심원 파생) */
+  --card-content-inset: 10px;       /* 텍스트가 미디어 기준선에서 더 안쪽으로 들어가는 추가 마진 */
+  --card-content-padding: 18px;     /* = media-margin + content-inset (8+10), 텍스트 영역 패딩 */
+  /* 미디어-텍스트 수평 간격. radius(고정)와 달리 gap은 카드 위계(크기)에 비례 — 밀도상 정합적.
+     spacing 스케일에서 선택: featured = space-6(24) / compact = space-3(12). */
+  --card-media-gap-featured: var(--space-6);  /* 24px */
+  --card-media-gap-compact: var(--space-3);   /* 12px */
+  --card-shadow: var(--shadow-sm);  /* elevation 스케일 참조 */
+}

@@ -1,0 +1,22 @@
+/* ============================================================================
+   mentree — icons.css
+   HugeIcons (the preset icon set) served as static SVGs from jsDelivr:
+     https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/<name>.svg
+   These SVGs ship a hardcoded stroke color, so we recolor them with a CSS
+   mask and paint with currentColor — an icon then inherits any token color.
+
+   Usage (plain HTML):
+     <span class="hgi" style="--hgi: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/home-01.svg')"></span>
+   Size with font-size or width/height; color with `color`.
+   ========================================================================== */
+
+.hgi {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex: 0 0 auto;
+  background-color: currentColor;
+  -webkit-mask: var(--hgi) center / contain no-repeat;
+  mask: var(--hgi) center / contain no-repeat;
+  vertical-align: -0.125em;
+}

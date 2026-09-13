@@ -94,7 +94,7 @@
 | 컴포넌트 `.jsx` · `.d.ts` · `.card.html` | `ds-export/project/components/` — **무손실 복사** |
 | 컴포넌트·요소의 **명칭** | 용어집 English 열과 `DS-update-list` 의 입력이다 |
 | 원칙·의도(`guidelines/*.html`) | `ds-export/project/guidelines/`. **규칙만 골라 `DESIGN.md` 로 옮긴다**(실측값은 쓰지 않는다) |
-| 화면 HTML | **`design/screens/<id>/template/` 으로 export한다.** 정적 HTML/CSS 4파일, JS 없음 |
+| 화면 HTML | **`design/screens/<id>/template/` 으로 export한다.** 4상태 1파일씩 ＋ 그 런타임. 브라우저로 바로 열린다 |
 | 미구현·미정 | `DS-update-list.md` 의 `DS-nn` |
 
 **사본을 손으로 고치지 않는다.** 고치면 Claude Design 과 갈리고, 어느 쪽이 맞는지 판정할 수 없다.

@@ -22,7 +22,7 @@ design/screens/<screen-id>/
 
 > **`template/` 은 비주얼의 정본이자 인계 산출물이다.** 엔지니어가 열어서 바로 본다([ADR-0005](../../docs/adr/0005-design-team-deliverables.md)).
 
-- **정적 HTML/CSS 4파일이다** — `normal` · `loading` · `empty` · `error`. 상태마다 1파일로 가른다
+- **4상태를 1파일씩 가른다** — `normal` · `loading` · `empty` · `error`. **브라우저로 바로 열린다** — Claude Design 의 export 는 `<x-import>` 와 `{{ }}` 를 쓰므로 `support.js` 와 `_ds/` 를 함께 둔다. **빌드가 필요한 것은 넣지 않는다**
 - **JS 를 남기지 않는다.** 토글로 가려진 것은 엔지니어가 못 본다. 인터랙션 의도는 UI-SPEC §8 이 갖는다
 - **반응형 3구간은 CSS 가 처리한다.** 구간마다 파일을 늘리지 않는다
 - **빌드가 필요한 것을 넣지 않는다.** 브라우저에서 파일을 열면 그대로 보여야 한다

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="./_ds/tokens/fonts.css">
+  <link rel="stylesheet" href="./_ds/tokens/colors.css">
+  <link rel="stylesheet" href="./_ds/tokens/typography.css">
+  <link rel="stylesheet" href="./_ds/tokens/spacing.css">
+  <link rel="stylesheet" href="./_ds/tokens/icons.css">
+  <link rel="stylesheet" href="./_ds/tokens/base.css">
+  <link rel="stylesheet" href="./_ds/styles.css">
+  <script src="./_ds/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; font-family: var(--font-sans); background: var(--background); }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: color-mix(in oklch, var(--primary) 82%, black); }
+  </style>
+</helmet>
+
+<div style="background:var(--background)">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" active-key="mentors" brand="{{ logo }}" hint-size="100%,64px"></x-import>
+  <main style="max-width:var(--container-max);margin:0 auto;padding:40px var(--container-pad) 72px;box-sizing:border-box">
+    <h1 style="font-size:var(--text-h1);font-weight:700;color:var(--foreground);margin:0 0 8px">멘토 찾기</h1>
+    <p style="font-size:var(--text-body);color:var(--muted-foreground);margin:0 0 28px">관심 있는 국가와 직종의 멘토를 찾아보세요.</p>
+    <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:28px;flex-wrap:wrap">
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterSelect" label="국가" groups="{{ countryGroups }}" value="{{ countryValue }}" onChange="{{ onCountryChange }}" hint-size="120px,36px"></x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterSelect" label="직종" groups="{{ jobGroups }}" value="{{ jobValue }}" onChange="{{ onJobChange }}" hint-size="110px,36px"></x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterSelect" label="키워드" groups="{{ keywordGroups }}" value="{{ keywordValue }}" onChange="{{ onKeywordChange }}" hint-size="110px,36px"></x-import>
+      </div>
+      <div style="flex:1;min-width:220px;max-width:420px;margin-left:auto">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SearchInput" value="{{ searchValue }}" onChange="{{ onSearchChange }}" onSearch="{{ onSearch }}" placeholder="이름, 회사, 키워드로 검색" hint-size="100%,40px"></x-import>
+      </div>
+    </div>
+    <h2 style="font-size:var(--text-h2);font-weight:600;color:var(--foreground);margin:0 0 14px">{{ totalLabel }}</h2>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:28px">
+      <sc-if value="{{ countryChip }}" hint-placeholder-val="{{ true }}">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" onRemove="{{ onClearCountry }}" hint-size="auto,32px">{{ countryChip }}</x-import>
+      </sc-if>
+      <sc-if value="{{ jobChip }}" hint-placeholder-val="{{ true }}">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" onRemove="{{ onClearJob }}" hint-size="auto,32px">{{ jobChip }}</x-import>
+      </sc-if>
+      <sc-if value="{{ keywordChip }}" hint-placeholder-val="{{ false }}">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" onRemove="{{ onClearKeyword }}" hint-size="auto,32px">{{ keywordChip }}</x-import>
+      </sc-if>
+      <div style="margin-left:auto">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" onClick="{{ resetFilters }}" hint-size="auto,32px">필터 초기화</x-import>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:96px 24px;text-align:center">
+      <div style="font-size:var(--text-h3);font-weight:600;color:var(--foreground)">멘토 목록을 불러오지 못했습니다</div>
+      <div style="font-size:var(--text-body);color:var(--muted-foreground);max-width:360px">잠시 후 다시 시도해 주세요.</div>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" onClick="{{ retryError }}" hint-size="auto,40px">다시 시도</x-import>
+    </div>
+  </main>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" brand="{{ logoFooter }}" hint-size="100%,220px"></x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const COUNTRY_GROUPS = [
+  { label: "아시아", options: [
+    { value: "japan", label: "일본", flag: "japan" },
+    { value: "south-korea", label: "대한민국", flag: "south-korea" },
+    { value: "china", label: "중국", flag: "china" },
+    { value: "hong-kong", label: "홍콩", flag: "hong-kong" },
+    { value: "taiwan", label: "대만", flag: "taiwan" },
+    { value: "malaysia", label: "말레이시아", flag: "malaysia" },
+  ]},
+  { label: "유럽", options: [
+    { value: "germany", label: "독일", flag: "germany" },
+    { value: "france", label: "프랑스", flag: "france" },
+    { value: "united-kingdom", label: "영국", flag: "united-kingdom" },
+    { value: "netherlands", label: "네덜란드", flag: "netherlands" },
+    { value: "switzerland", label: "스위스", flag: "switzerland" },
+  ]},
+  { label: "북미 · 오세아니아", options: [
+    { value: "united-states", label: "미국", flag: "united-states" },
+    { value: "canada", label: "캐나다", flag: "canada" },
+    { value: "australia", label: "호주", flag: "australia" },
+  ]},
+];
+const JOB_GROUPS = [{ options: [
+  { value: "design", label: "디자인" }, { value: "dev", label: "개발" }, { value: "pm", label: "기획" },
+  { value: "marketing", label: "마케팅" }, { value: "data", label: "데이터" }, { value: "sales", label: "영업" },
+]}];
+const KEYWORD_GROUPS = [{ options: [
+  { value: "fulltime", label: "정규직" }, { value: "freelance", label: "프리랜서" }, { value: "startup", label: "스타트업" },
+  { value: "remote", label: "원격근무" }, { value: "bigcorp", label: "대기업" },
+]}];
+
+function labelFor(groups, value) {
+  for (const g of groups) { const o = g.options.find((x) => x.value === value); if (o) return o.label; }
+  return value;
+}
+function chipLabel(groups, values) {
+  if (!values || !values.length) return null;
+  const first = labelFor(groups, values[0]);
+  return values.length === 1 ? first : `${first} 외 ${values.length - 1}`;
+}
+
+class Component extends DCLogic {
+  state = { country: ["japan", "south-korea", "united-states"], job: ["marketing"], keyword: [], search: "" };
+
+  renderVals() {
+    const s = this.state;
+    return {
+      countryGroups: COUNTRY_GROUPS, jobGroups: JOB_GROUPS, keywordGroups: KEYWORD_GROUPS,
+      countryValue: s.country, jobValue: s.job, keywordValue: s.keyword,
+      onCountryChange: (v) => this.setState({ country: v }),
+      onJobChange: (v) => this.setState({ job: v }),
+      onKeywordChange: (v) => this.setState({ keyword: v }),
+      countryChip: chipLabel(COUNTRY_GROUPS, s.country),
+      jobChip: chipLabel(JOB_GROUPS, s.job),
+      keywordChip: chipLabel(KEYWORD_GROUPS, s.keyword),
+      onClearCountry: () => this.setState({ country: [] }),
+      onClearJob: () => this.setState({ job: [] }),
+      onClearKeyword: () => this.setState({ keyword: [] }),
+      searchValue: s.search,
+      onSearchChange: (v) => this.setState({ search: v }),
+      onSearch: () => {},
+      resetFilters: () => this.setState({ country: [], job: [], keyword: [] }),
+      totalLabel: "128명의 멘토",
+      retryError: () => {},
+      logo: React.createElement("img", { src: "./assets/mentree-logo.svg", alt: "mentree", style: { height: 24, display: "block" } }),
+      logoFooter: React.createElement("span", {
+        "aria-label": "mentree",
+        style: { display: "block", width: 120, height: 24, background: "var(--sage-500)",
+          WebkitMaskImage: "url(./assets/mentree-logo.svg)", maskImage: "url(./assets/mentree-logo.svg)",
+          WebkitMaskRepeat: "no-repeat", maskRepeat: "no-repeat", WebkitMaskPosition: "left center", maskPosition: "left center",
+          WebkitMaskSize: "contain", maskSize: "contain" },
+      }),
+    };
+  }
+}
+</script>
+</body>
+</html>

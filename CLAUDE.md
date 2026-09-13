@@ -64,7 +64,7 @@
 - **정본에 축이 둘이다** — 값을 **바꾸려면 Claude Design**(편집의 정본), 값을 **알려면 `design/ds-export/`**(참조의 정본). 정의는 [docs/SOURCES.md](docs/SOURCES.md) 「정본의 두 축」이다.
 - **색·치수를 문서에 복제하지 않는다.** `design/ds-export/project/tokens/` 를 가리킨다.
 - **`design/ds-export/` 를 손으로 고치지 않는다.** 고치면 두 축이 갈린다.
-- **`template/` 은 정적 HTML/CSS 4파일이다.** JS 를 남기지 않는다. 빌드가 필요한 것을 넣지 않는다.
+- **`template/` 은 브라우저로 바로 열리는 4상태다.** 파일을 열면 도는 런타임은 함께 둔다. **빌드가 필요한 것을 넣지 않는다.**
 - **`template/` 의 CSS를 다른 곳으로 옮기지 않는다.** 그것은 시각적 참조이지 이식원이 아니다.
 - 디자인 시스템에 없는 요소를 화면에서 즉석으로 만들지 않는다. [DS-update-list.md](design/DS-update-list.md) 에 기표한다.
 - 문서를 고치면 `python3 scripts/check-docs.py` 를 돌리고 나서 리뷰에 낸다.
