@@ -87,23 +87,25 @@
 </article>
 <section style="display: flex; flex-direction: column; gap: 16px">
   <div class="qd-answerbar" style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
-    <h2 class="text-h2" style="margin: 0">0건의 답변</h2>
+    <h2 class="text-h2" style="margin: 0">3건의 답변</h2>
   </div>
-  <div class="qd-answers" style="padding: 32px 0 16px">
-    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" icon="message-question" size="md" title="[문구 미정] 아직 답변이 등록되지 않았습니다" description="[문구 미정] 멘토가 답변을 남기면 알려 드립니다." hint-size="100%,160px"></x-import>
+  <div class="qd-answers" style="display: flex; flex-direction: column; gap: 16px">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.AnswerCard" hint-size="100%,320px" mentor-name="박서연" country="japan" country-label="일본" activity-location="도쿄에서 활동" headline="프로덕트 엔지니어 @메르카리 (9년차)" date="2026-09-11" like-count="18" accepted="{{ true }}" body="{{ answer1 }}" mentor-profile-href="#" mentor-answers-href="#" is-mine="{{ true }}" onEdit="{{ noop }}" onDelete="{{ noop }}"></x-import>
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.AnswerCard" hint-size="100%,320px" mentor-name="이준호" country="japan" country-label="일본" activity-location="오사카에서 활동" headline="백엔드 엔지니어 @사이보즈 (6년차)" date="2026-09-10" like-count="7" body="{{ answer2 }}" mentor-profile-href="#" mentor-answers-href="#"></x-import>
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.AnswerCard" hint-size="100%,320px" mentor-name="최민수" country="japan" country-label="일본" activity-location="도쿄에서 활동" headline="채용 담당 @IT 기업 (11년차)" date="2026-09-09" like-count="4" body="{{ answer3 }}" mentor-profile-href="#" mentor-answers-href="#"></x-import>
   </div>
 </section>
 <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Banner" href="../../qna-compose/template/qna-compose-modal-phone.dc.html" background="color-mix(in oklch, var(--primary) 10%, white)" padding="28px 24px" dc-props="{{ bannerBorder }}" hint-size="100%,160px"><div style="display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; color: var(--foreground)">
   <div style="display: flex; flex-direction: column; gap: 4px">
-    <span style="font-size: var(--text-h2); font-weight: 600">구체적인 고민이 있나요?</span>
-    <span style="font-size: var(--text-body); line-height: 1.7; color: var(--muted-foreground)">현재 가지고 있는 고민을 바로 물어보세요.</span>
+    <span style="font-size: var(--text-h2); font-weight: 600">멘토님, 다른 멘토에게 질문할 궁금증이 생기셨나요?</span>
+    <span style="font-size: var(--text-body); line-height: 1.7; color: var(--muted-foreground)">부담없이 질문 남겨보세요.</span>
   </div>
   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="lg" hint-size="auto,44px">Q&amp;A 멘토링 질문하기</x-import>
 </div></x-import>
 <section class="qd-recs" style="display: flex; flex-direction: column; gap: 20px">
-  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" title="이런 질문도 많이 봤어요" hint-size="100%,48px"></x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" title="아직 답변이 등록되지 않은 질문들이에요" hint-size="100%,48px"></x-import>
   <div class="qd-recs" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px">
-    <sc-for list="{{ recCards }}" as="k" hint-placeholder-count="4">
+    <sc-for list="{{ unansweredCards }}" as="k" hint-placeholder-count="4">
       <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaCard" hint-size="100%,320px" href="{{ k.href }}" country="{{ k.country }}" country-label="{{ k.countryLabel }}" keyword="{{ k.keyword }}" title="{{ k.title }}" excerpt="{{ k.excerpt }}" tags="{{ k.tags }}" answerers="{{ k.answerers }}" answer-count="{{ k.answerCount }}" views="{{ k.views }}" likes="{{ k.likes }}" liked="{{ k.liked }}" onLikeChange="{{ k.onLike }}" scraps="{{ k.scraps }}" scrapped="{{ k.scrapped }}" onScrapChange="{{ k.onScrap }}"></x-import>
     </sc-for>
   </div>

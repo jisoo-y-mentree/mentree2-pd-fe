@@ -59,8 +59,8 @@
   </div>
   <h1 class="qd-title" style="margin: 0; font-size: var(--text-h1); font-weight: 700; line-height: 1.4">Q. 일본 IT 기업 신졸 채용, 한국 대학 졸업생도 지원할 수 있나요?</h1>
   <div style="display: flex; align-items: center; gap: 8px; font-size: var(--text-caption); color: var(--muted-foreground)">
-    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" name="김＊＊" size="sm" hint-size="24px,24px"></x-import>
-    <span>김＊＊</span>
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" name="김서연" size="sm" hint-size="24px,24px"></x-import>
+    <span>김서연</span>
   </div>
   <div style="font-size: var(--text-body); line-height: 1.8; white-space: pre-wrap">내년 3월에 한국 대학을 졸업합니다. 일본어는 JLPT N2 이고, 도쿄의 자사 서비스 기업 신졸 전형을 보고 있습니다.
 
@@ -75,7 +75,10 @@
   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="../../qna-feed/template/qna-feed-search.dc.html" hint-size="auto,32px">도쿄</x-import>
   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="../../qna-feed/template/qna-feed-search.dc.html" hint-size="auto,32px">취업비자</x-import>
 </div>
-  
+  <div style="display: flex; justify-content: flex-end; gap: 4px">
+    <a href="#" style="display: inline-flex; text-decoration: none"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" hint-size="auto,32px">수정하기</x-import></a>
+    <a href="../../qna-feed/template/qna-feed-normal.dc.html" style="display: inline-flex; text-decoration: none"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" hint-size="auto,32px">삭제하기</x-import></a>
+  </div>
   <div style="display: flex; align-items: center; justify-content: center; gap: 10px; padding-top: 4px">
     <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CountToggle" icon="favourite" tone="rose" selected="{{ qLiked }}" count="{{ qLikes }}" onChange="{{ setQLike }}" hint-size="auto,24px"></x-import>
     <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CountToggle" icon="bookmark" tone="dark" selected="{{ qScrapped }}" count="{{ qScraps }}" onChange="{{ setQScrap }}" hint-size="auto,24px"></x-import>

@@ -32,7 +32,8 @@
 <div class="qf-shell" style="display: flex; flex-direction: column; min-height: 100vh; background: var(--background); color: var(--foreground)">
   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" active-key="qna" onNavigate="{{ nav }}" hint-size="100%,64px"></x-import>
   <main class="qf-container" style="flex: 1 1 auto; width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-pad)">
-    <div class="qf-body" style="display: flex; flex-direction: column; gap: 32px; min-width: 0; padding: 40px 0 72px">
+    <div class="qf-body" style="display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: start; padding: 40px 0 72px">
+      <div style="display: flex; flex-direction: column; gap: 32px; min-width: 0">
 <div style="display: flex; flex-direction: column; gap: 10px">
   <h1 class="text-h0 qf-h0" style="margin: 0">Q&amp;A 멘토링</h1>
   <p style="margin: 0; max-width: 620px; font-size: var(--text-body); line-height: 1.7; color: var(--muted-foreground)">해외 취업과 커리어에 대한 고민을 올려주세요.<br>해외 각국에서 활약하고 있는 멘트리의 멘토분들이 직접 고민에 대해 답변해드립니다.</p>
@@ -48,6 +49,16 @@
     <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SearchInput" value="{{ q }}" onChange="{{ set_q }}" onSearch="{{ doSearch }}" placeholder="궁금한 내용을 검색해 보세요" hint-size="100%,38px"></x-import>
   </div>
 </div>
+<sc-if value="{{ showFeatured }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 20px">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" title="주목받는 Q&amp;A멘토링" hint-size="100%,48px"></x-import>
+  <div class="qf-cards" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px">
+  <sc-for list="{{ featuredCards }}" as="k" hint-placeholder-count="6">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaCard" hint-size="100%,320px" href="{{ k.href }}" country="{{ k.country }}" country-label="{{ k.countryLabel }}" keyword="{{ k.keyword }}" title="{{ k.title }}" excerpt="{{ k.excerpt }}" tags="{{ k.tags }}" answerers="{{ k.answerers }}" answer-count="{{ k.answerCount }}" views="{{ k.views }}" likes="{{ k.likes }}" liked="{{ k.liked }}" onLikeChange="{{ k.onLike }}" scraps="{{ k.scraps }}" scrapped="{{ k.scrapped }}" onScrapChange="{{ k.onScrap }}"></x-import>
+  </sc-for>
+</div>
+</div>
+</sc-if>
 <div style="display: flex; flex-direction: column; gap: 20px">
   <div style="display: flex; flex-direction: column; gap: 14px">
   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ToggleGroup" options="{{ answerOptions }}" value="{{ answerFilter }}" onChange="{{ set_answerFilter }}" size="md" hint-size="auto,38px"></x-import>
@@ -65,12 +76,58 @@
 </div>
   </div>
 </div>
-  <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 56px 0 40px">
-  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" icon="search-01" size="md" title="찾으시는 질문이 없습니다." description="[문구 미정] 지금 바로 질문해 보세요" action="{{ askAction }}" hint-size="100%,240px"></x-import>
-  <p style="margin: 0; text-align: center; font-size: var(--text-caption); line-height: 1.7; color: var(--muted-foreground)">구체적인 고민이 있나요?<br>현재 가지고 있는 고민을 바로 물어보세요.<br>멘토님들이 답변해드릴거에요</p>
+  <div class="qf-cards" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px">
+  <sc-for list="{{ listCards }}" as="k" hint-placeholder-count="6">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaCard" hint-size="100%,320px" href="{{ k.href }}" country="{{ k.country }}" country-label="{{ k.countryLabel }}" keyword="{{ k.keyword }}" title="{{ k.title }}" excerpt="{{ k.excerpt }}" tags="{{ k.tags }}" answerers="{{ k.answerers }}" answer-count="{{ k.answerCount }}" views="{{ k.views }}" likes="{{ k.likes }}" liked="{{ k.liked }}" onLikeChange="{{ k.onLike }}" scraps="{{ k.scraps }}" scrapped="{{ k.scrapped }}" onScrapChange="{{ k.onScrap }}"></x-import>
+  </sc-for>
 </div>
-  
+  <div style="display: flex; justify-content: center; padding-top: 12px">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Pagination" page="{{ page }}" total-pages="{{ totalPages }}" onPageChange="{{ setPage }}" hint-size="auto,44px"></x-import>
 </div>
+</div>
+      </div>
+      <aside class="qf-aside" style="display: flex; flex-direction: column; gap: 36px; min-width: 0">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 16px; padding: var(--card-content-padding); background: var(--card); border: 1px solid var(--sage-200); border-radius: var(--card-radius); box-shadow: var(--card-shadow)">
+  <div style="display: flex; flex-direction: column; gap: 4px; text-align: center">
+    <p style="margin: 0; font-size: var(--text-h3); font-weight: 600; line-height: 1.5">구체적인 고민이 있나요?</p>
+    <p style="margin: 0; font-size: var(--text-body); line-height: 1.7; color: var(--muted-foreground)">현재 가지고 있는 고민을<br>바로 물어보세요.</p>
+  </div>
+  <a href="../../qna-compose/template/qna-compose-modal-phone.dc.html" style="display: block; text-decoration: none">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="lg" full-width="{{ true }}" hint-size="100%,44px">Q&amp;A 멘토링 질문하기</x-import>
+  </a>
+</div>
+<section style="display: flex; flex-direction: column; gap: 16px">
+  <h2 class="text-h2" style="margin: 0">나의 Q&amp;A멘토링</h2>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Tabs" items="{{ myTabsEmpty }}" value="{{ myTab }}" onChange="{{ set_myTab }}" id-base="my-qna" aria-label="나의 Q&amp;A 멘토링" hint-size="100%,40px"></x-import>
+  <sc-if value="{{ myTabIsFirst }}" hint-placeholder-val="{{ true }}">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.TabPanel" id-base="my-qna" value="asked" hint-size="100%,320px"><div style="padding: 24px 0 8px">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" icon="message-question" size="sm" title="아직 질문이 없으시네요!" description="{{ widgetEmptyDesc }}" action="{{ widgetEmptyAction }}" hint-size="100%,260px"></x-import>
+    </div></x-import>
+  </sc-if>
+  <sc-if value="{{ myTabIsSecond }}">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.TabPanel" id-base="my-qna" value="scrapped" hint-size="100%,600px"><div style="display: flex; flex-direction: column; gap: 12px">
+  <sc-for list="{{ scrappedCards }}" as="k" hint-placeholder-count="3">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaCard" hint-size="100%,240px" compact="{{ true }}" href="{{ k.href }}" country="{{ k.country }}" country-label="{{ k.countryLabel }}" keyword="{{ k.keyword }}" title="{{ k.title }}" excerpt="{{ k.excerpt }}" tags="{{ k.tags }}" answerers="{{ k.answerers }}" answer-count="{{ k.answerCount }}" views="{{ k.views }}" likes="{{ k.likes }}" liked="{{ k.liked }}" onLikeChange="{{ k.onLike }}" scraps="{{ k.scraps }}" scrapped="{{ k.scrapped }}" onScrapChange="{{ k.onScrap }}"></x-import>
+  </sc-for>
+</div></x-import>
+  </sc-if>
+</section>
+<section style="display: flex; flex-direction: column; gap: 16px">
+  <h2 class="text-h2" style="margin: 0">주목받는 태그로 찾기</h2>
+  <div style="display: flex; flex-wrap: wrap; gap: 8px">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">일본취업</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">신졸채용</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">취업비자</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">영주권</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">연봉협상</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">이직준비</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">포트폴리오</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">어학시험</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">인터뷰준비</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">현지생활</x-import>
+</div>
+</section>
+      </aside>
     </div>
   </main>
   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" onNavigate="{{ nav }}" hint-size="100%,280px"></x-import>
