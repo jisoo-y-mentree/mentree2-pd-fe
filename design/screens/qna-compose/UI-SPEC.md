@@ -1,8 +1,8 @@
 # qna-compose: Q&A 질문 작성
 
-- 상태: UX승인 (§1~5. 2026-09-14 디자이너 승인)
+- 상태: 확정 (§1~11 ＋ `template/` 취임 2026-09-14)
 - 화면 구분: 작업
-- 템플릿: 미작성. **기다리는 부품이 없다** — 본문 에디터는 FE 가 blocknote 를 붙인다(`DS-15` 각하)
+- 템플릿: [`template/`](template/) — 출처는 [`template/SOURCE.md`](template/SOURCE.md)
 
 > 출처: Figma `zFWjJinW6NAtyMMzMujNl2` / `1059:35247` 「D-Q&A 페이지」의 주석. 읽은 날 2026-09-11.
 
@@ -225,5 +225,5 @@ flowchart LR
 
 - [x] §1~5 를 쓰고 UX승인을 받는다 (2026-09-14)
 - [x] §6~11 을 쓴다
-- [ ] `template/` 을 Claude Design 에서 만들어 취임한다
-- [ ] 6품질축 감사와 표시 확인을 `UI-REVIEW.md` 에 남긴다
+- [x] `template/` 을 Claude Design 에서 만들어 취임한다 (2026-09-14)
+- [x] 6품질축 감사와 표시 확인을 [`UI-REVIEW.md`](UI-REVIEW.md) 에 남겼다 (2026-09-14)

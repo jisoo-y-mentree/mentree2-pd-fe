@@ -4,7 +4,9 @@ import { BookmarkToggle } from "../core/BookmarkToggle.jsx";
 import { Icon } from "../core/Icon.jsx";
 
 /**
- * MentorCard — 세로형 멘토 카드(고정폭 296, 리스폰시브 아님). 프리미티브(Badge·CountToggle) 조립.
+ * MentorCard — 세로형 멘토 카드. Desktop 296px 고정. Mobile(~768)에서 폭을 부모가 정하느냐는 `fluid`로 가른다
+ *  (기본 false=296 고정 — 캐러셀처럼 부모가 폭을 안 정할 때, true=100%/min-width 179 — 2열 그리드처럼 부모가 정할 때).
+ *  프리미티브(Badge·CountToggle) 조립.
  *
  * [카드 공통 셸] white(card) · 1px sage-200 헤어라인 · card-shadow · card-radius(동심원).
  *  hover 시 그림자만 상승(shadow-md), 위치 이동 없음(~150ms).
@@ -19,7 +21,8 @@ import { Icon } from "../core/Icon.jsx";
  *   · 미디어 하단 안쪽: 배지 행 — 국가 배지(flag + "대한민국 +N ⌄", +N ⌄는 정적 표시 — 펼침은 Badge 확장 OPEN)
  *     + 직무 배지. 뉴트럴 recipe, size sm. 독립 클릭 영역.
  *  → 이름(h2, 1줄 …, 카드의 유일한 링크) → 직무(500, 1줄 …)/회사(muted, 1줄 …) → 소개 박스(sage-50, 1줄 …).
- * [Mobile ~768] 국가 배지 = 국기만(텍스트 숨김) · 소개 박스 2줄 허용. 폭·구조는 동일(296 고정).
+ * [Mobile ~768] 국가 배지 = 국기만(텍스트 숨김) · 소개 박스 2줄 허용(폭과 무관, 항상 적용).
+ *  `fluid`=true일 때만 폭이 width:100%/min-width:179(max-width 없음, 부모가 넓히면 카드도 넓어진다) — 기본은 296 고정(캐러셀 등 부모가 폭을 안 정하는 컨테이너용).
  */
 
 const NEW_WINDOW_MS = 31 * 24 * 60 * 60 * 1000; // 공개 후 1달
@@ -27,7 +30,7 @@ const NEW_WINDOW_MS = 31 * 24 * 60 * 60 * 1000; // 공개 후 1달
 if (typeof document !== "undefined" && !document.getElementById("mt-mcard-style")) {
   const s = document.createElement("style");
   s.id = "mt-mcard-style";
-  s.textContent = "@media (max-width:768px){.mt-mcard-clabel{display:none !important}.mt-mcard-intro{-webkit-line-clamp:2 !important}.mt-mcard-media{aspect-ratio:5/4 !important}}";
+  s.textContent = "@media (max-width:768px){.mt-mcard-clabel{display:none !important}.mt-mcard-intro{-webkit-line-clamp:2 !important}.mt-mcard-media{aspect-ratio:5/4 !important}.mt-mcard-fluid{width:100% !important;min-width:179px !important}}";
   document.head.appendChild(s);
 }
 if (typeof document !== "undefined" && !document.getElementById("mt-card-link-style")) {
@@ -56,6 +59,7 @@ export function MentorCard({
   publishedAt,
   photo,
   href = "#",
+  fluid = false,
   bookmarked = false,
   onBookmarkChange,
   style,
@@ -72,6 +76,7 @@ export function MentorCard({
 
   return (
     <article
+      className={fluid ? "mt-mcard mt-mcard-fluid" : "mt-mcard"}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
@@ -79,6 +84,7 @@ export function MentorCard({
         display: "block",
         width: 296,
         flex: "0 0 auto",
+        boxSizing: "border-box",
         color: "var(--foreground)",
         fontFamily: "var(--font-sans)",
         background: "var(--card)",

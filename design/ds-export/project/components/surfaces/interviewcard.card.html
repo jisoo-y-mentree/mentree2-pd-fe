@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="840x520" name="InterviewCard" subtitle="인물 인터뷰 카드(가로형) — featured/compact size 변형. 북마크 없음, 카드 전체 링크" -->
+<!-- @dsCard group="Components" viewport="1280x620" name="InterviewCard" subtitle="인물 인터뷰 카드(세로형, 1종) — 미디어 좌상단 배지, 제목 2줄/발췌 3줄 고정. 북마크 없음, 카드 전체 링크" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="../../styles.css" />
 <style>
   body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
-  .stack { display: flex; flex-direction: column; gap: 16px; max-width: 640px; }
-  .cell { display: flex; flex-direction: column; gap: 8px; }
+  .row { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; }
+  .cell { display: flex; flex-direction: column; gap: 8px; width: 397px; }
   .cap { font-size: var(--text-caption); color: var(--muted-foreground); }
 </style>
 </head>
@@ -19,24 +19,32 @@
 <script src="../../_ds_bundle.js"></script>
 <script type="text/babel">
   const { InterviewCard } = window.MentreeDesignSystem_2f86cf;
-  const PORTRAIT = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Crect width='320' height='320' fill='%23cdd3ce'/%3E%3Ccircle cx='160' cy='124' r='60' fill='%23bcc3bd'/%3E%3Crect x='70' y='210' width='180' height='150' rx='70' fill='%23bcc3bd'/%3E%3C/svg%3E";
+  const PORTRAIT = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='214'%3E%3Crect width='320' height='214' fill='%23cdd3ce'/%3E%3Ccircle cx='160' cy='80' r='44' fill='%23bcc3bd'/%3E%3Crect x='90' y='140' width='140' height='110' rx='50' fill='%23bcc3bd'/%3E%3C/svg%3E";
   function Demo() {
     return (
-      <div className="stack">
+      <div className="row">
         <div className="cell">
-          <InterviewCard size="featured" href="#" image={PORTRAIT}
+          <InterviewCard href="#" image={PORTRAIT}
             country="south-korea" countryLabel="대한민국" field="디자인"
-            title="10년 차 디자이너가 말하는 성장의 변곡점"
-            excerpt="주니어에서 리드로 넘어가던 시기에 가장 크게 바뀐 건 관점이었습니다. 문제를 보는 층위가 달라지자 팀과의 대화도 달라졌어요."
-            personName="박지훈" company="네이버" jobTitle="Design Lead" />
-          <div className="cap">featured — 대형, 발췌 있음</div>
+            title="늦은 출발은 없다! BX 디자이너 커리어 개척기"
+            excerpt="늦은 나이에 한국에서의 디자이너 전환은 쉽지 않은 선택이었습니다. 하지만 매 순간의 배움이 지금의 저를 만들었어요."
+            personName="서명진" jobTitle="사업 프로듀서" company="Dentsu Digital inc." />
+          <div className="cap">기본 — 국가+직무 배지, 제목 2줄, 발췌 3줄</div>
         </div>
         <div className="cell">
-          <InterviewCard size="compact" href="#"
+          <InterviewCard href="#"
             country="japan" countryLabel="일본" field="엔지니어링"
-            title="해외 취업, 준비는 이력서가 아니라 문제 정의부터"
+            title="해외 취업, 준비는 이력서가 아니라 문제 정의부터 시작해야 한다는 걸 알게 된 순간들"
+            excerpt="처음엔 이력서 포맷부터 고민했지만, 정작 중요한 건 내가 풀고 싶은 문제가 무엇인지 명확히 하는 것이었습니다. 그 뒤로 인터뷰 준비 방향이 완전히 달라졌어요."
             personName="다나카 미오" jobTitle="Product Manager" company="메르카리" />
-          <div className="cap">compact — 소형, 발췌 없음, placeholder</div>
+          <div className="cap">사진 없음(placeholder) + 긴 제목·발췌 말줄임</div>
+        </div>
+        <div className="cell">
+          <InterviewCard href="#" image={PORTRAIT}
+            country="united-states" countryLabel="미국" field="마케팅/광고"
+            title="스타트업에서 빅테크로, 커리어 전환의 기록"
+            personName="Sarah Kim" jobTitle="Growth Lead" company="Stripe" />
+          <div className="cap">발췌 없음</div>
         </div>
       </div>
     );

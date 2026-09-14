@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+  <script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <style>
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: color-mix(in oklch, var(--primary) 82%, var(--sage-950)); }
+    @media (max-width: 768px) {
+      .qf-container { padding-left: 16px !important; padding-right: 16px !important; }
+      .qf-body { grid-template-columns: minmax(0, 1fr) !important; gap: 28px !important; padding: 24px 0 40px !important; }
+      .qf-cards { grid-template-columns: minmax(0, 1fr) !important; }
+      .qf-shell { padding-bottom: calc(56px + env(safe-area-inset-bottom)) !important; }
+      .qf-h0 { font-size: 20px !important; }
+    }
+  </style>
+</helmet>
+<div class="qf-shell" style="display: flex; flex-direction: column; min-height: 100vh; background: var(--background); color: var(--foreground)">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" active-key="qna" hint-size="100%,64px"></x-import>
+
+  <main class="qf-container" style="flex: 1 1 auto; width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-pad)">
+    <div class="qf-body" style="display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: start; padding: 40px 0 72px">
+
+      <div style="display: flex; flex-direction: column; gap: 32px; min-width: 0">
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <h1 class="text-h0 qf-h0" style="margin: 0">Q&amp;A 멘토링</h1>
+          <p style="margin: 0; max-width: 620px; font-size: var(--text-body); line-height: 1.7; color: var(--muted-foreground)">해외 취업과 커리어에 대한 고민을 올려주세요.<br>해외 각국에서 활약하고 있는 멘트리의 멘토분들이 직접 고민에 대해 답변해드립니다.</p>
+        </div>
+
+        <div class="qf-filters" style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+          <div style="width: 170px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ countryOptions }}" value="전체 국가" onChange="{{ noop }}" aria-label="국가" hint-size="100%,38px"></x-import>
+          </div>
+          <div style="width: 170px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ keywordOptions }}" value="전체 키워드" onChange="{{ noop }}" aria-label="키워드" hint-size="100%,38px"></x-import>
+          </div>
+          <div style="flex: 1 1 240px; min-width: 200px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SearchInput" value="" onChange="{{ noop }}" onSearch="{{ noop }}" placeholder="궁금한 내용을 검색해 보세요" hint-size="100%,38px"></x-import>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 20px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" title="주목받는 Q&amp;A멘토링" hint-size="100%,48px"></x-import>
+          <div class="qf-cards" aria-busy="true" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px">
+            <sc-for list="{{ six }}" as="n" hint-placeholder-count="6">
+              <div style="display: flex; flex-direction: column; gap: 10px; padding: var(--card-content-padding); background: var(--card); border: 1px solid var(--sage-200); border-radius: var(--card-radius); box-shadow: var(--card-shadow)">
+                <div style="display: flex; gap: 6px">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="78px" height="28px" radius="md" hint-size="78px,28px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="64px" height="28px" radius="md" hint-size="64px,28px"></x-import>
+                </div>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ two }}" height="18px" hint-size="100%,44px"></x-import>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ two }}" height="13px" hint-size="100%,36px"></x-import>
+                <div style="display: flex; gap: 6px">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="58px" height="22px" hint-size="58px,22px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="46px" height="22px" hint-size="46px,22px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="70px" height="22px" hint-size="70px,22px"></x-import>
+                </div>
+                <div style="height: 1px; background: var(--sage-200); margin: 2px 0"></div>
+                <div style="display: flex; align-items: center; gap: 8px">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="24px" height="24px" radius="full" hint-size="24px,24px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="24px" height="24px" radius="full" hint-size="24px,24px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="92px" height="14px" hint-size="92px,14px"></x-import>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="44px" height="12px" hint-size="44px,12px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="84px" height="12px" hint-size="84px,12px"></x-import>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 20px">
+          <div style="display: flex; flex-direction: column; gap: 14px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ToggleGroup" options="{{ answerOptions }}" size="md" hint-size="auto,38px"></x-import>
+            <div class="qf-filters" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+              <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+                <div style="width: 170px">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ countryOptions }}" value="전체 국가" onChange="{{ noop }}" aria-label="목록 국가" hint-size="100%,38px"></x-import>
+                </div>
+                <div style="width: 170px">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ keywordOptions }}" value="전체 키워드" onChange="{{ noop }}" aria-label="목록 키워드" hint-size="100%,38px"></x-import>
+                </div>
+              </div>
+              <div style="width: 140px">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ sortOptions }}" value="최신순" onChange="{{ noop }}" aria-label="정렬" hint-size="100%,38px"></x-import>
+              </div>
+            </div>
+          </div>
+
+          <div class="qf-cards" aria-busy="true" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px">
+            <sc-for list="{{ six }}" as="n" hint-placeholder-count="6">
+              <div style="display: flex; flex-direction: column; gap: 10px; padding: var(--card-content-padding); background: var(--card); border: 1px solid var(--sage-200); border-radius: var(--card-radius); box-shadow: var(--card-shadow)">
+                <div style="display: flex; gap: 6px">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="78px" height="28px" radius="md" hint-size="78px,28px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="64px" height="28px" radius="md" hint-size="64px,28px"></x-import>
+                </div>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ two }}" height="18px" hint-size="100%,44px"></x-import>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ two }}" height="13px" hint-size="100%,36px"></x-import>
+                <div style="display: flex; gap: 6px">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="58px" height="22px" hint-size="58px,22px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="46px" height="22px" hint-size="46px,22px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="70px" height="22px" hint-size="70px,22px"></x-import>
+                </div>
+                <div style="height: 1px; background: var(--sage-200); margin: 2px 0"></div>
+                <div style="display: flex; align-items: center; gap: 8px">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="24px" height="24px" radius="full" hint-size="24px,24px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="24px" height="24px" radius="full" hint-size="24px,24px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="92px" height="14px" hint-size="92px,14px"></x-import>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="44px" height="12px" hint-size="44px,12px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="84px" height="12px" hint-size="84px,12px"></x-import>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+
+        </div>
+      </div>
+
+      <aside class="qf-aside" style="display: flex; flex-direction: column; gap: 36px; min-width: 0">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; padding: var(--card-content-padding); background: var(--card); border: 1px solid var(--sage-200); border-radius: var(--card-radius); box-shadow: var(--card-shadow)">
+          <div style="display: flex; flex-direction: column; gap: 4px; text-align: center">
+            <p style="margin: 0; font-size: var(--text-h3); font-weight: 600; line-height: 1.5">구체적인 고민이 있나요?</p>
+            <p style="margin: 0; font-size: var(--text-body); line-height: 1.7; color: var(--muted-foreground)">현재 가지고 있는 고민을<br>바로 물어보세요.</p>
+          </div>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="lg" full-width="{{ true }}" hint-size="100%,44px">Q&amp;A 멘토링 질문하기</x-import>
+        </div>
+
+        <section style="display: flex; flex-direction: column; gap: 16px">
+          <h2 class="text-h2" style="margin: 0">나의 Q&amp;A멘토링</h2>
+          <sc-if value="{{ myTabs }}">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Tabs" items="{{ myTabs }}" value="asked" id-base="my-qna" aria-label="나의 Q&amp;A 멘토링" hint-size="100%,40px"></x-import>
+          </sc-if>
+          <div style="display: flex; flex-direction: column; gap: 12px" aria-busy="true">
+            <sc-for list="{{ three }}" as="n" hint-placeholder-count="3">
+              <div style="display: flex; flex-direction: column; gap: 10px; padding: var(--card-content-padding); background: var(--card); border: 1px solid var(--sage-200); border-radius: var(--card-radius); box-shadow: var(--card-shadow)">
+                <div style="display: flex; gap: 6px">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="78px" height="28px" radius="md" hint-size="78px,28px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="64px" height="28px" radius="md" hint-size="64px,28px"></x-import>
+                </div>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ two }}" height="18px" hint-size="100%,44px"></x-import>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ two }}" height="13px" hint-size="100%,36px"></x-import>
+                <div style="height: 1px; background: var(--sage-200); margin: 2px 0"></div>
+                <div style="display: flex; align-items: center; gap: 8px">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="24px" height="24px" radius="full" hint-size="24px,24px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="24px" height="24px" radius="full" hint-size="24px,24px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="92px" height="14px" hint-size="92px,14px"></x-import>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="44px" height="12px" hint-size="44px,12px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="84px" height="12px" hint-size="84px,12px"></x-import>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" full-width="{{ true }}" hint-size="100%,40px">더보기</x-import>
+        </section>
+
+        <section style="display: flex; flex-direction: column; gap: 16px">
+          <h2 class="text-h2" style="margin: 0">주목받는 태그로 찾기</h2>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">일본취업</x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">신졸채용</x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">취업비자</x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">영주권</x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">연봉협상</x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">이직준비</x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">포트폴리오</x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">어학시험</x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">인터뷰준비</x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">현지생활</x-import>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" hint-size="100%,280px"></x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BottomTabBar" active-key="qna" hint-size="100%,56px"></x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const A = (...names) => names.map((name) => ({ name }));
+    return {
+      noop: () => {},
+      two: 2,
+      six: [1, 2, 3, 4, 5, 6],
+      three: [1, 2, 3],
+      page: 1,
+      totalPages: 12,
+      tg: {
+        f1: ["일본취업", "신졸채용", "JLPT", "IT"],
+        f2: ["H1B", "O1비자", "미국취업"],
+        f3: ["독일취업", "역이직", "경력인정", "베를린"],
+        f4: ["네덜란드", "세금", "연봉협상"],
+        f5: ["캐나다", "PGWP", "대학원", "영주권", "토론토"],
+        f6: ["영국", "동반비자", "런던", "정착"],
+        l1: ["대만", "반도체", "면접", "중국어", "영어트랙", "이공계", "타이베이"],
+        l2: ["일본취업", "이직", "자사서비스"],
+        l3: ["호주", "189비자", "EOI"],
+        l4: ["독일취업", "서류", "커버레터", "이력서"],
+        l5: ["미국취업", "연봉협상", "RSU", "오퍼"],
+        l6: ["프랑스", "그랑제콜", "대학원", "불어"],
+      },
+      av: {
+        f1: A("박서연", "이준호", "최민수", "정하늘"),
+        f2: A("김도윤", "윤지우", "한소미"),
+        f3: A("오세진", "류하은", "강태욱", "문지훈", "백가람"),
+        f4: A("신유리", "조민재"),
+        f5: A("임채원", "고은비", "서지환", "황민서", "노아린", "정다온"),
+        f6: A("최나영", "권도현", "이하준"),
+        l1: A("정우성", "배수린"),
+        l2: A("김하율", "송재민", "유선우"),
+        l4: A("정소율", "이건우", "홍지아", "차민준"),
+        l6: A("남기윤"),
+        m1: A("박서연", "이준호"),
+        m3: A("신유리"),
+      },
+      countryOptions: ["전체 국가", "일본", "미국", "독일", "영국", "캐나다", "호주", "네덜란드", "프랑스", "대만"],
+      keywordOptions: ["전체 키워드", "취업 준비", "비자·이민", "이직", "연봉 협상", "대학원", "현지 생활", "커리어 전환"],
+      sortOptions: ["최신순", "답변 많은순", "조회 많은순", "도움돼요순"],
+      answerOptions: ["답변 완료된 질문", "답변 기다리는 질문"],
+      myTabs: [
+        { value: "asked", label: "내가 한 질문", count: 4 },
+        { value: "scrapped", label: "스크랩한 질문", count: 12 },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

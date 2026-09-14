@@ -1,8 +1,8 @@
 # qna-detail: Q&A 상세
 
-- 상태: UX승인 (§1~5. 2026-09-14 디자이너 승인)
+- 상태: 확정 (§1~11 ＋ `template/` 취임 2026-09-14)
 - 화면 구분: 열람
-- 템플릿: 미작성. **`DS-23` 개정과 `DS-30` 을 기다린다**(2026-09-14 화면 대조). `Breadcrumb` 는 들어왔다
+- 템플릿: [`template/`](template/) — 출처는 [`template/SOURCE.md`](template/SOURCE.md)
 
 > 출처: Figma `zFWjJinW6NAtyMMzMujNl2` / `1059:35247` 「D-Q&A 페이지」의 주석. 읽은 날 2026-09-11.
 
@@ -246,5 +246,5 @@ flowchart LR
 - [x] §6~11 을 쓴다
 - [x] `UX-PATTERNS.md` 에 `P-01`~`P-03` 을 올린다
 - [ ] **`Breadcrumb`(`DS-16`)를 기다린다** — 지수
-- [ ] `template/` 4상태를 Claude Design 에서 만들어 취임한다
-- [ ] 6품질축 감사와 표시 확인을 `UI-REVIEW.md` 에 남긴다
+- [x] `template/` 을 Claude Design 에서 만들어 취임한다 (2026-09-14)
+- [x] 6품질축 감사와 표시 확인을 [`UI-REVIEW.md`](UI-REVIEW.md) 에 남겼다 (2026-09-14)

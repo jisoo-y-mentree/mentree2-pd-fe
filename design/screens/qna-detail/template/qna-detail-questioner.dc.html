@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+  <script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <style>
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: color-mix(in oklch, var(--primary) 82%, var(--sage-950)); }
+    @media (max-width: 768px) {
+      .qd-container { padding-left: 16px !important; padding-right: 16px !important; }
+      .qd-main { padding: 20px 0 40px !important; gap: 28px !important; }
+      .qd-shell { padding-bottom: calc(56px + env(safe-area-inset-bottom)) !important; }
+      .qd-title { font-size: 20px !important; }
+      .qd-recs { grid-template-columns: minmax(0, 1fr) !important; }
+      .qd-float { bottom: calc(56px + env(safe-area-inset-bottom) + 16px) !important; right: 16px !important; left: 16px !important; }
+      .qd-float > * { width: 100% !important; }
+      .qd-answerbar { flex-direction: column !important; align-items: flex-start !important; }
+    }
+  </style>
+</helmet>
+<div class="qd-shell" style="display: flex; flex-direction: column; min-height: 100vh; background: var(--background); color: var(--foreground)">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" active-key="qna" hint-size="100%,64px"></x-import>
+
+  <main class="qd-container" style="flex: 1 1 auto; width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-pad)">
+    <div class="qd-main" style="width: 100%; max-width: 880px; margin: 0 auto; padding: 24px 0 80px; display: flex; flex-direction: column; gap: 36px">
+
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Breadcrumb" items="{{ crumbs }}" hint-size="100%,24px"></x-import>
+        <a href="#" style="display: inline-flex; align-items: center; gap: 4px; font-size: var(--text-caption); color: var(--muted-foreground); white-space: nowrap">전체보기<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="arrow-up-right-01" size="14" hint-size="14px,14px"></x-import></a>
+      </div>
+
+      <article style="position: relative; display: flex; flex-direction: column; gap: 16px; padding: var(--card-content-padding); background: var(--card); border: 1px solid var(--sage-200); border-radius: var(--card-radius); box-shadow: var(--card-shadow)">
+        <div style="position: absolute; top: 14px; right: 14px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="more-horizontal-circle-01" variant="ghost" size="sm" aria-label="더보기" hint-size="32px,32px"></x-import>
+        </div>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; padding-right: 36px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" size="md" leading="flag" flag="japan" hint-size="auto,28px">일본</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" size="md" hint-size="auto,28px">취업 준비</x-import>
+        </div>
+        <div class="tabular" style="display: flex; align-items: center; gap: 8px; font-size: var(--text-caption); color: var(--muted-foreground); white-space: nowrap">
+          <span>조회 1832</span>
+          <span aria-hidden="true">·</span>
+          <span>2026.09.08</span>
+        </div>
+      </div>
+        <h1 class="qd-title" style="margin: 0; font-size: var(--text-h1); font-weight: 700; line-height: 1.4">Q. 일본 IT 기업 신졸 채용, 한국 대학 졸업생도 지원할 수 있나요?</h1>
+        <div style="display: flex; align-items: center; gap: 8px; font-size: var(--text-caption); color: var(--muted-foreground)">
+          <span>김＊＊</span>
+        </div>
+        <div style="font-size: var(--text-body); line-height: 1.8; white-space: pre-wrap">내년 3월에 한국 대학을 졸업합니다. 일본어는 JLPT N2 이고, 도쿄의 자사 서비스 기업 신졸 전형을 보고 있습니다.
+
+지금까지 알아본 것은 마이나비·리크나비 두 곳의 일정과, 외국인 채용 실적이 있는 기업 목록입니다. 정하지 못한 것은 지원 시점입니다. 졸업 전에 넣어야 하는지, 졸업 후 취업 활동 비자로 바꾸고 넣어도 되는지 판단이 서지 않습니다.
+
+한국 대학 졸업생을 신졸로 받는 기업이 실제로 얼마나 되는지, 그리고 지원 시점을 어떻게 잡으셨는지 경험을 듣고 싶습니다.</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">일본취업</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">신졸채용</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">JLPT</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">IT</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">도쿄</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">취업비자</x-import>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; padding-top: 2px; border-top: 1px solid var(--border); margin-top: 2px">
+          <div style="display: flex; align-items: center; gap: 10px; padding-top: 12px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CountToggle" icon="favourite" tone="rose" count="46" hint-size="auto,24px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CountToggle" icon="bookmark" tone="dark" count="21" hint-size="auto,24px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="share-08" variant="ghost" size="sm" aria-label="공유" hint-size="32px,32px"></x-import>
+          </div>
+        </div>
+      </article>
+
+      <section style="display: flex; flex-direction: column; gap: 16px">
+        <div class="qd-answerbar" style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+          <h2 class="text-h2" style="margin: 0">3건의 답변</h2>
+          <div style="width: 140px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ sortOptions }}" value="최신순" onChange="{{ noop }}" aria-label="답변 정렬" hint-size="100%,38px"></x-import>
+          </div>
+        </div>
+
+        <div class="qd-answers" style="display: flex; flex-direction: column; gap: 16px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.AnswerCard" hint-size="100%,320px" mentor-name="박서연" is-questioner-view="{{ true }}" country="japan" country-label="일본" activity-location="도쿄에서 활동" headline="프로덕트 엔지니어 @메르카리 (9년차)" mentor-profile-href="#" mentor-answers-href="#" date="2026-09-11" like-count="18" accepted="{{ true }}" body="{{ answer1 }}"></x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.AnswerCard" hint-size="100%,320px" mentor-name="이준호" is-questioner-view="{{ true }}" country="japan" country-label="일본" activity-location="오사카에서 활동" headline="백엔드 엔지니어 @사이보즈 (6년차)" mentor-profile-href="#" mentor-answers-href="#" date="2026-09-10" like-count="7" body="{{ answer2 }}"></x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.AnswerCard" hint-size="100%,320px" mentor-name="최민수" is-questioner-view="{{ true }}" country="japan" country-label="일본" activity-location="도쿄에서 활동" headline="채용 담당 @IT 기업 (11년차)" mentor-profile-href="#" mentor-answers-href="#" date="2026-09-09" like-count="4" body="{{ answer3 }}"></x-import>
+        </div>
+      </section>
+
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Banner" href="#" background="var(--primary)" padding="24px" hint-size="100%,120px">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; color: var(--primary-foreground)">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <span style="font-size: var(--text-h2); font-weight: 600">구체적인 고민이 있나요?</span>
+            <span style="font-size: var(--text-body); line-height: 1.7; opacity: 0.9">현재 가지고 있는 고민을 바로 물어보세요.</span>
+          </div>
+          <span style="display: inline-flex; align-items: center; height: 44px; padding: 0 22px; border-radius: var(--radius-md); background: var(--primary-foreground); color: var(--primary); font-size: var(--text-h3); font-weight: 600; white-space: nowrap">[문구 미정] 질문하기</span>
+        </div>
+      </x-import>
+
+      <section class="qd-recs" style="display: flex; flex-direction: column; gap: 20px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" title="이런 질문도 많이 봤어요" hint-size="100%,48px"></x-import>
+        <div class="qd-recs" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaCard" hint-size="100%,320px" href="#" country="japan" country-label="일본" keyword="커리어 전환" title="일본에서 SI 에서 자사 서비스 기업으로 옮기는 경로가 궁금합니다" excerpt="도쿄에서 SI 3년째입니다. 자사 서비스 기업으로 옮긴 분들이 어떤 준비를 했는지 듣고 싶습니다." tags="{{ rec1Tags }}" answerers="{{ rec1Answerers }}" answer-count="3" views="1120" likes="29" scraps="17"></x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaCard" hint-size="100%,320px" href="#" country="japan" country-label="일본" keyword="비자·이민" title="졸업 후 취업 활동 비자로 바꾸면 신졸 전형에 계속 지원할 수 있나요?" excerpt="3월 졸업 후 바로 취업이 정해지지 않았을 때의 경로를 알고 싶습니다." tags="{{ rec2Tags }}" answerers="{{ rec2Answerers }}" answer-count="2" views="860" likes="19" scraps="11"></x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaCard" hint-size="100%,320px" href="#" country="japan" country-label="일본" keyword="취업 준비" title="JLPT N2 로 면접까지 가능한가요, N1 을 먼저 따야 하나요?" excerpt="서류는 통과했는데 면접 회화가 걱정입니다. 실제 채용 현장의 기준이 궁금합니다." tags="{{ rec3Tags }}" answerers="{{ rec3Answerers }}" answer-count="5" views="2010" likes="52" scraps="30"></x-import>
+        </div>
+      </section>
+
+
+      <section style="display: flex; flex-direction: column; gap: 16px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" title="인기 태그" hint-size="100%,48px"></x-import>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">일본취업</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">신졸채용</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">취업비자</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">JLPT</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">해외취업</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">이직준비</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">연봉협상</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">영주권</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">현지생활</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">포트폴리오</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">면접준비</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="#" hint-size="auto,32px">대학원</x-import>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" hint-size="100%,280px"></x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BottomTabBar" active-key="qna" hint-size="100%,56px"></x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const A = (...names) => names.map((name) => ({ name }));
+    return {
+      noop: () => {},
+      crumbs: [{ label: "Q&A 멘토링", href: "qna-feed-normal.dc.html" }, { label: "상세" }],
+      sortOptions: ["최신순", "도움돼요순"],
+      answer1: "신졸 전형에 한국 대학 졸업생이 지원하는 것 자체는 가능합니다. 다만 기업마다 「해외 대학 졸업 예정자」 트랙을 따로 두는 곳과, 국내외 구분 없이 한 트랙으로 받는 곳이 갈립니다.\n\n저는 졸업 전 해에 지원했습니다. 일본 신졸 일정은 졸업 1년 전 봄부터 움직이기 때문에, 졸업 후에 시작하면 한 해를 통째로 기다리게 됩니다. 지금 3학년이 아니라 졸업 예정이시라면 기업의 「既卒 3년 이내 신졸 취급」 표기를 먼저 확인해 보세요. 이 표기가 있으면 졸업 후 지원해도 신졸 전형으로 받아 줍니다.\n\nN2 는 서류에서 걸리지 않는 선입니다. 면접에서 갈리는 것은 자격증보다 자기 경험을 일본어로 설명할 수 있는지입니다.",
+      answer2: "저는 졸업 후 취업 활동 비자로 바꾸고 지원했습니다. 그 경로도 됩니다만, 비자 전환 조건에 「졸업한 학교의 추천」과 「계속적인 구직 활동 증명」이 붙습니다. 한국 대학 졸업이면 이 경로 대신 단기 체재로 면접만 다녀오는 쪽이 현실적입니다.\n\n일정만 보면 졸업 전 지원이 유리합니다.",
+      answer3: "채용하는 쪽 시각으로 덧붙이면, 한국 대학 졸업생을 신졸로 받는 데 기업이 가장 신경 쓰는 것은 입사 시점입니다. 4월 일괄 입사에 맞출 수 있는지가 먼저 확인됩니다. 3월 졸업이면 그대로 맞으니 이 점은 오히려 유리합니다.",
+      rec1Tags: ["일본취업", "이직", "자사서비스"],
+      rec1Answerers: A("김하율", "송재민", "유선우"),
+      rec2Tags: ["일본", "취업활동비자", "신졸채용"],
+      rec2Answerers: A("정하늘", "박서연"),
+      rec3Tags: ["JLPT", "면접", "일본어", "신졸채용"],
+      rec3Answerers: A("이준호", "최민수", "정하늘", "오세진", "류하은"),
+    };
+  }
+}
+</script>
+</body>
+</html>

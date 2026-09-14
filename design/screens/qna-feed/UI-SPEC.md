@@ -1,8 +1,8 @@
 # qna-feed: Q&A 피드
 
-- 상태: 확정 (§1~5 UX승인 2026-09-11 → §6~11 작성 완료)
+- 상태: 확정 (§1~11 ＋ `template/` 취임 2026-09-14)
 - 화면 구분: 열람
-- 템플릿: 미작성 (Claude Design 에서 4상태를 만들어 취임한다)
+- 템플릿: [`template/`](template/) — 출처는 [`template/SOURCE.md`](template/SOURCE.md)
 - **부품은 전부 갖춰졌다**(2026-09-14 확인). 이 화면이 기다리는 `DS-nn` 이 없다
 
 > 출처: Figma `zFWjJinW6NAtyMMzMujNl2` / `1059:35247` 「D-Q&A 페이지」의 주석 20건. 읽은 날 2026-09-11.
@@ -242,5 +242,5 @@ flowchart LR
 - [x] §1~5 를 쓰고 UX승인을 받는다 (2026-09-11)
 - [x] §6~11 을 쓴다
 - [x] 부족한 요소를 `DS-update-list.md` 에 기표한다 (`DS-25`)
-- [ ] `template/` 4상태를 Claude Design 에서 만들어 취임한다
-- [ ] 6품질축 감사와 표시 확인을 `UI-REVIEW.md` 에 남긴다
+- [x] `template/` 을 Claude Design 에서 만들어 취임한다 (2026-09-14)
+- [x] 6품질축 감사와 표시 확인을 [`UI-REVIEW.md`](UI-REVIEW.md) 에 남겼다 (2026-09-14)

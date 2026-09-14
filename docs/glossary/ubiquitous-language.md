@@ -81,12 +81,13 @@
 | 배지 | `Badge` | 컴포넌트. core. new 상태·+N 펼침·labelHidden |
 | 버튼 | `Button` | 컴포넌트. core |
 | 북마크 토글 | `BookmarkToggle` | 컴포넌트. core. 스크랩의 UI 다 |
-| 브레드크럼 | `Breadcrumb` | **미구현**(`DS-16`). 목록 ＞ 상세. 깊이 2단이고 마지막은 링크가 아니다 |
+| 브레드크럼 | `Breadcrumb` | 컴포넌트. navigation. 목록 ＞ 상세. **깊이 2단 고정**이고 마지막은 링크가 아니다. 3단 이상·홈 아이콘·드롭다운을 두지 않는다 |
 | 비밀번호 찾기·재설정 | `password-reset` | 화면 |
 | 빈 상태 | `EmptyState` | 컴포넌트. surfaces. 0건일 때의 표시와 다음 행동 유도 |
 | 사이드바 | `Sidebar` | 컴포넌트. navigation. **제거 대상**(`DS-19`) — 앱 네비 레일이며 어느 화면도 쓰지 않는다 |
 | 세로 내비 | `VerticalNav` | **미구현**(`DS-17`). 마이페이지 좌측 · 아티클 카테고리 |
 | 섹션 헤더 | `SectionHeader` | 컴포넌트. navigation |
+| 검색 인풋 | `SearchInput` | 컴포넌트. forms. 자동완성 ＋ 최근 검색어. 제안 줄이 상자 밖 드롭다운이다 |
 | 셀렉트 | `Select` | 컴포넌트. forms |
 | 스위치 | `Switch` | 컴포넌트. forms |
 | 스켈레톤 | `Skeleton` | 컴포넌트. surfaces. 로딩 중의 자리표시 |
@@ -129,12 +130,15 @@
 | 푸터 | `Footer` | 컴포넌트. navigation |
 | 프로모션 코드 | `PromotionCode` | 결제 시 쓰는 쿠폰 |
 | 필드 | `Field` | 컴포넌트. forms. `FieldGroup` 을 함께 export 한다 |
+| 필터 셀렉트 | `FilterSelect` | 컴포넌트. core. 조건 축 트리거 ＋ `Dialog` 모달. **다중 선택**이며 「N개 적용하기」로 확정한다 |
 | 필터칩 | `FilterChip` | 컴포넌트. core |
 | 하단 탭바 | `BottomTabBar` | 컴포넌트. navigation. 모바일 전용 4탭 |
 | 헤더 | `Header` | 컴포넌트. navigation. 반응형·오버레이 |
 | 회원가입 | `signup` | 화면. 이메일 ／ 소셜 2경로 |
 
-**93행** — 개념 **28**(모달 1 포함) · 화면 **19** · 컴포넌트 **40** · **미구현 5** · **DS 밖 1**.
+**96행** — 개념 **28**(모달 1 포함) · 화면 **19** · 컴포넌트 **43** · **미구현 4** · **DS 밖 1**.
+
+> **09-14 에 3행 늘었다.** `Breadcrumb`(`DS-16` 완료) ＋ **`FilterSelect`·`SearchInput`** — 뒤의 둘은 `DS-nn` 없이 들어왔다. [DS-update-list](../../design/DS-update-list.md) 는 미비·미정의 그릇이라 **이미 있는 것에 행을 만들지 않는다.**
 
 > **09-12 에 미구현 9본이 실물이 됐다** — `Pagination`·`Tabs`·`Toast`·`Skeleton`·`EmptyState`·`Popover`·`Chip`·`CountToggle`·`AnswerCard`. 행 수는 그대로이고 설명만 바뀐다.
 >

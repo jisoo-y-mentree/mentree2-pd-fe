@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+  <script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <style>
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: color-mix(in oklch, var(--primary) 82%, var(--sage-950)); }
+    @media (max-width: 768px) {
+      .qc-container { padding-left: 16px !important; padding-right: 16px !important; }
+      .qc-main { padding: 24px 0 40px !important; }
+      .qc-shell { padding-bottom: calc(56px + env(safe-area-inset-bottom)) !important; }
+      .qc-h0 { font-size: 20px !important; }
+      .qc-actions { flex-direction: column-reverse !important; align-items: stretch !important; }
+      .qc-actions > * { width: 100% !important; }
+    }
+  </style>
+</helmet>
+<div class="qc-shell" style="display: flex; flex-direction: column; min-height: 100vh; background: var(--background); color: var(--foreground)">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" active-key="qna" hint-size="100%,64px"></x-import>
+
+  <main class="qc-container" style="flex: 1 1 auto; width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-pad)">
+    <div class="qc-main" style="width: 100%; max-width: 720px; margin: 0 auto; padding: 40px 0 72px; display: flex; flex-direction: column; gap: 32px">
+
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <h1 class="text-h0 qc-h0" style="margin: 0">[문구 미정] Q&amp;A 멘토링 질문하기</h1>
+        <p style="margin: 0; font-size: var(--text-body); line-height: 1.7; color: var(--muted-foreground)">[문구 미정] 어느 나라의 어떤 상황인지까지 적어 주시면 멘토가 답하기 쉬워집니다. 회사명 등 개인을 특정할 수 있는 내용은 적지 말아 주세요.</p>
+      </div>
+
+      <form aria-busy="true" style="display: flex; flex-direction: column; gap: 24px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="국가" required="{{ true }}" html-for="qc-country" hint-size="100%,86px">
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" id="qc-country" options="{{ countryOptions }}" placeholder="[문구 미정] 국가를 선택해 주세요" value="일본" onChange="{{ noop }}" disabled="{{ true }}" hint-size="100%,38px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.RadioGroup" name="qc-country-scope" options="{{ scopeOptions }}" onChange="{{ noop }}" disabled="{{ true }}" hint-size="100%,24px"></x-import>
+          </div>
+        </x-import>
+
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="키워드" required="{{ true }}" html-for="qc-keyword" hint-size="100%,64px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" id="qc-keyword" options="{{ keywordOptions }}" placeholder="[문구 미정] 키워드를 선택해 주세요" value="취업 준비" onChange="{{ noop }}" disabled="{{ true }}" hint-size="100%,38px"></x-import>
+        </x-import>
+
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="제목" required="{{ true }}" html-for="qc-title" hint-size="100%,64px">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="qc-title" placeholder="[문구 미정] 질문을 한 줄로 요약해 주세요" defaultValue="일본 IT 기업 신졸 채용, 한국 대학 졸업생도 지원할 수 있나요?" readOnly="{{ true }}" disabled="{{ true }}" hint-size="100%,38px"></x-import>
+            <div class="tabular" style="align-self: flex-end; font-size: var(--text-caption); color: var(--muted-foreground)">37/50</div>
+          </div>
+        </x-import>
+
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="본문" required="{{ true }}" html-for="qc-body" hint-size="100%,260px">
+          <div style="display: flex; flex-direction: column; background: var(--muted); border: 1px solid var(--input); border-radius: var(--radius-md); overflow: hidden; opacity: 0.6; pointer-events: none">
+            <div style="display: flex; align-items: center; gap: 2px; padding: 6px 8px; border-bottom: 1px solid var(--border)">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="text-bold" variant="ghost" size="sm" disabled="{{ true }}" aria-label="굵게" hint-size="32px,32px"></x-import>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="text-italic" variant="ghost" size="sm" disabled="{{ true }}" aria-label="기울임" hint-size="32px,32px"></x-import>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="left-to-right-list-bullet" variant="ghost" size="sm" disabled="{{ true }}" aria-label="글머리 기호 목록" hint-size="32px,32px"></x-import>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="left-to-right-list-number" variant="ghost" size="sm" disabled="{{ true }}" aria-label="번호 목록" hint-size="32px,32px"></x-import>
+            </div>
+            <div id="qc-body" style="min-height: 200px; padding: 14px 12px; font-size: var(--text-body); line-height: 1.7; color: var(--foreground)">[문구 미정] 내년 3월에 한국 대학을 졸업합니다. 일본어는 JLPT N2 이고, 도쿄의 자사 서비스 기업 신졸 전형을 보고 있습니다.<br><br>[문구 미정] 지금까지 알아본 것은 마이나비·리크나비 두 곳의 일정과, 외국인 채용 실적이 있는 기업 목록입니다. 정하지 못한 것은 지원 시점입니다. 졸업 전에 넣어야 하는지, 졸업 후 취업 활동 비자로 바꾸고 넣어도 되는지 판단이 서지 않습니다.</div>
+            <div class="tabular" style="align-self: flex-end; padding: 0 12px 10px; font-size: var(--text-caption); color: var(--muted-foreground)">248/1000</div>
+          </div>
+        </x-import>
+
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="태그" description="[문구 미정] 최대 10개까지 붙일 수 있습니다." html-for="qc-tags" hint-size="100%,120px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.TagInput" id="qc-tags" value="{{ tagsFilled }}" onChange="{{ noop }}" suggestions="{{ tagSuggestions }}" completions="{{ tagsEmpty }}" max="10" placeholder="[문구 미정] 태그 입력하기" disabled="{{ true }}" hint-size="100%,96px"></x-import>
+        </x-import>
+
+        <div class="qc-actions" style="display: flex; justify-content: flex-end; gap: 10px; padding-top: 8px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="secondary" size="lg" disabled="{{ true }}" hint-size="auto,44px">[문구 미정] 임시 저장</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="lg" disabled="{{ true }}" icon-left="loading-03" hint-size="auto,44px">[문구 미정] 등록하는 중</x-import>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" hint-size="100%,280px"></x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BottomTabBar" active-key="qna" hint-size="100%,56px"></x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      noop: () => {},
+      tagsEmpty: [],
+      tagsFilled: ["일본취업", "신졸채용", "JLPT"],
+      tagSuggestions: ["일본취업", "신졸채용", "취업비자", "연봉협상", "이직준비"],
+      countryOptions: ["일본", "미국", "독일", "영국", "캐나다", "호주", "네덜란드", "프랑스", "대만"],
+      keywordOptions: ["취업 준비", "비자·이민", "이직", "연봉 협상", "대학원", "현지 생활", "커리어 전환"],
+      scopeOptions: [{ value: "all", label: "[문구 미정] 모든 국가에 해당함" }],
+    };
+  }
+}
+</script>
+</body>
+</html>

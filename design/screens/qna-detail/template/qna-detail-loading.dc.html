@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+  <script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <style>
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: color-mix(in oklch, var(--primary) 82%, var(--sage-950)); }
+    @media (max-width: 768px) {
+      .qd-container { padding-left: 16px !important; padding-right: 16px !important; }
+      .qd-main { padding: 20px 0 40px !important; gap: 28px !important; }
+      .qd-shell { padding-bottom: calc(56px + env(safe-area-inset-bottom)) !important; }
+      .qd-title { font-size: 20px !important; }
+      .qd-recs { grid-template-columns: minmax(0, 1fr) !important; }
+      .qd-float { bottom: calc(56px + env(safe-area-inset-bottom) + 16px) !important; right: 16px !important; left: 16px !important; }
+      .qd-float > * { width: 100% !important; }
+      .qd-answerbar { flex-direction: column !important; align-items: flex-start !important; }
+    }
+  </style>
+</helmet>
+<div class="qd-shell" style="display: flex; flex-direction: column; min-height: 100vh; background: var(--background); color: var(--foreground)">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" active-key="qna" hint-size="100%,64px"></x-import>
+
+  <main class="qd-container" style="flex: 1 1 auto; width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-pad)">
+    <div class="qd-main" style="width: 100%; max-width: 880px; margin: 0 auto; padding: 24px 0 80px; display: flex; flex-direction: column; gap: 36px">
+
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Breadcrumb" items="{{ crumbs }}" hint-size="100%,24px"></x-import>
+        <a href="#" style="display: inline-flex; align-items: center; gap: 4px; font-size: var(--text-caption); color: var(--muted-foreground); white-space: nowrap">전체보기<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="arrow-up-right-01" size="14" hint-size="14px,14px"></x-import></a>
+      </div>
+
+      <div aria-busy="true" style="display: flex; flex-direction: column; gap: 16px; padding: var(--card-content-padding); background: var(--card); border: 1px solid var(--sage-200); border-radius: var(--card-radius); box-shadow: var(--card-shadow)">
+        <div style="display: flex; gap: 6px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="78px" height="28px" radius="md" hint-size="78px,28px"></x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="64px" height="28px" radius="md" hint-size="64px,28px"></x-import>
+        </div>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ two }}" height="26px" hint-size="100%,60px"></x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="120px" height="14px" hint-size="120px,14px"></x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ six }}" height="15px" hint-size="100%,140px"></x-import>
+        <div style="display: flex; gap: 8px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="72px" height="32px" radius="md" hint-size="72px,32px"></x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="88px" height="32px" radius="md" hint-size="88px,32px"></x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="60px" height="32px" radius="md" hint-size="60px,32px"></x-import>
+        </div>
+        <div style="display: flex; gap: 14px; padding-top: 12px; border-top: 1px solid var(--border)">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="64px" height="14px" hint-size="64px,14px"></x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="48px" height="14px" hint-size="48px,14px"></x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="48px" height="14px" hint-size="48px,14px"></x-import>
+        </div>
+      </div>
+
+      <section style="display: flex; flex-direction: column; gap: 16px">
+        <div class="qd-answerbar" style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="110px" height="22px" hint-size="110px,22px"></x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="140px" height="38px" radius="md" hint-size="140px,38px"></x-import>
+        </div>
+
+        <div class="qd-answers" aria-busy="true" style="display: flex; flex-direction: column; gap: 16px">
+          <div style="display: flex; flex-direction: column; gap: 16px; padding: var(--card-content-padding); background: var(--card); border: 1px solid var(--sage-200); border-radius: var(--card-radius); box-shadow: var(--card-shadow)">
+            <div style="display: flex; align-items: flex-start; gap: 10px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="44px" height="44px" radius="full" hint-size="44px,44px"></x-import>
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="180px" height="18px" hint-size="180px,18px"></x-import>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="240px" height="14px" hint-size="240px,14px"></x-import>
+              </div>
+            </div>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="168px" height="32px" radius="md" hint-size="168px,32px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ four }}" height="15px" hint-size="100%,96px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="84px" height="12px" hint-size="84px,12px"></x-import>
+            <div style="display: flex; gap: 10px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="52px" height="20px" hint-size="52px,20px"></x-import>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="28px" height="20px" hint-size="28px,20px"></x-import>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px; padding: var(--card-content-padding); background: var(--card); border: 1px solid var(--sage-200); border-radius: var(--card-radius); box-shadow: var(--card-shadow)">
+            <div style="display: flex; align-items: flex-start; gap: 10px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="44px" height="44px" radius="full" hint-size="44px,44px"></x-import>
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="180px" height="18px" hint-size="180px,18px"></x-import>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="240px" height="14px" hint-size="240px,14px"></x-import>
+              </div>
+            </div>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="168px" height="32px" radius="md" hint-size="168px,32px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ four }}" height="15px" hint-size="100%,96px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="84px" height="12px" hint-size="84px,12px"></x-import>
+            <div style="display: flex; gap: 10px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="52px" height="20px" hint-size="52px,20px"></x-import>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="28px" height="20px" hint-size="28px,20px"></x-import>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px; padding: var(--card-content-padding); background: var(--card); border: 1px solid var(--sage-200); border-radius: var(--card-radius); box-shadow: var(--card-shadow)">
+            <div style="display: flex; align-items: flex-start; gap: 10px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="44px" height="44px" radius="full" hint-size="44px,44px"></x-import>
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="180px" height="18px" hint-size="180px,18px"></x-import>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="240px" height="14px" hint-size="240px,14px"></x-import>
+              </div>
+            </div>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="168px" height="32px" radius="md" hint-size="168px,32px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ four }}" height="15px" hint-size="100%,96px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="84px" height="12px" hint-size="84px,12px"></x-import>
+            <div style="display: flex; gap: 10px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="52px" height="20px" hint-size="52px,20px"></x-import>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="28px" height="20px" hint-size="28px,20px"></x-import>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+  </main>
+
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" hint-size="100%,280px"></x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BottomTabBar" active-key="qna" hint-size="100%,56px"></x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const A = (...names) => names.map((name) => ({ name }));
+    return {
+      noop: () => {},
+      two: 2,
+      four: 4,
+      six: 6,
+      crumbs: [{ label: "Q&A 멘토링", href: "qna-feed-normal.dc.html" }, { label: "상세" }],
+      sortOptions: ["최신순", "도움돼요순"],
+      answer1: "신졸 전형에 한국 대학 졸업생이 지원하는 것 자체는 가능합니다. 다만 기업마다 「해외 대학 졸업 예정자」 트랙을 따로 두는 곳과, 국내외 구분 없이 한 트랙으로 받는 곳이 갈립니다.\n\n저는 졸업 전 해에 지원했습니다. 일본 신졸 일정은 졸업 1년 전 봄부터 움직이기 때문에, 졸업 후에 시작하면 한 해를 통째로 기다리게 됩니다. 지금 3학년이 아니라 졸업 예정이시라면 기업의 「既卒 3년 이내 신졸 취급」 표기를 먼저 확인해 보세요. 이 표기가 있으면 졸업 후 지원해도 신졸 전형으로 받아 줍니다.\n\nN2 는 서류에서 걸리지 않는 선입니다. 면접에서 갈리는 것은 자격증보다 자기 경험을 일본어로 설명할 수 있는지입니다.",
+      answer2: "저는 졸업 후 취업 활동 비자로 바꾸고 지원했습니다. 그 경로도 됩니다만, 비자 전환 조건에 「졸업한 학교의 추천」과 「계속적인 구직 활동 증명」이 붙습니다. 한국 대학 졸업이면 이 경로 대신 단기 체재로 면접만 다녀오는 쪽이 현실적입니다.\n\n일정만 보면 졸업 전 지원이 유리합니다.",
+      answer3: "채용하는 쪽 시각으로 덧붙이면, 한국 대학 졸업생을 신졸로 받는 데 기업이 가장 신경 쓰는 것은 입사 시점입니다. 4월 일괄 입사에 맞출 수 있는지가 먼저 확인됩니다. 3월 졸업이면 그대로 맞으니 이 점은 오히려 유리합니다.",
+      rec1Tags: ["일본취업", "이직", "자사서비스"],
+      rec1Answerers: A("김하율", "송재민", "유선우"),
+      rec2Tags: ["일본", "취업활동비자", "신졸채용"],
+      rec2Answerers: A("정하늘", "박서연"),
+      rec3Tags: ["JLPT", "면접", "일본어", "신졸채용"],
+      rec3Answerers: A("이준호", "최민수", "정하늘", "오세진", "류하은"),
+    };
+  }
+}
+</script>
+</body>
+</html>
