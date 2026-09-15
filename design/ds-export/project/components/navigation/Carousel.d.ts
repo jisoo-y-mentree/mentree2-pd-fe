@@ -13,11 +13,11 @@ export interface CarouselHandle {
  * Carousel — 배치 컴포넌트. 카드를 가로로 나열하는 범용 스크롤/스냅 컨테이너.
  *
  * 담기는 카드 종류 고정 안 함. 조작부(화살표) 없음 — SectionHeader의 화살표 그룹이 담당하고
- * Carousel은 스크롤/스냅 로직만. 데스크톱 기본 거동만(리스폰시브 peek/페이드/모바일은 범위 밖).
- * 표시 개수는 컨테이너 폭에 맞춰 유동. 1280 충족 시 끝에서 딱 멈춤(페이드·클리핑 없음).
+ * Carousel은 스크롤/스냅 로직만. 표시 개수는 컨테이너 폭에 맞춰 유동. 1280 충족 시 끝에서 딱 멈춤(페이드·클리핑 없음).
  *
  * ref(CarouselHandle)로 화살표 연동: scrollPrev/scrollNext는 한 페이지(현재 표시 개수)만큼 이동.
- * 자유 스크롤의 카드 1장 스냅과는 별개. 좌우 배경(white) 페이드는 mode="peek" 전용(snap-fit/unit은 페이드 없음, 1280 기준).
+ * 자유 스크롤의 카드 1장 스냅과는 별개. 페이드는 Desktop(769+) 전용이다 — 넘치고 그 방향에 더 있으면
+ * 걸린다(mode·폭과 무관). Mobile은 페이드하지 않는다(스와이프가 그 일을 한다).
  * 끝 도달은 onEdgeChange로 통지 → SectionHeader 화살표 disabled.
  */
 export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {

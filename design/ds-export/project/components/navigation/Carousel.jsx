@@ -6,7 +6,7 @@ import React from "react";
  *  좌우 화살표는 SectionHeader가 담당하고, Carousel은 스크롤/스냅 로직만.
  *  데스크톱 기본 거동. mode("peek"|"snap-fit")와 좌우 배경(white) 페이드 추가.
  *   peek: 마지막 카드가 의도적으로 잘려 걸침(N+1) — "더 있음" 강조. snap-fit: 컨테이너 폭에 딱 떨어짐(잘림 없음).
- *   페이드: peek 모드 전용(overflow 시 우측 배경색(white), 시작이 아니면 좌측에도). snap-fit/unit은 페이드 없음. 1280 데스크톱 기준.
+ *   페이드: 넘치고 그 방향에 더 있으면 걸린다(mode·폭과 무관 — 1280이 아니어도 동작). Mobile(~768)은 페이드하지 않는다(CSS로 끈다).
  *   세로 그림자: 스크롤 트랙 상하 여유 패딩 + 동일 크기 음수 마진으로, 가로 스크롤을 유지하면서 카드 세로 그림자가 잘리지 않게(외부 점유 박스 불변).
  *
  *  화살표 연동: ref로 scrollPrev()/scrollNext() 호출(1단위=현재 표시 개수만큼 이동).
@@ -22,17 +22,24 @@ export const Carousel = React.forwardRef(function Carousel(
   // 트랙 상하에 그림자 여유 패딩을 두고, 같은 크기의 음수 마진으로 되돌려 점유 박스는 동일하게 유지.
   const SHADOW_PAD = 18;
 
+  if (typeof document !== "undefined" && !document.getElementById("mt-carousel-style")) {
+    const s = document.createElement("style");
+    s.id = "mt-carousel-style";
+    s.textContent = "@media (max-width:768px){.mt-carousel-fade{display:none !important}}";
+    document.head.appendChild(s);
+  }
+
   const readEdges = React.useCallback(() => {
     const el = trackRef.current;
     if (!el) return;
     const overflow = el.scrollWidth - el.clientWidth > 1;
     const atStart = el.scrollLeft <= 1;
     const atEnd = el.scrollLeft >= el.scrollWidth - el.clientWidth - 1;
-    // 페이드는 peek 모드 전용("더 있음" 강조). snap-fit/unit은 overflow여도 페이드 없음.
-    const peek = mode === "peek";
-    setFade({ left: peek && overflow && !atStart, right: peek && overflow && !atEnd });
+    // 페이드는 넘치는 방향에 대해 걸린다. mode·폭과 무관 — peek든 snap-fit이든, 1280이 아니어도 동일.
+    // Mobile(~768)에서는 CSS로 끈다(className 참조, matchMedia로 JS 분기하지 않는다).
+    setFade({ left: overflow && !atStart, right: overflow && !atEnd });
     if (onEdgeChange) onEdgeChange({ atStart, atEnd });
-  }, [onEdgeChange, mode]);
+  }, [onEdgeChange]);
 
   // 화살표 = 한 페이지 넘기기. 자유 스크롤의 카드 1장 스냅과는 별개.
   //  snap="unit": 1단위 = 트랙 가시 폭 한 화면.
@@ -111,9 +118,10 @@ export const Carousel = React.forwardRef(function Carousel(
           });
         })}
       </div>
-      {/* 좌우 배경(white) 페이드 — overflow + 스크롤 위치에 따라. 클릭 통과. */}
-      <div aria-hidden="true" style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: 40, pointerEvents: "none", background: "linear-gradient(90deg, var(--background), transparent)", opacity: fade.left ? 1 : 0, transition: "opacity 150ms ease" }} />
-      <div aria-hidden="true" style={{ position: "absolute", top: 0, bottom: 0, right: 0, width: 40, pointerEvents: "none", background: "linear-gradient(270deg, var(--background), transparent)", opacity: fade.right ? 1 : 0, transition: "opacity 150ms ease" }} />
+      {/* 좌우 배경(white) 페이드 — overflow + 스크롤 위치에 따라(mode·폭 무관). 클릭 통과.
+          Mobile(~768)은 CSS로 숨긴다 — 가장자리 폭이 귀하고 스와이프가 그 일을 대신한다. */}
+      <div aria-hidden="true" className="mt-carousel-fade" style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: 40, pointerEvents: "none", background: "linear-gradient(90deg, var(--background), transparent)", opacity: fade.left ? 1 : 0, transition: "opacity 150ms ease" }} />
+      <div aria-hidden="true" className="mt-carousel-fade" style={{ position: "absolute", top: 0, bottom: 0, right: 0, width: 40, pointerEvents: "none", background: "linear-gradient(270deg, var(--background), transparent)", opacity: fade.right ? 1 : 0, transition: "opacity 150ms ease" }} />
     </div>
   );
 });

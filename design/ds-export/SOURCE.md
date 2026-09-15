@@ -5,9 +5,9 @@
 > 두 축의 정의는 [docs/SOURCES.md](../../docs/SOURCES.md) 「정본의 두 축」이 갖는다. FE 인계의 입력이다([ADR-0005](../../docs/adr/0005-design-team-deliverables.md)).
 
 - 출처: Claude Design (radarlab 계정) — 프로젝트 이름 **`M2 Design System`**
-- 원본: `M2 Design System-handoff (6).zip`
-- **반입일: 2026-09-12**
-- 원본 SHA-256: `06a76b378765d09db1936a3c0471f8b99d9c6df69505f141e63d28f97b5b7890`
+- 원본: `M2 Design System.zip`
+- **반입일: 2026-09-14**
+- 원본 SHA-256: `7649857370a505f675224748039a07f107eee4bec6710d9d6147a661163ea367`
 
 ### 교체 이력
 
@@ -17,6 +17,7 @@
 | **2026-09-10** | `M2-Design-System-handoff.zip` | `727c5d60feaf` | **컴포넌트·토큰·guidelines 는 무변경**(166본 바이트 동일). 아래 2건만 |
 | **2026-09-12** | `M2 Design System-handoff (3).zip` | `26a7c12eb6d2` | **컴포넌트가 30본에서 39본이 됐다.** 아래 |
 | **2026-09-12** | `M2 Design System-handoff (6).zip` | `06a76b378765` | **`TagInput` 1본이 늘어 40본이 됐다.** ＋ `Chip` 개정. 아래 |
+| **2026-09-14** | `M2 Design System.zip` | `7649857370a5` | **40본에서 43본.** 신규 `Breadcrumb`·`FilterSelect`·`SearchInput`. 삭제 0 |
 
 ### 2026-09-12(2) — TagInput 이 들어왔다
 
@@ -61,6 +62,22 @@
 
 - `README.md` — 폴더·프로젝트 이름이 `mentree-design-system` / `mentree Design System` 에서 **`m2-design-system` / `M2 Design System`** 으로 바뀌었다
 - `project/readme.md` — **linen 배경 문단이 삭제됐다**(「평평한 따뜻한 린넨 … `#fefaf1`」). 재개 팩의 「linen 완전 폐지 → white 기반」이 문서에도 반영됐다. 그 밖은 마크다운 이스케이프·표 구분선 서식 차이다
+
+### 2026-09-14 — 40본에서 43본
+
+**신규 3본.** 삭제 0.
+
+| 부품 | 어느 요구 | 무엇 |
+|---|---|---|
+| **`Breadcrumb`** | `DS-16` | 목록 → 상세 2단. **3단 이상·홈 아이콘·드롭다운을 일부러 만들지 않았다** |
+| **`FilterSelect`** | **기표 없음** | 조건 축 트리거 ＋ `Dialog`(600) 모달. **다중 선택**이고 「N개 적용하기」로 확정한다 |
+| **`SearchInput`** | **기표 없음** | 자동완성 ＋ 최근 검색어. 제안 줄이 상자 밖 드롭다운이다 |
+
+**뒤의 둘에 `DS-nn` 을 만들지 않는다.** [DS-update-list](../DS-update-list.md) 는 **미비·미정**의 그릇이고 저 둘은 이미 있다.
+
+**수정 3본** — `MentorCard` · `InterviewCard` · `Carousel`.
+
+**`FilterSelect` 는 `qna-feed` 에 쓰지 않는다.** 부품은 다중 선택 ＋ 확정 버튼인데 그 화면의 와이어(`1059:36083`)는 **「즉시, and, 각 필터 안에서는 단일선택」** 이다. 다중이 필요한 화면(`mentor-search`·`insight-list`)의 것으로 본다.
 
 ## 취급
 

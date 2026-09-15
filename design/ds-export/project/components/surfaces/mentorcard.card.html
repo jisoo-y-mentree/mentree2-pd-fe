@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="1000x560" name="MentorCard" subtitle="세로형 멘토 카드(296 고정) — 신규 배지·북마크·국가/직무 배지 행 오버레이 + 소개 박스" -->
+<!-- @dsCard group="Components" viewport="1000x820" name="MentorCard" subtitle="세로형 멘토 카드(Desktop 296 고정 · Mobile 폭은 부모가 정함) — 신규 배지·북마크·국가/직무 배지 행 오버레이 + 소개 박스" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -44,7 +44,29 @@
       </div>
     );
   }
-  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+  function MobileDemo() {
+    return (
+      <div className="cell">
+        <div className="cap">Mobile 390px 뷰포트 · fluid 2열(폭은 부모가 정한다, min-width 179 — 실제 미디어쿼리 확인용 iframe)</div>
+        <iframe src="./mentorcard.mobile-demo.html" style={{ width: 390, height: 620, border: "1px dashed var(--sage-200)", borderRadius: "var(--radius-md)" }} title="MentorCard mobile 2열 데모" />
+      </div>
+    );
+  }
+  function FluidGridDemo() {
+    return (
+      <div className="cell">
+        <div className="cap">fluid=true · 좁은 상자에 2열 그리드(캐러셀이 아니라 그리드처럼 부모가 폭을 정하는 경우)</div>
+        <div style={{ width: 360, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, border: "1px dashed var(--sage-200)", borderRadius: "var(--radius-md)", padding: 12 }}>
+          <MentorCard fluid href="#" photo={PHOTO} country="south-korea" countryLabel="대한민국" field="마케팅/광고" name="박지훈" role="시니어 PD" company="네이버" intro="10년차 PD, 커리어 전환 상담 환영해요." />
+          <MentorCard fluid href="#" country="united-states" countryLabel="미국" field="엔지니어링" name="Sarah Kim" role="Staff Engineer" company="Stripe" intro="빅테크 이직 준비, 시스템 설계까지 함께 봐드립니다." />
+        </div>
+      </div>
+    );
+  }
+  function Root() {
+    return (<div style={{ display: "flex", flexDirection: "column", gap: 28 }}><Demo /><MobileDemo /><FluidGridDemo /></div>);
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Root />);
 </script>
 </body>
 </html>

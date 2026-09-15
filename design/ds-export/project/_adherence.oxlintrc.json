@@ -86,6 +86,10 @@
         "message": "<BottomTabBar> authState must be one of 'guest' | 'mentor' | 'mentee'."
       },
       {
+        "selector": "JSXOpeningElement[name.name='BreadcrumbItem'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|href|key|ref|className|style|children)$/]",
+        "message": "<BreadcrumbItem> doesn't accept that prop. Declared props: label, href."
+      },
+      {
         "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|size|iconLeft|iconRight|fullWidth|disabled|key|ref|className|style|children)$/]",
         "message": "<Button> doesn't accept that prop. Declared props: variant, size, iconLeft, iconRight, fullWidth, disabled."
       },
@@ -162,6 +166,10 @@
         "message": "<FilterChip> leading must be one of 'none' | 'flag'."
       },
       {
+        "selector": "JSXOpeningElement[name.name='FilterSelectOption'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|label|flag|key|ref|className|style|children)$/]",
+        "message": "<FilterSelectOption> doesn't accept that prop. Declared props: value, label, flag."
+      },
+      {
         "selector": "JSXOpeningElement[name.name='Footer'] > JSXAttribute > JSXIdentifier[name!=/^(?:primary|auth|utility|brand|copyright|onNavigate|style|key|ref|className|style|children)$/]",
         "message": "<Footer> doesn't accept that prop. Declared props: primary, auth, utility, brand, copyright, onNavigate, style."
       },
@@ -194,16 +202,12 @@
         "message": "<Input> doesn't accept that prop. Declared props: iconLeft, invalid."
       },
       {
-        "selector": "JSXOpeningElement[name.name='InterviewCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:size|title|excerpt|image|personName|company|jobTitle|field|country|countryLabel|href|key|ref|className|style|children)$/]",
-        "message": "<InterviewCard> doesn't accept that prop. Declared props: size, title, excerpt, image, personName, company, jobTitle, field, country, countryLabel, href."
+        "selector": "JSXOpeningElement[name.name='InterviewCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|excerpt|image|personName|company|jobTitle|field|country|countryLabel|href|key|ref|className|style|children)$/]",
+        "message": "<InterviewCard> doesn't accept that prop. Declared props: title, excerpt, image, personName, company, jobTitle, field, country, countryLabel, href."
       },
       {
-        "selector": "JSXOpeningElement[name.name='InterviewCard'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:featured|compact)$/]",
-        "message": "<InterviewCard> size must be one of 'featured' | 'compact'."
-      },
-      {
-        "selector": "JSXOpeningElement[name.name='MentorCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:name|role|company|intro|field|country|countryLabel|countryExtra|publishedAt|photo|href|bookmarked|onBookmarkChange|key|ref|className|style|children)$/]",
-        "message": "<MentorCard> doesn't accept that prop. Declared props: name, role, company, intro, field, country, countryLabel, countryExtra, publishedAt, photo, href, bookmarked, onBookmarkChange."
+        "selector": "JSXOpeningElement[name.name='MentorCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:name|role|company|intro|field|country|countryLabel|countryExtra|publishedAt|photo|href|fluid|bookmarked|onBookmarkChange|key|ref|className|style|children)$/]",
+        "message": "<MentorCard> doesn't accept that prop. Declared props: name, role, company, intro, field, country, countryLabel, countryExtra, publishedAt, photo, href, fluid, bookmarked, onBookmarkChange."
       },
       {
         "selector": "JSXOpeningElement[name.name='Pagination'] > JSXAttribute > JSXIdentifier[name!=/^(?:page|totalPages|onPageChange|key|ref|className|style|children)$/]",
@@ -228,6 +232,10 @@
       {
         "selector": "JSXOpeningElement[name.name='RadioGroup'] > JSXAttribute > JSXIdentifier[name!=/^(?:options|value|onChange|name|disabled|key|ref|className|style|children)$/]",
         "message": "<RadioGroup> doesn't accept that prop. Declared props: options, value, onChange, name, disabled."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SearchInput'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|onChange|onSearch|completions|recent|onRemoveRecent|placeholder|disabled|invalid|id|autoFocus|key|ref|className|style|children)$/]",
+        "message": "<SearchInput> doesn't accept that prop. Declared props: value, onChange, onSearch, completions, recent, onRemoveRecent, placeholder, disabled, invalid, id, autoFocus."
       },
       {
         "selector": "JSXOpeningElement[name.name='SectionHeader'] > JSXAttribute > JSXIdentifier[name!=/^(?:icon|title|titleAccent|suffix|badge|viewAll|onViewAll|action|carousel|onPrev|onNext|prevDisabled|nextDisabled|key|ref|className|style|children)$/]",
@@ -328,6 +336,9 @@
       "BottomTabBar": {
         "replaces": []
       },
+      "BreadcrumbItem": {
+        "replaces": []
+      },
       "Button": {
         "replaces": []
       },
@@ -361,6 +372,9 @@
       "FilterChip": {
         "replaces": []
       },
+      "FilterSelectOption": {
+        "replaces": []
+      },
       "Footer": {
         "replaces": []
       },
@@ -392,6 +406,9 @@
         "replaces": []
       },
       "RadioGroup": {
+        "replaces": []
+      },
+      "SearchInput": {
         "replaces": []
       },
       "SectionHeader": {

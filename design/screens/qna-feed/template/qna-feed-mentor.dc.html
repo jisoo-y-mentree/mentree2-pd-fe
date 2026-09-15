@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+  <script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <style>
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: color-mix(in oklch, var(--primary) 82%, var(--sage-950)); }
+    @media (max-width: 768px) {
+      .qf-container { padding-left: 16px !important; padding-right: 16px !important; }
+      .qf-body { grid-template-columns: minmax(0, 1fr) !important; gap: 28px !important; padding: 24px 0 40px !important; }
+      .qf-cards { grid-template-columns: minmax(0, 1fr) !important; }
+      .qf-shell { padding-bottom: calc(56px + env(safe-area-inset-bottom)) !important; }
+      .qf-h0 { font-size: 20px !important; }
+    }
+  </style>
+</helmet>
+<div class="qf-shell" style="display: flex; flex-direction: column; min-height: 100vh; background: var(--background); color: var(--foreground)">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" active-key="qna" onNavigate="{{ nav }}" hint-size="100%,64px"></x-import>
+  <main class="qf-container" style="flex: 1 1 auto; width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-pad)">
+    <div class="qf-body" style="display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: start; padding: 40px 0 72px">
+      <div style="display: flex; flex-direction: column; gap: 32px; min-width: 0">
+<div style="display: flex; flex-direction: column; gap: 10px">
+  <h1 class="text-h0 qf-h0" style="margin: 0">Q&amp;A 멘토링</h1>
+  <p style="margin: 0; max-width: 620px; font-size: var(--text-body); line-height: 1.7; color: var(--muted-foreground)">해외 취업과 커리어에 대한 고민을 올려주세요.<br>해외 각국에서 활약하고 있는 멘트리의 멘토분들이 직접 고민에 대해 답변해드립니다.</p>
+</div>
+<div class="qf-filters" style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+  <div style="width: 170px">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ countryOptions }}" value="{{ country }}" onChange="{{ set_country }}" aria-label="국가" hint-size="100%,38px"></x-import>
+</div>
+  <div style="width: 170px">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ keywordOptions }}" value="{{ keyword }}" onChange="{{ set_keyword }}" aria-label="키워드" hint-size="100%,38px"></x-import>
+</div>
+  <div style="flex: 1 1 240px; min-width: 200px">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SearchInput" value="{{ q }}" onChange="{{ set_q }}" onSearch="{{ doSearch }}" placeholder="궁금한 내용을 검색해 보세요" hint-size="100%,38px"></x-import>
+  </div>
+</div>
+<sc-if value="{{ showFeatured }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 20px">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" title="주목받는 Q&amp;A멘토링" hint-size="100%,48px"></x-import>
+  <div class="qf-cards" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px">
+  <sc-for list="{{ featuredCards }}" as="k" hint-placeholder-count="6">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaCard" hint-size="100%,320px" href="{{ k.href }}" country="{{ k.country }}" country-label="{{ k.countryLabel }}" keyword="{{ k.keyword }}" title="{{ k.title }}" excerpt="{{ k.excerpt }}" tags="{{ k.tags }}" answerers="{{ k.answerers }}" answer-count="{{ k.answerCount }}" views="{{ k.views }}" likes="{{ k.likes }}" liked="{{ k.liked }}" onLikeChange="{{ k.onLike }}" scraps="{{ k.scraps }}" scrapped="{{ k.scrapped }}" onScrapChange="{{ k.onScrap }}"></x-import>
+  </sc-for>
+</div>
+</div>
+</sc-if>
+<div style="display: flex; flex-direction: column; gap: 20px">
+  <div style="display: flex; flex-direction: column; gap: 14px">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ToggleGroup" options="{{ answerOptions }}" value="{{ answerFilter }}" onChange="{{ set_answerFilter }}" size="md" hint-size="auto,38px"></x-import>
+  <div class="qf-filters" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+    <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+      <div style="width: 170px">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ countryOptions }}" value="{{ country2 }}" onChange="{{ set_country2 }}" aria-label="목록 국가" hint-size="100%,38px"></x-import>
+</div>
+      <div style="width: 170px">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ keywordOptions }}" value="{{ keyword2 }}" onChange="{{ set_keyword2 }}" aria-label="목록 키워드" hint-size="100%,38px"></x-import>
+</div>
+    </div>
+    <div style="width: 140px">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ sortOptions }}" value="{{ sort }}" onChange="{{ set_sort }}" aria-label="정렬" hint-size="100%,38px"></x-import>
+</div>
+  </div>
+</div>
+  <div class="qf-cards" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px">
+  <sc-for list="{{ listCards }}" as="k" hint-placeholder-count="6">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaCard" hint-size="100%,320px" href="{{ k.href }}" country="{{ k.country }}" country-label="{{ k.countryLabel }}" keyword="{{ k.keyword }}" title="{{ k.title }}" excerpt="{{ k.excerpt }}" tags="{{ k.tags }}" answerers="{{ k.answerers }}" answer-count="{{ k.answerCount }}" views="{{ k.views }}" likes="{{ k.likes }}" liked="{{ k.liked }}" onLikeChange="{{ k.onLike }}" scraps="{{ k.scraps }}" scrapped="{{ k.scrapped }}" onScrapChange="{{ k.onScrap }}"></x-import>
+  </sc-for>
+</div>
+  <div style="display: flex; justify-content: center; padding-top: 12px">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Pagination" page="{{ page }}" total-pages="{{ totalPages }}" onPageChange="{{ setPage }}" hint-size="auto,44px"></x-import>
+</div>
+</div>
+      </div>
+      <aside class="qf-aside" style="display: flex; flex-direction: column; gap: 36px; min-width: 0">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 16px; padding: var(--card-content-padding); background: var(--card); border: 1px solid var(--sage-200); border-radius: var(--card-radius); box-shadow: var(--card-shadow)">
+  <div style="display: flex; flex-direction: column; gap: 4px; text-align: center">
+    <p style="margin: 0; font-size: var(--text-h3); font-weight: 600; line-height: 1.5">구체적인 고민이 있나요?</p>
+    <p style="margin: 0; font-size: var(--text-body); line-height: 1.7; color: var(--muted-foreground)">현재 가지고 있는 고민을<br>바로 물어보세요.</p>
+  </div>
+  <a href="../../qna-compose/template/qna-compose-modal-phone.dc.html" style="display: block; text-decoration: none">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="lg" full-width="{{ true }}" hint-size="100%,44px">Q&amp;A 멘토링 질문하기</x-import>
+  </a>
+</div>
+<section style="display: flex; flex-direction: column; gap: 16px">
+  <h2 class="text-h2" style="margin: 0">나의 Q&amp;A멘토링</h2>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" dc-props="{{ greenCard }}" hint-size="100%,88px"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CardContent" hint-size="100%,88px"><div style="display: flex; flex-direction: column; gap: 8px">
+    <span style="font-size: var(--text-h3); font-weight: 600; color: var(--primary)">내가 답변한 멘토링</span>
+    <div class="tabular" style="display: flex; gap: 16px; font-size: var(--text-body); color: var(--foreground)">
+      <span>답변 수 : <strong>12</strong></span>
+      <span>도움돼요 수 : <strong>48</strong></span>
+    </div>
+  </div></x-import></x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Tabs" items="{{ mentorTabs }}" value="{{ myTab }}" onChange="{{ set_myTab }}" id-base="my-qna" aria-label="나의 Q&amp;A 멘토링" hint-size="100%,40px"></x-import>
+  <sc-if value="{{ myTabIsFirst }}" hint-placeholder-val="{{ true }}">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.TabPanel" id-base="my-qna" value="answered" hint-size="100%,600px"><div style="display: flex; flex-direction: column; gap: 12px">
+  <sc-for list="{{ answeredCards }}" as="k" hint-placeholder-count="3">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaCard" hint-size="100%,240px" compact="{{ true }}" href="{{ k.href }}" country="{{ k.country }}" country-label="{{ k.countryLabel }}" keyword="{{ k.keyword }}" title="{{ k.title }}" excerpt="{{ k.excerpt }}" tags="{{ k.tags }}" answerers="{{ k.answerers }}" answer-count="{{ k.answerCount }}" views="{{ k.views }}" likes="{{ k.likes }}" liked="{{ k.liked }}" onLikeChange="{{ k.onLike }}" scraps="{{ k.scraps }}" scrapped="{{ k.scrapped }}" onScrapChange="{{ k.onScrap }}"></x-import>
+  </sc-for>
+</div></x-import>
+</sc-if>
+<sc-if value="{{ myTabIsSecond }}">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.TabPanel" id-base="my-qna" value="scrapped" hint-size="100%,600px"><div style="display: flex; flex-direction: column; gap: 12px">
+  <sc-for list="{{ scrappedCards }}" as="k" hint-placeholder-count="3">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaCard" hint-size="100%,240px" compact="{{ true }}" href="{{ k.href }}" country="{{ k.country }}" country-label="{{ k.countryLabel }}" keyword="{{ k.keyword }}" title="{{ k.title }}" excerpt="{{ k.excerpt }}" tags="{{ k.tags }}" answerers="{{ k.answerers }}" answer-count="{{ k.answerCount }}" views="{{ k.views }}" likes="{{ k.likes }}" liked="{{ k.liked }}" onLikeChange="{{ k.onLike }}" scraps="{{ k.scraps }}" scrapped="{{ k.scrapped }}" onScrapChange="{{ k.onScrap }}"></x-import>
+  </sc-for>
+</div></x-import>
+</sc-if>
+  <a href="#" style="display: block; text-decoration: none">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="md" full-width="{{ true }}" hint-size="100%,40px">더보기</x-import>
+</a>
+</section>
+<section style="display: flex; flex-direction: column; gap: 16px">
+  <h2 class="text-h2" style="margin: 0">주목받는 태그로 찾기</h2>
+  <div style="display: flex; flex-wrap: wrap; gap: 8px">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">일본취업</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">신졸채용</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">취업비자</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">영주권</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">연봉협상</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">이직준비</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">포트폴리오</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">어학시험</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">인터뷰준비</x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="#" href="qna-feed-search.dc.html" hint-size="auto,32px">현지생활</x-import>
+</div>
+</section>
+      </aside>
+    </div>
+  </main>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" onNavigate="{{ nav }}" hint-size="100%,280px"></x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BottomTabBar" active-key="qna" onNavigate="{{ nav }}" hint-size="100%,56px"></x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Toast" open="{{ toastOpen }}" message="{{ toastMessage }}" actions="{{ toastActions }}" onDismiss="{{ toastDismiss }}" hint-size="0px,0px"></x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const A = (...names) => names.map((name) => ({ name }));
+const CARDS = {"f1":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"japan","countryLabel":"일본","keyword":"취업 준비","title":"일본 IT 기업 신졸 채용, 한국 대학 졸업생도 지원할 수 있나요?","excerpt":"내년 3월 졸업 예정이고 일본어는 JLPT N2 입니다. 신졸 전형이 현지 대학 재학생만 받는 구조인지 궁금합니다.","tags":["일본취업","신졸채용","JLPT","IT"],"answerers":[{"name":"박서연"},{"name":"이준호"},{"name":"최민수"},{"name":"정하늘"}],"answerCount":4,"views":1832,"likes":46,"scraps":21,"liked":true},"f2":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"united-states","countryLabel":"미국","keyword":"비자·이민","title":"H-1B 추첨에 떨어진 뒤 O-1 으로 전환한 분이 계신가요?","excerpt":"올해 추첨에서 두 번째로 떨어졌습니다. 지금 회사가 O-1 을 검토하자고 하는데 실제 준비 기간이 궁금합니다.","tags":["H1B","O1비자","미국취업"],"answerers":[{"name":"김도윤"},{"name":"윤지우"},{"name":"한소미"}],"answerCount":3,"views":1540,"likes":38,"scraps":44},"f3":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"germany","countryLabel":"독일","keyword":"이직","title":"독일에서 3년 일한 뒤 한국으로 돌아오면 경력을 어떻게 보나요?","excerpt":"베를린에서 백엔드로 일하고 있습니다. 국내 복귀 시 연차와 직급을 어떻게 인정받는지 듣고 싶습니다.","tags":["독일취업","역이직","경력인정","베를린"],"answerers":[{"name":"오세진"},{"name":"류하은"},{"name":"강태욱"},{"name":"문지훈"},{"name":"백가람"}],"answerCount":5,"views":2260,"likes":61,"scraps":33},"f4":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"netherlands","countryLabel":"네덜란드","keyword":"연봉 협상","title":"암스테르담 오퍼 두 곳, 30% ruling 을 넣으면 어느 쪽이 유리한가요?","excerpt":"기본급 차이가 8천 유로인데 한 곳만 ruling 적용이 확실합니다. 실수령 기준으로 비교해 주실 수 있을까요?","tags":["네덜란드","세금","연봉협상"],"answerers":[{"name":"신유리"},{"name":"조민재"}],"answerCount":2,"views":980,"likes":24,"scraps":19,"scrapped":true},"f5":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"canada","countryLabel":"캐나다","keyword":"대학원","title":"캐나다 석사 후 PGWP 로 취업까지 현실적인 기간이 궁금합니다","excerpt":"토론토 2년 석사를 준비하고 있습니다. 졸업 후 구직 기간과 영주권까지의 경로를 실제 경험으로 알고 싶습니다.","tags":["캐나다","PGWP","대학원","영주권","토론토"],"answerers":[{"name":"임채원"},{"name":"고은비"},{"name":"서지환"},{"name":"황민서"},{"name":"노아린"},{"name":"정다온"}],"answerCount":6,"views":3105,"likes":88,"scraps":57},"f6":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"united-kingdom","countryLabel":"영국","keyword":"현지 생활","title":"런던 Skilled Worker 비자로 가족을 함께 데려간 경험이 있나요?","excerpt":"배우자와 아이 한 명이 있습니다. 동반 비자 준비물과 초기 정착 비용을 어느 정도로 잡아야 할지 막막합니다.","tags":["영국","동반비자","런던","정착"],"answerers":[{"name":"최나영"},{"name":"권도현"},{"name":"이하준"}],"answerCount":3,"views":1412,"likes":35,"scraps":28},"l1":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"taiwan","countryLabel":"대만","keyword":"취업 준비","title":"타이베이 반도체 기업 면접, 중국어 없이도 가능한가요?","excerpt":"영어 트랙으로 공고가 올라와 지원했습니다. 실제 팀 업무에서 중국어가 어느 정도 필요한지 알고 싶습니다.","tags":["대만","반도체","면접","중국어","영어트랙","이공계","타이베이"],"answerers":[{"name":"정우성"},{"name":"배수린"}],"answerCount":2,"views":640,"likes":12,"scraps":9},"l2":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"japan","countryLabel":"일본","keyword":"커리어 전환","title":"일본에서 SI 에서 자사 서비스 기업으로 옮기는 경로가 궁금합니다","excerpt":"도쿄에서 SI 3년째입니다. 자사 서비스 기업으로 옮긴 분들이 어떤 준비를 했는지 듣고 싶습니다.","tags":["일본취업","이직","자사서비스"],"answerers":[{"name":"김하율"},{"name":"송재민"},{"name":"유선우"}],"answerCount":3,"views":1120,"likes":29,"scraps":17},"l3":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"germany","countryLabel":"독일","keyword":"취업 준비","title":"독일 회사 지원할 때 Anschreiben 을 꼭 써야 하나요?","excerpt":"스타트업 공고에는 요구가 없는데 대기업은 다르다고 들었습니다. 실제로 읽히는지 궁금합니다.","tags":["독일취업","서류","커버레터","이력서"],"answerers":[{"name":"정소율"},{"name":"이건우"},{"name":"홍지아"},{"name":"차민준"}],"answerCount":4,"views":1508,"likes":41,"scraps":22},"l4":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"france","countryLabel":"프랑스","keyword":"대학원","title":"프랑스 그랑제콜 석사, 영어 트랙만으로 현지 취업이 되나요?","excerpt":"불어는 A2 수준입니다. 졸업생들이 실제로 어느 나라에서 취업했는지 알고 싶습니다.","tags":["프랑스","그랑제콜","대학원","불어"],"answerers":[{"name":"남기윤"}],"answerCount":1,"views":452,"likes":11,"scraps":8},"l5":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"japan","countryLabel":"일본","keyword":"비자·이민","title":"졸업 후 취업 활동 비자로 바꾸면 신졸 전형에 계속 지원할 수 있나요?","excerpt":"3월 졸업 후 바로 취업이 정해지지 않았을 때의 경로를 알고 싶습니다.","tags":["일본","취업활동비자","신졸채용"],"answerers":[{"name":"정하늘"},{"name":"박서연"}],"answerCount":2,"views":860,"likes":19,"scraps":11},"l6":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"japan","countryLabel":"일본","keyword":"취업 준비","title":"JLPT N2 로 면접까지 가능한가요, N1 을 먼저 따야 하나요?","excerpt":"서류는 통과했는데 면접 회화가 걱정입니다. 실제 채용 현장의 기준이 궁금합니다.","tags":["JLPT","면접","일본어","신졸채용"],"answerers":[{"name":"이준호"},{"name":"최민수"},{"name":"정하늘"},{"name":"오세진"},{"name":"류하은"}],"answerCount":5,"views":2010,"likes":52,"scraps":30},"l7":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"singapore","countryLabel":"싱가포르","keyword":"이직","title":"싱가포르 EP 최저 연봉이 올라서 이직 오퍼가 취소될 수 있나요?","excerpt":"오퍼 레터는 받았는데 EP 신청 전입니다. 기준 인상 시점과 실제 사례가 궁금합니다.","tags":["싱가포르","EP","이직"],"answerers":[{"name":"장윤아"},{"name":"박태현"}],"answerCount":2,"views":733,"likes":15,"scraps":12},"l8":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"united-states","countryLabel":"미국","keyword":"취업 준비","title":"미국 뉴그래드 공고, OPT 만으로 지원해도 서류가 통과되나요?","excerpt":"STEM OPT 3년이 가능합니다. 스폰서십 질문에 어떻게 답하셨는지 듣고 싶습니다.","tags":["미국취업","OPT","신졸채용"],"answerers":[{"name":"한소미"},{"name":"김도윤"},{"name":"이서준"}],"answerCount":3,"views":1290,"likes":33,"scraps":26},"l9":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"germany","countryLabel":"독일","keyword":"현지 생활","title":"뮌헨 월세 계약, Anmeldung 전에 은행 계좌를 먼저 여는 게 맞나요?","excerpt":"순서가 꼬여서 두 달을 허비했다는 후기를 봤습니다. 실제 순서를 알고 싶습니다.","tags":["독일","정착","뮌헨"],"answerers":[{"name":"문지훈"}],"answerCount":1,"views":512,"likes":9,"scraps":14},"l10":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"australia","countryLabel":"호주","keyword":"연봉 협상","title":"시드니 오퍼에서 superannuation 포함 연봉을 어떻게 비교해야 하나요?","excerpt":"한 곳은 포함, 한 곳은 별도 표기입니다. 실수령 기준 비교법이 궁금합니다.","tags":["호주","연봉협상","시드니"],"answerers":[{"name":"서지환"},{"name":"노아린"}],"answerCount":2,"views":688,"likes":17,"scraps":10},"l11":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"japan","countryLabel":"일본","keyword":"이직","title":"일본 이직 면접에서 경력 공백을 어떻게 설명해야 할까요?","excerpt":"1년 공백이 있습니다. 어학 준비 기간이었는데 어떻게 정리해 말할지 고민입니다.","tags":["일본취업","이직","면접"],"answerers":[{"name":"박서연"},{"name":"이준호"}],"answerCount":2,"views":128,"likes":4,"scraps":2},"l12":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"canada","countryLabel":"캐나다","keyword":"비자·이민","title":"캐나다 EE 점수 470점대, 주정부 노미네이션을 노려야 할까요?","excerpt":"온타리오 테크 드로우를 기다리는 중입니다. 경험자의 판단이 궁금합니다.","tags":["캐나다","영주권","EE"],"answerers":[{"name":"임채원"},{"name":"황민서"},{"name":"정다온"}],"answerCount":3,"views":1044,"likes":27,"scraps":31},"w1":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"australia","countryLabel":"호주","keyword":"비자·이민","title":"호주 189 비자 점수 75점, 지금 EOI 를 내도 될까요?","excerpt":"직업군은 ICT Business Analyst 입니다. 올해 초청 흐름을 보고 판단하신 분들의 의견을 듣고 싶습니다.","tags":["호주","189비자","EOI"],"answerers":[],"answerCount":0,"views":214,"likes":0,"scraps":0},"w2":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"united-states","countryLabel":"미국","keyword":"연봉 협상","title":"미국 첫 오퍼, base 와 RSU 중 무엇을 올려 달라 해야 하나요?","excerpt":"시니어 엔지니어 오퍼를 받았습니다. 협상 여력이 한 번뿐이라면 어디를 밀어야 할지 고민입니다.","tags":["미국취업","연봉협상","RSU","오퍼"],"answerers":[],"answerCount":0,"views":377,"likes":0,"scraps":0},"w3":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"japan","countryLabel":"일본","keyword":"현지 생활","title":"도쿄 첫 집 계약, 보증회사 심사에서 외국인이 자주 떨어지는 이유가 있나요?","excerpt":"내정은 받았고 입사 전 이사입니다. 재직증명이 없을 때의 대안이 궁금합니다.","tags":["일본","도쿄","정착"],"answerers":[],"answerCount":0,"views":96,"likes":0,"scraps":0},"w4":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"united-kingdom","countryLabel":"영국","keyword":"취업 준비","title":"영국 Graduate 비자 2년 안에 Skilled Worker 로 전환한 분 계신가요?","excerpt":"런던에서 첫 직장을 찾는 중입니다. 스폰서 라이선스 기업만 지원해야 하는지 궁금합니다.","tags":["영국","Graduate비자","런던"],"answerers":[],"answerCount":0,"views":158,"likes":0,"scraps":0},"w5":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"netherlands","countryLabel":"네덜란드","keyword":"대학원","title":"네덜란드 석사 후 Orientation Year 비자로 구직한 경험이 궁금합니다","excerpt":"졸업까지 6개월 남았습니다. 비자 기간 안에 취업한 비율이 실제로 어느 정도인가요?","tags":["네덜란드","대학원","구직비자"],"answerers":[],"answerCount":0,"views":121,"likes":0,"scraps":0},"w6":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"taiwan","countryLabel":"대만","keyword":"커리어 전환","title":"대만에서 마케팅에서 PM 으로 직무를 바꾼 사례가 있을까요?","excerpt":"타이베이 스타트업 3년차입니다. 현지에서 직무 전환이 잘 받아들여지는지 알고 싶습니다.","tags":["대만","커리어전환","PM"],"answerers":[],"answerCount":0,"views":84,"likes":0,"scraps":0},"m1":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"japan","countryLabel":"일본","keyword":"취업 준비","title":"일본 이직 면접에서 경력 공백을 어떻게 설명해야 할까요?","excerpt":"1년 공백이 있습니다. 어학 준비 기간이었는데 어떻게 정리해 말할지 고민입니다.","tags":[],"answerers":[{"name":"박서연"},{"name":"이준호"}],"answerCount":2,"views":128,"likes":4,"scraps":2},"m2":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"united-states","countryLabel":"미국","keyword":"이직","title":"미국 내 이직 시 레퍼런스 체크는 어디까지 연락이 가나요?","excerpt":"현 직장에 알려지는 것이 걱정입니다. 보통 어느 단계에서 진행되는지 궁금합니다.","tags":[],"answerers":[],"answerCount":0,"views":46,"likes":1,"scraps":0},"m3":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"netherlands","countryLabel":"네덜란드","keyword":"현지 생활","title":"위트레흐트 집 구하기, 에이전트를 꼭 써야 하나요?","excerpt":"회사 지원은 없습니다. 직접 구한 분들의 경로가 궁금합니다.","tags":[],"answerers":[{"name":"신유리"}],"answerCount":1,"views":83,"likes":2,"scraps":3,"scrapped":true},"s1":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"germany","countryLabel":"독일","keyword":"이직","title":"독일에서 3년 일한 뒤 한국으로 돌아오면 경력을 어떻게 보나요?","excerpt":"베를린에서 백엔드로 일하고 있습니다. 국내 복귀 시 연차와 직급을 어떻게 인정받는지 듣고 싶습니다.","tags":[],"answerers":[{"name":"오세진"},{"name":"류하은"},{"name":"강태욱"}],"answerCount":5,"views":2260,"likes":61,"scraps":33,"liked":true,"scrapped":true},"s2":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"canada","countryLabel":"캐나다","keyword":"대학원","title":"캐나다 석사 후 PGWP 로 취업까지 현실적인 기간이 궁금합니다","excerpt":"토론토 2년 석사를 준비하고 있습니다. 졸업 후 구직 기간과 영주권까지의 경로를 실제 경험으로 알고 싶습니다.","tags":[],"answerers":[{"name":"임채원"},{"name":"고은비"},{"name":"서지환"}],"answerCount":6,"views":3105,"likes":88,"scraps":57,"liked":true,"scrapped":true},"s3":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"japan","countryLabel":"일본","keyword":"취업 준비","title":"JLPT N2 로 면접까지 가능한가요, N1 을 먼저 따야 하나요?","excerpt":"서류는 통과했는데 면접 회화가 걱정입니다. 실제 채용 현장의 기준이 궁금합니다.","tags":[],"answerers":[{"name":"이준호"},{"name":"최민수"},{"name":"정하늘"}],"answerCount":5,"views":2010,"likes":52,"scraps":30,"liked":true,"scrapped":true},"a1":{"href":"../../qna-detail/template/qna-detail-mentor-answers.dc.html","country":"japan","countryLabel":"일본","keyword":"취업 준비","title":"일본 IT 기업 신졸 채용, 한국 대학 졸업생도 지원할 수 있나요?","excerpt":"내년 3월 졸업 예정이고 일본어는 JLPT N2 입니다. 신졸 전형이 현지 대학 재학생만 받는 구조인지 궁금합니다.","tags":[],"answerers":[{"name":"박서연"},{"name":"이준호"},{"name":"최민수"},{"name":"정하늘"}],"answerCount":4,"views":1832,"likes":46,"scraps":21},"a2":{"href":"../../qna-detail/template/qna-detail-mentor-answers.dc.html","country":"japan","countryLabel":"일본","keyword":"커리어 전환","title":"일본에서 SI 에서 자사 서비스 기업으로 옮기는 경로가 궁금합니다","excerpt":"도쿄에서 SI 3년째입니다. 자사 서비스 기업으로 옮긴 분들이 어떤 준비를 했는지 듣고 싶습니다.","tags":[],"answerers":[{"name":"박서연"},{"name":"송재민"},{"name":"유선우"}],"answerCount":3,"views":1120,"likes":29,"scraps":17},"a3":{"href":"../../qna-detail/template/qna-detail-mentor-answers.dc.html","country":"japan","countryLabel":"일본","keyword":"이직","title":"일본 이직 면접에서 경력 공백을 어떻게 설명해야 할까요?","excerpt":"1년 공백이 있습니다. 어학 준비 기간이었는데 어떻게 정리해 말할지 고민입니다.","tags":[],"answerers":[{"name":"박서연"},{"name":"이준호"}],"answerCount":2,"views":128,"likes":4,"scraps":2},"r1":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"japan","countryLabel":"일본","keyword":"취업 준비","title":"일본 IT 기업 신졸 채용, 한국 대학 졸업생도 지원할 수 있나요?","excerpt":"내년 3월 졸업 예정이고 일본어는 JLPT N2 입니다. 신졸 전형이 현지 대학 재학생만 받는 구조인지 궁금합니다.","tags":["일본취업","신졸채용","JLPT","IT"],"answerers":[{"name":"박서연"},{"name":"이준호"},{"name":"최민수"},{"name":"정하늘"}],"answerCount":4,"views":1832,"likes":46,"scraps":21},"r2":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"japan","countryLabel":"일본","keyword":"커리어 전환","title":"일본에서 SI 에서 자사 서비스 기업으로 옮기는 경로가 궁금합니다","excerpt":"도쿄에서 SI 3년째입니다. 자사 서비스 기업으로 옮긴 분들이 어떤 준비를 했는지 듣고 싶습니다.","tags":["일본취업","이직","자사서비스"],"answerers":[{"name":"김하율"},{"name":"송재민"},{"name":"유선우"}],"answerCount":3,"views":1120,"likes":29,"scraps":17},"r3":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"japan","countryLabel":"일본","keyword":"이직","title":"일본 이직 면접에서 경력 공백을 어떻게 설명해야 할까요?","excerpt":"1년 공백이 있습니다. 어학 준비 기간이었는데 어떻게 정리해 말할지 고민입니다.","tags":["일본취업","이직","면접"],"answerers":[{"name":"박서연"},{"name":"이준호"}],"answerCount":2,"views":128,"likes":4,"scraps":2},"r4":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"japan","countryLabel":"일본","keyword":"연봉 협상","title":"일본 외국계 IT 기업 오퍼, 연봉 제시액을 얼마나 올려 부를 수 있나요?","excerpt":"도쿄 외국계 SaaS 기업 오퍼입니다. 일본에서는 협상을 안 한다는 말이 사실인지 궁금합니다.","tags":["일본취업","연봉협상","외국계"],"answerers":[{"name":"정하늘"},{"name":"최민수"}],"answerCount":2,"views":905,"likes":22,"scraps":19},"r5":{"href":"../../qna-detail/template/qna-detail-side.dc.html","country":"japan","countryLabel":"일본","keyword":"취업 준비","title":"일본 기업 SPI 시험, 비원어민이 준비하는 현실적인 방법이 있나요?","excerpt":"서류 통과 후 SPI 웹테스트 안내를 받았습니다. 언어 영역 준비 기간을 어떻게 잡으셨나요?","tags":["일본취업","SPI","신졸채용"],"answerers":[{"name":"이준호"}],"answerCount":1,"views":611,"likes":14,"scraps":20}};
+class Component extends DCLogic {
+  state = { cards: {}, toast: null, myTab: "answered", answerFilter: "done", page: 1, country: "전체 국가", keyword: "전체 키워드", country2: "전체 국가", keyword2: "전체 키워드", sort: "최신순", q: "" };
+  componentDidMount() {
+    const t = () => (window.MentreeDesignSystem_2f86cf ? this.forceUpdate() : setTimeout(t, 60));
+    t();
+  }
+
+  cardVals(id) {
+    const base = CARDS[id];
+    const s = this.state.cards[id] || {};
+    const liked = s.liked ?? !!base.liked, scrapped = s.scrapped ?? !!base.scrapped;
+    return Object.assign({}, base, {
+      liked, scrapped,
+      likes: (base.likes || 0) + (liked ? 1 : 0) - (base.liked ? 1 : 0),
+      scraps: (base.scraps || 0) + (scrapped ? 1 : 0) - (base.scrapped ? 1 : 0),
+      onLike: (next) => this.setCard(id, { liked: next }),
+      onScrap: (next) => {
+        this.setCard(id, { scrapped: next });
+        if (next && !base.answerCount) this.setState({ toast: { message: "답변이 달리면 알람을 받을까요?", actions: [
+          { label: "[문구 미정] 받을게요", emphasis: "primary", onClick: () => this.setState({ toast: null }) },
+          { label: "[문구 미정] 아니요", onClick: () => this.setState({ toast: null }) },
+        ] } });
+      },
+    });
+  }
+  setCard(id, patch) {
+    this.setState((s) => ({ cards: Object.assign({}, s.cards, { [id]: Object.assign({}, s.cards[id], patch) }) }));
+  }
+  nav(item) { if (item && item.key === "qna") window.location.assign("qna-feed-normal.dc.html"); }
+  commonVals() {
+    return {
+      noop: () => {},
+      nav: (item) => this.nav(item),
+      toastOpen: !!this.state.toast,
+      toastMessage: (this.state.toast && this.state.toast.message) || "",
+      toastActions: (this.state.toast && this.state.toast.actions) || [],
+      toastDismiss: () => this.setState({ toast: null }),
+    };
+  }
+  renderVals() {
+    const ns = window.MentreeDesignSystem_2f86cf || {};
+    const h = React.createElement;
+    const s = this.state;
+    const ids = (...a) => a.map((id) => this.cardVals(id));
+    const setter = (key) => (v) => this.setState({ [key]: v && v.target ? v.target.value : v });
+    const done = s.page > 1 ? ids("l1","l2","l3","l4","l5","l6","l7","l8","l9","l10","l11","l12") : ids("l1","l2","l3","l4","l5","l6");
+    const waiting = ids("w1","w2","w3","w4","w5","w6");
+    const withHref = (list) => list.map((k) => Object.assign({}, k, { href: "../../qna-detail/template/qna-detail-mentor.dc.html" }));
+    const widgetEmptyDesc = h("span", { style: { display: "block", lineHeight: 1.7 } }, "구체적인 고민이 있나요?", h("br"), "현재 가지고 있는 고민을 바로 물어보세요.", h("br"), "멘토님들이 답변해드릴거에요");
+    const widgetEmptyAction = ns.Button ? h("a", { href: "../../qna-compose/template/qna-compose-modal-phone.dc.html", style: { textDecoration: "none" } }, h(ns.Button, { variant: "primary", size: "md" }, "지금 바로 질문하기")) : null;
+    const askAction = ns.Button ? h("a", { href: "../../qna-compose/template/qna-compose-modal-phone.dc.html", style: { textDecoration: "none" } }, h(ns.Button, { variant: "primary", size: "md" }, "Q&A 멘토링 질문하기")) : null;
+    const retryAction = ns.Button ? h(ns.Button, { variant: "outline", size: "md", iconLeft: "refresh" }, "다시 시도") : null;
+    return Object.assign(this.commonVals(), {
+      two: 2, three: 3, six: 6,
+      country: s.country, set_country: setter("country"),
+      keyword: s.keyword, set_keyword: setter("keyword"),
+      country2: s.country2, set_country2: setter("country2"),
+      keyword2: s.keyword2, set_keyword2: setter("keyword2"),
+      sort: s.sort, set_sort: setter("sort"),
+      q: s.q, set_q: setter("q"),
+      doSearch: () => window.location.assign("qna-feed-search.dc.html"),
+      answerFilter: s.answerFilter, set_answerFilter: setter("answerFilter"),
+      page: s.page, totalPages: 12, setPage: (p) => this.setState({ page: p }),
+      showFeatured: s.page === 1,
+      featuredCards: ids("f1","f2","f3","f4","f5","f6"),
+      listCards: s.answerFilter === "done" ? done : waiting,
+      searchCards: ids("r1","r2","r3","r4","r5"),
+      askedCards: ids("m1","m2","m3"),
+      scrappedCards: ids("s1","s2","s3"),
+      answeredCards: ids("a1","a2","a3"),
+      myTab: s.myTab, set_myTab: setter("myTab"),
+      myTabIsFirst: s.myTab === "asked" || s.myTab === "answered",
+      myTabIsSecond: s.myTab === "scrapped",
+      myTabs: [{ value: "asked", label: "내가 질문한 멘토링", count: 3 }, { value: "scrapped", label: "스크랩한 멘토링", count: 12 }],
+      myTabsEmpty: [{ value: "asked", label: "내가 질문한 멘토링", count: 0 }, { value: "scrapped", label: "스크랩한 멘토링", count: 12 }],
+      mentorTabs: [{ value: "answered", label: "내가 답변한 멘토링", count: 12 }, { value: "scrapped", label: "스크랩한 멘토링", count: 12 }],
+      widgetEmptyDesc, widgetEmptyAction, askAction, retryAction,
+      greenCard: { style: { background: "color-mix(in oklch, var(--primary) 10%, white)", borderColor: "color-mix(in oklch, var(--primary) 35%, white)", boxShadow: "none" } },
+      countryOptions: ["전체 국가", "일본", "미국", "독일", "영국", "캐나다", "호주", "네덜란드", "프랑스", "대만"],
+      keywordOptions: ["전체 키워드", "취업 준비", "비자·이민", "이직", "연봉 협상", "대학원", "현지 생활", "커리어 전환"],
+      sortOptions: ["최신순", "답변 많은순", "조회 많은순", "도움돼요순"],
+      answerOptions: [{ value: "done", label: "답변 완료된 질문" }, { value: "waiting", label: "답변 기다리는 질문" }],
+      featuredCards: withHref(ids("f1","f2","f3","f4","f5","f6")), listCards: withHref(s.answerFilter === "done" ? done : waiting),
+    });
+  }
+}
+</script>
+</body>
+</html>
