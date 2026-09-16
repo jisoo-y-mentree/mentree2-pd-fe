@@ -4,7 +4,7 @@
 - 원본: export 폴더 `Mentree 2.0 Insight feed`(20장 · 2026-09-16 16:05)
 - **생성일: 2026-09-16**
 - 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md) — §1~11 확정 2026-09-16
-- 디자인 시스템: `ds-export/` 의 **43본 판**(SHA-256 `7649857370a5`). export 의 사본은 이보다 앞선 판이다 — [insight-list 의 SOURCE.md](../../insight-list/template/SOURCE.md) 「디자인 시스템이 어긋난다」
+- 디자인 시스템: `ds-export/` 의 **2026-09-16 판**(폴더 해시 `4ec9a3f66119`). export 의 사본과 같은 판이다 — [insight-list 의 SOURCE.md](../../insight-list/template/SOURCE.md) 「디자인 시스템이 어긋났었다」
 
 ## 무엇이 들어 있나
 

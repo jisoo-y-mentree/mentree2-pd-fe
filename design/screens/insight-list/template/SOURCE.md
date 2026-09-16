@@ -4,7 +4,7 @@
 - 원본: export 폴더 `Mentree 2.0 Insight feed`(20장 · 2026-09-16 16:05)
 - **생성일: 2026-09-16**
 - 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md) — §1~11 확정 2026-09-16
-- 디자인 시스템: `ds-export/` 의 **43본 판**(SHA-256 `7649857370a5`)을 가리킨다. **export 의 사본은 이보다 앞선 판이다** — 아래 「디자인 시스템이 어긋난다」
+- 디자인 시스템: `ds-export/` 의 **2026-09-16 판**(폴더 해시 `4ec9a3f66119`)을 가리킨다. export 의 `_ds` 사본과 **같은 판**이다 — 아래 「디자인 시스템이 어긋났었다」
 
 ## 무엇이 들어 있나
 
@@ -36,9 +36,9 @@
 
 **`insight-index` · `insight-demo` 는 넣지 않았다.** 확인용이다. Q&A 와 같다.
 
-## 디자인 시스템이 어긋난다
+## 디자인 시스템이 어긋났었다
 
-export 의 `_ds` 사본은 리포의 43본 판보다 **앞선 판**이다 — `Header` 개정(3열 그리드 · 모바일 오버레이) · 토큰 3본(`colors` 에 green-50/100 · `spacing` 모바일 패딩 · `typography` 타입 스케일 개정) · 필터 값 데이터 5본. **이 template 은 리포의 43본 번들로 그려진다.** 헤더와 글자 크기가 Claude Design 캔버스와 조금 다르게 보일 수 있다. 디자이너가 `M2 Design System` 을 재export 해서 `ds-export/` 를 통째로 교체하면 맞는다 — 🖐 HUMAN TASK.
+배치한 날(2026-09-16 16:05) export 의 `_ds` 사본은 리포의 43본 판보다 앞선 판이었다 — `Header` 개정 · 토큰 3본 · 커스텀 `Select`. **같은 날 16:38 에 디자이너가 `M2 Design System` 을 재export 해 `ds-export/` 를 통째로 교체했다.** 지금은 같은 판이다([ds-export/SOURCE.md](../../../ds-export/SOURCE.md) 「2026-09-16」).
 
 ## 폰트는 빠져 있다
 

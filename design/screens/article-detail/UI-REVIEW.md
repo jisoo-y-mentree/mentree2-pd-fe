@@ -2,7 +2,7 @@
 
 - 감사일: 2026-09-16
 - 대상: [`template/`](template/) **9본** — 얇은 페이지 8장 ＋ 공용 화면 부품 `ArticleDetailScreen`
-- 디자인 시스템: `ds-export/` **43본**(SHA-256 `7649857370a5`). export 의 사본은 이보다 앞선 판이다([`template/SOURCE.md`](template/SOURCE.md))
+- 디자인 시스템: 감사는 `ds-export/` **43본**(SHA-256 `7649857370a5`)으로 했고, 같은 날 16:38 에 `ds-export/` 가 export 와 같은 판(폴더 해시 `4ec9a3f66119`)으로 교체됐다. 교체 뒤 재렌더는 아래 「DS 교체 뒤」
 - 방법: export 20장을 1280 으로 전부 렌더 → 리포 경로에서 **1280 · 1024 · 768 · 375** 재렌더 → **iframe 프로브로 눌러서 확인**
 
 ## 375px 는 iframe 으로 쟀다
@@ -79,3 +79,14 @@
 ## 다음 export 때 고칠 것
 
 [insight-fix.md](../../_import/prompts/insight-fix.md) — 참여 멘토 줄의 원본 고침(1) · `Carousel`(6) · 임시 문구 표시(3) · `lang` · `title`(4). 급하지 않다.
+
+## DS 교체 뒤 — 2026-09-16 16:38
+
+같은 날 디자이너가 `M2 Design System` 을 재export 해 `ds-export/` 를 교체했다(폴더 해시 `4ec9a3f66119`). 이 template 은 그 번들로 그려지므로 다시 렌더했다.
+
+| 페이지 | 1280 | 375 | 깨진 이미지 |
+|---|---|---|---|
+| `article-detail-insight` | 1265 | 360 | 0 / 6 |
+
+**가로 넘침 0 · 깨진 이미지 0.** 교체로 바뀐 것은 부품 안이다 — `Header` 가 3열 그리드로 서고, 정렬 `Select` 가 커스텀 리스트박스가 됐고, 글자마다 line-height · letter-spacing 토큰이 붙었다. 화면 파일은 건드리지 않았다.
+
