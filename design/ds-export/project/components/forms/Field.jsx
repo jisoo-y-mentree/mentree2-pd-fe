@@ -13,6 +13,8 @@ export function Field({ label, htmlFor, description, error, required = false, ch
           style={{
             fontFamily: "var(--font-sans)",
             fontSize: "var(--text-caption)",
+            lineHeight: "var(--text-caption--line-height)",
+            letterSpacing: "var(--text-caption--letter-spacing)",
             fontWeight: 500,
             color: "var(--foreground)",
             display: "inline-flex",
@@ -25,9 +27,9 @@ export function Field({ label, htmlFor, description, error, required = false, ch
       )}
       {children}
       {error ? (
-        <span style={{ fontSize: "var(--text-caption)", color: "var(--destructive)" }}>{error}</span>
+        <span style={{ fontSize: "var(--text-caption)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", color: "var(--destructive)" }}>{error}</span>
       ) : description ? (
-        <span style={{ fontSize: "var(--text-caption)", color: "var(--muted-foreground)" }}>{description}</span>
+        <span style={{ fontSize: "var(--text-caption)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", color: "var(--muted-foreground)" }}>{description}</span>
       ) : null}
     </div>
   );

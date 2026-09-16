@@ -12,7 +12,7 @@ import { Icon } from "../core/Icon.jsx";
 export function Breadcrumb({ items, ariaLabel = "경로", style, ...rest }) {
   return (
     <nav aria-label={ariaLabel} style={style} {...rest}>
-      <ol style={{ display: "flex", alignItems: "center", gap: 6, margin: 0, padding: 0, listStyle: "none", fontFamily: "var(--font-sans)", fontSize: "var(--text-caption)", fontWeight: 400 }}>
+      <ol style={{ display: "flex", alignItems: "center", gap: 6, margin: 0, padding: 0, listStyle: "none", fontFamily: "var(--font-sans)", fontSize: "var(--text-caption)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", fontWeight: 400 }}>
         {items.map((item, i) => {
           const isLast = i === items.length - 1;
           return (

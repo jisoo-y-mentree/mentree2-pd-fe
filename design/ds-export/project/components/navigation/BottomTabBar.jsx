@@ -79,7 +79,7 @@ export function BottomTabBar({ activeKey, authState = "guest", onNavigate, onAut
               }}
             >
               <Icon name={tab.icon} size={22} aria-hidden="true" />
-              <span style={{ fontSize: "var(--text-caption)", lineHeight: 1, fontWeight: on ? 600 : 500, letterSpacing: "-0.01em" }}>
+              <span style={{ fontSize: "var(--text-micro)", lineHeight: 1, fontWeight: on ? 600 : 500, letterSpacing: 0 }}>
                 {tab.label}
               </span>
             </a>

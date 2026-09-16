@@ -12,6 +12,8 @@ import React from "react";
  *  우상단 스크랩(BookmarkToggle — 미디어 오버레이 전용, IconButton default 형태·반전, 8px 인셋) ·
  *  하단 배지 행 — 국가 배지(flag + 라벨 + "+N ⌄" 정적, 펼침은 Badge 확장 OPEN) + 직무 배지(뉴트럴 sm).
  * 텍스트 오버플로: 이름·직무·회사·소개 1줄 …; Mobile(~768) 국가 배지는 국기만, 소개는 2줄 허용(폭·무관). `fluid`일 때만 폭 100%(min-width 179px).
+ * 이름은 --text-h3(18, 296px 카드 폭 구간) — 카드 제목은 카드 폭이 정한다(~280 body 16 · 280-360 h3 18 · 360+ h2 20).
+ *  fluid로 폭이 179까지 줄 때만 Mobile에서 --text-body 16. 소개·직무·회사는 --text-caption 14(카드 안 글).
  *
  * 루트는 <article>(스트레치 링크) — <a>가 아니다. href는 이름 링크로 넘어간다.
  */
@@ -21,7 +23,7 @@ export interface MentorCardProps extends React.HTMLAttributes<HTMLElement> {
   role?: string;
   /** 회사(본문, 14px normal muted). */
   company?: string;
-  /** 한 줄 소개 — sage-50 소개 박스. Desktop 1줄 …(Mobile 2줄). */
+  /** 한 줄 소개 — green-50 면 + green-100 테두리 박스(글자 sage-700). Desktop 1줄 …(Mobile 2줄). */
   intro?: string;
   /** 직무 분류(뉴트럴 배지, sm). */
   field?: string;

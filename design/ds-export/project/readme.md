@@ -30,6 +30,18 @@
 
 > **기업 서비스(Biz)** 는 mentree 본체가 아니라 **외부 사이트로 나가는 출구 링크**입니다. 내부 페이지처럼 다루지 말고 외부 이탈 진입점으로 취급합니다(`external` + 외부 링크 표시).
 
+### 분류 체계(taxonomy) — 국가·직무·테마 태그 공통 소스(SSoT)
+
+국가·직무·테마 태그의 단일 소스는 **`components/taxonomy.js`** 하나입니다. **화면이 값을 지어내지 않습니다** — TOP·멘토찾기·Q&A·멘토 상세가 이 파일을 공통 참조하므로, 바꿀 때는 여기만 고칩니다. Figma 「국가, 직무 & 태그 정리」(node 1059:35100, 2026-09-15)를 그대로 옮긴 것입니다.
+
+- **국가 15개국** / 대분류 4 — 단독(일본·미국·대한민국·싱가포르) · 유럽 · 아시아/중동 · 북미/오세아니아. 개별 국가에만 국기(`flag` → `assets/flags/<flag>.svg`)가 붙고 **묶음 대분류에는 아이콘이 없습니다**.
+- **직무 12개** / 대분류 2 — 단독 8개 ＋ 「기타」 4개.
+- **테마 태그 25개** / 대분류 4 — 취업준비 · 커리어 · 현지 생활 · 학업/재정/그 외.
+- **홈 표시:** `COUNTRY_TOP` 7개 · `JOB_TOP` 9개.
+- 구조는 `FilterSelect`가 바로 먹는 모양(`groups = [{ label, options }]`)이고, 첫 그룹의 `label`은 빈 문자열입니다(제목 없이 칩만 섬).
+- `value`는 **한국어 라벨 그대로**입니다 — 백엔드 코드값이 아직 없으므로 지금 영어 식별자를 만들면 나중에 두 벌이 됩니다.
+- 부품은 이 파일을 import하지 않습니다 — `FilterSelect`는 `groups`, `MentorCard`는 `country`/`countryLabel`, `Badge`는 `flag` prop을 받는 구조 그대로이고 데이터는 화면이 넘깁니다.
+
 ---
 
 ## 브랜드 자산
@@ -63,7 +75,7 @@
 - *Biz 서브브랜드* — **파랑**(`--biz-*`): 외부 “기업 서비스(Biz)” **전용**. ⚠ 본체 시맨틱 토큰(`primary/accent/chart` 등)에 파랑을 절대 섞지 말 것 — Biz 진입점/밴드에만.
 - 카드/팝오버는 **흰색**. hex 하드코딩 금지 — 시맨틱 토큰(`--card`, `--muted-foreground`, `--border`…) 또는 노출된 raw 스케일(`--sage-*`)만.
 
-**타입.** Pretendard JP Variable, 전부. 스케일: `h1` 24/1.3 · `h2` 20/1.4 · `h3` 16/1.5 · `body` 14/1.7 · `caption` 12/1.6. Inter / DM Sans / Nunito **금지**.
+**타입.** Pretendard JP Variable, 전부. 9개 토큰(display 40·h0 30·h1 24·h2 20·h3 18·article 18·body 16·caption 14·micro 12) — 반응형은 display~h3+article(제목·아티클)에만 걸고, body·caption·micro는 폭과 무관하게 고정(원티드·토스 실측 근거). **카드 제목은 카드 폭이 정한다**: ~280→body16 · 280–360→h3 18 · 360–430→h2 20 · 430+→h1 24. Inter / DM Sans / Nunito **금지**.
 
 **간격.** 4px 베이스 스케일. 카드 안쪽은 넉넉하게, 답답하지 않게.
 
@@ -120,7 +132,7 @@
 
 ### 배치 컴포넌트
 
-- **SectionHeader** — 가로 양끝 정렬 섹션 헤더(좌 제목 / 우 액션). 좌: 장식 아이콘 칩·제목(30 bold, green 강조 조각)·부가 스트링·Badge 독립 슬롯. 우: 전체보기(고스트+화살표)·아웃라인 버튼·캐러셀 화살표 세그먼트 그룹(끝 도달 시 disabled). 배지·버튼·IconButton·아이콘 재사용. (DS-GAP: 제목 30은 타입스케일 밖 — h0/display 정리 별도 작업.)
+- **SectionHeader** — 가로 양끝 정렬 섹션 헤더(좌 제목 / 우 액션). 좌: 장식 아이콘 칩·제목(`--text-h0` semibold, green 강조 조각)·부가 스트링·Badge 독립 슬롯. 우: 전체보기(고스트+화살표)·아웃라인 버튼·캐러셀 화살표 세그먼트 그룹(끝 도달 시 disabled). 배지·버튼·IconButton·아이콘 재사용. (DS-GAP: 제목 30은 타입스케일 밖 — h0/display 정리 별도 작업.)
 - **Carousel** — 범용 스크롤/스냅 컨테이너(담는 카드 종류 무관). 조작부 없음 — 화살표는 SectionHeader가 담당, Carousel은 스크롤/스냅만. gap prop 주입, 표시 개수 컨테이너 폭에 유동, 카드/1단위 스냅. ref(scrollPrev/scrollNext)·onEdgeChange로 SectionHeader 화살표 연동. 데스크톱 기본 거동만(리스폰시브는 범위 밖).
 - **CalloutBar** — 블리드 풀폭 띠(각진 radius 0). 헤더 위/아래 공지·안내·상태·경고. info(sage)·success(green)·warning(amber)·error(destructive) 4종, 옅은 배경+진한 텍스트(Badge 50/700 상속). 아이콘·인라인 링크·닫기 독립 옵션, 정렬 center/left, 2줄까지 허용.
 - **Banner** — 인라인 둥근 프로모/유도 블록(자유 영역 slot). CalloutBar와 구분(둥근 인라인). 외곽 최소 규칙만 고정(radius 22·인라인·기본 패딩 16·전체 클리커블·폰트/禁則/시맨틱 상속), 배경(과감한 색·그라데이션)·효과·레이아웃·CTA는 자유. variant 없음.
@@ -165,7 +177,7 @@
 | **Mobile** | \~768 | 헤더 축약(로고+회원가입/로그인+햄버거) + 하단 탭바 4탭. |
 
 - 컨테이너: `--container-max` 1280 / `--container-pad` 24 → 16(Mobile). 배경 풀블리드, 콘텐츠만 1280 정렬. Header·본문·Footer 공통 참조로 좌우 끝선 일치.
-- 타입스케일 반응형: display 40 → 24, h0 30 → 20. 나머지(h1 24 / h2 20 / h3 16 / body 14 / caption 12)는 고정.
+- 타입스케일 반응형: display 40 → 30, h0 30 → 24, h1 24 → 20, h2 20 → 18, h3 18 → 17(제목 5단+article만 축소). body 16 / caption 14 / micro 12는 폭과 무관하게 고정. 카드 제목은 카드 폭이 정한다(~280→body16 · 280–360→h3 18 · 360–430→h2 20 · 430+→h1 24).
 - 캐러셀: Desktop L/S는 화살표(SectionHeader) + overflow 페이드, Mobile은 화살표·페이드 없이 스와이프.
 - 헤더 햄버거 = 전체화면 오버레이(GNB 바 유지, 28px 컬러 SVG는 ⚠ placeholder). 헤더·탭바는 같은 frosted glass 표면 언어.
 - 전체 지침: **`guidelines/03-responsive.md`**.
@@ -191,7 +203,7 @@
 - `assets/flags/` — 원형 국기 SVG(프로토타입용, 하이픈 국가명).
 - `assets/logo/mentree-logo.svg` — mentree 워드마크(canon). `assets/fonts/PretendardJPVariable.ttf`.
 - `guidelines/` — 파운데이션 스펙 카드(Design System 탭).
-- `components/` — 프리미티브. `navigation/nav-ia.js`가 헤더·푸터 IA의 SSoT.
+- `components/` — 프리미티브. `navigation/nav-ia.js`가 헤더·푸터 IA의 SSoT, `taxonomy.js`가 국가·직무·테마 태그의 SSoT.
 - `ui_kits/mentree-top/index.html` — **TOP(메인) 화면 recreation, canon.** Design System 탭 카드 + Starting Point.
 - `ui_kits/mentree-app-legacy/index.html` — 사이드바 앱 셸. 참조·레거시(canon 아님).
 - `guidelines/03-responsive.md` — 리스폰시브 3구간 지침.

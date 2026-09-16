@@ -23,7 +23,7 @@ export function Input({
         display: "flex",
         alignItems: "center",
         gap: 8,
-        height: 38,
+        height: 40,
         padding: iconLeft ? "0 12px 0 11px" : "0 12px",
         background: disabled ? "var(--muted)" : "var(--card)",
         border: `1px solid ${borderColor}`,
@@ -48,7 +48,8 @@ export function Input({
           background: "transparent",
           fontFamily: "var(--font-sans)",
           fontSize: "var(--text-body)",
-          letterSpacing: "-0.01em",
+          lineHeight: 1,
+          letterSpacing: 0,
           color: "var(--foreground)",
         }}
       />

@@ -16,6 +16,7 @@
         "patterns": [
           {
             "group": [
+              "components/**",
               "components/core/**",
               "components/forms/**",
               "components/navigation/**",
@@ -174,8 +175,8 @@
         "message": "<Footer> doesn't accept that prop. Declared props: primary, auth, utility, brand, copyright, onNavigate, style."
       },
       {
-        "selector": "JSXOpeningElement[name.name='NavItem'] > JSXAttribute > JSXIdentifier[name!=/^(?:key|label|href|external|brand|menuIcon|menuIconEl|key|ref|className|style|children)$/]",
-        "message": "<NavItem> doesn't accept that prop. Declared props: key, label, href, external, brand, menuIcon, menuIconEl."
+        "selector": "JSXOpeningElement[name.name='NavItem'] > JSXAttribute > JSXIdentifier[name!=/^(?:key|label|href|external|brand|key|ref|className|style|children)$/]",
+        "message": "<NavItem> doesn't accept that prop. Declared props: key, label, href, external, brand."
       },
       {
         "selector": "JSXOpeningElement[name.name='NavItem'] > JSXAttribute[name.name='brand'] > Literal[value!=/^(?:biz)$/]",
@@ -238,8 +239,8 @@
         "message": "<SearchInput> doesn't accept that prop. Declared props: value, onChange, onSearch, completions, recent, onRemoveRecent, placeholder, disabled, invalid, id, autoFocus."
       },
       {
-        "selector": "JSXOpeningElement[name.name='SectionHeader'] > JSXAttribute > JSXIdentifier[name!=/^(?:icon|title|titleAccent|suffix|badge|viewAll|onViewAll|action|carousel|onPrev|onNext|prevDisabled|nextDisabled|key|ref|className|style|children)$/]",
-        "message": "<SectionHeader> doesn't accept that prop. Declared props: icon, title, titleAccent, suffix, badge, viewAll, onViewAll, action, carousel, onPrev, onNext, prevDisabled, nextDisabled."
+        "selector": "JSXOpeningElement[name.name='SectionHeader'] > JSXAttribute > JSXIdentifier[name!=/^(?:icon|title|titleAccent|accentFirst|suffix|badge|viewAll|onViewAll|action|carousel|onPrev|onNext|prevDisabled|nextDisabled|key|ref|className|style|children)$/]",
+        "message": "<SectionHeader> doesn't accept that prop. Declared props: icon, title, titleAccent, accentFirst, suffix, badge, viewAll, onViewAll, action, carousel, onPrev, onNext, prevDisabled, nextDisabled."
       },
       {
         "selector": "JSXOpeningElement[name.name='Select'] > JSXAttribute > JSXIdentifier[name!=/^(?:options|placeholder|invalid|value|onChange|key|ref|className|style|children)$/]",
@@ -507,6 +508,8 @@
       "--font-weight-normal",
       "--font-weight-semibold",
       "--foreground",
+      "--green-100",
+      "--green-50",
       "--green-on",
       "--green-primary",
       "--input",
@@ -559,6 +562,9 @@
       "--space-5",
       "--space-6",
       "--space-8",
+      "--text-article",
+      "--text-article--letter-spacing",
+      "--text-article--line-height",
       "--text-body",
       "--text-body--letter-spacing",
       "--text-body--line-height",
@@ -581,7 +587,10 @@
       "--text-h2--line-height",
       "--text-h3",
       "--text-h3--letter-spacing",
-      "--text-h3--line-height"
+      "--text-h3--line-height",
+      "--text-micro",
+      "--text-micro--letter-spacing",
+      "--text-micro--line-height"
     ],
     "tokenKinds": {
       "--sage-50": "color",
@@ -595,6 +604,8 @@
       "--sage-800": "color",
       "--sage-900": "color",
       "--sage-950": "color",
+      "--green-50": "color",
+      "--green-100": "color",
       "--green-primary": "color",
       "--green-on": "color",
       "--background": "color",
@@ -662,18 +673,6 @@
       "--badge-teal-200": "color",
       "--badge-teal-700": "color",
       "--font-sans": "font",
-      "--text-body": "font",
-      "--text-body--line-height": "font",
-      "--text-body--letter-spacing": "font",
-      "--text-caption": "font",
-      "--text-caption--line-height": "font",
-      "--text-caption--letter-spacing": "font",
-      "--text-h3": "font",
-      "--text-h3--line-height": "font",
-      "--text-h3--letter-spacing": "font",
-      "--text-h2": "font",
-      "--text-h2--line-height": "font",
-      "--text-h2--letter-spacing": "font",
       "--text-display": "font",
       "--text-display--line-height": "font",
       "--text-display--letter-spacing": "font",
@@ -683,6 +682,24 @@
       "--text-h1": "font",
       "--text-h1--line-height": "font",
       "--text-h1--letter-spacing": "font",
+      "--text-h2": "font",
+      "--text-h2--line-height": "font",
+      "--text-h2--letter-spacing": "font",
+      "--text-h3": "font",
+      "--text-h3--line-height": "font",
+      "--text-h3--letter-spacing": "font",
+      "--text-article": "font",
+      "--text-article--line-height": "font",
+      "--text-article--letter-spacing": "font",
+      "--text-body": "font",
+      "--text-body--line-height": "font",
+      "--text-body--letter-spacing": "font",
+      "--text-caption": "font",
+      "--text-caption--line-height": "font",
+      "--text-caption--letter-spacing": "font",
+      "--text-micro": "font",
+      "--text-micro--line-height": "font",
+      "--text-micro--letter-spacing": "font",
       "--text-data--line-height": "font",
       "--text-data--letter-spacing": "font",
       "--font-weight-normal": "font",

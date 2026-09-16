@@ -7,7 +7,7 @@ export type BadgeStatus = "active" | "new" | "closed" | "waiting" | "hold";
  * Badge — 계열 × leading × 사이즈 색 시스템.
  *  계열: 분류(뉴트럴 sage) · 상태(green/destructive/muted) · 질적태그(9색 --badge-{hue}).
  *  leading(전 계열 공통 앞자리 슬롯): none · dot · flag(원형 국기) · avatar.
- *  형태: 높이 22px일 때 radius 6px 앵커 — sm 6 / md 8 / lg 10px(완전 pill 아님). 색은 시맨틱/--badge-* 토큰만.
+ *  형태: 높이 24px(sm) 기준 radius 6px — sm 6 / md 8 / lg 10px(완전 pill 아님). 색은 시맨틱/--badge-* 토큰만.
  *  패딩(접면 기반): 각 변을 독립 판단 — 텍스트 접면 sm8/md10/lg12, 슬롯(flag/avatar/dot/"+N ⌄") 접면 sm5/md6/lg7.
  */
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {

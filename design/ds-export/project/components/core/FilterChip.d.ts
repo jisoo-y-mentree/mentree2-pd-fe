@@ -2,7 +2,7 @@ import React from "react";
 
 /**
  * FilterChip — Toggle 계열 텍스트 칩. BookmarkToggle의 형제(아이콘형↔텍스트칩형).
- *  Badge(정적)와 달리 클릭·선택 가능한 필터 요소. 버튼 sm 기하(높이 32 · radius-md · caption/500, pill 아님).
+ *  Badge(정적)와 달리 클릭·선택 가능한 필터 요소. 버튼 sm 기하(높이 32 · radius-md · 14px/500 — Button·Chip과 같은 고정값, pill 아님).
  *  "selected=반전" 공통 원칙 상속(BookmarkToggle과 공유) — FilterChip은 primary green 반전(필터 활성=브랜드 액션).
  *  CountToggle은 이 원칙의 예외(메타 줄 인라인, 반전 안 함) — FilterChip의 형제가 아니다.
  *  focus-visible=--ring, disabled=흐리게. leading: none · flag(원형 국기, Badge flag 재사용).

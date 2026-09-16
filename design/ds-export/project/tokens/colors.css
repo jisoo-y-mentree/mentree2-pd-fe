@@ -23,9 +23,15 @@
   --sage-900: oklch(0.222 0.004 150);   /* #1a1c1a */
   --sage-950: oklch(0.1795 0.0038 164.6); /* #101211 */
 
-  /* green — brand (preset Theme=Green). Used by primary/accent/chart/sidebar-primary */
+  /* green — brand (preset Theme=Green). Used by primary/accent/chart/sidebar-primary.
+     50·100은 preset green-50/100 — 와이어가 `tailwind colors/green/50`·`green/100`을
+     그대로 쓴다(2026-09-15 Figma 변수 확인, 멘토 카드 노드).
+     --green-on과 --green-50은 지금 같은 값이다. 갈라야 할 때가 오면 --green-on을 다시
+     독립시킨다 — 면의 색과 면 위 글자색은 원래 다른 축이다. */
+  --green-50:      oklch(0.982 0.018 155.826);   /* #f0fdf4 — 연한 초록 면 */
+  --green-100:     oklch(0.962 0.044 156.743);   /* #dcfce7 — 그 위 테두리 */
   --green-primary: oklch(0.527 0.154 150.069);   /* #2f6b45-ish — primary & accent */
-  --green-on:      oklch(0.982 0.018 155.826);   /* near-white foreground on green */
+  --green-on:      var(--green-50);              /* near-white foreground on green (별칭) */
 
   /* --------------------------------------------------------------------------
      SEMANTIC TOKENS — LIGHT (:root)

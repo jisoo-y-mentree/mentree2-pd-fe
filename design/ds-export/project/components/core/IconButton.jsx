@@ -1,7 +1,7 @@
 import React from "react";
 import { Icon } from "./Icon.jsx";
 
-const SIZES = { sm: 32, md: 38, lg: 44 };
+const SIZES = { sm: 32, md: 40, lg: 48 };
 const ICON = { sm: 16, md: 18, lg: 20 };
 
 const VARIANTS = {
@@ -12,7 +12,7 @@ const VARIANTS = {
 };
 
 /**
- * IconButton — square button with a single HugeIcons glyph.
+ * IconButton — square button with a single HugeIcons glyph. 높이는 Button과 맞춘다(sm32·md40·lg48).
  */
 export const IconButton = React.forwardRef(function IconButton({
   icon,

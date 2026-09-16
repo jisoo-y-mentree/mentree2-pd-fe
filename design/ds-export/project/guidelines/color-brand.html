@@ -1,8 +1,10 @@
-<!-- @dsCard group="Foundations" viewport="700x150" name="브랜드 — Primary & Accent" subtitle="프리셋 Green — 프라이머리 버튼·포커스·활성 네비" -->
+<!-- @dsCard group="Foundations" viewport="700x380" name="브랜드 — Primary & Accent" subtitle="프리셋 Green — 프라이머리 버튼·포커스·활성 네비. 연한 초록 면은 green-50 / 그 위 테두리는 green-100" -->
 <!DOCTYPE html>
 <html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
 <style>
   body{margin:0;padding:16px;background:var(--background);display:flex;gap:14px;flex-wrap:wrap}
+  .note{flex:0 0 100%;font-size:12px;line-height:19px;color:var(--muted-foreground)}
+  .note code{font-family:ui-monospace,monospace;font-size:11px}
   .sw{display:flex;flex-direction:column;gap:6px}
   .chip{width:150px;height:64px;border-radius:var(--radius-md);border:1px solid var(--border);display:flex;align-items:flex-end;padding:8px;box-sizing:border-box}
   .n{font-size:12px;font-weight:600;color:var(--foreground)}
@@ -13,4 +15,11 @@
   <div class="sw"><div class="chip" style="background:var(--accent)"><span style="color:var(--accent-foreground);font-size:12px;font-weight:600">accent-fg</span></div><div class="n">--accent</div><div class="v">= primary (green)</div></div>
   <div class="sw"><div class="chip" style="background:var(--sidebar-primary)"></div><div class="n">--sidebar-primary</div><div class="v">oklch(.627 .194 149)</div></div>
   <div class="sw"><div class="chip" style="background:var(--brand-ink)"></div><div class="n">--brand-ink</div><div class="v">#004418 · 로고 (canon)</div></div>
+  <div class="sw"><div class="chip" style="background:var(--green-50);border-color:var(--green-100)"><span style="color:var(--sage-700);font-size:12px;font-weight:600">sage-700</span></div><div class="n">--green-50</div><div class="v">#f0fdf4 · 연한 초록 면</div></div>
+  <div class="sw"><div class="chip" style="background:var(--green-100)"></div><div class="n">--green-100</div><div class="v">#dcfce7 · 그 위 테두리</div></div>
+  <div class="note">
+    <b>연한 초록 면이 필요하면 <code>--green-50</code>, 그 위 테두리는 <code>--green-100</code></b> — 지금 쓰는 곳은 <code>MentorCard</code> 소개 박스 한 곳뿐이다(글자는 <code>--sage-700</code>).
+    뉴트럴한 옅은 면은 계속 <code>--sage-50</code>/<code>--sage-100</code>다(<code>SectionHeader</code> 아이콘 칩 · <code>CalloutBar</code> info · <code>Table</code> 헤더) — 초록으로 바꾸지 말 것.
+    <code>--green-on</code>은 지금 <code>--green-50</code>의 별칭이다(초록 면 위 글자색) — 갈라야 할 때가 오면 다시 독립시킨다.
+  </div>
 </body></html>
