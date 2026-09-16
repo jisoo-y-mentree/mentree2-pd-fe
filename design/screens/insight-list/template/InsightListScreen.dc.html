@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+  <script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <script>
+    document.addEventListener("error", function (e) {
+      var t = e.target, s = t && t.tagName === "IMG" ? t.getAttribute("src") || "" : "";
+      if (s.indexOf("../../assets/") === 0) { e.stopImmediatePropagation(); t.setAttribute("src", s.replace("../../assets/", "assets/")); }
+    }, true);
+  </script>
+  <style>
+    body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+    a { color: var(--primary); }
+    a:hover { color: var(--primary); }
+    .qi-only-mobile { display: none !important; }
+    footer span[aria-label="mentree"] { -webkit-mask-image: url("../../../ds-export/project/assets/logo/mentree-logo.svg") !important; mask-image: url("../../../ds-export/project/assets/logo/mentree-logo.svg") !important; }
+    .qi-clamp2, .qi-clamp3 { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+    .qi-clamp2 { -webkit-line-clamp: 2; }
+    .qi-clamp3 { -webkit-line-clamp: 3; }
+    .qi-row + .qi-row { border-top: 1px solid var(--border); }
+    .qi-fs > button, .qi-fs > * > button:first-child, .qi-fs > * > * > button:first-child { width: 100%; }
+    @media (max-width: 768px) {
+      .qi-only-mobile { display: block !important; }
+      .qi-only-desktop { display: none !important; }
+      .qi-filters { flex-wrap: wrap; }
+      .qi-filters .qi-fs { flex: 1 1 40%; min-width: 0; }
+      .qi-filters .qi-fs > * { width: 100% !important; }
+      .qi-filters .qi-search { flex: 1 1 100%; }
+      .qi-chipbar { flex-wrap: wrap; }
+      .qi-pad-bottom { padding-bottom: calc(56px + env(safe-area-inset-bottom) + 32px) !important; }
+    }
+  </style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-direction:column">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" active-key="insights" on-navigate="{{ onNav }}" hint-size="100%,64px"></x-import>
+  <main class="qi-pad-bottom" style="flex:1;width:100%;max-width:var(--container-max);margin:0 auto;padding:40px var(--container-pad) 88px;box-sizing:border-box">
+    <h1 style="margin:0;font-size:var(--text-h0);font-weight:600;letter-spacing:var(--text-h0--letter-spacing)">멘트리 인사이트</h1>
+    <p data-copy="tbd" style="margin:12px 0 0;max-width:720px;font-size:var(--text-body);line-height:1.7;color:var(--muted-foreground)">해외 취업과 현지 생활에 필요한 정보를 멘트리가 직접 정리해 싣습니다.<br>멘토 인터뷰와 이벤트 기록도 같은 자리에서 보실 수 있습니다.</p>
+    <div class="qi-only-mobile" style="margin-top:24px">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Tabs" items="{{ tabItems }}" value="{{ tabValue }}" on-change="{{ onTab }}" aria-label="카테고리" hint-size="100%,44px"></x-import>
+    </div>
+    <div style="display:flex;gap:32px;align-items:flex-start;margin-top:32px">
+      <aside class="qi-only-desktop" data-temp="DS-17" style="flex:0 0 240px;width:240px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="240px,220px">
+          <div style="padding:20px 16px;display:flex;flex-direction:column;gap:12px">
+            <div style="font-size:var(--text-h3);font-weight:600;padding:0 4px">카테고리</div>
+            <nav style="display:flex;flex-direction:column;gap:4px">
+              <sc-for list="{{ cats }}" as="cat" hint-placeholder-count="4">
+                <a href="{{ cat.href }}" aria-current="{{ cat.aria }}" style="{{ cat.style }}">{{ cat.label }}</a>
+              </sc-for>
+            </nav>
+          </div>
+        </x-import>
+      </aside>
+      <div style="flex:1;min-width:0">
+        <div class="qi-filters" style="display:flex;align-items:center;gap:8px">
+          <sc-if value="{{ showCountry }}" hint-placeholder-val="{{ true }}">
+            <div class="qi-fs" style="flex:0 0 160px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterSelect" label="국가" groups="{{ countryGroups }}" value="{{ filters.country }}" on-change="{{ setCountry }}" dc-props="{{ w160 }}" hint-size="160px,32px"></x-import>
+            </div>
+          </sc-if>
+          <sc-if value="{{ showJob }}" hint-placeholder-val="{{ false }}">
+            <div class="qi-fs" style="flex:0 0 160px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterSelect" label="직종" groups="{{ jobGroups }}" value="{{ filters.job }}" on-change="{{ setJob }}" dc-props="{{ w160 }}" hint-size="160px,32px"></x-import>
+            </div>
+          </sc-if>
+          <sc-if value="{{ showKeyword }}" hint-placeholder-val="{{ true }}">
+            <div class="qi-fs" style="flex:0 0 160px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterSelect" label="키워드" groups="{{ keywordGroups }}" value="{{ filters.keyword }}" on-change="{{ setKeyword }}" dc-props="{{ w160 }}" hint-size="160px,32px"></x-import>
+            </div>
+          </sc-if>
+          <sc-if value="{{ showKind }}" hint-placeholder-val="{{ false }}">
+            <div class="qi-fs" style="flex:0 0 160px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ kindOptions }}" value="{{ filters.kind }}" placeholder="종류" on-change="{{ setKind }}" dc-props="{{ w160 }}" hint-size="160px,40px"></x-import>
+            </div>
+          </sc-if>
+          <div class="qi-search" style="flex:1;min-width:200px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SearchInput" value="{{ q }}" on-change="{{ setQ }}" on-search="{{ onSearch }}" completions="{{ completions }}" recent="{{ recent }}" on-remove-recent="{{ removeRecent }}" placeholder="아티클 검색" hint-size="100%,40px"></x-import>
+          </div>
+        </div>
+        <div class="qi-chipbar" style="display:flex;align-items:center;gap:8px;margin-top:16px;min-height:32px">
+          <sc-if value="{{ hasChips }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex:1">
+              <sc-for list="{{ chips }}" as="chip" hint-placeholder-count="2">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" on-remove="{{ chip.remove }}" remove-aria-label="{{ chip.removeLabel }}" hint-size="90px,32px">{{ chip.label }}</x-import>
+              </sc-for>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" on-click="{{ resetFilters }}" hint-size="80px,32px">필터 초기화</x-import>
+            </div>
+          </sc-if>
+          <div class="qi-fs" style="margin-left:auto;width:160px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ sortOptions }}" value="{{ sort }}" on-change="{{ setSort }}" dc-props="{{ w160 }}" hint-size="160px,40px"></x-import>
+          </div>
+        </div>
+        <div id="qi-list-head" style="margin-top:8px">
+          <sc-if value="{{ isOk }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <div class="qi-only-desktop">
+                <sc-for list="{{ rows }}" as="row" hint-placeholder-count="4">
+                  <article class="qi-row" data-temp="DS-33" style="position:relative;display:flex;align-items:flex-start;gap:24px;padding:24px 0">
+                    <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+                      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="tag" hue="indigo" size="sm" hint-size="56px,24px">{{ row.countryLabel }}</x-import>
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="tag" hue="amber" size="sm" hint-size="64px,24px">{{ row.keyword }}</x-import>
+                      </div>
+                      <a href="{{ row.href }}" class="mt-card-link qi-clamp2" style="display:block;font-size:var(--text-h3);font-weight:600;line-height:var(--text-h3--line-height);color:inherit;text-decoration:none">{{ row.title }}</a>
+                      <div class="qi-clamp3" style="font-size:var(--text-body);line-height:1.7;color:var(--muted-foreground)">{{ row.excerpt }}</div>
+                      <div class="tabular" style="font-size:var(--text-caption);color:var(--muted-foreground)">{{ row.date }}</div>
+                    </div>
+                    <div style="position:relative;flex:0 0 296px;width:296px;aspect-ratio:16 / 9;border-radius:var(--card-media-radius);overflow:hidden;background:var(--sage-100)">
+                      <img src="{{ row.img }}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
+                      <div style="position:absolute;top:8px;right:8px;z-index:3" on-click="{{ stop }}">
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BookmarkToggle" selected="{{ row.saved }}" on-change="{{ row.toggleSave }}" hint-size="38px,38px"></x-import>
+                      </div>
+                    </div>
+                  </article>
+                </sc-for>
+              </div>
+              <div class="qi-only-mobile" style="padding-top:24px">
+                <div style="display:flex;flex-direction:column;gap:32px">
+                  <sc-for list="{{ rows }}" as="row" hint-placeholder-count="4">
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ArticlePreview" title="{{ row.title }}" excerpt="{{ row.excerpt }}" image="{{ row.img }}" tags="{{ row.tags }}" href="{{ row.href }}" hint-size="100%,320px"></x-import>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}">
+            <div aria-busy="true">
+              <sc-for list="{{ skeletons }}" as="sk" hint-placeholder-count="5">
+                <div class="qi-row" style="display:flex;gap:24px;padding:24px 0">
+                  <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:12px">
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="140" height="24" radius="md" hint-size="140px,24px"></x-import>
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="80%" height="26" hint-size="80%,26px"></x-import>
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ sk.lines }}" hint-size="100%,60px"></x-import>
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="96" height="16" hint-size="96px,16px"></x-import>
+                  </div>
+                  <div style="flex:0 0 296px;width:296px">
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="296" height="167" radius="md" hint-size="296px,167px"></x-import>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:72px 0">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" icon="search-01" title="조건에 맞는 아티클이 없어요" description="{{ emptyDesc }}" action="{{ emptyAction }}" hint-size="100%,220px"></x-import>
+            </div>
+          </sc-if>
+          <sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:72px 0;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center">
+              <p data-copy="tbd" style="margin:0;font-size:var(--text-body);color:var(--muted-foreground)">아티클 목록을 불러오는 중 연결이 끊겼어요.</p>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" on-click="{{ retry }}" hint-size="100px,40px">다시 시도</x-import>
+            </div>
+          </sc-if>
+        </div>
+        <sc-if value="{{ showPagination }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:40px;display:flex;justify-content:center">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Pagination" page="{{ page }}" total-pages="{{ totalPages }}" on-page-change="{{ onPageChange }}" hint-size="320px,44px"></x-import>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </main>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" on-navigate="{{ onNav }}" hint-size="100%,320px"></x-import>
+  <div class="qi-only-mobile">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BottomTabBar" active-key="insights" on-navigate="{{ onTabBar }}" hint-size="100%,56px"></x-import>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;category&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;all&quot;,&quot;insight&quot;,&quot;event&quot;,&quot;interview&quot;],&quot;default&quot;:&quot;all&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;state&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ok&quot;,&quot;loading&quot;,&quot;empty&quot;,&quot;error&quot;],&quot;default&quot;:&quot;ok&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;preset&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;filtered&quot;,&quot;empty&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const ART = [
+  { id: "i1", cat: "insight", title: "2026년 일본 취업을 위해 꼭 필요한 인사이트", excerpt: "일본 신졸 채용은 졸업 1년 전에 문이 열리고, 그 일정을 놓치면 경력 채용으로 방향을 틀어야 합니다. JLPT N2는 서류를 통과시키는 최소선이고, 면접에서는 어떤 경험을 일본어로 설명할 수 있는지를 봅니다. 지원 시점을 정하는 기준을 세 가지로 정리했습니다.", date: "2026.07.04", countryLabel: "일본", flag: "japan", keyword: "취업 준비", img: "assets/img/1.png" },
+  { id: "i2", cat: "insight", title: "독일 블루카드 연봉 기준이 바뀌었다 — 2026년 지원자가 알아야 할 것", excerpt: "블루카드 최저 연봉선이 올라가면서 주니어 오퍼가 기준에 걸리는 경우가 늘었습니다. IT 직군의 부족직업군 예외는 남아 있지만 증빙 요건이 촘촘해졌습니다. 오퍼를 받은 뒤 확인할 항목을 순서대로 짚었습니다.", date: "2026.06.28", countryLabel: "독일", flag: "germany", keyword: "비자·이민", img: "assets/img/2.png" },
+  { id: "i3", cat: "insight", title: "싱가포르 EP 점수제, 한국 지원자가 걸리는 항목", excerpt: "COMPASS 점수제는 학력과 연봉만으로 채워지지 않습니다. 회사의 국적 다양성 점수가 낮으면 같은 조건에서도 결과가 갈립니다. 한국 지원자가 자주 놓치는 항목을 표로 정리했습니다.", date: "2026.06.19", countryLabel: "싱가포르", flag: "singapore", keyword: "비자·이민", img: "assets/img/3.png" },
+  { id: "i4", cat: "insight", title: "네덜란드 30% ruling 축소 뒤 오퍼 비교는 이렇게", excerpt: "세제 혜택 구간이 단계적으로 줄면서 총소득 계산이 달라졌습니다. 같은 연봉이라도 입사 연도에 따라 실수령액 차이가 큽니다. 두 오퍼를 비교할 때 쓰는 계산 순서를 정리했습니다.", date: "2026.06.11", countryLabel: "네덜란드", flag: "netherlands", keyword: "연봉 협상", img: "assets/img/4.png" },
+  { id: "i5", cat: "insight", title: "캐나다 석사 후 PGWP, 취업까지 현실적인 기간", excerpt: "졸업 후 취업허가는 프로그램 길이에 따라 최대 3년까지 나옵니다. 다만 첫 직장을 잡는 데 걸리는 기간은 전공과 지역에 따라 크게 갈립니다. 졸업생들의 실제 구직 기간을 모아 봤습니다.", date: "2026.05.28", countryLabel: "캐나다", flag: "canada", keyword: "대학원", img: "assets/img/5.png" },
+  { id: "i6", cat: "insight", title: "런던 Skilled Worker 비자로 가족을 데려갈 때", excerpt: "배우자와 자녀의 동반 비자는 본인 비자와 같은 시점에 신청하는 편이 빠릅니다. 소득 요건과 주거 증빙은 런던 기준으로 따로 봐야 합니다. 서류를 준비하는 순서와 기간을 적었습니다.", date: "2026.05.14", countryLabel: "영국", flag: "united-kingdom", keyword: "현지 생활", img: "assets/img/6.png" },
+  { id: "e1", cat: "event", title: "멘트리 클라쓰 3기 현장 스케치 — 도쿄 IT 신졸 준비반", excerpt: "도쿄에서 열린 3기 첫 세션에는 신졸 지원을 준비하는 스무 명이 모였습니다. 멘토 네 명이 서류와 면접을 각자의 경로로 나눠 설명했습니다. 현장에서 나온 질문을 그대로 옮겼습니다.", date: "2026.06.21", countryLabel: "일본", flag: "japan", keyword: "취업 준비", img: "assets/img/7.png" },
+  { id: "e2", cat: "event", title: "MLC 2026 봄 — 유럽 취업 라운드테이블 후기", excerpt: "베를린과 암스테르담에서 일하는 멘토들이 한자리에 모였습니다. 이직 시점과 언어 요건을 두고 의견이 갈린 대목이 특히 길게 이어졌습니다. 두 시간의 논의를 주제별로 정리했습니다.", date: "2026.05.09", countryLabel: "독일", flag: "germany", keyword: "이직", img: "assets/img/8.png" },
+  { id: "e3", cat: "event", title: "웨비나 다시 보기 — 미국 H-1B 추첨 뒤 O-1 전환", excerpt: "추첨에서 떨어진 뒤의 선택지를 변호사와 함께 짚었습니다. O-1 요건 중 한국 지원자가 채우기 쉬운 항목과 어려운 항목이 갈렸습니다. 질의응답을 포함한 전체 기록을 남겼습니다.", date: "2026.04.24", countryLabel: "미국", flag: "united-states", keyword: "비자·이민", img: "assets/img/9.png" },
+  { id: "v1", cat: "interview", title: "메르카리 프로덕트 엔지니어 박서연 — 졸업 전 지원이 유리한 이유", excerpt: "박서연 님은 졸업 1년 전 여름에 첫 인턴 지원을 넣었습니다. 신졸 전형은 경력을 묻지 않는 대신 준비 기간을 봅니다. 지원 시점을 앞당긴 판단과 그 결과를 들었습니다.", date: "2026.05.30", countryLabel: "일본", flag: "japan", keyword: "취업 준비", img: "assets/img/10.png" },
+  { id: "v2", cat: "interview", title: "Google Japan 데이터 애널리스트 서명진 — 14년차가 말하는 커리어 전환", excerpt: "서명진 님은 국내 제조업 분석 업무에서 일본 테크로 자리를 옮겼습니다. 경력 채용에서는 도메인 경험을 어떻게 번역하는지가 관건이었습니다. 전환 과정을 연차별로 되짚었습니다.", date: "2026.04.18", countryLabel: "일본", flag: "japan", keyword: "이직", img: "assets/img/11.png" },
+  { id: "v3", cat: "interview", title: "사이보즈 백엔드 엔지니어 이준호 — 취업 활동 비자로 지원한 경로", excerpt: "이준호 님은 졸업 후 취업 활동 비자로 체류하며 지원을 이어갔습니다. 체류 기간과 면접 일정을 맞추는 일이 가장 까다로웠습니다. 비자 연장과 오퍼 시점을 정리해 들려주었습니다.", date: "2026.03.27", countryLabel: "일본", flag: "japan", keyword: "비자·이민", img: "assets/img/12.png" }
+];
+
+const DETAIL = { insight: "../../article-detail/template/article-detail-insight.dc.html", event: "../../article-detail/template/article-detail-event.dc.html", interview: "../../article-detail/template/article-detail-interview.dc.html" };
+
+const CATS = [
+  { key: "all", label: "전체", href: "insight-list-all.dc.html" },
+  { key: "insight", label: "멘트리 인사이트", href: "insight-list-insight.dc.html" },
+  { key: "event", label: "멘트리 이벤트", href: "insight-list-event.dc.html" },
+  { key: "interview", label: "멘토 인터뷰", href: "insight-list-interview.dc.html" }
+];
+
+const COUNTRY_GROUPS = [{ options: [
+  { value: "일본", label: "일본", flag: "japan" }, { value: "미국", label: "미국", flag: "united-states" },
+  { value: "독일", label: "독일", flag: "germany" }, { value: "네덜란드", label: "네덜란드", flag: "netherlands" },
+  { value: "캐나다", label: "캐나다", flag: "canada" }, { value: "영국", label: "영국", flag: "united-kingdom" },
+  { value: "싱가포르", label: "싱가포르", flag: "singapore" }, { value: "호주", label: "호주", flag: "australia" },
+  { value: "프랑스", label: "프랑스", flag: "france" }, { value: "스페인", label: "스페인", flag: "spain" }
+] }];
+
+const KEYWORD_GROUPS = [{ options: ["취업 준비", "비자·이민", "이직", "연봉 협상", "현지 생활", "대학원"].map(v => ({ value: v, label: v })) }];
+
+const JOB_GROUPS = [
+  { label: "개발", options: ["프론트엔드", "백엔드", "데이터"].map(v => ({ value: v, label: v })) },
+  { label: "비즈니스", options: ["기획", "마케팅", "영업"].map(v => ({ value: v, label: v })) }
+];
+
+const KIND_OPTIONS = ["멘트리 클라쓰", "MLC", "웨비나", "네트워킹"].map(v => ({ value: v, label: v }));
+const COMPLETIONS = ["일본 신졸 채용", "일본 취업 활동 비자", "독일 블루카드 연봉", "싱가포르 EP 점수", "네덜란드 오퍼 비교"];
+const RECENT = ["JLPT N2", "블루카드", "PGWP"];
+const SORTS = [{ value: "latest", label: "최신순" }, { value: "oldest", label: "오래된순" }];
+
+class Component extends DCLogic {
+  state = {
+    filters: this.initFilters(),
+    sort: "latest",
+    page: 1,
+    q: "",
+    recent: RECENT,
+    saved: { i2: true }
+  };
+
+  initFilters() {
+    const f = { country: [], keyword: [], kind: "", job: [], q: "" };
+    const p = this.props.preset;
+    if (p === "filtered") { f.country = ["일본"]; f.keyword = ["취업 준비"]; }
+    if (p === "empty") { f.country = ["캐나다"]; f.q = "비자 면접"; }
+    if (typeof location !== "undefined" && location.search) {
+      const s = new URLSearchParams(location.search);
+      if (s.get("country")) f.country = s.get("country").split(",");
+      if (s.get("keyword")) f.keyword = s.get("keyword").split(",");
+      if (s.get("job")) f.job = s.get("job").split(",");
+      if (s.get("kind")) f.kind = s.get("kind");
+      if (s.get("q")) f.q = s.get("q");
+    }
+    return f;
+  }
+
+  componentDidMount() {
+    const s = new URLSearchParams(location.search);
+    const next = {};
+    if (s.get("sort")) next.sort = s.get("sort");
+    if (s.get("page")) next.page = Number(s.get("page")) || 1;
+    if (Object.keys(next).length) this.setState(next);
+  }
+
+  syncUrl(filters, sort, page) {
+    const s = new URLSearchParams();
+    if (filters.country.length) s.set("country", filters.country.join(","));
+    if (filters.keyword.length) s.set("keyword", filters.keyword.join(","));
+    if (filters.job.length) s.set("job", filters.job.join(","));
+    if (filters.kind) s.set("kind", filters.kind);
+    if (filters.q) s.set("q", filters.q);
+    s.set("sort", sort);
+    if (page > 1) s.set("page", String(page));
+    history.replaceState(null, "", location.pathname + "?" + s.toString());
+  }
+
+  patch(part) {
+    this.setState(st => {
+      const filters = { ...st.filters, ...part };
+      this.syncUrl(filters, st.sort, 1);
+      return { filters, page: 1 };
+    });
+  }
+
+  get cat() { return this.props.category || "all"; }
+  get mode() { return this.props.state || "ok"; }
+
+  matches(a) {
+    const f = this.state.filters;
+    if (f.country.length && f.country.indexOf(a.countryLabel) < 0) return false;
+    if (f.keyword.length && f.keyword.indexOf(a.keyword) < 0) return false;
+    if (f.q && (a.title + a.excerpt).indexOf(f.q) < 0) return false;
+    return true;
+  }
+
+  renderVals() {
+    const cat = this.cat, mode = this.mode, f = this.state.filters;
+    const pool = ART.filter(a => cat === "all" || a.cat === cat).filter(a => this.matches(a));
+    const sorted = pool.slice().sort((a, b) => this.state.sort === "latest" ? b.date.localeCompare(a.date) : a.date.localeCompare(b.date));
+    const rows = sorted.slice(0, 10).map(a => ({
+      ...a,
+      href: DETAIL[a.cat],
+      tags: [{ label: a.countryLabel, hue: "indigo" }, { label: a.keyword, hue: "amber" }],
+      saved: !!this.state.saved[a.id],
+      toggleSave: next => this.setState(st => ({ saved: { ...st.saved, [a.id]: next } }))
+    }));
+
+    const chips = [];
+    f.country.forEach(v => chips.push({ label: v, removeLabel: v + " 삭제", remove: () => this.patch({ country: f.country.filter(x => x !== v) }) }));
+    f.job.forEach(v => chips.push({ label: v, removeLabel: v + " 삭제", remove: () => this.patch({ job: f.job.filter(x => x !== v) }) }));
+    f.keyword.forEach(v => chips.push({ label: v, removeLabel: v + " 삭제", remove: () => this.patch({ keyword: f.keyword.filter(x => x !== v) }) }));
+    if (f.kind) chips.push({ label: f.kind, removeLabel: f.kind + " 삭제", remove: () => this.patch({ kind: "" }) });
+    if (f.q) chips.push({ label: "검색: " + f.q, removeLabel: "검색어 삭제", remove: () => this.patch({ q: "" }) });
+
+    const B = (window.MentreeDesignSystem_2f86cf || {}).Button;
+    const totalPages = cat === "all" && mode === "ok" && chips.length === 0 ? 30 : 1;
+
+    return {
+      cats: CATS.map(c => ({
+        label: c.label, href: c.href, aria: c.key === cat ? "page" : "false",
+        style: "display:flex;align-items:center;height:40px;padding:0 12px;border-radius:var(--radius-md);font-size:var(--text-body);text-decoration:none;" +
+          (c.key === cat ? "background:var(--sage-100);color:var(--foreground);font-weight:600" : "background:transparent;color:var(--muted-foreground);font-weight:400")
+      })),
+      tabItems: CATS.map(c => ({ value: c.key, label: c.label })),
+      tabValue: cat,
+      onTab: v => { const c = CATS.find(x => x.key === v); if (c) location.href = c.href; },
+      onTabBar: tab => { if (tab.key === "insights") location.href = "insight-list-all.dc.html"; },
+      onNav: item => { if (item.key === "insights") location.href = "insight-list-all.dc.html"; },
+      showCountry: cat === "all" || cat === "insight" || cat === "interview",
+      showKeyword: cat === "all" || cat === "insight" || cat === "interview",
+      showJob: cat === "interview",
+      showKind: cat === "event",
+      countryGroups: COUNTRY_GROUPS, keywordGroups: KEYWORD_GROUPS, jobGroups: JOB_GROUPS,
+      kindOptions: KIND_OPTIONS, sortOptions: SORTS,
+      filters: f,
+      w160: { style: { width: 160 } },
+      setCountry: v => this.patch({ country: v }),
+      setKeyword: v => this.patch({ keyword: v }),
+      setJob: v => this.patch({ job: v }),
+      setKind: v => this.patch({ kind: v }),
+      q: this.state.q,
+      setQ: v => this.setState({ q: v }),
+      onSearch: v => { this.setState({ q: "", recent: [v].concat(this.state.recent.filter(r => r !== v)).slice(0, 5) }); this.patch({ q: v }); },
+      completions: COMPLETIONS.filter(c => this.state.q && c.indexOf(this.state.q) >= 0),
+      recent: this.state.recent,
+      removeRecent: v => this.setState(st => ({ recent: st.recent.filter(r => r !== v) })),
+      chips, hasChips: chips.length > 0,
+      resetFilters: () => this.patch({ country: [], keyword: [], job: [], kind: "", q: "" }),
+      sort: this.state.sort,
+      setSort: v => this.setState(st => { this.syncUrl(st.filters, v, st.page); return { sort: v }; }),
+      rows,
+      stop: e => e.stopPropagation(),
+      isOk: mode === "ok", isLoading: mode === "loading", isEmpty: mode === "empty", isError: mode === "error",
+      skeletons: [{ lines: 3 }, { lines: 3 }, { lines: 3 }, { lines: 3 }, { lines: 3 }],
+      emptyDesc: "조건을 하나씩 풀어 보시거나, 전체 카테고리에서 다시 찾아보세요.",
+      emptyAction: B ? React.createElement(B, { variant: "primary", size: "md", onClick: () => { location.href = "insight-list-all.dc.html"; } }, "조건 초기화") : null,
+      retry: () => location.reload(),
+      page: this.state.page, totalPages, showPagination: totalPages > 1,
+      onPageChange: n => {
+        this.setState(st => { this.syncUrl(st.filters, st.sort, n); return { page: n }; });
+        const el = document.getElementById("qi-list-head");
+        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 96, behavior: "smooth" });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

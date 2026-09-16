@@ -1,8 +1,8 @@
 # insight-list: 멘트리 인사이트
 
-- 상태: **확정** (§1~5 UX승인 2026-09-16 · §6~11 작성 2026-09-16 · `template/` 대기)
+- 상태: **확정** (§1~5 UX승인 2026-09-16 · §6~11 작성 2026-09-16 · **`template/` 취임 2026-09-16**)
 - 화면 구분: 열람
-- 템플릿: 없음. §1~5 승인 뒤 Claude Design 에서 만든다
+- 템플릿: [`template/`](template/) — 얇은 페이지 8장 ＋ 공용 화면 부품 `InsightListScreen`. 출처는 [`template/SOURCE.md`](template/SOURCE.md)
 - **부품이 없는 자리 둘은 임시로 조립한다**(상혁 2026-09-16) — 세로 내비(`DS-17`) · 가로형 아티클 카드(`DS-33`). 부품이 오면 갈아끼운다. `DS-27` 페이지 이동의 시작·끝 형태도 기다린다
 
 > 출처: Figma `zFWjJinW6NAtyMMzMujNl2` / `1059:41695` 「아티클/공지사항/뉴스」 — 목록 프레임 `1059:41918` 과 주석 8건. 읽은 날 2026-09-16.
@@ -218,5 +218,5 @@ flowchart LR
 - [x] §1~5 를 쓰고 UX승인을 받는다 (2026-09-16 · 상혁)
 - [x] §6~11 을 쓴다 (2026-09-16)
 - [x] 부족한 요소를 `DS-update-list.md` 에 기표한다 (`DS-33` · `DS-17` 보강)
-- [ ] `template/` 을 Claude Design 에서 만들어 취임한다 — 프롬프트 `design/_import/prompts/insight-screens.md`
-- [ ] 6품질축 감사와 표시 확인을 `UI-REVIEW.md` 에 남긴다
+- [x] `template/` 을 Claude Design 에서 만들어 취임한다 (2026-09-16 · 9본)
+- [x] 6품질축 감사와 표시 확인을 [`UI-REVIEW.md`](UI-REVIEW.md) 에 남긴다 (2026-09-16)
