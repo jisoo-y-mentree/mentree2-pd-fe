@@ -173,6 +173,7 @@
           </sc-if>
         </div>
 
+        <div data-subscribe-sentinel aria-hidden="true" style="height:1px"></div>
         <div style="max-width:720px;margin:56px auto 0">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;background:var(--sage-50);border:1px solid var(--primary);border-radius:var(--radius-lg);padding:24px 32px">            <div style="font-size:var(--text-h3);font-weight:600">{{ banner.text }}</div>
             <a href="{{ banner.href }}" title="{{ banner.title }}" style="text-decoration:none">
@@ -370,19 +371,33 @@ class Component extends DCLogic {
       measure();
     }
     if (this.mode === "ok" && this.variant !== "plain" && this.props.modal !== "mentors") {
-      try { if (sessionStorage.getItem("qi-subscribe-closed") === "1") this.setState({ subscribeClosed: true }); } catch (err) {}
-      this.onScroll = () => {
-        const h = document.documentElement;
-        const pct = (h.scrollTop + window.innerHeight) / h.scrollHeight;
-        if (pct > 0.7) { this.setState({ subscribeShown: true }); window.removeEventListener("scroll", this.onScroll); }
-      };
-      window.addEventListener("scroll", this.onScroll, { passive: true });
+      let closed = false;
+      try {
+        closed = sessionStorage.getItem("qi-subscribe-closed:" + this.variant) === "1"
+          || sessionStorage.getItem("qi-subscribed") === "1";
+      } catch (err) {}
+      if (closed) this.setState({ subscribeClosed: true });
+      else {
+        const attach = () => {
+          const sentinel = document.querySelector("[data-subscribe-sentinel]");
+          if (!sentinel) { requestAnimationFrame(attach); return; }
+          this.subsObserver = new IntersectionObserver(entries => {
+            if (entries.some(e => e.isIntersecting)) {
+              this.setState({ subscribeShown: true });
+              this.subsObserver.disconnect();
+              this.subsObserver = null;
+            }
+          }, { root: null });
+          this.subsObserver.observe(sentinel);
+        };
+        attach();
+      }
     }
   }
 
   componentWillUnmount() {
     if (this.onTocScroll) { window.removeEventListener("scroll", this.onTocScroll); window.removeEventListener("resize", this.onTocScroll); }
-    if (this.onScroll) window.removeEventListener("scroll", this.onScroll);
+    if (this.subsObserver) { this.subsObserver.disconnect(); this.subsObserver = null; }
   }
 
   get variant() { return this.props.variant || "insight"; }
@@ -470,8 +485,8 @@ class Component extends DCLogic {
       errorAction: B ? React.createElement(B, { variant: "outline", size: "md", onClick: () => location.reload() }, "다시 시도") : null,
       showSubscribe: this.state.subscribeShown && !this.state.subscribeClosed,
       subsCard: { style: { boxShadow: "var(--shadow-lg)" } },
-      closeSubscribe: () => { try { sessionStorage.setItem("qi-subscribe-closed", "1"); } catch (err) {} this.setState({ subscribeClosed: true }); },
-      subscribe: () => { this.setState({ subscribeClosed: true, toast: "새 아티클 소식을 메일로 보내드릴게요" }); },
+      closeSubscribe: () => { try { sessionStorage.setItem("qi-subscribe-closed:" + this.variant, "1"); } catch (err) {} this.setState({ subscribeClosed: true }); },
+      subscribe: () => { try { sessionStorage.setItem("qi-subscribed", "1"); } catch (err) {} this.setState({ subscribeClosed: true, toast: "새 아티클 소식을 메일로 보내드릴게요" }); },
       toastOpen: !!this.state.toast, toastMsg: this.state.toast,
       dismissToast: () => this.setState({ toast: "" }),
       modalOpen: this.state.modalOpen,

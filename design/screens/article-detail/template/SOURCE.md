@@ -1,7 +1,7 @@
 # template 의 출처
 
 - Claude Design: 프로젝트 **`Mentree 2.0 Insight feed`**(radarlab 계정). 공개 공유 링크는 적지 않는다([ADR-0002](../../../../docs/adr/0002-rebuild-design-system-instead-of-sharing.md))
-- 원본: export 폴더 `Mentree 2.0 Insight feed`(20장 · **2판 2026-09-17 11:14** · 1판 2026-09-16 16:05)
+- 원본: export 폴더 `Mentree 2.0 Insight feed`(20장 · **3판 2026-09-17 14:09** · 2판 09-17 11:14 · 1판 09-16 16:05)
 - **생성일: 2026-09-17**
 - 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md) — §1~11 확정 2026-09-16
 - 디자인 시스템: `ds-export/` 의 **2026-09-16 판**(폴더 해시 `4ec9a3f66119`). export 의 사본과 같은 판이다 — [insight-list 의 SOURCE.md](../../insight-list/template/SOURCE.md) 「디자인 시스템이 어긋났었다」
@@ -12,7 +12,7 @@
 
 | 파일 | 무엇 |
 |---|---|
-| `article-detail-insight` | B형 인사이트 글 — 와이어 그대로. 목차 3항목 · 배너 「관련 멘토 보기」 · **「목록으로 돌아가기」** · 관련 아티클 4장(**`Carousel`**) · 구독 카드 |
+| `article-detail-insight` | B형 인사이트 글 — 와이어 그대로. 목차 3항목 · 배너 「관련 멘토 보기」 · **「목록으로 돌아가기」** · 관련 아티클 4장(**`Carousel`**) · 구독 카드(**`IntersectionObserver` 표지 · 닫기 기억 글 단위** — 3판) |
 | `article-detail-event` | A형 이벤트 기사 — 배너 「참여 신청하기」 · 「목록으로 돌아가기」 · 참여 멘토 4장(**`Carousel` peek**) |
 | `article-detail-interview` | C형 멘토 인터뷰 — 배너 「멘토링 신청하기」 · 이 글의 멘토 1장 |
 | `article-detail-plain` | B형인데 H2 없음 → 목차 없음 · 관련 0건 → 블록 없음 · 구독 카드 닫힘 |
