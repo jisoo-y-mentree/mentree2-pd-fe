@@ -12,3 +12,5 @@
 ```
 
 하위 파트(`CardHeader/Title/Description/Content/Footer`)는 선택 — 필요한 것만 조합.
+
+- **높이**: 카드는 자기 높이를 스스로 정하지 않는다 — 늘릴지 말지는 담는 쪽이 정한다. 격자·트랙은 `align-items: start`를 준다(카드 높이를 서로 맞추지 않는다). 카드 부품 자신에게 `alignSelf`를 박지 않는다 — 세로 flex 부모에서는 가로 정렬이 되어 카드가 폭을 잃는다.

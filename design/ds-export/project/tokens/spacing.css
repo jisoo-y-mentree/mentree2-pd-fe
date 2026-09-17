@@ -14,7 +14,7 @@
 
   /* layout container — 전역 단일 폭 기준. 배경은 풀블리드, 콘텐츠만 이 폭에 정렬 */
   --container-max: 1280px;   /* 콘텐츠 최대 폭 */
-  --container-pad: 24px;     /* 좌우 패딩 (Desktop 기준; Mobile 16px은 리스폰시브 단계) */
+  --container-pad: 24px;     /* 좌우 패딩. Mobile(~768)에서 16 — 이 파일 아래 미디어쿼리 */
 
   /* spacing — 4px base scale (Tailwind default; DESIGN.md defers to it) */
   --space-1: 0.25rem;   /* 4px  */
@@ -53,4 +53,15 @@
   --card-media-gap-featured: var(--space-6);  /* 24px */
   --card-media-gap-compact: var(--space-3);   /* 12px */
   --card-shadow: var(--shadow-sm);  /* elevation 스케일 참조 */
+}
+
+/* 컨테이너 좌우 패딩은 폭에 따라 바뀌는 유일한 spacing 토큰이다.
+   Desktop 24 / Mobile 16 — guidelines/03-responsive.md 「컨테이너」가 정본.
+   다른 토큰은 폭과 무관하게 고정이다 — 특히 --card-content-padding 18을 반응시키지 마라.
+   카드 안쪽 여백은 카드 폭이 정하는 것이지 화면 폭이 정하는 것이 아니다
+   (MentorCard가 자기 미디어쿼리로 12를 쓰는 것은 그 부품의 결정이다). */
+@media (max-width: 768px) {
+  :root {
+    --container-pad: 16px;
+  }
 }

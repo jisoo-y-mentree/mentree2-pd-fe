@@ -124,7 +124,8 @@ export function TagInput({
               background: "transparent",
               fontFamily: "var(--font-sans)",
               fontSize: "var(--text-body)",
-              letterSpacing: "-0.01em",
+              lineHeight: 1,
+              letterSpacing: 0,
               color: "var(--foreground)",
             }}
           />

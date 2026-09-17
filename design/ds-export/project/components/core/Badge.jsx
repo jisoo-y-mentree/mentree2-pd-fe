@@ -12,9 +12,9 @@ import { Icon } from "./Icon.jsx";
  *  size: sm·md·lg. 형태: radius-md(완전 pill 아님). 라벨은 텍스트(tabular 불필요).
  */
 const SIZES = {
-  sm: { h: 22, radius: 6,  padText: 8,  padSlot: 5, fs: 12, gap: 5, slot: 15, dot: 5 },
-  md: { h: 28, radius: 8,  padText: 10, padSlot: 6, fs: 13, gap: 6, slot: 18, dot: 6 },
-  lg: { h: 34, radius: 10, padText: 12, padSlot: 7, fs: 14, gap: 7, slot: 22, dot: 7 },
+  sm: { h: 24, radius: 6,  padText: 8,  padSlot: 5, fs: "var(--text-micro)",   gap: 5, slot: 16, dot: 5 },
+  md: { h: 28, radius: 8,  padText: 10, padSlot: 6, fs: "var(--text-caption)", gap: 6, slot: 18, dot: 6 },
+  lg: { h: 34, radius: 10, padText: 12, padSlot: 7, fs: 14,                    gap: 7, slot: 22, dot: 7 },
 };
 
 // flag 국기 에셋 기본 경로(DS 카드 기준). 소비처는 flagBase prop으로 재정의.

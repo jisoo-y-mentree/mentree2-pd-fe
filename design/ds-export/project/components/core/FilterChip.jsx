@@ -6,7 +6,7 @@ import React from "react";
  *  둘 다 "selected=반전" 공통 원칙을 따른다 — CountToggle이 그 예외다(메타 줄 인라인, 반전 안 함).
  *  Badge(정적·인터랙션 불가)와 구분 — FilterChip은 클릭·선택 가능한 필터 요소.
  *
- * [크기·형태] 버튼 sm 체계(높이 32 · padding 0 12 · radius-md=12 · caption/500). pill 미사용.
+ * [크기·형태] 버튼 sm 체계(높이 32 · padding 0 12 · radius-md=12 · 14px/500 — Button·Chip과 같은 고정 14). pill 미사용.
  * [상태 — Toggle 공통 "selected=반전"] default: card 배경 + sage 아웃라인 + sage-700 텍스트 /
  *  hover: 옅은 sage 틴트(--secondary) / selected: primary green 반전(흰 텍스트) ←
  *  CountToggle이 반전하지 않는 것과 달리 FilterChip은 green 반전(필터 활성=브랜드 액션) /
@@ -82,10 +82,10 @@ export function FilterChip({
         height: 32,
         padding: "0 12px",
         fontFamily: "var(--font-sans)",
-        fontSize: "var(--text-caption)",
+        fontSize: 14,
         fontWeight: 500,
         lineHeight: 1,
-        letterSpacing: "-0.01em",
+        letterSpacing: 0,
         whiteSpace: "nowrap",
         borderRadius: "var(--radius-md)",
         background: bg,

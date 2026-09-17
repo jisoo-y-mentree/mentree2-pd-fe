@@ -105,5 +105,6 @@ if (typeof document !== "undefined" && !document.getElementById("mt-popover-menu
 export const popoverMenuItemStyle = {
   display: "flex", alignItems: "center", gap: 8, width: "100%", padding: "8px 10px", border: "none",
   background: "none", borderRadius: "var(--radius-sm)", font: "inherit", fontSize: "var(--text-body)",
+  lineHeight: "var(--text-body--line-height)", letterSpacing: "var(--text-body--letter-spacing)",
   color: "var(--foreground)", textAlign: "left", cursor: "pointer",
 };

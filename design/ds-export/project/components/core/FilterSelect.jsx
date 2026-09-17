@@ -54,7 +54,7 @@ export function FilterSelect({ label, groups = [], value = [], onChange, disable
           fontSize: "var(--text-caption)",
           fontWeight: filled ? 600 : 500,
           lineHeight: 1,
-          letterSpacing: "-0.01em",
+          letterSpacing: 0,
           whiteSpace: "nowrap",
           borderRadius: "var(--radius-md)",
           background: filled ? "var(--muted)" : "transparent",

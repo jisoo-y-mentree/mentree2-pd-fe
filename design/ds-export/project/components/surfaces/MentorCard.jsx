@@ -13,14 +13,16 @@ import { Icon } from "../core/Icon.jsx";
  * [스트레치 링크] 루트는 <article>(position:relative) — <a>가 아니다. 이름에만 <a>를 걸고 그 ::after가
  *  카드 전면(inset:0·z-index:1)을 덮어 카드 전체 클릭을 낸다. 스크랩·배지 행 오버레이는 z-index:2로
  *  그 위에서 독립 클릭. 카드의 접근 이름 = 이름 링크 텍스트. 탭 순서 = 이름 링크 → 스크랩 → 배지 행.
- * [구조] 미디어(Desktop 3:2 · Mobile 5:4, cover 크롭, media-margin 인셋 + media-radius)
- *   · 좌상단: "신규 멘토" 배지(green, status/active recipe) — publishedAt 기준 공개 후 1달만 노출
+ * [구조] 미디어(Desktop 3:2 · Mobile 5:4, cover 크롭, media-margin 인셋 + media-radius) *   · 좌상단: "신규 멘토" 배지(green, status/active recipe) — publishedAt 기준 공개 후 1달만 노출
  *   · 우상단: 스크랩 오버레이 — BookmarkToggle(미디어 오버레이 전용, 선택 시 반전). 받침(반투명 흰 면+blur)은
  *     카드 것 그대로 유지 — BookmarkToggle 자체가 IconButton default 크기·radius를 가지므로 패딩 없이 바로 앉힌다.
  *     prop 이름은 카드의 말(bookmarked·onBookmarkChange) 그대로 — 부품 이름과 별개다.
  *   · 미디어 하단 안쪽: 배지 행 — 국가 배지(flag + "대한민국 +N ⌄", +N ⌄는 정적 표시 — 펼침은 Badge 확장 OPEN)
  *     + 직무 배지. 뉴트럴 recipe, size sm. 독립 클릭 영역.
- *  → 이름(h2, 1줄 …, 카드의 유일한 링크) → 직무(500, 1줄 …)/회사(muted, 1줄 …) → 소개 박스(sage-50, 1줄 …).
+ *  → 이름(h3 18/lh 26, 1줄 …, 카드의 유일한 링크 — fluid일 때만 Mobile에서 body 16) →(4) 직무(caption 14/lh 20, 500)/(4) 회사(caption, muted)
+ *  →(8) 소개 박스(green-50 면 + green-100 테두리, 글자 sage-700, caption 14, 1줄 …).
+ *  본문 상자는 padding 8/18(Mobile 6·8/12) · 요소 간 4. **소개 박스는 본문 글자가 아니라 미디어와 같은 폭이다**(카드 좌우 8 인셋 —
+ *  본문 좌우 패딩 18에서 음수 마진 10으로 뺀다. Mobile은 좌우 12이므로 -4).
  * [Mobile ~768] 국가 배지 = 국기만(텍스트 숨김) · 소개 박스 2줄 허용(폭과 무관, 항상 적용).
  *  `fluid`=true일 때만 폭이 width:100%/min-width:179(max-width 없음, 부모가 넓히면 카드도 넓어진다) — 기본은 296 고정(캐러셀 등 부모가 폭을 안 정하는 컨테이너용).
  */
@@ -30,7 +32,7 @@ const NEW_WINDOW_MS = 31 * 24 * 60 * 60 * 1000; // 공개 후 1달
 if (typeof document !== "undefined" && !document.getElementById("mt-mcard-style")) {
   const s = document.createElement("style");
   s.id = "mt-mcard-style";
-  s.textContent = "@media (max-width:768px){.mt-mcard-clabel{display:none !important}.mt-mcard-intro{-webkit-line-clamp:2 !important}.mt-mcard-media{aspect-ratio:5/4 !important}.mt-mcard-fluid{width:100% !important;min-width:179px !important}}";
+  s.textContent = "@media (max-width:768px){.mt-mcard-fluid{width:100% !important;min-width:179px !important}.mt-mcard-fluid .mt-mcard-clabel{display:none !important}.mt-mcard-fluid .mt-mcard-intro{-webkit-line-clamp:2 !important}.mt-mcard-fluid .mt-mcard-media{aspect-ratio:5/4 !important}.mt-mcard-fluid .mt-mcard-body{padding:6px 12px 8px !important}.mt-mcard-fluid .mt-mcard-introbox{margin-left:-4px !important;margin-right:-4px !important}.mt-mcard-fluid .mt-card-link{font-size:var(--text-body) !important;line-height:var(--text-body--line-height) !important;letter-spacing:var(--text-body--letter-spacing) !important}}";
   document.head.appendChild(s);
 }
 if (typeof document !== "undefined" && !document.getElementById("mt-card-link-style")) {
@@ -41,7 +43,8 @@ if (typeof document !== "undefined" && !document.getElementById("mt-card-link-st
     ".mt-card-link::after{content:'';position:absolute;inset:0;z-index:1;}" +
     ".mt-card-link:focus-visible{outline:none;}" +
     // 포커스 링은 제목 글자가 아니라 카드 테두리에 그린다 — 무엇이 선택됐는지 보이게.
-    "article:has(.mt-card-link:focus-visible){outline:2px solid var(--ring);outline-offset:2px;}";
+    "article:has(.mt-card-link:focus-visible){outline:2px solid var(--ring);outline-offset:2px;}" +
+    "@media (hover:hover){article:hover a.mt-card-link{color:var(--primary);}article:hover .mt-card-media-img{transform:scale(1.03);}}.mt-card-media-img{transition:transform 250ms ease-out;}a.mt-card-link{transition:color 250ms ease-out;}@media (prefers-reduced-motion:reduce){.mt-card-media-img{transform:none !important;transition:none;}}";
   document.head.appendChild(s);
 }
 
@@ -100,6 +103,7 @@ export function MentorCard({
       <div className="mt-mcard-media" style={{ position: "relative", margin: "var(--card-media-margin) var(--card-media-margin) 0", aspectRatio: "3 / 2", background: "var(--sage-100)", borderRadius: "var(--card-media-radius)", overflow: "hidden" }}>
         {showImg ? (
           <img
+            className="mt-card-media-img"
             src={photo}
             alt={name || ""}
             onError={() => setImgError(true)}
@@ -151,19 +155,19 @@ export function MentorCard({
         </div>
       </div>
 
-      {/* 본문 */}
-      <div style={{ padding: "var(--card-content-padding)", display: "flex", flexDirection: "column", gap: 8 }}>
+      {/* 본문 — 위아래 8(Mobile 6/8), 좌우는 --card-content-padding 18(Mobile 12). 요소 간 4, 소개 박스만 +4로 8. */}
+      <div className="mt-mcard-body" style={{ padding: "8px var(--card-content-padding)", display: "flex", flexDirection: "column", gap: 4 }}>
         {/* 2) 이름 h2 — 카드의 유일한 링크(스트레치 링크의 ::after가 카드 전면을 덮는다). 1줄 … */}
-        <a href={href} className="mt-card-link" style={{ display: "block", fontSize: "var(--text-h2)", fontWeight: 600, letterSpacing: "0.01em", lineHeight: 1.3, ...ellipsis1 }}>{name}</a>
-        {/* 3) 직무(500) / 회사(400, muted) — 웨이트+색 위계, 각 1줄 … */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <span style={{ fontSize: "var(--text-body)", fontWeight: 500, color: "var(--foreground)", ...ellipsis1 }}>{role}</span>
-          <span style={{ fontSize: "var(--text-body)", fontWeight: 400, color: "var(--muted-foreground)", ...ellipsis1 }}>{company}</span>
+        <a href={href} className="mt-card-link" style={{ display: "block", fontSize: "var(--text-h3)", fontWeight: 600, letterSpacing: "var(--text-h3--letter-spacing)", lineHeight: "var(--text-h3--line-height)", ...ellipsis1 }}>{name}</a>
+        {/* 3) 직무(500) / 회사(400, muted) — caption 14/lh 20. 웨이트+색 위계, 각 1줄 … */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          <span style={{ fontSize: "var(--text-caption)", fontWeight: 500, lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", color: "var(--foreground)", ...ellipsis1 }}>{role}</span>
+          <span style={{ fontSize: "var(--text-caption)", fontWeight: 400, lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", color: "var(--muted-foreground)", ...ellipsis1 }}>{company}</span>
         </div>
-        {/* 4) 소개 박스 — sage-50, Desktop 1줄 …(Mobile 2줄) */}
+        {/* 4) 소개 박스 — green-50 면 + green-100 테두리(와이어 tailwind green/50·100). 글자는 sage-700. 본문 글자가 아니라 미디어와 같은 폭(카드 좌우 8 인셋) — 음수 마진 10(Mobile 4). Desktop 1줄 …(Mobile 2줄) */}
         {intro && (
-          <div style={{ background: "var(--sage-50)", border: "1px solid var(--sage-100)", borderRadius: "var(--radius-md)", padding: "8px 10px" }}>
-            <span className="mt-mcard-intro" style={{ display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 1, overflow: "hidden", fontSize: "var(--text-body)", lineHeight: 1.5, color: "var(--sage-700)" }}>{intro}</span>
+          <div className="mt-mcard-introbox" style={{ marginTop: 4, marginLeft: -10, marginRight: -10, background: "var(--green-50)", border: "1px solid var(--green-100)", borderRadius: "var(--radius-md)", padding: 10 }}>
+            <span className="mt-mcard-intro" style={{ display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 1, overflow: "hidden", fontSize: "var(--text-caption)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", color: "var(--sage-700)" }}>{intro}</span>
           </div>
         )}
       </div>

@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"MentreeDesignSystem_2f86cf","components":[{"name":"Avatar","sourcePath":"components/core/Avatar.jsx"},{"name":"AvatarGroup","sourcePath":"components/core/Avatar.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"BookmarkToggle","sourcePath":"components/core/BookmarkToggle.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Chip","sourcePath":"components/core/Chip.jsx"},{"name":"CountToggle","sourcePath":"components/core/CountToggle.jsx"},{"name":"FilterChip","sourcePath":"components/core/FilterChip.jsx"},{"name":"FilterSelect","sourcePath":"components/core/FilterSelect.jsx"},{"name":"Icon","sourcePath":"components/core/Icon.jsx"},{"name":"IconButton","sourcePath":"components/core/IconButton.jsx"},{"name":"Checkbox","sourcePath":"components/forms/Checkbox.jsx"},{"name":"Field","sourcePath":"components/forms/Field.jsx"},{"name":"FieldGroup","sourcePath":"components/forms/Field.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"RadioGroup","sourcePath":"components/forms/RadioGroup.jsx"},{"name":"SearchInput","sourcePath":"components/forms/SearchInput.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"},{"name":"TagInput","sourcePath":"components/forms/TagInput.jsx"},{"name":"ToggleGroup","sourcePath":"components/forms/ToggleGroup.jsx"},{"name":"Banner","sourcePath":"components/navigation/Banner.jsx"},{"name":"BottomTabBar","sourcePath":"components/navigation/BottomTabBar.jsx"},{"name":"Breadcrumb","sourcePath":"components/navigation/Breadcrumb.jsx"},{"name":"CalloutBar","sourcePath":"components/navigation/CalloutBar.jsx"},{"name":"Carousel","sourcePath":"components/navigation/Carousel.jsx"},{"name":"Footer","sourcePath":"components/navigation/Footer.jsx"},{"name":"Header","sourcePath":"components/navigation/Header.jsx"},{"name":"Pagination","sourcePath":"components/navigation/Pagination.jsx"},{"name":"SectionHeader","sourcePath":"components/navigation/SectionHeader.jsx"},{"name":"Sidebar","sourcePath":"components/navigation/Sidebar.jsx"},{"name":"Tabs","sourcePath":"components/navigation/Tabs.jsx"},{"name":"TabPanel","sourcePath":"components/navigation/Tabs.jsx"},{"name":"NAV_PRIMARY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_AUTH","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_UTILITY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_DETAIL","sourcePath":"components/navigation/nav-ia.js"},{"name":"Dialog","sourcePath":"components/overlays/Dialog.jsx"},{"name":"Popover","sourcePath":"components/overlays/Popover.jsx"},{"name":"Sheet","sourcePath":"components/overlays/Sheet.jsx"},{"name":"Toast","sourcePath":"components/overlays/Toast.jsx"},{"name":"AnswerCard","sourcePath":"components/surfaces/AnswerCard.jsx"},{"name":"ArticlePreview","sourcePath":"components/surfaces/ArticlePreview.jsx"},{"name":"Card","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardHeader","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardTitle","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardDescription","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardContent","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardFooter","sourcePath":"components/surfaces/Card.jsx"},{"name":"EmptyState","sourcePath":"components/surfaces/EmptyState.jsx"},{"name":"InterviewCard","sourcePath":"components/surfaces/InterviewCard.jsx"},{"name":"MentorCard","sourcePath":"components/surfaces/MentorCard.jsx"},{"name":"QnaCard","sourcePath":"components/surfaces/QnaCard.jsx"},{"name":"Skeleton","sourcePath":"components/surfaces/Skeleton.jsx"},{"name":"Table","sourcePath":"components/surfaces/Table.jsx"}],"sourceHashes":{"components/core/Avatar.jsx":"0f3ffc5f31ff","components/core/Badge.jsx":"c7b9be0e02f2","components/core/BookmarkToggle.jsx":"7ea2c991107e","components/core/Button.jsx":"a5114fd5d2aa","components/core/Chip.jsx":"7de8d8af5438","components/core/CountToggle.jsx":"aca1e44ee376","components/core/FilterChip.jsx":"3c34090cb434","components/core/FilterSelect.jsx":"1a8222a7256c","components/core/Icon.jsx":"021313e06cd9","components/core/IconButton.jsx":"e1db1fbc8c1b","components/forms/Checkbox.jsx":"f7c99f0c94f3","components/forms/Field.jsx":"fec68edbf693","components/forms/Input.jsx":"d0a1ec848714","components/forms/RadioGroup.jsx":"f8e7f8aaa3ba","components/forms/SearchInput.jsx":"e29a1e79b5ca","components/forms/Select.jsx":"6b9e34922aed","components/forms/Switch.jsx":"f3bca0c8c43a","components/forms/TagInput.jsx":"8a0c0bddf356","components/forms/ToggleGroup.jsx":"c7a2bba81517","components/navigation/Banner.jsx":"897c8f74939c","components/navigation/BottomTabBar.jsx":"25ee0db58c82","components/navigation/Breadcrumb.jsx":"fd19463f12ef","components/navigation/CalloutBar.jsx":"092df60cda63","components/navigation/Carousel.jsx":"e5650946ec40","components/navigation/Footer.jsx":"071aa679b475","components/navigation/Header.jsx":"323047247fb7","components/navigation/Pagination.jsx":"ca08ef086066","components/navigation/SectionHeader.jsx":"9092de3b1569","components/navigation/Sidebar.jsx":"d290d8096d0f","components/navigation/Tabs.jsx":"93fd0080e9ef","components/navigation/nav-ia.js":"00ab9777819d","components/overlays/Dialog.jsx":"6851075179eb","components/overlays/Popover.jsx":"7a3071566620","components/overlays/Sheet.jsx":"219e7b9172f9","components/overlays/Toast.jsx":"18da6504e680","components/surfaces/AnswerCard.jsx":"21af1ca32fc6","components/surfaces/ArticlePreview.jsx":"e9a45a89b3cd","components/surfaces/Card.jsx":"155a05c05916","components/surfaces/EmptyState.jsx":"d3665e72f51e","components/surfaces/InterviewCard.jsx":"c37299ffec33","components/surfaces/MentorCard.jsx":"a8e4b6201d69","components/surfaces/QnaCard.jsx":"9a4940c9725b","components/surfaces/Skeleton.jsx":"5816ddc5bd5d","components/surfaces/Table.jsx":"cd55307893a4"},"inlinedExternals":[],"unexposedExports":[{"name":"popoverMenuItemStyle","sourcePath":"components/overlays/Popover.jsx"}]} */
+/* @ds-bundle: {"format":4,"namespace":"MentreeDesignSystem_2f86cf","components":[{"name":"Avatar","sourcePath":"components/core/Avatar.jsx"},{"name":"AvatarGroup","sourcePath":"components/core/Avatar.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"BookmarkToggle","sourcePath":"components/core/BookmarkToggle.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Chip","sourcePath":"components/core/Chip.jsx"},{"name":"CountToggle","sourcePath":"components/core/CountToggle.jsx"},{"name":"FilterChip","sourcePath":"components/core/FilterChip.jsx"},{"name":"FilterSelect","sourcePath":"components/core/FilterSelect.jsx"},{"name":"Icon","sourcePath":"components/core/Icon.jsx"},{"name":"IconButton","sourcePath":"components/core/IconButton.jsx"},{"name":"Checkbox","sourcePath":"components/forms/Checkbox.jsx"},{"name":"Field","sourcePath":"components/forms/Field.jsx"},{"name":"FieldGroup","sourcePath":"components/forms/Field.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"RadioGroup","sourcePath":"components/forms/RadioGroup.jsx"},{"name":"SearchInput","sourcePath":"components/forms/SearchInput.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"},{"name":"TagInput","sourcePath":"components/forms/TagInput.jsx"},{"name":"ToggleGroup","sourcePath":"components/forms/ToggleGroup.jsx"},{"name":"Banner","sourcePath":"components/navigation/Banner.jsx"},{"name":"BottomTabBar","sourcePath":"components/navigation/BottomTabBar.jsx"},{"name":"Breadcrumb","sourcePath":"components/navigation/Breadcrumb.jsx"},{"name":"CalloutBar","sourcePath":"components/navigation/CalloutBar.jsx"},{"name":"Carousel","sourcePath":"components/navigation/Carousel.jsx"},{"name":"Footer","sourcePath":"components/navigation/Footer.jsx"},{"name":"Header","sourcePath":"components/navigation/Header.jsx"},{"name":"Pagination","sourcePath":"components/navigation/Pagination.jsx"},{"name":"SectionHeader","sourcePath":"components/navigation/SectionHeader.jsx"},{"name":"Sidebar","sourcePath":"components/navigation/Sidebar.jsx"},{"name":"Tabs","sourcePath":"components/navigation/Tabs.jsx"},{"name":"TabPanel","sourcePath":"components/navigation/Tabs.jsx"},{"name":"NAV_PRIMARY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_AUTH","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_UTILITY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_DETAIL","sourcePath":"components/navigation/nav-ia.js"},{"name":"Dialog","sourcePath":"components/overlays/Dialog.jsx"},{"name":"Popover","sourcePath":"components/overlays/Popover.jsx"},{"name":"Sheet","sourcePath":"components/overlays/Sheet.jsx"},{"name":"Toast","sourcePath":"components/overlays/Toast.jsx"},{"name":"AnswerCard","sourcePath":"components/surfaces/AnswerCard.jsx"},{"name":"ArticlePreview","sourcePath":"components/surfaces/ArticlePreview.jsx"},{"name":"Card","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardHeader","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardTitle","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardDescription","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardContent","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardFooter","sourcePath":"components/surfaces/Card.jsx"},{"name":"EmptyState","sourcePath":"components/surfaces/EmptyState.jsx"},{"name":"InterviewCard","sourcePath":"components/surfaces/InterviewCard.jsx"},{"name":"MentorCard","sourcePath":"components/surfaces/MentorCard.jsx"},{"name":"QnaCard","sourcePath":"components/surfaces/QnaCard.jsx"},{"name":"Skeleton","sourcePath":"components/surfaces/Skeleton.jsx"},{"name":"Table","sourcePath":"components/surfaces/Table.jsx"},{"name":"COUNTRY_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"JOB_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"KEYWORD_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"COUNTRY_TOP","sourcePath":"components/taxonomy.js"},{"name":"JOB_TOP","sourcePath":"components/taxonomy.js"}],"sourceHashes":{"components/core/Avatar.jsx":"ba5d00839b2d","components/core/Badge.jsx":"c652777c2602","components/core/BookmarkToggle.jsx":"7ea2c991107e","components/core/Button.jsx":"8dbae76fcef4","components/core/Chip.jsx":"d7cf7e832461","components/core/CountToggle.jsx":"aca1e44ee376","components/core/FilterChip.jsx":"db672a544318","components/core/FilterSelect.jsx":"59fb7f178268","components/core/Icon.jsx":"021313e06cd9","components/core/IconButton.jsx":"6efa903d6e85","components/forms/Checkbox.jsx":"f7c99f0c94f3","components/forms/Field.jsx":"70a364e7e19c","components/forms/Input.jsx":"6bbc58864031","components/forms/RadioGroup.jsx":"f8e7f8aaa3ba","components/forms/SearchInput.jsx":"39c0fb25b4f9","components/forms/Select.jsx":"3c5febb41c06","components/forms/Switch.jsx":"f3bca0c8c43a","components/forms/TagInput.jsx":"748307e15ce8","components/forms/ToggleGroup.jsx":"c7a2bba81517","components/navigation/Banner.jsx":"897c8f74939c","components/navigation/BottomTabBar.jsx":"9a383596df56","components/navigation/Breadcrumb.jsx":"a5d10eea3061","components/navigation/CalloutBar.jsx":"3e4793b23751","components/navigation/Carousel.jsx":"b664875b96c2","components/navigation/Footer.jsx":"94d4c354b355","components/navigation/Header.jsx":"8be9c38948d5","components/navigation/Pagination.jsx":"47a61cee20d5","components/navigation/SectionHeader.jsx":"bf39d764ef2c","components/navigation/Sidebar.jsx":"d290d8096d0f","components/navigation/Tabs.jsx":"93fd0080e9ef","components/navigation/nav-ia.js":"00ab9777819d","components/overlays/Dialog.jsx":"cbc34f6a5a07","components/overlays/Popover.jsx":"4d4d1d3372cb","components/overlays/Sheet.jsx":"36f615dbd282","components/overlays/Toast.jsx":"6850f5ea9e88","components/surfaces/AnswerCard.jsx":"74e7b2d01806","components/surfaces/ArticlePreview.jsx":"b59d0810994a","components/surfaces/Card.jsx":"b7959424f7bf","components/surfaces/EmptyState.jsx":"22c03cdb98d0","components/surfaces/InterviewCard.jsx":"0a9fa24f5aa0","components/surfaces/MentorCard.jsx":"a831738bdf1a","components/surfaces/QnaCard.jsx":"3554511b5273","components/surfaces/Skeleton.jsx":"5816ddc5bd5d","components/surfaces/Table.jsx":"d6f67958bbb6","components/taxonomy.js":"c542637ad173"},"inlinedExternals":[],"unexposedExports":[{"name":"popoverMenuItemStyle","sourcePath":"components/overlays/Popover.jsx"}]} */
 
 (() => {
 
@@ -63,7 +63,7 @@ function Avatar({
       fontSize: fs,
       fontWeight: 600,
       lineHeight: 1,
-      letterSpacing: "-0.01em",
+      letterSpacing: 0,
       userSelect: "none",
       ...style
     }
@@ -361,7 +361,7 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
  *  둘 다 "selected=반전" 공통 원칙을 따른다 — CountToggle이 그 예외다(메타 줄 인라인, 반전 안 함).
  *  Badge(정적·인터랙션 불가)와 구분 — FilterChip은 클릭·선택 가능한 필터 요소.
  *
- * [크기·형태] 버튼 sm 체계(높이 32 · padding 0 12 · radius-md=12 · caption/500). pill 미사용.
+ * [크기·형태] 버튼 sm 체계(높이 32 · padding 0 12 · radius-md=12 · 14px/500 — Button·Chip과 같은 고정 14). pill 미사용.
  * [상태 — Toggle 공통 "selected=반전"] default: card 배경 + sage 아웃라인 + sage-700 텍스트 /
  *  hover: 옅은 sage 틴트(--secondary) / selected: primary green 반전(흰 텍스트) ←
  *  CountToggle이 반전하지 않는 것과 달리 FilterChip은 green 반전(필터 활성=브랜드 액션) /
@@ -448,10 +448,10 @@ function FilterChip({
       height: 32,
       padding: "0 12px",
       fontFamily: "var(--font-sans)",
-      fontSize: "var(--text-caption)",
+      fontSize: 14,
       fontWeight: 500,
       lineHeight: 1,
-      letterSpacing: "-0.01em",
+      letterSpacing: 0,
       whiteSpace: "nowrap",
       borderRadius: "var(--radius-md)",
       background: bg,
@@ -522,13 +522,13 @@ const {
  */
 const SIZES = {
   sm: {
-    h: 22,
+    h: 24,
     radius: 6,
     padText: 8,
     padSlot: 5,
-    fs: 12,
+    fs: "var(--text-micro)",
     gap: 5,
-    slot: 15,
+    slot: 16,
     dot: 5
   },
   md: {
@@ -536,7 +536,7 @@ const SIZES = {
     radius: 8,
     padText: 10,
     padSlot: 6,
-    fs: 13,
+    fs: "var(--text-caption)",
     gap: 6,
     slot: 18,
     dot: 6
@@ -780,22 +780,22 @@ const RADIUS = "var(--radius-md)";
 const SIZES = {
   sm: {
     height: 32,
-    padding: "0 12px",
-    fontSize: "var(--text-caption)",
+    padding: "0 14px",
+    fontSize: 14,
     gap: 6,
     icon: 16
   },
   md: {
-    height: 38,
-    padding: "0 16px",
-    fontSize: "var(--text-body)",
+    height: 40,
+    padding: "0 20px",
+    fontSize: 14,
     gap: 8,
     icon: 18
   },
   lg: {
-    height: 44,
-    padding: "0 22px",
-    fontSize: "var(--text-h3)",
+    height: 48,
+    padding: "0 28px",
+    fontSize: 14,
     gap: 8,
     icon: 20
   }
@@ -830,6 +830,7 @@ const VARIANTS = {
 
 /**
  * Button — shadcn/vega button in mentree tokens.
+ * 글자는 크기 단계와 무관하게 14px·600으로 고정된다(원티드 실측 — 버튼 안 글자는 안 움직이고 높이만 커진다).
  */
 function Button({
   variant = "primary",
@@ -852,13 +853,16 @@ function Button({
       justifyContent: "center",
       gap: s.gap,
       height: s.height,
-      padding: s.padding,
+      // ghost는 좌우 패딩 0 — 면도 테두리도 없고 hover에도 면이 안 뜨므로(brightness만) 아무것도 없는 곳에
+      // 40px이 붙어 있었다(md 116px 중 34%가 여백). 면이 있는 variant는 여백이 일을 하므로 그대로 둔다.
+      // 세로 패딩은 원래 없고 높이도 그대로라 터치 타겟(md 40)은 안 줄어든다.
+      padding: variant === "ghost" ? 0 : s.padding,
       width: fullWidth ? "100%" : "auto",
       fontFamily: "var(--font-sans)",
       fontSize: s.fontSize,
-      fontWeight: 500,
+      fontWeight: 600,
       lineHeight: 1,
-      letterSpacing: "-0.01em",
+      letterSpacing: 0,
       borderRadius: RADIUS,
       cursor: disabled ? "not-allowed" : "pointer",
       opacity: disabled ? 0.5 : 1,
@@ -904,15 +908,15 @@ const {
  *  selected 없음. 켜짐이 필요하면 FilterChip을 쓴다.
  * [슬롯] href → <a>(hover 시 라벨 --primary) · onRemove → 형제 <button>(✕, HugeIcons cancel-01) ·
  *  둘 다 없으면 표시 전용 <span>. leading 슬롯 없음.
- * [크기] sm: h22(Badge sm과 동일)·radius --radius-sm·12px/500·padX8 — 카드 안 해시태그 /
- *  md: h32(FilterChip과 동일)·radius --radius-md·caption/500·padX12 — 필터 모달의 걸린 조건. pill 금지.
+ * [크기] sm(해시태그 등): h24·radius --radius-sm(8)·12px/500·padX8 /
+ *  md(기본): h32·radius --radius-md(12)·14px/500·padX12 — Button·FilterChip과 같은 고정 14. pill 금지.
  * [prefix] 라벨 앞 문자(해시태그는 prefix="#"). 라벨 문자열에 #를 넣지 않는다 — 같은 데이터가 두 가지로 저장된다.
  * [상태] hover: 면 --sage-200 / active: 0.5px 눌림(Button·FilterChip과 동일 프레스) / focus-visible: --ring / disabled: 흐리게.
  * [터치] sm 시각 높이 22(Badge sm 정렬). onRemove 버튼은 투명 패딩(::after ±4)으로 타겟을 24 이상으로 넓힌다.
  */
 const SIZES = {
   sm: {
-    h: 22,
+    h: 24,
     radius: "var(--radius-sm)",
     pad: 8,
     padRight: 4,
@@ -926,7 +930,7 @@ const SIZES = {
     radius: "var(--radius-md)",
     pad: 12,
     padRight: 6,
-    fs: "var(--text-caption)",
+    fs: 14,
     gap: 6,
     removeBtn: 22,
     iconSize: 13
@@ -969,7 +973,7 @@ function Chip({
     fontSize: s.fs,
     fontWeight: 500,
     lineHeight: 1,
-    letterSpacing: "-0.01em",
+    letterSpacing: 0,
     whiteSpace: "nowrap",
     transition: "background-color 150ms ease, color 150ms ease, transform 120ms ease",
     opacity: disabled ? 0.5 : 1,
@@ -1080,8 +1084,8 @@ try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 const SIZES = {
   sm: 32,
-  md: 38,
-  lg: 44
+  md: 40,
+  lg: 48
 };
 const ICON = {
   sm: 16,
@@ -1112,7 +1116,7 @@ const VARIANTS = {
 };
 
 /**
- * IconButton — square button with a single HugeIcons glyph.
+ * IconButton — square button with a single HugeIcons glyph. 높이는 Button과 맞춘다(sm32·md40·lg48).
  */
 const IconButton = React.forwardRef(function IconButton({
   icon,
@@ -1244,6 +1248,8 @@ function Field({
     style: {
       fontFamily: "var(--font-sans)",
       fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       fontWeight: 500,
       color: "var(--foreground)",
       display: "inline-flex",
@@ -1256,11 +1262,15 @@ function Field({
   }, "*")), children, error ? /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--destructive)"
     }
   }, error) : description ? /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--muted-foreground)"
     }
   }, description) : null);
@@ -1303,7 +1313,7 @@ function Input({
       display: "flex",
       alignItems: "center",
       gap: 8,
-      height: 38,
+      height: 40,
       padding: iconLeft ? "0 12px 0 11px" : "0 12px",
       background: disabled ? "var(--muted)" : "var(--card)",
       border: `1px solid ${borderColor}`,
@@ -1338,7 +1348,8 @@ function Input({
       background: "transparent",
       fontFamily: "var(--font-sans)",
       fontSize: "var(--text-body)",
-      letterSpacing: "-0.01em",
+      lineHeight: 1,
+      letterSpacing: 0,
       color: "var(--foreground)"
     }
   })));
@@ -1524,7 +1535,7 @@ function SearchInput({
       display: "flex",
       alignItems: "center",
       gap: 8,
-      height: 38,
+      height: 40,
       padding: "0 8px 0 11px",
       background: disabled ? "var(--muted)" : "var(--card)",
       border: `1px solid ${borderColor}`,
@@ -1562,7 +1573,8 @@ function SearchInput({
       background: "transparent",
       fontFamily: "var(--font-sans)",
       fontSize: "var(--text-body)",
-      letterSpacing: "-0.01em",
+      lineHeight: 1,
+      letterSpacing: 0,
       color: "var(--foreground)"
     }
   }), value && !disabled && /*#__PURE__*/React.createElement(__ds_scope.IconButton, {
@@ -1613,7 +1625,8 @@ function SearchInput({
       borderRadius: "var(--radius-sm)",
       fontFamily: "var(--font-sans)",
       fontSize: "var(--text-body)",
-      letterSpacing: "-0.01em",
+      lineHeight: 1,
+      letterSpacing: 0,
       color: "var(--foreground)",
       background: highlightIndex === i ? "var(--muted)" : "transparent",
       cursor: "pointer"
@@ -1652,83 +1665,6 @@ function SearchInput({
 }
 Object.assign(__ds_scope, { SearchInput });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/SearchInput.jsx", error: String((e && e.message) || e) }); }
-
-// components/forms/Select.jsx
-try { (() => {
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-/**
- * Select — native-backed select styled to match Input.
- */
-function Select({
-  options = [],
-  placeholder,
-  invalid = false,
-  disabled = false,
-  value,
-  onChange,
-  style,
-  ...rest
-}) {
-  const [focused, setFocused] = React.useState(false);
-  const borderColor = invalid ? "var(--destructive)" : focused ? "var(--ring)" : "var(--input)";
-  return /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: "relative",
-      display: "flex",
-      alignItems: "center",
-      height: 38,
-      background: disabled ? "var(--muted)" : "var(--card)",
-      border: `1px solid ${borderColor}`,
-      borderRadius: "var(--radius-md)",
-      boxShadow: focused ? "0 0 0 3px color-mix(in oklch, var(--ring) 30%, transparent)" : "none",
-      transition: "border-color 150ms ease, box-shadow 150ms ease",
-      opacity: disabled ? 0.6 : 1,
-      ...style
-    }
-  }, /*#__PURE__*/React.createElement("select", _extends({
-    disabled: disabled,
-    value: value,
-    onChange: onChange,
-    onFocus: () => setFocused(true),
-    onBlur: () => setFocused(false)
-  }, rest, {
-    style: {
-      appearance: "none",
-      WebkitAppearance: "none",
-      flex: 1,
-      height: "100%",
-      border: "none",
-      outline: "none",
-      background: "transparent",
-      padding: "0 36px 0 12px",
-      fontFamily: "var(--font-sans)",
-      fontSize: "var(--text-body)",
-      letterSpacing: "-0.01em",
-      color: value ? "var(--foreground)" : "var(--muted-foreground)",
-      cursor: disabled ? "not-allowed" : "pointer"
-    }
-  }), placeholder && /*#__PURE__*/React.createElement("option", {
-    value: ""
-  }, placeholder), options.map(o => {
-    const val = typeof o === "string" ? o : o.value;
-    const lab = typeof o === "string" ? o : o.label;
-    return /*#__PURE__*/React.createElement("option", {
-      key: val,
-      value: val
-    }, lab);
-  })), /*#__PURE__*/React.createElement(__ds_scope.Icon, {
-    name: "arrow-down-01",
-    size: 16,
-    style: {
-      position: "absolute",
-      right: 11,
-      color: "var(--muted-foreground)",
-      pointerEvents: "none"
-    }
-  }));
-}
-Object.assign(__ds_scope, { Select });
-})(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/Select.jsx", error: String((e && e.message) || e) }); }
 
 // components/forms/Switch.jsx
 try { (() => {
@@ -1967,7 +1903,8 @@ function TagInput({
       background: "transparent",
       fontFamily: "var(--font-sans)",
       fontSize: "var(--text-body)",
-      letterSpacing: "-0.01em",
+      lineHeight: 1,
+      letterSpacing: 0,
       color: "var(--foreground)"
     }
   }), /*#__PURE__*/React.createElement(__ds_scope.IconButton, {
@@ -2255,10 +2192,10 @@ function BottomTabBar({
       "aria-hidden": "true"
     }), /*#__PURE__*/React.createElement("span", {
       style: {
-        fontSize: "var(--text-caption)",
+        fontSize: "var(--text-micro)",
         lineHeight: 1,
         fontWeight: on ? 600 : 500,
-        letterSpacing: "-0.01em"
+        letterSpacing: 0
       }
     }, tab.label));
   })));
@@ -2296,6 +2233,8 @@ function Breadcrumb({
       listStyle: "none",
       fontFamily: "var(--font-sans)",
       fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       fontWeight: 400
     }
   }, items.map((item, i) => {
@@ -2417,7 +2356,8 @@ function CalloutBar({
       color: v.text,
       fontFamily: "var(--font-sans)",
       fontSize: "var(--text-body)",
-      lineHeight: 1.5,
+      lineHeight: "var(--text-body--line-height)",
+      letterSpacing: "var(--text-body--letter-spacing)",
       wordBreak: "keep-all",
       overflowWrap: "break-word",
       // 禁則: break-all 금지
@@ -2602,6 +2542,9 @@ const Carousel = React.forwardRef(function Carousel({
     ref: trackRef,
     style: {
       display: "flex",
+      // 카드는 자기 내용만큼만 높다 — stretch면 짧은 카드가 가장 긴 카드에 맞춰 늘어나 아래에 빈 공간이 생긴다.
+      // 카드 높이를 서로 맞추지 않는다(격자도 align-items: start).
+      alignItems: "flex-start",
       gap,
       overflowX: "auto",
       // 카드/단위 스냅. peek 모드는 마지막 카드가 걸치도록 우측 스크롤 패딩.
@@ -2673,25 +2616,41 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
  * [제어형] page + totalPages + onPageChange. URL에 page를 담는 화면이 있어 부모가 상태를 가진다.
  * [모바일] 와이어 근거 없음 — 여기서 정한 것: 양옆 ±2를 ±1로 줄이고 « » 는 남긴다.
  *  번호를 없애고 「이전/다음」으로 바꾸지 않는다(지금 몇 페이지인지가 안 보인다).
+ *  390에서 컨테이너 안쪽 358을 넘지 않게 치수도 함께 줄인다 — 히트 40 · 면 36 · 「…」 20 · « 의 margin-left 8,
+ *  그리고 「…이 1페이지만 가리면 세운다」 보정을 끈다(항상 접는다). 최악의 경우 5×40 + 2×20 + 40+8 + 40 = 328 ≤ 358.
  */
 const CSS = `.mt-pg-btn{background:none;border:none;padding:0;margin:0;cursor:pointer;font:inherit;color:var(--muted-foreground)}
 .mt-pg-btn:hover:not(:disabled) .mt-pg-face{background:var(--muted);color:var(--foreground)}
 .mt-pg-btn:disabled{cursor:default;opacity:.4}
 .mt-pg-btn:focus-visible{outline:2px solid var(--ring);outline-offset:-4px;border-radius:var(--radius-md)}`;
-function pageList(page, total, span) {
+function pageList(page, total, span, keepSingle) {
   const out = [];
   const lo = Math.max(2, page - span);
   const hi = Math.min(total - 1, page + span);
   out.push(1);
-  // 「…」이 1페이지만 가리면 접지 않고 그 번호를 세운다.
-  if (lo > 2) out.push(lo === 3 ? 2 : "…");
+  // 「…」이 1페이지만 가리면 접지 않고 그 번호를 세운다 — Mobile에선 이 보정을 끈다(폭이 귀하다).
+  if (lo > 2) out.push(keepSingle && lo === 3 ? 2 : "…");
   for (let i = lo; i <= hi; i++) out.push(i);
-  if (hi < total - 1) out.push(hi === total - 2 ? total - 1 : "…");
+  if (hi < total - 1) out.push(keepSingle && hi === total - 2 ? total - 1 : "…");
   if (total > 1) out.push(total);
   return out;
 }
-const HIT = 44;
-const FACE = 40;
+
+/* Desktop 44/40/24 · Mobile 40/36/20. 40은 터치 타겟으로 충분하다 — WCAG 2.1 AA(2.5.8)가 요구하는 것은 24다(44는 AAA 2.5.5). */
+const DIMS = {
+  wide: {
+    HIT: 44,
+    FACE: 40,
+    ELL: 24,
+    JUMP_ML: 4
+  },
+  narrow: {
+    HIT: 40,
+    FACE: 36,
+    ELL: 20,
+    JUMP_ML: 8
+  }
+};
 function Pagination({
   page,
   totalPages,
@@ -2710,7 +2669,13 @@ function Pagination({
   }, []);
   const total = Math.max(1, totalPages || 1);
   const cur = Math.min(Math.max(1, page || 1), total);
-  const items = pageList(cur, total, narrow ? 1 : 2);
+  const items = pageList(cur, total, narrow ? 1 : 2, !narrow);
+  const {
+    HIT,
+    FACE,
+    ELL,
+    JUMP_ML
+  } = narrow ? DIMS.narrow : DIMS.wide;
   const go = n => {
     if (n !== cur && onPageChange) onPageChange(n);
   };
@@ -2743,7 +2708,7 @@ function Pagination({
     key: `e${i}`,
     "aria-hidden": "true",
     style: {
-      width: 24,
+      width: ELL,
       height: HIT,
       display: "inline-flex",
       alignItems: "center",
@@ -2797,7 +2762,7 @@ function Pagination({
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
-      marginLeft: 4
+      marginLeft: JUMP_ML
     },
     "aria-label": "\uCCAB \uD398\uC774\uC9C0"
   }, /*#__PURE__*/React.createElement("span", {
@@ -2835,16 +2800,14 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
  * SectionHeader — 배치 컴포넌트. 가로 한 줄, 좌우 양끝 정렬(좌 제목 / 우 액션).
  *  중앙정렬형은 미포함(개별 대응). 배지·버튼·IconButton·아이콘은 기존 컴포넌트 재사용.
  *
- *  좌: [장식 아이콘 칩(옵션)] 제목(30 semibold, green 강조 조각 옵션) [부가 스트링(옵션)] [Badge(옵션)]
+ *  좌: [장식 아이콘 칩(옵션)] 제목(--text-h0 semibold, green 강조 조각 옵션) [부가 스트링(옵션)] [Badge(옵션)]
  *  우: 전체보기(고스트+화살표) / 아웃라인 버튼(옵션) / 캐러셀 화살표 IconButton 2개(옵션)
- *
- *  DS-GAP: 섹션 제목 30 은 현재 타입스케일(h1=24) 밖. 히어로·페이지 타이틀 등 큰 텍스트와
- *  함께 스케일 상단(h0/display) 정리 필요 — 별도 작업. 지금은 30/semibold 임시 지정.
  */
 function SectionHeader({
   icon,
   title,
   titleAccent,
+  accentFirst = false,
   suffix,
   badge,
   viewAll,
@@ -2910,13 +2873,19 @@ function SectionHeader({
       wordBreak: "keep-all",
       overflowWrap: "break-word"
     }
-  }, title, titleAccent && /*#__PURE__*/React.createElement("span", {
+  }, accentFirst ? /*#__PURE__*/React.createElement(React.Fragment, null, titleAccent && /*#__PURE__*/React.createElement("span", {
     style: {
       color: "var(--primary)"
     }
-  }, titleAccent)), suffix && /*#__PURE__*/React.createElement("span", {
+  }, titleAccent), title) : /*#__PURE__*/React.createElement(React.Fragment, null, title, titleAccent && /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "var(--primary)"
+    }
+  }, titleAccent))), suffix && /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: "var(--text-body)",
+      lineHeight: "var(--text-body--line-height)",
+      letterSpacing: "var(--text-body--letter-spacing)",
       color: "var(--muted-foreground)"
     }
   }, suffix), badge)), (viewAll || action || carousel) && /*#__PURE__*/React.createElement("div", {
@@ -3431,8 +3400,9 @@ function Footer({
     display: "inline-flex",
     alignItems: "center",
     gap: 4,
-    fontSize: "var(--text-body)",
-    letterSpacing: "-0.01em",
+    fontSize: "var(--text-caption)",
+    lineHeight: "var(--text-caption--line-height)",
+    letterSpacing: "var(--text-caption--letter-spacing)",
     textDecoration: "none",
     color: isBiz ? "var(--biz-primary)" : "var(--muted-foreground)",
     width: "fit-content"
@@ -3452,7 +3422,8 @@ function Footer({
       fontSize: "var(--text-caption)",
       fontWeight: 600,
       color: "var(--foreground)",
-      letterSpacing: "0.02em"
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)"
     }
   }, title), items.map(item => {
     const isBiz = item.brand === "biz";
@@ -3528,7 +3499,8 @@ function Footer({
     style: {
       fontSize: "var(--text-caption)",
       color: "var(--muted-foreground)",
-      lineHeight: 1.6,
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       margin: 0
     }
   }, "\uBA58\uD1A0\uC640 \uBA58\uD2F0\uB97C \uC787\uB294 \uBA58\uD1A0\uB9C1 \uD50C\uB7AB\uD3FC")), /*#__PURE__*/React.createElement("div", {
@@ -3561,6 +3533,8 @@ function Footer({
     className: "tabular",
     style: {
       fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--muted-foreground)"
     }
   }, copyright), /*#__PURE__*/React.createElement("div", {
@@ -3572,6 +3546,8 @@ function Footer({
     href: "/terms",
     style: {
       fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--muted-foreground)",
       textDecoration: "none"
     }
@@ -3579,6 +3555,8 @@ function Footer({
     href: "/privacy",
     style: {
       fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--muted-foreground)",
       textDecoration: "none",
       fontWeight: 600
@@ -3591,23 +3569,29 @@ Object.assign(__ds_scope, { Footer });
 // components/navigation/Header.jsx
 try { (() => {
 /**
- * Header — 제품 기본 상단 네비게이션(sticky top). 좌우 3분할: 좌(로고)/중(메뉴)/우(액션).
+ * Header — 제품 기본 상단 네비게이션(sticky top). 3열 그리드(minmax(0,1fr) auto minmax(0,1fr)) — 좌(로고)/중(메뉴)/우(액션).
+ *  칸은 grid-column으로 명시한다(1·2·3) — 중앙 메뉴가 Mobile에서 사라지면 자동 배치가 한 칸 당기기 때문이다.
+ *  Mobile은 칸 2개(1fr auto · gap 12) — 액션부가 2번 칸이다.
+ *  중앙 메뉴는 좌우 폭과 무관하게 늘 화면 폭의 중앙에 선다.
  *  좌: mentree 워드마크 풀컬러 그린(헤더는 밝은 배경 → 풀컬러 유지), 클릭 → 홈.
- *  중: 최상위 메뉴 3개(멘토 찾기·Q&A 멘토링·멘트리 인사이트). 각 메뉴 좌측 28px 아이콘 슬롯 —
- *     HugeIcons 아님, 오리지널 컬러 SVG 예정(전역 아이콘 원칙의 명시적 예외). 지금은 placeholder.
- *     활성 메뉴 = primary green.
- *  우: 회원가입/로그인(green 버튼 하나로 합침) + 기업 서비스(중립 outline, 외부 ↗).
+ *  중: 최상위 메뉴 3개(멘토 찾기·Q&A 멘토링·멘트리 인사이트). 각 메뉴 좌측 20px HugeIcons 모노 아이콘
+ *     (전역 아이콘 원칙의 예외 아님). 라벨 16px·600, 활성은 굵기가 아니라 색(--primary)으로만 구분.
+ *  우(guest): 회원가입/로그인(green 버튼 하나로 합침) + 기업 서비스(중립 outline, 외부 ↗).
  *     공지사항·뉴스는 헤더에 두지 않음(푸터에만).
+ *  우(mentor·mentee): 알림 버튼 + 아바타, 간격 8 — 평상시 면 없이 아이콘 20 · 사진 32만 보이고 hover·focus에서만 40 원형 면.
+ *     클릭·터치 영역은 항상 40×40. 회원가입·기업서비스 없음.
+ *     두 상태는 모양이 같고 아바타 목적지만 다르다(mypage-mentor / mypage-mentee).
+ *     아바타는 메뉴를 열지 않고 마이페이지 「프로필」 탭으로 직행. unread면 알림 아이콘(40 면이 아니다) 우상단에 빨간 점(8, 숫자 없음).
+ *     알림 popover는 이 부품이 열지 않는다(onNotify까지).
  *
  *  반응형 3구간:
  *   Desktop L(1280+)  — 현행 그대로.
  *   Desktop S(769–1279) — 기업 서비스 버튼만 숨김.
- *   Mobile(~768) — 중앙 3메뉴 제거, 우측 = 회원가입/로그인 + 햄버거.
+ *   Mobile(~768) — 중앙 3메뉴 제거, 우측 = 회원가입/로그인(또는 알림+아바타) + 햄버거.
  *     햄버거 → GNB 아래 전체화면 오버레이(3메뉴 + MY 멘트리 + 구분선 + 기업 서비스 + 로그아웃(로그인 시)).
  *     GNB 바는 유지, 햄버거만 X로 토글.
  *
- *  상태 분기: authState "guest"(비로그인) / "mentor" / "mentee". 지금은 guest만 실제 구현,
- *  mentor·mentee는 분기 자리만(placeholder) — 나중 확정.
+ *  상태 분기: authState "guest"(비로그인) / "mentor" / "mentee".
  */
 
 const HEADER_H = 64;
@@ -3616,40 +3600,29 @@ function ensureHeaderStyle() {
   const s = document.createElement("style");
   s.id = "mt-header-style";
   s.textContent = [/* Desktop S: 기업 서비스 버튼 숨김 */
-  "@media (max-width:1279px){.mt-header-bizbtn{display:none !important;}}", /* Mobile: 중앙 메뉴 숨김 */
-  "@media (max-width:768px){.mt-header-nav{display:none !important;}}", /* Desktop: 햄버거·오버레이 숨김 */
+  "@media (max-width:1279px){.mt-header-bizbtn{display:none !important;}}", /* Mobile: 중앙 메뉴 숨김 + 칸을 2개로 줄이고 액셔부를 2번 칸으로. 중앙 칸이 0 폭이어도 gap 24가 두 번 들어가 48을 버리기 때문이다. */
+  "@media (max-width:768px){.mt-header-nav{display:none !important;}.mt-header-bar{grid-template-columns:minmax(0,1fr) auto !important;gap:12px !important;}.mt-header-actions{grid-column:2 !important;}}", /* 로그인 액셔 — 평상시 면이 없고 hover·focus에서만 40 원형 면이 깔린다. 보이는 것만 달라지고 토상 여역은 항상 40×40. */
+  ".mt-header-round{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;padding:0;border:none;background:transparent;border-radius:50%;cursor:pointer;color:var(--foreground);text-decoration:none;transition:background-color 120ms ease;}", ".mt-header-round:hover{background:var(--secondary);}", ".mt-header-round:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:50%;}", /* Desktop: 햄버거·오버레이 숨김 */
   "@media (min-width:769px){.mt-header-burger{display:none !important;}.mt-header-overlay{display:none !important;}}"].join("\n");
   document.head.appendChild(s);
 }
 
-/* 28px 컬러 아이콘 슬롯 — HugeIcons 아님(오리지널 컬러 SVG 예정). 지금은 placeholder. */
-function MenuIconSlot({
-  item,
-  on
-}) {
-  return /*#__PURE__*/React.createElement("span", {
-    "aria-hidden": "true",
-    style: {
-      flex: "0 0 auto",
-      width: 28,
-      height: 28,
-      borderRadius: "var(--radius-sm)",
-      background: on ? "color-mix(in oklch, var(--primary) 12%, transparent)" : "var(--sage-100)",
-      ...(item && item.menuIcon ? {
-        backgroundImage: `url(${item.menuIcon})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center"
-      } : {})
-    }
-  }, item && item.menuIconEl);
-}
+/* 중앙 메뉴 아이콘 — 20px HugeIcons 모노(전역 아이콘 원칙의 예외 아님). BottomTabBar와 같은 이름을 쓴다. */
+const MENU_ICON = {
+  mentors: "user-search-01",
+  qna: "quiz-05",
+  insights: "news"
+};
 function Header({
   menu,
   brand,
   activeKey,
   authState = "guest",
+  user,
+  unread,
   onNavigate,
   onAuth,
+  onNotify,
   style
 }) {
   const [open, setOpen] = React.useState(false);
@@ -3665,7 +3638,7 @@ function Header({
       onNavigate(item);
     }
   };
-  return /*#__PURE__*/React.createElement("header", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("header", {
     style: {
       position: "sticky",
       top: 0,
@@ -3680,8 +3653,13 @@ function Header({
       ...style
     }
   }, /*#__PURE__*/React.createElement("div", {
+    className: "mt-header-bar",
     style: {
-      display: "flex",
+      display: "grid",
+      /* minmax(0,1fr) — 그냥 1fr은 내용의 최소 폭 아래로 줄지 않아 좌우가 달라지고 중앙 메뉴가 밀린다(769–1279).
+         칸은 grid-column으로 명시한다 — 중앙 메뉴가 display:none이 되면 그리드 아이템이 아니라 자동 배치가 한 칸 당긴다.
+         Mobile은 칸이 2개(1fr auto · gap 12) — 중앙 칸이 0 폭이어도 gap은 두 번 들어가 48을 버린다. */
+      gridTemplateColumns: "minmax(0, 1fr) auto minmax(0, 1fr)",
       alignItems: "center",
       gap: 24,
       height: HEADER_H,
@@ -3699,9 +3677,10 @@ function Header({
     }),
     "aria-label": "mentree \uD648",
     style: {
+      gridColumn: 1,
       display: "flex",
       alignItems: "center",
-      flex: "0 0 auto",
+      justifySelf: "start",
       textDecoration: "none"
     }
   }, brand || /*#__PURE__*/React.createElement("img", {
@@ -3714,11 +3693,11 @@ function Header({
   })), /*#__PURE__*/React.createElement("nav", {
     className: "mt-header-nav",
     style: {
+      gridColumn: 2,
       display: "flex",
       alignItems: "center",
-      gap: 4,
-      flex: 1,
-      justifyContent: "center"
+      gap: 28,
+      justifySelf: "center"
     }
   }, items.map(item => {
     const on = activeKey === item.key;
@@ -3730,33 +3709,30 @@ function Header({
       style: {
         display: "inline-flex",
         alignItems: "center",
-        gap: 8,
-        padding: "8px 14px",
+        gap: 6,
+        padding: "8px 0",
         borderRadius: "var(--radius-md)",
         fontSize: "var(--text-body)",
-        fontWeight: on ? 600 : 500,
-        letterSpacing: "-0.01em",
+        fontWeight: 600,
+        lineHeight: "var(--text-body--line-height)",
+        letterSpacing: "var(--text-body--letter-spacing)",
         textDecoration: "none",
         color: on ? "var(--primary)" : "var(--foreground)",
-        transition: "background-color 120ms ease, color 120ms ease"
-      },
-      onMouseEnter: e => {
-        if (!on) e.currentTarget.style.background = "var(--secondary)";
-      },
-      onMouseLeave: e => {
-        e.currentTarget.style.background = "transparent";
+        transition: "color 120ms ease"
       }
-    }, /*#__PURE__*/React.createElement(MenuIconSlot, {
-      item: item,
-      on: on
+    }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+      name: MENU_ICON[item.key] || "circle",
+      size: 20,
+      "aria-hidden": "true"
     }), item.label);
   })), /*#__PURE__*/React.createElement("div", {
+    className: "mt-header-actions",
     style: {
+      gridColumn: 3,
       display: "flex",
       alignItems: "center",
       gap: 10,
-      flex: "0 0 auto",
-      marginLeft: "auto"
+      justifySelf: "end"
     }
   }, authState === "guest" ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(__ds_scope.Button, {
     size: "md",
@@ -3773,21 +3749,52 @@ function Header({
     onClick: e => go(e, biz)
   }, "\uAE30\uC5C5 \uC11C\uBE44\uC2A4")) :
   /*#__PURE__*/
-  /* 멘토·멘티 로그인 상태 — 분기 자리만(미구현 placeholder). 나중 확정. */
-  React.createElement("span", {
-    "data-auth-state": authState,
+  /* 로그인(mentor·mentee) — 알림 40 + 아바타 40, 간격 8. 모양은 같고 아바타 목적지만 다르다. */
+  React.createElement("div", {
     style: {
-      display: "inline-flex",
+      display: "flex",
       alignItems: "center",
-      height: 40,
-      padding: "0 14px",
-      borderRadius: "var(--radius-md)",
-      border: "1px dashed var(--border)",
-      color: "var(--muted-foreground)",
-      fontSize: "var(--text-caption)",
-      fontFamily: "ui-monospace, monospace"
+      gap: 8
     }
-  }, authState, " \uC561\uC158 (\uBBF8\uAD6C\uD604)"), /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: "mt-header-round",
+    "aria-label": "\uC54C\uB9BC",
+    onClick: e => onNotify && onNotify(e)
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      position: "relative",
+      display: "inline-flex"
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: "notification-01",
+    size: 20
+  }), unread && /*#__PURE__*/React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      top: -1,
+      right: -1,
+      width: 8,
+      height: 8,
+      borderRadius: "50%",
+      background: "var(--destructive)",
+      boxShadow: "0 0 0 2px var(--background)"
+    }
+  }))), /*#__PURE__*/React.createElement("a", {
+    className: "mt-header-round",
+    href: authState === "mentor" ? "/mypage-mentor" : "/mypage-mentee",
+    "aria-label": "\uB9C8\uC774\uD398\uC774\uC9C0",
+    onClick: e => go(e, {
+      key: "mypage",
+      label: "마이페이지",
+      href: authState === "mentor" ? "/mypage-mentor" : "/mypage-mentee"
+    })
+  }, /*#__PURE__*/React.createElement(__ds_scope.Avatar, {
+    src: user && user.avatarUrl,
+    name: user && user.name,
+    size: 32
+  }))), /*#__PURE__*/React.createElement("span", {
     className: "mt-header-burger",
     style: {
       display: "inline-flex"
@@ -3799,7 +3806,7 @@ function Header({
     ariaLabel: open ? "메뉴 닫기" : "메뉴 열기",
     "aria-expanded": open,
     onClick: () => setOpen(v => !v)
-  })))), open && /*#__PURE__*/React.createElement("div", {
+  }))))), open && /*#__PURE__*/React.createElement("div", {
     className: "mt-header-overlay",
     role: "dialog",
     "aria-label": "\uC804\uCCB4 \uBA54\uB274",
@@ -3817,7 +3824,8 @@ function Header({
     style: {
       maxWidth: "var(--container-max)",
       margin: "0 auto",
-      padding: "12px var(--container-pad) 32px",
+      /* 항목의 padding 0 8은 hover 면을 넓힐는 것이니 그대로 두고, nav의 좌우 패딩에서 8을 뻐다 — 글자와 아이콘이 로고와 같은 16에 선다. */
+      padding: "12px calc(var(--container-pad) - 8px) 32px",
       boxSizing: "border-box",
       display: "flex",
       flexDirection: "column"
@@ -3838,13 +3846,16 @@ function Header({
         borderRadius: "var(--radius-md)",
         fontSize: "var(--text-h3)",
         fontWeight: on ? 600 : 500,
-        letterSpacing: "-0.01em",
+        lineHeight: "var(--text-h3--line-height)",
+        letterSpacing: "var(--text-h3--letter-spacing)",
         textDecoration: "none",
         color: on ? "var(--primary)" : "var(--foreground)"
       }
-    }, /*#__PURE__*/React.createElement(MenuIconSlot, {
-      item: item,
-      on: on
+    }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+      name: MENU_ICON[item.key] || "circle",
+      size: 20,
+      "aria-hidden": "true",
+      color: on ? "var(--primary)" : "var(--foreground)"
     }), item.label);
   }), /*#__PURE__*/React.createElement("a", {
     href: "/my",
@@ -3862,13 +3873,16 @@ function Header({
       borderRadius: "var(--radius-md)",
       fontSize: "var(--text-h3)",
       fontWeight: 500,
-      letterSpacing: "-0.01em",
+      lineHeight: "var(--text-h3--line-height)",
+      letterSpacing: "var(--text-h3--letter-spacing)",
       textDecoration: "none",
       color: "var(--foreground)"
     }
-  }, /*#__PURE__*/React.createElement(MenuIconSlot, {
-    item: null,
-    on: false
+  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: "user-circle-02",
+    size: 20,
+    "aria-hidden": "true",
+    color: "var(--foreground)"
   }), "MY \uBA58\uD2B8\uB9AC"), /*#__PURE__*/React.createElement("hr", {
     style: {
       border: "none",
@@ -3887,7 +3901,8 @@ function Header({
       borderRadius: "var(--radius-md)",
       fontSize: "var(--text-h3)",
       fontWeight: 500,
-      letterSpacing: "-0.01em",
+      lineHeight: "var(--text-h3--line-height)",
+      letterSpacing: "var(--text-h3--letter-spacing)",
       textDecoration: "none",
       color: "var(--biz-primary)"
     }
@@ -3911,7 +3926,8 @@ function Header({
       borderRadius: "var(--radius-md)",
       fontSize: "var(--text-h3)",
       fontWeight: 500,
-      letterSpacing: "-0.01em",
+      lineHeight: "var(--text-h3--line-height)",
+      letterSpacing: "var(--text-h3--letter-spacing)",
       textDecoration: "none",
       color: "var(--muted-foreground)"
     }
@@ -3987,11 +4003,14 @@ function Dialog({
     style: {
       fontSize: "var(--text-h2)",
       fontWeight: 600,
-      lineHeight: 1.4
+      lineHeight: "var(--text-h2--line-height)",
+      letterSpacing: "var(--text-h2--letter-spacing)"
     }
   }, title), description && /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--muted-foreground)"
     }
   }, description)), /*#__PURE__*/React.createElement(__ds_scope.IconButton, {
@@ -4084,7 +4103,7 @@ function FilterSelect({
       fontSize: "var(--text-caption)",
       fontWeight: filled ? 600 : 500,
       lineHeight: 1,
-      letterSpacing: "-0.01em",
+      letterSpacing: 0,
       whiteSpace: "nowrap",
       borderRadius: "var(--radius-md)",
       background: filled ? "var(--muted)" : "transparent",
@@ -4324,12 +4343,252 @@ const popoverMenuItemStyle = {
   borderRadius: "var(--radius-sm)",
   font: "inherit",
   fontSize: "var(--text-body)",
+  lineHeight: "var(--text-body--line-height)",
+  letterSpacing: "var(--text-body--letter-spacing)",
   color: "var(--foreground)",
   textAlign: "left",
   cursor: "pointer"
 };
 Object.assign(__ds_scope, { Popover, popoverMenuItemStyle });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/overlays/Popover.jsx", error: String((e && e.message) || e) }); }
+
+// components/forms/Select.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Select — 네이티브 <select>를 버린 커스텀 리스트박스. 껍데기만 우리 것이고 목록은 OS가 그리던 문제
+ *  (목록이 트리거를 덮고 뜸 · ✓가 왼쪽 · 면/테두리/radius가 우리 토큰이 아님 · placeholder가 첫 항목으로 들어감 ·
+ *  브라우저마다 다름)를 없앤다. 새 오버레이를 만들지 않고 `overlays/Popover`를 쓴다 —
+ *  트리거를 position:relative 상자에 넣고 Popover를 형제로 둔다(AnswerCard 방식).
+ *
+ * [트리거] role="combobox" · 높이 40(Input·SearchInput과 같다) · padding 0 36 0 12 · --text-body/lh 1/자간 0(컨트롤 예외).
+ *  값 없음=placeholder를 --muted-foreground로. 화살표 arrow-down-01 16(우측 11), 열리면 180도(150ms).
+ * [목록] role="listbox" · 트리거 아래 4px · 폭=트리거와 같다(minWidth 0 + width 100%) · max-height 320(넘으면 스크롤).
+ *  항목 36 높이 · 좌 10/우 32 · radius-sm · --text-body. 커서 얹힘=--muted 면(초록 반전을 쓰지 않는다 — 목록에서 너무 세다).
+ *  선택된 항목은 우측 tick-02 14, --primary.
+ * [placeholder는 항목이 아니다] 목록에 넣지 않는다. 비우는 항목도 만들지 않는다(필요해지면 그때).
+ * [아래 공간] 트리거 rect로 재서 남은 높이 < 목록 높이 + 8이면 side="top".
+ * [키보드] Enter/Space/↓로 열기 · ↑↓ 커서(순환하지 않음) · Home/End · Enter 확정 · Esc 버리고 닫기 · Tab 닫기.
+ *  열 때 커서는 선택된 항목(없으면 첫 항목). typeahead 없음.
+ * [경계] `FilterSelect`는 다른 부품이다(모달) — 이것과 무관. 모바일에서도 같은 팝오버다(Sheet로 바꾸지 않는다).
+ */
+
+const MAX_LIST_H = 320;
+if (typeof document !== "undefined" && !document.getElementById("mt-select-option-style")) {
+  const s = document.createElement("style");
+  s.id = "mt-select-option-style";
+  s.textContent = ".mt-select-option:hover{background:var(--muted);color:var(--foreground);}";
+  document.head.appendChild(s);
+}
+const norm = o => typeof o === "string" ? {
+  value: o,
+  label: o
+} : o;
+function Select({
+  options = [],
+  placeholder,
+  invalid = false,
+  disabled = false,
+  value,
+  onChange,
+  id,
+  style,
+  ...rest
+}) {
+  const opts = React.useMemo(() => options.map(norm), [options]);
+  const [open, setOpen] = React.useState(false);
+  const [focused, setFocused] = React.useState(false);
+  const [side, setSide] = React.useState("bottom");
+  const selectedIndex = opts.findIndex(o => o.value === value);
+  const [cursor, setCursor] = React.useState(selectedIndex < 0 ? 0 : selectedIndex);
+  const triggerRef = React.useRef(null);
+  const baseId = React.useMemo(() => id || `mt-select-${Math.random().toString(36).slice(2, 8)}`, [id]);
+  const listId = `${baseId}-list`;
+  const selected = selectedIndex >= 0 ? opts[selectedIndex] : null;
+  const openList = () => {
+    if (disabled) return;
+    const el = triggerRef.current;
+    if (el) {
+      const r = el.getBoundingClientRect();
+      const need = Math.min(MAX_LIST_H, opts.length * 36 + 8) + 8;
+      setSide(window.innerHeight - r.bottom < need ? "top" : "bottom");
+    }
+    setCursor(selectedIndex < 0 ? 0 : selectedIndex);
+    setOpen(true);
+  };
+  const commit = i => {
+    const o = opts[i];
+    if (o && onChange) onChange(o.value);
+    setOpen(false);
+  };
+
+  // 커서 항목이 목록 밖이면 스크롤로 끌어온다(scrollIntoView는 쓰지 않는다).
+  React.useEffect(() => {
+    if (!open) return;
+    const list = document.getElementById(listId);
+    const item = document.getElementById(`${listId}-${cursor}`);
+    if (!list || !item) return;
+    const top = item.offsetTop;
+    const bottom = top + item.offsetHeight;
+    if (top < list.scrollTop) list.scrollTop = top;else if (bottom > list.scrollTop + list.clientHeight) list.scrollTop = bottom - list.clientHeight;
+  }, [open, cursor, listId]);
+  const onKeyDown = e => {
+    if (disabled) return;
+    if (!open) {
+      if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+        e.preventDefault();
+        openList();
+      }
+      return;
+    }
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setCursor(c => Math.min(opts.length - 1, c + 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setCursor(c => Math.max(0, c - 1));
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      setCursor(0);
+    } else if (e.key === "End") {
+      e.preventDefault();
+      setCursor(opts.length - 1);
+    } else if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      commit(cursor);
+    } else if (e.key === "Tab") {
+      setOpen(false);
+    }
+    // Esc는 Popover가 처리한다(닫히면 포커스가 triggerRef로 돌아온다).
+  };
+  const borderColor = invalid ? "var(--destructive)" : focused || open ? "var(--ring)" : "var(--input)";
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "relative",
+      ...style
+    }
+  }, /*#__PURE__*/React.createElement("button", _extends({
+    type: "button",
+    id: baseId,
+    ref: triggerRef,
+    role: "combobox",
+    "aria-expanded": open,
+    "aria-haspopup": "listbox",
+    "aria-controls": open ? listId : undefined,
+    "aria-activedescendant": open ? `${listId}-${cursor}` : undefined,
+    "aria-invalid": invalid || undefined,
+    disabled: disabled,
+    onClick: () => open ? setOpen(false) : openList(),
+    onKeyDown: onKeyDown,
+    onFocus: () => setFocused(true),
+    onBlur: () => setFocused(false)
+  }, rest, {
+    style: {
+      position: "relative",
+      display: "flex",
+      alignItems: "center",
+      width: "100%",
+      height: 40,
+      boxSizing: "border-box",
+      padding: "0 36px 0 12px",
+      textAlign: "left",
+      background: disabled ? "var(--muted)" : "var(--card)",
+      border: `1px solid ${borderColor}`,
+      borderRadius: "var(--radius-md)",
+      boxShadow: focused || open ? "0 0 0 3px color-mix(in oklch, var(--ring) 30%, transparent)" : "none",
+      transition: "border-color 150ms ease, box-shadow 150ms ease",
+      opacity: disabled ? 0.6 : 1,
+      outline: "none",
+      fontFamily: "var(--font-sans)",
+      fontSize: "var(--text-body)",
+      lineHeight: 1,
+      letterSpacing: 0,
+      color: selected ? "var(--foreground)" : "var(--muted-foreground)",
+      cursor: disabled ? "not-allowed" : "pointer"
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      flex: 1,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap"
+    }
+  }, selected ? selected.label : placeholder), /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: "arrow-down-01",
+    size: 16,
+    style: {
+      position: "absolute",
+      right: 11,
+      color: "var(--muted-foreground)",
+      pointerEvents: "none",
+      transform: open ? "rotate(180deg)" : "none",
+      transition: "transform 150ms ease"
+    }
+  })), /*#__PURE__*/React.createElement(__ds_scope.Popover, {
+    open: open,
+    onClose: () => setOpen(false),
+    side: side,
+    align: "start",
+    minWidth: 0,
+    triggerRef: triggerRef,
+    id: listId,
+    role: "listbox",
+    "aria-labelledby": baseId,
+    style: {
+      width: "100%",
+      maxHeight: MAX_LIST_H,
+      overflowY: "auto",
+      boxSizing: "border-box"
+    }
+  }, opts.map((o, i) => {
+    const isSel = o.value === value;
+    const isCur = i === cursor;
+    return /*#__PURE__*/React.createElement("div", {
+      key: o.value,
+      id: `${listId}-${i}`,
+      "data-i": i,
+      className: "mt-select-option",
+      role: "option",
+      "aria-selected": isSel,
+      onClick: () => commit(i),
+      onMouseEnter: () => setCursor(i),
+      style: {
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        flex: "0 0 auto",
+        height: 36,
+        boxSizing: "border-box",
+        padding: "0 32px 0 10px",
+        borderRadius: "var(--radius-sm)",
+        background: isCur ? "var(--muted)" : "transparent",
+        color: "var(--foreground)",
+        fontFamily: "var(--font-sans)",
+        fontSize: "var(--text-body)",
+        lineHeight: 1,
+        letterSpacing: 0,
+        cursor: "pointer"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        flex: 1,
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap"
+      }
+    }, o.label), isSel && /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+      name: "tick-02",
+      size: 14,
+      style: {
+        position: "absolute",
+        right: 10,
+        color: "var(--primary)"
+      }
+    }));
+  })));
+}
+Object.assign(__ds_scope, { Select });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/Select.jsx", error: String((e && e.message) || e) }); }
 
 // components/overlays/Sheet.jsx
 try { (() => {
@@ -4414,11 +4673,15 @@ function Sheet({
   }, title && /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: "var(--text-h3)",
-      fontWeight: 600
+      fontWeight: 600,
+      lineHeight: "var(--text-h3--line-height)",
+      letterSpacing: "var(--text-h3--letter-spacing)"
     }
   }, title), description && /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--muted-foreground)"
     }
   }, description)), /*#__PURE__*/React.createElement(__ds_scope.IconButton, {
@@ -4568,7 +4831,8 @@ function Toast({
       flex: "1 1 auto",
       fontSize: "var(--text-body)",
       color: "var(--foreground)",
-      lineHeight: 1.5
+      lineHeight: "var(--text-body--line-height)",
+      letterSpacing: "var(--text-body--letter-spacing)"
     }
   }, message), actions.length > 0 && /*#__PURE__*/React.createElement("div", {
     style: {
@@ -4589,7 +4853,8 @@ function Toast({
       fontFamily: "var(--font-sans)",
       fontSize: "var(--text-caption)",
       fontWeight: 500,
-      letterSpacing: "-0.01em",
+      lineHeight: 1,
+      letterSpacing: 0,
       color: a.emphasis === "primary" ? "var(--primary)" : "var(--foreground)",
       cursor: "pointer",
       whiteSpace: "nowrap"
@@ -4655,7 +4920,7 @@ function linkButtonStyle(variant) {
     fontSize: "var(--text-caption)",
     fontWeight: 500,
     lineHeight: 1,
-    letterSpacing: "-0.01em",
+    letterSpacing: 0,
     borderRadius: "var(--radius-md)",
     textDecoration: "none",
     whiteSpace: "nowrap",
@@ -4811,7 +5076,9 @@ function AnswerCard({
     className: "mt-ac-mentor-name",
     style: {
       fontSize: "var(--text-h3)",
-      fontWeight: 600
+      fontWeight: 600,
+      lineHeight: "var(--text-h3--line-height)",
+      letterSpacing: "var(--text-h3--letter-spacing)"
     }
   }, mentorName), (country || countryLabel) && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
     size: "sm",
@@ -4820,12 +5087,16 @@ function AnswerCard({
   }, countryLabel), activityLocation && /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--muted-foreground)"
     }
   }, activityLocation)), headline && /*#__PURE__*/React.createElement("span", {
     style: {
-      fontSize: "var(--text-body)",
+      fontSize: "var(--text-caption)",
       fontWeight: 500,
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--muted-foreground)"
     }
   }, headline)))), /*#__PURE__*/React.createElement("a", {
@@ -4846,16 +5117,19 @@ function AnswerCard({
     }
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: "var(--text-body)",
+      fontSize: "var(--text-article)",
       fontWeight: 400,
       color: "var(--foreground)",
-      lineHeight: 1.7,
+      lineHeight: "var(--text-article--line-height)",
+      letterSpacing: "var(--text-article--letter-spacing)",
       whiteSpace: "pre-wrap",
       ...clampNone
     }
   }, body), date && /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--muted-foreground)"
     }
   }, formatDate(date)), /*#__PURE__*/React.createElement("div", {
@@ -4923,6 +5197,8 @@ function AnswerCard({
       alignItems: "center",
       gap: 4,
       fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       fontWeight: 500,
       color: "var(--primary)",
       whiteSpace: "nowrap"
@@ -4963,7 +5239,7 @@ if (typeof document !== "undefined" && !document.getElementById("mt-card-link-st
   s.id = "mt-card-link-style";
   s.textContent = ".mt-card-link{color:inherit;text-decoration:none;-webkit-user-drag:none;}" + ".mt-card-link::after{content:'';position:absolute;inset:0;z-index:1;}" + ".mt-card-link:focus-visible{outline:none;}" +
   // 포커스 링은 제목 글자가 아니라 카드 테두리에 그린다 — 무엇이 선택됐는지 보이게.
-  "article:has(.mt-card-link:focus-visible){outline:2px solid var(--ring);outline-offset:2px;}";
+  "article:has(.mt-card-link:focus-visible){outline:2px solid var(--ring);outline-offset:2px;}" + "@media (hover:hover){article:hover a.mt-card-link{color:var(--primary);}article:hover .mt-card-media-img{transform:scale(1.03);}}.mt-card-media-img{transition:transform 250ms ease-out;}a.mt-card-link{transition:color 250ms ease-out;}@media (prefers-reduced-motion:reduce){.mt-card-media-img{transform:none !important;transition:none;}}";
   document.head.appendChild(s);
 }
 function ArticlePreview({
@@ -5016,6 +5292,7 @@ function ArticlePreview({
       transition: "box-shadow 150ms ease"
     }
   }, showImg ? /*#__PURE__*/React.createElement("img", {
+    className: "mt-card-media-img",
     src: image,
     alt: "",
     onError: () => setImgError(true),
@@ -5044,15 +5321,17 @@ function ArticlePreview({
       display: "block",
       fontSize: "var(--text-h3)",
       fontWeight: 600,
-      lineHeight: 1.5,
+      lineHeight: "var(--text-h3--line-height)",
+      letterSpacing: "var(--text-h3--letter-spacing)",
       ...clamp(2)
     }
   }, title), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: "var(--text-body)",
+      fontSize: "var(--text-caption)",
       fontWeight: 400,
       color: "var(--muted-foreground)",
-      lineHeight: 1.6,
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       ...clamp(3)
     }
   }, excerpt), tags.length > 0 && /*#__PURE__*/React.createElement("div", {
@@ -5121,7 +5400,8 @@ function CardTitle({
     style: {
       fontSize: "var(--text-h3)",
       fontWeight: 600,
-      lineHeight: 1.5,
+      lineHeight: "var(--text-h3--line-height)",
+      letterSpacing: "var(--text-h3--letter-spacing)",
       color: "var(--foreground)",
       ...style
     }
@@ -5135,6 +5415,8 @@ function CardDescription({
   return /*#__PURE__*/React.createElement("div", _extends({
     style: {
       fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--muted-foreground)",
       ...style
     }
@@ -5192,7 +5474,7 @@ const SIZES = {
     gapText: 8,
     gapAction: 18,
     title: "var(--text-h3)",
-    desc: "var(--text-body)",
+    desc: "var(--text-caption)",
     maxW: 340
   },
   sm: {
@@ -5290,7 +5572,7 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
 if (typeof document !== "undefined" && !document.getElementById("mt-card-link-style")) {
   const s = document.createElement("style");
   s.id = "mt-card-link-style";
-  s.textContent = ".mt-card-link{color:inherit;text-decoration:none;-webkit-user-drag:none;}" + ".mt-card-link::after{content:'';position:absolute;inset:0;z-index:1;}" + ".mt-card-link:focus-visible{outline:none;}" + "article:has(.mt-card-link:focus-visible){outline:2px solid var(--ring);outline-offset:2px;}";
+  s.textContent = ".mt-card-link{color:inherit;text-decoration:none;-webkit-user-drag:none;}" + ".mt-card-link::after{content:'';position:absolute;inset:0;z-index:1;}" + ".mt-card-link:focus-visible{outline:none;}" + "article:has(.mt-card-link:focus-visible){outline:2px solid var(--ring);outline-offset:2px;}" + "@media (hover:hover){article:hover a.mt-card-link{color:var(--primary);}article:hover .mt-card-media-img{transform:scale(1.03);}}.mt-card-media-img{transition:transform 250ms ease-out;}a.mt-card-link{transition:color 250ms ease-out;}@media (prefers-reduced-motion:reduce){.mt-card-media-img{transform:none !important;transition:none;}}";
   document.head.appendChild(s);
 }
 const clamp = lines => ({
@@ -5338,12 +5620,13 @@ function InterviewCard({
     style: {
       position: "relative",
       margin: "var(--card-media-margin) var(--card-media-margin) 0",
-      aspectRatio: "3 / 2",
+      aspectRatio: "8 / 5",
       background: "var(--sage-100)",
       borderRadius: "var(--card-media-radius)",
       overflow: "hidden"
     }
   }, showImg ? /*#__PURE__*/React.createElement("img", {
+    className: "mt-card-media-img",
     src: image,
     alt: personName || "",
     onError: () => setImgError(true),
@@ -5379,14 +5662,14 @@ function InterviewCard({
       overflow: "hidden"
     }
   }, (country || countryLabel) && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
-    size: "sm",
+    size: "md",
     leading: "flag",
     flag: country,
     style: {
       boxShadow: "var(--shadow-sm)"
     }
   }, countryLabel), field && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
-    size: "sm",
+    size: "md",
     style: {
       boxShadow: "var(--shadow-sm)"
     }
@@ -5402,18 +5685,19 @@ function InterviewCard({
     className: "mt-card-link",
     style: {
       display: "block",
-      fontSize: "var(--text-h3)",
+      fontSize: "var(--text-h2)",
       fontWeight: 600,
-      letterSpacing: "0.01em",
-      lineHeight: 1.35,
+      lineHeight: "var(--text-h2--line-height)",
+      letterSpacing: "var(--text-h2--letter-spacing)",
       ...clamp(2)
     }
   }, title), excerpt && /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: "var(--text-body)",
+      fontSize: "var(--text-caption)",
       fontWeight: 400,
       color: "var(--muted-foreground)",
-      lineHeight: 1.6,
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       ...clamp(3)
     }
   }, excerpt), /*#__PURE__*/React.createElement("div", {
@@ -5431,20 +5715,26 @@ function InterviewCard({
     }
   }, /*#__PURE__*/React.createElement("span", {
     style: {
-      fontSize: "var(--text-body)",
+      fontSize: "var(--text-caption)",
       fontWeight: 600,
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--foreground)"
     }
   }, personName), jobTitle && /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: "var(--text-caption)",
       fontWeight: 500,
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--muted-foreground)"
     }
   }, jobTitle)), company && /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: "var(--text-caption)",
       fontWeight: 400,
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--muted-foreground)"
     }
   }, company))));
@@ -5465,14 +5755,16 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
  * [스트레치 링크] 루트는 <article>(position:relative) — <a>가 아니다. 이름에만 <a>를 걸고 그 ::after가
  *  카드 전면(inset:0·z-index:1)을 덮어 카드 전체 클릭을 낸다. 스크랩·배지 행 오버레이는 z-index:2로
  *  그 위에서 독립 클릭. 카드의 접근 이름 = 이름 링크 텍스트. 탭 순서 = 이름 링크 → 스크랩 → 배지 행.
- * [구조] 미디어(Desktop 3:2 · Mobile 5:4, cover 크롭, media-margin 인셋 + media-radius)
- *   · 좌상단: "신규 멘토" 배지(green, status/active recipe) — publishedAt 기준 공개 후 1달만 노출
+ * [구조] 미디어(Desktop 3:2 · Mobile 5:4, cover 크롭, media-margin 인셋 + media-radius) *   · 좌상단: "신규 멘토" 배지(green, status/active recipe) — publishedAt 기준 공개 후 1달만 노출
  *   · 우상단: 스크랩 오버레이 — BookmarkToggle(미디어 오버레이 전용, 선택 시 반전). 받침(반투명 흰 면+blur)은
  *     카드 것 그대로 유지 — BookmarkToggle 자체가 IconButton default 크기·radius를 가지므로 패딩 없이 바로 앉힌다.
  *     prop 이름은 카드의 말(bookmarked·onBookmarkChange) 그대로 — 부품 이름과 별개다.
  *   · 미디어 하단 안쪽: 배지 행 — 국가 배지(flag + "대한민국 +N ⌄", +N ⌄는 정적 표시 — 펼침은 Badge 확장 OPEN)
  *     + 직무 배지. 뉴트럴 recipe, size sm. 독립 클릭 영역.
- *  → 이름(h2, 1줄 …, 카드의 유일한 링크) → 직무(500, 1줄 …)/회사(muted, 1줄 …) → 소개 박스(sage-50, 1줄 …).
+ *  → 이름(h3 18/lh 26, 1줄 …, 카드의 유일한 링크 — fluid일 때만 Mobile에서 body 16) →(4) 직무(caption 14/lh 20, 500)/(4) 회사(caption, muted)
+ *  →(8) 소개 박스(green-50 면 + green-100 테두리, 글자 sage-700, caption 14, 1줄 …).
+ *  본문 상자는 padding 8/18(Mobile 6·8/12) · 요소 간 4. **소개 박스는 본문 글자가 아니라 미디어와 같은 폭이다**(카드 좌우 8 인셋 —
+ *  본문 좌우 패딩 18에서 음수 마진 10으로 뺀다. Mobile은 좌우 12이므로 -4).
  * [Mobile ~768] 국가 배지 = 국기만(텍스트 숨김) · 소개 박스 2줄 허용(폭과 무관, 항상 적용).
  *  `fluid`=true일 때만 폭이 width:100%/min-width:179(max-width 없음, 부모가 넓히면 카드도 넓어진다) — 기본은 296 고정(캐러셀 등 부모가 폭을 안 정하는 컨테이너용).
  */
@@ -5482,7 +5774,7 @@ const NEW_WINDOW_MS = 31 * 24 * 60 * 60 * 1000; // 공개 후 1달
 if (typeof document !== "undefined" && !document.getElementById("mt-mcard-style")) {
   const s = document.createElement("style");
   s.id = "mt-mcard-style";
-  s.textContent = "@media (max-width:768px){.mt-mcard-clabel{display:none !important}.mt-mcard-intro{-webkit-line-clamp:2 !important}.mt-mcard-media{aspect-ratio:5/4 !important}.mt-mcard-fluid{width:100% !important;min-width:179px !important}}";
+  s.textContent = "@media (max-width:768px){.mt-mcard-fluid{width:100% !important;min-width:179px !important}.mt-mcard-fluid .mt-mcard-clabel{display:none !important}.mt-mcard-fluid .mt-mcard-intro{-webkit-line-clamp:2 !important}.mt-mcard-fluid .mt-mcard-media{aspect-ratio:5/4 !important}.mt-mcard-fluid .mt-mcard-body{padding:6px 12px 8px !important}.mt-mcard-fluid .mt-mcard-introbox{margin-left:-4px !important;margin-right:-4px !important}.mt-mcard-fluid .mt-card-link{font-size:var(--text-body) !important;line-height:var(--text-body--line-height) !important;letter-spacing:var(--text-body--letter-spacing) !important}}";
   document.head.appendChild(s);
 }
 if (typeof document !== "undefined" && !document.getElementById("mt-card-link-style")) {
@@ -5490,7 +5782,7 @@ if (typeof document !== "undefined" && !document.getElementById("mt-card-link-st
   s.id = "mt-card-link-style";
   s.textContent = ".mt-card-link{color:inherit;text-decoration:none;-webkit-user-drag:none;}" + ".mt-card-link::after{content:'';position:absolute;inset:0;z-index:1;}" + ".mt-card-link:focus-visible{outline:none;}" +
   // 포커스 링은 제목 글자가 아니라 카드 테두리에 그린다 — 무엇이 선택됐는지 보이게.
-  "article:has(.mt-card-link:focus-visible){outline:2px solid var(--ring);outline-offset:2px;}";
+  "article:has(.mt-card-link:focus-visible){outline:2px solid var(--ring);outline-offset:2px;}" + "@media (hover:hover){article:hover a.mt-card-link{color:var(--primary);}article:hover .mt-card-media-img{transform:scale(1.03);}}.mt-card-media-img{transition:transform 250ms ease-out;}a.mt-card-link{transition:color 250ms ease-out;}@media (prefers-reduced-motion:reduce){.mt-card-media-img{transform:none !important;transition:none;}}";
   document.head.appendChild(s);
 }
 const ellipsis1 = {
@@ -5556,6 +5848,7 @@ function MentorCard({
       overflow: "hidden"
     }
   }, showImg ? /*#__PURE__*/React.createElement("img", {
+    className: "mt-card-media-img",
     src: photo,
     alt: name || "",
     onError: () => setImgError(true),
@@ -5645,49 +5938,58 @@ function MentorCard({
       boxShadow: "var(--shadow-sm)"
     }
   }, field))), /*#__PURE__*/React.createElement("div", {
+    className: "mt-mcard-body",
     style: {
-      padding: "var(--card-content-padding)",
+      padding: "8px var(--card-content-padding)",
       display: "flex",
       flexDirection: "column",
-      gap: 8
+      gap: 4
     }
   }, /*#__PURE__*/React.createElement("a", {
     href: href,
     className: "mt-card-link",
     style: {
       display: "block",
-      fontSize: "var(--text-h2)",
+      fontSize: "var(--text-h3)",
       fontWeight: 600,
-      letterSpacing: "0.01em",
-      lineHeight: 1.3,
+      letterSpacing: "var(--text-h3--letter-spacing)",
+      lineHeight: "var(--text-h3--line-height)",
       ...ellipsis1
     }
   }, name), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
-      gap: 2
+      gap: 4
     }
   }, /*#__PURE__*/React.createElement("span", {
     style: {
-      fontSize: "var(--text-body)",
+      fontSize: "var(--text-caption)",
       fontWeight: 500,
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--foreground)",
       ...ellipsis1
     }
   }, role), /*#__PURE__*/React.createElement("span", {
     style: {
-      fontSize: "var(--text-body)",
+      fontSize: "var(--text-caption)",
       fontWeight: 400,
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--muted-foreground)",
       ...ellipsis1
     }
   }, company)), intro && /*#__PURE__*/React.createElement("div", {
+    className: "mt-mcard-introbox",
     style: {
-      background: "var(--sage-50)",
-      border: "1px solid var(--sage-100)",
+      marginTop: 4,
+      marginLeft: -10,
+      marginRight: -10,
+      background: "var(--green-50)",
+      border: "1px solid var(--green-100)",
       borderRadius: "var(--radius-md)",
-      padding: "8px 10px"
+      padding: 10
     }
   }, /*#__PURE__*/React.createElement("span", {
     className: "mt-mcard-intro",
@@ -5696,8 +5998,9 @@ function MentorCard({
       WebkitBoxOrient: "vertical",
       WebkitLineClamp: 1,
       overflow: "hidden",
-      fontSize: "var(--text-body)",
-      lineHeight: 1.5,
+      fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--sage-700)"
     }
   }, intro))));
@@ -5723,6 +6026,10 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
  * [해시태그] 태그는 Chip(눌린다, prefix="#" — 라벨에 #를 넣지 않는다). "+N"은 Badge다 — 태그가 아니라 개수이고
  *  눌리지 않는다. 클릭 핸들러·펼침 없음(격자 6장의 높이가 고정돼야 하고, 카드 안에서 펼치면 옆 카드를 덮는다).
  *  전부는 카드 전면 링크가 가는 상세에서 본다.
+ * [태그 행은 폭이 정한다 — 개수가 아니다] 항상 1줄이다(nowrap). 숨은 상자에 전부 + "+99"를 한 줄로 그려 칩마다의
+ *  폭을 재고, 행의 실제 폭 W(ResizeObserver)에서 왼쪽부터 누적해 들어가는 만큼만 세우고 나머지는 "+N" 하나로 접는다.
+ *  전부 들어가면 "+N"을 안 그린다. k가 0이 되면 1개는 세우고 그 칩은 ellipsis로 줄인다. 개수 상한(MAX_TAGS)은 없다.
+ * [높이] 카드는 자기 높이를 스스로 정하지 않는다 — 늘릴지 말지는 담는 쪽이 정한다(격자·트랙은 align-items: start).
  * [아바타] 사진만 3장으로 줄인다 — "멘토 답변 N개"의 N은 실제 답변 수 그대로. 순서는 부모가 정해 넘긴다.
  * [색 예산] 정적 상태에서 채도를 쓰는 자리는 국기 · 아바타 사진 · "멘토 답변 N개"의 N, 이 3곳뿐.
  *  해시태그는 항상 --muted 채움(Chip 기본) — 색 있는 배지로 만들지 않는다.
@@ -5730,7 +6037,7 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
  *  그 ::after가 카드 전면을 덮는다. 해시태그 Chip·CountToggle은 z-index:2로 그 위에서 독립 클릭.
  *  카드의 접근 이름 = 제목 링크 텍스트. 탭 순서 = 제목 → 해시태그 → 도움돼요 → 스크랩.
  */
-const MAX_TAGS = 5; // 5개까지 세우고 나머지는 "+N" 하나로 접는다(펼치지 않는다).
+const TAG_GAP = 6; // 행의 gap. 폭 누적에 그대로 쓴다.
 
 const clamp = lines => ({
   display: "-webkit-box",
@@ -5745,7 +6052,7 @@ if (typeof document !== "undefined" && !document.getElementById("mt-card-link-st
   s.id = "mt-card-link-style";
   s.textContent = ".mt-card-link{color:inherit;text-decoration:none;-webkit-user-drag:none;}" + ".mt-card-link::after{content:'';position:absolute;inset:0;z-index:1;}" + ".mt-card-link:focus-visible{outline:none;}" +
   // 포커스 링은 제목 글자가 아니라 카드 테두리에 그린다 — 무엇이 선택됐는지 보이게.
-  "article:has(.mt-card-link:focus-visible){outline:2px solid var(--ring);outline-offset:2px;}";
+  "article:has(.mt-card-link:focus-visible){outline:2px solid var(--ring);outline-offset:2px;}" + "@media (hover:hover){article:hover a.mt-card-link{color:var(--primary);}article:hover .mt-card-media-img{transform:scale(1.03);}}.mt-card-media-img{transition:transform 250ms ease-out;}a.mt-card-link{transition:color 250ms ease-out;}@media (prefers-reduced-motion:reduce){.mt-card-media-img{transform:none !important;transition:none;}}";
   document.head.appendChild(s);
 }
 function QnaCard({
@@ -5772,7 +6079,46 @@ function QnaCard({
 }) {
   const [hover, setHover] = React.useState(false);
   const count = answerCount != null ? answerCount : answerers.length;
-  const shownTags = tags.slice(0, MAX_TAGS);
+
+  // 태그 행 — 폭으로 자른다. 숨은 상자에서 칩·"+N" 폭을 재고, 행 폭을 ResizeObserver로 지키며 다시 계산한다.
+  const rowRef = React.useRef(null);
+  const measureRef = React.useRef(null);
+  const [shown, setShown] = React.useState(tags.length);
+  React.useEffect(() => {
+    if (compact || tags.length === 0) return;
+    const row = rowRef.current;
+    const meas = measureRef.current;
+    if (!row || !meas) return;
+    const recalc = () => {
+      const W = row.clientWidth;
+      const kids = meas.children;
+      if (!W || kids.length < tags.length + 1) return;
+      const chipW = [];
+      for (let i = 0; i < tags.length; i++) chipW.push(kids[i].getBoundingClientRect().width);
+      const badgeW = kids[tags.length].getBoundingClientRect().width;
+      const all = chipW.reduce((a, b) => a + b, 0) + TAG_GAP * (tags.length - 1);
+      if (all <= W) {
+        setShown(tags.length);
+        return;
+      }
+      const budget = W - (TAG_GAP + badgeW); // "+N" 자리를 남긴다
+      let used = 0,
+        k = 0;
+      for (let i = 0; i < tags.length; i++) {
+        const next = used + (k === 0 ? 0 : TAG_GAP) + chipW[i];
+        if (next > budget) break;
+        used = next;
+        k++;
+      }
+      setShown(Math.max(1, k)); // k가 0이면 1개는 세운다(넘치면 ellipsis)
+    };
+    recalc();
+    if (typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(recalc);
+    ro.observe(row);
+    return () => ro.disconnect();
+  }, [compact, tags]);
+  const shownTags = tags.slice(0, shown);
   const extraTags = tags.length - shownTags.length;
   return /*#__PURE__*/React.createElement("article", _extends({
     onMouseEnter: () => setHover(true),
@@ -5814,36 +6160,66 @@ function QnaCard({
       display: "block",
       fontSize: "var(--text-h3)",
       fontWeight: 600,
-      lineHeight: 1.5,
+      lineHeight: "var(--text-h3--line-height)",
+      letterSpacing: "var(--text-h3--letter-spacing)",
       ...clamp(2)
     }
   }, title), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: "var(--text-body)",
+      fontSize: "var(--text-caption)",
       fontWeight: 400,
       color: "var(--muted-foreground)",
-      lineHeight: 1.6,
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       ...clamp(2)
     }
-  }, excerpt), !compact && shownTags.length > 0 && /*#__PURE__*/React.createElement("div", {
+  }, excerpt), !compact && tags.length > 0 && /*#__PURE__*/React.createElement("div", {
+    ref: rowRef,
     style: {
       position: "relative",
       zIndex: 2,
       display: "flex",
-      flexWrap: "wrap",
+      flexWrap: "nowrap",
       alignItems: "center",
-      rowGap: 8,
-      columnGap: 6,
-      maxHeight: 52,
+      gap: TAG_GAP,
       overflow: "hidden"
     }
-  }, shownTags.map((t, i) => /*#__PURE__*/React.createElement(__ds_scope.Chip, {
+  }, /*#__PURE__*/React.createElement("div", {
+    ref: measureRef,
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      visibility: "hidden",
+      height: 0,
+      overflow: "hidden",
+      whiteSpace: "nowrap",
+      display: "flex",
+      gap: TAG_GAP,
+      pointerEvents: "none"
+    }
+  }, tags.map((t, i) => /*#__PURE__*/React.createElement(__ds_scope.Chip, {
+    key: i,
+    size: "sm",
+    prefix: "#"
+  }, t)), /*#__PURE__*/React.createElement(__ds_scope.Badge, {
+    size: "sm"
+  }, "+99")), shownTags.map((t, i) => /*#__PURE__*/React.createElement(__ds_scope.Chip, {
     key: i,
     size: "sm",
     prefix: "#",
-    href: `/tags/${t}`
+    href: `/tags/${t}`,
+    style: {
+      minWidth: 0,
+      maxWidth: "100%",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap"
+    }
   }, t)), extraTags > 0 && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
-    size: "sm"
+    size: "sm",
+    style: {
+      flex: "0 0 auto"
+    }
   }, "+", extraTags)), /*#__PURE__*/React.createElement("div", {
     style: {
       height: 1,
@@ -5862,7 +6238,9 @@ function QnaCard({
     size: "sm"
   }), /*#__PURE__*/React.createElement("span", {
     style: {
-      fontSize: "var(--text-body)",
+      fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--muted-foreground)"
     }
   }, "\uBA58\uD1A0 \uB2F5\uBCC0 ", /*#__PURE__*/React.createElement("b", {
@@ -5873,8 +6251,10 @@ function QnaCard({
     }
   }, count), "\uAC1C")) : /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: "var(--text-body)",
+      fontSize: "var(--text-caption)",
       fontWeight: 500,
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--primary)"
     }
   }, "\uC544\uC9C1 \uC791\uC131\uB41C \uB2F5\uBCC0\uC774 \uC5C6\uC2B5\uB2C8\uB2E4"), /*#__PURE__*/React.createElement("div", {
@@ -5891,7 +6271,9 @@ function QnaCard({
       alignItems: "center",
       gap: 4,
       color: "var(--muted-foreground)",
-      fontSize: "var(--text-caption)"
+      fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)"
     }
   }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
     name: "view",
@@ -6019,6 +6401,8 @@ function Table({
       textAlign: c.align || "left",
       padding: "11px 16px",
       fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
       fontWeight: 600,
       color: "var(--muted-foreground)",
       background: "var(--sage-50)",
@@ -6040,6 +6424,8 @@ function Table({
       textAlign: c.align || "left",
       padding: "12px 16px",
       fontSize: "var(--text-body)",
+      lineHeight: "var(--text-body--line-height)",
+      letterSpacing: "var(--text-body--letter-spacing)",
       color: "var(--foreground)",
       borderBottom: i === data.length - 1 ? "none" : "1px solid var(--border)",
       fontVariantNumeric: c.align === "right" ? "tabular-nums" : "normal"
@@ -6048,6 +6434,297 @@ function Table({
 }
 Object.assign(__ds_scope, { Table });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/surfaces/Table.jsx", error: String((e && e.message) || e) }); }
+
+// components/taxonomy.js
+try { (() => {
+/**
+ * taxonomy.js — 국가·직무·테마 태그의 단일 소스(SSoT).
+ *  화면이 값을 지어내지 않는다. 바꿀 때는 여기만 고친다. nav-ia.js와 같은 성격이다.
+ *  Figma 「국가, 직무 & 태그 정리」(node 1059:35100, 2026-09-15)를 그대로 옮긴 것이다.
+ *  value는 한국어 라벨 그대로다 — 백엔드 코드값이 아직 없다. 지금 영어 식별자를 지어내면
+ *  나중에 두 벌이 된다. 코드값이 정해지면 그때 매핑을 붙인다.
+ *  국가만 flag 필드에 국기 파일명(영문, assets/flags/<flag>.svg)을 따로 둔다 — 이미 있는 값이다.
+ *
+ * [구조] FilterSelect가 바로 먹는 모양이다 — groups = [{ label, options: [{ value, label, flag }] }].
+ *  첫 그룹의 label은 빈 문자열이다. FilterSelect는 g.label이 있을 때만 제목을 그리므로
+ *  제목 없이 칩만 선다.
+ * [표기] 「호주」 — 「오스트레일리아」를 쓰지 않는다(칩에 들어가는 길이로 고른 것이다).
+ *  직무 대분류는 「그 외」가 아니라 「기타」다 — 홈 표시(JOB_TOP)와 말이 하나로 모인다.
+ *  테마 태그 대분류 「학업/재정/그 외」는 대분류 이름이라 그대로다. 그 안의 태그 「기타」와는 다른 층이다.
+ * [범위] 이 파일은 데이터만 둔다. 부품이 이것을 import하지 않는다 —
+ *  FilterSelect는 groups를 받는 구조 그대로, MentorCard는 country/countryLabel prop 그대로,
+ *  Badge는 flag prop 그대로다. 화면이 참조하게 하는 것은 화면 라운드의 일이다.
+ */
+
+// 국가 — 15개국 / 대분류 4. 앞의 4개국은 대분류 없이 단독으로 선다.
+const COUNTRY_GROUPS = [{
+  label: "",
+  options: [{
+    value: "일본",
+    label: "일본",
+    flag: "japan"
+  }, {
+    value: "미국",
+    label: "미국",
+    flag: "united-states"
+  }, {
+    value: "대한민국",
+    label: "대한민국",
+    flag: "south-korea"
+  }, {
+    value: "싱가포르",
+    label: "싱가포르",
+    flag: "singapore"
+  }]
+}, {
+  label: "유럽",
+  options: [{
+    value: "네덜란드",
+    label: "네덜란드",
+    flag: "netherlands"
+  }, {
+    value: "독일",
+    label: "독일",
+    flag: "germany"
+  }, {
+    value: "스페인",
+    label: "스페인",
+    flag: "spain"
+  }, {
+    value: "영국",
+    label: "영국",
+    flag: "united-kingdom"
+  }, {
+    value: "이탈리아",
+    label: "이탈리아",
+    flag: "italy"
+  }]
+}, {
+  label: "아시아/중동",
+  options: [{
+    value: "말레이시아",
+    label: "말레이시아",
+    flag: "malaysia"
+  }, {
+    value: "중국",
+    label: "중국",
+    flag: "china"
+  }, {
+    value: "홍콩",
+    label: "홍콩",
+    flag: "hong-kong"
+  }, {
+    value: "UAE",
+    label: "UAE",
+    flag: "uae"
+  }]
+}, {
+  label: "북미/오세아니아",
+  options: [{
+    value: "캐나다",
+    label: "캐나다",
+    flag: "canada"
+  }, {
+    value: "호주",
+    label: "호주",
+    flag: "australia"
+  }]
+}];
+
+// 직무 — 12개 / 대분류 2. 앞의 8개는 단독, 나머지 4개는 「기타」 아래.
+const JOB_GROUPS = [{
+  label: "",
+  options: [{
+    value: "개발",
+    label: "개발"
+  }, {
+    value: "디자인",
+    label: "디자인"
+  }, {
+    value: "마케팅/광고",
+    label: "마케팅/광고"
+  }, {
+    value: "영업/컨설팅",
+    label: "영업/컨설팅"
+  }, {
+    value: "금융",
+    label: "금융"
+  }, {
+    value: "HR",
+    label: "HR"
+  }, {
+    value: "교육",
+    label: "교육"
+  }, {
+    value: "엔지니어링/제조",
+    label: "엔지니어링/제조"
+  }]
+}, {
+  label: "기타",
+  options: [{
+    value: "고객서비스/리테일",
+    label: "고객서비스/리테일"
+  }, {
+    value: "공공복지",
+    label: "공공복지"
+  }, {
+    value: "법률",
+    label: "법률"
+  }, {
+    value: "학생",
+    label: "학생"
+  }]
+}];
+
+// 테마 태그(키워드) — 25개 / 대분류 4.
+const KEYWORD_GROUPS = [{
+  label: "취업준비",
+  options: [{
+    value: "취업 전략",
+    label: "취업 전략"
+  }, {
+    value: "이력서·지원서류",
+    label: "이력서·지원서류"
+  }, {
+    value: "면접 준비",
+    label: "면접 준비"
+  }, {
+    value: "출국 준비",
+    label: "출국 준비"
+  }]
+}, {
+  label: "커리어",
+  options: [{
+    value: "승진",
+    label: "승진"
+  }, {
+    value: "매니징",
+    label: "매니징"
+  }, {
+    value: "연봉 협상",
+    label: "연봉 협상"
+  }, {
+    value: "네트워킹",
+    label: "네트워킹"
+  }, {
+    value: "커뮤니케이션",
+    label: "커뮤니케이션"
+  }, {
+    value: "자기 개발",
+    label: "자기 개발"
+  }, {
+    value: "커리어 전환",
+    label: "커리어 전환"
+  }, {
+    value: "이직하기",
+    label: "이직하기"
+  }, {
+    value: "한국 리턴",
+    label: "한국 리턴"
+  }, {
+    value: "창업",
+    label: "창업"
+  }, {
+    value: "프리랜서·부업",
+    label: "프리랜서·부업"
+  }]
+}, {
+  label: "현지 생활",
+  options: [{
+    value: "정착 생활",
+    label: "정착 생활"
+  }, {
+    value: "비자·영주권",
+    label: "비자·영주권"
+  }, {
+    value: "워라밸·근무 방식",
+    label: "워라밸·근무 방식"
+  }, {
+    value: "여성 커리어",
+    label: "여성 커리어"
+  }, {
+    value: "번아웃",
+    label: "번아웃"
+  }, {
+    value: "취미 생활",
+    label: "취미 생활"
+  }, {
+    value: "육아와 일 병행",
+    label: "육아와 일 병행"
+  }]
+}, {
+  label: "학업/재정/그 외",
+  options: [{
+    value: "대학/대학원 진학",
+    label: "대학/대학원 진학"
+  }, {
+    value: "재테크",
+    label: "재테크"
+  }, {
+    value: "기타",
+    label: "기타"
+  }]
+}];
+
+// 홈 표시 — 국가 7개. 개별 국가만 국기가 붙고 묶음 대분류(유럽·아시아/중동·북미/오세아니아)에는 아이콘이 없다.
+const COUNTRY_TOP = [{
+  value: "일본",
+  label: "일본",
+  flag: "japan"
+}, {
+  value: "미국",
+  label: "미국",
+  flag: "united-states"
+}, {
+  value: "대한민국",
+  label: "대한민국",
+  flag: "south-korea"
+}, {
+  value: "싱가포르",
+  label: "싱가포르",
+  flag: "singapore"
+}, {
+  value: "아시아/중동",
+  label: "아시아/중동"
+}, {
+  value: "북미/오세아니아",
+  label: "북미/오세아니아"
+}, {
+  value: "유럽",
+  label: "유럽"
+}];
+
+// 홈 표시 — 직무 9개.
+const JOB_TOP = [{
+  value: "개발",
+  label: "개발"
+}, {
+  value: "디자인",
+  label: "디자인"
+}, {
+  value: "마케팅/광고",
+  label: "마케팅/광고"
+}, {
+  value: "영업/컨설팅",
+  label: "영업/컨설팅"
+}, {
+  value: "금융",
+  label: "금융"
+}, {
+  value: "HR",
+  label: "HR"
+}, {
+  value: "교육",
+  label: "교육"
+}, {
+  value: "엔지니어링/제조",
+  label: "엔지니어링/제조"
+}, {
+  value: "기타",
+  label: "기타"
+}];
+Object.assign(__ds_scope, { COUNTRY_GROUPS, JOB_GROUPS, KEYWORD_GROUPS, COUNTRY_TOP, JOB_TOP });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/taxonomy.js", error: String((e && e.message) || e) }); }
 
 __ds_ns.Avatar = __ds_scope.Avatar;
 
@@ -6158,5 +6835,15 @@ __ds_ns.QnaCard = __ds_scope.QnaCard;
 __ds_ns.Skeleton = __ds_scope.Skeleton;
 
 __ds_ns.Table = __ds_scope.Table;
+
+__ds_ns.COUNTRY_GROUPS = __ds_scope.COUNTRY_GROUPS;
+
+__ds_ns.JOB_GROUPS = __ds_scope.JOB_GROUPS;
+
+__ds_ns.KEYWORD_GROUPS = __ds_scope.KEYWORD_GROUPS;
+
+__ds_ns.COUNTRY_TOP = __ds_scope.COUNTRY_TOP;
+
+__ds_ns.JOB_TOP = __ds_scope.JOB_TOP;
 
 })();

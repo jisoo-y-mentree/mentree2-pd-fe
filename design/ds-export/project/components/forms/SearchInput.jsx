@@ -99,7 +99,7 @@ export function SearchInput({
           display: "flex",
           alignItems: "center",
           gap: 8,
-          height: 38,
+          height: 40,
           padding: "0 8px 0 11px",
           background: disabled ? "var(--muted)" : "var(--card)",
           border: `1px solid ${borderColor}`,
@@ -133,7 +133,8 @@ export function SearchInput({
             background: "transparent",
             fontFamily: "var(--font-sans)",
             fontSize: "var(--text-body)",
-            letterSpacing: "-0.01em",
+            lineHeight: 1,
+            letterSpacing: 0,
             color: "var(--foreground)",
           }}
         />
@@ -184,7 +185,8 @@ export function SearchInput({
                 borderRadius: "var(--radius-sm)",
                 fontFamily: "var(--font-sans)",
                 fontSize: "var(--text-body)",
-                letterSpacing: "-0.01em",
+                lineHeight: 1,
+                letterSpacing: 0,
                 color: "var(--foreground)",
                 background: highlightIndex === i ? "var(--muted)" : "transparent",
                 cursor: "pointer",

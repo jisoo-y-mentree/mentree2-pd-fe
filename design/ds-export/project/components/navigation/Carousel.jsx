@@ -91,6 +91,9 @@ export const Carousel = React.forwardRef(function Carousel(
         ref={trackRef}
         style={{
           display: "flex",
+          // 카드는 자기 내용만큼만 높다 — stretch면 짧은 카드가 가장 긴 카드에 맞춰 늘어나 아래에 빈 공간이 생긴다.
+          // 카드 높이를 서로 맞추지 않는다(격자도 align-items: start).
+          alignItems: "flex-start",
           gap,
           overflowX: "auto",
           // 카드/단위 스냅. peek 모드는 마지막 카드가 걸치도록 우측 스크롤 패딩.

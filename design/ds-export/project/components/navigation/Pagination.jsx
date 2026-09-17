@@ -12,27 +12,29 @@ import React from "react";
  * [제어형] page + totalPages + onPageChange. URL에 page를 담는 화면이 있어 부모가 상태를 가진다.
  * [모바일] 와이어 근거 없음 — 여기서 정한 것: 양옆 ±2를 ±1로 줄이고 « » 는 남긴다.
  *  번호를 없애고 「이전/다음」으로 바꾸지 않는다(지금 몇 페이지인지가 안 보인다).
+ *  390에서 컨테이너 안쪽 358을 넘지 않게 치수도 함께 줄인다 — 히트 40 · 면 36 · 「…」 20 · « 의 margin-left 8,
+ *  그리고 「…이 1페이지만 가리면 세운다」 보정을 끈다(항상 접는다). 최악의 경우 5×40 + 2×20 + 40+8 + 40 = 328 ≤ 358.
  */
 const CSS = `.mt-pg-btn{background:none;border:none;padding:0;margin:0;cursor:pointer;font:inherit;color:var(--muted-foreground)}
 .mt-pg-btn:hover:not(:disabled) .mt-pg-face{background:var(--muted);color:var(--foreground)}
 .mt-pg-btn:disabled{cursor:default;opacity:.4}
 .mt-pg-btn:focus-visible{outline:2px solid var(--ring);outline-offset:-4px;border-radius:var(--radius-md)}`;
 
-function pageList(page, total, span) {
+function pageList(page, total, span, keepSingle) {
   const out = [];
   const lo = Math.max(2, page - span);
   const hi = Math.min(total - 1, page + span);
   out.push(1);
-  // 「…」이 1페이지만 가리면 접지 않고 그 번호를 세운다.
-  if (lo > 2) out.push(lo === 3 ? 2 : "…");
+  // 「…」이 1페이지만 가리면 접지 않고 그 번호를 세운다 — Mobile에선 이 보정을 끈다(폭이 귀하다).
+  if (lo > 2) out.push(keepSingle && lo === 3 ? 2 : "…");
   for (let i = lo; i <= hi; i++) out.push(i);
-  if (hi < total - 1) out.push(hi === total - 2 ? total - 1 : "…");
+  if (hi < total - 1) out.push(keepSingle && hi === total - 2 ? total - 1 : "…");
   if (total > 1) out.push(total);
   return out;
 }
 
-const HIT = 44;
-const FACE = 40;
+/* Desktop 44/40/24 · Mobile 40/36/20. 40은 터치 타겟으로 충분하다 — WCAG 2.1 AA(2.5.8)가 요구하는 것은 24다(44는 AAA 2.5.5). */
+const DIMS = { wide: { HIT: 44, FACE: 40, ELL: 24, JUMP_ML: 4 }, narrow: { HIT: 40, FACE: 36, ELL: 20, JUMP_ML: 8 } };
 
 export function Pagination({ page, totalPages, onPageChange, style, ...rest }) {
   const [narrow, setNarrow] = React.useState(false);
@@ -47,7 +49,8 @@ export function Pagination({ page, totalPages, onPageChange, style, ...rest }) {
 
   const total = Math.max(1, totalPages || 1);
   const cur = Math.min(Math.max(1, page || 1), total);
-  const items = pageList(cur, total, narrow ? 1 : 2);
+  const items = pageList(cur, total, narrow ? 1 : 2, !narrow);
+  const { HIT, FACE, ELL, JUMP_ML } = narrow ? DIMS.narrow : DIMS.wide;
   const go = (n) => { if (n !== cur && onPageChange) onPageChange(n); };
 
   const face = (extra) => ({
@@ -66,7 +69,7 @@ export function Pagination({ page, totalPages, onPageChange, style, ...rest }) {
       {items.map((it, i) =>
         it === "…" ? (
           // 「…」은 버튼이 아니다 — 눌리지 않는다.
-          <span key={`e${i}`} aria-hidden="true" style={{ width: 24, height: HIT, display: "inline-flex", alignItems: "center", justifyContent: "center", color: "var(--muted-foreground)", fontSize: "var(--text-body)" }}>…</span>
+          <span key={`e${i}`} aria-hidden="true" style={{ width: ELL, height: HIT, display: "inline-flex", alignItems: "center", justifyContent: "center", color: "var(--muted-foreground)", fontSize: "var(--text-body)" }}>…</span>
         ) : it === cur ? (
           // 현재 페이지 — 버튼이 아니라 위치 표시. 눌러도 아무 일이 없다.
           <span key={it} aria-current="page" style={{ width: HIT, height: HIT, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
@@ -79,7 +82,7 @@ export function Pagination({ page, totalPages, onPageChange, style, ...rest }) {
         )
       )}
       {/* « » 는 둘 다 마지막 번호 뒤에 나란히 — 번호 줄과 점프 버튼이 갈려 있는 배치 */}
-      <button type="button" className="mt-pg-btn" onClick={() => go(1)} disabled={cur === 1} style={{ width: HIT, height: HIT, display: "inline-flex", alignItems: "center", justifyContent: "center", marginLeft: 4 }} aria-label="첫 페이지">
+      <button type="button" className="mt-pg-btn" onClick={() => go(1)} disabled={cur === 1} style={{ width: HIT, height: HIT, display: "inline-flex", alignItems: "center", justifyContent: "center", marginLeft: JUMP_ML }} aria-label="첫 페이지">
         <span className="mt-pg-face" style={face({ border: "1px solid var(--border)" })}>«</span>
       </button>
       <button type="button" className="mt-pg-btn" onClick={() => go(total)} disabled={cur === total} style={{ width: HIT, height: HIT, display: "inline-flex", alignItems: "center", justifyContent: "center" }} aria-label="마지막 페이지">

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+  <script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <script>
+    document.addEventListener("error", function (e) {
+      var t = e.target, s = t && t.tagName === "IMG" ? t.getAttribute("src") || "" : "";
+      if (s.indexOf("../../assets/") === 0) { e.stopImmediatePropagation(); t.setAttribute("src", s.replace("../../assets/", "assets/")); }
+    }, true);
+  </script>
+  <style>
+    body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+    a { color: var(--primary); }
+    a:hover { color: var(--primary); }
+    .qi-only-mobile { display: none !important; }
+    footer span[aria-label="mentree"] { -webkit-mask-image: url("../../../ds-export/project/assets/logo/mentree-logo.svg") !important; mask-image: url("../../../ds-export/project/assets/logo/mentree-logo.svg") !important; }
+    .qi-grid { display: grid; grid-template-columns: minmax(48px, 1fr) minmax(0, 720px) minmax(200px, 1fr); column-gap: 32px; align-items: start; margin-top: 40px; }
+    .qi-body p { margin: 0 0 24px; font-size: var(--text-body); line-height: 1.8; }
+    .qi-body h2 { margin: 40px 0 16px; font-size: var(--text-h2); font-weight: 600; scroll-margin-top: 104px; }
+    .qi-body h2:first-child { margin-top: 0; }
+    .qi-body mark { background: rgba(134, 239, 172, 0.7); color: inherit; padding: 0 2px; }
+    .qi-body figure { margin: 0 0 24px; }
+    .qi-body img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius-md); display: block; }
+    .qi-body figcaption { margin-top: 8px; font-size: var(--text-caption); color: var(--muted-foreground); }
+    .qi-mentors { margin-top: 24px; }
+    .qi-subs { position: fixed; right: 32px; bottom: 32px; width: 420px; z-index: 40; }
+    @media (max-width: 768px) {
+      .qi-only-mobile { display: block !important; }
+      .qi-only-desktop { display: none !important; }
+      .qi-grid { display: block; margin-top: 24px; }
+      .qi-subs { left: 16px; right: 16px; width: auto; bottom: calc(56px + env(safe-area-inset-bottom) + 16px); }
+      .qi-pad-bottom { padding-bottom: calc(56px + env(safe-area-inset-bottom) + 32px) !important; }
+    }
+  </style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-direction:column">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" active-key="insights" on-navigate="{{ onNav }}" hint-size="100%,64px"></x-import>
+  <main class="qi-pad-bottom" style="flex:1;width:100%;max-width:var(--container-max);margin:0 auto;padding:24px var(--container-pad) 88px;box-sizing:border-box">
+    <div style="display:flex;align-items:center;gap:12px">
+      <a href="../../insight-list/template/insight-list-all.dc.html" aria-label="목록으로 돌아가기" style="display:inline-flex;text-decoration:none">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="arrow-left-01" variant="outline" size="md" aria-label="목록으로 돌아가기" dc-props="{{ roundBtn }}" hint-size="40px,40px"></x-import>
+      </a>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Breadcrumb" items="{{ crumbs }}" hint-size="240px,24px"></x-import>
+    </div>
+
+    <sc-if value="{{ isOk }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <header style="max-width:720px;margin:40px auto 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px">
+          <div style="display:flex;align-items:center;gap:6px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="tag" hue="indigo" size="sm" hint-size="56px,24px">{{ art.countryLabel }}</x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="tag" hue="amber" size="sm" hint-size="64px,24px">{{ art.keyword }}</x-import>
+          </div>
+          <h1 style="margin:0;font-size:var(--text-display);font-weight:600;line-height:1.35;letter-spacing:var(--text-display--letter-spacing)">{{ art.title }}</h1>
+          <div class="tabular" style="font-size:var(--text-caption);color:var(--muted-foreground)">{{ art.date }}</div>
+          <div class="qi-only-mobile" data-temp="rail" style="margin-top:4px">
+          <div style="display:flex;justify-content:center;gap:12px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="bookmark-01" variant="{{ scrapVariant }}" size="lg" aria-label="스크랩" aria-pressed="{{ scrapped }}" on-click="{{ toggleScrap }}" hint-size="48px,48px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="favourite" variant="{{ helpfulVariant }}" size="lg" aria-label="도움돼요" aria-pressed="{{ helpful }}" on-click="{{ toggleHelpful }}" hint-size="48px,48px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="share-08" variant="outline" size="lg" aria-label="공유" on-click="{{ share }}" hint-size="48px,48px"></x-import>
+          </div>
+          </div>
+        </header>
+
+        <div class="qi-grid">
+          <div class="qi-only-desktop" data-temp="rail" style="justify-self:end;width:48px;position:sticky;top:96px;display:flex;flex-direction:column;gap:8px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="bookmark-01" variant="{{ scrapVariant }}" size="lg" aria-label="스크랩" aria-pressed="{{ scrapped }}" on-click="{{ toggleScrap }}" hint-size="48px,48px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="favourite" variant="{{ helpfulVariant }}" size="lg" aria-label="도움돼요" aria-pressed="{{ helpful }}" on-click="{{ toggleHelpful }}" hint-size="48px,48px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="share-08" variant="outline" size="lg" aria-label="공유" on-click="{{ share }}" hint-size="48px,48px"></x-import>
+          </div>
+
+          <article class="qi-body" style="grid-column:2;max-width:720px;width:100%">
+            <sc-if value="{{ isInsight }}" hint-placeholder-val="{{ true }}">
+              <div>
+                <h2 id="sec-1">신졸 채용 일정은 졸업 1년 전에 시작된다</h2>
+                <p>일본의 신졸 채용은 졸업 시점이 아니라 졸업 1년 전을 기준으로 움직입니다. 3월 졸업 예정자를 뽑는 전형은 그 전해 3월에 설명회가 열리고, 여름 인턴이 사실상 1차 선발의 자리가 됩니다.</p>
+                <p><mark>일정을 한 해 늦게 잡으면 신졸 전형 자체가 닫히고, 경력 3년 미만을 뽑는 중도 채용과 경쟁하게 됩니다.</mark> 학교를 이미 졸업한 분들이 취업 활동 비자로 체류하며 지원을 이어가는 이유도 여기에 있습니다.</p>
+                <p>따라서 준비의 첫 단계는 이력서가 아니라 달력입니다. 지원하려는 회사 다섯 곳의 설명회·인턴·본전형 일정을 한 장에 적어 두면 무엇을 먼저 해야 하는지가 정해집니다.</p>
+                <p>일정표는 회사 이름, 설명회 시기, 인턴 모집 마감, 본전형 시작의 네 칸만 있으면 충분합니다. 칸이 비어 있는 회사는 조사가 덜 된 회사이고, 그 자체가 다음 주에 할 일이 됩니다.</p>
+                <p>업종에 따라 시기가 한두 달씩 앞뒤로 움직입니다. 컨설팅과 금융은 이르고, 제조와 인프라는 상대적으로 늦습니다. 목표 업종이 두 개 이상이라면 이른 쪽 일정을 기준으로 삼는 편이 안전합니다.</p>
+                <figure>
+                  <img src="../../insight-list/template/assets/img/4.png" alt="">
+                  <figcaption>도쿄에서 열린 멘트리 클라쓰 신졸 준비반 세션 현장.</figcaption>
+                </figure>
+                <h2 id="sec-2">JLPT 는 서류의 선, 면접은 경험의 선</h2>
+                <p>서류 단계에서 JLPT N2는 대체로 최소선으로 쓰입니다. N1이 있으면 선택지가 넓어지지만, N2에서 N1으로 올리는 몇 달이 지원 시점을 뒤로 밀어야 할 만큼 결정적인 경우는 많지 않습니다.</p>
+                <p>면접에서 보는 것은 급수가 아니라 설명입니다. 자신이 한 일을 일본어로 구조화해 말할 수 있는지, 팀에서 맡은 범위를 구분해 답할 수 있는지가 평가의 중심에 있습니다.</p>
+                <p>연습은 회사별 질문 목록을 만드는 것부터 시작합니다. <mark>같은 경험을 세 문장, 한 문장, 한 단어로 줄여 말하는 훈련이 면접에서 가장 자주 쓰입니다.</mark></p>
+                <p>질문 목록은 열 개 안쪽으로 유지하는 편이 좋습니다. 지원 동기, 학생 시절에 힘을 쏟은 일, 강점과 약점, 입사 후 하고 싶은 일 네 가지가 어느 회사에서나 반복됩니다.</p>
+                <p>답변은 외우지 않고 순서만 정해 둡니다. 상황, 맡은 범위, 판단, 결과의 네 단계로 말하면 일본어가 완벽하지 않아도 내용이 전달됩니다. 면접관이 확인하려는 것은 유창함보다 판단의 근거입니다.</p>
+                <h2 id="sec-3">지원 시점을 정하는 세 가지 기준</h2>
+                <p>첫째, 비자입니다. 졸업 후 체류 방법이 정해져 있는지에 따라 지원을 앞당길지 미룰지가 갈립니다. 취업 활동 비자는 기간이 정해져 있으므로, 전형이 열리는 시기와 체류 만료일을 함께 놓고 계산해야 합니다.</p>
+                <p>둘째, 포트폴리오입니다. 보여줄 결과물이 한 달 뒤에 완성된다면 그 한 달은 기다릴 값이 있습니다. 반대로 완성까지 반년이 남았다면 지금 있는 것으로 지원하고, 전형 중에 채워 넣는 편이 낫습니다.</p>
+                <p>셋째, 일본어입니다. N2 이전이라면 어학을 먼저 채우고, N2 이후라면 지원과 병행하는 편이 낫습니다. 자신의 조건에 맞는 경로가 헷갈린다면 <a href="#" title="멘토 찾기 — 다른 화면">같은 직무의 멘토에게 먼저 확인해 보시는 방법</a>도 있습니다.</p>
+              </div>
+            </sc-if>
+            <sc-if value="{{ isEvent }}" hint-placeholder-val="{{ false }}">
+              <div>
+                <h2 id="sec-1">현장 — 도쿄 신졸 준비반 첫 세션</h2>
+                <p>멘트리 클라쓰 3기 첫 세션은 도쿄 시부야에서 열렸습니다. 신졸 지원을 준비하는 스무 명이 모였고, 절반은 아직 학기 중이었습니다.</p>
+                <p><mark>참가자들이 가장 많이 가져온 질문은 「언제 지원을 시작해야 하는가」였습니다.</mark> 일정 이야기로 시작한 세션이 자연스럽게 서류 순서로 이어졌습니다.</p>
+                <p>현장에서는 지원 일정표를 각자 한 장씩 작성했습니다. 회사 이름을 적는 칸에서 손이 멈추는 분들이 많아, 다음 순서는 회사 조사로 정해졌습니다.</p>
+                <p>작성 시간은 30분으로 잡았지만 절반은 다섯 칸을 채우지 못했습니다. 이름을 아는 회사와 지원할 수 있는 회사가 다르다는 점이 이 시간에 드러났습니다.</p>
+                <p>세션 마지막에는 각자 채운 일정표를 옆자리와 바꿔 읽었습니다. 같은 업종을 준비하는 분들끼리 마감일이 서로 어긋나 있는 경우가 있어, 출처를 다시 확인하기로 했습니다.</p>
+                <figure>
+                  <img src="../../insight-list/template/assets/img/7.png" alt="">
+                  <figcaption>세션 후반의 일정표 작성 시간. 참가자 스무 명이 각자 다섯 곳을 적었다.</figcaption>
+                </figure>
+                <h2 id="sec-2">멘토 세션 — 네 개의 경로</h2>
+                <p>멘토 네 명이 각자의 경로를 나눠 설명했습니다. 신졸로 입사한 경우, 중도 채용으로 옮긴 경우, 대학원을 거친 경우, 취업 활동 비자로 지원한 경우입니다.</p>
+                <p>같은 회사를 목표로 해도 준비 항목이 달라진다는 점이 분명해졌습니다. 신졸 전형은 일정, 중도 채용은 실적, 대학원 경로는 연구 주제가 각각 중심이었습니다.</p>
+                <p><mark>네 경로가 공통으로 꼽은 것은 일본어로 자기 경험을 설명하는 연습이었습니다.</mark> 급수보다 설명이라는 말이 세션 내내 반복됐습니다.</p>
+                <p>질의응답에서는 면접 준비 기간을 묻는 질문이 가장 많았습니다. 멘토들은 두 달을 기준으로 답했고, 그 안에서 모의 면접을 세 번 이상 해보길 권했습니다.</p>
+                <p>이력서를 한 장으로 줄이는 방법에 대해서도 이야기가 이어졌습니다. 프로젝트 수를 줄이고 남긴 항목의 설명을 늘리는 쪽이 서류 통과율이 높았다는 경험이 공통으로 나왔습니다.</p>
+                <h2 id="sec-3">다음 기수 — 4기 안내</h2>
+                <p>4기는 가을 학기에 맞춰 준비 중입니다. 일정이 정해지면 인사이트와 메일로 먼저 알려드립니다.</p>
+                <p>이번 기수의 질문을 모아 커리큘럼을 손보고 있습니다. 회사 조사와 일정 수립에 한 세션을 더 쓰기로 했습니다.</p>
+                <p>모의 면접은 정원을 줄여 멘토 한 명이 세 명을 맡는 형태로 바꿉니다. 3기에서 한 명당 시간이 부족했다는 의견이 많았습니다.</p>
+                <p>참여를 검토하시는 분들은 <a href="#" title="이벤트 목록 — 범위 밖">지난 기수 기록</a>을 먼저 보시면 흐름을 잡기 쉽습니다.</p>
+              </div>
+            </sc-if>
+            <sc-if value="{{ isInterview }}" hint-placeholder-val="{{ false }}">
+              <div>
+                <h2 id="sec-1">지원 시점 — 졸업 1년 전 여름</h2>
+                <p>박서연 님은 졸업 1년 전 여름에 첫 인턴 지원을 넣었습니다. 준비가 덜 된 상태였지만, 전형 일정이 그때 열렸기 때문입니다.</p>
+                <p><mark>「신졸 전형은 경력을 묻지 않는 대신 준비 기간을 봅니다」</mark>라는 말로 그 판단을 설명했습니다. 결과적으로 인턴 경험이 본전형의 이야기 소재가 됐습니다.</p>
+                <p>지원 시점을 앞당긴 대가로 포트폴리오는 여름 내내 다시 썼습니다. 그 과정이 면접 답변을 정리하는 시간이 됐다고 합니다.</p>
+                <p>당시 일본어는 N2를 막 취득한 상태였습니다. 급수를 올리는 대신 지원서에 쓸 문장을 다듬는 데 시간을 썼고, 그 판단을 지금도 바꾸지 않겠다고 말했습니다.</p>
+                <p>인턴은 2주 일정이었습니다. 짧았지만 팀의 개발 흐름을 한 번 통과해 본 경험이 본전형 면접에서 가장 많이 언급된 소재가 됐습니다.</p>
+                <figure>
+                  <img src="../../insight-list/template/assets/img/1.png" alt="">
+                  <figcaption>도쿄 오피스에서 만난 박서연 님. 현재 프로덕트 엔지니어로 일하고 있다.</figcaption>
+                </figure>
+                <h2 id="sec-2">서류 — 무엇을 남기고 무엇을 버렸는가</h2>
+                <p>이력서는 한 장으로 줄였습니다. 학부 프로젝트 여섯 개 중 두 개만 남기고, 남긴 두 개에 각각 다섯 줄을 썼습니다.</p>
+                <p>기준은 「면접에서 10분 동안 이야기할 수 있는가」였습니다. 설명이 짧아지는 항목은 아예 지웠습니다.</p>
+                <p><mark>일본어 서류는 표현을 꾸미지 않고, 맡은 범위와 결과를 숫자로 적는 편이 반응이 좋았다고 합니다.</mark></p>
+                <p>자기소개서는 회사마다 첫 문단만 바꿨습니다. 지원 동기는 회사별로 다르지만 경험의 서술은 같아야 한다는 것이 기준이었습니다.</p>
+                <h2 id="sec-3">면접 — 세 번의 질문</h2>
+                <p>1차는 인사 담당자, 2차는 팀 리드, 최종은 임원 면접이었습니다. 질문의 결이 단계마다 달라졌습니다.</p>
+                <p>1차는 지원 동기와 체류 계획을 확인하는 자리였습니다. 일본에서 계속 일할 의사가 있는지를 에둘러 여러 번 물었다고 합니다.</p>
+                <p>2차에서는 코드 리뷰를 어떻게 받아들이는지, 의견이 다를 때 어떻게 정리하는지를 물었습니다. 기술 질문보다 협업 방식에 대한 질문이 길었습니다.</p>
+                <p>최종 면접은 20분으로 짧았습니다. 지금까지의 답변을 다시 확인하는 자리였고, 준비한 역질문 세 개 중 두 개를 썼습니다.</p>
+                <p>준비 방법을 묻자 같은 직무 멘토와의 모의 면접을 꼽았습니다. <a href="#" title="멘토 찾기 — 다른 화면">같은 회사·직무의 멘토를 찾는 일</a>부터 시작하길 권했습니다.</p>
+              </div>
+            </sc-if>
+            <sc-if value="{{ isPlain }}" hint-placeholder-val="{{ false }}">
+              <div>
+                <p>일본 이주 첫 달에는 행정 절차가 한꺼번에 몰립니다. 순서를 잘못 잡으면 같은 창구를 두 번 가야 하는 일이 생깁니다.</p>
+                <p><mark>가장 먼저 구약소에서 전입 신고를 하고, 그 자리에서 마이넘버 카드와 국민건강보험을 함께 처리하는 편이 빠릅니다.</mark> 재류 카드 주소 기재도 같은 창구에서 끝납니다.</p>
+                <p>은행 계좌와 휴대폰은 주민표가 나온 뒤에 여는 편이 수월합니다. 회사 입사일이 정해져 있다면 급여 계좌 개설 기한을 먼저 확인해 두시는 것이 좋습니다.</p>
+                <p>주민표는 창구에서 두 부 이상 받아 두시면 은행과 통신사에서 각각 제출할 때 다시 가지 않아도 됩니다. 마이넘버 카드는 신청 후 수령까지 몇 주가 걸리므로, 그 사이에 필요한 서류는 통지 카드로 대신합니다.</p>
+                <p>연금은 전입 신고와 함께 가입 절차가 안내됩니다. 회사에 입사하면 후생연금으로 넘어가지만, 입사 전 공백 기간이 있으면 국민연금 납부 유예를 신청해 두는 편이 좋습니다.</p>
+                <p>첫 달 지출은 예상보다 큽니다. 집 계약의 초기 비용에 보증금과 사례금이 함께 붙는 경우가 많아, 이주 전에 두 달치 생활비를 따로 준비해 두시는 것을 권합니다.</p>
+              </div>
+            </sc-if>
+          </article>
+
+          <sc-if value="{{ showToc }}" hint-placeholder-val="{{ true }}">
+            <nav class="qi-only-desktop" aria-label="목차" data-temp="toc" style="grid-column:3;justify-self:stretch;width:100%;max-width:200px;position:sticky;top:96px;display:flex;flex-direction:column">
+              <sc-for list="{{ tocItems }}" as="item" hint-placeholder-count="3">
+                <a href="{{ item.href }}" aria-current="{{ item.aria }}" on-click="{{ item.go }}" style="{{ item.style }}">{{ item.label }}</a>
+              </sc-for>
+            </nav>
+          </sc-if>
+        </div>
+
+        <div data-subscribe-sentinel aria-hidden="true" style="height:1px"></div>
+        <div style="max-width:720px;margin:56px auto 0">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;background:var(--sage-50);border:1px solid var(--primary);border-radius:var(--radius-lg);padding:24px 32px">            <div style="font-size:var(--text-h3);font-weight:600">{{ banner.text }}</div>
+            <a href="{{ banner.href }}" title="{{ banner.title }}" style="text-decoration:none">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="md" hint-size="140px,40px">{{ banner.cta }}</x-import>
+            </a>
+          </div>
+        </div>
+
+        <div style="margin-top:24px;display:flex;justify-content:center;position:relative;z-index:1">
+          <a href="../../insight-list/template/insight-list-all.dc.html" onClick="{{ backToList }}" style="display:inline-flex;text-decoration:none">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" hint-size="180px,40px">
+              <span data-copy="tbd" style="display:inline-flex;align-items:center;gap:6px">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="arrow-left-01" size="{{ 16 }}" hint-size="16px,16px"></x-import>
+                목록으로 돌아가기
+              </span>
+            </x-import>
+          </a>
+        </div>
+
+        <sc-if value="{{ showRelatedArticles }}" hint-placeholder-val="{{ true }}">
+          <section style="margin-top:32px;padding-top:40px;border-top:1px solid var(--border)">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" title="관련 아티클 추천" carousel="{{ true }}" on-prev="{{ relPrev }}" on-next="{{ relNext }}" prev-disabled="{{ relAtStart }}" next-disabled="{{ relAtEnd }}" hint-size="100%,48px"></x-import>
+            <div class="qi-related" style="margin-top:24px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Carousel" ref="{{ relRef }}" gap="{{ 24 }}" mode="snap-fit" on-edge-change="{{ onRelEdge }}" hint-size="100%,260px">
+                <sc-for list="{{ related }}" as="rel" hint-placeholder-count="4">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ArticlePreview" title="{{ rel.title }}" image="{{ rel.img }}" tags="{{ noTags }}" href="article-detail-insight.dc.html" dc-props="{{ relCard }}" hint-size="280px,240px"></x-import>
+                </sc-for>
+              </x-import>
+            </div>
+          </section>
+        </sc-if>
+
+        <sc-if value="{{ showMentorCarousel }}" hint-placeholder-val="{{ false }}">
+          <section style="margin-top:32px;padding-top:40px;border-top:1px solid var(--border)">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" title="{{ mentorSectionTitle }}" carousel="{{ true }}" on-prev="{{ carPrev }}" on-next="{{ carNext }}" prev-disabled="{{ atStart }}" next-disabled="{{ atEnd }}" hint-size="100%,48px"></x-import>
+            <div class="qi-mentors">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Carousel" ref="{{ carRef }}" gap="{{ 24 }}" mode="peek" on-edge-change="{{ onEdge }}" hint-size="100%,340px">
+                <sc-for list="{{ mentors }}" as="m" hint-placeholder-count="4">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.MentorCard" name="{{ m.name }}" role="{{ m.role }}" company="{{ m.company }}" field="{{ m.field }}" country="japan" country-label="일본" photo="{{ m.photo }}" href="#" fluid="{{ true }}" bookmarked="{{ m.saved }}" on-bookmark-change="{{ m.toggleSave }}" hint-size="296px,340px"></x-import>
+                </sc-for>
+              </x-import>
+            </div>
+          </section>
+        </sc-if>
+
+        <sc-if value="{{ showSingleMentor }}" hint-placeholder-val="{{ false }}">
+          <section style="margin-top:32px;padding-top:40px;border-top:1px solid var(--border)">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" title="{{ mentorSectionTitle }}" hint-size="100%,48px"></x-import>
+            <div class="qi-mentors" style="display:flex;justify-content:center">
+              <sc-for list="{{ mentors }}" as="m" hint-placeholder-count="1">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.MentorCard" name="{{ m.name }}" role="{{ m.role }}" company="{{ m.company }}" field="{{ m.field }}" country="japan" country-label="일본" photo="{{ m.photo }}" href="#" fluid="{{ true }}" bookmarked="{{ m.saved }}" on-bookmark-change="{{ m.toggleSave }}" hint-size="296px,340px"></x-import>
+              </sc-for>
+            </div>
+          </section>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}">
+      <div aria-busy="true" style="max-width:720px;margin:40px auto 0;display:flex;flex-direction:column;align-items:center;gap:16px">
+        <div style="display:flex;gap:6px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="56" height="24" radius="md" hint-size="56px,24px"></x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="64" height="24" radius="md" hint-size="64px,24px"></x-import>
+        </div>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="100%" height="36" radius="md" hint-size="100%,36px"></x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="60%" height="36" radius="md" hint-size="60%,36px"></x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="120" height="16" hint-size="120px,16px"></x-import>
+        <div style="width:100%;margin-top:24px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="6" hint-size="100%,140px"></x-import>
+        </div>
+        <div style="width:100%;display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:24px;margin-top:48px">
+          <sc-for list="{{ four }}" as="n" hint-placeholder-count="4">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="100%" height="160" radius="md" hint-size="100%,160px"></x-import>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isNotFound }}" hint-placeholder-val="{{ false }}">
+      <div data-copy="tbd" style="padding:120px 0">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" icon="news" title="글을 찾을 수 없어요" description="{{ notFoundDesc }}" action="{{ notFoundAction }}" hint-size="100%,240px"></x-import>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
+      <div data-copy="tbd" style="padding:120px 0">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" title="글을 불러오지 못했어요" description="{{ errorDesc }}" action="{{ errorAction }}" hint-size="100%,240px"></x-import>
+      </div>
+    </sc-if>
+  </main>
+
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" on-navigate="{{ onNav }}" hint-size="100%,320px"></x-import>
+  <div class="qi-only-mobile">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BottomTabBar" active-key="insights" on-navigate="{{ onTabBar }}" hint-size="100%,56px"></x-import>
+  </div>
+
+  <sc-if value="{{ showSubscribe }}" hint-placeholder-val="{{ false }}">
+    <div class="qi-subs" data-temp="subscribe">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" dc-props="{{ subsCard }}" hint-size="420px,160px">
+        <div style="position:relative;padding:24px">
+          <div style="position:absolute;top:12px;right:12px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="cancel-01" variant="ghost" size="sm" aria-label="닫기" on-click="{{ closeSubscribe }}" hint-size="32px,32px"></x-import>
+          </div>
+          <div style="font-size:var(--text-h3);font-weight:600;max-width:320px;line-height:1.5">새로운 아티클 발행 소식을 받아보시겠어요?</div>
+          <div style="display:flex;justify-content:flex-end;margin-top:20px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="md" on-click="{{ subscribe }}" hint-size="180px,40px">멘트리 아티클 구독하기</x-import>
+          </div>
+        </div>
+      </x-import>
+    </div>
+  </sc-if>
+
+  <div data-copy="tbd" style="display:contents">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Toast" open="{{ toastOpen }}" message="{{ toastMsg }}" on-dismiss="{{ dismissToast }}" hint-size="280px,48px"></x-import>
+  </div>
+
+  <div data-copy="tbd" style="display:contents">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Dialog" open="{{ modalOpen }}" on-close="{{ closeModal }}" title="이 주제와 관련된 멘토" description="{{ modalDesc }}" footer="{{ modalFooter }}" width="{{ 1000 }}" hint-size="1000px,480px">
+    <div style="display:flex;gap:24px;padding:4px 0">
+      <sc-for list="{{ modalMentors }}" as="m" hint-placeholder-count="3">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.MentorCard" name="{{ m.name }}" role="{{ m.role }}" company="{{ m.company }}" field="{{ m.field }}" country="japan" country-label="일본" photo="{{ m.photo }}" href="#" fluid="{{ true }}" hint-size="296px,340px"></x-import>
+      </sc-for>
+    </div>
+  </x-import>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;insight&quot;,&quot;event&quot;,&quot;interview&quot;,&quot;plain&quot;],&quot;default&quot;:&quot;insight&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;state&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ok&quot;,&quot;loading&quot;,&quot;notfound&quot;,&quot;error&quot;],&quot;default&quot;:&quot;ok&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;modal&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;mentors&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const ART = {
+  insight: { title: "2026년 일본 취업을 위해 꼭 필요한 인사이트", countryLabel: "일본", keyword: "취업 준비", date: "2026.07.04" },
+  event: { title: "멘트리 클라쓰 3기 현장 스케치 — 도쿄 IT 신졸 준비반", countryLabel: "일본", keyword: "취업 준비", date: "2026.06.21" },
+  interview: { title: "메르카리 프로덕트 엔지니어 박서연 — 졸업 전 지원이 유리한 이유", countryLabel: "일본", keyword: "취업 준비", date: "2026.05.30" },
+  plain: { title: "일본 이주 첫 달, 행정 절차 순서만 먼저 정리했습니다", countryLabel: "일본", keyword: "현지 생활", date: "2026.04.02" }
+};
+
+const TOC = {
+  insight: ["신졸 채용 일정은 졸업 1년 전에 시작된다", "JLPT 는 서류의 선, 면접은 경험의 선", "지원 시점을 정하는 세 가지 기준"],
+  event: ["현장 — 도쿄 신졸 준비반 첫 세션", "멘토 세션 — 네 개의 경로", "다음 기수 — 4기 안내"],
+  interview: ["지원 시점 — 졸업 1년 전 여름", "서류 — 무엇을 남기고 무엇을 버렸는가", "면접 — 세 번의 질문"],
+  plain: []
+};
+
+const BANNER = {
+  insight: { text: "이 주제와 관련된 멘토를 확인하고 싶다면?", cta: "관련 멘토 보기", href: "article-detail-modal-mentors.dc.html", title: "관련 멘토 모달" },
+  plain: { text: "이 주제와 관련된 멘토를 확인하고 싶다면?", cta: "관련 멘토 보기", href: "article-detail-modal-mentors.dc.html", title: "관련 멘토 모달" },
+  event: { text: "이 행사에 참여하고 싶다면?", cta: "참여 신청하기", href: "#", title: "이벤트 신청 — 범위 밖" },
+  interview: { text: "이 멘토에게 상담을 받아보고 싶다면?", cta: "멘토링 신청하기", href: "#", title: "멘토 상세 — 다른 화면" }
+};
+
+const MENTORS = [
+  { id: "m1", name: "서명진", role: "데이터 애널리스트", company: "Google Japan", field: "데이터", photo: "../../insight-list/template/assets/img/9.png" },
+  { id: "m2", name: "박서연", role: "프로덕트 엔지니어", company: "메르카리", field: "프론트엔드", photo: "../../insight-list/template/assets/img/12.png" },
+  { id: "m3", name: "이준호", role: "백엔드 엔지니어", company: "사이보즈", field: "백엔드", photo: "../../insight-list/template/assets/img/8.png" },
+  { id: "m4", name: "최민수", role: "프로덕트 매니저", company: "라쿠텐", field: "기획", photo: "../../insight-list/template/assets/img/13.png" }
+];
+
+const RELATED = [
+  { title: "독일 블루카드 연봉 기준이 바뀌었다 — 2026년 지원자가 알아야 할 것", img: "../../insight-list/template/assets/img/5.png" },
+  { title: "싱가포르 EP 점수제, 한국 지원자가 걸리는 항목", img: "../../insight-list/template/assets/img/6.png" },
+  { title: "네덜란드 30% ruling 축소 뒤 오퍼 비교는 이렇게", img: "../../insight-list/template/assets/img/4.png" },
+  { title: "런던 Skilled Worker 비자로 가족을 데려갈 때", img: "../../insight-list/template/assets/img/5.png" }
+];
+
+class Component extends DCLogic {
+  state = {
+    scrapped: false, helpful: false, activeSection: "sec-1", edges: { atStart: true, atEnd: false }, relEdges: { atStart: true, atEnd: true },
+    toast: "", subscribeShown: false, subscribeClosed: false,
+    modalOpen: this.props.modal === "mentors",
+    savedMentors: {}
+  };
+
+  componentDidMount() {
+    document.documentElement.lang = "ko";
+    const a = ART[this.variant] || ART.insight;
+    document.title = (this.mode === "loading" ? "불러오는 중"
+      : this.mode === "notfound" ? "글을 찾을 수 없어요"
+      : this.mode === "error" ? "글을 불러오지 못했어요"
+      : a.title) + " · 멘트리 인사이트";
+    if (this.variant !== "plain" && this.mode === "ok" && TOC[this.variant].length) {
+      const ids = ["sec-1", "sec-2", "sec-3"];
+      let raf = 0;
+      const measure = () => {
+        raf = 0;
+        const line = window.innerHeight / 3;
+        let current = ids[0];
+        ids.forEach(id => {
+          const el = document.getElementById(id);
+          if (el && el.getBoundingClientRect().top < line) current = id;
+        });
+        if (current !== this.state.activeSection) this.setState({ activeSection: current });
+      };
+      this.onTocScroll = () => { if (!raf) raf = requestAnimationFrame(measure); };
+      window.addEventListener("scroll", this.onTocScroll, { passive: true });
+      window.addEventListener("resize", this.onTocScroll);
+      measure();
+    }
+    if (this.mode === "ok" && this.variant !== "plain" && this.props.modal !== "mentors") {
+      let closed = false;
+      try {
+        closed = sessionStorage.getItem("qi-subscribe-closed:" + this.variant) === "1"
+          || sessionStorage.getItem("qi-subscribed") === "1";
+      } catch (err) {}
+      if (closed) this.setState({ subscribeClosed: true });
+      else {
+        const attach = () => {
+          const sentinel = document.querySelector("[data-subscribe-sentinel]");
+          if (!sentinel) { requestAnimationFrame(attach); return; }
+          this.subsObserver = new IntersectionObserver(entries => {
+            if (entries.some(e => e.isIntersecting)) {
+              this.setState({ subscribeShown: true });
+              this.subsObserver.disconnect();
+              this.subsObserver = null;
+            }
+          }, { root: null });
+          this.subsObserver.observe(sentinel);
+        };
+        attach();
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.onTocScroll) { window.removeEventListener("scroll", this.onTocScroll); window.removeEventListener("resize", this.onTocScroll); }
+    if (this.subsObserver) { this.subsObserver.disconnect(); this.subsObserver = null; }
+  }
+
+  get variant() { return this.props.variant || "insight"; }
+  get mode() { return this.props.state || "ok"; }
+
+  renderVals() {
+    const v = this.variant, mode = this.mode;
+    const B = (window.MentreeDesignSystem_2f86cf || {}).Button;
+    const toc = TOC[v] || [];
+    const mentorsFor = v === "event" ? MENTORS : v === "interview" ? [MENTORS[1]] : [];
+
+    return {
+      art: ART[v] || ART.insight,
+      crumbs: [{ label: "멘트리 인사이트", href: "../../insight-list/template/insight-list-all.dc.html" }, { label: "상세" }],
+      roundBtn: { style: { borderRadius: "50%" } },
+      onNav: item => { if (item.key === "insights") location.href = "../../insight-list/template/insight-list-all.dc.html"; },
+      onTabBar: tab => { if (tab.key === "insights") location.href = "../../insight-list/template/insight-list-all.dc.html"; },
+      isOk: mode === "ok", isLoading: mode === "loading", isNotFound: mode === "notfound", isError: mode === "error",
+      isInsight: v === "insight", isEvent: v === "event", isInterview: v === "interview", isPlain: v === "plain",
+      scrapped: this.state.scrapped, helpful: this.state.helpful,
+      scrapVariant: this.state.scrapped ? "secondary" : "outline",
+      helpfulVariant: this.state.helpful ? "secondary" : "outline",
+      toggleScrap: () => this.setState(s => ({ scrapped: !s.scrapped })),
+      toggleHelpful: () => this.setState(s => ({ helpful: !s.helpful })),
+      share: () => this.setState({ toast: "링크를 복사했어요" }),
+      showToc: toc.length > 0 && mode === "ok",
+      tocItems: toc.map((label, i) => {
+        const id = "sec-" + (i + 1), active = this.state.activeSection === id;
+        return {
+          label, href: "#" + id, aria: active ? "location" : "false",
+          go: e => {
+            e.preventDefault();
+            const el = document.getElementById(id);
+            if (el) {
+              const cs = window.getComputedStyle(el);
+              const gap = parseFloat(cs.marginTop) || 0;
+              window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - gap - 104, behavior: "smooth" });
+            }
+            this.setState({ activeSection: id });
+          },
+          style: "display:block;padding:8px 0 8px 12px;font-size:var(--text-body);text-decoration:none;line-height:1.5;" +
+            (active
+              ? "border-left:3px solid var(--primary);color:var(--primary);font-weight:600"
+              : "border-left:2px solid var(--border);color:var(--muted-foreground);font-weight:400")
+        };
+      }),
+      banner: BANNER[v] || BANNER.insight,
+      showRelatedArticles: v === "insight" && mode === "ok",
+      related: RELATED, noTags: [],
+      relCard: { style: { width: 280, flex: "0 0 auto", scrollSnapAlign: "start" } },
+      showMentors: mentorsFor.length > 0 && mode === "ok",
+      showMentorCarousel: mentorsFor.length > 1 && mode === "ok",
+      showSingleMentor: mentorsFor.length === 1 && mode === "ok",
+      showBack: mode === "ok",
+      backToList: e => {
+        if (!/insight-list-[a-z]+\.dc\.html/.test(document.referrer || "")) return;
+        if (e && e.preventDefault) e.preventDefault();
+        history.back();
+      },
+      relRef: el => { this.rel = el; },
+      relPrev: () => { if (this.rel) this.rel.scrollPrev(); },
+      relNext: () => { if (this.rel) this.rel.scrollNext(); },
+      relAtStart: this.state.relEdges.atStart,
+      relAtEnd: this.state.relEdges.atEnd,
+      onRelEdge: edges => {
+        if (edges.atStart !== this.state.relEdges.atStart || edges.atEnd !== this.state.relEdges.atEnd) this.setState({ relEdges: edges });
+      },
+      mentorSectionTitle: v === "event" ? "참여 멘토" : "이 글의 멘토",
+      atStart: this.state.edges.atStart,
+      atEnd: this.state.edges.atEnd,
+      carRef: el => { this.car = el; },
+      onEdge: edges => {
+        if (edges.atStart !== this.state.edges.atStart || edges.atEnd !== this.state.edges.atEnd) this.setState({ edges });
+      },
+      carPrev: () => { if (this.car) this.car.scrollPrev(); },
+      carNext: () => { if (this.car) this.car.scrollNext(); },
+      mentors: mentorsFor.map(m => ({
+        ...m, saved: !!this.state.savedMentors[m.id],
+        toggleSave: next => this.setState(s => ({ savedMentors: { ...s.savedMentors, [m.id]: next } }))
+      })),
+      four: [1, 2, 3, 4],
+      notFoundDesc: "주소가 바뀌었거나 글이 내려갔을 수 있어요.",
+      notFoundAction: B ? React.createElement(B, { variant: "primary", size: "md", onClick: () => { location.href = "../../insight-list/template/insight-list-all.dc.html"; } }, "멘트리 인사이트로") : null,
+      errorDesc: "잠시 뒤에 다시 시도해 주세요.",
+      errorAction: B ? React.createElement(B, { variant: "outline", size: "md", onClick: () => location.reload() }, "다시 시도") : null,
+      showSubscribe: this.state.subscribeShown && !this.state.subscribeClosed,
+      subsCard: { style: { boxShadow: "var(--shadow-lg)" } },
+      closeSubscribe: () => { try { sessionStorage.setItem("qi-subscribe-closed:" + this.variant, "1"); } catch (err) {} this.setState({ subscribeClosed: true }); },
+      subscribe: () => { try { sessionStorage.setItem("qi-subscribed", "1"); } catch (err) {} this.setState({ subscribeClosed: true, toast: "새 아티클 소식을 메일로 보내드릴게요" }); },
+      toastOpen: !!this.state.toast, toastMsg: this.state.toast,
+      dismissToast: () => this.setState({ toast: "" }),
+      modalOpen: this.state.modalOpen,
+      modalDesc: "일본 · 취업 준비 키워드가 겹치는 멘토예요",
+      modalMentors: [MENTORS[0], MENTORS[1], MENTORS[2]],
+      modalFooter: B ? React.createElement(B, { variant: "outline", size: "md", onClick: () => { location.href = "#"; } }, "멘토 찾기에서 더 보기") : null,
+      closeModal: () => { this.setState({ modalOpen: false }); if (this.props.modal === "mentors") location.href = "article-detail-insight.dc.html"; }
+    };
+  }
+}
+</script>
+</body>
+</html>
