@@ -1,8 +1,8 @@
 # template 의 출처
 
 - Claude Design: 프로젝트 **`Mentree 2.0 Insight feed`**(radarlab 계정). 공개 공유 링크는 적지 않는다([ADR-0002](../../../../docs/adr/0002-rebuild-design-system-instead-of-sharing.md))
-- 원본: export 폴더 `Mentree 2.0 Insight feed`(20장 · 2026-09-16 16:05)
-- **생성일: 2026-09-16**
+- 원본: export 폴더 `Mentree 2.0 Insight feed`(20장 · **2판 2026-09-17 11:14** · 1판 2026-09-16 16:05)
+- **생성일: 2026-09-17**
 - 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md) — §1~11 확정 2026-09-16
 - 디자인 시스템: `ds-export/` 의 **2026-09-16 판**(폴더 해시 `4ec9a3f66119`)을 가리킨다. export 의 `_ds` 사본과 **같은 판**이다 — 아래 「디자인 시스템이 어긋났었다」
 
@@ -23,14 +23,15 @@
 
 ## 손댄 곳
 
-원본은 Claude Design 캔버스의 export 이고 프로젝트 루트를 기준으로 경로를 잡는다. 리포에 배치하면서 [`place-insight.sh`](../../../_import/place-insight.sh)(커밋 안 됨)가 **경로만** 돌렸다. 화면의 내용은 고치지 않았다.
+원본은 Claude Design 캔버스의 export 이고 프로젝트 루트를 기준으로 경로를 잡는다. 리포에 배치하면서 [`place-insight.sh`](../../../_import/place-insight.sh)(커밋 안 됨)가 경로를 돌렸다. **스타일 한 줄(카테고리 sticky)을 더했다.** 그 밖의 내용은 고치지 않았다.
 
 | 무엇 | 원본 | 리포 |
 |---|---|---|
 | 디자인 시스템 | `_ds/m2-design-system-<uuid>/` 사본 | **`../../../ds-export/project/`** |
 | 로고 · 국기 | 루트의 `assets/` | `ds-export/project/assets/` — `ds-asset-path.js`(Q&A 와 같은 shim)를 공용 부품의 helmet 에 끼웠다 |
-| **사진 16본**(썸네일 · 인물) | 루트의 `assets/img/` | **`template/assets/img/`(3.4MB · 이 폴더에 한 벌).** `article-detail` 이 건너 참조한다 |
+| **사진 11본**(썸네일 · 인물) | 루트의 `assets/img/` | **`template/assets/img/`(2.7MB · 이 폴더에 한 벌).** `article-detail` 이 건너 참조한다. 2판이 표본 썸네일을 바꿔 16본에서 11본이 됐다 |
 | 상세로 가는 링크 | `article-detail-*.dc.html` | `../../article-detail/template/article-detail-*.dc.html` |
+| **카테고리 `aside`** | `flex:0 0 240px;width:240px` | **`position:sticky;top:96px;align-self:flex-start` 를 더했다** — 상혁 2026-09-17 「스크롤하면 따라오게」. 스타일 조정 범위. 원본은 3차 프롬프트가 고친다 |
 
 **`_ds` 사본을 커밋하지 않는다.** 디자인 시스템의 참조 정본은 `ds-export/` 하나다.
 
