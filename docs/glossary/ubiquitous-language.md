@@ -79,6 +79,7 @@
 | 멘트리 인사이트 | `Insight` | 멘트리가 발행하는 아티클 카테고리의 하나 |
 | 멘트리 인사이트 목록 | `insight-list` | 화면. 카테고리 4 |
 | 멘티 | `Mentee` | 해외 커리어를 준비하는 사람 |
+| 문구·버튼 배너 | `ActionBanner` | **미구현**(`DS-34`). Claude Design 에서 만들었고(2026-09-24) `ds-export` 교체 전이다. 문구 ＋ primary 버튼 · 초록 테두리. 가로형 · 세로형. `Banner`(자유 영역)와 달리 모양이 고정이다 |
 | 배너 | `Banner` | 컴포넌트. navigation |
 | 배지 | `Badge` | 컴포넌트. core. new 상태·+N 펼침·labelHidden |
 | 버튼 | `Button` | 컴포넌트. core |
@@ -101,6 +102,7 @@
 | 아이콘 | `Icon` | 컴포넌트. core. HugeIcons 모노 |
 | 아이콘 버튼 | `IconButton` | 컴포넌트. core |
 | 아티클 | `Article` | 읽을거리의 총칭. 카테고리는 인사이트·이벤트·멘토 인터뷰다 |
+| 아티클 본문 | `ArticleBody` | **미구현**(`DS-56`). Claude Design 에서 만들었고(2026-09-24) `ds-export` 교체 전이다. 머리(배지 · 제목 · 날짜) ＋ 본문(소제목 · 문단 · 그림 · 형광펜). `article-detail` 과 `mentor-detail` 인터뷰 탭이 같은 글을 같게 그린다 |
 | 아티클 상세 | `article-detail` | 화면 |
 | 아티클 프리뷰 | `ArticlePreview` | 컴포넌트. surfaces |
 | 알림 | `notification` | 화면. 드롭다운 ＋ 페이지 2형태 |
@@ -141,7 +143,9 @@
 | 헤더 | `Header` | 컴포넌트. navigation. 반응형·오버레이 |
 | 회원가입 | `signup` | 화면. 이메일 ／ 소셜 2경로 |
 
-**100행** — 개념 **29**(모달 1 포함) · 화면 **19** · 컴포넌트 **43** · **미구현 4** · **조립 4** · **DS 밖 1**.
+**102행** — 개념 **29**(모달 1 포함) · 화면 **19** · 컴포넌트 **43** · **미구현 6** · **조립 4** · **DS 밖 1**.
+
+> **09-24 에 2행이 더 늘었다.** `ArticleBody`(`DS-56`) · `ActionBanner`(`DS-34`) — Claude Design 에는 있으나 `ds-export` 교체 전이라 **미구현**으로 둔다. 교체하면 컴포넌트로 옮긴다.
 
 > **09-24 에 4행 늘었다.** `Timeline`·`LinkCard`·`QuoteBlock`·`QaPairItem` — **조립** 4종이다(`mentor-detail`). ＋ 개념이 **28** 로 적혀 있었으나 실측은 **29** 였다. 합계 96 은 맞았고 내역만 1 이 모자랐다.
 
