@@ -66,18 +66,20 @@
 | 리치 텍스트 에디터 | `RichTextEditor` | **DS 밖**(`DS-15` 각하 2026-09-12). Q&A 질문·답변 작성. **blocknote 를 FE 가 직접 붙인다** — 사양은 그 화면의 `UI-SPEC.md` 가 갖는다 |
 | 마이페이지(멘토) | `mypage-mentor` | 화면. 탭 10 |
 | 마이페이지(멘티) | `mypage-mentee` | 화면. 탭 9 |
-| 멘토 | `Mentor` | 해외에서 활동하는 한국인. 답변·인터뷰·멘토링을 제공한다 |
-| 멘토 상세 | `mentor-detail` | 화면. 탭 4 |
-| 멘토 인터뷰 | `Interview` | 멘토를 다룬 기사. 아티클 카테고리의 하나다 |
+| 멘토 | `Mentor` | 해외에서 활동하는 한국인. 답변·인터뷰·멘토링을 제공한다. **섭외 → 인터뷰 → 등록**의 순서로 서비스에 들어온다(2026-09-24). **다른 멘토에게 멘토링을 신청할 수 있다** — 1.0 은 막았다 |
+| 멘토 N문N답 | `QaPairItem` | **조립.** 부품이 아니다. `mentor-detail` 프로필 탭의 질문과 답의 쌍 — 접지 않고 전부 펼친다. 기존 부품과 토큰으로 만들고 2화면째에 나오면 부품으로 올린다(원칙 7) |
+| 멘토 상세 | `mentor-detail` | 화면. 탭 4 — 프로필 · 인터뷰 · Q&A · 리뷰 |
+| 멘토 인터뷰 | `Interview` | 멘토를 다룬 기사. 아티클 카테고리의 하나다. **모든 멘토에게 1편 이상 있다** — 인터뷰를 거쳐야 등록되기 때문이다 |
 | 멘토 찾기 | `mentor-search` | 화면 |
 | 멘토 카드 | `MentorCard` | 컴포넌트. surfaces. 296 고정·미디어 3:2/5:4 |
 | 멘토링 | `Mentoring` | 1:1 유료 세션. 신청 → 수락 → 일정 확정 → 완료 |
 | 멘토링 상세 모달 | `MentoringDetailModal` | **모달.** 상태 6. `mypage-mentee`·`mypage-mentor` 의 §6 이다. 역할로 액션이 갈린다 |
-| 멘토링 신청 | `mentoring-apply` | 화면. 2스텝 ＋ 결제. 진입은 `mentor-detail` |
+| 멘토링 신청 | `mentoring-apply` | 화면. 2스텝 ＋ 결제. 진입은 `mentor-detail`. **멘티와 멘토가 모두 신청한다** |
 | 멘토링 카드 | `MentoringCard` | **미구현**(`DS-18`). 멘토링 1건의 상태·상대·액션. `MentorCard` 와 다르다 |
 | 멘트리 인사이트 | `Insight` | 멘트리가 발행하는 아티클 카테고리의 하나 |
 | 멘트리 인사이트 목록 | `insight-list` | 화면. 카테고리 4 |
 | 멘티 | `Mentee` | 해외 커리어를 준비하는 사람 |
+| 문구·버튼 배너 | `ActionBanner` | **미구현**(`DS-34`). Claude Design 에서 만들었고(2026-09-24) `ds-export` 교체 전이다. 문구 ＋ primary 버튼 · 초록 테두리. 가로형 · 세로형. `Banner`(자유 영역)와 달리 모양이 고정이다 |
 | 배너 | `Banner` | 컴포넌트. navigation |
 | 배지 | `Badge` | 컴포넌트. core. new 상태·+N 펼침·labelHidden |
 | 버튼 | `Button` | 컴포넌트. core |
@@ -90,6 +92,7 @@
 | 섹션 헤더 | `SectionHeader` | 컴포넌트. navigation |
 | 검색 인풋 | `SearchInput` | 컴포넌트. forms. 자동완성 ＋ 최근 검색어. 제안 줄이 상자 밖 드롭다운이다 |
 | 셀렉트 | `Select` | 컴포넌트. forms |
+| 소개글 | `QuoteBlock` | **조립.** 부품이 아니다. `mentor-detail` 프로필 탭의 인용 한 줄 ＋ 본문. 멘토가 쓰고 반드시 있다. 2화면째에 나오면 부품으로 올린다(원칙 7) |
 | 스위치 | `Switch` | 컴포넌트. forms |
 | 스켈레톤 | `Skeleton` | 컴포넌트. surfaces. 로딩 중의 자리표시 |
 | 스크랩 | `Scrap` | Q&A·아티클을 모아두는 것. 비로그인은 로그인으로 유도한다 |
@@ -99,6 +102,7 @@
 | 아이콘 | `Icon` | 컴포넌트. core. HugeIcons 모노 |
 | 아이콘 버튼 | `IconButton` | 컴포넌트. core |
 | 아티클 | `Article` | 읽을거리의 총칭. 카테고리는 인사이트·이벤트·멘토 인터뷰다 |
+| 아티클 본문 | `ArticleBody` | **미구현**(`DS-56`). Claude Design 에서 만들었고(2026-09-24) `ds-export` 교체 전이다. 머리(배지 · 제목 · 날짜) ＋ 본문(소제목 · 문단 · 그림 · 형광펜). `article-detail` 과 `mentor-detail` 인터뷰 탭이 같은 글을 같게 그린다 |
 | 아티클 상세 | `article-detail` | 화면 |
 | 아티클 프리뷰 | `ArticlePreview` | 컴포넌트. surfaces |
 | 알림 | `notification` | 화면. 드롭다운 ＋ 페이지 2형태 |
@@ -117,6 +121,8 @@
 | 카운트 토글 | `CountToggle` | 컴포넌트. core. 아이콘 ＋ 카운트 토글. **메타 줄 인라인 전용**이고 반전하지 않는다. 미디어 위는 `BookmarkToggle` 이다(§8.1) |
 | 캐러셀 | `Carousel` | 컴포넌트. navigation |
 | 커리어 Phase | `Phase` | 온보딩 설문이 묻는 4단계. **추천의 입력값이다.** 진단 컨텐츠는 MVP 밖이다([PRODUCT.md](../PRODUCT.md) 「MVP 범위 밖」) |
+| 커리어 관련 활동 | `LinkCard` | **조립.** 부품이 아니다. `mentor-detail` 의 외부 링크 한 건 — 썸네일 · 출처(YouTube · brunch) · 제목. 새 창으로 연다. 2화면째에 나오면 부품으로 올린다(원칙 7) |
+| 커리어 히스토리 | `Timeline` | **조립.** 부품이 아니다. `mentor-detail` 의 커리어 · 학력 히스토리 — 로고(`Avatar`) · 기간 · 회사명(학교명) · 직무(전공). 2화면째에 나오면 부품으로 올린다(원칙 7) |
 | 콜아웃 바 | `CalloutBar` | 컴포넌트. navigation |
 | 키워드 | `Keyword` | **테마 태그의 대분류.** 국가와 함께 가장 큰 분류축이다. **목록은 상정 중이며 바뀐다**(2026-09-11). 값에 의존하는 판단을 UI-SPEC 에 쓰지 않는다 |
 | 태그 | `Tag` | 자유입력 해시태그. 질문당 최대 10개 |
@@ -137,7 +143,11 @@
 | 헤더 | `Header` | 컴포넌트. navigation. 반응형·오버레이 |
 | 회원가입 | `signup` | 화면. 이메일 ／ 소셜 2경로 |
 
-**96행** — 개념 **28**(모달 1 포함) · 화면 **19** · 컴포넌트 **43** · **미구현 4** · **DS 밖 1**.
+**102행** — 개념 **29**(모달 1 포함) · 화면 **19** · 컴포넌트 **43** · **미구현 6** · **조립 4** · **DS 밖 1**.
+
+> **09-24 에 2행이 더 늘었다.** `ArticleBody`(`DS-56`) · `ActionBanner`(`DS-34`) — Claude Design 에는 있으나 `ds-export` 교체 전이라 **미구현**으로 둔다. 교체하면 컴포넌트로 옮긴다.
+
+> **09-24 에 4행 늘었다.** `Timeline`·`LinkCard`·`QuoteBlock`·`QaPairItem` — **조립** 4종이다(`mentor-detail`). ＋ 개념이 **28** 로 적혀 있었으나 실측은 **29** 였다. 합계 96 은 맞았고 내역만 1 이 모자랐다.
 
 > **09-14 에 3행 늘었다.** `Breadcrumb`(`DS-16` 완료) ＋ **`FilterSelect`·`SearchInput`** — 뒤의 둘은 `DS-nn` 없이 들어왔다. [DS-update-list](../../design/DS-update-list.md) 는 미비·미정의 그릇이라 **이미 있는 것에 행을 만들지 않는다.**
 
@@ -154,6 +164,8 @@
 「미구현」은 `ds-export/` 에 **아직** 없는 것이다. **이름을 먼저 정하고 Claude Design 에서 만든다**(`docs/SOURCES.md` 「예외 — 이름은 용어집이 정본이다」).
 
 **「DS 밖」은 `ds-export/` 에 앞으로도 안 만드는 것이다.** 라이브러리가 UI 와 상태 기계를 통째로 갖고 우리가 정할 것이 기능의 on/off 뿐인 경우다(`docs/SOURCES.md` 「그래도 부품을 만드는가」). **이름은 여기 남는다** — 화면 UI-SPEC 이 그 이름으로 부른다.
+
+**「조립」은 부품이 아니다.** 한 화면이 기존 부품과 토큰으로 만든 자리다. `ds-export/` 에 만들지 않고, **2화면째에 나오면 부품으로 올린다**(DESIGN-CHARTER 원칙 7). **「미구현」과 섞지 않는다** — 미구현은 만들 것이고 조립은 안 만들 것이다. 이름은 화면 UI-SPEC 이 그 자리를 부르려고 여기 둔다.
 
 ## 쓰지 않는 말
 
