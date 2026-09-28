@@ -1,6 +1,6 @@
 # template 의 출처
 
-- Claude Design: 화면 프로젝트(radarlab 계정). 프로젝트 이름은 **미기록**이다 — 디자이너에게 확인해 이 줄을 채운다(#34 재리뷰 전). 공개 공유 링크는 적지 않는다([ADR-0002](../../../../docs/adr/0002-rebuild-design-system-instead-of-sharing.md))
+- Claude Design: 프로젝트 **`mentor-design`**(radarlab 계정). 공개 공유 링크는 적지 않는다([ADR-0002](../../../../docs/adr/0002-rebuild-design-system-instead-of-sharing.md))
 - 원본: export 폴더 `mentor-detail`(**4차 2026-09-28 09:16**)
 - **생성일: 2026-09-28**
 - 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md) — `fc0c4c2`
