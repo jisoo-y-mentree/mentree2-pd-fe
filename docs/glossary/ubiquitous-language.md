@@ -144,7 +144,7 @@
 >
 > **같은 날 `RichTextEditor` 가 미구현에서 빠졌다**(`DS-15` 각하). 미구현은 **5본**이다 — `Calendar`·`Stepper`·`Breadcrumb`·`VerticalNav`·`MentoringCard`.
 >
-> **`mentor-search` 착수로 2행이 늘었다**(2026-09-12) — `SearchInput`(`DS-28`) · `FilterSelect`(`DS-27`).
+> **`mentor-search` 착수로 2행이 늘었다**(2026-09-12) — `SearchInput` · `FilterSelect`(번호 없음 — DS 목록 「2026-09-28 — 두 벌이던 번호를 하나로 정리했다」).
 >
 > **09-13 에 3본이 실물이 됐다** — `Breadcrumb`·`FilterSelect`·`SearchInput`. 컴포넌트는 **43본**, 미구현은 **4본**이다 — `Calendar`·`Stepper`·`VerticalNav`·`MentoringCard`.
 
