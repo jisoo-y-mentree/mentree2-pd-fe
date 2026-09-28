@@ -46,6 +46,12 @@ export interface HeaderProps {
   onAuth?: (e: React.MouseEvent, item: NavItem) => void;
   /** 알림 버튼 클릭. 이 부품은 popover를 열지 않는다 — 여는 것은 화면의 일이다. */
   onNotify?: (e: React.MouseEvent) => void;
+  /** DS-68 — 스크롤로 헤더를 숨긴다(아래 8px↑ + 위치 > 헤더 높이 → 위로 밀림). 폭과 무관 — 화면이 모바일에서만 켠다. 기본 false.
+   *  모바일 메뉴가 열려 있거나 헤더 안에 포커스가 있으면 숨지 않는다. 숨으면 inert.
+   *  :root에 --mt-header-height(고정) · --mt-header-offset(보이는 높이, 숨으면 0)을 쓴다 — 이 prop과 무관하게 늘 쓴다. */
+  hideOnScroll?: boolean;
+  /** 스크롤을 읽을 대상. 기본 window. 카드 데모용. */
+  scrollContainer?: Window | HTMLElement | React.RefObject<HTMLElement>;
   style?: React.CSSProperties;
 }
 

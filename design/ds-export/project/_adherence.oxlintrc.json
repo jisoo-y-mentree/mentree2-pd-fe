@@ -43,8 +43,20 @@
         "message": "Font not provided by the design system. Available: Pretendard JP Variable."
       },
       {
+        "selector": "JSXOpeningElement[name.name='ActionBanner'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|description|actionLabel|href|onAction|layout|key|ref|className|style|children)$/]",
+        "message": "<ActionBanner> doesn't accept that prop. Declared props: title, description, actionLabel, href, onAction, layout."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ActionBanner'] > JSXAttribute[name.name='layout'] > Literal[value!=/^(?:inline|stacked)$/]",
+        "message": "<ActionBanner> layout must be one of 'inline' | 'stacked'."
+      },
+      {
         "selector": "JSXOpeningElement[name.name='AnswerCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:mentorName|mentorPhoto|country|countryLabel|activityLocation|headline|mentorProfileHref|mentorAnswersHref|body|date|liked|onLikeChange|likeCount|answerUrl|onCopyLink|accepted|isQuestionerView|onThanks|isMine|onEdit|onDelete|key|ref|className|style|children)$/]",
         "message": "<AnswerCard> doesn't accept that prop. Declared props: mentorName, mentorPhoto, country, countryLabel, activityLocation, headline, mentorProfileHref, mentorAnswersHref, body, date, liked, onLikeChange, likeCount, answerUrl, onCopyLink, accepted, isQuestionerView, onThanks, isMine, onEdit, onDelete."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ArticleBody'] > JSXAttribute > JSXIdentifier[name!=/^(?:badges|title|date|blocks|flagBase|key|ref|className|style|children)$/]",
+        "message": "<ArticleBody> doesn't accept that prop. Declared props: badges, title, date, blocks, flagBase."
       },
       {
         "selector": "JSXOpeningElement[name.name='ArticleTag'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|hue|key|ref|className|style|children)$/]",
@@ -79,8 +91,8 @@
         "message": "<BookmarkToggle> doesn't accept that prop. Declared props: selected, onChange, disabled, ariaLabel."
       },
       {
-        "selector": "JSXOpeningElement[name.name='BottomTabBar'] > JSXAttribute > JSXIdentifier[name!=/^(?:activeKey|authState|onNavigate|onAuth|style|key|ref|className|style|children)$/]",
-        "message": "<BottomTabBar> doesn't accept that prop. Declared props: activeKey, authState, onNavigate, onAuth, style."
+        "selector": "JSXOpeningElement[name.name='BottomTabBar'] > JSXAttribute > JSXIdentifier[name!=/^(?:activeKey|authState|onNavigate|onAuth|accessory|hideOnScroll|scrollContainer|style|key|ref|className|style|children)$/]",
+        "message": "<BottomTabBar> doesn't accept that prop. Declared props: activeKey, authState, onNavigate, onAuth, accessory, hideOnScroll, scrollContainer, style."
       },
       {
         "selector": "JSXOpeningElement[name.name='BottomTabBar'] > JSXAttribute[name.name='authState'] > Literal[value!=/^(?:guest|mentor|mentee)$/]",
@@ -187,8 +199,8 @@
         "message": "<Icon> doesn't accept that prop. Declared props: name, size, color, strokeUrl."
       },
       {
-        "selector": "JSXOpeningElement[name.name='IconButton'] > JSXAttribute > JSXIdentifier[name!=/^(?:icon|variant|size|ariaLabel|key|ref|className|style|children)$/]",
-        "message": "<IconButton> doesn't accept that prop. Declared props: icon, variant, size, ariaLabel."
+        "selector": "JSXOpeningElement[name.name='IconButton'] > JSXAttribute > JSXIdentifier[name!=/^(?:icon|variant|size|pressed|ariaLabel|key|ref|className|style|children)$/]",
+        "message": "<IconButton> doesn't accept that prop. Declared props: icon, variant, size, pressed, ariaLabel."
       },
       {
         "selector": "JSXOpeningElement[name.name='IconButton'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|secondary|outline|ghost)$/]",
@@ -316,7 +328,13 @@
   ],
   "x-omelette": {
     "components": {
+      "ActionBanner": {
+        "replaces": []
+      },
       "AnswerCard": {
+        "replaces": []
+      },
+      "ArticleBody": {
         "replaces": []
       },
       "ArticleTag": {
@@ -512,6 +530,7 @@
       "--green-50",
       "--green-on",
       "--green-primary",
+      "--highlight",
       "--input",
       "--muted",
       "--muted-foreground",
@@ -640,6 +659,7 @@
       "--sidebar-accent-foreground": "color",
       "--sidebar-border": "color",
       "--sidebar-ring": "color",
+      "--highlight": "color",
       "--brand-ink": "color",
       "--biz-primary": "color",
       "--biz-primary-foreground": "color",

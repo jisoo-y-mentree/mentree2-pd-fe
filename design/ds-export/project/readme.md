@@ -128,7 +128,7 @@
 - **FilterSelect** — 조건 축의 트리거+모달 한 벌(Dialog width=600). 선택지가 많아 팝오버에 안 들어가 Dialog로 간다 — 새로 만든 건 트리거와 조립뿐, Dialog·FilterChip·Chip·Button을 그대로 감싼다. 트리거는 Button sm 기하, 0개=투명+muted-foreground, 1개 이상=--muted 채움+1px --sage-400+foreground 600(green 반전 없음). 모달 안 선택은 "N개 적용하기"를 눌러야 반영(즉시 반영 없음), "초기화"는 모달만 비운다. 그룹별로 나열, 하단 요약 칩+초기화/적용 바.
 - **SearchInput** — 자동완성·최근 검색어 검색창. TagInput과 같은 골격(한 자리를 갈아끼운다) — 다른 점은 제안 줄이 상자 밖 드롭다운이라는 것. 포커스+빈값=최근 검색어(Chip md+onRemove), 입력 중=자동완성(일치 부분 --primary 600), 둘을 쌓지 않는다. 정렬·필터·개수 제한은 화면의 일.
 
-`window.MentreeDesignSystem_2f86cf`에서 읽습니다(50개). 각 컴포넌트의 `*.prompt.md` 참조.
+`window.MentreeDesignSystem_2f86cf`에서 읽습니다(62개). 각 컴포넌트의 `*.prompt.md` 참조.
 
 ### 배치 컴포넌트
 
@@ -136,9 +136,12 @@
 - **Carousel** — 범용 스크롤/스냅 컨테이너(담는 카드 종류 무관). 조작부 없음 — 화살표는 SectionHeader가 담당, Carousel은 스크롤/스냅만. gap prop 주입, 표시 개수 컨테이너 폭에 유동, 카드/1단위 스냅. ref(scrollPrev/scrollNext)·onEdgeChange로 SectionHeader 화살표 연동. 데스크톱 기본 거동만(리스폰시브는 범위 밖).
 - **CalloutBar** — 블리드 풀폭 띠(각진 radius 0). 헤더 위/아래 공지·안내·상태·경고. info(sage)·success(green)·warning(amber)·error(destructive) 4종, 옅은 배경+진한 텍스트(Badge 50/700 상속). 아이콘·인라인 링크·닫기 독립 옵션, 정렬 center/left, 2줄까지 허용.
 - **Banner** — 인라인 둥근 프로모/유도 블록(자유 영역 slot). CalloutBar와 구분(둥근 인라인). 외곽 최소 규칙만 고정(radius 22·인라인·기본 패딩 16·전체 클리커블·폰트/禁則/시맨틱 상속), 배경(과감한 색·그라데이션)·효과·레이아웃·CTA는 자유. variant 없음.
-- **BottomTabBar** — Mobile(\~768) 전용 하단 고정 4탭 네비(56 + safe-area). 멘토 찾기·Q&A 멘토링·멘트리 인사이트·MY 멘트리. HugeIcons 모노(헤더 오버레이의 컬러 SVG와 별개), 활성=green/비활성=muted, frosted(linen-50 반투명+blur) 배경+상단 sage hairline 풀블리드. Desktop(769+) 숨김. guest의 MY 탭은 로그인 유도 자리만(OPEN #9).
+- **BottomTabBar** — Mobile(\~768) 전용 하단 고정 4탭 네비(56 + safe-area). 멘토 찾기·Q&A 멘토링·멘트리 인사이트·MY 멘트리. HugeIcons 모노(헤더 오버레이의 컬러 SVG와 별개), 활성=green/비활성=muted, frosted(linen-50 반투명+blur) 배경+상단 sage hairline 풀블리드. Desktop(769+) 숨김. guest의 MY 탭은 로그인 유도 자리만(OPEN #9). DS-55: `accessory`(탭 줄 위 칸) · `hideOnScroll`(탭 줄만 숨김) · `scrollContainer`, 높이를 `--mt-bottom-bar-height`로 알린다.
+- **ActionBanner** (DS-34) — 문구 + 버튼 배너, 모양 고정(Banner는 자유 슬롯). `--green-50` 면 · 1px `--primary` · `--radius-lg`. inline / stacked, 768 이하 항상 stacked.
 
 ### 조립 카드 (프리미티브 조합)
+
+- **ArticleBody** (DS-56) — 아티클 본문. 머리(배지 국가→키워드·h1 display·날짜) + blocks(h2·p·figure), 형광펜 `--highlight` · 링크. max-width 720, 스스로 가운데 정렬하지 않는다. 아티클 상세·멘토 상세 인터뷰 탭 공용.
 
 - **MentorCard** — 세로형 멘토 카드. Badge·BookmarkToggle 조립. 카드 공통 셸(white·1px sage-200·shadow-sm·radius-lg, hover 시 shadow-md만)을 정의 — 이후 다른 카드가 상속. 카드 전체=상세 링크, 우상단 북마크=독립 클릭.
 - **QnaCard** — 미디어 없는 Q&A 텍스트 카드. 카드 기하·elevation·동심원 상속(패딩 --card-content-padding 통일). 상단 카테고리 배지 + 조회수/좋아요(무상태 카운트), 제목 h3·발췌 2줄 고정(line-clamp), 하단 답변자 AvatarGroup + "멘토 답변 N개".

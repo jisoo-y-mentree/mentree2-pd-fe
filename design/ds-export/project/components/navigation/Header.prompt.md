@@ -18,3 +18,16 @@
 - **오버레이 메뉴 정렬**: 감싸는 `nav`의 좌우 패딩은 `calc(var(--container-pad) - 8px)` — 항목의 `padding: 0 8px`는 hover 면을 넓히는 값이라 그대로 두고, 그만큼을 바깥에서 뺀다. 글자와 아이콘이 **헤더 로고와 같은 x = 16**에 서고 hover 면은 여전히 넓다.
 - **상태 분기**: `authState` guest(비로그인) / mentor / mentee.
 - 로고·기업서비스 파란색 외 배경/텍스트는 시맨틱 토큰, 禁則·Pretendard JP 상속.
+
+### DS-68 — 스크롤 숨김
+
+```jsx
+<Header activeKey="mentors" hideOnScroll={isMobile} />
+
+{/* 헤더 아래에 붙는 바 — 헤더와 같은 200ms로 따라 움직인다 */}
+<div style={{ position: "sticky", top: "var(--mt-header-offset, 0px)", transition: "top 200ms ease-out" }}>…멘토 바…</div>
+```
+
+- `hideOnScroll`(기본 `false`) — `BottomTabBar`(DS-55)와 같은 판정. 아래로 **8px** 이상 + 스크롤 위치 > 헤더 높이 → `translateY(-100%)`. 위로 8px 이상 · 위치 ≤ 헤더 높이 · 헤더 안 포커스 → 복귀. **모바일 메뉴가 열려 있으면 숨지 않는다.** 숨으면 `<header>`에 `inert`. `transform`만 200ms ease-out, `prefers-reduced-motion: reduce`면 즉시. 폭과 무관하게 동작한다 — 모바일에서만 켜는 것은 화면의 일이다.
+- `scrollContainer`(기본 `window`) — 스크롤을 읽을 대상(엘리먼트 또는 ref). 카드 데모용.
+- `:root` 변수 — `--mt-header-height` = 헤더 전체 높이(숨김과 무관, 레이아웃 계산용) · `--mt-header-offset` = 지금 보이는 높이(보이면 헤더 높이, 숨으면 0 — 헤더 아래에 붙는 요소의 `top`). `hideOnScroll`을 안 켜도 둘 다 쓴다. 헤더가 언마운트되면 지운다.

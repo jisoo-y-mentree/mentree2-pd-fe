@@ -6,8 +6,8 @@
 
 - 출처: Claude Design (radarlab 계정) — 프로젝트 이름 **`M2 Design System`**
 - 원본: 폴더 `M2 Design System`(디자이너가 zip 을 풀어 `design/` 에 놓았다. zip 은 받지 않았다)
-- **반입일: 2026-09-16**
-- 원본 해시: `4ec9a3f66119413cea712acc3ce4e5ffb409b77d51a4643018a93d5da239ce09` — **폴더 해시**다. zip 이 없어 파일별 SHA-256 목록(경로 정렬 · `.DS_Store` 제외 · 제외 전)을 다시 SHA-256 했다. 재현: `find . -type f ! -name .DS_Store -print0 | sort -z | xargs -0 shasum -a 256 | shasum -a 256`
+- **반입일: 2026-09-28**
+- 원본 해시: `e2f9d58c9470ef8e6d871da619f4aca9260706f652a209601bc0eba7c32bb1f9` — **폴더 해시**다. zip 이 없어 파일별 SHA-256 목록(경로 정렬 · `.DS_Store` 제외 · 제외 전)을 다시 SHA-256 했다. 재현: `find . -type f ! -name .DS_Store -print0 | sort -z | xargs -0 shasum -a 256 | shasum -a 256`
 
 ### 교체 이력
 
@@ -19,6 +19,30 @@
 | **2026-09-12** | `M2 Design System-handoff (6).zip` | `06a76b378765` | **`TagInput` 1본이 늘어 40본이 됐다.** ＋ `Chip` 개정. 아래 |
 | **2026-09-14** | `M2 Design System.zip` | `7649857370a5` | **40본에서 43본.** 신규 `Breadcrumb`·`FilterSelect`·`SearchInput`. 삭제 0 |
 | **2026-09-16** | 폴더 `M2 Design System` | `4ec9a3f66119`(폴더 해시) | **43본 그대로. 32본 개정.** 타입 스케일 개정 · `Select` 커스텀 리스트박스 · `Header` 3열 그리드 ＋ 로그인 상태 · guidelines 2본 신규. 아래 |
+| **2026-09-28** | 폴더 `M2 Design System` | `e2f9d58c9470`(폴더 해시) | **43본에서 45본.** 신규 `ActionBanner` · `ArticleBody` ／ 개정 `IconButton` · `BottomTabBar` · `Header` ／ 토큰 `--highlight`. 삭제 0. 아래 |
+
+### 2026-09-28 — 43본에서 45본. `mentor-detail` 이 기다리던 5건이 들어왔다
+
+**신규 2 · 개정 3 · 삭제 0.** 파일로는 228본에서 242본이다(신규 14 · 개정 17). 신규 14본 중 `a.png` 는 09-16 에 뺐던 표본 사진이다 — 아래 「표본 사진을 가르는 판정 조건」. 들어간 파일 242본은 전부 원본과 바이트가 같다.
+
+| 무엇 | 파일 | 내용 | `DS-nn` |
+|---|---|---|---|
+| **`ActionBanner`** 신규 · navigation | `.jsx` · `.d.ts` · `.prompt.md` · `.card.html` · `.demo.html` | 문구 ＋ 버튼 배너. 문구 2줄 · **`layout="stacked"` 세로형**. `href` 를 주면 그 주소로 옮긴다 | `DS-34` |
+| **`ArticleBody`** 신규 · surfaces | 같다 | 아티클 본문 — 머리(배지 · 제목 · 날짜)와 블록(소제목 · 문단 · 그림 · 캡션 · 형광펜). 본문 글자는 `--text-article` | `DS-56` |
+| 토큰 `colors.css` | — | **`--highlight`** 추가 — 형광펜. `article-detail` 의 `rgba(134, 239, 172, 0.7)` 을 oklch 로 옮긴 값 | `DS-56` |
+| **`IconButton`** 개정 | `.jsx` · `.d.ts` · `.prompt.md` · `.card.html` | **`pressed`** 추가 — 토글 버튼(`aria-pressed`). **켜지면 반전**(`--sage-900` 면 ＋ `--sage-50` 아이콘). 북마크 · 하트는 속을 채운다 | `DS-35` |
+| `BookmarkToggle.prompt.md` · `readme.md` | — | 「혼자 서는 토글은 켜지면 반전한다 · 메타 줄의 토글은 `CountToggle` 이고 반전하지 않는다」 한 줄. `readme` 의 export 수 50 → 62 | `DS-35` |
+| **`BottomTabBar`** 개정 | `.jsx` · `.d.ts` · `.prompt.md` · `.card.html` ＋ `.demo.html` 신규 | **`accessory`**(탭 줄 위에 얹는 칸) · **`hideOnScroll`** · `scrollContainer`. 높이를 `--mt-bottom-bar-height` 로 쓴다. **안 주면 이전과 같다** | `DS-55` |
+| **`Header`** 개정 | `.jsx` · `.d.ts` · `.prompt.md` ＋ `header.scroll.card.html` · `.demo.html` 신규 | **`hideOnScroll`** · `scrollContainer`. 켜지 않아도 **`--mt-header-height` · `--mt-header-offset` 을 `:root` 에 늘 쓴다**. 숨기는 것은 켠 화면만이다 | `DS-68` |
+| `_ds_bundle.js` · `_ds_manifest.json` · `_adherence.oxlintrc.json` | — | 생성물. manifest 의 components 60 → 62 · cards 54 → 57 | — |
+
+**외부 의존성은 여전히 0이다.** 45본의 `import` 가 `react` 와 서로뿐임을 실측했다.
+
+**`.demo.html` 이 새로 생겼다.** 카드가 iframe 으로 부르는 폭별 · 상태별 데모다(3본). 카드와 한 벌이라 함께 둔다.
+
+**`mentor-detail` export 의 `_ds` 사본과 같은 판이다.** 사본 235본이 이 판과 바이트가 같다. 다른 것은 `iconbutton.card.html` 1본이다. 사본 쪽이 카드를 고치기 전 판이다.
+
+**혁님 화면 5개(`qna-*` 3 · `insight-list` · `article-detail`)는 이 디렉터리를 직접 부른다.** 교체 전후로 5화면 39장을 1280 · 390 에서 찍어 대조했다 — 결과는 `mentor-detail/UI-REVIEW.md` 「`ds-export` 교체의 영향」.
 
 ### 2026-09-16 — 43본 그대로, 32본이 바뀌었다
 
@@ -118,16 +142,16 @@
 |---|---|---|
 | `project/tokens/` | 토큰 6본 — base · colors · typography · spacing · icons · fonts | ① 값의 정본 |
 | `project/styles.css` | 토큰을 묶는 진입점 | ① |
-| `project/components/` | 컴포넌트 **43본**. 각 `.jsx` ＋ `.d.ts` ＋ `.prompt.md` ＋ `.card.html` | ② 소스 |
-| `project/_ds_bundle.js` | 컴포넌트 **52 export** 번들 | ② |
+| `project/components/` | 컴포넌트 **45본**. 각 `.jsx` ＋ `.d.ts` ＋ `.prompt.md` ＋ `.card.html` | ② 소스 |
+| `project/_ds_bundle.js` | 컴포넌트 **62 export** 번들 | ② |
 | `project/_ds_manifest.json` | 컴포넌트·카드·토큰·폰트의 목록 | ② |
 | `project/guidelines/` | 원칙 18본(HTML) — 색 · 타입(역할 · 스케일 · 모바일 스케일) · 간격 · 표면 · 동심중첩 · 브랜드 ／ **`03-responsive.md` — 반응형 3구간의 통합 지침** | ③ 원칙 |
 | `project/readme.md` · `SKILL.md` | DS 전체 서술과 빠른 참조 | ③ |
-| `project/assets/` | 국기 SVG 19본 · 로고 2본 | 자산 |
+| `project/assets/` | 국기 SVG 19본 · 로고 2본 · 표본 사진 3본(`14` · `15` · `a`) | 자산 |
 | `project/ui_kits/mentree-top/` | TOP 화면 조립 예시(HTML) | ⑤ 화면 정적 |
 | `project/_adherence.oxlintrc.json` | Claude Design 쪽 lint 설정 | 참고 |
 
-컴포넌트가 40본인데 export 가 52개인 이유는 **하위 export** 때문이다. `Avatar`/`AvatarGroup`, `Card` 계열 6, `nav-ia.js` 의 `NAV_*` 4, `Field`/`FieldGroup` 이 별도로 세어진다.
+컴포넌트가 45본인데 export 가 62개인 이유는 **하위 export 17개** 때문이다. `AvatarGroup` · `Card` 하위 5 · `FieldGroup` · `TabPanel` · `nav-ia.js` 의 `NAV_*` 4 · `taxonomy.js` 의 분류 5 가 따로 세어진다(2026-09-28 manifest 로 셌다).
 
 ## 무엇을 뺐는가
 
@@ -135,7 +159,7 @@
 |---|---|---|
 | `assets/fonts/PretendardJPVariable.ttf` | 13MB | **폰트 바이너리를 리포에 넣지 않는다.** 아래 참조 |
 | `uploads/` | 13MB | **Claude Design 에 올린 입력물이 쌓이는 자리다.** 사양이 아니다. 아래 |
-| `assets/img/` | 3.9MB | **화면 표본 사진 16본.** 부품이 참조하지 않고 `insight-list/template/assets/img/` 와 같은 파일이다(2026-09-16). 사본이다 |
+| `assets/img/` | 3.9MB | **화면 표본 사진 15본.** 이 디렉터리의 어느 파일도 참조하지 않는다. 아래 「표본 사진을 가르는 판정 조건」 |
 | `ui_kits/mentree-app-legacy/` | 10.5MB | 2.0 데모다. 사양이 아니다([ADR-0004](../../docs/adr/0004-no-as-is-survey.md)) |
 
 **폰트**: `Pretendard JP Variable` 을 쓴다. 지정의 정본은 `project/tokens/fonts.css` 다. 바이너리는 위 원본 zip 에 들어 있다. 배포 방식(웹폰트 호스팅 / 번들)은 FE 가 정한다.
@@ -154,6 +178,16 @@
 | **위 둘 중 어느 것도 아니다** | **멈추고 묻는다.** 근거 없이 빼지 않는다 |
 
 **「평면 사본이다」 한 줄로 빼고 있었다**(2026-09-12 리뷰 지적). `.md` 3본에는 그 근거가 성립하지 않았다.
+
+### 표본 사진을 가르는 판정 조건
+
+**09-16 의 근거가 5본에서 깨졌다.** 그때는 「`insight-list/template/assets/img/` 에 같은 파일이 있다 — 사본이다」로 16본을 뺐다. 그 뒤 insight-list 가 `10` · `11` · `a` · `b` · `c` 를 지웠다(09-17 `6631428`). 이번 판의 `articlebody.demo.html` 은 그중 `a.png` 를 쓴다. 그래서 사본인지가 아니라 **이 디렉터리가 쓰는지**로 가른다(2026-09-28).
+
+| 판정 조건 | 아크션 |
+|---|---|
+| 부품 · 카드 · 데모 · `ui_kits` · `readme` 가 참조한다 | **남긴다.** 빼면 그 카드 · 데모의 그림이 끊긴다 — `a.png` |
+| 어느 파일도 참조하지 않는다 | **뺀다.** 화면의 사진은 그 화면의 `template/` 이 갖는다 — `1`〜`13` · `b` · `c` |
+| 09-16 에 「멈추고 묻는다」로 남겨 둔 것이다 | **그대로 둔다.** 답을 받을 때까지 옮기지 않는다 — `14` · `15` |
 
 ## 여기에 없는 것
 
