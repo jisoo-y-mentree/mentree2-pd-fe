@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"MentreeDesignSystem_2f86cf","components":[{"name":"Avatar","sourcePath":"components/core/Avatar.jsx"},{"name":"AvatarGroup","sourcePath":"components/core/Avatar.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"BookmarkToggle","sourcePath":"components/core/BookmarkToggle.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Chip","sourcePath":"components/core/Chip.jsx"},{"name":"CountToggle","sourcePath":"components/core/CountToggle.jsx"},{"name":"FilterChip","sourcePath":"components/core/FilterChip.jsx"},{"name":"FilterSelect","sourcePath":"components/core/FilterSelect.jsx"},{"name":"Icon","sourcePath":"components/core/Icon.jsx"},{"name":"IconButton","sourcePath":"components/core/IconButton.jsx"},{"name":"Checkbox","sourcePath":"components/forms/Checkbox.jsx"},{"name":"Field","sourcePath":"components/forms/Field.jsx"},{"name":"FieldGroup","sourcePath":"components/forms/Field.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"RadioGroup","sourcePath":"components/forms/RadioGroup.jsx"},{"name":"SearchInput","sourcePath":"components/forms/SearchInput.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"},{"name":"TagInput","sourcePath":"components/forms/TagInput.jsx"},{"name":"ToggleGroup","sourcePath":"components/forms/ToggleGroup.jsx"},{"name":"Banner","sourcePath":"components/navigation/Banner.jsx"},{"name":"BottomTabBar","sourcePath":"components/navigation/BottomTabBar.jsx"},{"name":"Breadcrumb","sourcePath":"components/navigation/Breadcrumb.jsx"},{"name":"CalloutBar","sourcePath":"components/navigation/CalloutBar.jsx"},{"name":"Carousel","sourcePath":"components/navigation/Carousel.jsx"},{"name":"Footer","sourcePath":"components/navigation/Footer.jsx"},{"name":"Header","sourcePath":"components/navigation/Header.jsx"},{"name":"Pagination","sourcePath":"components/navigation/Pagination.jsx"},{"name":"SectionHeader","sourcePath":"components/navigation/SectionHeader.jsx"},{"name":"Sidebar","sourcePath":"components/navigation/Sidebar.jsx"},{"name":"Tabs","sourcePath":"components/navigation/Tabs.jsx"},{"name":"TabPanel","sourcePath":"components/navigation/Tabs.jsx"},{"name":"NAV_PRIMARY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_AUTH","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_UTILITY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_DETAIL","sourcePath":"components/navigation/nav-ia.js"},{"name":"Dialog","sourcePath":"components/overlays/Dialog.jsx"},{"name":"Popover","sourcePath":"components/overlays/Popover.jsx"},{"name":"Sheet","sourcePath":"components/overlays/Sheet.jsx"},{"name":"Toast","sourcePath":"components/overlays/Toast.jsx"},{"name":"AnswerCard","sourcePath":"components/surfaces/AnswerCard.jsx"},{"name":"ArticlePreview","sourcePath":"components/surfaces/ArticlePreview.jsx"},{"name":"Card","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardHeader","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardTitle","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardDescription","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardContent","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardFooter","sourcePath":"components/surfaces/Card.jsx"},{"name":"EmptyState","sourcePath":"components/surfaces/EmptyState.jsx"},{"name":"InterviewCard","sourcePath":"components/surfaces/InterviewCard.jsx"},{"name":"MentorCard","sourcePath":"components/surfaces/MentorCard.jsx"},{"name":"QnaCard","sourcePath":"components/surfaces/QnaCard.jsx"},{"name":"Skeleton","sourcePath":"components/surfaces/Skeleton.jsx"},{"name":"Table","sourcePath":"components/surfaces/Table.jsx"},{"name":"COUNTRY_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"JOB_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"KEYWORD_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"COUNTRY_TOP","sourcePath":"components/taxonomy.js"},{"name":"JOB_TOP","sourcePath":"components/taxonomy.js"}],"sourceHashes":{"components/core/Avatar.jsx":"ba5d00839b2d","components/core/Badge.jsx":"c652777c2602","components/core/BookmarkToggle.jsx":"7ea2c991107e","components/core/Button.jsx":"8dbae76fcef4","components/core/Chip.jsx":"d7cf7e832461","components/core/CountToggle.jsx":"aca1e44ee376","components/core/FilterChip.jsx":"db672a544318","components/core/FilterSelect.jsx":"59fb7f178268","components/core/Icon.jsx":"021313e06cd9","components/core/IconButton.jsx":"6efa903d6e85","components/forms/Checkbox.jsx":"f7c99f0c94f3","components/forms/Field.jsx":"70a364e7e19c","components/forms/Input.jsx":"6bbc58864031","components/forms/RadioGroup.jsx":"f8e7f8aaa3ba","components/forms/SearchInput.jsx":"39c0fb25b4f9","components/forms/Select.jsx":"3c5febb41c06","components/forms/Switch.jsx":"f3bca0c8c43a","components/forms/TagInput.jsx":"748307e15ce8","components/forms/ToggleGroup.jsx":"c7a2bba81517","components/navigation/Banner.jsx":"897c8f74939c","components/navigation/BottomTabBar.jsx":"9a383596df56","components/navigation/Breadcrumb.jsx":"a5d10eea3061","components/navigation/CalloutBar.jsx":"3e4793b23751","components/navigation/Carousel.jsx":"b664875b96c2","components/navigation/Footer.jsx":"94d4c354b355","components/navigation/Header.jsx":"8be9c38948d5","components/navigation/Pagination.jsx":"47a61cee20d5","components/navigation/SectionHeader.jsx":"bf39d764ef2c","components/navigation/Sidebar.jsx":"d290d8096d0f","components/navigation/Tabs.jsx":"93fd0080e9ef","components/navigation/nav-ia.js":"00ab9777819d","components/overlays/Dialog.jsx":"cbc34f6a5a07","components/overlays/Popover.jsx":"4d4d1d3372cb","components/overlays/Sheet.jsx":"36f615dbd282","components/overlays/Toast.jsx":"6850f5ea9e88","components/surfaces/AnswerCard.jsx":"74e7b2d01806","components/surfaces/ArticlePreview.jsx":"b59d0810994a","components/surfaces/Card.jsx":"b7959424f7bf","components/surfaces/EmptyState.jsx":"22c03cdb98d0","components/surfaces/InterviewCard.jsx":"0a9fa24f5aa0","components/surfaces/MentorCard.jsx":"a831738bdf1a","components/surfaces/QnaCard.jsx":"3554511b5273","components/surfaces/Skeleton.jsx":"5816ddc5bd5d","components/surfaces/Table.jsx":"d6f67958bbb6","components/taxonomy.js":"c542637ad173"},"inlinedExternals":[],"unexposedExports":[{"name":"popoverMenuItemStyle","sourcePath":"components/overlays/Popover.jsx"}]} */
+/* @ds-bundle: {"format":4,"namespace":"MentreeDesignSystem_2f86cf","components":[{"name":"Avatar","sourcePath":"components/core/Avatar.jsx"},{"name":"AvatarGroup","sourcePath":"components/core/Avatar.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"BookmarkToggle","sourcePath":"components/core/BookmarkToggle.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Chip","sourcePath":"components/core/Chip.jsx"},{"name":"CountToggle","sourcePath":"components/core/CountToggle.jsx"},{"name":"FilterChip","sourcePath":"components/core/FilterChip.jsx"},{"name":"FilterSelect","sourcePath":"components/core/FilterSelect.jsx"},{"name":"Icon","sourcePath":"components/core/Icon.jsx"},{"name":"IconButton","sourcePath":"components/core/IconButton.jsx"},{"name":"Checkbox","sourcePath":"components/forms/Checkbox.jsx"},{"name":"Field","sourcePath":"components/forms/Field.jsx"},{"name":"FieldGroup","sourcePath":"components/forms/Field.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"RadioGroup","sourcePath":"components/forms/RadioGroup.jsx"},{"name":"SearchInput","sourcePath":"components/forms/SearchInput.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"},{"name":"TagInput","sourcePath":"components/forms/TagInput.jsx"},{"name":"ToggleGroup","sourcePath":"components/forms/ToggleGroup.jsx"},{"name":"ActionBanner","sourcePath":"components/navigation/ActionBanner.jsx"},{"name":"Banner","sourcePath":"components/navigation/Banner.jsx"},{"name":"BottomTabBar","sourcePath":"components/navigation/BottomTabBar.jsx"},{"name":"Breadcrumb","sourcePath":"components/navigation/Breadcrumb.jsx"},{"name":"CalloutBar","sourcePath":"components/navigation/CalloutBar.jsx"},{"name":"Carousel","sourcePath":"components/navigation/Carousel.jsx"},{"name":"Footer","sourcePath":"components/navigation/Footer.jsx"},{"name":"Header","sourcePath":"components/navigation/Header.jsx"},{"name":"Pagination","sourcePath":"components/navigation/Pagination.jsx"},{"name":"SectionHeader","sourcePath":"components/navigation/SectionHeader.jsx"},{"name":"Sidebar","sourcePath":"components/navigation/Sidebar.jsx"},{"name":"Tabs","sourcePath":"components/navigation/Tabs.jsx"},{"name":"TabPanel","sourcePath":"components/navigation/Tabs.jsx"},{"name":"NAV_PRIMARY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_AUTH","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_UTILITY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_DETAIL","sourcePath":"components/navigation/nav-ia.js"},{"name":"Dialog","sourcePath":"components/overlays/Dialog.jsx"},{"name":"Popover","sourcePath":"components/overlays/Popover.jsx"},{"name":"Sheet","sourcePath":"components/overlays/Sheet.jsx"},{"name":"Toast","sourcePath":"components/overlays/Toast.jsx"},{"name":"AnswerCard","sourcePath":"components/surfaces/AnswerCard.jsx"},{"name":"ArticleBody","sourcePath":"components/surfaces/ArticleBody.jsx"},{"name":"ArticlePreview","sourcePath":"components/surfaces/ArticlePreview.jsx"},{"name":"Card","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardHeader","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardTitle","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardDescription","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardContent","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardFooter","sourcePath":"components/surfaces/Card.jsx"},{"name":"EmptyState","sourcePath":"components/surfaces/EmptyState.jsx"},{"name":"InterviewCard","sourcePath":"components/surfaces/InterviewCard.jsx"},{"name":"MentorCard","sourcePath":"components/surfaces/MentorCard.jsx"},{"name":"QnaCard","sourcePath":"components/surfaces/QnaCard.jsx"},{"name":"Skeleton","sourcePath":"components/surfaces/Skeleton.jsx"},{"name":"Table","sourcePath":"components/surfaces/Table.jsx"},{"name":"COUNTRY_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"JOB_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"KEYWORD_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"COUNTRY_TOP","sourcePath":"components/taxonomy.js"},{"name":"JOB_TOP","sourcePath":"components/taxonomy.js"}],"sourceHashes":{"components/core/Avatar.jsx":"ba5d00839b2d","components/core/Badge.jsx":"c652777c2602","components/core/BookmarkToggle.jsx":"7ea2c991107e","components/core/Button.jsx":"8dbae76fcef4","components/core/Chip.jsx":"d7cf7e832461","components/core/CountToggle.jsx":"aca1e44ee376","components/core/FilterChip.jsx":"db672a544318","components/core/FilterSelect.jsx":"59fb7f178268","components/core/Icon.jsx":"021313e06cd9","components/core/IconButton.jsx":"c0490a7cbccf","components/forms/Checkbox.jsx":"f7c99f0c94f3","components/forms/Field.jsx":"70a364e7e19c","components/forms/Input.jsx":"6bbc58864031","components/forms/RadioGroup.jsx":"f8e7f8aaa3ba","components/forms/SearchInput.jsx":"39c0fb25b4f9","components/forms/Select.jsx":"3c5febb41c06","components/forms/Switch.jsx":"f3bca0c8c43a","components/forms/TagInput.jsx":"748307e15ce8","components/forms/ToggleGroup.jsx":"c7a2bba81517","components/navigation/ActionBanner.jsx":"5204d38dc408","components/navigation/Banner.jsx":"897c8f74939c","components/navigation/BottomTabBar.jsx":"767b55c3e3f9","components/navigation/Breadcrumb.jsx":"a5d10eea3061","components/navigation/CalloutBar.jsx":"3e4793b23751","components/navigation/Carousel.jsx":"b664875b96c2","components/navigation/Footer.jsx":"94d4c354b355","components/navigation/Header.jsx":"98c6c3bc02a8","components/navigation/Pagination.jsx":"47a61cee20d5","components/navigation/SectionHeader.jsx":"bf39d764ef2c","components/navigation/Sidebar.jsx":"d290d8096d0f","components/navigation/Tabs.jsx":"93fd0080e9ef","components/navigation/nav-ia.js":"00ab9777819d","components/overlays/Dialog.jsx":"cbc34f6a5a07","components/overlays/Popover.jsx":"4d4d1d3372cb","components/overlays/Sheet.jsx":"36f615dbd282","components/overlays/Toast.jsx":"6850f5ea9e88","components/surfaces/AnswerCard.jsx":"74e7b2d01806","components/surfaces/ArticleBody.jsx":"bffdcf112266","components/surfaces/ArticlePreview.jsx":"b59d0810994a","components/surfaces/Card.jsx":"b7959424f7bf","components/surfaces/EmptyState.jsx":"22c03cdb98d0","components/surfaces/InterviewCard.jsx":"0a9fa24f5aa0","components/surfaces/MentorCard.jsx":"a831738bdf1a","components/surfaces/QnaCard.jsx":"3554511b5273","components/surfaces/Skeleton.jsx":"5816ddc5bd5d","components/surfaces/Table.jsx":"d6f67958bbb6","components/taxonomy.js":"c542637ad173"},"inlinedExternals":[],"unexposedExports":[{"name":"popoverMenuItemStyle","sourcePath":"components/overlays/Popover.jsx"}]} */
 
 (() => {
 
@@ -1115,24 +1115,119 @@ const VARIANTS = {
   }
 };
 
+// DS-35 — 토글 상태. pressed를 주면 variant 대신 이 둘을 쓴다.
+// 혼자 서는 토글은 켜지면 반전한다 — BookmarkToggle 선택 값과 같다(--sage-900 면 + --sage-50 아이콘 + 테두리 투명).
+const PRESSED_OFF = VARIANTS.outline;
+const PRESSED_ON = {
+  background: "var(--sage-900)",
+  color: "var(--sage-50)",
+  border: "1px solid transparent"
+};
+
+// 켜지면 속을 채우는 아이콘 — HugeIcons 정적 CDN에 solid가 없어 BookmarkToggle처럼 인라인 SVG로 선↔채움을 바꾼다.
+// 그 밖의 아이콘은 채움 없이 반전 면만 바뀐다.
+const BOOKMARK_PATH = "M5 4.6C5 3.72 5.72 3 6.6 3h10.8c.88 0 1.6.72 1.6 1.6v15.5c0 .82-.92 1.3-1.58.82L12 17.4l-5.42 3.52C5.92 21.4 5 20.92 5 20.1V4.6z";
+const HEART_PATH = "M12 20.2c-.28 0-.55-.09-.78-.27C8.3 17.64 3 13.5 3 8.86 3 6.18 5.1 4 7.72 4c1.7 0 3.2.9 4.28 2.3C13.08 4.9 14.58 4 16.28 4 18.9 4 21 6.18 21 8.86c0 4.64-5.3 8.78-8.22 11.07-.23.18-.5.27-.78.27z";
+const FILLABLE = {
+  "bookmark-01": BOOKMARK_PATH,
+  "bookmark-02": BOOKMARK_PATH,
+  favourite: HEART_PATH
+};
+function ensureToggleStyle() {
+  if (typeof document === "undefined" || document.getElementById("mt-iconbutton-style")) return;
+  const s = document.createElement("style");
+  s.id = "mt-iconbutton-style";
+  s.textContent = ".mt-iconbutton-toggle:focus-visible{outline:2px solid var(--ring);outline-offset:2px;}";
+  document.head.appendChild(s);
+}
+
 /**
  * IconButton — square button with a single HugeIcons glyph. 높이는 Button과 맞춘다(sm32·md40·lg48).
+ * DS-35: pressed(boolean)를 주면 켜짐·꺼짐 토글 — false=outline, true=반전(--sage-900 면 + 아이콘 --sage-50 + 테두리 투명).
+ *  bookmark-01·bookmark-02·favourite는 켜지면 속을 채운다. aria-pressed를 단다.
+ *  hover·active·focus-visible은 BookmarkToggle과 같다. pressed를 안 주면 이전과 같다(variant 그대로).
  */
 const IconButton = React.forwardRef(function IconButton({
   icon,
   variant = "ghost",
   size = "md",
+  pressed,
   disabled = false,
   ariaLabel,
   style,
+  className,
   ...rest
 }, ref) {
   const dim = SIZES[size] || SIZES.md;
+  const iconSize = ICON[size] || ICON.md;
+  const isToggle = typeof pressed === "boolean";
+  const [hover, setHover] = React.useState(false);
+  const [down, setDown] = React.useState(false);
+  React.useEffect(() => {
+    if (isToggle) ensureToggleStyle();
+  }, [isToggle]);
+  if (isToggle) {
+    const v = pressed ? PRESSED_ON : PRESSED_OFF;
+    const path = FILLABLE[icon];
+    return /*#__PURE__*/React.createElement("button", _extends({
+      ref: ref,
+      type: "button",
+      className: "mt-iconbutton-toggle" + (className ? " " + className : ""),
+      disabled: disabled,
+      "aria-label": ariaLabel || icon,
+      "aria-pressed": pressed,
+      onMouseEnter: () => setHover(true),
+      onMouseLeave: () => {
+        setHover(false);
+        setDown(false);
+      },
+      onMouseDown: () => {
+        if (!disabled) setDown(true);
+      },
+      onMouseUp: () => setDown(false),
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: dim,
+        height: dim,
+        padding: 0,
+        borderRadius: "var(--radius-md)",
+        border: v.border,
+        color: v.color,
+        background: !pressed && hover && !disabled ? "var(--secondary)" : v.background,
+        filter: !disabled && pressed && hover ? "brightness(0.92)" : "none",
+        cursor: disabled ? "not-allowed" : "pointer",
+        opacity: disabled ? 0.5 : 1,
+        transform: down ? "translateY(0.5px)" : "none",
+        transition: "background-color 150ms ease, color 150ms ease, filter 150ms ease, transform 120ms ease",
+        ...style
+      }
+    }, rest), path ? /*#__PURE__*/React.createElement("svg", {
+      width: iconSize,
+      height: iconSize,
+      viewBox: "0 0 24 24",
+      fill: pressed ? "currentColor" : "none",
+      stroke: "currentColor",
+      strokeWidth: 1.6,
+      strokeLinejoin: "round",
+      strokeLinecap: "round",
+      "aria-hidden": "true"
+    }, /*#__PURE__*/React.createElement("path", {
+      d: path
+    })) : /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+      name: icon,
+      size: iconSize,
+      "aria-hidden": "true"
+    }));
+  }
   const v = VARIANTS[variant] || VARIANTS.ghost;
+  const ghostHover = variant === "ghost";
   return /*#__PURE__*/React.createElement("button", _extends({
     ref: ref,
     disabled: disabled,
     "aria-label": ariaLabel || icon,
+    className: className,
     style: {
       display: "inline-flex",
       alignItems: "center",
@@ -1142,12 +1237,12 @@ const IconButton = React.forwardRef(function IconButton({
       borderRadius: "var(--radius-md)",
       cursor: disabled ? "not-allowed" : "pointer",
       opacity: disabled ? 0.5 : 1,
-      transition: "background-color 150ms ease, filter 150ms ease",
+      transition: "background-color 150ms ease, color 150ms ease, filter 150ms ease",
       ...v,
       ...style
     },
     onMouseEnter: e => {
-      if (!disabled && variant === "ghost") e.currentTarget.style.background = "var(--secondary)";else if (!disabled) e.currentTarget.style.filter = "brightness(0.95)";
+      if (!disabled && ghostHover) e.currentTarget.style.background = "var(--secondary)";else if (!disabled) e.currentTarget.style.filter = "brightness(0.95)";
     },
     onMouseLeave: e => {
       e.currentTarget.style.background = v.background;
@@ -1155,7 +1250,7 @@ const IconButton = React.forwardRef(function IconButton({
     }
   }, rest), /*#__PURE__*/React.createElement(__ds_scope.Icon, {
     name: icon,
-    size: ICON[size] || ICON.md
+    size: iconSize
   }));
 });
 Object.assign(__ds_scope, { IconButton });
@@ -2030,6 +2125,100 @@ function ToggleGroup({
 Object.assign(__ds_scope, { ToggleGroup });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/ToggleGroup.jsx", error: String((e && e.message) || e) }); }
 
+// components/navigation/ActionBanner.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * ActionBanner — 문구 + 버튼 배너(DS-34). 모양이 고정이다.
+ *  Banner(자유 프로모 슬롯, 배경·효과 자유)와 다르다 — 이 부품은 면·글자·버튼 규칙이 정해져 있다.
+ *  쓰는 곳: Q&A 상세 멘토 유도 · 아티클 상세 카테고리 CTA · 멘토 상세 탭 끝 CTA.
+ *  면: --green-50 · 1px --primary · --radius-lg · 24/32.
+ *  inline(기본): 문구 좌 · Button primary md 우 · 간격 24 · 세로 가운데.
+ *  stacked: 가운데 정렬 · 문구 아래 Button primary lg · 간격 16.
+ *  ≤768: inline도 stacked로 · 안쪽 여백 20 · 버튼 폭 100%(높이 48 = lg).
+ *  href는 Button 클릭 시 이동한다(Button이 링크형을 갖지 않는다).
+ */
+
+if (typeof document !== "undefined" && !document.getElementById("mt-actionbanner-style")) {
+  const s = document.createElement("style");
+  s.id = "mt-actionbanner-style";
+  s.textContent = "@media (max-width:768px){" + ".mt-actionbanner{flex-direction:column !important;align-items:stretch !important;text-align:center !important;gap:16px !important;padding:20px !important;}" + ".mt-actionbanner-action,.mt-actionbanner-action>button{width:100% !important;}" + ".mt-actionbanner-action>button{height:48px !important;}" + "}";
+  document.head.appendChild(s);
+}
+function ActionBanner({
+  title,
+  description,
+  actionLabel,
+  href,
+  onAction,
+  layout = "inline",
+  style,
+  ...rest
+}) {
+  const stacked = layout === "stacked";
+  const click = e => {
+    if (onAction) onAction(e);
+    if (href && !e.defaultPrevented) window.location.assign(href);
+  };
+  return /*#__PURE__*/React.createElement("div", _extends({
+    className: "mt-actionbanner",
+    "data-layout": stacked ? "stacked" : "inline",
+    style: {
+      display: "flex",
+      flexDirection: stacked ? "column" : "row",
+      alignItems: "center",
+      justifyContent: stacked ? "center" : "space-between",
+      textAlign: stacked ? "center" : "left",
+      gap: stacked ? 16 : 24,
+      padding: "24px 32px",
+      boxSizing: "border-box",
+      width: "100%",
+      background: "var(--green-50)",
+      border: "1px solid var(--primary)",
+      borderRadius: "var(--radius-lg)",
+      color: "var(--foreground)",
+      fontFamily: "var(--font-sans)",
+      ...style
+    }
+  }, rest), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 4,
+      minWidth: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "var(--text-h3)",
+      fontWeight: 600,
+      lineHeight: "var(--text-h3--line-height)",
+      letterSpacing: "var(--text-h3--letter-spacing)",
+      textWrap: "balance"
+    }
+  }, title), description && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "var(--text-body)",
+      lineHeight: "var(--text-body--line-height)",
+      letterSpacing: "var(--text-body--letter-spacing)",
+      color: "var(--muted-foreground)",
+      textWrap: "pretty"
+    }
+  }, description)), actionLabel && /*#__PURE__*/React.createElement("div", {
+    className: "mt-actionbanner-action",
+    style: {
+      flex: "0 0 auto",
+      display: "flex",
+      justifyContent: "center"
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.Button, {
+    variant: "primary",
+    size: stacked ? "lg" : "md",
+    onClick: click
+  }, actionLabel)));
+}
+Object.assign(__ds_scope, { ActionBanner });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/navigation/ActionBanner.jsx", error: String((e && e.message) || e) }); }
+
 // components/navigation/Banner.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
@@ -2095,6 +2284,14 @@ try { (() => {
  * Desktop(769+)에선 렌더돼도 CSS로 숨김.
  *
  * MY 멘트리: guest는 로그인 유도 자리만(onAuth 콜백) — 로그인 후 동작은 OPEN #9.
+ *
+ * DS-55 — 위에 얹는 칸(accessory)과 스크롤 숨김(hideOnScroll).
+ *  고정 컨테이너 하나 = [accessory 칸 8/16][탭 줄 56][safe-area]. frosted·hairline은 컨테이너에 한 번만.
+ *  두 줄을 한 부품이 함께 움직인다 — 따로 두면 움직일 때 사이가 벌어진다.
+ *  숨김 = 컨테이너 translateY(56px). accessory가 safe-area 바로 위로 내려온다. 탭 줄은 inert.
+ *  탭 줄은 숨을 때 opacity도 0으로 간다 — safe-area가 있는 기기에서 탭 줄 윗부분이
+ *  safe-area 띠 안에 비쳐 보이기 때문이다(레이아웃과 무관한 속성이라 흔들림 없음).
+ *  높이(accessory + 56, safe-area 제외)를 :root의 --mt-bottom-bar-height로 쓴다 — 숨김과 무관한 고정값.
  */
 
 const TABS = [{
@@ -2118,21 +2315,91 @@ const TABS = [{
   icon: "user-circle-02",
   href: "/my"
 }];
+const TAB_ROW = 56;
+const SCROLL_DELTA = 8;
+const HEIGHT_VAR = "--mt-bottom-bar-height";
 function ensureTabBarStyle() {
   if (typeof document === "undefined" || document.getElementById("mt-tabbar-style")) return;
   const s = document.createElement("style");
   s.id = "mt-tabbar-style";
-  s.textContent = "@media (min-width:769px){.mt-tabbar{display:none !important;}}";
+  s.textContent = "@media (min-width:769px){.mt-tabbar{display:none !important;}}" + "@media (prefers-reduced-motion:reduce){.mt-tabbar,.mt-tabbar-row{transition:none !important;}}";
   document.head.appendChild(s);
 }
+function resolveTarget(sc) {
+  if (!sc) return typeof window !== "undefined" ? window : null;
+  if (sc === window || sc.nodeType === 1) return sc;
+  if ("current" in sc) return sc.current || null;
+  return null;
+}
+const readY = t => t === window ? window.scrollY || document.documentElement.scrollTop || 0 : t.scrollTop;
 function BottomTabBar({
   activeKey,
   authState = "guest",
   onNavigate,
   onAuth,
+  accessory,
+  hideOnScroll = false,
+  scrollContainer,
   style
 }) {
   React.useEffect(ensureTabBarStyle, []);
+  const [hidden, setHidden] = React.useState(false);
+  const accRef = React.useRef(null);
+  const rowRef = React.useRef(null);
+  const focusIn = React.useRef(false);
+  const hasAcc = accessory != null && accessory !== false;
+
+  // 높이 → :root 변수. accessory 높이가 바뀌면 다시 쓰고, 사라지면 지운다.
+  React.useEffect(() => {
+    const root = document.documentElement;
+    const write = () => root.style.setProperty(HEIGHT_VAR, (accRef.current ? accRef.current.offsetHeight : 0) + TAB_ROW + "px");
+    write();
+    let ro;
+    if (accRef.current && typeof ResizeObserver !== "undefined") {
+      ro = new ResizeObserver(write);
+      ro.observe(accRef.current);
+    }
+    return () => {
+      if (ro) ro.disconnect();
+      root.style.removeProperty(HEIGHT_VAR);
+    };
+  }, [hasAcc]);
+
+  // 스크롤 판정 — 8px 이상 움직였을 때만 기준점을 옮긴다(작은 흔들림은 누적).
+  React.useEffect(() => {
+    if (!hideOnScroll) {
+      setHidden(false);
+      return;
+    }
+    const t = resolveTarget(scrollContainer);
+    if (!t) return;
+    let last = readY(t);
+    const onScroll = () => {
+      const y = readY(t);
+      if (y <= TAB_ROW) {
+        setHidden(false);
+        last = y;
+        return;
+      }
+      const dy = y - last;
+      if (dy >= SCROLL_DELTA) {
+        if (!focusIn.current) setHidden(true);
+        last = y;
+      } else if (dy <= -SCROLL_DELTA) {
+        setHidden(false);
+        last = y;
+      }
+    };
+    t.addEventListener("scroll", onScroll, {
+      passive: true
+    });
+    return () => t.removeEventListener("scroll", onScroll);
+  }, [hideOnScroll, scrollContainer]);
+
+  // 숨었을 때 탭 줄 inert — 스크린리더·탭 키가 들어가지 않는다.
+  React.useEffect(() => {
+    if (rowRef.current) rowRef.current.inert = hidden;
+  }, [hidden]);
   const go = (e, tab) => {
     if (tab.key === "my" && authState === "guest") {
       // 비로그인 — 로그인 유도 (자리만; 로그인 후 동작은 OPEN #9)
@@ -2147,9 +2414,9 @@ function BottomTabBar({
       onNavigate(tab);
     }
   };
-  return /*#__PURE__*/React.createElement("nav", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "mt-tabbar",
-    "aria-label": "\uD558\uB2E8 \uD0ED \uB124\uBE44\uAC8C\uC774\uC158",
+    "data-hidden": hidden ? "true" : undefined,
     style: {
       position: "fixed",
       left: 0,
@@ -2162,12 +2429,31 @@ function BottomTabBar({
       borderTop: "1px solid var(--sage-200)",
       paddingBottom: "env(safe-area-inset-bottom, 0px)",
       fontFamily: "var(--font-sans)",
+      transform: hidden ? `translateY(${TAB_ROW}px)` : "none",
+      transition: "transform 200ms ease-out",
       ...style
     }
-  }, /*#__PURE__*/React.createElement("div", {
+  }, hasAcc && /*#__PURE__*/React.createElement("div", {
+    ref: accRef,
+    style: {
+      padding: "8px 16px"
+    }
+  }, accessory), /*#__PURE__*/React.createElement("nav", {
+    ref: rowRef,
+    className: "mt-tabbar-row",
+    "aria-label": "\uD558\uB2E8 \uD0ED \uB124\uBE44\uAC8C\uC774\uC158",
+    onFocus: () => {
+      focusIn.current = true;
+      setHidden(false);
+    },
+    onBlur: e => {
+      if (!e.currentTarget.contains(e.relatedTarget)) focusIn.current = false;
+    },
     style: {
       display: "flex",
-      height: 56
+      height: TAB_ROW,
+      opacity: hidden ? 0 : 1,
+      transition: "opacity 200ms ease-out"
     }
   }, TABS.map(tab => {
     const on = activeKey === tab.key;
@@ -3592,9 +3878,25 @@ try { (() => {
  *     GNB 바는 유지, 햄버거만 X로 토글.
  *
  *  상태 분기: authState "guest"(비로그인) / "mentor" / "mentee".
+ *
+ *  DS-68 — 스크롤 숨김(hideOnScroll). BottomTabBar(DS-55)와 같은 판정이다. 폭과 관계없이 켜면 동작한다(화면이 모바일에서만 켠다).
+ *   아래로 8px 이상 + 스크롤 위치 > 헤더 높이 → translateY(-100%). 위로 8px 이상 · 위치 ≤ 헤더 높이 · 헤더 안 포커스 → 돌아온다.
+ *   모바일 메뉴가 열려 있으면 숨지 않는다. 숨으면 <header>에 inert. transform만 200ms ease-out(reduced-motion이면 즉시).
+ *   :root에 --mt-header-height(전체 높이, 숨김과 무관한 고정값) · --mt-header-offset(지금 보이는 높이, 숨으면 0)을 쓴다.
+ *   hideOnScroll을 안 켜도 둘 다 쓴다(offset = 높이). 헤더가 사라지면 지운다.
  */
 
 const HEADER_H = 64;
+const SCROLL_DELTA = 8;
+const HEIGHT_VAR = "--mt-header-height";
+const OFFSET_VAR = "--mt-header-offset";
+function resolveTarget(sc) {
+  if (!sc) return typeof window !== "undefined" ? window : null;
+  if (sc === window || sc.nodeType === 1) return sc;
+  if ("current" in sc) return sc.current || null;
+  return null;
+}
+const readY = t => t === window ? window.scrollY || document.documentElement.scrollTop || 0 : t.scrollTop;
 function ensureHeaderStyle() {
   if (typeof document === "undefined" || document.getElementById("mt-header-style")) return;
   const s = document.createElement("style");
@@ -3603,7 +3905,8 @@ function ensureHeaderStyle() {
   "@media (max-width:1279px){.mt-header-bizbtn{display:none !important;}}", /* Mobile: 중앙 메뉴 숨김 + 칸을 2개로 줄이고 액셔부를 2번 칸으로. 중앙 칸이 0 폭이어도 gap 24가 두 번 들어가 48을 버리기 때문이다. */
   "@media (max-width:768px){.mt-header-nav{display:none !important;}.mt-header-bar{grid-template-columns:minmax(0,1fr) auto !important;gap:12px !important;}.mt-header-actions{grid-column:2 !important;}}", /* 로그인 액셔 — 평상시 면이 없고 hover·focus에서만 40 원형 면이 깔린다. 보이는 것만 달라지고 토상 여역은 항상 40×40. */
   ".mt-header-round{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;padding:0;border:none;background:transparent;border-radius:50%;cursor:pointer;color:var(--foreground);text-decoration:none;transition:background-color 120ms ease;}", ".mt-header-round:hover{background:var(--secondary);}", ".mt-header-round:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:50%;}", /* Desktop: 햄버거·오버레이 숨김 */
-  "@media (min-width:769px){.mt-header-burger{display:none !important;}.mt-header-overlay{display:none !important;}}"].join("\n");
+  "@media (min-width:769px){.mt-header-burger{display:none !important;}.mt-header-overlay{display:none !important;}}", /* DS-68: reduced-motion이면 숨김·복귀를 바로 옮긴다 */
+  "@media (prefers-reduced-motion:reduce){.mt-header{transition:none !important;}}"].join("\n");
   document.head.appendChild(s);
 }
 
@@ -3623,10 +3926,83 @@ function Header({
   onNavigate,
   onAuth,
   onNotify,
+  hideOnScroll = false,
+  scrollContainer,
   style
 }) {
   const [open, setOpen] = React.useState(false);
+  const [hidden, setHidden] = React.useState(false);
+  const headerRef = React.useRef(null);
+  const heightRef = React.useRef(HEADER_H + 1);
+  const focusIn = React.useRef(false);
+  const openRef = React.useRef(false);
+  openRef.current = open;
   React.useEffect(ensureHeaderStyle, []);
+  const isHidden = hideOnScroll && hidden && !open;
+
+  // 높이 → :root 변수. height는 고정, offset은 보이는 높이. 사라지면 지운다.
+  React.useEffect(() => {
+    const root = document.documentElement;
+    const el = headerRef.current;
+    const write = () => {
+      if (el) heightRef.current = el.offsetHeight;
+      root.style.setProperty(HEIGHT_VAR, heightRef.current + "px");
+    };
+    write();
+    let ro;
+    if (el && typeof ResizeObserver !== "undefined") {
+      ro = new ResizeObserver(() => {
+        write();
+        root.style.setProperty(OFFSET_VAR, (el.dataset.hidden ? 0 : heightRef.current) + "px");
+      });
+      ro.observe(el);
+    }
+    return () => {
+      if (ro) ro.disconnect();
+      root.style.removeProperty(HEIGHT_VAR);
+      root.style.removeProperty(OFFSET_VAR);
+    };
+  }, []);
+  React.useEffect(() => {
+    document.documentElement.style.setProperty(OFFSET_VAR, (isHidden ? 0 : heightRef.current) + "px");
+    if (headerRef.current) headerRef.current.inert = isHidden;
+  }, [isHidden]);
+
+  // 스크롤 판정 — BottomTabBar와 같다. 8px 이상 움직였을 때만 기준점을 옮긴다.
+  React.useEffect(() => {
+    if (!hideOnScroll) {
+      setHidden(false);
+      return;
+    }
+    const t = resolveTarget(scrollContainer);
+    if (!t) return;
+    let last = readY(t);
+    const onScroll = () => {
+      const y = readY(t);
+      if (y <= heightRef.current) {
+        setHidden(false);
+        last = y;
+        return;
+      }
+      const dy = y - last;
+      if (dy >= SCROLL_DELTA) {
+        if (!focusIn.current && !openRef.current) setHidden(true);
+        last = y;
+      } else if (dy <= -SCROLL_DELTA) {
+        setHidden(false);
+        last = y;
+      }
+    };
+    t.addEventListener("scroll", onScroll, {
+      passive: true
+    });
+    return () => t.removeEventListener("scroll", onScroll);
+  }, [hideOnScroll, scrollContainer]);
+
+  // 모바일 메뉴가 열리면 숨김 상태를 푼다.
+  React.useEffect(() => {
+    if (open) setHidden(false);
+  }, [open]);
 
   // 중앙 메뉴 = biz(외부 출구) 제외한 최상위 3개.
   const items = menu || __ds_scope.NAV_PRIMARY.filter(i => i.brand !== "biz");
@@ -3639,7 +4015,19 @@ function Header({
     }
   };
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("header", {
+    ref: headerRef,
+    className: "mt-header",
+    "data-hidden": isHidden ? "true" : undefined,
+    onFocus: () => {
+      focusIn.current = true;
+      setHidden(false);
+    },
+    onBlur: e => {
+      if (!e.currentTarget.contains(e.relatedTarget)) focusIn.current = false;
+    },
     style: {
+      transform: isHidden ? "translateY(-100%)" : "none",
+      transition: "transform 200ms ease-out",
       position: "sticky",
       top: 0,
       zIndex: 50,
@@ -5215,6 +5603,234 @@ function AnswerCard({
 Object.assign(__ds_scope, { AnswerCard });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/surfaces/AnswerCard.jsx", error: String((e && e.message) || e) }); }
 
+// components/surfaces/ArticleBody.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * ArticleBody — 아티클 본문(DS-56). 아티클 상세와 멘토 상세 인터뷰 탭이 같은 글을 같은 폭으로 그린다.
+ *  폭: max-width 720 · width 100%. 스스로 가운데 정렬하지 않는다 — 놓는 쪽이 정한다.
+ *  머리(선택): badges(국가→키워드) · title(h1, --text-display 600) · date(YYYY.MM.DD caption muted tabular).
+ *   가운데 정렬 · 세로 간격 16.
+ *  blocks: h2(--text-h2 600, 위40·아래16, 첫 블록 위0, id 앵커, scroll-margin-top) ·
+ *   p(--text-article, 아래24, 문자열 또는 조각 배열 — mark·link) ·
+ *   figure(16:9 cover --radius-md, 실패 시 sage placeholder = ArticlePreview와 같음, 캡션 위8 caption muted).
+ *  글자 크기는 모든 폭에서 같다(article 토큰 고정). title만 display 토큰의 반응형을 따른다.
+ */
+
+if (typeof document !== "undefined" && !document.getElementById("mt-articlebody-style")) {
+  const s = document.createElement("style");
+  s.id = "mt-articlebody-style";
+  s.textContent = ".mt-ab-link{color:var(--primary);text-decoration:underline;text-underline-offset:3px;transition:color 150ms ease;}" + ".mt-ab-link:hover{color:color-mix(in oklch, var(--primary) 72%, var(--sage-950));}" + ".mt-ab-link:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:2px;}";
+  document.head.appendChild(s);
+}
+const isExternal = href => {
+  if (!/^https?:\/\//i.test(href || "")) return false;
+  try {
+    return new URL(href).origin !== window.location.origin;
+  } catch (e) {
+    return true;
+  }
+};
+function formatDate(d) {
+  if (!d) return "";
+  if (typeof d === "string" && /^\d{4}\.\d{2}\.\d{2}$/.test(d)) return d;
+  const x = d instanceof Date ? d : new Date(d);
+  if (isNaN(x)) return String(d);
+  const p = n => String(n).padStart(2, "0");
+  return `${x.getFullYear()}.${p(x.getMonth() + 1)}.${p(x.getDate())}`;
+}
+function Inline({
+  content
+}) {
+  if (content == null) return null;
+  const parts = Array.isArray(content) ? content : [content];
+  return parts.map((c, i) => {
+    if (typeof c === "string" || typeof c === "number") return /*#__PURE__*/React.createElement(React.Fragment, {
+      key: i
+    }, c);
+    if (c && c.mark != null) {
+      return /*#__PURE__*/React.createElement("mark", {
+        key: i,
+        style: {
+          background: "var(--highlight)",
+          color: "inherit",
+          padding: "0 2px",
+          boxDecorationBreak: "clone",
+          WebkitBoxDecorationBreak: "clone"
+        }
+      }, c.mark);
+    }
+    if (c && c.link != null) {
+      const ext = isExternal(c.href);
+      return /*#__PURE__*/React.createElement("a", {
+        key: i,
+        href: c.href,
+        className: "mt-ab-link",
+        target: ext ? "_blank" : undefined,
+        rel: ext ? "noopener" : undefined
+      }, c.link);
+    }
+    return null;
+  });
+}
+function Figure({
+  src,
+  alt,
+  caption,
+  last
+}) {
+  const [err, setErr] = React.useState(false);
+  const show = src && !err;
+  return /*#__PURE__*/React.createElement("figure", {
+    style: {
+      margin: last ? 0 : "0 0 24px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "relative",
+      width: "100%",
+      aspectRatio: "16 / 9",
+      background: "var(--sage-100)",
+      borderRadius: "var(--radius-md)",
+      overflow: "hidden"
+    }
+  }, show ? /*#__PURE__*/React.createElement("img", {
+    src: src,
+    alt: alt || "",
+    onError: () => setErr(true),
+    style: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      display: "block"
+    }
+  }) : /*#__PURE__*/React.createElement("span", {
+    role: alt ? "img" : undefined,
+    "aria-label": alt || undefined,
+    style: {
+      position: "absolute",
+      inset: 0,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "var(--sage-400)"
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: "image-01",
+    size: 30
+  }))), caption && /*#__PURE__*/React.createElement("figcaption", {
+    style: {
+      marginTop: 8,
+      fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
+      color: "var(--muted-foreground)"
+    }
+  }, caption));
+}
+function ArticleBody({
+  badges,
+  title,
+  date,
+  blocks = [],
+  flagBase,
+  style,
+  ...rest
+}) {
+  const badgeList = Array.isArray(badges) ? [...badges.filter(b => b.type === "country"), ...badges.filter(b => b.type !== "country")] : [];
+  const hasHead = badgeList.length > 0 || title || date;
+  return /*#__PURE__*/React.createElement("div", _extends({
+    style: {
+      maxWidth: 720,
+      width: "100%",
+      boxSizing: "border-box",
+      color: "var(--foreground)",
+      fontFamily: "var(--font-sans)",
+      ...style
+    }
+  }, rest), hasHead && /*#__PURE__*/React.createElement("header", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      gap: 16,
+      textAlign: "center",
+      marginBottom: blocks.length ? 40 : 0
+    }
+  }, badgeList.length > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "center",
+      gap: 6
+    }
+  }, badgeList.map((b, i) => b.type === "country" ? /*#__PURE__*/React.createElement(__ds_scope.Badge, _extends({
+    key: i,
+    size: "md",
+    leading: "flag",
+    flag: b.flag
+  }, flagBase ? {
+    flagBase
+  } : {}), b.label) : /*#__PURE__*/React.createElement(__ds_scope.Badge, {
+    key: i,
+    size: "md"
+  }, b.label))), title && /*#__PURE__*/React.createElement("h1", {
+    style: {
+      margin: 0,
+      fontSize: "var(--text-display)",
+      fontWeight: 600,
+      lineHeight: "var(--text-display--line-height)",
+      letterSpacing: "var(--text-display--letter-spacing)",
+      textWrap: "balance"
+    }
+  }, title), date && /*#__PURE__*/React.createElement("time", {
+    style: {
+      fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
+      color: "var(--muted-foreground)",
+      fontVariantNumeric: "tabular-nums"
+    }
+  }, formatDate(date))), blocks.map((b, i) => {
+    const first = i === 0;
+    const last = i === blocks.length - 1;
+    if (b.type === "h2") {
+      return /*#__PURE__*/React.createElement("h2", {
+        key: i,
+        id: b.id,
+        style: {
+          margin: `${first ? 0 : 40}px 0 ${last ? 0 : 16}px`,
+          fontSize: "var(--text-h2)",
+          fontWeight: 600,
+          lineHeight: "var(--text-h2--line-height)",
+          letterSpacing: "var(--text-h2--letter-spacing)",
+          scrollMarginTop: "var(--article-anchor-offset, 104px)"
+        }
+      }, b.text);
+    }
+    if (b.type === "figure") return /*#__PURE__*/React.createElement(Figure, _extends({
+      key: i
+    }, b, {
+      last: last
+    }));
+    return /*#__PURE__*/React.createElement("p", {
+      key: i,
+      style: {
+        margin: last ? 0 : "0 0 24px",
+        fontSize: "var(--text-article)",
+        fontWeight: 400,
+        lineHeight: "var(--text-article--line-height)",
+        letterSpacing: "var(--text-article--letter-spacing)",
+        textWrap: "pretty"
+      }
+    }, /*#__PURE__*/React.createElement(Inline, {
+      content: b.content
+    }));
+  }));
+}
+Object.assign(__ds_scope, { ArticleBody });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/surfaces/ArticleBody.jsx", error: String((e && e.message) || e) }); }
+
 // components/surfaces/ArticlePreview.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
@@ -6768,6 +7384,8 @@ __ds_ns.TagInput = __ds_scope.TagInput;
 
 __ds_ns.ToggleGroup = __ds_scope.ToggleGroup;
 
+__ds_ns.ActionBanner = __ds_scope.ActionBanner;
+
 __ds_ns.Banner = __ds_scope.Banner;
 
 __ds_ns.BottomTabBar = __ds_scope.BottomTabBar;
@@ -6809,6 +7427,8 @@ __ds_ns.Sheet = __ds_scope.Sheet;
 __ds_ns.Toast = __ds_scope.Toast;
 
 __ds_ns.AnswerCard = __ds_scope.AnswerCard;
+
+__ds_ns.ArticleBody = __ds_scope.ArticleBody;
 
 __ds_ns.ArticlePreview = __ds_scope.ArticlePreview;
 

@@ -1,0 +1,24 @@
+<!-- @dsCard group="Navigation" viewport="1280x860" name="Header · 스크롤 숨김" subtitle="DS-68 hideOnScroll — 아래로 숨고 위로 나온다 · --mt-header-offset을 따라가는 띠 · 메뉴 열림엔 숨지 않음 · 390 실제 뷰포트 iframe" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+html,body{margin:0}
+body{background:var(--sage-50);font-family:var(--font-sans);color:var(--foreground);padding:24px}
+.grid{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+.cell{display:flex;flex-direction:column;gap:8px;max-width:100%;overflow-x:auto}
+.cap{font-size:var(--text-caption);line-height:var(--text-caption--line-height);color:var(--muted-foreground);max-width:390px}
+iframe{display:block;width:390px;height:760px;box-sizing:content-box;border:0;outline:1px solid var(--sage-200);border-radius:var(--radius-md);background:var(--background)}
+@media (max-width:480px){body{padding:24px 0}.cap{padding:0 16px}}
+</style>
+</head>
+<body>
+<div class="grid">
+<div class="cell"><div class="cap">① 390 폰 틀 스크롤 — scrollContainer · 아래로 8px↑ + 위치 &gt; 헤더 높이면 translateY(-100%) · 위로 8px↑면 복귀</div><iframe src="header.scroll.demo.html?state=1" title="Header 스크롤 숨김"></iframe></div>
+<div class="cell"><div class="cap">② 헤더 아래에 붙는 띠 — top: var(--mt-header-offset) + 같은 200ms로 헤더를 따라 올라간다</div><iframe src="header.scroll.demo.html?state=2" title="Header 아래 띠"></iframe></div>
+<div class="cell"><div class="cap">③ 모바일 메뉴를 연 채로 스크롤 — 숨지 않는다</div><iframe src="header.scroll.demo.html?state=3" title="Header 메뉴 열림"></iframe></div>
+</div>
+</body>
+</html>

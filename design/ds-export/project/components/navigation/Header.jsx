@@ -29,9 +29,26 @@ import { NAV_PRIMARY } from "./nav-ia.js";
  *     GNB 바는 유지, 햄버거만 X로 토글.
  *
  *  상태 분기: authState "guest"(비로그인) / "mentor" / "mentee".
+ *
+ *  DS-68 — 스크롤 숨김(hideOnScroll). BottomTabBar(DS-55)와 같은 판정이다. 폭과 관계없이 켜면 동작한다(화면이 모바일에서만 켠다).
+ *   아래로 8px 이상 + 스크롤 위치 > 헤더 높이 → translateY(-100%). 위로 8px 이상 · 위치 ≤ 헤더 높이 · 헤더 안 포커스 → 돌아온다.
+ *   모바일 메뉴가 열려 있으면 숨지 않는다. 숨으면 <header>에 inert. transform만 200ms ease-out(reduced-motion이면 즉시).
+ *   :root에 --mt-header-height(전체 높이, 숨김과 무관한 고정값) · --mt-header-offset(지금 보이는 높이, 숨으면 0)을 쓴다.
+ *   hideOnScroll을 안 켜도 둘 다 쓴다(offset = 높이). 헤더가 사라지면 지운다.
  */
 
 const HEADER_H = 64;
+const SCROLL_DELTA = 8;
+const HEIGHT_VAR = "--mt-header-height";
+const OFFSET_VAR = "--mt-header-offset";
+
+function resolveTarget(sc) {
+  if (!sc) return typeof window !== "undefined" ? window : null;
+  if (sc === window || sc.nodeType === 1) return sc;
+  if ("current" in sc) return sc.current || null;
+  return null;
+}
+const readY = (t) => (t === window ? window.scrollY || document.documentElement.scrollTop || 0 : t.scrollTop);
 
 function ensureHeaderStyle() {
   if (typeof document === "undefined" || document.getElementById("mt-header-style")) return;
@@ -48,6 +65,8 @@ function ensureHeaderStyle() {
     ".mt-header-round:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:50%;}",
     /* Desktop: 햄버거·오버레이 숨김 */
     "@media (min-width:769px){.mt-header-burger{display:none !important;}.mt-header-overlay{display:none !important;}}",
+    /* DS-68: reduced-motion이면 숨김·복귀를 바로 옮긴다 */
+    "@media (prefers-reduced-motion:reduce){.mt-header{transition:none !important;}}",
   ].join("\n");
   document.head.appendChild(s);
 }
@@ -65,10 +84,55 @@ export function Header({
   onNavigate,
   onAuth,
   onNotify,
+  hideOnScroll = false,
+  scrollContainer,
   style,
 }) {
   const [open, setOpen] = React.useState(false);
+  const [hidden, setHidden] = React.useState(false);
+  const headerRef = React.useRef(null);
+  const heightRef = React.useRef(HEADER_H + 1);
+  const focusIn = React.useRef(false);
+  const openRef = React.useRef(false);
+  openRef.current = open;
   React.useEffect(ensureHeaderStyle, []);
+
+  const isHidden = hideOnScroll && hidden && !open;
+
+  // 높이 → :root 변수. height는 고정, offset은 보이는 높이. 사라지면 지운다.
+  React.useEffect(() => {
+    const root = document.documentElement;
+    const el = headerRef.current;
+    const write = () => { if (el) heightRef.current = el.offsetHeight; root.style.setProperty(HEIGHT_VAR, heightRef.current + "px"); };
+    write();
+    let ro;
+    if (el && typeof ResizeObserver !== "undefined") { ro = new ResizeObserver(() => { write(); root.style.setProperty(OFFSET_VAR, (el.dataset.hidden ? 0 : heightRef.current) + "px"); }); ro.observe(el); }
+    return () => { if (ro) ro.disconnect(); root.style.removeProperty(HEIGHT_VAR); root.style.removeProperty(OFFSET_VAR); };
+  }, []);
+  React.useEffect(() => {
+    document.documentElement.style.setProperty(OFFSET_VAR, (isHidden ? 0 : heightRef.current) + "px");
+    if (headerRef.current) headerRef.current.inert = isHidden;
+  }, [isHidden]);
+
+  // 스크롤 판정 — BottomTabBar와 같다. 8px 이상 움직였을 때만 기준점을 옮긴다.
+  React.useEffect(() => {
+    if (!hideOnScroll) { setHidden(false); return; }
+    const t = resolveTarget(scrollContainer);
+    if (!t) return;
+    let last = readY(t);
+    const onScroll = () => {
+      const y = readY(t);
+      if (y <= heightRef.current) { setHidden(false); last = y; return; }
+      const dy = y - last;
+      if (dy >= SCROLL_DELTA) { if (!focusIn.current && !openRef.current) setHidden(true); last = y; }
+      else if (dy <= -SCROLL_DELTA) { setHidden(false); last = y; }
+    };
+    t.addEventListener("scroll", onScroll, { passive: true });
+    return () => t.removeEventListener("scroll", onScroll);
+  }, [hideOnScroll, scrollContainer]);
+
+  // 모바일 메뉴가 열리면 숨김 상태를 푼다.
+  React.useEffect(() => { if (open) setHidden(false); }, [open]);
 
   // 중앙 메뉴 = biz(외부 출구) 제외한 최상위 3개.
   const items = menu || NAV_PRIMARY.filter((i) => i.brand !== "biz");
@@ -82,7 +146,14 @@ export function Header({
   return (
     <>
     <header
+      ref={headerRef}
+      className="mt-header"
+      data-hidden={isHidden ? "true" : undefined}
+      onFocus={() => { focusIn.current = true; setHidden(false); }}
+      onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) focusIn.current = false; }}
       style={{
+        transform: isHidden ? "translateY(-100%)" : "none",
+        transition: "transform 200ms ease-out",
         position: "sticky",
         top: 0,
         zIndex: 50,
