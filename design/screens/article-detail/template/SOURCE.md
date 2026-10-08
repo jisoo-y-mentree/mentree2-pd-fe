@@ -4,7 +4,7 @@
 - 원본: export 폴더 `Mentree 2.0 Insight feed`(20장 · **3판 2026-09-17 14:09** · 2판 09-17 11:14 · 1판 09-16 16:05)
 - **생성일: 2026-09-17**
 - 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md) — §1~11 확정 2026-09-16
-- 디자인 시스템: `ds-export/` 의 **2026-09-16 판**(폴더 해시 `4ec9a3f66119`). export 의 사본과 같은 판이다 — [insight-list 의 SOURCE.md](../../insight-list/template/SOURCE.md) 「디자인 시스템이 어긋났었다」
+- 디자인 시스템: `ds-export/` 의 **2026-09-16 판**(폴더 해시 `4ec9a3f66119`). export 의 사본과 같은 판이다 — [insight-list 의 SOURCE.md](../../insight-list/template/SOURCE.md) 「디자인 시스템이 어긋났었다」. **2026-10-08 에 `ds-export/` 가 52본 판(zip SHA-256 `5424904758ba`)으로 교체됐다**(PR #37). 이 template 은 그 번들로 그려진다. 이 판에 있던 부품은 전부 그대로다
 
 ## 무엇이 들어 있나
 
@@ -26,7 +26,7 @@
 
 ## 손댄 곳
 
-[`place-insight.sh`](../../../_import/place-insight.sh)(커밋 안 됨)가 경로만 돌렸다. **2판에서는 스타일을 손대지 않았다.** 1판 때 댔던 참여 멘토 줄의 두 패치(`!important` 1열 · `overflow-x:auto`)는 원본이 `Carousel` 로 바뀌어 필요가 없어졌고 스크립트에서도 지웠다.
+`place-insight.sh`(커밋 안 됨)가 경로만 돌렸다. **2판에서는 스타일을 손대지 않았다.** 1판 때 댔던 참여 멘토 줄의 두 패치(`!important` 1열 · `overflow-x:auto`)는 원본이 `Carousel` 로 바뀌어 필요가 없어졌고 스크립트에서도 지웠다.
 
 | 무엇 | 원본 | 리포 |
 |---|---|---|

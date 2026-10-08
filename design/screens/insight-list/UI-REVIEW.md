@@ -19,7 +19,7 @@
 | 「국가」 필터 → 「일본」 → 「1개 적용하기」 | 칩 「일본」 ＋ 「필터 초기화」가 생기고 카드 10장 → 5장 | **OK** |
 | 검색창에 「비자」 ＋ Enter | 칩 「검색: 비자」 ＋ 카드 1장 | **OK** |
 | 정렬 「오래된순」 | 첫 카드가 「2026년 일본 취업을…」 → 「사이보즈 백엔드 엔지니어…」 | **OK**(export 번들) |
-| 페이지 「2」 | 현재 표시 1 → 2 | **OK.** 단 카드가 그대로다 — 스크립트가 늘 앞 10장을 자른다. 표본이 12장이라 2장이 보여야 맞다 → [insight-round2](../../_import/prompts/insight-round2.md) 4 |
+| 페이지 「2」 | 현재 표시 1 → 2 | **OK.** 단 카드가 그대로다 — 스크립트가 늘 앞 10장을 자른다. 표본이 12장이라 2장이 보여야 맞다 → `insight-round2`(`_import/prompts/insight-round2.md` · 커밋 안 됨) 4 |
 | 카테고리 4항목 | `insight-list-all` · `-insight` · `-event` · `-interview` 로 | **OK** |
 | 카드 10장의 링크 | 인사이트 6 → `article-detail-insight` · 이벤트 3 → `-event` · 인터뷰 1 → `-interview` | **OK.** 카테고리에 맞는 상세로 간다 |
 | 375 의 카테고리 | `Tabs` 4개 | **OK** |
@@ -66,7 +66,7 @@
 
 ## 다음 export 때 고칠 것
 
-[insight-round2.md](../../_import/prompts/insight-round2.md) — 페이지별 카드 자르기(4) · `lang` · `title`(6) · 검색창 · 정렬의 접근 이름(7). 급하지 않다.
+`insight-round2.md`(`_import/prompts/insight-round2.md` · 커밋 안 됨) — 페이지별 카드 자르기(4) · `lang` · `title`(6) · 검색창 · 정렬의 접근 이름(7). 급하지 않다.
 
 ## DS 교체 뒤 — 2026-09-16 16:38
 
@@ -90,7 +90,7 @@
 | 1판에서 되던 것 | 스크랩 · 필터 적용 · 검색 Enter · 정렬 · 카테고리 · 카드 → 상세 · 모바일 탭 4 — 그대로 → **OK** |
 | 가로 넘침 | 1280 · 1024 · 768 · 375 전부 0 → **OK** |
 
-**배치 때 스타일 한 줄을 댔다** — 카테고리 `aside` 에 `position:sticky;top:96px;align-self:flex-start`(상혁 2026-09-17 「스크롤하면 따라오게」). 1500px 내린 뒤 aside 의 위가 96 에 붙는 것을 재서 확인했다. 원본 고침은 [insight-round3](../../_import/prompts/insight-round3.md) 1 이다.
+**배치 때 스타일 한 줄을 댔다** — 카테고리 `aside` 에 `position:sticky;top:96px;align-self:flex-start`(상혁 2026-09-17 「스크롤하면 따라오게」). 1500px 내린 뒤 aside 의 위가 96 에 붙는 것을 재서 확인했다. 원본 고침은 `insight-round3`(`_import/prompts/insight-round3.md` · 커밋 안 됨) 1 이다.
 
 **표본 썸네일이 바뀌었다.** 사진 16본 중 11본만 참조한다. 참조하지 않는 5본은 template 에서 빠졌다.
 

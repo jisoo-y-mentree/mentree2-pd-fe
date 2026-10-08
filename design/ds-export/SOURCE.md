@@ -24,7 +24,7 @@
 
 ### 2026-10-08 — 45본에서 52본. `mentor-detail` 편집 면의 미구현 4건과 `DS-57` 이 들어왔다
 
-**신규 7 · 개정 12 · 삭제 0.** 파일로는 242본에서 **275본**이다(신규 33 · 개정 39). 들어간 파일은 전부 원본과 바이트가 같다. 리포에만 있는 `ui_kits/mentree-top/index.html` 1본은 **이 판의 zip 에 없다** — `readme.md` 와 `SKILL.md` 가 여전히 「TOP 화면 recreation, canon」으로 가리키므로 남긴다. 다음 export 에도 없으면 묻는다.
+**신규 7 · 개정 12 · 삭제 0.** 파일로는 242본에서 **275본**이다(신규 33 · 개정 39). 들어간 파일은 전부 원본과 바이트가 같다. 리포에만 있는 파일은 0 이다. `ui_kits/mentree-top/index.html` 은 zip 에 있고 리포와 바이트가 같다(SHA-256 `b57f9aaa8365`). 배치 때 「zip 에 없다」고 잘못 적었다가 리뷰(#37)에서 바로잡았다 — 대조 스크립트가 zip 쪽 `ui_kits/` 를 통째로 빼고 셌다.
 
 | 무엇 | 파일 | 내용 | `DS-nn` |
 |---|---|---|---|
@@ -180,7 +180,7 @@
 | `project/guidelines/` | 원칙 18본(HTML) — 색 · 타입(역할 · 스케일 · 모바일 스케일) · 간격 · 표면 · 동심중첩 · 브랜드 ／ **`03-responsive.md` — 반응형 3구간의 통합 지침** | ③ 원칙 |
 | `project/readme.md` · `SKILL.md` | DS 전체 서술과 빠른 참조 | ③ |
 | `project/assets/` | 국기 SVG 19본 · 로고 2본 · 표본 사진 4본(`1` · `14` · `15` · `a`) | 자산 |
-| `project/ui_kits/mentree-top/` | TOP 화면 조립 예시(HTML). **10-08 zip 에는 없다** — readme 가 canon 으로 가리켜 리포의 것을 남겼다 | ⑤ 화면 정적 |
+| `project/ui_kits/mentree-top/` | TOP 화면 조립 예시(HTML) | ⑤ 화면 정적 |
 | `project/_adherence.oxlintrc.json` | Claude Design 쪽 lint 설정 | 참고 |
 
 컴포넌트가 52본인데 export 가 69개인 이유는 **하위 export 17개** 때문이다. `AvatarGroup` · `Card` 하위 5 · `FieldGroup` · `TabPanel` · `nav-ia.js` 의 `NAV_*` 4 · `taxonomy.js` 의 분류 5 가 따로 세어진다(2026-10-08 manifest 로 셌다).

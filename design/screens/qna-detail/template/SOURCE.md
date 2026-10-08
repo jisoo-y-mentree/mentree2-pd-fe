@@ -8,7 +8,7 @@
 
 ## 무엇이 들어 있나
 
-**15장.** normal · questioner · mentor · mentor-answers · questioner-empty · modal-answer-submit · empty · loading · error ＋ 간단보기 패널 **6장** — side · **side-questioner** · **side-questioner-empty** · **side-mentor** · **side-mentor-answers** · **side-empty**(10-08 export 에서 5장이 새로 왔다 — 관점 4종 ＋ 0건을 패널에서도 가른다). 멘토의 답변 작성 카드는 등록 버튼이 카드 안에 든다(`qna-mobile.md` 2판)
+**15장.** 전체 페이지 **9장** — normal · questioner · mentor · mentor-answers · questioner-empty · modal-answer-submit · empty · loading · error. 간단보기 패널 **6장** — side · side-questioner · side-questioner-empty · side-mentor · side-mentor-answers · side-empty. 패널 5장은 10-08 export 에서 새로 왔다 — 관점 4종과 0건을 패널에서도 가른다. 멘토의 답변 작성 카드는 등록 버튼이 카드 안에 든다(`qna-mobile.md` 2판)
 
 **파일마다 화면 상태가 하나다.** 화면 상태(로딩·0건·에러·관점)를 갈아끼우는 JS 는 없다. **부품 인터랙션의 상태(도움돼요·스크랩·탭·전환·셀렉트·페이지·팝오버·토스트)는 페이지 스크립트가 든다**(2026-09-15 · 상혁 지시). DS 부품은 전부 제어형이라 화면이 `selected`·`value` 와 `onChange` 를 넘겨야 반응한다. 1판은 아무것도 안 넘겨 눌러도 반응이 없었다.
 

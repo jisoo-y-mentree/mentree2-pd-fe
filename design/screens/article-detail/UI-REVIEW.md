@@ -11,7 +11,7 @@
 
 ## 결함 2건 — 배치 때 고쳤다
 
-**둘 다 참여 멘토 4장(이벤트 기사 A형)이다.** 스타일 조정 범위라 배치 스크립트가 고쳤고 원본 고침은 [insight-round2](../../_import/prompts/insight-round2.md) 1 이다.
+**둘 다 참여 멘토 4장(이벤트 기사 A형)이다.** 스타일 조정 범위라 배치 스크립트가 고쳤고 원본 고침은 `insight-round2`(`_import/prompts/insight-round2.md` · 커밋 안 됨) 1 이다.
 
 | # | 무엇 | 실측 | 원인 | 고친 것 |
 |---|---|---|---|---|
@@ -78,7 +78,7 @@
 
 ## 다음 export 때 고칠 것
 
-[insight-round2.md](../../_import/prompts/insight-round2.md) — 참여 멘토 · 관련 아티클 `Carousel`(1 · 2) · 「목록으로 돌아가기」(3) · 임시 문구 표시(5) · `lang` · `title`(6). 급하지 않다.
+`insight-round2.md`(`_import/prompts/insight-round2.md` · 커밋 안 됨) — 참여 멘토 · 관련 아티클 `Carousel`(1 · 2) · 「목록으로 돌아가기」(3) · 임시 문구 표시(5) · `lang` · `title`(6). 급하지 않다.
 
 ## DS 교체 뒤 — 2026-09-16 16:38
 
@@ -106,7 +106,7 @@
 
 **1판 때 배치 스크립트가 댄 참여 멘토 줄의 두 패치는 지웠다.** 원본이 `Carousel` 이라 필요가 없다.
 
-**구독 카드 — 상혁이 「구현 안 된 것 같다」고 봤다(2026-09-17).** 헤드리스 프로브에서는 1 · 2판 모두 75% 스크롤에서 떴다. 뜨지 않는 자리는 둘이다 — ① 화면이 `window` 가 아니라 안쪽 상자에서 스크롤되는 곳(Claude Design 미리보기)에서는 `window` 의 `scroll` 이 안 와서 70% 를 못 잰다 ② ✕ 를 한 번 누르면 `sessionStorage` 가 그 탭의 어느 글에서도 다시 안 띄운다. `IntersectionObserver` 표지 ＋ 글 단위 닫기 기억으로 바꾸는 것을 [insight-round3](../../_import/prompts/insight-round3.md) 2 에 적었다.
+**구독 카드 — 상혁이 「구현 안 된 것 같다」고 봤다(2026-09-17).** 헤드리스 프로브에서는 1 · 2판 모두 75% 스크롤에서 떴다. 뜨지 않는 자리는 둘이다 — ① 화면이 `window` 가 아니라 안쪽 상자에서 스크롤되는 곳(Claude Design 미리보기)에서는 `window` 의 `scroll` 이 안 와서 70% 를 못 잰다 ② ✕ 를 한 번 누르면 `sessionStorage` 가 그 탭의 어느 글에서도 다시 안 띄운다. `IntersectionObserver` 표지 ＋ 글 단위 닫기 기억으로 바꾸는 것을 `insight-round3`(`_import/prompts/insight-round3.md` · 커밋 안 됨) 2 에 적었다.
 
 ## 3판 감사 — 2026-09-17 14:09 export
 
