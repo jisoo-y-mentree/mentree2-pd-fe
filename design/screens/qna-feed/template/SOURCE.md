@@ -1,14 +1,16 @@
 # template 의 출처
 
 - Claude Design: 프로젝트 **`Mentree 2.0 Q&A Feed`**(radarlab 계정). 공개 공유 링크는 적지 않는다([ADR-0002](../../../../docs/adr/0002-rebuild-design-system-instead-of-sharing.md))
-- 원본: `Mentree 2.0 Q&A Feed.zip`(2판 · SHA-256 `783b7ee37ee0` · `design/_import/export-1008/Mentree 2.0 Q&A Feed (2).zip` 으로 옮겼다)
-- **생성일: 2026-10-08 18:28**(1판 2026-09-14 · 링크판 2026-09-14 밤 · Figma 대조판 2026-09-15 · 모바일 2판 2026-10-08 16:16 · **Figma 개정판 `1646:33282` 2026-10-08 18:28** — 프롬프트 `_import/prompts/qna-feed-figma-1008.md`)
+- 원본: `Mentree 2.0 Q&A Feed (1).zip`(3판 · SHA-256 `45c25d6a949d` · `design/_import/export-1008/Mentree 2.0 Q&A Feed (3).zip` 으로 옮겼다. 2판은 `(2).zip` · `783b7ee37ee0`)
+- **생성일: 2026-10-08 18:28**(1판 2026-09-14 · 링크판 2026-09-14 밤 · Figma 대조판 2026-09-15 · 모바일 2판 2026-10-08 16:16 · **Figma 개정판 `1646:33282` 2026-10-08 18:28** — 프롬프트 `_import/prompts/qna-feed-figma-1008.md` · **3판 19:03** — 디자이너가 Claude Design 에서 직접 고쳤다)
 - 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md) — 2026-10-08 개정(§4 · §6〜§9 를 Figma 개정판으로 다시 썼다)
 - 디자인 시스템: 이 export 의 `_ds` 사본은 **09-16 판**(43본 · 번들 247,136바이트)이다. 같은 PR 에서 `ds-export/` 를 **2026-10-08 판**(52본 · SHA-256 `5424904758ba` · 번들 368,536바이트)으로 교체했고, 이 template 은 **그 번들로 그려진다.** 09-16 판에 있던 부품은 전부 그대로 있다
 
 ## 무엇이 들어 있나
 
 **7장.** normal · loading · empty · error · **search**(검색 결과) · **widget-empty**(추천 0건) · **mentor**(멘토 피드). **Figma 개정판(2026-10-08 18:28)으로 7장 전부가 바뀌었다** — 히어로 박스 · 전폭 탭 · 한 줄 검색 ＋ 결과 줄 · `QnaListItem` 행 ＋ 「New」 · 무한 스크롤 ＋ 스켈레톤 ＋ 「맨 위로」 · 우측 셋(추천 3건 · 태그 · 2링크 바) · 목록 끝 `ActionBanner`. 디자인 시스템을 바이패스한 자리는 `.qf-` 접두사 CSS 한 블록이다(`DS-82`〜`85`). 09-15 의 모바일 탭 3개는 없어졌다.
+
+**3판(19:03)에서 디자이너가 직접 고친 것** — 2판을 Figma 와 대조해 Claude Code 가 「Figma 대로」라고 한 판정이 틀렸던 자리다: ① 행 머리의 국가 · 키워드가 **상자 없는 글자 ＋ 아이콘**(Figma 대로. 2판은 `Badge` 상자였다) ② 해시태그 `Chip` 면이 **green/100 · 글자 green/950** ③ 히어로 글의 최대 폭 560 ④ 태그 박스의 간격 · 2링크 바 면색 ⑤ React · ReactDOM 을 unpkg 에서 `integrity` 와 함께 받는 `<script>` 2줄. **키워드 아이콘은 `cdn.jsdelivr.net/npm/@hugeicons/static` 에서 CSS mask 로 받는다** — 오프라인 렌더에는 안 보이고, 부품(`DS-84`)이 맡으면 없어질 임시 경로다.
 
 **`widget-empty` 의 뜻이 바뀌었다** — 「내 질문 0건」이 아니라 「추천 Q&A 0건」이다. 파일 이름은 그대로 둔다.
 

@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -21,7 +23,7 @@
     a { color: var(--primary); text-decoration: none; }
     a:hover { color: color-mix(in oklch, var(--primary) 82%, var(--sage-950)); }
     /* 0. 색 — Figma 그린 스케일 + 주황 악센트(DS-82 · DS-04) */
-    .qf-shell { --primary: #15803D; --primary-foreground: #F0FDF4; --green-50: #F5FAF6; --green-100: #E7F4E9; --qf-accent: #F97316; --qf-accent-soft: #FFF7ED; --qf-ink-deep: #052E16; }
+    .qf-shell { --primary: #15803D; --primary-foreground: #F0FDF4; --green-50: #F5FAF6; --green-100: #E7F4E9; --muted: #F5FAF6; --sage-100: #F5FAF6; --qf-accent: #F97316; --qf-accent-soft: #FFF7ED; --qf-ink-deep: #052E16; }
     .qf-only-mobile { display: none !important; }
     /* 2. 전폭 탭 — Tabs 의 fill 변형(DS-28) */
     .qf-tabs .mt-tabs-list { gap: 0 !important; border-bottom: 0 !important; overflow: visible !important; }
@@ -38,9 +40,21 @@
     .qf-row .mt-qli-default > div:nth-of-type(2) > span > b { font-weight: 500 !important; }
     .qf-new { position: absolute; top: 32px; right: 8px; z-index: 3; }
     @media (min-width: 769px) { .qf-row .mt-qli-default > h3 > a { -webkit-line-clamp: 1 !important; } }
-    /* 1. 히어로 — 글은 일러스트 왼쪽에서 접힌다(1279 이하는 일러스트 축소) */
-    .qf-hero > h1, .qf-hero > p, .qf-hero > a { max-width: calc(100% - 300px); }
-    @media (max-width: 1279px) { .qf-hero-art { width: 240px !important; height: 118px !important; right: 16px !important; } .qf-hero > h1, .qf-hero > p, .qf-hero > a { max-width: calc(100% - 200px); } }
+    /* 1. 히어로 — Desktop S 에서 본문 칸이 좁아지면 일러스트를 줄이고(≤1100), 더 좁으면 뺀다(≤900) */
+    @media (max-width: 1100px) { .qf-hero-art { width: 280px !important; height: 137px !important; right: 16px !important; } }
+    @media (max-width: 900px) { .qf-hero-art { display: none !important; } }
+    /* 해시태그 칩(목록 행 · 태그 박스) — 면 green/100, 글자 green/950. hover 는 한 단계 진하게 */
+    .qf-shell .mt-chip { background: var(--green-100) !important; color: var(--qf-ink-deep) !important; }
+    .qf-shell .mt-chip:hover { background: #D5EBD9 !important; }
+    /* 5. 행 머리 줄 — Badge 를 글자 + 아이콘으로(상자 없음). 키워드 아이콘은 대분류별 HugeIcons(DS-83 후보) */
+    .qf-row .mt-qli-default > div:first-of-type { gap: 16px !important; }
+    .qf-row .mt-qli-default > div:first-of-type > span { height: auto !important; padding: 0 !important; border: 0 !important; background: none !important; border-radius: 0 !important; gap: 8px !important; font-size: 16px !important; font-weight: 500 !important; line-height: 24px !important; color: var(--foreground) !important; }
+    .qf-row .mt-qli-default > div:first-of-type > span > span { width: 22px !important; height: 22px !important; box-shadow: 0 0 0 1px var(--border) !important; }
+    .qf-row .mt-qli-default > div:first-of-type > span:nth-child(2)::before { content: ""; display: inline-block; flex: none; width: 22px; height: 22px; background: var(--primary); -webkit-mask: var(--qf-kw) center / contain no-repeat; mask: var(--qf-kw) center / contain no-repeat; }
+    .qf-row { --qf-kw: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/briefcase-01.svg'); }
+    .qf-row[data-kw="커리어"] { --qf-kw: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/chart-increase.svg'); }
+    .qf-row[data-kw="현지 생활"] { --qf-kw: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/home-01.svg'); }
+    .qf-row[data-kw="학업/재정/그 외"] { --qf-kw: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/mortarboard-01.svg'); }
     /* 7-1. 추천 통계 — 목록 행과 같은 CountToggle 글리프, 표시 전용(누르지 않음 · 색 고정) */
     .qf-stat .mt-counttoggle { color: var(--muted-foreground) !important; padding: 0 !important; gap: 4px !important; cursor: default !important; pointer-events: none; }
     .qf-stat > * { display: inline-flex !important; align-items: center; height: auto !important; min-height: 0 !important; }
@@ -57,7 +71,6 @@
       .qf-hero { height: auto !important; padding: 20px !important; }
       .qf-hero-art { display: none !important; }
       .qf-hero-btn { width: 100% !important; }
-      .qf-hero > h1, .qf-hero > p, .qf-hero > a { max-width: none !important; }
       .qf-searchrow { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
       .qf-searchrow > .qf-search { grid-column: 1 / -1 !important; min-width: 0 !important; }
       .qf-sel { width: 100% !important; }
@@ -74,7 +87,7 @@
         <div class="qf-main" style="display: flex; flex-direction: column; min-width: 0">
 <section class="qf-hero" ref="{{ heroRef }}" style="position: relative; display: flex; flex-direction: column; align-items: flex-start; box-sizing: border-box; min-height: 228px; padding: 20px 30px; background: var(--green-100); border-radius: 10px; overflow: hidden">
   <h1 style="position: relative; z-index: 1; margin: 0; font-size: 32px; line-height: 52px; font-weight: 700; color: var(--foreground)">Q&amp;A 멘토링</h1>
-  <p style="position: relative; z-index: 1; margin: 0; font-size: 16px; line-height: 24px; font-weight: 400; color: var(--sage-600)">취업 준비, 커리어, 현지 생활...<br>해외 커리어에 대해서라면 무엇이든 경험 있는 멘토에게 물어보세요</p>
+  <p style="position: relative; z-index: 1; margin: 0; max-width: 560px; font-size: 16px; line-height: 24px; font-weight: 400; color: var(--sage-600)">취업 준비, 커리어, 현지 생활...<br>해외 커리어에 대해서라면 무엇이든 경험 있는 멘토에게 물어보세요</p>
   <a class="qf-hero-btn" href="{{ composeHref }}" style="position: relative; z-index: 1; display: block; width: 208px; margin-top: 27px; text-decoration: none">
     <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="lg" full-width="{{ true }}" hint-size="100%,48px">Q&amp;A 멘토링 질문하기</x-import>
   </a>
@@ -129,7 +142,7 @@
 </div>
 <ul class="qf-list" ref="{{ listRef }}" role="list" style="list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column">
   <sc-for list="{{ listCards }}" as="k" hint-placeholder-count="10">
-    <li class="qf-row">
+    <li class="qf-row" data-kw="{{ k.keyword }}">
       <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaListItem" variant="default" href="{{ k.href }}" country="{{ k.country }}" country-label="{{ k.countryLabel }}" keyword="{{ k.keyword }}" title="{{ k.title }}" excerpt="{{ k.excerpt }}" tags="{{ k.tags }}" tagHref="{{ tagHref }}" answerers="{{ k.answerers }}" answer-count="{{ k.answerCount }}" views="{{ k.views }}" likes="{{ k.likes }}" liked="{{ k.liked }}" onLikeChange="{{ k.onLike }}" scraps="{{ k.scraps }}" scrapped="{{ k.scrapped }}" onScrapChange="{{ k.onScrap }}" hint-size="100%,237px"></x-import>
       <sc-if value="{{ k.isNew }}"><span class="qf-new" aria-label="24시간 안에 올라온 질문" style="display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border: 1px solid var(--qf-accent); border-radius: 99px; background: var(--qf-accent-soft); color: var(--qf-accent); font-size: 16px; font-weight: 600; line-height: 1">New</span></sc-if>
     </li>
@@ -173,16 +186,16 @@
     </sc-for>
   </ul>
 </section></x-import>
-  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,180px"><section style="display: flex; flex-direction: column; gap: 16px; padding: 24px 20px">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,190px"><section style="display: flex; flex-direction: column; gap: 20px; padding: 24px 16px 28px">
   <h2 style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 700; text-align: center">주목받는 태그로 찾기</h2>
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 0 12px">
+  <div class="qf-tagbox" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 8px">
     <sc-for list="{{ hotTags }}" as="t" hint-placeholder-count="5">
-      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="{{ hash }}" href="{{ t.href }}" style="{{ tagChipStyle }}" hint-size="auto,32px">{{ t.label }}</x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="{{ hash }}" href="{{ t.href }}" hint-size="auto,32px">{{ t.label }}</x-import>
     </sc-for>
   </div>
 </section></x-import>
   <sc-if value="{{ isMember }}" hint-placeholder-val="{{ true }}">
-  <div class="qf-bar" style="display: flex; align-items: stretch; height: 40px; border: 1px solid var(--border); background: var(--muted)">
+  <div class="qf-bar" style="display: flex; align-items: stretch; height: 40px; border: 1px solid var(--border); background: #FAFAFA">
     <a href="#" style="flex: 1 1 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--muted-foreground); text-decoration: none">{{ barLeftLabel }}</a>
     <a href="#" style="flex: 1 1 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--muted-foreground); text-decoration: none; border-left: 1px solid var(--border)">스크랩한 멘토링</a>
   </div>
@@ -364,9 +377,8 @@ class Component extends DCLogic {
       moreLoading: s.moreLoading,
       listEnd: PAGE !== "loading" && PAGE !== "error" && !s.moreLoading && shown.length >= pool.length,
       reco,
-      hash: h("span", { style: { color: "var(--primary)", fontWeight: 800 } }, "#"),
-      tagChipStyle: { color: "var(--qf-ink-deep)" },
       hotTags: HOT_TAGS.map((t) => ({ label: t, href: "qna-feed-search.dc.html?q=" + encodeURIComponent("#" + t) })),
+      hash: h("span", { "aria-hidden": "true", style: { color: "var(--primary)", fontWeight: 800, marginRight: 3 } }, "#"),
       barLeftLabel: mentor ? "내가 답변한 멘토링" : "나의 Q&A 멘토링",
       askAction: this.actionButton("Q&A 멘토링 질문하기", composeHref),
       retryAction: this.actionButton("다시 시도하기", this.withRole("qna-feed-normal.dc.html"), "refresh"),
