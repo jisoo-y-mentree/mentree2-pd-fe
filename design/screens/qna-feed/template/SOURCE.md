@@ -1,14 +1,18 @@
 # template 의 출처
 
 - Claude Design: 프로젝트 **`Mentree 2.0 Q&A Feed`**(radarlab 계정). 공개 공유 링크는 적지 않는다([ADR-0002](../../../../docs/adr/0002-rebuild-design-system-instead-of-sharing.md))
-- 원본: `Mentree 2.0 Q&A Feed.zip`
-- **생성일: 2026-10-08**(1판 2026-09-14 · 링크판 2026-09-14 밤 · Figma 대조판 2026-09-15 · **모바일 2판 ＋ 관점별 간단보기 2026-10-08 export**)
-- 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md) — 커밋 `256f3f0`(2026-09-15 개정)
+- 원본: `Mentree 2.0 Q&A Feed.zip`(2판 · SHA-256 `783b7ee37ee0` · `design/_import/export-1008/Mentree 2.0 Q&A Feed (2).zip` 으로 옮겼다)
+- **생성일: 2026-10-08 18:28**(1판 2026-09-14 · 링크판 2026-09-14 밤 · Figma 대조판 2026-09-15 · 모바일 2판 2026-10-08 16:16 · **Figma 개정판 `1646:33282` 2026-10-08 18:28** — 프롬프트 `_import/prompts/qna-feed-figma-1008.md`)
+- 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md) — 2026-10-08 개정(§4 · §6〜§9 를 Figma 개정판으로 다시 썼다)
 - 디자인 시스템: 이 export 의 `_ds` 사본은 **09-16 판**(43본 · 번들 247,136바이트)이다. 같은 PR 에서 `ds-export/` 를 **2026-10-08 판**(52본 · SHA-256 `5424904758ba` · 번들 368,536바이트)으로 교체했고, 이 template 은 **그 번들로 그려진다.** 09-16 판에 있던 부품은 전부 그대로 있다
 
 ## 무엇이 들어 있나
 
-**7장.** normal · loading · empty · error · **search**(검색 결과) · **widget-empty**(위젯 0건) · **mentor**(멘토 피드). 10-08 export 에서 7장 전부가 바뀌었다 — 768 이하에서 피드가 탭 3개(전체 · 내가 질문한 · 스크랩한)로 갈리고, 떠 있는 질문하기 버튼 ＋ 하단 탭바가 선다(`qna-mobile.md` 2판 · 2026-09-15 밤)
+**7장.** normal · loading · empty · error · **search**(검색 결과) · **widget-empty**(추천 0건) · **mentor**(멘토 피드). **Figma 개정판(2026-10-08 18:28)으로 7장 전부가 바뀌었다** — 히어로 박스 · 전폭 탭 · 한 줄 검색 ＋ 결과 줄 · `QnaListItem` 행 ＋ 「New」 · 무한 스크롤 ＋ 스켈레톤 ＋ 「맨 위로」 · 우측 셋(추천 3건 · 태그 · 2링크 바) · 목록 끝 `ActionBanner`. 디자인 시스템을 바이패스한 자리는 `.qf-` 접두사 CSS 한 블록이다(`DS-82`〜`85`). 09-15 의 모바일 탭 3개는 없어졌다.
+
+**`widget-empty` 의 뜻이 바뀌었다** — 「내 질문 0건」이 아니라 「추천 Q&A 0건」이다. 파일 이름은 그대로 둔다.
+
+**부품이 안 낸 것 1건**: 키워드 배지의 아이콘(`DS-79` · Figma 는 아이콘 ＋ 키워드). `QnaListItem` 이 `Badge` 에 `leading="icon"` 을 안 넘긴다 — `DS-84` 에 같이 적는다.
 
 **파일마다 화면 상태가 하나다.** 화면 상태(로딩·0건·에러·관점)를 갈아끼우는 JS 는 없다. **부품 인터랙션의 상태(도움돼요·스크랩·탭·전환·셀렉트·페이지·팝오버·토스트)는 페이지 스크립트가 든다**(2026-09-15 · 상혁 지시). DS 부품은 전부 제어형이라 화면이 `selected`·`value` 와 `onChange` 를 넘겨야 반응한다. 1판은 아무것도 안 넘겨 눌러도 반응이 없었다.
 
@@ -20,6 +24,7 @@
 |---|---|---|
 | 디자인 시스템 | `_ds/m2-design-system-<uuid>/` 사본 | **`../../../ds-export/project/`** 를 가리킨다 |
 | 자산(국기·로고) | 루트의 `assets/` | 같은 곳의 `assets/` |
+| **히어로 일러스트** | 루트의 `assets/qna-feed-hero-illustration.png`(디자이너가 Claude Design 에 올린 Figma 그림) | **`template/assets/` 에 둔다.** `ds-export/` 의 자산이 아니라 이 화면의 그림이다(인사이트 template 의 `assets/img/` 와 같은 취급). `place.sh` 가 `assets/` 를 통째로 `ds-export/` 로 돌리므로 **이 한 경로만 되돌렸다** |
 
 **`_ds` 사본을 커밋하지 않는다.** 디자인 시스템의 참조 정본은 `ds-export/` 하나다. 두 벌을 두면 어느 것이 최신인지 판정할 수 없다.
 
