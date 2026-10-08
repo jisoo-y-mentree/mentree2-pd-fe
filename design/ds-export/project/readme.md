@@ -126,9 +126,13 @@
 - **CountToggle** — 메타 줄 인라인 전용 아이콘+카운트 토글(도움돼요·스크랩 공용, count 필수). selected는 반전하지 않음(아이콘 fill + tone 색만, green 없음) — 목록 다수 노출 시 반전 과다를 피하는 예외.
 - **FilterChip** — Toggle 계열 텍스트 칩(BookmarkToggle의 형제, 아이콘형↔텍스트칩형). 선택 가능한 필터 요소(정적 Badge와 구분). 버튼 sm 기하(높이 32·radius-md·caption/500, pill 아님). "selected=반전" 공통 원칙 상속 — FilterChip은 primary green 반전. leading none·flag(원형 국기 재사용).
 - **FilterSelect** — 조건 축의 트리거+모달 한 벌(Dialog width=600). 선택지가 많아 팝오버에 안 들어가 Dialog로 간다 — 새로 만든 건 트리거와 조립뿐, Dialog·FilterChip·Chip·Button을 그대로 감싼다. 트리거는 Button sm 기하, 0개=투명+muted-foreground, 1개 이상=--muted 채움+1px --sage-400+foreground 600(green 반전 없음). 모달 안 선택은 "N개 적용하기"를 눌러야 반영(즉시 반영 없음), "초기화"는 모달만 비운다. 그룹별로 나열, 하단 요약 칩+초기화/적용 바.
+- **Textarea** (DS-70) — 여러 줄 입력. rows 3→maxRows 8 자동 높이, `limit` 글자 수(넘치면 invalid, 잘라내지 않음). 같은 `limit`이 `Input`에도 있다.
+- **MultiSelect** (DS-71) — 여러 개를 고르는 셀렉트. 트리거 위 Chip 줄 · 항목을 눌러도 목록이 닫히지 않음 · `groups`(taxonomy 모양).
+- **ImageCropper** (DS-72) — 사진 한 장에서 원형(아바타)과 직사각형(3:2) 두 영역. 직사각형 좌우 · 원 상하 · 1〜3배 · ↻ 90°.
+- **ReorderList** (DS-73) — 순서를 바꾸는 목록. 1건은 핸들 없음 · 마우스/길게 눌러 끌기 · 키보드 Space 집기.
 - **SearchInput** — 자동완성·최근 검색어 검색창. TagInput과 같은 골격(한 자리를 갈아끼운다) — 다른 점은 제안 줄이 상자 밖 드롭다운이라는 것. 포커스+빈값=최근 검색어(Chip md+onRemove), 입력 중=자동완성(일치 부분 --primary 600), 둘을 쌓지 않는다. 정렬·필터·개수 제한은 화면의 일.
 
-`window.MentreeDesignSystem_2f86cf`에서 읽습니다(62개). 각 컴포넌트의 `*.prompt.md` 참조.
+`window.MentreeDesignSystem_2f86cf`에서 읽습니다(66개). 각 컴포넌트의 `*.prompt.md` 참조.
 
 ### 배치 컴포넌트
 
@@ -145,6 +149,9 @@
 
 - **MentorCard** — 세로형 멘토 카드. Badge·BookmarkToggle 조립. 카드 공통 셸(white·1px sage-200·shadow-sm·radius-lg, hover 시 shadow-md만)을 정의 — 이후 다른 카드가 상속. 카드 전체=상세 링크, 우상단 북마크=독립 클릭.
 - **QnaCard** — 미디어 없는 Q&A 텍스트 카드. 카드 기하·elevation·동심원 상속(패딩 --card-content-padding 통일). 상단 카테고리 배지 + 조회수/좋아요(무상태 카운트), 제목 h3·발췌 2줄 고정(line-clamp), 하단 답변자 AvatarGroup + "멘토 답변 N개".
+- **Tooltip** (DS-77) — 가리키는 요소 하나의 짧은 설명(글자만). 마우스 300ms · 키보드 포커스 · 탭 토글 · Esc. top layer. 면 --sage-900.
+- **Flag** (DS-78) — 원형 국기 하나(1px --border 링) · sm16/md20/lg24/xl28 · aria-label「국가 · 도시」+ Tooltip. 이름 오른쪽에 둔다.
+- **QnaListItem** (DS-57) — Q&A 한 건을 목록의 한 줄로(카드 셸 없음 · 줄 위아래 hairline). 변형 = 강조점 4개: default(전부) · compact(제목만) · answer(그 멘토의 답변) · question(질문과 답변 수). props는 QnaCard와 같은 이름·뜻, answerExcerpt만 새로. 카드 격자는 QnaCard가 그대로 맡는다.
 - **ArticlePreview** — **투명 콘텐츠 프리뷰(카드 아님)**. 표면 규칙상 썸네일이 경계를 만들어 카드 셸 미상속(배경 투명·테두리/그림자/마진 없음). 동심원 기하는 미디어에만(16:9 + radius 14). 제목 h3 2줄·발췌 3줄 고정, 하단 컬러 태그(질적태그 팔레트만). hover 시 썸네일에만 elevation(이동 없음). 카드 전체=아티클 상세 링크.
 - **InterviewCard** — 인물 인터뷰 카드(표면 규칙 1단계). 세로형 1종(캐러셀에서 3장이 같은 크기로 선다) — 미디어 3:2 위 배지(국가+직무, 좌상단 오버레이) · 제목 2줄 · 발췌 3줄(둘 다 고정 clamp) · 인물명(강조)·직함 같은 줄, 회사 다음 줄(muted). 카드 셸·동심원은 MentorCard와 같은 값(폭은 카드가 고정하지 않음 — 부모/캐러셀이 정한다). 카드 전체=인터뷰 상세, 북마크 없음.
 - **AnswerCard** — Q&A 상세의 멘토 답변 1건. QnaCard(질문·카드 전체 클릭)와 달리 갈 곳이 없어 스트레치 링크 없음(href 없음). 멘토 헤더(전환 핵심 루트)+본문 전문+도움돼요(rose)+공유+채택 표시+감사인사. 스크랩 없음(목록 단위가 질문이라 질문 카드에만).

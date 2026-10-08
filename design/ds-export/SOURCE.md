@@ -5,9 +5,9 @@
 > 두 축의 정의는 [docs/SOURCES.md](../../docs/SOURCES.md) 「정본의 두 축」이 갖는다. FE 인계의 입력이다([ADR-0005](../../docs/adr/0005-design-team-deliverables.md)).
 
 - 출처: Claude Design (radarlab 계정) — 프로젝트 이름 **`M2 Design System`**
-- 원본: 폴더 `M2 Design System`(디자이너가 zip 을 풀어 `design/` 에 놓았다. zip 은 받지 않았다)
-- **반입일: 2026-09-28**
-- 원본 해시: `e2f9d58c9470ef8e6d871da619f4aca9260706f652a209601bc0eba7c32bb1f9` — **폴더 해시**다. zip 이 없어 파일별 SHA-256 목록(경로 정렬 · `.DS_Store` 제외 · 제외 전)을 다시 SHA-256 했다. 재현: `find . -type f ! -name .DS_Store -print0 | sort -z | xargs -0 shasum -a 256 | shasum -a 256`
+- 원본: `M2 Design System.zip`(디자이너가 `design/` 에 놓았다. 커밋하지 않고 `design/_import/export-1008/` 로 옮겼다)
+- **반입일: 2026-10-08**
+- 원본 해시: `5424904758ba37149d71cd29f368617e1ee78f4b69be960959923a89e5deee5d` — zip 의 SHA-256 이다
 
 ### 교체 이력
 
@@ -20,6 +20,38 @@
 | **2026-09-14** | `M2 Design System.zip` | `7649857370a5` | **40본에서 43본.** 신규 `Breadcrumb`·`FilterSelect`·`SearchInput`. 삭제 0 |
 | **2026-09-16** | 폴더 `M2 Design System` | `4ec9a3f66119`(폴더 해시) | **43본 그대로. 32본 개정.** 타입 스케일 개정 · `Select` 커스텀 리스트박스 · `Header` 3열 그리드 ＋ 로그인 상태 · guidelines 2본 신규. 아래 |
 | **2026-09-28** | 폴더 `M2 Design System` | `e2f9d58c9470`(폴더 해시) | **43본에서 45본.** 신규 `ActionBanner` · `ArticleBody` ／ 개정 `IconButton` · `BottomTabBar` · `Header` ／ 토큰 `--highlight`. 삭제 0. 아래 |
+| **2026-10-08** | `M2 Design System.zip` | `5424904758ba` | **45본에서 52본.** 신규 `QnaListItem` · `Textarea` · `MultiSelect` · `ImageCropper` · `ReorderList` · `Tooltip` · `Flag` ／ 개정 `Dialog` · `Popover` · `Field` · `Input` · `Checkbox` · `Switch` · `RadioGroup` · `Badge` · `Avatar` · `Button` · `QnaCard` · `taxonomy.js`. 삭제 0. 아래 |
+
+### 2026-10-08 — 45본에서 52본. `mentor-detail` 편집 면의 미구현 4건과 `DS-57` 이 들어왔다
+
+**신규 7 · 개정 12 · 삭제 0.** 파일로는 242본에서 **275본**이다(신규 33 · 개정 39). 들어간 파일은 전부 원본과 바이트가 같다. 리포에만 있는 `ui_kits/mentree-top/index.html` 1본은 **이 판의 zip 에 없다** — `readme.md` 와 `SKILL.md` 가 여전히 「TOP 화면 recreation, canon」으로 가리키므로 남긴다. 다음 export 에도 없으면 묻는다.
+
+| 무엇 | 파일 | 내용 | `DS-nn` |
+|---|---|---|---|
+| **`QnaListItem`** 신규 · surfaces | `.jsx` · `.d.ts` · `.prompt.md` · `.card.html` | Q&A 한 건을 **목록의 한 줄**로. 카드 셸 없음 · 줄 위아래 hairline. 변형 4 — `default`(피드 목록) · `compact`(제목만) · `answer`(그 멘토의 답변) · `question`(답변 수 강조). props 는 `QnaCard` 와 같은 이름 | `DS-57` |
+| **`Textarea`** 신규 · forms | 같다 | 여러 줄 입력. 자동 높이(3→8줄) · `limit` 글자 수(넘치면 invalid · 잘라내지 않음) | `DS-70` |
+| **`MultiSelect`** 신규 · forms | 같다 | 여러 개를 고르는 셀렉트. 트리거 위 `Chip` 줄 · `groups` | `DS-71` |
+| **`ImageCropper`** 신규 · forms | 같다 | 사진 한 장에서 원형(아바타)과 직사각형(3:2) 두 영역 | `DS-72` |
+| **`ReorderList`** 신규 · forms | 같다 | 순서 바꾸는 목록. 끌기 ＋ 키보드 Space | `DS-73` |
+| **`Tooltip`** 신규 · overlays | 같다 | 글자만 든 짧은 설명. top layer · 면 `--sage-900` | `DS-77` |
+| **`Flag`** 신규 · core | 같다 | 원형 국기 하나 ＋ 1px `--border` 링. sm16 · md20 · lg24 · xl28. `Tooltip` 으로 「국가 · 도시」 | `DS-78` |
+| **`Dialog`** 개정 | `.jsx` · `.d.ts` · `.prompt.md` ＋ `dialog.card.html` · `.demo.html` 신규 | 긴 본문은 머리 · 푸터 고정 ＋ 본문만 스크롤 · `mobile="fullscreen"` · `footerLayout="stack"` · 스크롤 잠금 · 포커스 가두기 | `DS-69` |
+| **`Popover`** 개정 | `.jsx` · `.prompt.md` · `.card.html` | HTML `popover="manual"` 로 **top layer**. 잘라내는 상자 · 푸터 밑에 묻히지 않는다. 위아래 뒤집기 | `DS-74` |
+| **`Checkbox` · `Switch` · `RadioGroup`** 개정 | `.jsx` · `.d.ts` ＋ `forms/controlFocus.js` 신규 | 속에 **네이티브 입력** — Tab · Space · 라벨이 이름 · 포커스 링 | `DS-75` |
+| **`Field`** 개정 | `.jsx` · `.d.ts` · `.prompt.md` ＋ `field.card.html` 신규 | 라벨 `--text-body` 600 · **설명이 라벨 바로 아래** · `FieldGroup label` 묶음 제목 ＋ `columns={2}` | `DS-32` |
+| **`Input`** 개정 | `.jsx` · `.d.ts` · `.prompt.md` | `limit` 글자 수 — `Textarea` 와 같은 규칙 | `DS-70` |
+| **`Badge`** 개정 | `.jsx` · `.d.ts` · `.prompt.md` · `.card.html` | `leading="icon"` — 앞자리 HugeIcons 아이콘 · 아이콘만 `--primary` | `DS-79` |
+| **`Avatar`** 개정 | 같다 | `shape="rounded"` ＋ `icon` — 회사 · 학교 로고 자리 | `DS-80` |
+| **`Button`** 개정 | 같다 | `tone="primary"` — `outline` · `ghost` 에만. 「더보기」 · 「이어서 보기」 | `DS-81` |
+| **`QnaCard`** 개정 | `.jsx` · `.d.ts` · `.card.html` | `tagHref` — 해시태그 `Chip` 의 주소를 화면이 만든다 | — |
+| `taxonomy.js` | — | `KEYWORD_GROUPS[].options[].icon` — 키워드 25개마다 HugeIcons 하나 | `DS-79` |
+| `_ds_bundle.js` · `_ds_manifest.json` · `_adherence.oxlintrc.json` · `readme.md` | — | 생성물. manifest 의 components 62 → **69** · cards 57 → 66 | — |
+
+**외부 의존성은 여전히 0이다.** 52본의 `import` 가 `react` 와 `taxonomy.js` 뿐임을 실측했다.
+
+**`DS-79` · `80` · `81` 은 디자이너가 Claude Design 에서 번호를 붙여 바로 만들었다.** 이 리포의 표에는 행이 없었다 — 이번 교체에서 완료 상태로 행을 만든다(「기표 없이 들어왔다」가 아니라 **번호가 먼저 붙었다**).
+
+**혁님 화면 3개(`qna-*`)는 이 디렉터리를 직접 부른다.** 같은 PR 에서 Q&A 3화면 export(10-08)를 함께 배치했다 — 그 export 의 `_ds` 사본은 **09-16 판**(247,136바이트)이고 이 판은 368,536바이트다. 화면은 이 판으로 그려진다.
 
 ### 2026-09-28 — 43본에서 45본. `mentor-detail` 이 기다리던 5건이 들어왔다
 
@@ -142,16 +174,16 @@
 |---|---|---|
 | `project/tokens/` | 토큰 6본 — base · colors · typography · spacing · icons · fonts | ① 값의 정본 |
 | `project/styles.css` | 토큰을 묶는 진입점 | ① |
-| `project/components/` | 컴포넌트 **45본**. 각 `.jsx` ＋ `.d.ts` ＋ `.prompt.md` ＋ `.card.html` | ② 소스 |
-| `project/_ds_bundle.js` | 컴포넌트 **62 export** 번들 | ② |
+| `project/components/` | 컴포넌트 **52본**. 각 `.jsx` ＋ `.d.ts` ＋ `.prompt.md` ＋ `.card.html`. `forms/controlFocus.js` 는 셋이 같이 쓰는 포커스 링 | ② 소스 |
+| `project/_ds_bundle.js` | 컴포넌트 **69 export** 번들 | ② |
 | `project/_ds_manifest.json` | 컴포넌트·카드·토큰·폰트의 목록 | ② |
 | `project/guidelines/` | 원칙 18본(HTML) — 색 · 타입(역할 · 스케일 · 모바일 스케일) · 간격 · 표면 · 동심중첩 · 브랜드 ／ **`03-responsive.md` — 반응형 3구간의 통합 지침** | ③ 원칙 |
 | `project/readme.md` · `SKILL.md` | DS 전체 서술과 빠른 참조 | ③ |
-| `project/assets/` | 국기 SVG 19본 · 로고 2본 · 표본 사진 3본(`14` · `15` · `a`) | 자산 |
-| `project/ui_kits/mentree-top/` | TOP 화면 조립 예시(HTML) | ⑤ 화면 정적 |
+| `project/assets/` | 국기 SVG 19본 · 로고 2본 · 표본 사진 4본(`1` · `14` · `15` · `a`) | 자산 |
+| `project/ui_kits/mentree-top/` | TOP 화면 조립 예시(HTML). **10-08 zip 에는 없다** — readme 가 canon 으로 가리켜 리포의 것을 남겼다 | ⑤ 화면 정적 |
 | `project/_adherence.oxlintrc.json` | Claude Design 쪽 lint 설정 | 참고 |
 
-컴포넌트가 45본인데 export 가 62개인 이유는 **하위 export 17개** 때문이다. `AvatarGroup` · `Card` 하위 5 · `FieldGroup` · `TabPanel` · `nav-ia.js` 의 `NAV_*` 4 · `taxonomy.js` 의 분류 5 가 따로 세어진다(2026-09-28 manifest 로 셌다).
+컴포넌트가 52본인데 export 가 69개인 이유는 **하위 export 17개** 때문이다. `AvatarGroup` · `Card` 하위 5 · `FieldGroup` · `TabPanel` · `nav-ia.js` 의 `NAV_*` 4 · `taxonomy.js` 의 분류 5 가 따로 세어진다(2026-10-08 manifest 로 셌다).
 
 ## 무엇을 뺐는가
 
@@ -159,7 +191,7 @@
 |---|---|---|
 | `assets/fonts/PretendardJPVariable.ttf` | 13MB | **폰트 바이너리를 리포에 넣지 않는다.** 아래 참조 |
 | `uploads/` | 13MB | **Claude Design 에 올린 입력물이 쌓이는 자리다.** 사양이 아니다. 아래 |
-| `assets/img/` | 3.9MB | **화면 표본 사진 15본.** 이 디렉터리의 어느 파일도 참조하지 않는다. 아래 「표본 사진을 가르는 판정 조건」 |
+| `assets/img/` | 3.9MB | **화면 표본 사진 14본.** 이 디렉터리의 어느 파일도 참조하지 않는다. 아래 「표본 사진을 가르는 판정 조건」 |
 | `ui_kits/mentree-app-legacy/` | 10.5MB | 2.0 데모다. 사양이 아니다([ADR-0004](../../docs/adr/0004-no-as-is-survey.md)) |
 
 **폰트**: `Pretendard JP Variable` 을 쓴다. 지정의 정본은 `project/tokens/fonts.css` 다. 바이너리는 위 원본 zip 에 들어 있다. 배포 방식(웹폰트 호스팅 / 번들)은 FE 가 정한다.
@@ -185,8 +217,8 @@
 
 | 판정 조건 | 아크션 |
 |---|---|
-| 부품 · 카드 · 데모 · `ui_kits` · `readme` 가 참조한다 | **남긴다.** 빼면 그 카드 · 데모의 그림이 끊긴다 — `a.png` |
-| 어느 파일도 참조하지 않는다 | **뺀다.** 화면의 사진은 그 화면의 `template/` 이 갖는다 — `1`〜`13` · `b` · `c` |
+| 부품 · 카드 · 데모 · `ui_kits` · `readme` 가 참조한다 | **남긴다.** 빼면 그 카드 · 데모의 그림이 끊긴다 — `a.png`(`articlebody.demo.html`) · **`1.png`(`imagecropper.card.html` · 2026-10-08)** |
+| 어느 파일도 참조하지 않는다 | **뺀다.** 화면의 사진은 그 화면의 `template/` 이 갖는다 — `2`〜`13` · `b` · `c` |
 | 09-16 에 「멈추고 묻는다」로 남겨 둔 것이다 | **그대로 둔다.** 답을 받을 때까지 옮기지 않는다 — `14` · `15` |
 
 ## 여기에 없는 것

@@ -37,12 +37,21 @@ const VARIANTS = {
   },
 };
 
+// DS-81 — tone="primary"는 outline · ghost에만 먹는다. 다른 변형은 무시.
+//  outline: 흰 바탕 · 1px --primary 경계 · --primary 글자/아이콘 · hover 면 --green-50
+//  ghost: 면 · 경계 없음 · --primary 글자/아이콘 · hover 밑줄
+const PRIMARY_TONE = {
+  outline: { color: "var(--primary)", border: "1px solid var(--primary)" },
+  ghost: { color: "var(--primary)" },
+};
+
 /**
  * Button — shadcn/vega button in mentree tokens.
  * 글자는 크기 단계와 무관하게 14px·600으로 고정된다(원티드 실측 — 버튼 안 글자는 안 움직이고 높이만 커진다).
  */
 export function Button({
   variant = "primary",
+  tone = "neutral",
   size = "md",
   iconLeft,
   iconRight,
@@ -53,7 +62,9 @@ export function Button({
   ...rest
 }) {
   const s = SIZES[size] || SIZES.md;
-  const v = VARIANTS[variant] || VARIANTS.primary;
+  const base = VARIANTS[variant] || VARIANTS.primary;
+  const toned = tone === "primary" ? PRIMARY_TONE[variant] : null;
+  const v = toned ? { ...base, ...toned } : base;
   return (
     <button
       disabled={disabled}
@@ -83,8 +94,19 @@ export function Button({
       }}
       onMouseDown={(e) => { if (!disabled) e.currentTarget.style.transform = "translateY(0.5px)"; }}
       onMouseUp={(e) => { e.currentTarget.style.transform = "none"; }}
-      onMouseEnter={(e) => { if (!disabled) e.currentTarget.style.filter = "brightness(0.95)"; }}
-      onMouseLeave={(e) => { e.currentTarget.style.filter = "none"; e.currentTarget.style.transform = "none"; }}
+      onMouseEnter={(e) => {
+        if (disabled) return;
+        const el = e.currentTarget;
+        if (toned && variant === "outline") el.style.background = "var(--green-50)";
+        else if (toned && variant === "ghost") { el.style.textDecoration = "underline"; el.style.textUnderlineOffset = "3px"; }
+        else el.style.filter = "brightness(0.95)";
+      }}
+      onMouseLeave={(e) => {
+        const el = e.currentTarget;
+        if (toned && variant === "outline") el.style.background = (style && style.background) || v.background;
+        if (toned && variant === "ghost") el.style.textDecoration = (style && style.textDecoration) || "none";
+        el.style.filter = "none"; el.style.transform = "none";
+      }}
       {...rest}
     >
       {iconLeft && <Icon name={iconLeft} size={s.icon} />}

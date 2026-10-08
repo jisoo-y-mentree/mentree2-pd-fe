@@ -67,3 +67,13 @@ Popover와 OS 공유가 같이 뜬다. 둘 다 안 되는 브라우저는 클립
 ## 어디에 쓰나
 
 qna-detail(공유·더보기) · mentor-detail(공유) · article-detail(공유).
+
+
+### DS-74 — top layer
+
+- 열리면 내용 요소에 HTML `popover="manual"` + `showPopover()` → 브라우저 top layer. 조상의 `overflow` · `z-index`에 잘리지 않는다(모달 본문 끝 · 푸터 밑).
+- 좌표는 트리거 `getBoundingClientRect()`로 계산한 `position: fixed`. `style.width: "100%"`는 트리거 폭으로 바꾼다. 트리거 아래 4px — 이전과 같다.
+- 위·아래는 창 기준으로 뒤집는다. 요청한 쪽 공간(창 끝 − 트리거 − 8)이 목록 높이보다 작고 반대쪽이 더 크면 반대로. 둘 다 모자라면 큰 쪽에 붙이고 `max-height`를 그 공간에 맞춘다.
+- 조상 어디의 스크롤이든(capture) · 창 크기 변화에 다시 계산. 트리거가 스크롤로 보이는 곳 밖으로 나가면 닫는다.
+- DOM 자리는 그대로(트리거의 형제) — `Dialog`의 포커스 가두기 · 바깥 클릭 판정이 그대로 먹는다. Esc는 목록만 닫는다.
+- `showPopover`가 없는 브라우저는 이전의 `absolute` 방식.

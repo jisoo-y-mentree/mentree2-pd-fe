@@ -1,4 +1,5 @@
 import React from "react";
+import { Icon } from "./Icon.jsx";
 
 const SIZES = { xs: 20, sm: 24, md: 32, lg: 40 };
 
@@ -16,12 +17,21 @@ function initials(name) {
  * Avatar — 원형 아바타. 이미지가 있으면 AvatarImage, 없거나 실패하면 AvatarFallback(이니셜).
  * 이미지 로딩 전에는 sage placeholder(sage-100)가 보인다.
  */
-export function Avatar({ src, name, alt, size = "md", style, ...rest }) {
+/*
+ * DS-80 — shape "rounded"(반경 --radius-md, 로고 자리) · icon(사진이 없을 때 이니셜 대신).
+ *  icon이 있고 사진이 없다 → 흰 바탕(--card) · 1px --border · 아이콘 --primary.
+ *  rounded + 사진(로고) → 흰 바탕 · 1px --border 위에 contain(자르지 않는다).
+ *  circle은 지금과 같다(사람 사진). icon도 사진도 없으면 이니셜.
+ */
+export function Avatar({ src, name, alt, size = "md", shape = "circle", icon, style, ...rest }) {
   const px = typeof size === "number" ? size : (SIZES[size] || SIZES.md);
   const [errored, setErrored] = React.useState(false);
   const [loaded, setLoaded] = React.useState(false);
   const showImg = !!src && !errored;
   const fs = Math.max(9, Math.round(px * 0.4));
+  const rounded = shape === "rounded";
+  const iconMode = !showImg && !!icon;
+  const framed = iconMode || (rounded && showImg); // 흰 바탕 + 1px 경계
 
   return (
     <span
@@ -35,11 +45,13 @@ export function Avatar({ src, name, alt, size = "md", style, ...rest }) {
         justifyContent: "center",
         width: px,
         height: px,
-        borderRadius: "50%",
+        boxSizing: "border-box",
+        borderRadius: rounded ? "var(--radius-md)" : "50%",
         overflow: "hidden",
         flex: "0 0 auto",
-        background: "var(--sage-100)",
-        color: "var(--sage-700)",
+        background: framed ? "var(--card)" : "var(--sage-100)",
+        border: framed ? "1px solid var(--border)" : undefined,
+        color: iconMode ? "var(--primary)" : "var(--sage-700)",
         fontFamily: "var(--font-sans)",
         fontSize: fs,
         fontWeight: 600,
@@ -53,7 +65,7 @@ export function Avatar({ src, name, alt, size = "md", style, ...rest }) {
       {/* Fallback: 이니셜(이미지 없음/실패) — 로딩 중에는 sage-100 배경이 placeholder */}
       {(!showImg || !loaded) && (
         <span aria-hidden={showImg ? "true" : undefined} style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-          {showImg ? null : initials(name)}
+          {showImg ? null : iconMode ? <Icon name={icon} size={Math.round(px * 0.5)} aria-hidden="true" aria-label={undefined} role={undefined} /> : initials(name)}
         </span>
       )}
       {showImg && (
@@ -62,7 +74,7 @@ export function Avatar({ src, name, alt, size = "md", style, ...rest }) {
           alt={alt || name || ""}
           onLoad={() => setLoaded(true)}
           onError={() => setErrored(true)}
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: loaded ? 1 : 0, transition: "opacity 150ms ease" }}
+          style={{ position: "absolute", inset: rounded ? Math.max(2, Math.round(px * 0.12)) : 0, width: rounded ? "auto" : "100%", height: rounded ? "auto" : "100%", objectFit: rounded ? "contain" : "cover", opacity: loaded ? 1 : 0, transition: "opacity 150ms ease" }}
         />
       )}
     </span>

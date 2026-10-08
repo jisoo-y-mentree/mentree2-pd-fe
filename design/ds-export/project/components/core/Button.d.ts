@@ -10,6 +10,8 @@ import React from "react";
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** ghost는 좌우 패딩 0(민무늬라 여백이 필요 없다). 나머지는 size별 패딩 14/20/28. */
   variant?: "primary" | "secondary" | "outline" | "ghost" | "destructive";
+  /** DS-81. outline · ghost에만 먹는다(다른 변형은 무시). "primary": outline = 흰 바탕 · 1px --primary 경계 · --primary 글자/아이콘 · hover 면 --green-50 / ghost = --primary 글자/아이콘 · hover 밑줄. 기본 "neutral". */
+  tone?: "neutral" | "primary";
   /** sm=32 · md=40 · lg=48. 글자는 3단계 모두 14px·600 고정, 높이만 바뀐다. */
   size?: "sm" | "md" | "lg";
   /** 라벨 앞에 렌더할 HugeIcons 이름. */

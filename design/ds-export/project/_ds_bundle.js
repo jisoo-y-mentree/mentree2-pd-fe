@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"MentreeDesignSystem_2f86cf","components":[{"name":"Avatar","sourcePath":"components/core/Avatar.jsx"},{"name":"AvatarGroup","sourcePath":"components/core/Avatar.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"BookmarkToggle","sourcePath":"components/core/BookmarkToggle.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Chip","sourcePath":"components/core/Chip.jsx"},{"name":"CountToggle","sourcePath":"components/core/CountToggle.jsx"},{"name":"FilterChip","sourcePath":"components/core/FilterChip.jsx"},{"name":"FilterSelect","sourcePath":"components/core/FilterSelect.jsx"},{"name":"Icon","sourcePath":"components/core/Icon.jsx"},{"name":"IconButton","sourcePath":"components/core/IconButton.jsx"},{"name":"Checkbox","sourcePath":"components/forms/Checkbox.jsx"},{"name":"Field","sourcePath":"components/forms/Field.jsx"},{"name":"FieldGroup","sourcePath":"components/forms/Field.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"RadioGroup","sourcePath":"components/forms/RadioGroup.jsx"},{"name":"SearchInput","sourcePath":"components/forms/SearchInput.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"},{"name":"TagInput","sourcePath":"components/forms/TagInput.jsx"},{"name":"ToggleGroup","sourcePath":"components/forms/ToggleGroup.jsx"},{"name":"ActionBanner","sourcePath":"components/navigation/ActionBanner.jsx"},{"name":"Banner","sourcePath":"components/navigation/Banner.jsx"},{"name":"BottomTabBar","sourcePath":"components/navigation/BottomTabBar.jsx"},{"name":"Breadcrumb","sourcePath":"components/navigation/Breadcrumb.jsx"},{"name":"CalloutBar","sourcePath":"components/navigation/CalloutBar.jsx"},{"name":"Carousel","sourcePath":"components/navigation/Carousel.jsx"},{"name":"Footer","sourcePath":"components/navigation/Footer.jsx"},{"name":"Header","sourcePath":"components/navigation/Header.jsx"},{"name":"Pagination","sourcePath":"components/navigation/Pagination.jsx"},{"name":"SectionHeader","sourcePath":"components/navigation/SectionHeader.jsx"},{"name":"Sidebar","sourcePath":"components/navigation/Sidebar.jsx"},{"name":"Tabs","sourcePath":"components/navigation/Tabs.jsx"},{"name":"TabPanel","sourcePath":"components/navigation/Tabs.jsx"},{"name":"NAV_PRIMARY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_AUTH","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_UTILITY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_DETAIL","sourcePath":"components/navigation/nav-ia.js"},{"name":"Dialog","sourcePath":"components/overlays/Dialog.jsx"},{"name":"Popover","sourcePath":"components/overlays/Popover.jsx"},{"name":"Sheet","sourcePath":"components/overlays/Sheet.jsx"},{"name":"Toast","sourcePath":"components/overlays/Toast.jsx"},{"name":"AnswerCard","sourcePath":"components/surfaces/AnswerCard.jsx"},{"name":"ArticleBody","sourcePath":"components/surfaces/ArticleBody.jsx"},{"name":"ArticlePreview","sourcePath":"components/surfaces/ArticlePreview.jsx"},{"name":"Card","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardHeader","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardTitle","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardDescription","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardContent","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardFooter","sourcePath":"components/surfaces/Card.jsx"},{"name":"EmptyState","sourcePath":"components/surfaces/EmptyState.jsx"},{"name":"InterviewCard","sourcePath":"components/surfaces/InterviewCard.jsx"},{"name":"MentorCard","sourcePath":"components/surfaces/MentorCard.jsx"},{"name":"QnaCard","sourcePath":"components/surfaces/QnaCard.jsx"},{"name":"Skeleton","sourcePath":"components/surfaces/Skeleton.jsx"},{"name":"Table","sourcePath":"components/surfaces/Table.jsx"},{"name":"COUNTRY_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"JOB_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"KEYWORD_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"COUNTRY_TOP","sourcePath":"components/taxonomy.js"},{"name":"JOB_TOP","sourcePath":"components/taxonomy.js"}],"sourceHashes":{"components/core/Avatar.jsx":"ba5d00839b2d","components/core/Badge.jsx":"c652777c2602","components/core/BookmarkToggle.jsx":"7ea2c991107e","components/core/Button.jsx":"8dbae76fcef4","components/core/Chip.jsx":"d7cf7e832461","components/core/CountToggle.jsx":"aca1e44ee376","components/core/FilterChip.jsx":"db672a544318","components/core/FilterSelect.jsx":"59fb7f178268","components/core/Icon.jsx":"021313e06cd9","components/core/IconButton.jsx":"c0490a7cbccf","components/forms/Checkbox.jsx":"f7c99f0c94f3","components/forms/Field.jsx":"70a364e7e19c","components/forms/Input.jsx":"6bbc58864031","components/forms/RadioGroup.jsx":"f8e7f8aaa3ba","components/forms/SearchInput.jsx":"39c0fb25b4f9","components/forms/Select.jsx":"3c5febb41c06","components/forms/Switch.jsx":"f3bca0c8c43a","components/forms/TagInput.jsx":"748307e15ce8","components/forms/ToggleGroup.jsx":"c7a2bba81517","components/navigation/ActionBanner.jsx":"5204d38dc408","components/navigation/Banner.jsx":"897c8f74939c","components/navigation/BottomTabBar.jsx":"767b55c3e3f9","components/navigation/Breadcrumb.jsx":"a5d10eea3061","components/navigation/CalloutBar.jsx":"3e4793b23751","components/navigation/Carousel.jsx":"b664875b96c2","components/navigation/Footer.jsx":"94d4c354b355","components/navigation/Header.jsx":"98c6c3bc02a8","components/navigation/Pagination.jsx":"47a61cee20d5","components/navigation/SectionHeader.jsx":"bf39d764ef2c","components/navigation/Sidebar.jsx":"d290d8096d0f","components/navigation/Tabs.jsx":"93fd0080e9ef","components/navigation/nav-ia.js":"00ab9777819d","components/overlays/Dialog.jsx":"cbc34f6a5a07","components/overlays/Popover.jsx":"4d4d1d3372cb","components/overlays/Sheet.jsx":"36f615dbd282","components/overlays/Toast.jsx":"6850f5ea9e88","components/surfaces/AnswerCard.jsx":"74e7b2d01806","components/surfaces/ArticleBody.jsx":"bffdcf112266","components/surfaces/ArticlePreview.jsx":"b59d0810994a","components/surfaces/Card.jsx":"b7959424f7bf","components/surfaces/EmptyState.jsx":"22c03cdb98d0","components/surfaces/InterviewCard.jsx":"0a9fa24f5aa0","components/surfaces/MentorCard.jsx":"a831738bdf1a","components/surfaces/QnaCard.jsx":"3554511b5273","components/surfaces/Skeleton.jsx":"5816ddc5bd5d","components/surfaces/Table.jsx":"d6f67958bbb6","components/taxonomy.js":"c542637ad173"},"inlinedExternals":[],"unexposedExports":[{"name":"popoverMenuItemStyle","sourcePath":"components/overlays/Popover.jsx"}]} */
+/* @ds-bundle: {"format":4,"namespace":"MentreeDesignSystem_2f86cf","components":[{"name":"Avatar","sourcePath":"components/core/Avatar.jsx"},{"name":"AvatarGroup","sourcePath":"components/core/Avatar.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"BookmarkToggle","sourcePath":"components/core/BookmarkToggle.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Chip","sourcePath":"components/core/Chip.jsx"},{"name":"CountToggle","sourcePath":"components/core/CountToggle.jsx"},{"name":"FilterChip","sourcePath":"components/core/FilterChip.jsx"},{"name":"FilterSelect","sourcePath":"components/core/FilterSelect.jsx"},{"name":"Flag","sourcePath":"components/core/Flag.jsx"},{"name":"Icon","sourcePath":"components/core/Icon.jsx"},{"name":"IconButton","sourcePath":"components/core/IconButton.jsx"},{"name":"Checkbox","sourcePath":"components/forms/Checkbox.jsx"},{"name":"Field","sourcePath":"components/forms/Field.jsx"},{"name":"FieldGroup","sourcePath":"components/forms/Field.jsx"},{"name":"ImageCropper","sourcePath":"components/forms/ImageCropper.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"MultiSelect","sourcePath":"components/forms/MultiSelect.jsx"},{"name":"RadioGroup","sourcePath":"components/forms/RadioGroup.jsx"},{"name":"ReorderList","sourcePath":"components/forms/ReorderList.jsx"},{"name":"SearchInput","sourcePath":"components/forms/SearchInput.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"},{"name":"TagInput","sourcePath":"components/forms/TagInput.jsx"},{"name":"Textarea","sourcePath":"components/forms/Textarea.jsx"},{"name":"ToggleGroup","sourcePath":"components/forms/ToggleGroup.jsx"},{"name":"ActionBanner","sourcePath":"components/navigation/ActionBanner.jsx"},{"name":"Banner","sourcePath":"components/navigation/Banner.jsx"},{"name":"BottomTabBar","sourcePath":"components/navigation/BottomTabBar.jsx"},{"name":"Breadcrumb","sourcePath":"components/navigation/Breadcrumb.jsx"},{"name":"CalloutBar","sourcePath":"components/navigation/CalloutBar.jsx"},{"name":"Carousel","sourcePath":"components/navigation/Carousel.jsx"},{"name":"Footer","sourcePath":"components/navigation/Footer.jsx"},{"name":"Header","sourcePath":"components/navigation/Header.jsx"},{"name":"Pagination","sourcePath":"components/navigation/Pagination.jsx"},{"name":"SectionHeader","sourcePath":"components/navigation/SectionHeader.jsx"},{"name":"Sidebar","sourcePath":"components/navigation/Sidebar.jsx"},{"name":"Tabs","sourcePath":"components/navigation/Tabs.jsx"},{"name":"TabPanel","sourcePath":"components/navigation/Tabs.jsx"},{"name":"NAV_PRIMARY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_AUTH","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_UTILITY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_DETAIL","sourcePath":"components/navigation/nav-ia.js"},{"name":"Dialog","sourcePath":"components/overlays/Dialog.jsx"},{"name":"Popover","sourcePath":"components/overlays/Popover.jsx"},{"name":"Sheet","sourcePath":"components/overlays/Sheet.jsx"},{"name":"Toast","sourcePath":"components/overlays/Toast.jsx"},{"name":"Tooltip","sourcePath":"components/overlays/Tooltip.jsx"},{"name":"AnswerCard","sourcePath":"components/surfaces/AnswerCard.jsx"},{"name":"ArticleBody","sourcePath":"components/surfaces/ArticleBody.jsx"},{"name":"ArticlePreview","sourcePath":"components/surfaces/ArticlePreview.jsx"},{"name":"Card","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardHeader","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardTitle","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardDescription","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardContent","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardFooter","sourcePath":"components/surfaces/Card.jsx"},{"name":"EmptyState","sourcePath":"components/surfaces/EmptyState.jsx"},{"name":"InterviewCard","sourcePath":"components/surfaces/InterviewCard.jsx"},{"name":"MentorCard","sourcePath":"components/surfaces/MentorCard.jsx"},{"name":"QnaCard","sourcePath":"components/surfaces/QnaCard.jsx"},{"name":"QnaListItem","sourcePath":"components/surfaces/QnaListItem.jsx"},{"name":"Skeleton","sourcePath":"components/surfaces/Skeleton.jsx"},{"name":"Table","sourcePath":"components/surfaces/Table.jsx"},{"name":"COUNTRY_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"JOB_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"KEYWORD_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"COUNTRY_TOP","sourcePath":"components/taxonomy.js"},{"name":"JOB_TOP","sourcePath":"components/taxonomy.js"}],"sourceHashes":{"components/core/Avatar.jsx":"1f2223afdaea","components/core/Badge.jsx":"80d75aca8c7b","components/core/BookmarkToggle.jsx":"7ea2c991107e","components/core/Button.jsx":"b3053dbf6a00","components/core/Chip.jsx":"d7cf7e832461","components/core/CountToggle.jsx":"aca1e44ee376","components/core/FilterChip.jsx":"db672a544318","components/core/FilterSelect.jsx":"59fb7f178268","components/core/Flag.jsx":"74832595304d","components/core/Icon.jsx":"021313e06cd9","components/core/IconButton.jsx":"c0490a7cbccf","components/forms/Checkbox.jsx":"cdde026b2f7c","components/forms/Field.jsx":"24ed14eb14de","components/forms/ImageCropper.jsx":"1d9e655b2d94","components/forms/Input.jsx":"5c57a42a0782","components/forms/MultiSelect.jsx":"f786c4bbb700","components/forms/RadioGroup.jsx":"e62d2c3a6398","components/forms/ReorderList.jsx":"12a6c8dbe883","components/forms/SearchInput.jsx":"39c0fb25b4f9","components/forms/Select.jsx":"3c5febb41c06","components/forms/Switch.jsx":"21ed31da69e8","components/forms/TagInput.jsx":"748307e15ce8","components/forms/Textarea.jsx":"073a0eb29cb8","components/forms/ToggleGroup.jsx":"c7a2bba81517","components/forms/controlFocus.js":"0fe51fcaf5ae","components/navigation/ActionBanner.jsx":"5204d38dc408","components/navigation/Banner.jsx":"897c8f74939c","components/navigation/BottomTabBar.jsx":"767b55c3e3f9","components/navigation/Breadcrumb.jsx":"a5d10eea3061","components/navigation/CalloutBar.jsx":"3e4793b23751","components/navigation/Carousel.jsx":"b664875b96c2","components/navigation/Footer.jsx":"94d4c354b355","components/navigation/Header.jsx":"98c6c3bc02a8","components/navigation/Pagination.jsx":"47a61cee20d5","components/navigation/SectionHeader.jsx":"bf39d764ef2c","components/navigation/Sidebar.jsx":"d290d8096d0f","components/navigation/Tabs.jsx":"93fd0080e9ef","components/navigation/nav-ia.js":"00ab9777819d","components/overlays/Dialog.jsx":"cfb8a3b72cce","components/overlays/Popover.jsx":"a59330cd2e21","components/overlays/Sheet.jsx":"36f615dbd282","components/overlays/Toast.jsx":"6850f5ea9e88","components/overlays/Tooltip.jsx":"1503286c3874","components/surfaces/AnswerCard.jsx":"74e7b2d01806","components/surfaces/ArticleBody.jsx":"bffdcf112266","components/surfaces/ArticlePreview.jsx":"b59d0810994a","components/surfaces/Card.jsx":"b7959424f7bf","components/surfaces/EmptyState.jsx":"22c03cdb98d0","components/surfaces/InterviewCard.jsx":"0a9fa24f5aa0","components/surfaces/MentorCard.jsx":"a831738bdf1a","components/surfaces/QnaCard.jsx":"d7f1c6e61df9","components/surfaces/QnaListItem.jsx":"b71c408ee123","components/surfaces/Skeleton.jsx":"5816ddc5bd5d","components/surfaces/Table.jsx":"d6f67958bbb6","components/taxonomy.js":"57fdf00e92be"},"inlinedExternals":[],"unexposedExports":[{"name":"ensureControlFocusStyle","sourcePath":"components/forms/controlFocus.js"},{"name":"popoverMenuItemStyle","sourcePath":"components/overlays/Popover.jsx"}]} */
 
 (() => {
 
@@ -7,147 +7,6 @@ const __ds_ns = (window.MentreeDesignSystem_2f86cf = window.MentreeDesignSystem_
 const __ds_scope = {};
 
 (__ds_ns.__errors = __ds_ns.__errors || []);
-
-// components/core/Avatar.jsx
-try { (() => {
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-const SIZES = {
-  xs: 20,
-  sm: 24,
-  md: 32,
-  lg: 40
-};
-const CJK = /[\u3400-\u9FFF\uAC00-\uD7AF\u3040-\u30FF]/;
-function initials(name) {
-  if (!name) return "";
-  const parts = String(name).trim().split(/\s+/).filter(Boolean);
-  if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
-  const w = parts[0] || "";
-  return CJK.test(w[0]) ? w.slice(0, 1) : w.slice(0, 2).toUpperCase();
-}
-
-/**
- * Avatar — 원형 아바타. 이미지가 있으면 AvatarImage, 없거나 실패하면 AvatarFallback(이니셜).
- * 이미지 로딩 전에는 sage placeholder(sage-100)가 보인다.
- */
-function Avatar({
-  src,
-  name,
-  alt,
-  size = "md",
-  style,
-  ...rest
-}) {
-  const px = typeof size === "number" ? size : SIZES[size] || SIZES.md;
-  const [errored, setErrored] = React.useState(false);
-  const [loaded, setLoaded] = React.useState(false);
-  const showImg = !!src && !errored;
-  const fs = Math.max(9, Math.round(px * 0.4));
-  return /*#__PURE__*/React.createElement("span", _extends({
-    role: "img",
-    "aria-label": alt || name || "avatar",
-    title: name || undefined,
-    style: {
-      position: "relative",
-      display: "inline-flex",
-      alignItems: "center",
-      justifyContent: "center",
-      width: px,
-      height: px,
-      borderRadius: "50%",
-      overflow: "hidden",
-      flex: "0 0 auto",
-      background: "var(--sage-100)",
-      color: "var(--sage-700)",
-      fontFamily: "var(--font-sans)",
-      fontSize: fs,
-      fontWeight: 600,
-      lineHeight: 1,
-      letterSpacing: 0,
-      userSelect: "none",
-      ...style
-    }
-  }, rest), (!showImg || !loaded) && /*#__PURE__*/React.createElement("span", {
-    "aria-hidden": showImg ? "true" : undefined,
-    style: {
-      position: "absolute",
-      inset: 0,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center"
-    }
-  }, showImg ? null : initials(name)), showImg && /*#__PURE__*/React.createElement("img", {
-    src: src,
-    alt: alt || name || "",
-    onLoad: () => setLoaded(true),
-    onError: () => setErrored(true),
-    style: {
-      position: "absolute",
-      inset: 0,
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      opacity: loaded ? 1 : 0,
-      transition: "opacity 150ms ease"
-    }
-  }));
-}
-
-/**
- * AvatarGroup — 아바타 겹쳐 쌓기. 음수 마진 겹침 + 각 아바타 흰색 링(카드 위 분리용).
- * max 초과분은 "+K" 오버플로우 칩(마지막 자리, sage 배경).
- */
-function AvatarGroup({
-  items = [],
-  max = 4,
-  size = "sm",
-  style,
-  ...rest
-}) {
-  const px = typeof size === "number" ? size : SIZES[size] || SIZES.sm;
-  const overlap = Math.round(px * 0.32);
-  const ring = "0 0 0 2px var(--card)";
-  const shown = items.slice(0, max);
-  const extra = items.length - shown.length;
-  const cell = (child, i) => /*#__PURE__*/React.createElement("span", {
-    key: i,
-    style: {
-      marginLeft: i === 0 ? 0 : -overlap,
-      borderRadius: "50%",
-      boxShadow: ring,
-      position: "relative",
-      zIndex: i + 1,
-      display: "inline-flex"
-    }
-  }, child);
-  return /*#__PURE__*/React.createElement("span", _extends({
-    style: {
-      display: "inline-flex",
-      alignItems: "center",
-      ...style
-    }
-  }, rest), shown.map((it, i) => cell(/*#__PURE__*/React.createElement(Avatar, _extends({}, it, {
-    size: px
-  })), i)), extra > 0 && cell(/*#__PURE__*/React.createElement("span", {
-    className: "tabular",
-    style: {
-      display: "inline-flex",
-      alignItems: "center",
-      justifyContent: "center",
-      width: px,
-      height: px,
-      borderRadius: "50%",
-      background: "var(--secondary)",
-      color: "var(--secondary-foreground)",
-      fontFamily: "var(--font-sans)",
-      fontSize: Math.max(9, Math.round(px * 0.36)),
-      fontWeight: 600,
-      lineHeight: 1
-    }
-  }, "+", extra), shown.length));
-}
-Object.assign(__ds_scope, { Avatar, AvatarGroup });
-})(); } catch (e) { __ds_ns.__errors.push({ path: "components/core/Avatar.jsx", error: String((e && e.message) || e) }); }
 
 // components/core/BookmarkToggle.jsx
 try { (() => {
@@ -503,6 +362,167 @@ function Icon({
 Object.assign(__ds_scope, { Icon });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/core/Icon.jsx", error: String((e && e.message) || e) }); }
 
+// components/core/Avatar.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+const SIZES = {
+  xs: 20,
+  sm: 24,
+  md: 32,
+  lg: 40
+};
+const CJK = /[\u3400-\u9FFF\uAC00-\uD7AF\u3040-\u30FF]/;
+function initials(name) {
+  if (!name) return "";
+  const parts = String(name).trim().split(/\s+/).filter(Boolean);
+  if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
+  const w = parts[0] || "";
+  return CJK.test(w[0]) ? w.slice(0, 1) : w.slice(0, 2).toUpperCase();
+}
+
+/**
+ * Avatar — 원형 아바타. 이미지가 있으면 AvatarImage, 없거나 실패하면 AvatarFallback(이니셜).
+ * 이미지 로딩 전에는 sage placeholder(sage-100)가 보인다.
+ */
+/*
+ * DS-80 — shape "rounded"(반경 --radius-md, 로고 자리) · icon(사진이 없을 때 이니셜 대신).
+ *  icon이 있고 사진이 없다 → 흰 바탕(--card) · 1px --border · 아이콘 --primary.
+ *  rounded + 사진(로고) → 흰 바탕 · 1px --border 위에 contain(자르지 않는다).
+ *  circle은 지금과 같다(사람 사진). icon도 사진도 없으면 이니셜.
+ */
+function Avatar({
+  src,
+  name,
+  alt,
+  size = "md",
+  shape = "circle",
+  icon,
+  style,
+  ...rest
+}) {
+  const px = typeof size === "number" ? size : SIZES[size] || SIZES.md;
+  const [errored, setErrored] = React.useState(false);
+  const [loaded, setLoaded] = React.useState(false);
+  const showImg = !!src && !errored;
+  const fs = Math.max(9, Math.round(px * 0.4));
+  const rounded = shape === "rounded";
+  const iconMode = !showImg && !!icon;
+  const framed = iconMode || rounded && showImg; // 흰 바탕 + 1px 경계
+
+  return /*#__PURE__*/React.createElement("span", _extends({
+    role: "img",
+    "aria-label": alt || name || "avatar",
+    title: name || undefined,
+    style: {
+      position: "relative",
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: px,
+      height: px,
+      boxSizing: "border-box",
+      borderRadius: rounded ? "var(--radius-md)" : "50%",
+      overflow: "hidden",
+      flex: "0 0 auto",
+      background: framed ? "var(--card)" : "var(--sage-100)",
+      border: framed ? "1px solid var(--border)" : undefined,
+      color: iconMode ? "var(--primary)" : "var(--sage-700)",
+      fontFamily: "var(--font-sans)",
+      fontSize: fs,
+      fontWeight: 600,
+      lineHeight: 1,
+      letterSpacing: 0,
+      userSelect: "none",
+      ...style
+    }
+  }, rest), (!showImg || !loaded) && /*#__PURE__*/React.createElement("span", {
+    "aria-hidden": showImg ? "true" : undefined,
+    style: {
+      position: "absolute",
+      inset: 0,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }
+  }, showImg ? null : iconMode ? /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: icon,
+    size: Math.round(px * 0.5),
+    "aria-hidden": "true",
+    "aria-label": undefined,
+    role: undefined
+  }) : initials(name)), showImg && /*#__PURE__*/React.createElement("img", {
+    src: src,
+    alt: alt || name || "",
+    onLoad: () => setLoaded(true),
+    onError: () => setErrored(true),
+    style: {
+      position: "absolute",
+      inset: rounded ? Math.max(2, Math.round(px * 0.12)) : 0,
+      width: rounded ? "auto" : "100%",
+      height: rounded ? "auto" : "100%",
+      objectFit: rounded ? "contain" : "cover",
+      opacity: loaded ? 1 : 0,
+      transition: "opacity 150ms ease"
+    }
+  }));
+}
+
+/**
+ * AvatarGroup — 아바타 겹쳐 쌓기. 음수 마진 겹침 + 각 아바타 흰색 링(카드 위 분리용).
+ * max 초과분은 "+K" 오버플로우 칩(마지막 자리, sage 배경).
+ */
+function AvatarGroup({
+  items = [],
+  max = 4,
+  size = "sm",
+  style,
+  ...rest
+}) {
+  const px = typeof size === "number" ? size : SIZES[size] || SIZES.sm;
+  const overlap = Math.round(px * 0.32);
+  const ring = "0 0 0 2px var(--card)";
+  const shown = items.slice(0, max);
+  const extra = items.length - shown.length;
+  const cell = (child, i) => /*#__PURE__*/React.createElement("span", {
+    key: i,
+    style: {
+      marginLeft: i === 0 ? 0 : -overlap,
+      borderRadius: "50%",
+      boxShadow: ring,
+      position: "relative",
+      zIndex: i + 1,
+      display: "inline-flex"
+    }
+  }, child);
+  return /*#__PURE__*/React.createElement("span", _extends({
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      ...style
+    }
+  }, rest), shown.map((it, i) => cell(/*#__PURE__*/React.createElement(Avatar, _extends({}, it, {
+    size: px
+  })), i)), extra > 0 && cell(/*#__PURE__*/React.createElement("span", {
+    className: "tabular",
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: px,
+      height: px,
+      borderRadius: "50%",
+      background: "var(--secondary)",
+      color: "var(--secondary-foreground)",
+      fontFamily: "var(--font-sans)",
+      fontSize: Math.max(9, Math.round(px * 0.36)),
+      fontWeight: 600,
+      lineHeight: 1
+    }
+  }, "+", extra), shown.length));
+}
+Object.assign(__ds_scope, { Avatar, AvatarGroup });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/core/Avatar.jsx", error: String((e && e.message) || e) }); }
+
 // components/core/Badge.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
@@ -516,7 +536,7 @@ const {
  *  계열(variant): "category"(분류·뉴트럴 sage) · "status"(상태) · "tag"(질적태그 8색).
  *  status(상태값): "active"(진행중·green) · "new"(신규·green tint) · "closed"(마감·destructive) · "waiting"(대기·muted) · "hold"(보류·muted).
  *  hue(질적태그 8색): neutral·blue·sky·indigo·amber·rose·purple·teal.
- *  leading(전 계열 공통 앞자리 슬롯): "none" · "dot" · "flag"(국기) · "avatar".
+ *  leading(전 계열 공통 앞자리 슬롯): "none" · "dot" · "flag"(국기) · "avatar" · "icon"(DS-79 — HugeIcons, 아이콘만 --primary).
  *  패딩(접면 기반·좌우 독립): 텍스트 접면 sm8/md10/lg12 · 슬롯(flag/avatar/dot/"+N ⌄") 접면 sm5/md6/lg7.
  *  size: sm·md·lg. 형태: radius-md(완전 pill 아님). 라벨은 텍스트(tabular 불필요).
  */
@@ -529,7 +549,8 @@ const SIZES = {
     fs: "var(--text-micro)",
     gap: 5,
     slot: 16,
-    dot: 5
+    dot: 5,
+    icon: 14
   },
   md: {
     h: 28,
@@ -539,7 +560,8 @@ const SIZES = {
     fs: "var(--text-caption)",
     gap: 6,
     slot: 18,
-    dot: 6
+    dot: 6,
+    icon: 16
   },
   lg: {
     h: 34,
@@ -549,7 +571,8 @@ const SIZES = {
     fs: 14,
     gap: 7,
     slot: 22,
-    dot: 7
+    dot: 7,
+    icon: 18
   }
 };
 
@@ -617,6 +640,7 @@ function Badge({
   flag,
   flagBase = FLAG_BASE,
   avatar,
+  icon,
   size = "md",
   labelHidden = false,
   extraItems,
@@ -627,7 +651,7 @@ function Badge({
   const s = SIZES[size] || SIZES.md;
   const p = palette(variant, status, hue);
   // 접면 기반 좌우 패딩 — 각 변을 독립 판단: 텍스트 접면=padText, 슬롯(국기·아바타·dot·"+N ⌄") 접면=padSlot.
-  const hasLead = leading !== "none" && !(leading === "avatar" && !avatar);
+  const hasLead = leading !== "none" && !(leading === "avatar" && !avatar) && !(leading === "icon" && !icon);
   const labelShown = !labelHidden && children != null && children !== "";
   // 우변 접면: "+N ⌄" 있으면 슬롯, 없으면 라벨(텍스트), 라벨도 없으면(국기만 등) 슬롯.
   // "+N" 펼침(팝오버) — extraItems 있을 때만. 바깥 클릭 시 닫힘.
@@ -678,6 +702,18 @@ function Badge({
         objectFit: "cover"
       }
     }));
+  } else if (leading === "icon" && icon) {
+    // DS-79 — 아이콘만 --primary. 면 · 글자 · 경계는 계열의 모양 그대로. 접면 패딩은 flag와 같은 padSlot.
+    lead = /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+      name: icon,
+      size: s.icon,
+      "aria-hidden": "true",
+      "aria-label": undefined,
+      role: undefined,
+      style: {
+        color: "var(--primary)"
+      }
+    });
   } else if (leading === "avatar" && avatar) {
     lead = /*#__PURE__*/React.createElement(__ds_scope.Avatar, _extends({}, avatar, {
       size: s.slot
@@ -828,12 +864,26 @@ const VARIANTS = {
   }
 };
 
+// DS-81 — tone="primary"는 outline · ghost에만 먹는다. 다른 변형은 무시.
+//  outline: 흰 바탕 · 1px --primary 경계 · --primary 글자/아이콘 · hover 면 --green-50
+//  ghost: 면 · 경계 없음 · --primary 글자/아이콘 · hover 밑줄
+const PRIMARY_TONE = {
+  outline: {
+    color: "var(--primary)",
+    border: "1px solid var(--primary)"
+  },
+  ghost: {
+    color: "var(--primary)"
+  }
+};
+
 /**
  * Button — shadcn/vega button in mentree tokens.
  * 글자는 크기 단계와 무관하게 14px·600으로 고정된다(원티드 실측 — 버튼 안 글자는 안 움직이고 높이만 커진다).
  */
 function Button({
   variant = "primary",
+  tone = "neutral",
   size = "md",
   iconLeft,
   iconRight,
@@ -844,7 +894,12 @@ function Button({
   ...rest
 }) {
   const s = SIZES[size] || SIZES.md;
-  const v = VARIANTS[variant] || VARIANTS.primary;
+  const base = VARIANTS[variant] || VARIANTS.primary;
+  const toned = tone === "primary" ? PRIMARY_TONE[variant] : null;
+  const v = toned ? {
+    ...base,
+    ...toned
+  } : base;
   return /*#__PURE__*/React.createElement("button", _extends({
     disabled: disabled,
     style: {
@@ -878,11 +933,19 @@ function Button({
       e.currentTarget.style.transform = "none";
     },
     onMouseEnter: e => {
-      if (!disabled) e.currentTarget.style.filter = "brightness(0.95)";
+      if (disabled) return;
+      const el = e.currentTarget;
+      if (toned && variant === "outline") el.style.background = "var(--green-50)";else if (toned && variant === "ghost") {
+        el.style.textDecoration = "underline";
+        el.style.textUnderlineOffset = "3px";
+      } else el.style.filter = "brightness(0.95)";
     },
     onMouseLeave: e => {
-      e.currentTarget.style.filter = "none";
-      e.currentTarget.style.transform = "none";
+      const el = e.currentTarget;
+      if (toned && variant === "outline") el.style.background = style && style.background || v.background;
+      if (toned && variant === "ghost") el.style.textDecoration = style && style.textDecoration || "none";
+      el.style.filter = "none";
+      el.style.transform = "none";
     }
   }, rest), iconLeft && /*#__PURE__*/React.createElement(__ds_scope.Icon, {
     name: iconLeft,
@@ -1256,71 +1319,51 @@ const IconButton = React.forwardRef(function IconButton({
 Object.assign(__ds_scope, { IconButton });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/core/IconButton.jsx", error: String((e && e.message) || e) }); }
 
-// components/forms/Checkbox.jsx
-try { (() => {
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-/**
- * Checkbox — controlled checkbox with a HugeIcons tick.
- */
-function Checkbox({
-  checked = false,
-  onChange,
-  disabled = false,
-  label,
-  id,
-  style,
-  ...rest
-}) {
-  const box = /*#__PURE__*/React.createElement("span", _extends({
-    role: "checkbox",
-    "aria-checked": checked,
-    onClick: () => !disabled && onChange && onChange(!checked),
-    style: {
-      display: "inline-flex",
-      alignItems: "center",
-      justifyContent: "center",
-      width: 18,
-      height: 18,
-      flex: "0 0 auto",
-      borderRadius: "var(--radius-sm)",
-      border: `1.5px solid ${checked ? "var(--primary)" : "var(--input)"}`,
-      background: checked ? "var(--primary)" : "var(--card)",
-      cursor: disabled ? "not-allowed" : "pointer",
-      transition: "background-color 120ms ease, border-color 120ms ease",
-      ...style
-    }
-  }, rest), checked && /*#__PURE__*/React.createElement(__ds_scope.Icon, {
-    name: "tick-02",
-    size: 13,
-    style: {
-      color: "var(--primary-foreground)"
-    }
-  }));
-  if (!label) return box;
-  return /*#__PURE__*/React.createElement("label", {
-    htmlFor: id,
-    style: {
-      display: "inline-flex",
-      alignItems: "center",
-      gap: 8,
-      cursor: disabled ? "not-allowed" : "pointer",
-      opacity: disabled ? 0.6 : 1,
-      fontFamily: "var(--font-sans)",
-      fontSize: "var(--text-body)",
-      color: "var(--foreground)"
-    }
-  }, box, label);
-}
-Object.assign(__ds_scope, { Checkbox });
-})(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/Checkbox.jsx", error: String((e && e.message) || e) }); }
-
 // components/forms/Field.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /**
- * Field — label + control + description/error wrapper (shadcn Field convention).
+ * Field — label + description + control + error wrapper (shadcn Field convention).
  * FieldGroup — vertical stack of Fields.
+ *
+ * DS-32 — 제목의 크기 · 설명의 자리 · 묶음 제목.
+ *  라벨 --text-body · 600(선택지 글자보다 작지 않다). 설명은 라벨 바로 아래 · 컨트롤 위. 에러는 컨트롤 아래.
+ *  FieldGroup label → 묶음 제목(Field 라벨과 같은 모양) + 안의 Field 라벨은 작은 라벨(--text-caption · 500).
+ *  columns={2} → 안의 Field가 한 줄에 반씩. label·columns를 안 주면 이전과 같다(간격만).
  */
+const SmallLabelCtx = React.createContext(false);
+const TITLE = {
+  fontFamily: "var(--font-sans)",
+  fontSize: "var(--text-body)",
+  lineHeight: "var(--text-body--line-height)",
+  letterSpacing: "var(--text-body--letter-spacing)",
+  fontWeight: 600,
+  color: "var(--foreground)",
+  display: "inline-flex",
+  gap: 4
+};
+const SMALL = {
+  fontFamily: "var(--font-sans)",
+  fontSize: "var(--text-caption)",
+  lineHeight: "var(--text-caption--line-height)",
+  letterSpacing: "var(--text-caption--letter-spacing)",
+  fontWeight: 500,
+  color: "var(--foreground)",
+  display: "inline-flex",
+  gap: 4
+};
+const HELP = {
+  fontFamily: "var(--font-sans)",
+  fontSize: "var(--text-caption)",
+  lineHeight: "var(--text-caption--line-height)",
+  letterSpacing: "var(--text-caption--letter-spacing)"
+};
+const Req = () => /*#__PURE__*/React.createElement("span", {
+  "aria-hidden": "true",
+  style: {
+    color: "var(--destructive)"
+  }
+}, "*");
 function Field({
   label,
   htmlFor,
@@ -1331,79 +1374,612 @@ function Field({
   style,
   ...rest
 }) {
+  const small = React.useContext(SmallLabelCtx);
   return /*#__PURE__*/React.createElement("div", _extends({
     style: {
       display: "flex",
       flexDirection: "column",
-      gap: 6,
+      gap: small ? 6 : 8,
+      minWidth: 0,
       ...style
     }
-  }, rest), label && /*#__PURE__*/React.createElement("label", {
+  }, rest), (label || description) && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 2
+    }
+  }, label && /*#__PURE__*/React.createElement("label", {
     htmlFor: htmlFor,
+    style: small ? SMALL : TITLE
+  }, label, required && /*#__PURE__*/React.createElement(Req, null)), description && /*#__PURE__*/React.createElement("span", {
     style: {
-      fontFamily: "var(--font-sans)",
-      fontSize: "var(--text-caption)",
-      lineHeight: "var(--text-caption--line-height)",
-      letterSpacing: "var(--text-caption--letter-spacing)",
-      fontWeight: 500,
-      color: "var(--foreground)",
-      display: "inline-flex",
-      gap: 4
-    }
-  }, label, required && /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: "var(--destructive)"
-    }
-  }, "*")), children, error ? /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: "var(--text-caption)",
-      lineHeight: "var(--text-caption--line-height)",
-      letterSpacing: "var(--text-caption--letter-spacing)",
-      color: "var(--destructive)"
-    }
-  }, error) : description ? /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: "var(--text-caption)",
-      lineHeight: "var(--text-caption--line-height)",
-      letterSpacing: "var(--text-caption--letter-spacing)",
+      ...HELP,
       color: "var(--muted-foreground)"
     }
-  }, description) : null);
+  }, description)), children, error && /*#__PURE__*/React.createElement("span", {
+    role: "alert",
+    style: {
+      ...HELP,
+      color: "var(--destructive)"
+    }
+  }, error));
 }
 function FieldGroup({
+  label,
+  required = false,
+  columns,
   children,
   gap = 18,
   style,
   ...rest
 }) {
+  const labelId = React.useId();
+  const cols = typeof columns === "number" && columns > 1 ? columns : 0;
+  if (!label && !cols) {
+    return /*#__PURE__*/React.createElement("div", _extends({
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        gap,
+        ...style
+      }
+    }, rest), children);
+  }
+  const innerStyle = cols ? {
+    display: "grid",
+    gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+    gap: 12,
+    alignItems: "start"
+  } : {
+    display: "flex",
+    flexDirection: "column",
+    gap: 12
+  };
+  if (!label) {
+    return /*#__PURE__*/React.createElement("div", _extends({
+      style: {
+        ...innerStyle,
+        ...style
+      }
+    }, rest), children);
+  }
   return /*#__PURE__*/React.createElement("div", _extends({
+    role: "group",
+    "aria-labelledby": labelId,
     style: {
       display: "flex",
       flexDirection: "column",
-      gap,
+      gap: 8,
       ...style
     }
-  }, rest), children);
+  }, rest), /*#__PURE__*/React.createElement("div", {
+    id: labelId,
+    style: TITLE
+  }, label, required && /*#__PURE__*/React.createElement(Req, null)), /*#__PURE__*/React.createElement(SmallLabelCtx.Provider, {
+    value: true
+  }, /*#__PURE__*/React.createElement("div", {
+    style: innerStyle
+  }, children)));
 }
 Object.assign(__ds_scope, { Field, FieldGroup });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/Field.jsx", error: String((e && e.message) || e) }); }
+
+// components/forms/ImageCropper.jsx
+try { (() => {
+/**
+ * ImageCropper — 사진 한 장에서 두 영역을 잡는다(DS-72). 원형 = 아바타, 직사각형 = 멘토카드 사진(3:2).
+ *  「좌우 드래그로 직사각형 에리어, 상하 드래그로 원형 에리어의 위치를 조정 · 슬라이더로 확대/축소」.
+ *  [무대] 2:1 · 사진은 무대를 덮는다(cover) × zoom(1〜3), 가운데 기준. 영역 밖은 어둡게.
+ *  [직사각형] 높이 = 무대의 84%, 비율 rectAspect. 좌우로만 옮긴다.
+ *  [원] 지름 = 직사각형 짧은 변의 62%, 직사각형 가운데 세로줄 위에서 상하로만 옮긴다 — 늘 직사각형 안.
+ *  [확대] 두 영역은 크기를 유지하고 사진만 커진다. [↻] 90° 회전. [🗑] onRemove.
+ *  [키보드] 영역은 role="slider" — 직사각형 ←→ · 원 ↑↓(Shift = 큰 걸음). 확대 슬라이더 ←→ Home End.
+ *  [값] rotation을 적용한 원본 픽셀 좌표 — rect{x,y,w,h} · circle{cx,cy,r} · zoom · rotation.
+ *   영역 위치는 부품 안에 둔다. zoom · rotation은 value로 받으면 그 값을 따른다.
+ *  외부 라이브러리 없음. 슬라이더는 이 부품 안에만 있다(따로 Slider 부품을 만들지 않는다).
+ */
+
+const STAGE_ASPECT = 2;
+const RECT_H = 0.84;
+const CIRCLE_D = 0.62;
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const SHADE = "color-mix(in oklch, var(--sage-950) 55%, transparent)";
+const SHADE_SOFT = "color-mix(in oklch, var(--sage-950) 22%, transparent)";
+if (typeof document !== "undefined" && !document.getElementById("mt-cropper-style")) {
+  const s = document.createElement("style");
+  s.id = "mt-cropper-style";
+  s.textContent = ".mt-cropper-focus:focus-visible{outline:2px solid var(--ring);outline-offset:2px;}";
+  document.head.appendChild(s);
+}
+function ImageCropper({
+  src,
+  onPick,
+  rectAspect = 3 / 2,
+  value,
+  onChange,
+  onRemove,
+  error,
+  style
+}) {
+  const stageRef = React.useRef(null);
+  const fileRef = React.useRef(null);
+  const trackRef = React.useRef(null);
+  const onChangeRef = React.useRef(onChange);
+  onChangeRef.current = onChange;
+  const [size, setSize] = React.useState({
+    w: 0,
+    h: 0
+  });
+  const [nat, setNat] = React.useState(null);
+  const [pos, setPos] = React.useState({
+    rx: 0.5,
+    cy: 0.5
+  });
+  const [zoom, setZoom] = React.useState(value && value.zoom ? value.zoom : 1);
+  const [rotation, setRotation] = React.useState(value && value.rotation ? value.rotation : 0);
+  const [over, setOver] = React.useState(false);
+  const errId = React.useId();
+  React.useEffect(() => {
+    if (value && typeof value.zoom === "number") setZoom(clamp(value.zoom, 1, 3));
+  }, [value && value.zoom]);
+  React.useEffect(() => {
+    if (value && typeof value.rotation === "number") setRotation((value.rotation % 360 + 360) % 360);
+  }, [value && value.rotation]);
+  React.useEffect(() => {
+    setNat(null);
+  }, [src]);
+  React.useLayoutEffect(() => {
+    const el = stageRef.current;
+    if (!el) return;
+    const f = () => setSize({
+      w: el.clientWidth,
+      h: el.clientHeight
+    });
+    f();
+    if (typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(f);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [src]);
+
+  // 기하
+  const W = size.w,
+    H = size.h;
+  let rh = H * RECT_H,
+    rw = rh * rectAspect;
+  if (rw > W) {
+    rw = W;
+    rh = rw / rectAspect;
+  }
+  const rTravel = Math.max(0, W - rw);
+  const rLeft = rTravel * pos.rx;
+  const rTop = (H - rh) / 2;
+  const d = Math.min(rw, rh) * CIRCLE_D;
+  const cTravel = Math.max(0, rh - d);
+  const cTop = cTravel * pos.cy;
+  const cLeft = (rw - d) / 2;
+  const rot90 = rotation % 180 !== 0;
+  const iw = nat ? nat.w : 0,
+    ih = nat ? nat.h : 0;
+  const bw = rot90 ? ih : iw,
+    bh = rot90 ? iw : ih;
+  const s = nat && W && H ? Math.max(W / bw, H / bh) * zoom : 0;
+
+  // 값 알림 — rotation을 적용한 원본 픽셀 좌표
+  React.useEffect(() => {
+    if (!s || !onChangeRef.current) return;
+    const toImg = (x, y) => ({
+      x: (x - W / 2) / s + bw / 2,
+      y: (y - H / 2) / s + bh / 2
+    });
+    const r0 = toImg(rLeft, rTop);
+    const c0 = toImg(rLeft + cLeft + d / 2, rTop + cTop + d / 2);
+    const R = n => Math.round(n);
+    onChangeRef.current({
+      rect: {
+        x: R(r0.x),
+        y: R(r0.y),
+        w: R(rw / s),
+        h: R(rh / s)
+      },
+      circle: {
+        cx: R(c0.x),
+        cy: R(c0.y),
+        r: R(d / 2 / s)
+      },
+      zoom: Math.round(zoom * 100) / 100,
+      rotation
+    });
+  }, [s, pos.rx, pos.cy, zoom, rotation, W, H]);
+  const dragArea = kind => e => {
+    if (e.button > 0) return;
+    e.preventDefault();
+    e.stopPropagation();
+    e.currentTarget.focus({
+      preventScroll: true
+    });
+    const travel = kind === "rect" ? rTravel : cTravel;
+    if (travel <= 0) return;
+    const start = kind === "rect" ? e.clientX : e.clientY;
+    const p0 = kind === "rect" ? pos.rx : pos.cy;
+    const move = ev => {
+      const v = clamp(p0 + ((kind === "rect" ? ev.clientX : ev.clientY) - start) / travel);
+      setPos(p => kind === "rect" ? {
+        ...p,
+        rx: v
+      } : {
+        ...p,
+        cy: v
+      });
+    };
+    const up = () => {
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", up);
+      window.removeEventListener("pointercancel", up);
+    };
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+    window.addEventListener("pointercancel", up);
+  };
+  const keyArea = kind => e => {
+    const step = e.shiftKey ? 0.2 : 0.05;
+    const keys = kind === "rect" ? {
+      ArrowLeft: -step,
+      ArrowRight: step
+    } : {
+      ArrowUp: -step,
+      ArrowDown: step
+    };
+    let dv = keys[e.key];
+    if (e.key === "Home") dv = -1;
+    if (e.key === "End") dv = 1;
+    if (dv == null) return;
+    e.preventDefault();
+    setPos(p => kind === "rect" ? {
+      ...p,
+      rx: clamp(p.rx + dv)
+    } : {
+      ...p,
+      cy: clamp(p.cy + dv)
+    });
+  };
+  const zoomFromX = x => {
+    const t = trackRef.current;
+    if (!t) return;
+    const r = t.getBoundingClientRect();
+    setZoom(Math.round((1 + 2 * clamp((x - r.left) / r.width)) * 100) / 100);
+  };
+  const dragZoom = e => {
+    if (e.button > 0) return;
+    e.preventDefault();
+    e.currentTarget.focus({
+      preventScroll: true
+    });
+    zoomFromX(e.clientX);
+    const move = ev => zoomFromX(ev.clientX);
+    const up = () => {
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", up);
+    };
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+  };
+  const keyZoom = e => {
+    const m = {
+      ArrowLeft: -0.1,
+      ArrowDown: -0.1,
+      ArrowRight: 0.1,
+      ArrowUp: 0.1
+    };
+    if (e.key === "Home") {
+      e.preventDefault();
+      setZoom(1);
+      return;
+    }
+    if (e.key === "End") {
+      e.preventDefault();
+      setZoom(3);
+      return;
+    }
+    if (m[e.key] == null) return;
+    e.preventDefault();
+    setZoom(z => Math.round(clamp(z + m[e.key], 1, 3) * 10) / 10);
+  };
+  const pick = file => {
+    if (file && onPick) onPick(file);
+  };
+  const errNode = error ? /*#__PURE__*/React.createElement("div", {
+    id: errId,
+    role: "alert",
+    style: {
+      fontFamily: "var(--font-sans)",
+      fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
+      color: "var(--destructive)"
+    }
+  }, error) : null;
+  const fileInput = /*#__PURE__*/React.createElement("input", {
+    ref: fileRef,
+    type: "file",
+    accept: "image/*",
+    tabIndex: -1,
+    "aria-hidden": "true",
+    style: {
+      display: "none"
+    },
+    onChange: e => {
+      pick(e.target.files && e.target.files[0]);
+      e.target.value = "";
+    }
+  });
+  if (!src) {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        gap: 8,
+        ...style
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      onDragOver: e => {
+        e.preventDefault();
+        setOver(true);
+      },
+      onDragLeave: () => setOver(false),
+      onDrop: e => {
+        e.preventDefault();
+        setOver(false);
+        pick(e.dataTransfer.files && e.dataTransfer.files[0]);
+      },
+      "aria-describedby": error ? errId : undefined,
+      style: {
+        aspectRatio: `${STAGE_ASPECT} / 1`,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 12,
+        padding: 16,
+        boxSizing: "border-box",
+        borderRadius: "var(--radius-lg)",
+        border: `1.5px dashed ${error ? "var(--destructive)" : over ? "var(--primary)" : "var(--input)"}`,
+        background: over ? "var(--secondary)" : "var(--muted)",
+        textAlign: "center",
+        transition: "background-color 150ms ease, border-color 150ms ease"
+      }
+    }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+      name: "image-01",
+      size: 28,
+      style: {
+        color: "var(--muted-foreground)"
+      }
+    }), /*#__PURE__*/React.createElement(__ds_scope.Button, {
+      variant: "outline",
+      size: "sm",
+      iconLeft: "upload-04",
+      onClick: () => fileRef.current && fileRef.current.click()
+    }, "\uC0AC\uC9C4 \uC62C\uB9AC\uAE30"), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: "var(--text-caption)",
+        lineHeight: "var(--text-caption--line-height)",
+        color: "var(--muted-foreground)"
+      }
+    }, "\uB610\uB294 \uC0AC\uC9C4\uC744 \uC5EC\uAE30\uB85C \uB04C\uC5B4\uB2E4 \uB193\uC73C\uC138\uC694"), fileInput), errNode);
+  }
+  const imgW = iw * (s || 0),
+    imgH = ih * (s || 0);
+  const zoomT = (zoom - 1) / 2;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 12,
+      ...style
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    ref: stageRef,
+    "aria-describedby": error ? errId : undefined,
+    style: {
+      position: "relative",
+      aspectRatio: `${STAGE_ASPECT} / 1`,
+      overflow: "hidden",
+      borderRadius: "var(--radius-lg)",
+      background: "var(--sage-900)",
+      userSelect: "none",
+      touchAction: "none"
+    }
+  }, /*#__PURE__*/React.createElement("img", {
+    src: src,
+    alt: "",
+    draggable: false,
+    onLoad: e => setNat({
+      w: e.currentTarget.naturalWidth,
+      h: e.currentTarget.naturalHeight
+    }),
+    style: {
+      position: "absolute",
+      left: "50%",
+      top: "50%",
+      width: s ? imgW : "100%",
+      height: s ? imgH : "100%",
+      maxWidth: "none",
+      objectFit: s ? "fill" : "cover",
+      transform: `translate(-50%, -50%) rotate(${rotation}deg)`,
+      pointerEvents: "none"
+    }
+  }), s > 0 && /*#__PURE__*/React.createElement("div", {
+    className: "mt-cropper-focus",
+    role: "slider",
+    tabIndex: 0,
+    "aria-label": "\uC9C1\uC0AC\uAC01\uD615 \uC601\uC5ED \uC704\uCE58(\uC88C\uC6B0)",
+    "aria-orientation": "horizontal",
+    "aria-valuemin": 0,
+    "aria-valuemax": 100,
+    "aria-valuenow": Math.round(pos.rx * 100),
+    onPointerDown: dragArea("rect"),
+    onKeyDown: keyArea("rect"),
+    style: {
+      position: "absolute",
+      left: rLeft,
+      top: rTop,
+      width: rw,
+      height: rh,
+      boxSizing: "border-box",
+      border: "2px solid var(--background)",
+      boxShadow: `0 0 0 9999px ${SHADE}`,
+      cursor: rTravel > 0 ? "ew-resize" : "default",
+      overflow: "hidden"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mt-cropper-focus",
+    role: "slider",
+    tabIndex: 0,
+    "aria-label": "\uC6D0\uD615 \uC601\uC5ED \uC704\uCE58(\uC0C1\uD558)",
+    "aria-orientation": "vertical",
+    "aria-valuemin": 0,
+    "aria-valuemax": 100,
+    "aria-valuenow": Math.round(pos.cy * 100),
+    onPointerDown: dragArea("circle"),
+    onKeyDown: keyArea("circle"),
+    style: {
+      position: "absolute",
+      left: cLeft - 2,
+      top: cTop - 2,
+      width: d,
+      height: d,
+      boxSizing: "border-box",
+      borderRadius: "50%",
+      border: "2px solid var(--background)",
+      boxShadow: `0 0 0 9999px ${SHADE_SOFT}`,
+      cursor: cTravel > 0 ? "ns-resize" : "default"
+    }
+  }))), errNode, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: 12,
+      flexWrap: "wrap"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 4
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.IconButton, {
+    icon: "rotate-clockwise",
+    variant: "ghost",
+    size: "sm",
+    ariaLabel: "\uD68C\uC804",
+    onClick: () => setRotation(r => (r + 90) % 360)
+  }), /*#__PURE__*/React.createElement(__ds_scope.IconButton, {
+    icon: "delete-02",
+    variant: "ghost",
+    size: "sm",
+    ariaLabel: "\uC0AC\uC9C4 \uC0AD\uC81C",
+    onClick: onRemove
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      flex: "0 1 200px",
+      minWidth: 140
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: "search-01",
+    size: 16,
+    style: {
+      color: "var(--muted-foreground)",
+      flex: "0 0 auto"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    ref: trackRef,
+    className: "mt-cropper-focus",
+    role: "slider",
+    tabIndex: 0,
+    "aria-label": "\uD655\uB300",
+    "aria-valuemin": 1,
+    "aria-valuemax": 3,
+    "aria-valuenow": zoom,
+    "aria-valuetext": `${zoom.toFixed(1)}배`,
+    onPointerDown: dragZoom,
+    onKeyDown: keyZoom,
+    style: {
+      position: "relative",
+      flex: 1,
+      height: 24,
+      cursor: "pointer",
+      touchAction: "none",
+      borderRadius: "var(--radius-sm)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "absolute",
+      left: 0,
+      right: 0,
+      top: 10,
+      height: 4,
+      borderRadius: 2,
+      background: "var(--muted)"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "absolute",
+      left: 0,
+      width: `${zoomT * 100}%`,
+      top: 10,
+      height: 4,
+      borderRadius: 2,
+      background: "var(--primary)"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "absolute",
+      top: 4,
+      left: `calc(${zoomT * 100}% - 8px)`,
+      width: 16,
+      height: 16,
+      boxSizing: "border-box",
+      borderRadius: "50%",
+      background: "var(--background)",
+      border: "2px solid var(--primary)",
+      boxShadow: "var(--shadow-sm)"
+    }
+  })))), fileInput);
+}
+Object.assign(__ds_scope, { ImageCropper });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/ImageCropper.jsx", error: String((e && e.message) || e) }); }
 
 // components/forms/Input.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /**
  * Input — text field (shadcn/vega), mentree tokens.
+ * DS-70 — limit: 주면 상자 밖 오른쪽 아래에 「n/limit」(--text-caption · --muted-foreground).
+ *  n > limit이면 카운터 --destructive + 상자 invalid + aria-invalid="true". 잘라내지 않는다(maxlength 안 씀).
+ *  세는 법은 value.length(이모지 2자). limit을 안 주면 이전과 같다.
  */
 function Input({
   iconLeft,
   invalid = false,
   disabled = false,
+  limit,
   style,
   ...rest
 }) {
   const [focused, setFocused] = React.useState(false);
-  const borderColor = invalid ? "var(--destructive)" : focused ? "var(--ring)" : "var(--input)";
-  return /*#__PURE__*/React.createElement("div", {
+  const hasLimit = typeof limit === "number";
+  const [innerLen, setInnerLen] = React.useState(() => String(rest.defaultValue ?? "").length);
+  const counterId = React.useId();
+  const n = rest.value != null ? String(rest.value).length : innerLen;
+  const over = hasLimit && n > limit;
+  const bad = invalid || over;
+  const borderColor = bad ? "var(--destructive)" : focused ? "var(--ring)" : "var(--input)";
+  const box = /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -1416,7 +1992,7 @@ function Input({
       boxShadow: focused ? "0 0 0 3px color-mix(in oklch, var(--ring) 30%, transparent)" : "none",
       transition: "border-color 150ms ease, box-shadow 150ms ease",
       opacity: disabled ? 0.6 : 1,
-      ...style
+      ...(hasLimit ? null : style)
     }
   }, iconLeft && /*#__PURE__*/React.createElement(__ds_scope.Icon, {
     name: iconLeft,
@@ -1434,7 +2010,14 @@ function Input({
       setFocused(false);
       rest.onBlur && rest.onBlur(e);
     }
-  }, rest, {
+  }, rest, hasLimit ? {
+    "aria-invalid": bad ? true : undefined,
+    "aria-describedby": [rest["aria-describedby"], counterId].filter(Boolean).join(" "),
+    onChange: e => {
+      setInnerLen(e.target.value.length);
+      rest.onChange && rest.onChange(e);
+    }
+  } : null, {
     style: {
       flex: 1,
       minWidth: 0,
@@ -1448,77 +2031,338 @@ function Input({
       color: "var(--foreground)"
     }
   })));
+  if (!hasLimit) return box;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 6,
+      ...style
+    }
+  }, box, /*#__PURE__*/React.createElement("span", {
+    id: counterId,
+    style: {
+      alignSelf: "flex-end",
+      fontFamily: "var(--font-sans)",
+      fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
+      fontVariantNumeric: "tabular-nums",
+      color: over ? "var(--destructive)" : "var(--muted-foreground)"
+    }
+  }, n, "/", limit));
 }
 Object.assign(__ds_scope, { Input });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/Input.jsx", error: String((e && e.message) || e) }); }
 
-// components/forms/RadioGroup.jsx
+// components/forms/ReorderList.jsx
 try { (() => {
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /**
- * RadioGroup — single-select list of options.
+ * ReorderList — 순서를 바꾸는 목록(DS-73). 항목 내용은 화면이 renderItem으로 넣는다.
+ *  [핸들] 1건이면 감춘다. 2건 이상이면 항목마다 왼쪽 위(첫 칸의 라벨 줄)에 ≡(menu-01).
+ *  [끌기] 마우스 = 핸들을 눌러 바로 · 터치 = 핸들을 약 300ms 길게 눌러. 끄는 항목은 --shadow-md로 뜨고
+ *   나머지가 비켜서 들어갈 자리를 보인다. 놓으면 onReorder(새 배열).
+ *  [키보드] 핸들 포커스 → Space(Enter)로 집기 → ↑↓ 옮기기 → Space로 놓기 · Esc 취소(WCAG 2.1.1).
+ *  [알림] aria-live — 「{항목} — N번째로 옮겼습니다」(조사를 항목 이름에 붙이지 않는다).
+ *  [움직임] prefers-reduced-motion: reduce면 비키는 전환 없이 자리만 바꾼다.
  */
-function RadioGroup({
-  options = [],
-  value,
-  onChange,
-  name,
-  disabled = false,
-  style,
-  ...rest
+
+const LONG_PRESS = 300;
+const SLOP = 8;
+const moveItem = (arr, from, to) => {
+  const a = arr.slice();
+  const [x] = a.splice(from, 1);
+  a.splice(to, 0, x);
+  return a;
+};
+if (typeof document !== "undefined" && !document.getElementById("mt-reorder-style")) {
+  const s = document.createElement("style");
+  s.id = "mt-reorder-style";
+  s.textContent = ".mt-reorder-handle:focus-visible{outline:2px solid var(--ring);outline-offset:2px;}.mt-reorder-handle:hover{background:var(--secondary);color:var(--foreground);}";
+  document.head.appendChild(s);
+}
+function ReorderList({
+  items = [],
+  renderItem,
+  onReorder,
+  itemLabel,
+  gap = 12,
+  style
 }) {
-  return /*#__PURE__*/React.createElement("div", _extends({
-    role: "radiogroup",
+  const labelOf = (it, i) => itemLabel ? itemLabel(it, i) : `${i + 1}번째 항목`;
+  const [drag, setDrag] = React.useState(null); // { id, from, to, dy, startY, rects }
+  const [grab, setGrab] = React.useState(null); // { id, from }
+  const [order, setOrder] = React.useState(null); // 키보드로 옮기는 중의 id 순서
+  const [msg, setMsg] = React.useState("");
+  const [reduce, setReduce] = React.useState(false);
+  const itemRefs = React.useRef({});
+  const handleRefs = React.useRef({});
+  const dragRef = React.useRef(null);
+  dragRef.current = drag;
+  const itemsRef = React.useRef(items);
+  itemsRef.current = items;
+  const pressTimer = React.useRef(null);
+  const hintId = React.useId();
+  const showHandle = items.length >= 2;
+  React.useEffect(() => {
+    if (!window.matchMedia) return;
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const f = () => setReduce(m.matches);
+    f();
+    m.addEventListener("change", f);
+    return () => m.removeEventListener("change", f);
+  }, []);
+  const say = t => {
+    setMsg("");
+    requestAnimationFrame(() => setMsg(t));
+  };
+  const begin = (id, clientY) => {
+    const list = itemsRef.current;
+    const from = list.findIndex(it => it.id === id);
+    if (from < 0) return;
+    const rects = list.map(it => {
+      const el = itemRefs.current[it.id];
+      return el ? el.getBoundingClientRect() : {
+        top: 0,
+        height: 0
+      };
+    });
+    setGrab(null);
+    setOrder(null);
+    setDrag({
+      id,
+      from,
+      to: from,
+      dy: 0,
+      startY: clientY,
+      rects
+    });
+  };
+  React.useEffect(() => {
+    if (!drag) return;
+    const move = e => {
+      e.preventDefault && e.cancelable && e.preventDefault();
+      setDrag(d => {
+        if (!d) return d;
+        const dy = e.clientY - d.startY;
+        const r = d.rects[d.from];
+        const center = r.top + r.height / 2 + dy;
+        let to = 0;
+        d.rects.forEach((rc, i) => {
+          if (i !== d.from && center > rc.top + rc.height / 2) to++;
+        });
+        return {
+          ...d,
+          dy,
+          to
+        };
+      });
+    };
+    const up = () => {
+      const d = dragRef.current;
+      setDrag(null);
+      if (!d) return;
+      const list = itemsRef.current;
+      if (d.to !== d.from && onReorder) {
+        onReorder(moveItem(list, d.from, d.to));
+        const l = labelOf(list[d.from], d.from);
+        say(`${l} — ${d.to + 1}번째로 옮겼습니다`);
+      }
+    };
+    window.addEventListener("pointermove", move, {
+      passive: false
+    });
+    window.addEventListener("pointerup", up);
+    window.addEventListener("pointercancel", up);
+    return () => {
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", up);
+      window.removeEventListener("pointercancel", up);
+    };
+  }, [!!drag]);
+  const onHandleDown = id => e => {
+    if (!showHandle || e.button > 0) return;
+    if (e.pointerType === "mouse" || !e.pointerType) {
+      e.preventDefault();
+      begin(id, e.clientY);
+      return;
+    }
+    const x0 = e.clientX,
+      y0 = e.clientY;
+    const cancel = () => {
+      clearTimeout(pressTimer.current);
+      window.removeEventListener("pointermove", early);
+      window.removeEventListener("pointerup", cancel);
+      window.removeEventListener("pointercancel", cancel);
+    };
+    const early = ev => {
+      if (Math.abs(ev.clientX - x0) > SLOP || Math.abs(ev.clientY - y0) > SLOP) cancel();
+    };
+    window.addEventListener("pointermove", early);
+    window.addEventListener("pointerup", cancel);
+    window.addEventListener("pointercancel", cancel);
+    pressTimer.current = setTimeout(() => {
+      cancel();
+      if (navigator.vibrate) navigator.vibrate(10);
+      begin(id, y0);
+    }, LONG_PRESS);
+  };
+
+  // 키보드
+  const current = order ? order.map(id => items.find(it => it.id === id)).filter(Boolean) : items;
+  const onHandleKey = id => e => {
+    if (!showHandle) return;
+    const idx = current.findIndex(it => it.id === id);
+    const l = labelOf(items.find(it => it.id === id), items.findIndex(it => it.id === id));
+    if (e.key === " " || e.key === "Enter") {
+      e.preventDefault();
+      if (!grab) {
+        setGrab({
+          id,
+          from: idx
+        });
+        setOrder(items.map(it => it.id));
+        say(`${l} — 집었습니다. 위아래 화살표로 옮기고 스페이스로 놓습니다`);
+      } else {
+        const next = current;
+        const changed = next.some((it, i) => it.id !== items[i].id);
+        setGrab(null);
+        setOrder(null);
+        if (changed && onReorder) onReorder(next);
+        say(changed ? `${l} — ${idx + 1}번째로 옮겼습니다` : `${l} — 옮기지 않았습니다`);
+      }
+    } else if (grab && (e.key === "ArrowUp" || e.key === "ArrowDown")) {
+      e.preventDefault();
+      const to = e.key === "ArrowUp" ? idx - 1 : idx + 1;
+      if (to < 0 || to >= current.length) return;
+      setOrder(moveItem(current.map(it => it.id), idx, to));
+      say(`${to + 1}번째`);
+    } else if (grab && e.key === "Escape") {
+      e.preventDefault();
+      setGrab(null);
+      setOrder(null);
+      say(`${l} — 옮기지 않았습니다`);
+    }
+  };
+
+  // DOM 이동으로 포커스가 빠지면 되돌린다.
+  React.useLayoutEffect(() => {
+    if (!grab) return;
+    const h = handleRefs.current[grab.id];
+    if (h && document.activeElement !== h) h.focus({
+      preventScroll: true
+    });
+  }, [order, grab]);
+  const shiftFor = i => {
+    if (!drag || i === drag.from) return 0;
+    const h = drag.rects[drag.from].height + gap;
+    if (drag.from < drag.to && i > drag.from && i <= drag.to) return -h;
+    if (drag.from > drag.to && i >= drag.to && i < drag.from) return h;
+    return 0;
+  };
+  return /*#__PURE__*/React.createElement("div", {
     style: {
-      display: "flex",
-      flexDirection: "column",
-      gap: 10,
+      position: "relative",
       ...style
     }
-  }, rest), options.map(o => {
-    const val = typeof o === "string" ? o : o.value;
-    const lab = typeof o === "string" ? o : o.label;
-    const selected = value === val;
-    return /*#__PURE__*/React.createElement("label", {
-      key: val,
+  }, /*#__PURE__*/React.createElement("ul", {
+    style: {
+      listStyle: "none",
+      margin: 0,
+      padding: 0,
+      display: "flex",
+      flexDirection: "column",
+      gap
+    }
+  }, current.map(it => {
+    const i = items.findIndex(x => x.id === it.id);
+    const isDrag = drag && drag.id === it.id;
+    const isGrab = grab && grab.id === it.id;
+    const lifted = isDrag || isGrab;
+    const ty = isDrag ? drag.dy : shiftFor(i);
+    const l = labelOf(it, i);
+    return /*#__PURE__*/React.createElement("li", {
+      key: it.id,
+      ref: el => {
+        itemRefs.current[it.id] = el;
+      },
       style: {
-        display: "inline-flex",
-        alignItems: "center",
-        gap: 9,
-        cursor: disabled ? "not-allowed" : "pointer",
-        opacity: disabled ? 0.6 : 1,
-        fontFamily: "var(--font-sans)",
-        fontSize: "var(--text-body)",
-        color: "var(--foreground)"
+        position: "relative",
+        zIndex: lifted ? 2 : 1,
+        display: "grid",
+        gridTemplateColumns: showHandle ? "28px minmax(0, 1fr)" : "minmax(0, 1fr)",
+        columnGap: 8,
+        alignItems: "start",
+        background: "var(--background)",
+        borderRadius: "var(--radius-md)",
+        boxShadow: lifted ? "var(--shadow-md)" : "none",
+        outline: isGrab ? "2px solid var(--ring)" : "none",
+        outlineOffset: 4,
+        transform: ty ? `translateY(${ty}px)` : "none",
+        transition: isDrag || reduce ? "none" : "transform 150ms ease, box-shadow 150ms ease"
       }
-    }, /*#__PURE__*/React.createElement("span", {
-      role: "radio",
-      "aria-checked": selected,
-      onClick: () => !disabled && onChange && onChange(val),
+    }, showHandle && /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      ref: el => {
+        handleRefs.current[it.id] = el;
+      },
+      className: "mt-reorder-handle",
+      "aria-label": `${l} 순서 바꾸기`,
+      "aria-describedby": hintId,
+      "aria-pressed": isGrab ? true : false,
+      onPointerDown: onHandleDown(it.id),
+      onKeyDown: onHandleKey(it.id),
+      onContextMenu: e => e.preventDefault(),
       style: {
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        width: 18,
-        height: 18,
-        flex: "0 0 auto",
-        borderRadius: "50%",
-        border: `1.5px solid ${selected ? "var(--primary)" : "var(--input)"}`,
-        background: "var(--card)",
-        transition: "border-color 120ms ease"
+        width: 28,
+        height: 28,
+        marginTop: -2,
+        padding: 0,
+        border: "none",
+        borderRadius: "var(--radius-sm)",
+        background: isGrab ? "var(--secondary)" : "transparent",
+        color: lifted ? "var(--foreground)" : "var(--muted-foreground)",
+        cursor: isDrag ? "grabbing" : "grab",
+        touchAction: "none",
+        WebkitTouchCallout: "none",
+        userSelect: "none"
       }
-    }, selected && /*#__PURE__*/React.createElement("span", {
+    }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+      name: "menu-01",
+      size: 18
+    })), /*#__PURE__*/React.createElement("div", {
       style: {
-        width: 9,
-        height: 9,
-        borderRadius: "50%",
-        background: "var(--primary)"
+        minWidth: 0
       }
-    })), lab);
-  }));
+    }, renderItem ? renderItem(it, i) : null));
+  })), /*#__PURE__*/React.createElement("span", {
+    id: hintId,
+    style: {
+      position: "absolute",
+      width: 1,
+      height: 1,
+      overflow: "hidden",
+      clip: "rect(0 0 0 0)",
+      whiteSpace: "nowrap"
+    }
+  }, "Space\uB85C \uC9D1\uACE0 \uC704\uC544\uB798 \uD654\uC0B4\uD45C\uB85C \uC62E\uAE34 \uB4A4 Space\uB85C \uB193\uC2B5\uB2C8\uB2E4. Esc\uB294 \uCDE8\uC18C\uC785\uB2C8\uB2E4."), /*#__PURE__*/React.createElement("div", {
+    "aria-live": "assertive",
+    role: "status",
+    style: {
+      position: "absolute",
+      width: 1,
+      height: 1,
+      overflow: "hidden",
+      clip: "rect(0 0 0 0)",
+      whiteSpace: "nowrap"
+    }
+  }, msg));
 }
-Object.assign(__ds_scope, { RadioGroup });
-})(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/RadioGroup.jsx", error: String((e && e.message) || e) }); }
+Object.assign(__ds_scope, { ReorderList });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/ReorderList.jsx", error: String((e && e.message) || e) }); }
 
 // components/forms/SearchInput.jsx
 try { (() => {
@@ -1761,66 +2605,6 @@ function SearchInput({
 Object.assign(__ds_scope, { SearchInput });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/SearchInput.jsx", error: String((e && e.message) || e) }); }
 
-// components/forms/Switch.jsx
-try { (() => {
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-/**
- * Switch — on/off toggle.
- */
-function Switch({
-  checked = false,
-  onChange,
-  disabled = false,
-  label,
-  style,
-  ...rest
-}) {
-  const control = /*#__PURE__*/React.createElement("span", _extends({
-    role: "switch",
-    "aria-checked": checked,
-    onClick: () => !disabled && onChange && onChange(!checked),
-    style: {
-      position: "relative",
-      display: "inline-flex",
-      alignItems: "center",
-      width: 38,
-      height: 22,
-      flex: "0 0 auto",
-      borderRadius: "999px",
-      background: checked ? "var(--primary)" : "var(--sage-300)",
-      cursor: disabled ? "not-allowed" : "pointer",
-      transition: "background-color 150ms ease",
-      padding: 2,
-      ...style
-    }
-  }, rest), /*#__PURE__*/React.createElement("span", {
-    style: {
-      width: 18,
-      height: 18,
-      borderRadius: "50%",
-      background: "white",
-      boxShadow: "var(--shadow-xs)",
-      transform: checked ? "translateX(16px)" : "translateX(0)",
-      transition: "transform 150ms ease"
-    }
-  }));
-  if (!label) return control;
-  return /*#__PURE__*/React.createElement("label", {
-    style: {
-      display: "inline-flex",
-      alignItems: "center",
-      gap: 10,
-      cursor: disabled ? "not-allowed" : "pointer",
-      opacity: disabled ? 0.6 : 1,
-      fontFamily: "var(--font-sans)",
-      fontSize: "var(--text-body)",
-      color: "var(--foreground)"
-    }
-  }, control, label);
-}
-Object.assign(__ds_scope, { Switch });
-})(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/Switch.jsx", error: String((e && e.message) || e) }); }
-
 // components/forms/TagInput.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
@@ -2052,6 +2836,124 @@ function TagInput({
 Object.assign(__ds_scope, { TagInput });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/TagInput.jsx", error: String((e && e.message) || e) }); }
 
+// components/forms/Textarea.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Textarea — 여러 줄 입력(DS-70). 겉모양(면·경계·반경·포커스 링·invalid·disabled)은 Input과 같다.
+ *  rows(기본 3)에서 시작해 글이 늘면 maxRows(기본 8)까지 상자가 따라 커지고, 넘으면 상자 안에서 스크롤한다.
+ *  limit: 상자 밖 오른쪽 아래 「n/limit」. n > limit → 카운터 --destructive + invalid + aria-invalid="true".
+ *  잘라내지 않는다(maxlength 안 씀). value.length로 센다 — 이모지 2자.
+ */
+const LH = 24;
+const PAD_Y = 8;
+function Textarea({
+  value,
+  defaultValue,
+  onChange,
+  placeholder,
+  disabled = false,
+  invalid = false,
+  rows = 3,
+  maxRows = 8,
+  limit,
+  style,
+  onFocus,
+  onBlur,
+  ...rest
+}) {
+  const ref = React.useRef(null);
+  const [focused, setFocused] = React.useState(false);
+  const [innerLen, setInnerLen] = React.useState(() => String(defaultValue ?? "").length);
+  const [scrolls, setScrolls] = React.useState(false);
+  const counterId = React.useId();
+  const hasLimit = typeof limit === "number";
+  const n = value != null ? String(value).length : innerLen;
+  const over = hasLimit && n > limit;
+  const bad = invalid || over;
+  const fit = React.useCallback(() => {
+    const el = ref.current;
+    if (!el) return;
+    const min = rows * LH + PAD_Y * 2 + 2;
+    const max = maxRows * LH + PAD_Y * 2 + 2;
+    el.style.height = "auto";
+    const h = el.scrollHeight + 2;
+    el.style.height = Math.min(Math.max(h, min), max) + "px";
+    setScrolls(h > max);
+  }, [rows, maxRows]);
+  React.useLayoutEffect(fit, [value, fit]);
+  React.useEffect(() => {
+    window.addEventListener("resize", fit);
+    return () => window.removeEventListener("resize", fit);
+  }, [fit]);
+  const borderColor = bad ? "var(--destructive)" : focused ? "var(--ring)" : "var(--input)";
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 6,
+      ...style
+    }
+  }, /*#__PURE__*/React.createElement("textarea", _extends({
+    ref: ref,
+    rows: rows,
+    value: value,
+    defaultValue: defaultValue,
+    placeholder: placeholder,
+    disabled: disabled,
+    "aria-invalid": bad ? true : undefined,
+    "aria-describedby": hasLimit ? [rest["aria-describedby"], counterId].filter(Boolean).join(" ") : rest["aria-describedby"],
+    onChange: e => {
+      setInnerLen(e.target.value.length);
+      if (value == null) fit();
+      onChange && onChange(e);
+    },
+    onFocus: e => {
+      setFocused(true);
+      onFocus && onFocus(e);
+    },
+    onBlur: e => {
+      setFocused(false);
+      onBlur && onBlur(e);
+    }
+  }, rest, {
+    style: {
+      display: "block",
+      width: "100%",
+      boxSizing: "border-box",
+      resize: "none",
+      overflowY: scrolls ? "auto" : "hidden",
+      padding: `${PAD_Y}px 12px`,
+      background: disabled ? "var(--muted)" : "var(--card)",
+      border: `1px solid ${borderColor}`,
+      borderRadius: "var(--radius-md)",
+      boxShadow: focused ? "0 0 0 3px color-mix(in oklch, var(--ring) 30%, transparent)" : "none",
+      transition: "border-color 150ms ease, box-shadow 150ms ease",
+      opacity: disabled ? 0.6 : 1,
+      outline: "none",
+      fontFamily: "var(--font-sans)",
+      fontSize: "var(--text-body)",
+      lineHeight: `${LH}px`,
+      letterSpacing: 0,
+      color: "var(--foreground)",
+      cursor: disabled ? "not-allowed" : "text"
+    }
+  })), hasLimit && /*#__PURE__*/React.createElement("span", {
+    id: counterId,
+    style: {
+      alignSelf: "flex-end",
+      fontFamily: "var(--font-sans)",
+      fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
+      fontVariantNumeric: "tabular-nums",
+      color: over ? "var(--destructive)" : "var(--muted-foreground)"
+    }
+  }, n, "/", limit));
+}
+Object.assign(__ds_scope, { Textarea });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/Textarea.jsx", error: String((e && e.message) || e) }); }
+
 // components/forms/ToggleGroup.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
@@ -2124,6 +3026,296 @@ function ToggleGroup({
 }
 Object.assign(__ds_scope, { ToggleGroup });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/ToggleGroup.jsx", error: String((e && e.message) || e) }); }
+
+// components/forms/controlFocus.js
+try { (() => {
+// DS-75 — Checkbox · Switch · RadioGroup 공용: 속의 네이티브 입력이 키보드로 포커스되면 겉 상자 둘레에 --ring.
+function ensureControlFocusStyle() {
+  if (typeof document === "undefined" || document.getElementById("mt-ctl-focus-style")) return;
+  const s = document.createElement("style");
+  s.id = "mt-ctl-focus-style";
+  s.textContent = ".mt-ctl-input:focus-visible+.mt-ctl-face{outline:2px solid var(--ring);outline-offset:2px;}";
+  document.head.appendChild(s);
+}
+Object.assign(__ds_scope, { ensureControlFocusStyle });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/controlFocus.js", error: String((e && e.message) || e) }); }
+
+// components/forms/Checkbox.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Checkbox — controlled checkbox with a HugeIcons tick.
+ * DS-75 — 속에 네이티브 <input type="checkbox">(상자와 같은 자리 · opacity 0). Tab이 닿고 Space로 켜고 끈다.
+ *  라벨 글자가 이름이 된다(없으면 aria-label). disabled는 네이티브. 키보드로 닿으면 상자 둘레에 --ring(:focus-visible).
+ *  겉모양은 이전 그대로.
+ */
+function Checkbox({
+  checked = false,
+  onChange,
+  disabled = false,
+  label,
+  id,
+  style,
+  ...rest
+}) {
+  React.useEffect(__ds_scope.ensureControlFocusStyle, []);
+  const box = /*#__PURE__*/React.createElement("span", {
+    style: {
+      position: "relative",
+      display: "inline-flex",
+      flex: "0 0 auto"
+    }
+  }, /*#__PURE__*/React.createElement("input", _extends({
+    type: "checkbox",
+    id: id,
+    className: "mt-ctl-input",
+    checked: checked,
+    disabled: disabled,
+    onChange: e => onChange && onChange(e.target.checked),
+    readOnly: !onChange
+  }, rest, {
+    style: {
+      position: "absolute",
+      inset: 0,
+      width: "100%",
+      height: "100%",
+      margin: 0,
+      opacity: 0,
+      cursor: disabled ? "not-allowed" : "pointer",
+      zIndex: 1
+    }
+  })), /*#__PURE__*/React.createElement("span", {
+    className: "mt-ctl-face",
+    "aria-hidden": "true",
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: 18,
+      height: 18,
+      flex: "0 0 auto",
+      boxSizing: "border-box",
+      borderRadius: "var(--radius-sm)",
+      border: `1.5px solid ${checked ? "var(--primary)" : "var(--input)"}`,
+      background: checked ? "var(--primary)" : "var(--card)",
+      cursor: disabled ? "not-allowed" : "pointer",
+      transition: "background-color 120ms ease, border-color 120ms ease",
+      ...style
+    }
+  }, checked && /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: "tick-02",
+    size: 13,
+    style: {
+      color: "var(--primary-foreground)"
+    }
+  })));
+  if (!label) return box;
+  return /*#__PURE__*/React.createElement("label", {
+    htmlFor: id,
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 8,
+      cursor: disabled ? "not-allowed" : "pointer",
+      opacity: disabled ? 0.6 : 1,
+      fontFamily: "var(--font-sans)",
+      fontSize: "var(--text-body)",
+      color: "var(--foreground)"
+    }
+  }, box, label);
+}
+Object.assign(__ds_scope, { Checkbox });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/Checkbox.jsx", error: String((e && e.message) || e) }); }
+
+// components/forms/RadioGroup.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * RadioGroup — single-select list of options.
+ * DS-75 — 항목마다 네이티브 <input type="radio">(같은 name · 원과 같은 자리 · opacity 0).
+ *  Tab은 그룹에 한 번 닿고 화살표로 옮긴다(네이티브). 라벨 글자가 이름. disabled는 네이티브.
+ *  키보드 포커스면 원 둘레에 --ring. 겉모양은 이전 그대로.
+ */
+function RadioGroup({
+  options = [],
+  value,
+  onChange,
+  name,
+  disabled = false,
+  style,
+  ...rest
+}) {
+  React.useEffect(__ds_scope.ensureControlFocusStyle, []);
+  const auto = React.useId();
+  const groupName = name || `mt-radio-${auto.replace(/:/g, "")}`;
+  return /*#__PURE__*/React.createElement("div", _extends({
+    role: "radiogroup",
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 10,
+      ...style
+    }
+  }, rest), options.map(o => {
+    const val = typeof o === "string" ? o : o.value;
+    const lab = typeof o === "string" ? o : o.label;
+    const selected = value === val;
+    return /*#__PURE__*/React.createElement("label", {
+      key: val,
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 9,
+        cursor: disabled ? "not-allowed" : "pointer",
+        opacity: disabled ? 0.6 : 1,
+        fontFamily: "var(--font-sans)",
+        fontSize: "var(--text-body)",
+        color: "var(--foreground)"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        position: "relative",
+        display: "inline-flex",
+        flex: "0 0 auto"
+      }
+    }, /*#__PURE__*/React.createElement("input", {
+      type: "radio",
+      name: groupName,
+      value: val,
+      className: "mt-ctl-input",
+      checked: selected,
+      disabled: disabled,
+      onChange: () => onChange && onChange(val),
+      readOnly: !onChange,
+      style: {
+        position: "absolute",
+        inset: 0,
+        width: "100%",
+        height: "100%",
+        margin: 0,
+        opacity: 0,
+        cursor: disabled ? "not-allowed" : "pointer",
+        zIndex: 1
+      }
+    }), /*#__PURE__*/React.createElement("span", {
+      className: "mt-ctl-face",
+      "aria-hidden": "true",
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: 18,
+        height: 18,
+        flex: "0 0 auto",
+        boxSizing: "border-box",
+        borderRadius: "50%",
+        border: `1.5px solid ${selected ? "var(--primary)" : "var(--input)"}`,
+        background: "var(--card)",
+        transition: "border-color 120ms ease"
+      }
+    }, selected && /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: 9,
+        height: 9,
+        borderRadius: "50%",
+        background: "var(--primary)"
+      }
+    }))), lab);
+  }));
+}
+Object.assign(__ds_scope, { RadioGroup });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/RadioGroup.jsx", error: String((e && e.message) || e) }); }
+
+// components/forms/Switch.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Switch — on/off toggle.
+ * DS-75 — 속에 네이티브 <input type="checkbox" role="switch">(트랙과 같은 자리 · opacity 0). Tab · Space.
+ *  라벨 글자가 이름(없으면 aria-label). disabled는 네이티브. 키보드 포커스면 트랙 둘레에 --ring. 겉모양은 이전 그대로.
+ */
+function Switch({
+  checked = false,
+  onChange,
+  disabled = false,
+  label,
+  id,
+  style,
+  ...rest
+}) {
+  React.useEffect(__ds_scope.ensureControlFocusStyle, []);
+  const control = /*#__PURE__*/React.createElement("span", {
+    style: {
+      position: "relative",
+      display: "inline-flex",
+      flex: "0 0 auto"
+    }
+  }, /*#__PURE__*/React.createElement("input", _extends({
+    type: "checkbox",
+    role: "switch",
+    id: id,
+    className: "mt-ctl-input",
+    checked: checked,
+    "aria-checked": checked,
+    disabled: disabled,
+    onChange: e => onChange && onChange(e.target.checked),
+    readOnly: !onChange
+  }, rest, {
+    style: {
+      position: "absolute",
+      inset: 0,
+      width: "100%",
+      height: "100%",
+      margin: 0,
+      opacity: 0,
+      cursor: disabled ? "not-allowed" : "pointer",
+      zIndex: 1
+    }
+  })), /*#__PURE__*/React.createElement("span", {
+    className: "mt-ctl-face",
+    "aria-hidden": "true",
+    style: {
+      position: "relative",
+      display: "inline-flex",
+      alignItems: "center",
+      width: 38,
+      height: 22,
+      flex: "0 0 auto",
+      boxSizing: "border-box",
+      borderRadius: "999px",
+      background: checked ? "var(--primary)" : "var(--sage-300)",
+      cursor: disabled ? "not-allowed" : "pointer",
+      transition: "background-color 150ms ease",
+      padding: 2,
+      ...style
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 18,
+      height: 18,
+      borderRadius: "50%",
+      background: "white",
+      boxShadow: "var(--shadow-xs)",
+      transform: checked ? "translateX(16px)" : "translateX(0)",
+      transition: "transform 150ms ease"
+    }
+  })));
+  if (!label) return control;
+  return /*#__PURE__*/React.createElement("label", {
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 10,
+      cursor: disabled ? "not-allowed" : "pointer",
+      opacity: disabled ? 0.6 : 1,
+      fontFamily: "var(--font-sans)",
+      fontSize: "var(--text-body)",
+      color: "var(--foreground)"
+    }
+  }, control, label);
+}
+Object.assign(__ds_scope, { Switch });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/Switch.jsx", error: String((e && e.message) || e) }); }
 
 // components/navigation/ActionBanner.jsx
 try { (() => {
@@ -4332,7 +5524,73 @@ Object.assign(__ds_scope, { Header });
 try { (() => {
 /**
  * Dialog — centered modal over a dimmed scrim.
+ *
+ * DS-69 — 긴 본문 · 모바일 전체 화면 · 쌓는 푸터 · 닫기와 포커스.
+ *  [긴 본문] 머리(제목 + ✕ + 설명)와 푸터를 고정하고 본문만 스크롤한다. 모달 높이 ≤ 창 높이 − 48(위아래 24).
+ *   머리 아래 hairline 하나. 푸터 위 hairline은 본문이 푸터 밑으로 이어질 때만(끝까지 내리면 없다).
+ *  [닫기] Esc · 스크림 · ✕ → onClose. 닫을지는 화면이 정한다(open을 true로 두면 그대로 남는다).
+ *   Esc는 안에 열린 목록([aria-expanded="true"])이 있거나 안쪽 부품이 이미 처리(preventDefault)했으면 넘긴다.
+ *  [포커스] 열리면 안에 가둔다 — 첫 입력 칸, 없으면 ✕. 닫히면 연 요소로 돌려준다.
+ *  [footerLayout] "end"(기본, 오른쪽 정렬) · "stack"(세로 — 첫 버튼 폭 전체, 그 아래 버튼은 가운데).
+ *  [mobile] "center"(기본) · "fullscreen" — ≤768에서 화면 전체, 반경·스크림 없음, 푸터는 바닥 + safe-area.
+ *   visualViewport로 소프트 키보드 위에 푸터를 남긴다. 뒤로가기 → onClose(열 때 기록 하나를 쌓고, 화면이 안 닫으면 다시 쌓는다).
+ *   fullscreen(≤768)에서 열리면 포커스는 제목(tabIndex -1) — 키보드가 바로 올라오지 않게. 769 이상은 첫 입력 칸.
+ *  [스크롤 잠금] 열리면 뒤 페이지를 잠근다 — body fixed + top = −scrollY(iOS Safari 포함) + 스크롤바 폭만큼 padding-right.
+ *   닫히면 풀고 스크롤 위치를 되돌린다. 둘 이상 열려 있으면 마지막이 닫힐 때 푼다.
  */
+
+let lockCount = 0;
+let lockSaved = null;
+function lockScroll() {
+  if (typeof document === "undefined") return;
+  lockCount += 1;
+  if (lockCount > 1) return;
+  const b = document.body,
+    h = document.documentElement;
+  const y = window.scrollY || h.scrollTop || 0;
+  const sbw = window.innerWidth - h.clientWidth;
+  const pr = parseFloat(getComputedStyle(b).paddingRight) || 0;
+  lockSaved = {
+    y,
+    style: b.getAttribute("style")
+  };
+  b.style.position = "fixed";
+  b.style.top = -y + "px";
+  b.style.left = "0";
+  b.style.right = "0";
+  b.style.width = "100%";
+  b.style.overflow = "hidden";
+  if (sbw > 0) b.style.paddingRight = pr + sbw + "px";
+  b.dataset.mtScrollLock = String(y);
+}
+function unlockScroll() {
+  if (typeof document === "undefined" || lockCount === 0) return;
+  lockCount -= 1;
+  if (lockCount > 0 || !lockSaved) return;
+  const b = document.body,
+    h = document.documentElement;
+  const {
+    y,
+    style
+  } = lockSaved;
+  lockSaved = null;
+  if (style == null) b.removeAttribute("style");else b.setAttribute("style", style);
+  delete b.dataset.mtScrollLock;
+  const prev = h.style.scrollBehavior;
+  h.style.scrollBehavior = "auto";
+  window.scrollTo(0, y);
+  h.style.scrollBehavior = prev;
+}
+const FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]):not([type="hidden"]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+const FIRST_FIELD = 'input:not([disabled]):not([type="hidden"]),textarea:not([disabled]),select:not([disabled]),[role="combobox"]:not([disabled])';
+const MQ = "(max-width: 768px)";
+function ensureDialogStyle() {
+  if (typeof document === "undefined" || document.getElementById("mt-dialog-style")) return;
+  const s = document.createElement("style");
+  s.id = "mt-dialog-style";
+  s.textContent = ["@keyframes mt-fade{from{opacity:0}to{opacity:1}}@keyframes mt-pop{from{opacity:0;transform:scale(0.97)}to{opacity:1;transform:scale(1)}}", ".mt-dialog-footer[data-layout=stack]>:first-child{width:100%}", ".mt-dialog-title{outline:none;border-radius:var(--radius-sm)}.mt-dialog-title:focus-visible{outline:2px solid var(--ring);outline-offset:2px}", ".mt-dialog-footer[data-layout=stack]>:not(:first-child){align-self:center}", "@media (max-width:768px){", ".mt-dialog-overlay[data-mobile=fullscreen]{padding:0 !important;background:transparent !important;backdrop-filter:none !important;align-items:stretch !important}", ".mt-dialog-overlay[data-mobile=fullscreen]>.mt-dialog-panel{max-width:none !important;max-height:none !important;height:100%;border:0 !important;border-radius:0 !important;box-shadow:none !important;animation:none !important}", ".mt-dialog-overlay[data-mobile=fullscreen] .mt-dialog-footer{padding-bottom:calc(20px + env(safe-area-inset-bottom)) !important}", "}", "@media (prefers-reduced-motion:reduce){.mt-dialog-overlay,.mt-dialog-panel{animation:none !important}}"].join("");
+  document.head.appendChild(s);
+}
 function Dialog({
   open,
   onClose,
@@ -4341,11 +5599,187 @@ function Dialog({
   children,
   footer,
   width = 460,
+  footerLayout = "end",
+  mobile = "center",
   style
 }) {
+  const panelRef = React.useRef(null);
+  const bodyRef = React.useRef(null);
+  const innerRef = React.useRef(null);
+  const closeRef = React.useRef(null);
+  const titleRef = React.useRef(null);
+  const downOnScrim = React.useRef(false);
+  const onCloseRef = React.useRef(onClose);
+  onCloseRef.current = onClose;
+  const openRef = React.useRef(open);
+  openRef.current = open;
+  const titleId = React.useId();
+  const descId = React.useId();
+  const [narrow, setNarrow] = React.useState(() => typeof window !== "undefined" && !!window.matchMedia && window.matchMedia(MQ).matches);
+  const [moreBelow, setMoreBelow] = React.useState(false);
+  const [vv, setVv] = React.useState(null);
+  const isFs = mobile === "fullscreen" && narrow;
+  React.useEffect(ensureDialogStyle, []);
+  React.useEffect(() => {
+    if (!window.matchMedia) return;
+    const m = window.matchMedia(MQ);
+    const f = () => setNarrow(m.matches);
+    f();
+    m.addEventListener("change", f);
+    return () => m.removeEventListener("change", f);
+  }, []);
+
+  // 스크롤 잠금
+  React.useEffect(() => {
+    if (!open) return;
+    lockScroll();
+    return unlockScroll;
+  }, [open]);
+
+  // 포커스: fullscreen(≤768)은 제목 · 그 밖은 첫 입력 칸 → 없으면 ✕. 닫히면 연 요소로.
+  React.useEffect(() => {
+    if (!open) return;
+    const prev = document.activeElement;
+    const panel = panelRef.current;
+    const fsNow = mobile === "fullscreen" && !!window.matchMedia && window.matchMedia(MQ).matches;
+    const first = panel && panel.querySelector(FIRST_FIELD);
+    const target = fsNow ? titleRef.current || closeRef.current : first || closeRef.current;
+    if (target && target.focus) target.focus({
+      preventScroll: true
+    });
+    return () => {
+      if (prev && prev.focus && document.contains(prev)) prev.focus({
+        preventScroll: true
+      });
+    };
+  }, [open]);
+
+  // Esc · Tab 가두기 · 밖으로 나간 포커스 되돌리기
+  React.useEffect(() => {
+    if (!open) return;
+    const focusables = () => {
+      const panel = panelRef.current;
+      return panel ? Array.from(panel.querySelectorAll(FOCUSABLE)).filter(el => el.offsetParent !== null || el === document.activeElement) : [];
+    };
+    const onKey = e => {
+      const panel = panelRef.current;
+      if (!panel) return;
+      if (e.key === "Escape") {
+        if (e.defaultPrevented || panel.querySelector('[aria-expanded="true"]')) return;
+        onCloseRef.current && onCloseRef.current();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const f = focusables();
+      if (!f.length) {
+        e.preventDefault();
+        return;
+      }
+      const first = f[0];
+      const last = f[f.length - 1];
+      const a = document.activeElement;
+      if (!panel.contains(a)) {
+        e.preventDefault();
+        first.focus();
+      } else if (e.shiftKey && a === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && a === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    const onFocusIn = e => {
+      const panel = panelRef.current;
+      if (panel && !panel.contains(e.target)) {
+        const f = focusables();
+        (f[0] || panel).focus && (f[0] || panel).focus({
+          preventScroll: true
+        });
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("focusin", onFocusIn);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("focusin", onFocusIn);
+    };
+  }, [open]);
+
+  // 푸터 위 hairline — 본문이 푸터 밑으로 이어질 때만.
+  const measure = React.useCallback(() => {
+    const b = bodyRef.current;
+    if (!b) return;
+    setMoreBelow(b.scrollHeight - b.scrollTop - b.clientHeight > 1);
+  }, []);
+  React.useLayoutEffect(() => {
+    if (!open) return;
+    measure();
+    if (typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(measure);
+    if (bodyRef.current) ro.observe(bodyRef.current);
+    if (innerRef.current) ro.observe(innerRef.current);
+    return () => ro.disconnect();
+  }, [open, measure]);
+
+  // 전체 화면: 소프트 키보드 위에 푸터를 남긴다.
+  React.useEffect(() => {
+    const v = typeof window !== "undefined" ? window.visualViewport : null;
+    if (!open || !isFs || !v) {
+      setVv(null);
+      return;
+    }
+    const f = () => setVv({
+      top: v.offsetTop,
+      h: v.height
+    });
+    f();
+    v.addEventListener("resize", f);
+    v.addEventListener("scroll", f);
+    return () => {
+      v.removeEventListener("resize", f);
+      v.removeEventListener("scroll", f);
+    };
+  }, [open, isFs]);
+
+  // 전체 화면: 뒤로가기 → onClose.
+  React.useEffect(() => {
+    if (!open || !isFs) return;
+    let pushed = true;
+    let alive = true;
+    history.pushState({
+      mtDialog: true
+    }, "");
+    const onPop = () => {
+      pushed = false;
+      onCloseRef.current && onCloseRef.current();
+      setTimeout(() => {
+        if (alive && openRef.current) {
+          history.pushState({
+            mtDialog: true
+          }, "");
+          pushed = true;
+        }
+      }, 0);
+    };
+    window.addEventListener("popstate", onPop);
+    return () => {
+      alive = false;
+      window.removeEventListener("popstate", onPop);
+      if (pushed && history.state && history.state.mtDialog) history.back();
+    };
+  }, [open, isFs]);
   if (!open) return null;
+  const stack = footerLayout === "stack";
   return /*#__PURE__*/React.createElement("div", {
-    onClick: onClose,
+    className: "mt-dialog-overlay",
+    "data-mobile": mobile,
+    onMouseDown: e => {
+      downOnScrim.current = e.target === e.currentTarget;
+    },
+    onClick: e => {
+      if (e.target === e.currentTarget && downOnScrim.current && onClose) onClose();
+    },
     style: {
       position: "fixed",
       inset: 0,
@@ -4353,18 +5787,34 @@ function Dialog({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      padding: 20,
+      padding: "24px 20px",
+      boxSizing: "border-box",
       background: "color-mix(in oklch, var(--sage-950) 45%, transparent)",
       backdropFilter: "blur(2px)",
-      animation: "mt-fade 150ms ease"
+      animation: "mt-fade 150ms ease",
+      ...(vv ? {
+        top: vv.top,
+        height: vv.h,
+        bottom: "auto"
+      } : null)
     }
   }, /*#__PURE__*/React.createElement("div", {
+    ref: panelRef,
+    className: "mt-dialog-panel",
     role: "dialog",
     "aria-modal": "true",
-    onClick: e => e.stopPropagation(),
+    "aria-labelledby": title ? titleId : undefined,
+    "aria-describedby": description ? descId : undefined,
+    tabIndex: -1,
     style: {
+      display: "flex",
+      flexDirection: "column",
       width: "100%",
       maxWidth: width,
+      maxHeight: "calc(100dvh - 48px)",
+      boxSizing: "border-box",
+      overflow: "hidden",
+      outline: "none",
       background: "var(--popover)",
       color: "var(--popover-foreground)",
       border: "1px solid var(--border)",
@@ -4375,19 +5825,26 @@ function Dialog({
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
+      flex: "0 0 auto",
       display: "flex",
       alignItems: "flex-start",
       justifyContent: "space-between",
       gap: 12,
-      padding: "20px 20px 0"
+      padding: "20px 20px 16px",
+      borderBottom: "1px solid var(--border)"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
-      gap: 4
+      gap: 4,
+      minWidth: 0
     }
   }, title && /*#__PURE__*/React.createElement("div", {
+    id: titleId,
+    ref: titleRef,
+    tabIndex: -1,
+    className: "mt-dialog-title",
     style: {
       fontSize: "var(--text-h2)",
       fontWeight: 600,
@@ -4395,6 +5852,7 @@ function Dialog({
       letterSpacing: "var(--text-h2--letter-spacing)"
     }
   }, title), description && /*#__PURE__*/React.createElement("div", {
+    id: descId,
     style: {
       fontSize: "var(--text-caption)",
       lineHeight: "var(--text-caption--line-height)",
@@ -4402,23 +5860,39 @@ function Dialog({
       color: "var(--muted-foreground)"
     }
   }, description)), /*#__PURE__*/React.createElement(__ds_scope.IconButton, {
+    ref: closeRef,
     icon: "cancel-01",
     variant: "ghost",
     size: "sm",
     ariaLabel: "\uB2EB\uAE30",
     onClick: onClose
   })), /*#__PURE__*/React.createElement("div", {
+    ref: bodyRef,
+    className: "mt-dialog-body",
+    onScroll: measure,
     style: {
-      padding: "16px 20px"
+      flex: "1 1 auto",
+      minHeight: 0,
+      overflowY: "auto",
+      overscrollBehavior: "contain",
+      padding: footer ? "16px 20px" : "16px 20px 20px"
     }
-  }, children), footer && /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
+    ref: innerRef
+  }, children)), footer && /*#__PURE__*/React.createElement("div", {
+    className: "mt-dialog-footer",
+    "data-layout": stack ? "stack" : "end",
     style: {
+      flex: "0 0 auto",
       display: "flex",
-      justifyContent: "flex-end",
-      gap: 10,
-      padding: "0 20px 20px"
+      flexDirection: stack ? "column" : "row",
+      alignItems: stack ? "center" : "center",
+      justifyContent: stack ? "flex-start" : "flex-end",
+      gap: stack ? 8 : 10,
+      padding: "16px 20px 20px",
+      borderTop: `1px solid ${moreBelow ? "var(--border)" : "transparent"}`
     }
-  }, footer)), /*#__PURE__*/React.createElement("style", null, `@keyframes mt-fade{from{opacity:0}to{opacity:1}}@keyframes mt-pop{from{opacity:0;transform:scale(0.97)}to{opacity:1;transform:scale(1)}}`));
+  }, footer)));
 }
 Object.assign(__ds_scope, { Dialog });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/overlays/Dialog.jsx", error: String((e && e.message) || e) }); }
@@ -4586,6 +6060,7 @@ try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 const {
   useEffect,
+  useLayoutEffect,
   useRef
 } = React;
 /**
@@ -4594,14 +6069,38 @@ const {
  *  넣지 않는다 — 그건 "본다"(정적 펼침)이고 이건 "고른다"(role="menu", 동작이 일어남), 성격이 다르다.
  *  Badge "+N"이 MentorCard 미디어 오버레이 안에서 overflow에 잘리는 문제(DS-06)는 별도 대기 항목이다.
  *
- *  렌더 위치: position:relative인 트리거의 형제로 놓는다(앵커 좌표 계산 없이 CSS만으로 붙는다) —
+ *  렌더 위치: position:relative인 트리거의 형제로 놓는다 —
  *  AnswerCard처럼 <div style={{position:"relative"}}><IconButton/><Popover/></div> 형태.
+ *
+ *  DS-74 — top layer. 열리면 내용 요소에 popover="manual"을 주고 showPopover()로 연다 → 조상의 overflow·z-index에
+ *   잘리지 않는다(모달 본문·푸터 밑에 묻히지 않는다). 좌표는 트리거 rect로 계산한 position:fixed(UA의 inset·margin을 지운다).
+ *   style.width가 "100%"면 트리거 폭으로 바꾼다. 위·아래는 창 기준으로 뒤집는다: 요청한 쪽 공간(창 끝 − 트리거 − 8)이
+ *   목록 높이보다 작고 반대쪽이 더 크면 반대로. 둘 다 모자라면 큰 쪽에 붙이고 max-height를 그 공간에 맞춘다.
+ *   조상 어디의 스크롤이든(capture) · 창 크기 변화에 다시 계산하고, 트리거가 보이는 곳 밖으로 나가면 닫는다.
+ *   DOM 자리는 그대로(트리거의 형제) — Dialog의 포커스 가두기와 바깥 클릭 판정이 지금처럼 먹는다.
+ *   showPopover가 없는 브라우저는 이전의 absolute 방식.
  *
  *  ⚠️ 모바일 분기는 이 부품의 책임이 아니다 — "공유는 PC에서 클립보드 카피, 모바일에서는 OS공유"라는
  *  와이어대로, 모바일에서 공유를 누르면 이 Popover가 아니라 OS 공유(navigator.share)가 떠야 한다.
  *  그 분기는 화면·카드가 정한다. Popover는 "연다"고 결정된 뒤에만 쓰인다 — 이 분기가 없으면 모바일에서
  *  Popover와 OS공유가 같이 뜬다. 둘 다 안 되는 브라우저의 폴백(클립보드 복사+토스트)은 DS-09(아직 없음).
  */
+const GAP = 4;
+const EDGE = 8;
+const TOP_LAYER = typeof HTMLElement !== "undefined" && typeof HTMLElement.prototype.showPopover === "function";
+
+// 트리거가 스크롤로 보이는 곳 밖으로 나갔는가 — 창과 overflow가 visible이 아닌 조상 모두를 본다.
+function clippedOut(el) {
+  const r = el.getBoundingClientRect();
+  if (r.bottom <= 0 || r.top >= window.innerHeight || r.right <= 0 || r.left >= window.innerWidth) return true;
+  for (let p = el.parentElement; p && p !== document.body && p !== document.documentElement; p = p.parentElement) {
+    const cs = getComputedStyle(p);
+    if (cs.overflowX === "visible" && cs.overflowY === "visible") continue;
+    const pr = p.getBoundingClientRect();
+    if (r.bottom <= pr.top || r.top >= pr.bottom || r.right <= pr.left || r.left >= pr.right) return true;
+  }
+  return false;
+}
 function Popover({
   open,
   onClose,
@@ -4616,6 +6115,8 @@ function Popover({
 }) {
   const ref = useRef(null);
   const wasOpen = useRef(open);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
   useEffect(() => {
     if (!open) return;
     const onPointerDown = e => {
@@ -4639,6 +6140,80 @@ function Popover({
     }
     wasOpen.current = open;
   }, [open, triggerRef]);
+
+  // DS-74 — top layer에 올리고 fixed 좌표를 계산한다.
+  useLayoutEffect(() => {
+    if (!open || !TOP_LAYER) return;
+    const el = ref.current;
+    if (!el) return;
+    const anchorOf = () => triggerRef && triggerRef.current || el.parentElement;
+    const capMax = style && typeof style.maxHeight === "number" ? style.maxHeight : Infinity;
+    const fullWidth = style && style.width === "100%";
+    try {
+      el.showPopover();
+    } catch (_) {}
+    let raf = 0;
+    const place = () => {
+      raf = 0;
+      const a = anchorOf();
+      if (!a) return;
+      if (clippedOut(a)) {
+        onCloseRef.current && onCloseRef.current();
+        return;
+      }
+      const r = a.getBoundingClientRect();
+      const vw = window.innerWidth,
+        vh = window.innerHeight;
+      if (fullWidth) el.style.width = r.width + "px";
+      el.style.maxHeight = capMax === Infinity ? "" : capMax + "px";
+      const h = Math.min(el.scrollHeight + 2, capMax);
+      const w = el.offsetWidth;
+      let top, left;
+      if (side === "bottom" || side === "top") {
+        const below = vh - r.bottom - EDGE;
+        const above = r.top - EDGE;
+        let s = side;
+        const want = side === "bottom" ? below : above;
+        const other = side === "bottom" ? above : below;
+        if (want < h + GAP && other > want) s = side === "bottom" ? "top" : "bottom";
+        const room = (s === "bottom" ? below : above) - GAP;
+        const hh = Math.min(h, room);
+        if (hh < h) el.style.maxHeight = Math.max(0, room) + "px";
+        top = s === "bottom" ? r.bottom + GAP : r.top - GAP - hh;
+        left = align === "end" ? r.right - w : r.left;
+      } else {
+        left = side === "right" ? r.right + GAP : r.left - GAP - w;
+        top = align === "end" ? r.bottom - el.offsetHeight : r.top;
+      }
+      left = Math.max(EDGE, Math.min(left, vw - w - EDGE));
+      el.style.top = Math.round(top) + "px";
+      el.style.left = Math.round(left) + "px";
+    };
+    place();
+    const onScroll = e => {
+      if (e.target && e.target.nodeType === 1 && el.contains(e.target)) return; // 목록 자신의 스크롤
+      if (!raf) raf = requestAnimationFrame(place);
+    };
+    const onResize = () => {
+      if (!raf) raf = requestAnimationFrame(place);
+    };
+    document.addEventListener("scroll", onScroll, true);
+    window.addEventListener("resize", onResize);
+    let ro;
+    if (typeof ResizeObserver !== "undefined") {
+      ro = new ResizeObserver(onResize);
+      ro.observe(el);
+    }
+    return () => {
+      document.removeEventListener("scroll", onScroll, true);
+      window.removeEventListener("resize", onResize);
+      if (ro) ro.disconnect();
+      if (raf) cancelAnimationFrame(raf);
+      try {
+        el.hidePopover();
+      } catch (_) {}
+    };
+  }, [open, side, align]);
   if (!open) return null;
   const SIDE = {
     bottom: {
@@ -4688,23 +6263,52 @@ function Popover({
       }
     }
   };
+  const surface = {
+    zIndex: 30,
+    minWidth,
+    display: "flex",
+    flexDirection: "column",
+    padding: 4,
+    borderRadius: "var(--radius-md)",
+    background: "var(--card)",
+    border: "1px solid var(--border)",
+    boxShadow: "var(--shadow-md)"
+  };
+  const pos = TOP_LAYER ? {
+    position: "fixed",
+    inset: "auto",
+    top: 0,
+    left: 0,
+    margin: 0,
+    color: "inherit",
+    overflow: "visible",
+    boxSizing: "border-box"
+  } : {
+    position: "absolute",
+    ...(SIDE[side] || SIDE.bottom),
+    ...((CROSS[side] || CROSS.bottom)[align] || CROSS.bottom.start)
+  };
+  const {
+    width: _w,
+    maxHeight: _mh,
+    ...styleRest
+  } = style || {};
+  const sized = TOP_LAYER ? {
+    ...styleRest,
+    ...(style && style.width !== "100%" && style.width != null ? {
+      width: style.width
+    } : null)
+  } : style;
   return /*#__PURE__*/React.createElement("div", _extends({
     ref: ref,
-    role: role,
+    role: role
+  }, TOP_LAYER ? {
+    popover: "manual"
+  } : null, {
     style: {
-      position: "absolute",
-      zIndex: 30,
-      minWidth,
-      display: "flex",
-      flexDirection: "column",
-      padding: 4,
-      borderRadius: "var(--radius-md)",
-      background: "var(--card)",
-      border: "1px solid var(--border)",
-      boxShadow: "var(--shadow-md)",
-      ...(SIDE[side] || SIDE.bottom),
-      ...((CROSS[side] || CROSS.bottom)[align] || CROSS.bottom.start),
-      ...style
+      ...surface,
+      ...pos,
+      ...sized
     }
   }, rest), children);
 }
@@ -4739,6 +6343,343 @@ const popoverMenuItemStyle = {
 };
 Object.assign(__ds_scope, { Popover, popoverMenuItemStyle });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/overlays/Popover.jsx", error: String((e && e.message) || e) }); }
+
+// components/forms/MultiSelect.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * MultiSelect — 여러 개를 고르는 셀렉트(DS-71). Select를 고치지 않은 새 부품. 트리거·목록·키보드는 Select에 맞춘다.
+ *  [칩 줄] 고른 것은 트리거 위에 Chip(md)으로 선다(⊗ = 빼기, 「{이름} 빼기」). 넘치면 여러 줄로 접힌다.
+ *  [트리거] 고른 것이 있어도 placeholder를 둔다(--muted-foreground). 높이 40 · Input과 같은 겉모양.
+ *  [목록] Popover · 트리거 아래 4px · 트리거 폭 · max-height 320. 항목마다 체크 상자. 항목을 눌러도 닫지 않는다.
+ *   role="listbox" + aria-multiselectable="true", 항목 aria-selected. groups를 주면 묶음 제목(고를 수 없음).
+ *  [키보드] Enter/Space/↓로 열기 · ↑↓ Home End 커서 · Space/Enter 켜고 끄기 · 첫 글자로 건너뛰기 · Esc/바깥/Tab 닫기.
+ */
+
+const MAX_LIST_H = 320;
+const norm = o => typeof o === "string" ? {
+  value: o,
+  label: o
+} : o;
+if (typeof document !== "undefined" && !document.getElementById("mt-multiselect-style")) {
+  const s = document.createElement("style");
+  s.id = "mt-multiselect-style";
+  s.textContent = ".mt-multiselect-option:hover{background:var(--muted);}";
+  document.head.appendChild(s);
+}
+function MultiSelect({
+  options = [],
+  groups,
+  value = [],
+  onChange,
+  placeholder,
+  invalid = false,
+  disabled = false,
+  id,
+  style,
+  ...rest
+}) {
+  const rows = React.useMemo(() => {
+    if (groups) {
+      const r = [];
+      groups.forEach((g, gi) => {
+        if (g.label) r.push({
+          type: "group",
+          label: g.label,
+          key: `g${gi}`
+        });
+        (g.options || []).forEach(o => r.push({
+          type: "opt",
+          ...norm(o)
+        }));
+      });
+      return r;
+    }
+    return options.map(o => ({
+      type: "opt",
+      ...norm(o)
+    }));
+  }, [options, groups]);
+  const opts = React.useMemo(() => rows.filter(r => r.type === "opt"), [rows]);
+  const labelOf = v => (opts.find(o => o.value === v) || {
+    label: v
+  }).label;
+  const [open, setOpen] = React.useState(false);
+  const [focused, setFocused] = React.useState(false);
+  const [side, setSide] = React.useState("bottom");
+  const [cursor, setCursor] = React.useState(0);
+  const triggerRef = React.useRef(null);
+  const wasOpenOnDown = React.useRef(false);
+  const typeBuf = React.useRef({
+    s: "",
+    t: 0
+  });
+  const autoId = React.useId();
+  const baseId = id || `mt-ms-${autoId.replace(/:/g, "")}`;
+  const listId = `${baseId}-list`;
+  const openList = () => {
+    if (disabled) return;
+    const el = triggerRef.current;
+    if (el) {
+      const r = el.getBoundingClientRect();
+      const need = Math.min(MAX_LIST_H, rows.length * 36 + 8) + 8;
+      setSide(window.innerHeight - r.bottom < need && r.top > need ? "top" : "bottom");
+    }
+    const first = opts.findIndex(o => value.includes(o.value));
+    setCursor(first < 0 ? 0 : first);
+    setOpen(true);
+  };
+  const toggle = i => {
+    const o = opts[i];
+    if (!o || !onChange) return;
+    onChange(value.includes(o.value) ? value.filter(v => v !== o.value) : [...value, o.value]);
+  };
+  const remove = v => onChange && onChange(value.filter(x => x !== v));
+  React.useEffect(() => {
+    if (!open) return;
+    const list = document.getElementById(listId);
+    const item = document.getElementById(`${listId}-${cursor}`);
+    if (!list || !item) return;
+    const top = item.offsetTop;
+    const bottom = top + item.offsetHeight;
+    if (top < list.scrollTop) list.scrollTop = Math.max(0, top - 28);else if (bottom > list.scrollTop + list.clientHeight) list.scrollTop = bottom - list.clientHeight;
+  }, [open, cursor, listId]);
+  const typeahead = ch => {
+    const now = Date.now();
+    const buf = now - typeBuf.current.t > 600 ? ch : typeBuf.current.s + ch;
+    typeBuf.current = {
+      s: buf,
+      t: now
+    };
+    const q = buf.toLowerCase();
+    const start = buf.length === 1 ? cursor + 1 : cursor;
+    for (let k = 0; k < opts.length; k++) {
+      const i = (start + k) % opts.length;
+      if (String(opts[i].label).toLowerCase().startsWith(q)) {
+        setCursor(i);
+        return true;
+      }
+    }
+    return false;
+  };
+  const onKeyDown = e => {
+    if (disabled) return;
+    if (!open) {
+      if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+        e.preventDefault();
+        openList();
+      }
+      return;
+    }
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setCursor(c => Math.min(opts.length - 1, c + 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setCursor(c => Math.max(0, c - 1));
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      setCursor(0);
+    } else if (e.key === "End") {
+      e.preventDefault();
+      setCursor(opts.length - 1);
+    } else if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggle(cursor);
+    } else if (e.key === "Tab") {
+      setOpen(false);
+    } else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      if (typeahead(e.key)) e.preventDefault();
+    }
+    // Esc는 Popover가 처리한다(닫히면 포커스가 트리거로 돌아온다).
+  };
+  const borderColor = invalid ? "var(--destructive)" : focused || open ? "var(--ring)" : "var(--input)";
+  let optIndex = -1;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 8,
+      ...style
+    }
+  }, value.length > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 8
+    }
+  }, value.map(v => /*#__PURE__*/React.createElement(__ds_scope.Chip, {
+    key: v,
+    size: "md",
+    disabled: disabled,
+    onRemove: disabled ? undefined : () => remove(v),
+    removeAriaLabel: `${labelOf(v)} 빼기`
+  }, labelOf(v)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "relative"
+    }
+  }, /*#__PURE__*/React.createElement("button", _extends({
+    type: "button",
+    id: baseId,
+    ref: triggerRef,
+    role: "combobox",
+    "aria-expanded": open,
+    "aria-haspopup": "listbox",
+    "aria-controls": open ? listId : undefined,
+    "aria-activedescendant": open ? `${listId}-${cursor}` : undefined,
+    "aria-invalid": invalid || undefined,
+    disabled: disabled,
+    onPointerDown: () => {
+      wasOpenOnDown.current = open;
+    },
+    onClick: () => {
+      if (open || wasOpenOnDown.current) {
+        setOpen(false);
+        wasOpenOnDown.current = false;
+      } else openList();
+    },
+    onKeyDown: onKeyDown,
+    onFocus: () => setFocused(true),
+    onBlur: () => setFocused(false)
+  }, rest, {
+    style: {
+      position: "relative",
+      display: "flex",
+      alignItems: "center",
+      width: "100%",
+      height: 40,
+      boxSizing: "border-box",
+      padding: "0 36px 0 12px",
+      textAlign: "left",
+      background: disabled ? "var(--muted)" : "var(--card)",
+      border: `1px solid ${borderColor}`,
+      borderRadius: "var(--radius-md)",
+      boxShadow: focused || open ? "0 0 0 3px color-mix(in oklch, var(--ring) 30%, transparent)" : "none",
+      transition: "border-color 150ms ease, box-shadow 150ms ease",
+      opacity: disabled ? 0.6 : 1,
+      outline: "none",
+      fontFamily: "var(--font-sans)",
+      fontSize: "var(--text-body)",
+      lineHeight: 1,
+      letterSpacing: 0,
+      color: "var(--muted-foreground)",
+      cursor: disabled ? "not-allowed" : "pointer"
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      flex: 1,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap"
+    }
+  }, placeholder), /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: "arrow-down-01",
+    size: 16,
+    style: {
+      position: "absolute",
+      right: 11,
+      color: "var(--muted-foreground)",
+      pointerEvents: "none",
+      transform: open ? "rotate(180deg)" : "none",
+      transition: "transform 150ms ease"
+    }
+  })), /*#__PURE__*/React.createElement(__ds_scope.Popover, {
+    open: open,
+    onClose: () => setOpen(false),
+    side: side,
+    align: "start",
+    minWidth: 0,
+    triggerRef: triggerRef,
+    id: listId,
+    role: "listbox",
+    "aria-multiselectable": "true",
+    "aria-labelledby": baseId,
+    style: {
+      width: "100%",
+      maxHeight: MAX_LIST_H,
+      overflowY: "auto",
+      boxSizing: "border-box"
+    }
+  }, rows.map(r => {
+    if (r.type === "group") {
+      return /*#__PURE__*/React.createElement("div", {
+        key: r.key,
+        role: "presentation",
+        style: {
+          flex: "0 0 auto",
+          padding: "10px 10px 4px",
+          fontFamily: "var(--font-sans)",
+          fontSize: "var(--text-micro)",
+          lineHeight: "var(--text-micro--line-height)",
+          letterSpacing: "var(--text-micro--letter-spacing)",
+          fontWeight: 600,
+          color: "var(--muted-foreground)"
+        }
+      }, r.label);
+    }
+    optIndex += 1;
+    const i = optIndex;
+    const isSel = value.includes(r.value);
+    const isCur = i === cursor;
+    return /*#__PURE__*/React.createElement("div", {
+      key: r.value,
+      id: `${listId}-${i}`,
+      className: "mt-multiselect-option",
+      role: "option",
+      "aria-selected": isSel,
+      onMouseDown: e => e.preventDefault(),
+      onClick: () => {
+        setCursor(i);
+        toggle(i);
+      },
+      onMouseEnter: () => setCursor(i),
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        flex: "0 0 auto",
+        height: 36,
+        boxSizing: "border-box",
+        padding: "0 10px",
+        borderRadius: "var(--radius-sm)",
+        background: isCur ? "var(--muted)" : "transparent",
+        color: "var(--foreground)",
+        fontFamily: "var(--font-sans)",
+        fontSize: "var(--text-body)",
+        lineHeight: 1,
+        letterSpacing: 0,
+        cursor: "pointer"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      "aria-hidden": "true",
+      style: {
+        flex: "0 0 auto",
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: 16,
+        height: 16,
+        boxSizing: "border-box",
+        borderRadius: 4,
+        border: `1px solid ${isSel ? "var(--primary)" : "var(--input)"}`,
+        background: isSel ? "var(--primary)" : "var(--card)",
+        color: "var(--primary-foreground)"
+      }
+    }, isSel && /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+      name: "tick-02",
+      size: 12
+    })), /*#__PURE__*/React.createElement("span", {
+      style: {
+        flex: 1,
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap"
+      }
+    }, r.label));
+  }))));
+}
+Object.assign(__ds_scope, { MultiSelect });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/MultiSelect.jsx", error: String((e && e.message) || e) }); }
 
 // components/forms/Select.jsx
 try { (() => {
@@ -5251,6 +7192,327 @@ function Toast({
 }
 Object.assign(__ds_scope, { Toast });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/overlays/Toast.jsx", error: String((e && e.message) || e) }); }
+
+// components/overlays/Tooltip.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+const {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState
+} = React;
+/**
+ * Tooltip (DS-77) — 가리키는 요소 하나에 붙는 짧은 설명. 글자만 — 누를 것이 들어가면 Popover다.
+ *  열기: 마우스 300ms 뒤 · 키보드 포커스(:focus-visible) 즉시 · 터치 탭 토글(바깥 탭 · 다시 탭에 닫힘) · Esc 닫기.
+ *  자리: Popover(DS-74)와 같이 top layer(popover="manual") + 트리거 rect 기준 fixed. 위에 자리가 모자라면 아래로 뒤집는다.
+ *   조상의 스크롤(capture) · 창 크기에 다시 잡고, 트리거가 보이는 곳 밖으로 나가면 닫는다. showPopover가 없으면 absolute.
+ *  이름: describe면 자식에 aria-describedby. 자식의 접근 이름이 content와 같으면 describe={false}(두 번 읽지 않게).
+ *  면 --sage-900 · 글자 --sage-50 · caption · radius-sm · 최대 폭 240 · 꼬리. reduced-motion에서는 나타남 움직임 없음.
+ */
+const GAP = 8;
+const EDGE = 8;
+const DELAY = 300;
+const TOP_LAYER = typeof HTMLElement !== "undefined" && typeof HTMLElement.prototype.showPopover === "function";
+if (typeof document !== "undefined" && !document.getElementById("mt-tooltip-style")) {
+  const s = document.createElement("style");
+  s.id = "mt-tooltip-style";
+  s.textContent = "@keyframes mt-tooltip-in{from{opacity:0;transform:translateY(var(--mt-tt-dy,2px))}to{opacity:1;transform:none}}" + ".mt-tooltip{animation:mt-tooltip-in 120ms ease-out}" + "@media (prefers-reduced-motion:reduce){.mt-tooltip{animation:none}}";
+  document.head.appendChild(s);
+}
+function clippedOut(el) {
+  const r = el.getBoundingClientRect();
+  if (r.bottom <= 0 || r.top >= window.innerHeight || r.right <= 0 || r.left >= window.innerWidth) return true;
+  for (let p = el.parentElement; p && p !== document.body && p !== document.documentElement; p = p.parentElement) {
+    const cs = getComputedStyle(p);
+    if (cs.overflowX === "visible" && cs.overflowY === "visible") continue;
+    const pr = p.getBoundingClientRect();
+    if (r.bottom <= pr.top || r.top >= pr.bottom || r.right <= pr.left || r.left >= pr.right) return true;
+  }
+  return false;
+}
+function Tooltip({
+  content,
+  children,
+  side = "top",
+  describe = true,
+  defaultOpen = false,
+  style,
+  ...rest
+}) {
+  const [open, setOpen] = useState(!!defaultOpen);
+  const [placed, setPlaced] = useState(side);
+  const wrapRef = useRef(null);
+  const tipRef = useRef(null);
+  const tailRef = useRef(null);
+  const timer = useRef(0);
+  const lastTouch = useRef(0);
+  const byTouch = useRef(false);
+  const id = "mt-tt-" + React.useId().replace(/:/g, "");
+  const clear = () => {
+    if (timer.current) {
+      clearTimeout(timer.current);
+      timer.current = 0;
+    }
+  };
+  const show = () => {
+    clear();
+    setOpen(true);
+  };
+  const hide = () => {
+    clear();
+    byTouch.current = false;
+    setOpen(false);
+  };
+  useEffect(() => clear, []);
+
+  // Esc · 터치로 연 뒤 바깥 탭
+  useEffect(() => {
+    if (!open) return;
+    const onKey = e => {
+      if (e.key === "Escape") hide();
+    };
+    const onDown = e => {
+      if (byTouch.current && wrapRef.current && !wrapRef.current.contains(e.target)) hide();
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onDown);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onDown);
+    };
+  }, [open]);
+  useLayoutEffect(() => {
+    if (!open) return;
+    const el = tipRef.current,
+      a = wrapRef.current;
+    if (!el || !a) return;
+    if (TOP_LAYER) {
+      try {
+        el.showPopover();
+      } catch (_) {}
+    }
+    let raf = 0;
+    const place = () => {
+      raf = 0;
+      if (clippedOut(a)) {
+        hide();
+        return;
+      }
+      const r = a.getBoundingClientRect();
+      const w = el.offsetWidth,
+        h = el.offsetHeight;
+      const above = r.top - EDGE,
+        below = window.innerHeight - r.bottom - EDGE;
+      let s = side;
+      if (s === "top" && above < h + GAP && below > above) s = "bottom";
+      if (s === "bottom" && below < h + GAP && above > below) s = "top";
+      const cx = r.left + r.width / 2;
+      let left = Math.max(EDGE, Math.min(cx - w / 2, window.innerWidth - w - EDGE));
+      const top = s === "top" ? r.top - GAP - h : r.bottom + GAP;
+      if (TOP_LAYER) {
+        el.style.left = Math.round(left) + "px";
+        el.style.top = Math.round(top) + "px";
+      } else {
+        el.style.left = Math.round(left - r.left) + "px";
+        el.style.top = Math.round(top - r.top) + "px";
+      }
+      if (tailRef.current) tailRef.current.style.left = Math.round(Math.max(10, Math.min(w - 10, cx - left))) + "px";
+      setPlaced(s);
+    };
+    place();
+    const again = () => {
+      if (!raf) raf = requestAnimationFrame(place);
+    };
+    document.addEventListener("scroll", again, true);
+    window.addEventListener("resize", again);
+    return () => {
+      document.removeEventListener("scroll", again, true);
+      window.removeEventListener("resize", again);
+      if (raf) cancelAnimationFrame(raf);
+      if (TOP_LAYER) {
+        try {
+          el.hidePopover();
+        } catch (_) {}
+      }
+    };
+  }, [open, side, content]);
+  const child = React.Children.only(children);
+  const trigger = describe && React.isValidElement(child) ? React.cloneElement(child, {
+    "aria-describedby": [child.props["aria-describedby"], open ? id : null].filter(Boolean).join(" ") || undefined
+  }) : child;
+  const isTop = placed === "top";
+  const pos = TOP_LAYER ? {
+    position: "fixed",
+    inset: "auto",
+    top: 0,
+    left: 0,
+    margin: 0
+  } : {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    zIndex: 40
+  };
+  return /*#__PURE__*/React.createElement("span", _extends({
+    ref: wrapRef,
+    style: {
+      position: "relative",
+      display: "inline-flex",
+      verticalAlign: "middle",
+      ...style
+    },
+    onPointerEnter: e => {
+      if (e.pointerType === "mouse") {
+        clear();
+        timer.current = setTimeout(() => setOpen(true), DELAY);
+      }
+    },
+    onPointerLeave: e => {
+      if (e.pointerType === "mouse" && !byTouch.current) hide();
+    },
+    onPointerUp: e => {
+      if (e.pointerType !== "touch" && e.pointerType !== "pen") return;
+      lastTouch.current = Date.now();
+      if (tipRef.current && tipRef.current.contains(e.target)) return;
+      if (open) hide();else {
+        byTouch.current = true;
+        show();
+      }
+    },
+    onFocus: e => {
+      if (Date.now() - lastTouch.current < 800) return;
+      let fv = true;
+      try {
+        fv = e.target.matches(":focus-visible");
+      } catch (_) {}
+      if (fv) show();
+    },
+    onBlur: e => {
+      if (!byTouch.current && !(wrapRef.current && wrapRef.current.contains(e.relatedTarget))) hide();
+    }
+  }, rest), trigger, open && /*#__PURE__*/React.createElement("span", _extends({
+    ref: tipRef,
+    id: id,
+    role: "tooltip",
+    className: "mt-tooltip"
+  }, TOP_LAYER ? {
+    popover: "manual"
+  } : null, {
+    style: {
+      ...pos,
+      "--mt-tt-dy": isTop ? "2px" : "-2px",
+      boxSizing: "border-box",
+      display: "block",
+      width: "max-content",
+      maxWidth: 240,
+      padding: "var(--space-1) var(--space-2)",
+      border: "none",
+      borderRadius: "var(--radius-sm)",
+      background: "var(--sage-900)",
+      color: "var(--sage-50)",
+      fontFamily: "var(--font-sans)",
+      fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
+      fontWeight: 500,
+      textAlign: "left",
+      whiteSpace: "normal",
+      wordBreak: "keep-all",
+      overflowWrap: "break-word",
+      overflow: "visible",
+      pointerEvents: "none"
+    }
+  }), content, /*#__PURE__*/React.createElement("span", {
+    ref: tailRef,
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      left: "50%",
+      [isTop ? "bottom" : "top"]: -4,
+      width: 8,
+      height: 8,
+      marginLeft: -4,
+      background: "var(--sage-900)",
+      transform: "rotate(45deg)",
+      borderRadius: 1
+    }
+  })));
+}
+Object.assign(__ds_scope, { Tooltip });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/overlays/Tooltip.jsx", error: String((e && e.message) || e) }); }
+
+// components/core/Flag.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Flag (DS-78) — 원형 국기 하나. 태그 · 아웃라인 · 글자 없음. 흰 면이 많은 국기가 묻히지 않게 1px --border 링.
+ *  이름 = role="img" + aria-label「국가 · 도시」. tooltip이면 Tooltip(describe={false} — 이름과 같은 글)으로 띄우고
+ *  tabIndex=0으로 키보드가 닿는다. 포커스 링은 원을 따른다. 이름과 같이 쓰면 이름 오른쪽, 글자의 세로 가운데.
+ */
+const SIZES = {
+  sm: 16,
+  md: 20,
+  lg: 24,
+  xl: 28
+};
+const FLAG_BASE = "../../assets/flags/"; // Badge와 같다
+
+if (typeof document !== "undefined" && !document.getElementById("mt-flag-style")) {
+  const s = document.createElement("style");
+  s.id = "mt-flag-style";
+  s.textContent = ".mt-flag{outline:none}.mt-flag:focus-visible{outline:2px solid var(--ring);outline-offset:2px}";
+  document.head.appendChild(s);
+}
+function Flag({
+  country,
+  label,
+  city,
+  size = "md",
+  flagBase = FLAG_BASE,
+  tooltip = true,
+  style,
+  ...rest
+}) {
+  const px = typeof size === "number" ? size : SIZES[size] || SIZES.md;
+  const name = [label, city].filter(Boolean).join(" · ");
+  const [failed, setFailed] = React.useState(false);
+  const flag = /*#__PURE__*/React.createElement("span", _extends({
+    role: "img",
+    "aria-label": name || undefined,
+    className: "mt-flag",
+    tabIndex: tooltip && name ? 0 : undefined,
+    style: {
+      display: "inline-flex",
+      flex: "0 0 auto",
+      width: px,
+      height: px,
+      borderRadius: "50%",
+      overflow: "hidden",
+      verticalAlign: "middle",
+      background: "var(--sage-100)",
+      boxShadow: "0 0 0 1px var(--border)",
+      ...style
+    }
+  }, rest), country && !failed && /*#__PURE__*/React.createElement("img", {
+    src: `${flagBase}${country}.svg`,
+    alt: "",
+    onError: () => setFailed(true),
+    style: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      display: "block"
+    }
+  }));
+  if (!tooltip || !name) return flag;
+  return /*#__PURE__*/React.createElement(__ds_scope.Tooltip, {
+    content: name,
+    describe: false
+  }, flag);
+}
+Object.assign(__ds_scope, { Flag });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/core/Flag.jsx", error: String((e && e.message) || e) }); }
 
 // components/surfaces/AnswerCard.jsx
 try { (() => {
@@ -6678,6 +8940,7 @@ function QnaCard({
   title,
   excerpt,
   tags = [],
+  tagHref,
   compact = false,
   answerers = [],
   answerCount,
@@ -6823,7 +9086,7 @@ function QnaCard({
     key: i,
     size: "sm",
     prefix: "#",
-    href: `/tags/${t}`,
+    href: tagHref ? tagHref(t) : `/tags/${t}`,
     style: {
       minWidth: 0,
       maxWidth: "100%",
@@ -6982,6 +9245,489 @@ function Skeleton({
 }
 Object.assign(__ds_scope, { Skeleton });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/surfaces/Skeleton.jsx", error: String((e && e.message) || e) }); }
+
+// components/surfaces/QnaListItem.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * QnaListItem (DS-57) — Q&A 한 건을 목록의 한 줄로. 변형 이름은 자리가 아니라 강조점이다.
+ *  default=전부 · compact=제목만 · answer=그 멘토의 답변 · question=질문과 답변 수.
+ * [셸] 카드가 아니다. 줄 위아래 hairline(--sage-200) — 매 줄이 위·아래 선을 갖고 margin-top:-1px로 겹친다.
+ *  그래서 첫 줄 위 · 끝 줄 아래에도 선이 서고, 줄 사이는 1px 하나다(li로 감싸도 같다).
+ * [링크] 루트 <article>. 제목 <a className="mt-card-link"> — QnaCard의 스트레치 링크 규칙을 그대로 쓴다
+ *  (QnaCard를 import해 그 규칙이 먼저 깔리게 한다). 칩·토글은 z-index:2로 위에서 따로 눌린다.
+ * [읽는 순서] DOM은 제목이 먼저. 반응 묶음이 오른쪽 위에 보이는 것은 grid-area로 옮긴 것이다.
+ *  포커스 = 제목 → 해시태그 → 도움돼요 → 스크랩.
+ * [폭] 768 이하 판정은 viewport가 아니라 줄 자신의 폭(container query)으로 한다 — 좁은 칸에 들어가도 같게.
+ */
+void __ds_scope.QnaCard;
+const MAX_TAGS = 3;
+if (typeof document !== "undefined" && !document.getElementById("mt-qna-row-style")) {
+  const s = document.createElement("style");
+  s.id = "mt-qna-row-style";
+  s.textContent = ".mt-qna-row{container-type:inline-size;}" + "@media (hover:hover){.mt-qna-row:hover{background:var(--sage-50);}}" + ".mt-qli-g{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:var(--space-3);}" + ".mt-qli-default{row-gap:var(--space-2);grid-template-areas:'head react' 'title title' 'excerpt excerpt' 'ans tags';}" + ".mt-qli-default>.mt-qli-react{justify-self:end;}.mt-qli-default>.mt-qli-tags{justify-self:end;}" + "@container (max-width:768px){.mt-qli-default{grid-template-areas:'head react' 'title title' 'excerpt excerpt' 'ans ans' 'tags tags';}.mt-qli-default>.mt-qli-tags{justify-self:start;}}" + ".mt-qli-compact{row-gap:var(--space-1);grid-template-areas:'head right' 'title title';}" + ".mt-qli-answer{row-gap:var(--space-2);grid-template-areas:'title title' 'body body' 'left right';}" + ".mt-qli-question{row-gap:var(--space-1);column-gap:var(--space-6);grid-template-areas:'head count' 'title count' 'meta count';}";
+  document.head.appendChild(s);
+}
+const clamp = lines => ({
+  display: "-webkit-box",
+  WebkitBoxOrient: "vertical",
+  WebkitLineClamp: lines,
+  overflow: "hidden",
+  wordBreak: "keep-all",
+  overflowWrap: "break-word"
+});
+const type = t => ({
+  fontSize: `var(--text-${t})`,
+  lineHeight: `var(--text-${t}--line-height)`,
+  letterSpacing: `var(--text-${t}--letter-spacing)`
+});
+const nowrap = {
+  whiteSpace: "nowrap"
+};
+const above = {
+  position: "relative",
+  zIndex: 2
+};
+const PAD = {
+  default: "var(--space-4)",
+  compact: "var(--space-3)",
+  answer: "var(--space-4)",
+  question: "var(--space-4)"
+};
+function Views({
+  n
+}) {
+  return /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 4,
+      color: "var(--muted-foreground)",
+      ...type("caption"),
+      ...nowrap
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: "view",
+    size: 15
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "tabular"
+  }, n.toLocaleString("ko-KR")));
+}
+
+// 막대 높이 = 그 자리 글자의 line-height(여러 줄은 줄마다 한 칸), 부품 자리는 그 부품의 높이. 칸 사이 간격은 실제 줄의 grid gap 그대로.
+function Lines({
+  n = 1,
+  lh,
+  width = "100%"
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, Array.from({
+    length: n
+  }, (_, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      height: `var(--text-${lh}--line-height)`,
+      display: "flex",
+      alignItems: "center"
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
+    width: n > 1 && i === n - 1 ? "60%" : width,
+    height: "calc(100% - var(--space-2))"
+  }))));
+}
+function RowSkeleton({
+  variant
+}) {
+  const g = (area, el, extra) => /*#__PURE__*/React.createElement("div", {
+    style: {
+      gridArea: area,
+      minWidth: 0,
+      ...extra
+    }
+  }, el);
+  if (variant === "compact") return /*#__PURE__*/React.createElement(React.Fragment, null, g("head", /*#__PURE__*/React.createElement(Lines, {
+    lh: "caption",
+    width: 120
+  })), g("right", /*#__PURE__*/React.createElement(Lines, {
+    lh: "caption",
+    width: 48
+  })), g("title", /*#__PURE__*/React.createElement(Lines, {
+    lh: "body",
+    width: "85%"
+  })));
+  if (variant === "answer") return /*#__PURE__*/React.createElement(React.Fragment, null, g("title", /*#__PURE__*/React.createElement(Lines, {
+    lh: "h3",
+    width: "70%"
+  })), g("body", /*#__PURE__*/React.createElement(Lines, {
+    n: 3,
+    lh: "body"
+  })), g("left", /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
+    width: 120,
+    height: 24
+  })), g("right", /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
+    width: 40,
+    height: 24
+  })));
+  if (variant === "question") return /*#__PURE__*/React.createElement(React.Fragment, null, g("head", /*#__PURE__*/React.createElement(Lines, {
+    lh: "caption",
+    width: 80
+  })), g("title", /*#__PURE__*/React.createElement(Lines, {
+    n: 2,
+    lh: "h3"
+  })), g("meta", /*#__PURE__*/React.createElement(Lines, {
+    lh: "caption",
+    width: 140
+  })), g("count", /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
+    width: 40,
+    height: "var(--text-display--line-height)"
+  }), {
+    alignSelf: "center"
+  }));
+  return /*#__PURE__*/React.createElement(React.Fragment, null, g("head", /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
+    width: 160,
+    height: 28
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "mt-qli-react",
+    style: {
+      gridArea: "react"
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
+    width: 140,
+    height: 28
+  })), g("title", /*#__PURE__*/React.createElement(Lines, {
+    n: 2,
+    lh: "h3"
+  })), g("excerpt", /*#__PURE__*/React.createElement(Lines, {
+    n: 2,
+    lh: "caption"
+  })), g("ans", /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
+    width: 150,
+    height: 24
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "mt-qli-tags",
+    style: {
+      gridArea: "tags"
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
+    width: 180,
+    height: 24
+  })));
+}
+function QnaListItem({
+  variant = "default",
+  href = "#",
+  title,
+  headingLevel = 3,
+  country,
+  countryLabel,
+  keyword,
+  excerpt,
+  answerExcerpt,
+  tags = [],
+  tagHref,
+  answerers = [],
+  answerCount,
+  maxAvatars = 3,
+  views = 0,
+  likes = 0,
+  liked = false,
+  onLikeChange,
+  scraps = 0,
+  scrapped = false,
+  onScrapChange,
+  showScrap = false,
+  loading = false,
+  className,
+  style,
+  ...rest
+}) {
+  const v = ["default", "compact", "answer", "question"].includes(variant) ? variant : "default";
+  const count = answerCount != null ? answerCount : answerers.length;
+  const H = `h${Math.min(4, Math.max(2, headingLevel))}`;
+  const shell = {
+    position: "relative",
+    display: "block",
+    boxSizing: "border-box",
+    width: "100%",
+    marginTop: -1,
+    borderTop: "1px solid var(--sage-200)",
+    borderBottom: "1px solid var(--sage-200)",
+    padding: `${PAD[v]} var(--space-4)`,
+    color: "var(--foreground)",
+    fontFamily: "var(--font-sans)",
+    transition: "background-color 150ms ease",
+    ...style
+  };
+  const cls = ["mt-qna-row", className].filter(Boolean).join(" ");
+  const grid = `mt-qli-g mt-qli-${v}`;
+  if (loading) {
+    return /*#__PURE__*/React.createElement("div", _extends({
+      className: cls,
+      "aria-hidden": "true",
+      style: shell
+    }, rest), /*#__PURE__*/React.createElement("div", {
+      className: grid
+    }, /*#__PURE__*/React.createElement(RowSkeleton, {
+      variant: v
+    })));
+  }
+  const titleType = v === "compact" ? "body" : "h3";
+  const titleLines = v === "compact" || v === "answer" ? 1 : 2;
+  const heading = /*#__PURE__*/React.createElement(H, {
+    style: {
+      gridArea: "title",
+      margin: 0,
+      minWidth: 0,
+      fontWeight: 600,
+      ...type(titleType)
+    }
+  }, /*#__PURE__*/React.createElement("a", {
+    href: href,
+    className: "mt-card-link",
+    style: {
+      display: "block",
+      ...clamp(titleLines)
+    }
+  }, title));
+  const like = /*#__PURE__*/React.createElement(__ds_scope.CountToggle, {
+    icon: "favourite",
+    tone: "rose",
+    selected: liked,
+    count: likes,
+    onChange: onLikeChange
+  });
+  const scrap = /*#__PURE__*/React.createElement(__ds_scope.CountToggle, {
+    icon: "bookmark",
+    tone: "dark",
+    selected: scrapped,
+    count: scraps,
+    onChange: onScrapChange
+  });
+  let body;
+  if (v === "default") {
+    const shown = tags.slice(0, MAX_TAGS);
+    const extra = tags.length - shown.length;
+    body = /*#__PURE__*/React.createElement(React.Fragment, null, heading, (country || countryLabel || keyword) && /*#__PURE__*/React.createElement("div", {
+      style: {
+        gridArea: "head",
+        display: "flex",
+        alignItems: "center",
+        gap: 6,
+        flexWrap: "wrap",
+        minWidth: 0
+      }
+    }, (country || countryLabel) && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
+      size: "md",
+      leading: "flag",
+      flag: country
+    }, countryLabel), keyword && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
+      size: "md"
+    }, keyword)), excerpt && /*#__PURE__*/React.createElement("p", {
+      style: {
+        gridArea: "excerpt",
+        margin: 0,
+        color: "var(--muted-foreground)",
+        ...type("caption"),
+        ...clamp(2)
+      }
+    }, excerpt), /*#__PURE__*/React.createElement("div", {
+      style: {
+        gridArea: "ans",
+        alignSelf: "center",
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        minWidth: 0
+      }
+    }, count > 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, answerers.length > 0 && /*#__PURE__*/React.createElement(__ds_scope.AvatarGroup, {
+      items: answerers,
+      max: maxAvatars,
+      size: "sm"
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "var(--muted-foreground)",
+        ...type("caption"),
+        ...nowrap
+      }
+    }, "\uBA58\uD1A0 \uB2F5\uBCC0 ", /*#__PURE__*/React.createElement("b", {
+      className: "tabular",
+      style: {
+        color: "var(--primary)",
+        fontWeight: 600
+      }
+    }, count), "\uAC1C")) : /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "var(--primary)",
+        fontWeight: 500,
+        ...type("caption")
+      }
+    }, "\uC544\uC9C1 \uC791\uC131\uB41C \uB2F5\uBCC0\uC774 \uC5C6\uC2B5\uB2C8\uB2E4")), tags.length > 0 && /*#__PURE__*/React.createElement("div", {
+      className: "mt-qli-tags",
+      style: {
+        gridArea: "tags",
+        alignSelf: "center",
+        display: "flex",
+        flexWrap: "nowrap",
+        alignItems: "center",
+        gap: 6,
+        minWidth: 0,
+        maxWidth: "100%",
+        ...above
+      }
+    }, shown.map((t, i) => /*#__PURE__*/React.createElement(__ds_scope.Chip, {
+      key: i,
+      size: "sm",
+      prefix: "#",
+      href: tagHref ? tagHref(t) : `/tags/${t}`,
+      style: {
+        minWidth: 0,
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap"
+      }
+    }, t)), extra > 0 && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
+      size: "sm",
+      style: {
+        flex: "0 0 auto"
+      }
+    }, "+", extra)), /*#__PURE__*/React.createElement("div", {
+      className: "mt-qli-react",
+      style: {
+        gridArea: "react",
+        alignSelf: "start",
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-4)",
+        ...above
+      }
+    }, /*#__PURE__*/React.createElement(Views, {
+      n: views
+    }), like, scrap));
+  } else if (v === "compact") {
+    const meta = [countryLabel, keyword].filter(Boolean).join(" · ");
+    body = /*#__PURE__*/React.createElement(React.Fragment, null, heading, /*#__PURE__*/React.createElement("div", {
+      style: {
+        gridArea: "head",
+        minWidth: 0,
+        color: "var(--muted-foreground)",
+        ...type("caption"),
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        ...nowrap
+      }
+    }, meta), /*#__PURE__*/React.createElement("div", {
+      style: {
+        gridArea: "right",
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-3)",
+        ...above
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "var(--primary)",
+        fontWeight: 600,
+        ...type("caption"),
+        ...nowrap
+      }
+    }, count > 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, "\uB2F5\uBCC0 ", /*#__PURE__*/React.createElement("span", {
+      className: "tabular"
+    }, count)) : "답변 대기"), showScrap && scrap));
+  } else if (v === "answer") {
+    body = /*#__PURE__*/React.createElement(React.Fragment, null, heading, answerExcerpt && /*#__PURE__*/React.createElement("p", {
+      style: {
+        gridArea: "body",
+        margin: 0,
+        color: "var(--foreground)",
+        ...type("body"),
+        ...clamp(3)
+      }
+    }, answerExcerpt), /*#__PURE__*/React.createElement("div", {
+      style: {
+        gridArea: "left",
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-4)",
+        ...above
+      }
+    }, like, /*#__PURE__*/React.createElement(Views, {
+      n: views
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        gridArea: "right",
+        display: "flex",
+        alignItems: "center",
+        ...above
+      }
+    }, scrap));
+  } else {
+    body = /*#__PURE__*/React.createElement(React.Fragment, null, heading, /*#__PURE__*/React.createElement("div", {
+      style: {
+        gridArea: "head",
+        display: "flex",
+        alignItems: "baseline",
+        gap: "var(--space-2)",
+        minWidth: 0,
+        ...type("caption")
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "var(--primary)",
+        fontWeight: 600
+      }
+    }, "Q."), keyword && /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "var(--muted-foreground)"
+      }
+    }, keyword)), /*#__PURE__*/React.createElement("div", {
+      className: "tabular",
+      style: {
+        gridArea: "meta",
+        color: "var(--muted-foreground)",
+        ...type("caption"),
+        ...nowrap
+      }
+    }, "\uC870\uD68C ", views.toLocaleString("ko-KR"), " \xB7 \uB3C4\uC6C0\uB3FC\uC694 ", likes.toLocaleString("ko-KR")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        gridArea: "count",
+        alignSelf: "center",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        ...nowrap
+      }
+    }, count > 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
+      className: "tabular",
+      style: {
+        color: "var(--foreground)",
+        fontWeight: 600,
+        ...type("display")
+      }
+    }, count), /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "var(--muted-foreground)",
+        ...type("caption")
+      }
+    }, "\uBA58\uD1A0 \uB2F5\uBCC0")) : /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "var(--primary)",
+        ...type("caption")
+      }
+    }, "\uB2F5\uBCC0 \uB300\uAE30")));
+  }
+  return /*#__PURE__*/React.createElement("article", _extends({
+    className: cls,
+    style: shell
+  }, rest), /*#__PURE__*/React.createElement("div", {
+    className: grid
+  }, body));
+}
+Object.assign(__ds_scope, { QnaListItem });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/surfaces/QnaListItem.jsx", error: String((e && e.message) || e) }); }
 
 // components/surfaces/Table.jsx
 try { (() => {
@@ -7192,93 +9938,118 @@ const JOB_GROUPS = [{
   }]
 }];
 
-// 테마 태그(키워드) — 25개 / 대분류 4.
+// 테마 태그(키워드) — 25개 / 대분류 4. icon(DS-79) = 키워드마다 하나(HugeIcons, 25개 모두 다르다). 대분류에는 icon이 없다.
 const KEYWORD_GROUPS = [{
   label: "취업준비",
   options: [{
     value: "취업 전략",
-    label: "취업 전략"
+    label: "취업 전략",
+    icon: "target-02"
   }, {
     value: "이력서·지원서류",
-    label: "이력서·지원서류"
+    label: "이력서·지원서류",
+    icon: "file-01"
   }, {
     value: "면접 준비",
-    label: "면접 준비"
+    label: "면접 준비",
+    icon: "conversation"
   }, {
     value: "출국 준비",
-    label: "출국 준비"
+    label: "출국 준비",
+    icon: "airplane-01"
   }]
 }, {
   label: "커리어",
   options: [{
     value: "승진",
-    label: "승진"
+    label: "승진",
+    icon: "stairs-01"
   }, {
     value: "매니징",
-    label: "매니징"
+    label: "매니징",
+    icon: "user-group"
   }, {
     value: "연봉 협상",
-    label: "연봉 협상"
+    label: "연봉 협상",
+    icon: "coins-01"
   }, {
     value: "네트워킹",
-    label: "네트워킹"
+    label: "네트워킹",
+    icon: "share-08"
   }, {
     value: "커뮤니케이션",
-    label: "커뮤니케이션"
+    label: "커뮤니케이션",
+    icon: "bubble-chat"
   }, {
     value: "자기 개발",
-    label: "자기 개발"
+    label: "자기 개발",
+    icon: "plant-01"
   }, {
     value: "커리어 전환",
-    label: "커리어 전환"
+    label: "커리어 전환",
+    icon: "direction-right-02"
   }, {
     value: "이직하기",
-    label: "이직하기"
+    label: "이직하기",
+    icon: "logout-01"
   }, {
     value: "한국 리턴",
-    label: "한국 리턴"
+    label: "한국 리턴",
+    icon: "arrow-turn-backward"
   }, {
     value: "창업",
-    label: "창업"
+    label: "창업",
+    icon: "rocket-01"
   }, {
     value: "프리랜서·부업",
-    label: "프리랜서·부업"
+    label: "프리랜서·부업",
+    icon: "laptop"
   }]
 }, {
   label: "현지 생활",
   options: [{
     value: "정착 생활",
-    label: "정착 생활"
+    label: "정착 생활",
+    icon: "home-01"
   }, {
     value: "비자·영주권",
-    label: "비자·영주권"
+    label: "비자·영주권",
+    icon: "passport-01"
   }, {
     value: "워라밸·근무 방식",
-    label: "워라밸·근무 방식"
+    label: "워라밸·근무 방식",
+    icon: "balance-scale"
   }, {
     value: "여성 커리어",
-    label: "여성 커리어"
+    label: "여성 커리어",
+    icon: "woman"
   }, {
     value: "번아웃",
-    label: "번아웃"
+    label: "번아웃",
+    icon: "battery-empty"
   }, {
     value: "취미 생활",
-    label: "취미 생활"
+    label: "취미 생활",
+    icon: "paint-board"
   }, {
     value: "육아와 일 병행",
-    label: "육아와 일 병행"
+    label: "육아와 일 병행",
+    icon: "baby-01"
   }]
 }, {
   label: "학업/재정/그 외",
   options: [{
     value: "대학/대학원 진학",
-    label: "대학/대학원 진학"
+    label: "대학/대학원 진학",
+    icon: "mortarboard-01"
   }, {
     value: "재테크",
-    label: "재테크"
+    label: "재테크",
+    icon: "piggy-bank"
   }, {
     value: "기타",
-    label: "기타"
+    label: "기타",
+    icon: "more-horizontal"
   }]
 }];
 
@@ -7360,6 +10131,8 @@ __ds_ns.FilterChip = __ds_scope.FilterChip;
 
 __ds_ns.FilterSelect = __ds_scope.FilterSelect;
 
+__ds_ns.Flag = __ds_scope.Flag;
+
 __ds_ns.Icon = __ds_scope.Icon;
 
 __ds_ns.IconButton = __ds_scope.IconButton;
@@ -7370,9 +10143,15 @@ __ds_ns.Field = __ds_scope.Field;
 
 __ds_ns.FieldGroup = __ds_scope.FieldGroup;
 
+__ds_ns.ImageCropper = __ds_scope.ImageCropper;
+
 __ds_ns.Input = __ds_scope.Input;
 
+__ds_ns.MultiSelect = __ds_scope.MultiSelect;
+
 __ds_ns.RadioGroup = __ds_scope.RadioGroup;
+
+__ds_ns.ReorderList = __ds_scope.ReorderList;
 
 __ds_ns.SearchInput = __ds_scope.SearchInput;
 
@@ -7381,6 +10160,8 @@ __ds_ns.Select = __ds_scope.Select;
 __ds_ns.Switch = __ds_scope.Switch;
 
 __ds_ns.TagInput = __ds_scope.TagInput;
+
+__ds_ns.Textarea = __ds_scope.Textarea;
 
 __ds_ns.ToggleGroup = __ds_scope.ToggleGroup;
 
@@ -7426,6 +10207,8 @@ __ds_ns.Sheet = __ds_scope.Sheet;
 
 __ds_ns.Toast = __ds_scope.Toast;
 
+__ds_ns.Tooltip = __ds_scope.Tooltip;
+
 __ds_ns.AnswerCard = __ds_scope.AnswerCard;
 
 __ds_ns.ArticleBody = __ds_scope.ArticleBody;
@@ -7451,6 +10234,8 @@ __ds_ns.InterviewCard = __ds_scope.InterviewCard;
 __ds_ns.MentorCard = __ds_scope.MentorCard;
 
 __ds_ns.QnaCard = __ds_scope.QnaCard;
+
+__ds_ns.QnaListItem = __ds_scope.QnaListItem;
 
 __ds_ns.Skeleton = __ds_scope.Skeleton;
 

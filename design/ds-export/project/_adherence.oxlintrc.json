@@ -63,20 +63,24 @@
         "message": "<ArticleTag> doesn't accept that prop. Declared props: label, hue."
       },
       {
-        "selector": "JSXOpeningElement[name.name='Avatar'] > JSXAttribute > JSXIdentifier[name!=/^(?:src|name|alt|size|key|ref|className|style|children)$/]",
-        "message": "<Avatar> doesn't accept that prop. Declared props: src, name, alt, size."
+        "selector": "JSXOpeningElement[name.name='Avatar'] > JSXAttribute > JSXIdentifier[name!=/^(?:src|name|alt|size|shape|icon|key|ref|className|style|children)$/]",
+        "message": "<Avatar> doesn't accept that prop. Declared props: src, name, alt, size, shape, icon."
       },
       {
-        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|status|hue|leading|flag|flagBase|avatar|size|labelHidden|extraItems|key|ref|className|style|children)$/]",
-        "message": "<Badge> doesn't accept that prop. Declared props: variant, status, hue, leading, flag, flagBase, avatar, size, labelHidden, extraItems."
+        "selector": "JSXOpeningElement[name.name='Avatar'] > JSXAttribute[name.name='shape'] > Literal[value!=/^(?:circle|rounded)$/]",
+        "message": "<Avatar> shape must be one of 'circle' | 'rounded'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|status|hue|leading|icon|flag|flagBase|avatar|size|labelHidden|extraItems|key|ref|className|style|children)$/]",
+        "message": "<Badge> doesn't accept that prop. Declared props: variant, status, hue, leading, icon, flag, flagBase, avatar, size, labelHidden, extraItems."
       },
       {
         "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:category|status|tag)$/]",
         "message": "<Badge> variant must be one of 'category' | 'status' | 'tag'."
       },
       {
-        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute[name.name='leading'] > Literal[value!=/^(?:none|dot|flag|avatar)$/]",
-        "message": "<Badge> leading must be one of 'none' | 'dot' | 'flag' | 'avatar'."
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute[name.name='leading'] > Literal[value!=/^(?:none|dot|flag|avatar|icon)$/]",
+        "message": "<Badge> leading must be one of 'none' | 'dot' | 'flag' | 'avatar' | 'icon'."
       },
       {
         "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg)$/]",
@@ -103,12 +107,16 @@
         "message": "<BreadcrumbItem> doesn't accept that prop. Declared props: label, href."
       },
       {
-        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|size|iconLeft|iconRight|fullWidth|disabled|key|ref|className|style|children)$/]",
-        "message": "<Button> doesn't accept that prop. Declared props: variant, size, iconLeft, iconRight, fullWidth, disabled."
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|tone|size|iconLeft|iconRight|fullWidth|disabled|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: variant, tone, size, iconLeft, iconRight, fullWidth, disabled."
       },
       {
         "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|secondary|outline|ghost|destructive)$/]",
         "message": "<Button> variant must be one of 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:neutral|primary)$/]",
+        "message": "<Button> tone must be one of 'neutral' | 'primary'."
       },
       {
         "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg)$/]",
@@ -155,8 +163,16 @@
         "message": "<CountToggle> tone must be one of 'rose' | 'dark'."
       },
       {
-        "selector": "JSXOpeningElement[name.name='Dialog'] > JSXAttribute > JSXIdentifier[name!=/^(?:open|onClose|title|description|footer|width|children|key|ref|className|style|children)$/]",
-        "message": "<Dialog> doesn't accept that prop. Declared props: open, onClose, title, description, footer, width, children."
+        "selector": "JSXOpeningElement[name.name='Dialog'] > JSXAttribute > JSXIdentifier[name!=/^(?:open|onClose|title|description|footer|footerLayout|mobile|width|children|style|key|ref|className|style|children)$/]",
+        "message": "<Dialog> doesn't accept that prop. Declared props: open, onClose, title, description, footer, footerLayout, mobile, width, children, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Dialog'] > JSXAttribute[name.name='footerLayout'] > Literal[value!=/^(?:end|stack)$/]",
+        "message": "<Dialog> footerLayout must be one of 'end' | 'stack'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Dialog'] > JSXAttribute[name.name='mobile'] > Literal[value!=/^(?:center|fullscreen)$/]",
+        "message": "<Dialog> mobile must be one of 'center' | 'fullscreen'."
       },
       {
         "selector": "JSXOpeningElement[name.name='EmptyState'] > JSXAttribute > JSXIdentifier[name!=/^(?:icon|title|description|action|size|key|ref|className|style|children)$/]",
@@ -181,6 +197,14 @@
       {
         "selector": "JSXOpeningElement[name.name='FilterSelectOption'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|label|flag|key|ref|className|style|children)$/]",
         "message": "<FilterSelectOption> doesn't accept that prop. Declared props: value, label, flag."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Flag'] > JSXAttribute > JSXIdentifier[name!=/^(?:country|label|city|size|flagBase|tooltip|key|ref|className|style|children)$/]",
+        "message": "<Flag> doesn't accept that prop. Declared props: country, label, city, size, flagBase, tooltip."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Flag'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg|xl)$/]",
+        "message": "<Flag> size must be one of 'sm' | 'md' | 'lg' | 'xl'."
       },
       {
         "selector": "JSXOpeningElement[name.name='Footer'] > JSXAttribute > JSXIdentifier[name!=/^(?:primary|auth|utility|brand|copyright|onNavigate|style|key|ref|className|style|children)$/]",
@@ -211,8 +235,12 @@
         "message": "<IconButton> size must be one of 'sm' | 'md' | 'lg'."
       },
       {
-        "selector": "JSXOpeningElement[name.name='Input'] > JSXAttribute > JSXIdentifier[name!=/^(?:iconLeft|invalid|key|ref|className|style|children)$/]",
-        "message": "<Input> doesn't accept that prop. Declared props: iconLeft, invalid."
+        "selector": "JSXOpeningElement[name.name='ImageCropValue'] > JSXAttribute > JSXIdentifier[name!=/^(?:rect|circle|zoom|rotation|key|ref|className|style|children)$/]",
+        "message": "<ImageCropValue> doesn't accept that prop. Declared props: rect, circle, zoom, rotation."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Input'] > JSXAttribute > JSXIdentifier[name!=/^(?:iconLeft|invalid|limit|key|ref|className|style|children)$/]",
+        "message": "<Input> doesn't accept that prop. Declared props: iconLeft, invalid, limit."
       },
       {
         "selector": "JSXOpeningElement[name.name='InterviewCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|excerpt|image|personName|company|jobTitle|field|country|countryLabel|href|key|ref|className|style|children)$/]",
@@ -221,6 +249,10 @@
       {
         "selector": "JSXOpeningElement[name.name='MentorCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:name|role|company|intro|field|country|countryLabel|countryExtra|publishedAt|photo|href|fluid|bookmarked|onBookmarkChange|key|ref|className|style|children)$/]",
         "message": "<MentorCard> doesn't accept that prop. Declared props: name, role, company, intro, field, country, countryLabel, countryExtra, publishedAt, photo, href, fluid, bookmarked, onBookmarkChange."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='MultiSelectGroup'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|options|key|ref|className|style|children)$/]",
+        "message": "<MultiSelectGroup> doesn't accept that prop. Declared props: label, options."
       },
       {
         "selector": "JSXOpeningElement[name.name='Pagination'] > JSXAttribute > JSXIdentifier[name!=/^(?:page|totalPages|onPageChange|key|ref|className|style|children)$/]",
@@ -243,8 +275,20 @@
         "message": "<QnaAnswerer> doesn't accept that prop. Declared props: src, name, alt."
       },
       {
+        "selector": "JSXOpeningElement[name.name='QnaListItem'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|href|title|headingLevel|country|countryLabel|keyword|excerpt|answerExcerpt|tags|tagHref|answerers|answerCount|maxAvatars|views|likes|liked|onLikeChange|scraps|scrapped|onScrapChange|showScrap|loading|key|ref|className|style|children)$/]",
+        "message": "<QnaListItem> doesn't accept that prop. Declared props: variant, href, title, headingLevel, country, countryLabel, keyword, excerpt, answerExcerpt, tags, tagHref, answerers, answerCount, maxAvatars, views, likes, liked, onLikeChange, scraps, scrapped, onScrapChange, showScrap, loading."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='QnaListItem'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:default|compact|answer|question)$/]",
+        "message": "<QnaListItem> variant must be one of 'default' | 'compact' | 'answer' | 'question'."
+      },
+      {
         "selector": "JSXOpeningElement[name.name='RadioGroup'] > JSXAttribute > JSXIdentifier[name!=/^(?:options|value|onChange|name|disabled|key|ref|className|style|children)$/]",
         "message": "<RadioGroup> doesn't accept that prop. Declared props: options, value, onChange, name, disabled."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ReorderItem'] > JSXAttribute > JSXIdentifier[name!=/^(?:id|key|ref|className|style|children)$/]",
+        "message": "<ReorderItem> doesn't accept that prop. Declared props: id."
       },
       {
         "selector": "JSXOpeningElement[name.name='SearchInput'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|onChange|onSearch|completions|recent|onRemoveRecent|placeholder|disabled|invalid|id|autoFocus|key|ref|className|style|children)$/]",
@@ -279,8 +323,8 @@
         "message": "<Skeleton> radius must be one of 'sm' | 'md' | 'full'."
       },
       {
-        "selector": "JSXOpeningElement[name.name='Switch'] > JSXAttribute > JSXIdentifier[name!=/^(?:checked|onChange|disabled|label|key|ref|className|style|children)$/]",
-        "message": "<Switch> doesn't accept that prop. Declared props: checked, onChange, disabled, label."
+        "selector": "JSXOpeningElement[name.name='Switch'] > JSXAttribute > JSXIdentifier[name!=/^(?:checked|onChange|disabled|label|id|key|ref|className|style|children)$/]",
+        "message": "<Switch> doesn't accept that prop. Declared props: checked, onChange, disabled, label, id."
       },
       {
         "selector": "JSXOpeningElement[name.name='TableColumn'] > JSXAttribute > JSXIdentifier[name!=/^(?:key|header|align|width|render|key|ref|className|style|children)$/]",
@@ -299,6 +343,10 @@
         "message": "<TagInput> doesn't accept that prop. Declared props: value, onChange, suggestions, completions, max, placeholder, disabled, invalid, inputValue, onInputChange, id."
       },
       {
+        "selector": "JSXOpeningElement[name.name='Textarea'] > JSXAttribute > JSXIdentifier[name!=/^(?:invalid|rows|maxRows|limit|key|ref|className|style|children)$/]",
+        "message": "<Textarea> doesn't accept that prop. Declared props: invalid, rows, maxRows, limit."
+      },
+      {
         "selector": "JSXOpeningElement[name.name='ToastAction'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|onClick|emphasis|key|ref|className|style|children)$/]",
         "message": "<ToastAction> doesn't accept that prop. Declared props: label, onClick, emphasis."
       },
@@ -313,6 +361,14 @@
       {
         "selector": "JSXOpeningElement[name.name='ToggleGroup'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md)$/]",
         "message": "<ToggleGroup> size must be one of 'sm' | 'md'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tooltip'] > JSXAttribute > JSXIdentifier[name!=/^(?:content|children|side|describe|defaultOpen|key|ref|className|style|children)$/]",
+        "message": "<Tooltip> doesn't accept that prop. Declared props: content, children, side, describe, defaultOpen."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tooltip'] > JSXAttribute[name.name='side'] > Literal[value!=/^(?:top|bottom)$/]",
+        "message": "<Tooltip> side must be one of 'top' | 'bottom'."
       }
     ]
   },
@@ -394,6 +450,9 @@
       "FilterSelectOption": {
         "replaces": []
       },
+      "Flag": {
+        "replaces": []
+      },
       "Footer": {
         "replaces": []
       },
@@ -406,6 +465,9 @@
       "IconButton": {
         "replaces": []
       },
+      "ImageCropValue": {
+        "replaces": []
+      },
       "Input": {
         "replaces": []
       },
@@ -413,6 +475,9 @@
         "replaces": []
       },
       "MentorCard": {
+        "replaces": []
+      },
+      "MultiSelectGroup": {
         "replaces": []
       },
       "Pagination": {
@@ -424,7 +489,13 @@
       "QnaAnswerer": {
         "replaces": []
       },
+      "QnaListItem": {
+        "replaces": []
+      },
       "RadioGroup": {
+        "replaces": []
+      },
+      "ReorderItem": {
         "replaces": []
       },
       "SearchInput": {
@@ -457,10 +528,16 @@
       "TagInput": {
         "replaces": []
       },
+      "Textarea": {
+        "replaces": []
+      },
       "ToastAction": {
         "replaces": []
       },
       "ToggleGroup": {
+        "replaces": []
+      },
+      "Tooltip": {
         "replaces": []
       }
     },

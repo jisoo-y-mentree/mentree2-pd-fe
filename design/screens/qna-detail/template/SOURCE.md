@@ -2,13 +2,13 @@
 
 - Claude Design: 프로젝트 **`Mentree 2.0 Q&A Feed`**(radarlab 계정). 공개 공유 링크는 적지 않는다([ADR-0002](../../../../docs/adr/0002-rebuild-design-system-instead-of-sharing.md))
 - 원본: `Mentree 2.0 Q&A Feed.zip`
-- **생성일: 2026-09-15**(1판 2026-09-14 · 링크판 2026-09-14 밤 · Figma 대조판 2026-09-15)
+- **생성일: 2026-10-08**(1판 2026-09-14 · 링크판 2026-09-14 밤 · Figma 대조판 2026-09-15 · **모바일 2판 ＋ 관점별 간단보기 2026-10-08 export**)
 - 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md) — 커밋 `256f3f0`(2026-09-15 개정)
-- 디자인 시스템: 취임 때 `ds-export/` **43본 판**(SHA-256 `7649857370a5`). **2026-09-16 에 `ds-export/` 가 교체됐다**(폴더 해시 `4ec9a3f66119` · 43본 그대로 · 32본 개정 — `Header` · `Select` · 타입 스케일). 이 template 은 그 번들로 그려진다
+- 디자인 시스템: 이 export 의 `_ds` 사본은 **09-16 판**(43본 · 번들 247,136바이트)이다. 같은 PR 에서 `ds-export/` 를 **2026-10-08 판**(52본 · SHA-256 `5424904758ba` · 번들 368,536바이트)으로 교체했고, 이 template 은 **그 번들로 그려진다.** 09-16 판에 있던 부품은 전부 그대로 있다
 
 ## 무엇이 들어 있나
 
-**10장.** normal · questioner · mentor · empty · loading · error · side. 새로 온 3장 — **mentor-answers**(멘토 · 답변 3건) · **questioner-empty**(내 질문 · 0건) · **modal-answer-submit**(답변 등록 확인)
+**15장.** normal · questioner · mentor · mentor-answers · questioner-empty · modal-answer-submit · empty · loading · error ＋ 간단보기 패널 **6장** — side · **side-questioner** · **side-questioner-empty** · **side-mentor** · **side-mentor-answers** · **side-empty**(10-08 export 에서 5장이 새로 왔다 — 관점 4종 ＋ 0건을 패널에서도 가른다). 멘토의 답변 작성 카드는 등록 버튼이 카드 안에 든다(`qna-mobile.md` 2판)
 
 **파일마다 화면 상태가 하나다.** 화면 상태(로딩·0건·에러·관점)를 갈아끼우는 JS 는 없다. **부품 인터랙션의 상태(도움돼요·스크랩·탭·전환·셀렉트·페이지·팝오버·토스트)는 페이지 스크립트가 든다**(2026-09-15 · 상혁 지시). DS 부품은 전부 제어형이라 화면이 `selected`·`value` 와 `onChange` 를 넘겨야 반응한다. 1판은 아무것도 안 넘겨 눌러도 반응이 없었다.
 

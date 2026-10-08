@@ -18,3 +18,9 @@
 - **size** sm(h24)·md(h28)·lg(h34). 글자는 sm=`--text-micro`(12)·md=`--text-caption`(14)·lg=`14px`(Button과 같은 고정값). **형태** radius 6/8/10px(완전 pill 아님). 라벨은 텍스트(tabular 불필요), hex 금지.
 
 > **DS-GAP** — 국기 파일명은 하이픈 국가명 기반. 개발 단계에서 국가명↔ISO 코드 매핑만 정리하면 됨. 현재 프로토타입용 국가만 등록(australia·belgium·canada·china·denmark·france·germany·hong-kong·italy·japan·malaysia·netherlands·south-korea·sweden·switzerland·taiwan·uae·united-kingdom·united-states).
+
+## leading="icon" (DS-79)
+
+`<Badge leading="icon" icon="briefcase-01">취업 전략</Badge>` — 앞자리에 HugeIcons 아이콘. **아이콘만 `--primary`**, 면 · 글자 · 경계는 계열(`category`면 흰 바탕 · 아웃라인)의 모양 그대로.
+아이콘 크기는 Badge 크기를 따른다(sm 14 · md 16 · lg 18). 앞자리 접면 패딩은 `flag`와 같다(sm5 · md6 · lg7).
+키워드 아이콘은 `taxonomy.js` `KEYWORD_GROUPS[].options[].icon`(키워드마다 하나, 25개 모두 다르다)을 쓴다. 대분류에는 아이콘이 없다.

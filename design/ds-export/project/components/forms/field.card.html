@@ -1,0 +1,62 @@
+<!-- @dsCard group="Components" viewport="1280x620" name="Field · FieldGroup" subtitle="DS-32 라벨 --text-body 600 · 설명은 라벨 아래 · 에러는 컨트롤 아래 · 묶음 제목 + 작은 라벨(columns 2)" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+html,body{margin:0}
+body{padding:24px;background:var(--background);font-family:var(--font-sans);color:var(--foreground)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:28px 32px;align-items:start}
+.cell{display:flex;flex-direction:column;gap:10px;min-width:0}
+.label{font-size:var(--text-micro);line-height:var(--text-micro--line-height);letter-spacing:var(--text-micro--letter-spacing);font-weight:600;color:var(--muted-foreground)}
+@media (max-width:480px){body{padding:20px 16px}}
+
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+
+  const { Field, FieldGroup, Input, Select, RadioGroup } = window.MentreeDesignSystem_2f86cf;
+  const YEARS = Array.from({ length: 12 }, (_, i) => String(2026 - i) + "년");
+  const MONTHS = Array.from({ length: 12 }, (_, i) => (i + 1) + "월");
+  function S(p) { const [v, setV] = React.useState(p.init || ""); return <Select value={v} onChange={setV} {...p} />; }
+  function Demo() {
+    const [q, setQ] = React.useState("커리어");
+    return (
+      <div className="grid">
+        <div className="cell"><div className="label">단독 필드 — 라벨 · 설명(라벨 아래) · 에러(컨트롤 아래)</div>
+          <Field label="한 줄 요약" htmlFor="f1" required description="멘토카드에 이름과 함께 보입니다." error="한 줄 요약을 입력해주세요.">
+            <Input id="f1" invalid placeholder="예: 베를린의 백엔드 엔지니어" />
+          </Field>
+        </div>
+        <div className="cell"><div className="label">묶음 — 거주중인 국가 · 나라 / 도시</div>
+          <FieldGroup label="거주중인 국가" required columns={2}>
+            <Field label="나라" htmlFor="f2"><S id="f2" placeholder="나라" options={["일본", "미국", "대한민국", "독일"]} init="독일" /></Field>
+            <Field label="도시" htmlFor="f3"><S id="f3" placeholder="도시" options={["베를린", "뮌헨", "함부르크"]} /></Field>
+          </FieldGroup>
+        </div>
+        <div className="cell"><div className="label">묶음 — 시작일 · 년 / 월</div>
+          <FieldGroup label="시작일" columns={2}>
+            <Field label="년" htmlFor="f4"><S id="f4" placeholder="년" options={YEARS} init="2021년" /></Field>
+            <Field label="월" htmlFor="f5"><S id="f5" placeholder="월" options={MONTHS} init="4월" /></Field>
+          </FieldGroup>
+        </div>
+        <div className="cell"><div className="label">라디오를 담은 필드 — 제목(600)이 선택지(400)보다 작지 않다</div>
+          <Field label="질문 카테고리" description="하나를 고릅니다.">
+            <RadioGroup options={["커리어", "비자 · 이민", "생활"]} value={q} onChange={setQ} />
+          </Field>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

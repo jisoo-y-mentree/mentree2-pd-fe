@@ -62,6 +62,7 @@ export function QnaCard({
   title,
   excerpt,
   tags = [],
+  tagHref,
   compact = false,
   answerers = [],
   answerCount,
@@ -170,7 +171,7 @@ export function QnaCard({
             <Badge size="sm">+99</Badge>
           </div>
           {shownTags.map((t, i) => (
-            <Chip key={i} size="sm" prefix="#" href={`/tags/${t}`} style={{ minWidth: 0, maxWidth: "100%", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t}</Chip>
+            <Chip key={i} size="sm" prefix="#" href={tagHref ? tagHref(t) : `/tags/${t}`} style={{ minWidth: 0, maxWidth: "100%", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t}</Chip>
           ))}
           {extraTags > 0 && <Badge size="sm" style={{ flex: "0 0 auto" }}>+{extraTags}</Badge>}
         </div>

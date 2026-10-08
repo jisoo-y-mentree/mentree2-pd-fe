@@ -63,6 +63,18 @@
           />
           <div className="cap">답변 0건 — "아직 작성된 답변이 없습니다"(자리를 비우지 않는다)</div>
         </div>
+        <div className="cell">
+          <QnaCard
+            href="#" country="netherlands" countryLabel="네덜란드" keyword="현지 생활"
+            title="암스테르담 정착 초기, 집 계약에서 무엇을 확인해야 합니까?"
+            excerpt="회사가 정한 3개월 임시 숙소가 끝납니다. 계약서에서 놓치기 쉬운 조항이 궁금합니다."
+            tags={["정착 생활", "비자·영주권", "재테크"]}
+            tagHref={(t) => "/search?tag=" + encodeURIComponent(t)}
+            answerers={[{ name: "김도윤" }, { name: "이서연" }]} answerCount={2}
+            views={431} likes={11} scraps={3}
+          />
+          <div className="cap">tagHref={"{(t) => \"/search?tag=\" + encodeURIComponent(t)}"} — 태그에 마우스를 올리면 그 주소. 안 준 카드는 /tags/{"{태그}"}</div>
+        </div>
         <div className="cell" style={{ width: 280 }}>
           <QnaCard
             compact

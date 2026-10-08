@@ -7,14 +7,14 @@ import { Icon } from "./Icon.jsx";
  *  계열(variant): "category"(분류·뉴트럴 sage) · "status"(상태) · "tag"(질적태그 8색).
  *  status(상태값): "active"(진행중·green) · "new"(신규·green tint) · "closed"(마감·destructive) · "waiting"(대기·muted) · "hold"(보류·muted).
  *  hue(질적태그 8색): neutral·blue·sky·indigo·amber·rose·purple·teal.
- *  leading(전 계열 공통 앞자리 슬롯): "none" · "dot" · "flag"(국기) · "avatar".
+ *  leading(전 계열 공통 앞자리 슬롯): "none" · "dot" · "flag"(국기) · "avatar" · "icon"(DS-79 — HugeIcons, 아이콘만 --primary).
  *  패딩(접면 기반·좌우 독립): 텍스트 접면 sm8/md10/lg12 · 슬롯(flag/avatar/dot/"+N ⌄") 접면 sm5/md6/lg7.
  *  size: sm·md·lg. 형태: radius-md(완전 pill 아님). 라벨은 텍스트(tabular 불필요).
  */
 const SIZES = {
-  sm: { h: 24, radius: 6,  padText: 8,  padSlot: 5, fs: "var(--text-micro)",   gap: 5, slot: 16, dot: 5 },
-  md: { h: 28, radius: 8,  padText: 10, padSlot: 6, fs: "var(--text-caption)", gap: 6, slot: 18, dot: 6 },
-  lg: { h: 34, radius: 10, padText: 12, padSlot: 7, fs: 14,                    gap: 7, slot: 22, dot: 7 },
+  sm: { h: 24, radius: 6,  padText: 8,  padSlot: 5, fs: "var(--text-micro)",   gap: 5, slot: 16, dot: 5, icon: 14 },
+  md: { h: 28, radius: 8,  padText: 10, padSlot: 6, fs: "var(--text-caption)", gap: 6, slot: 18, dot: 6, icon: 16 },
+  lg: { h: 34, radius: 10, padText: 12, padSlot: 7, fs: 14,                    gap: 7, slot: 22, dot: 7, icon: 18 },
 };
 
 // flag 국기 에셋 기본 경로(DS 카드 기준). 소비처는 flagBase prop으로 재정의.
@@ -57,6 +57,7 @@ export function Badge({
   flag,
   flagBase = FLAG_BASE,
   avatar,
+  icon,
   size = "md",
   labelHidden = false,
   extraItems,
@@ -67,7 +68,7 @@ export function Badge({
   const s = SIZES[size] || SIZES.md;
   const p = palette(variant, status, hue);
   // 접면 기반 좌우 패딩 — 각 변을 독립 판단: 텍스트 접면=padText, 슬롯(국기·아바타·dot·"+N ⌄") 접면=padSlot.
-  const hasLead = leading !== "none" && !(leading === "avatar" && !avatar);
+  const hasLead = leading !== "none" && !(leading === "avatar" && !avatar) && !(leading === "icon" && !icon);
   const labelShown = !labelHidden && children != null && children !== "";
   // 우변 접면: "+N ⌄" 있으면 슬롯, 없으면 라벨(텍스트), 라벨도 없으면(국기만 등) 슬롯.
   // "+N" 펼침(팝오버) — extraItems 있을 때만. 바깥 클릭 시 닫힘.
@@ -98,6 +99,9 @@ export function Badge({
         )}
       </span>
     );
+  } else if (leading === "icon" && icon) {
+    // DS-79 — 아이콘만 --primary. 면 · 글자 · 경계는 계열의 모양 그대로. 접면 패딩은 flag와 같은 padSlot.
+    lead = <Icon name={icon} size={s.icon} aria-hidden="true" aria-label={undefined} role={undefined} style={{ color: "var(--primary)" }} />;
   } else if (leading === "avatar" && avatar) {
     lead = <Avatar {...avatar} size={s.slot} />;
   }
