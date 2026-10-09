@@ -1,47 +1,73 @@
 /* ============================================================================
    mentree — typography.css
-   Font + type scale. Sizes/line-heights/tracking from DESIGN.md (exact).
-   Utilities are provided so plain-HTML consumers can apply the scale.
+   Type scale (DS-48). 원티드·토스 데스크톱 실측 기반(2026-09-15 @1280):
+   카드 폭이 제목 크기를 정한다 — ~280→body 16 · 280–360→h3 18 · 360+→h2 20.
+   430+→h1 24 구간은 없앴다(원티드 250→16/333→17, 토스 238→20/652→20 — 폭이
+   커져도 제목은 거의 안 변한다).
+   반응형은 display·h0·h1 세 단에만 건다 — 카드 제목은 폭 규칙이 처리하고(토큰에도
+   걸면 두 번 내려간다), article은 토스 본문이 양쪽 다 17이다.
+   자간은 작을수록 넓히고 클수록 좁힌다. 줄높이는 배수가 아니라 고정 px(4의 배수).
+
+   크기·줄높이·자간은 세 줄이 한 묶음이다 — fontSize에 var(--text-X)를 쓰는 곳은
+   lineHeight var(--text-X--line-height)·letterSpacing var(--text-X--letter-spacing)도
+   함께 쓴다. 예외 둘: (1) 컨트롤 라벨(Button·Chip·FilterChip·Badge·BottomTabBar·
+   Tabs·ToggleGroup, 그리고 버튼처럼 굳는 인라인 요소)과 입력 안의 글자(Input·Select·
+   SearchInput·TagInput)는 lineHeight 1(또는 상자 높이) · letterSpacing 0 고정 — 토큰을
+   따르지 않는다. (2) 모바일에서 크기가 줄어드는 제목(display~h3·article)은 미디어쿼리
+   에서 줄높이도 같이 낮춰 배율이 Desktop과 같게 유지한다. 말줄임(line-clamp)이 걸린
+   곳은 반드시 토큰 줄높이를 쓴다 — 숫자를 쓰면 카드 높이가 스케일과 어긋난다.
    ========================================================================== */
 
 :root {
   --font-sans: "Pretendard JP Variable", "Pretendard JP",
     ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  /* 本文 body — 14px / 1.7 / -0.01em */
-  --text-body: 0.875rem;
-  --text-body--line-height: 1.7;
-  --text-body--letter-spacing: -0.01em;
+  /* display — 32px / 40px / -0.025em · 600 · 히어로 제목 (Mobile 26/34) */
+  --text-display: 2rem;
+  --text-display--line-height: 40px;
+  --text-display--letter-spacing: -0.025em;
 
-  /* 小テキスト caption·label — 12px / 1.6 / 0 */
-  --text-caption: 0.75rem;
-  --text-caption--line-height: 1.6;
-  --text-caption--letter-spacing: 0em;
+  /* h0 — 24px / 32px / -0.02em · 600 · 섹션 제목 (Mobile 22/30) */
+  --text-h0: 1.5rem;
+  --text-h0--line-height: 32px;
+  --text-h0--letter-spacing: -0.02em;
 
-  /* 見出し S (h3) — 16px / 1.5 / 0 */
-  --text-h3: 1rem;
-  --text-h3--line-height: 1.5;
+  /* h1 — 22px / 30px / -0.015em · 600 · 페이지 안 큰 제목 (Mobile 20/28).
+     카드 제목으로는 쓰지 않는다 — 폭 규칙은 h2(20)에서 멈춘다(원티드·토스 실측: 폭이 커져도 제목은 거의 안 변한다). */
+  --text-h1: 1.375rem;
+  --text-h1--line-height: 30px;
+  --text-h1--letter-spacing: -0.015em;
+
+  /* h2 — 20px / 28px / -0.005em · 600 · 카드 제목(360px+, InterviewCard). 반응형 없음 — 폭 규칙이 처리한다 */
+  --text-h2: 1.25rem;
+  --text-h2--line-height: 28px;
+  --text-h2--letter-spacing: -0.005em;
+
+  /* h3 — 18px / 26px / 0 · 600 · 카드 제목(280–360px, MentorCard·QnaCard·ArticlePreview). 반응형 없음 — 폭 규칙이 처리한다 */
+  --text-h3: 1.125rem;
+  --text-h3--line-height: 26px;
   --text-h3--letter-spacing: 0em;
 
-  /* 見出し M (h2) — 20px / 1.4 / +0.01em */
-  --text-h2: 1.25rem;
-  --text-h2--line-height: 1.4;
-  --text-h2--letter-spacing: 0.01em;
+  /* article — 17px / 28px / 0 · 400 · 읽을거리 본문(아티클·인터뷰 상세·AnswerCard 답변 전문).
+     반응형 없음 — 토스 본문이 1280에서 17, 390에서도 17이다(글자수까지 4,651↔4,648). */
+  --text-article: 1.0625rem;
+  --text-article--line-height: 28px;
+  --text-article--letter-spacing: 0em;
 
-  /* display — 40px / 1.28 / -0.01em · semibold — 히어로 제목 */
-  --text-display: 2.5rem;
-  --text-display--line-height: 1.28;
-  --text-display--letter-spacing: -0.01em;
+  /* body — 16px 고정 / 24px / 0 · 400 · 카드 제목(~280px 이하)도 이 토큰. 폭과 무관 */
+  --text-body: 1rem;
+  --text-body--line-height: 24px;
+  --text-body--letter-spacing: 0em;
 
-  /* 見出し h0 — 30px / 1.3 / -0.01em · semibold — 섹션 제목 */
-  --text-h0: 1.875rem;
-  --text-h0--line-height: 1.3;
-  --text-h0--letter-spacing: -0.01em;
+  /* caption — 14px 고정 / 20px / +0.005em · 500. 폭과 무관 */
+  --text-caption: 0.875rem;
+  --text-caption--line-height: 20px;
+  --text-caption--letter-spacing: 0.005em;
 
-  /* 見出し L (h1) — 24px / 1.3 / +0.01em */
-  --text-h1: 1.5rem;
-  --text-h1--line-height: 1.3;
-  --text-h1--letter-spacing: 0.01em;
+  /* micro — 12px 고정 / 16px / +0.01em · 600 · 배지·탭바 라벨 등 작은 라벨. 폭과 무관 */
+  --text-micro: 0.75rem;
+  --text-micro--line-height: 16px;
+  --text-micro--letter-spacing: 0.01em;
 
   /* 数字・データ表示 — tabular, tight lh */
   --text-data--line-height: 1.3;
@@ -85,17 +111,46 @@
   letter-spacing: var(--text-h3--letter-spacing);
   font-weight: var(--font-weight-semibold);
 }
+.text-article {
+  font-size: var(--text-article);
+  line-height: var(--text-article--line-height);
+  letter-spacing: var(--text-article--letter-spacing);
+  font-weight: var(--font-weight-normal);
+}
 .text-body {
   font-size: var(--text-body);
   line-height: var(--text-body--line-height);
   letter-spacing: var(--text-body--letter-spacing);
+  font-weight: var(--font-weight-normal);
 }
 .text-caption {
   font-size: var(--text-caption);
   line-height: var(--text-caption--line-height);
   letter-spacing: var(--text-caption--letter-spacing);
+  font-weight: var(--font-weight-medium);
 }
-/* responsive type — Mobile(~768) display 24px. (h0 20 등 나머지 전환은 리스폰시브 단계에서) */
+.text-micro {
+  font-size: var(--text-micro);
+  line-height: var(--text-micro--line-height);
+  letter-spacing: var(--text-micro--letter-spacing);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* responsive type — display · h0 · h1 세 단에만 건다.
+   벤치마크는 모바일에서 거의 안 내린다 — 원티드 홈 최대 제목 22→22, 상세 본문 16→16,
+   보조 13→13, 배지 11→11(내려가는 것은 상세 주제목 28→20 하나뿐) / 토스 아티클 h2 30→30,
+   본문 17→17, 카드 제목 20→20.
+   h2·h3를 내리지 않는 이유: 카드 제목은 폭 규칙(~280 body · 280–360 h3 · 360+ h2)이 이미
+     처리한다. 토큰에도 걸면 두 번 내려간다.
+   article을 내리지 않는 이유: 토스 본문이 1280에서 17, 390에서도 17이다.
+   body·caption·micro는 폭과 무관하게 고정. */
 @media (max-width: 768px) {
-  :root { --text-display: 1.5rem; }
+  :root {
+    --text-display: 1.625rem;  --text-display--line-height: 34px;  /* 32/40→26/34 */
+    --text-h0:      1.25rem;   --text-h0--line-height:      28px;  /* 24/32→20/28 — 와이어의 섹션 제목이 20이다.
+       DS-48에서 22로 잡은 것은 원티드 @390의 홈 최대 제목 22를 본 것인데, 그건 섹션 제목이 아니라
+       페이지 최상단 제목이었다. h0와 h1이 Mobile에서 같은 20이 된다 — 역할이 다르고 굵기·자간으로
+       갈린다(Desktop에서는 24와 22로 갈린다). */
+    --text-h1:      1.25rem;   --text-h1--line-height:      28px;  /* 22/30→20/28 */
+  }
 }

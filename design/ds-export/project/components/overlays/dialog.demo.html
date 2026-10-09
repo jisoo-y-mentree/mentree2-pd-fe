@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+html,body{margin:0}
+body{padding:24px;background:var(--background);font-family:var(--font-sans);color:var(--foreground)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:28px 32px;align-items:start}
+.cell{display:flex;flex-direction:column;gap:10px;min-width:0}
+.label{font-size:var(--text-micro);line-height:var(--text-micro--line-height);letter-spacing:var(--text-micro--letter-spacing);font-weight:600;color:var(--muted-foreground)}
+@media (max-width:480px){body{padding:20px 16px}}
+body{padding:16px;background:var(--sage-50);min-height:100vh;box-sizing:border-box}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+
+  const { Dialog, Button, Field, FieldGroup, Input, Select, Textarea, MultiSelect, KEYWORD_GROUPS } = window.MentreeDesignSystem_2f86cf;
+  function MS() { const [v, setV] = React.useState([]); return <MultiSelect id="ms-in-dialog" groups={KEYWORD_GROUPS} value={v} onChange={setV} placeholder="태그를 선택해주세요." />; }
+  function Readout() { const [t, setT] = React.useState(''); React.useEffect(() => { const f = () => { const b = document.body; const locked = b.dataset.mtScrollLock; const a = document.activeElement; setT((locked != null ? '잠금 · 뒤 페이지 위치 ' + locked + ' · window.scrollY ' + Math.round(scrollY) : '잠금 없음 · window.scrollY ' + Math.round(scrollY)) + ' · 포커스: ' + (a ? (a.className && String(a.className).includes('mt-dialog-title') ? '제목' : a.tagName.toLowerCase() + (a.id ? '#' + a.id : '')) : '-')); }; f(); const i = setInterval(f, 200); return () => clearInterval(i); }, []); return <div style={{ position: 'fixed', left: 8, bottom: 8, zIndex: 100, padding: '4px 8px', borderRadius: 'var(--radius-sm)', background: 'var(--sage-900)', color: 'var(--sage-50)', fontSize: 'var(--text-micro)', fontFamily: 'var(--font-mono, monospace)' }}>{t}</div>; }
+  const state = new URLSearchParams(location.search).get("state") || "1";
+  function Fields({ n }) {
+    const labels = ["회사명", "직무", "고용 형태", "근무 국가", "근무 도시", "시작일", "종료일", "담당 업무", "성과"];
+    return <FieldGroup>{labels.slice(0, n).map((l, i) => <Field key={l} label={l} htmlFor={"d" + i}>{i === 7 ? <Textarea id={"d" + i} placeholder="담당한 업무를 적어주세요." /> : <Input id={"d" + i} placeholder={l + "을(를) 입력해주세요."} />}</Field>)}</FieldGroup>;
+  }
+  function Demo() {
+    const [open, setOpen] = React.useState(state !== "7");
+    React.useEffect(() => { if (state === "7") { window.scrollTo(0, 600); const t = setTimeout(() => setOpen(true), 150); return () => clearTimeout(t); } }, []);
+    const close = () => setOpen(false);
+    const common = { open, onClose: close };
+    let dlg;
+    if (state === "1") dlg = <Dialog {...common} title="멘토링 취소" description="이 작업은 되돌릴 수 없습니다."
+      footer={<><Button variant="ghost" onClick={close}>닫기</Button><Button variant="destructive" onClick={close}>취소하기</Button></>}>예약된 1:1 포트폴리오 리뷰 세션을 취소하시겠어요?</Dialog>;
+    else if (state === "2") dlg = <Dialog {...common} title="커리어" description="경력 사항을 입력해주세요."
+      footer={<><Button variant="ghost" onClick={close}>취소</Button><Button onClick={close}>저장</Button></>}><Fields n={9} /></Dialog>;
+    else if (state === "3") dlg = <Dialog {...common} title="커리어" footerLayout="stack"
+      footer={<><Button fullWidth onClick={close}>수정하기</Button><Button variant="ghost" size="sm" onClick={close}>커리어 삭제</Button></>}><Fields n={3} /></Dialog>;
+    else if (state === "4") dlg = <Dialog {...common} title="커리어" description="경력 사항을 입력해주세요." mobile="fullscreen" footerLayout="stack"
+      footer={<><Button fullWidth onClick={close}>수정하기</Button><Button variant="ghost" size="sm" onClick={close}>커리어 삭제</Button></>}><Fields n={9} /></Dialog>;
+    else if (state === "6") dlg = <Dialog {...common} title="인사이트 태그" description="짧은 본문 — 목록이 푸터 위로 뜬다"
+      footer={<><Button variant="ghost" onClick={close}>취소</Button><Button onClick={close}>저장하기</Button></>}><Field label="인사이트 태그" htmlFor="ms-in-dialog"><MS /></Field></Dialog>;
+    else if (state === "7") dlg = <Dialog {...common} title="멘토링 취소" description="휠을 굴려도 뒤 페이지가 움직이지 않는다"
+      footer={<><Button variant="ghost" onClick={close}>닫기</Button><Button variant="destructive" onClick={close}>취소하기</Button></>}>뒤 페이지는 600까지 내려간 상태에서 열렸다. 닫으면 600으로 돌아온다.</Dialog>;
+    else dlg = <Dialog {...common} width={520} title="한 줄 요약" description="폭 520 — width={520}"
+      footer={<><Button variant="ghost" onClick={close}>취소</Button><Button onClick={close}>저장</Button></>}><Field label="한 줄 요약" htmlFor="w1"><Input id="w1" limit={20} defaultValue="베를린의 백엔드 엔지니어" /></Field></Dialog>;
+    React.useEffect(() => { if (state === "6") { const t = setTimeout(() => { const b = document.getElementById("ms-in-dialog"); if (b) b.click(); }, 350); return () => clearTimeout(t); } }, []);
+    const long = state === "7";
+    return (<div><Button variant="outline" onClick={() => setOpen(true)}>다시 열기</Button>{long && Array.from({ length: 60 }).map((_, i) => <p key={i} style={{ margin: "0 0 16px", color: "var(--muted-foreground)" }}>{i + 1}번째 문단 — 뒤 페이지 내용</p>)}{(long || state === "4") && <Readout />}{dlg}</div>);
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

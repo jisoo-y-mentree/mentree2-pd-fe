@@ -28,6 +28,8 @@ export interface QnaCardProps extends Omit<React.HTMLAttributes<HTMLElement>, "t
   excerpt?: string;
   /** 해시태그(문자열 배열, "#" 없이). Chip sm prefix="#"로 5개까지 — 6개 이상이면 5개 뒤에 "+N" Badge(안 눌림·펼치지 않음). */
   tags?: string[];
+  /** 해시태그 Chip의 href를 만든다. (tag) => string. 안 주면 `/tags/{태그}`. 「+N」 Badge는 링크가 아니다. */
+  tagHref?: (tag: string) => string;
   /** 좁은 폭(우측 위젯 "나의 Q&A") — 해시태그 행을 통째로 감춘다. 나머지 구성은 같다. 기본 false. */
   compact?: boolean;
   /** 답변자 아바타 목록(AvatarGroup). 표시 순서는 호출부가 결정(질문자가 도움돼요 누른 답변 → 도움돼요 수 → 최신). */

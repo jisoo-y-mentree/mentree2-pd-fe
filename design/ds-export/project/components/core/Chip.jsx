@@ -7,15 +7,15 @@ import { Icon } from "./Icon.jsx";
  *  selected 없음. 켜짐이 필요하면 FilterChip을 쓴다.
  * [슬롯] href → <a>(hover 시 라벨 --primary) · onRemove → 형제 <button>(✕, HugeIcons cancel-01) ·
  *  둘 다 없으면 표시 전용 <span>. leading 슬롯 없음.
- * [크기] sm: h22(Badge sm과 동일)·radius --radius-sm·12px/500·padX8 — 카드 안 해시태그 /
- *  md: h32(FilterChip과 동일)·radius --radius-md·caption/500·padX12 — 필터 모달의 걸린 조건. pill 금지.
+ * [크기] sm(해시태그 등): h24·radius --radius-sm(8)·12px/500·padX8 /
+ *  md(기본): h32·radius --radius-md(12)·14px/500·padX12 — Button·FilterChip과 같은 고정 14. pill 금지.
  * [prefix] 라벨 앞 문자(해시태그는 prefix="#"). 라벨 문자열에 #를 넣지 않는다 — 같은 데이터가 두 가지로 저장된다.
  * [상태] hover: 면 --sage-200 / active: 0.5px 눌림(Button·FilterChip과 동일 프레스) / focus-visible: --ring / disabled: 흐리게.
  * [터치] sm 시각 높이 22(Badge sm 정렬). onRemove 버튼은 투명 패딩(::after ±4)으로 타겟을 24 이상으로 넓힌다.
  */
 const SIZES = {
-  sm: { h: 22, radius: "var(--radius-sm)", pad: 8, padRight: 4, fs: 12, gap: 4, removeBtn: 18, iconSize: 12 },
-  md: { h: 32, radius: "var(--radius-md)", pad: 12, padRight: 6, fs: "var(--text-caption)", gap: 6, removeBtn: 22, iconSize: 13 },
+  sm: { h: 24, radius: "var(--radius-sm)", pad: 8, padRight: 4, fs: 12, gap: 4, removeBtn: 18, iconSize: 12 },
+  md: { h: 32, radius: "var(--radius-md)", pad: 12, padRight: 6, fs: 14, gap: 6, removeBtn: 22, iconSize: 13 },
 };
 
 export function Chip({
@@ -62,7 +62,7 @@ export function Chip({
     fontSize: s.fs,
     fontWeight: 500,
     lineHeight: 1,
-    letterSpacing: "-0.01em",
+    letterSpacing: 0,
     whiteSpace: "nowrap",
     transition: "background-color 150ms ease, color 150ms ease, transform 120ms ease",
     opacity: disabled ? 0.5 : 1,

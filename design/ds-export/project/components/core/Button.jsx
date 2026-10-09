@@ -4,9 +4,9 @@ import { Icon } from "./Icon.jsx";
 const RADIUS = "var(--radius-md)";
 
 const SIZES = {
-  sm: { height: 32, padding: "0 12px", fontSize: "var(--text-caption)", gap: 6, icon: 16 },
-  md: { height: 38, padding: "0 16px", fontSize: "var(--text-body)", gap: 8, icon: 18 },
-  lg: { height: 44, padding: "0 22px", fontSize: "var(--text-h3)", gap: 8, icon: 20 },
+  sm: { height: 32, padding: "0 14px", fontSize: 14, gap: 6, icon: 16 },
+  md: { height: 40, padding: "0 20px", fontSize: 14, gap: 8, icon: 18 },
+  lg: { height: 48, padding: "0 28px", fontSize: 14, gap: 8, icon: 20 },
 };
 
 const VARIANTS = {
@@ -37,11 +37,21 @@ const VARIANTS = {
   },
 };
 
+// DS-81 — tone="primary"는 outline · ghost에만 먹는다. 다른 변형은 무시.
+//  outline: 흰 바탕 · 1px --primary 경계 · --primary 글자/아이콘 · hover 면 --green-50
+//  ghost: 면 · 경계 없음 · --primary 글자/아이콘 · hover 밑줄
+const PRIMARY_TONE = {
+  outline: { color: "var(--primary)", border: "1px solid var(--primary)" },
+  ghost: { color: "var(--primary)" },
+};
+
 /**
  * Button — shadcn/vega button in mentree tokens.
+ * 글자는 크기 단계와 무관하게 14px·600으로 고정된다(원티드 실측 — 버튼 안 글자는 안 움직이고 높이만 커진다).
  */
 export function Button({
   variant = "primary",
+  tone = "neutral",
   size = "md",
   iconLeft,
   iconRight,
@@ -52,7 +62,9 @@ export function Button({
   ...rest
 }) {
   const s = SIZES[size] || SIZES.md;
-  const v = VARIANTS[variant] || VARIANTS.primary;
+  const base = VARIANTS[variant] || VARIANTS.primary;
+  const toned = tone === "primary" ? PRIMARY_TONE[variant] : null;
+  const v = toned ? { ...base, ...toned } : base;
   return (
     <button
       disabled={disabled}
@@ -62,13 +74,16 @@ export function Button({
         justifyContent: "center",
         gap: s.gap,
         height: s.height,
-        padding: s.padding,
+        // ghost는 좌우 패딩 0 — 면도 테두리도 없고 hover에도 면이 안 뜨므로(brightness만) 아무것도 없는 곳에
+        // 40px이 붙어 있었다(md 116px 중 34%가 여백). 면이 있는 variant는 여백이 일을 하므로 그대로 둔다.
+        // 세로 패딩은 원래 없고 높이도 그대로라 터치 타겟(md 40)은 안 줄어든다.
+        padding: variant === "ghost" ? 0 : s.padding,
         width: fullWidth ? "100%" : "auto",
         fontFamily: "var(--font-sans)",
         fontSize: s.fontSize,
-        fontWeight: 500,
+        fontWeight: 600,
         lineHeight: 1,
-        letterSpacing: "-0.01em",
+        letterSpacing: 0,
         borderRadius: RADIUS,
         cursor: disabled ? "not-allowed" : "pointer",
         opacity: disabled ? 0.5 : 1,
@@ -79,8 +94,19 @@ export function Button({
       }}
       onMouseDown={(e) => { if (!disabled) e.currentTarget.style.transform = "translateY(0.5px)"; }}
       onMouseUp={(e) => { e.currentTarget.style.transform = "none"; }}
-      onMouseEnter={(e) => { if (!disabled) e.currentTarget.style.filter = "brightness(0.95)"; }}
-      onMouseLeave={(e) => { e.currentTarget.style.filter = "none"; e.currentTarget.style.transform = "none"; }}
+      onMouseEnter={(e) => {
+        if (disabled) return;
+        const el = e.currentTarget;
+        if (toned && variant === "outline") el.style.background = "var(--green-50)";
+        else if (toned && variant === "ghost") { el.style.textDecoration = "underline"; el.style.textUnderlineOffset = "3px"; }
+        else el.style.filter = "brightness(0.95)";
+      }}
+      onMouseLeave={(e) => {
+        const el = e.currentTarget;
+        if (toned && variant === "outline") el.style.background = (style && style.background) || v.background;
+        if (toned && variant === "ghost") el.style.textDecoration = (style && style.textDecoration) || "none";
+        el.style.filter = "none"; el.style.transform = "none";
+      }}
       {...rest}
     >
       {iconLeft && <Icon name={iconLeft} size={s.icon} />}

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+  <script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <style>
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: color-mix(in oklch, var(--primary) 82%, var(--sage-950)); }
+    /* Dialog ✕ — 열릴 때 자동 포커스가 가서 브라우저 기본 링이 "눌린 것"처럼 보인다. 키보드 포커스에만 --ring. */
+    .mt-dialog-panel > div:first-child > button[aria-label="닫기"] { outline: none !important; }
+    .mt-dialog-panel > div:first-child > button[aria-label="닫기"]:focus-visible { outline: 2px solid var(--ring) !important; outline-offset: 2px; }
+    .qc-shell { --primary: #15803D; --primary-foreground: #F0FDF4; --green-50: #F5FAF6; --green-100: #E7F4E9; --qf-accent: #F97316; --qf-accent-soft: #FFF7ED; --qf-ink-deep: #052E16; --qf-green-600: #109840; --destructive: oklch(0.50 0.20 27); }
+    .qc-shell .mt-chip { background: var(--green-100) !important; color: var(--qf-ink-deep) !important; }
+    @media (max-width: 768px) {
+      .qc-main { padding: 24px 0 40px !important; gap: 24px !important; }
+      .qc-shell { padding-bottom: calc(56px + env(safe-area-inset-bottom)) !important; }
+      .qc-two { grid-template-columns: minmax(0, 1fr) !important; }
+    }
+  </style>
+</helmet>
+<div class="qc-shell" style="display: flex; flex-direction: column; min-height: 100vh; background: var(--background); color: var(--foreground)">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" active-key="qna" onNavigate="{{ nav }}" hint-size="100%,64px"></x-import>
+  <main class="qc-container" style="flex: 1 1 auto; width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-pad)">
+    <div class="qc-main" style="width: 100%; max-width: 800px; margin: 0 auto; padding: 40px 0 72px; display: flex; flex-direction: column; gap: 28px">
+      <h1 class="text-h0 qc-h0" style="margin: 0">Q&amp;A멘토링 질문 작성</h1>
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,900px"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CardContent" hint-size="100%,880px"><form style="display: flex; flex-direction: column; gap: 28px" onSubmit="{{ preventSubmit }}">
+  <div class="qc-two" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="국가" required="{{ true }}" html-for="qc-country" hint-size="100%,70px"><div data-dd="true" style="position: relative">
+  <sc-if value="{{ ddEnabled_country }}" hint-placeholder-val="{{ true }}">
+    <button type="button" id="qc-country" aria-haspopup="listbox" aria-expanded="{{ ddOpen_country }}" onClick="{{ ddToggle_country }}" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; height: 38px; padding: 0 11px 0 12px; background: var(--card); border: 1px solid var(--input); border-radius: var(--radius-md); font-family: var(--font-sans); font-size: var(--text-body); line-height: 1; letter-spacing: 0; text-align: left; color: var(--foreground); opacity: 1; cursor: pointer">
+    <sc-if value="{{ ddFilled_country }}" hint-placeholder-val="{{ true }}"><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ ddLabel_country }}</span></sc-if>
+    <sc-if value="{{ ddPlaceholder_country }}"><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted-foreground)">해당 국가 선택</span></sc-if>
+    <span class="hgi" style="--hgi: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/arrow-down-01.svg'); flex: none; font-size: 16px; color: var(--muted-foreground)"></span>
+  </button>
+    <sc-if value="{{ ddOpen_country }}">
+    <div role="listbox" style="position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 30; display: flex; flex-direction: column; max-height: 296px; overflow-y: auto; padding: 4px; border-radius: var(--radius-md); background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow-md)">
+      <sc-for list="{{ ddItems_country }}" as="o" hint-placeholder-count="4">
+        <div role="option" aria-selected="{{ o.selected }}" onMouseDown="{{ o.pick }}" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 36px; padding: 0 12px; border-radius: var(--radius-sm); font-family: var(--font-sans); font-size: var(--text-body); line-height: 1; letter-spacing: 0; color: var(--foreground); cursor: pointer" style-hover="background: var(--muted)">
+          <span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ o.label }}</span>
+          <sc-if value="{{ o.selected }}"><span class="hgi" style="--hgi: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/tick-02.svg'); flex: none; font-size: 16px; color: var(--primary)"></span></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+  </sc-if>
+  <sc-if value="{{ ddDisabled_country }}">
+    <button type="button" id="qc-country" disabled aria-haspopup="listbox" aria-expanded="{{ ddOpen_country }}" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; height: 38px; padding: 0 11px 0 12px; background: var(--muted); border: 1px solid var(--input); border-radius: var(--radius-md); font-family: var(--font-sans); font-size: var(--text-body); line-height: 1; letter-spacing: 0; text-align: left; color: var(--foreground); opacity: 0.6; cursor: not-allowed">
+    <sc-if value="{{ ddFilled_country }}" hint-placeholder-val="{{ true }}"><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ ddLabel_country }}</span></sc-if>
+    <sc-if value="{{ ddPlaceholder_country }}"><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted-foreground)">해당 국가 선택</span></sc-if>
+    <span class="hgi" style="--hgi: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/arrow-down-01.svg'); flex: none; font-size: 16px; color: var(--muted-foreground)"></span>
+  </button>
+  </sc-if>
+</div></x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.RadioGroup" name="qc-country-scope" options="{{ scopeOptions }}" value="{{ scope }}" onChange="{{ set_scope }}" hint-size="100%,24px"></x-import>
+    </div>
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="키워드" required="{{ true }}" html-for="qc-keyword" hint-size="100%,70px"><div data-dd="true" style="position: relative">
+  <button type="button" id="qc-keyword" aria-haspopup="listbox" aria-expanded="{{ ddOpen_keyword }}" onClick="{{ ddToggle_keyword }}" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; height: 38px; padding: 0 11px 0 12px; background: var(--card); border: 1px solid var(--input); border-radius: var(--radius-md); font-family: var(--font-sans); font-size: var(--text-body); line-height: 1; letter-spacing: 0; text-align: left; color: var(--foreground); opacity: 1; cursor: pointer">
+    <sc-if value="{{ ddFilled_keyword }}" hint-placeholder-val="{{ true }}"><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ ddLabel_keyword }}</span></sc-if>
+    <sc-if value="{{ ddPlaceholder_keyword }}"><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted-foreground)">해당 키워드 선택</span></sc-if>
+    <span class="hgi" style="--hgi: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/arrow-down-01.svg'); flex: none; font-size: 16px; color: var(--muted-foreground)"></span>
+  </button>
+  <sc-if value="{{ ddOpen_keyword }}">
+    <div role="listbox" style="position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 30; display: flex; flex-direction: column; max-height: 296px; overflow-y: auto; padding: 4px; border-radius: var(--radius-md); background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow-md)">
+      <sc-for list="{{ ddItems_keyword }}" as="o" hint-placeholder-count="4">
+        <div role="option" aria-selected="{{ o.selected }}" onMouseDown="{{ o.pick }}" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 36px; padding: 0 12px; border-radius: var(--radius-sm); font-family: var(--font-sans); font-size: var(--text-body); line-height: 1; letter-spacing: 0; color: var(--foreground); cursor: pointer" style-hover="background: var(--muted)">
+          <span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ o.label }}</span>
+          <sc-if value="{{ o.selected }}"><span class="hgi" style="--hgi: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/tick-02.svg'); flex: none; font-size: 16px; color: var(--primary)"></span></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+</div></x-import>
+  </div>
+
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="제목" required="{{ true }}" html-for="qc-title" hint-size="100%,72px"><div style="display: flex; flex-direction: column; gap: 6px">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="qc-title" placeholder="[문구 미정] 제목을 입력해 주세요" value="{{ title }}" onChange="{{ set_title }}" hint-size="100%,38px"></x-import>
+    <div class="tabular" style="{{ titleCountStyle }}">{{ titleCount }}/50자</div>
+  </div></x-import>
+
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="본문" required="{{ true }}" html-for="qc-body" hint-size="100%,300px"><div style="display: flex; flex-direction: column; gap: 6px">
+    <div style="display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--input); border-radius: var(--radius-md); overflow: hidden">
+      <div style="display: flex; align-items: center; gap: 2px; padding: 6px 8px; border-bottom: 1px solid var(--border)">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="text-bold" variant="ghost" size="sm" aria-label="굵게" hint-size="32px,32px"></x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="text-italic" variant="ghost" size="sm" aria-label="기울임" hint-size="32px,32px"></x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="left-to-right-list-bullet" variant="ghost" size="sm" aria-label="글머리 기호 목록" hint-size="32px,32px"></x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="left-to-right-list-number" variant="ghost" size="sm" aria-label="번호 목록" hint-size="32px,32px"></x-import>
+</div>
+      <div id="qc-body" style="min-height: 200px; padding: 14px 12px; font-size: var(--text-body); line-height: var(--text-body--line-height); letter-spacing: var(--text-body--letter-spacing); color: var(--foreground); white-space: pre-wrap">내년 3월에 한국 대학을 졸업합니다. 일본어는 JLPT N2 이고, 도쿄의 자사 서비스 기업 신졸 전형을 보고 있습니다.
+
+지금까지 알아본 것은 마이나비·리크나비 두 곳의 일정과, 외국인 채용 실적이 있는 기업 목록입니다. 정하지 못한 것은 지원 시점입니다. 졸업 전에 넣어야 하는지, 졸업 후 취업 활동 비자로 바꾸고 넣어도 되는지 판단이 서지 않습니다.</div>
+    </div>
+    <div class="tabular" style="align-self: flex-end; font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); color: var(--muted-foreground)">248/1000자</div>
+  </div></x-import>
+
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="태그" description="최대 5개까지 태그 설정이 가능합니다." html-for="qc-tags" hint-size="100%,130px"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.TagInput" id="qc-tags" value="{{ tags }}" onChange="{{ set_tags }}" suggestions="{{ tagSuggestions }}" completions="{{ tagCompletions }}" max="{{ 5 }}" placeholder="태그 입력하기" hint-size="100%,96px"></x-import></x-import>
+</form></x-import></x-import>
+<div class="qc-actions" style="display: flex; justify-content: flex-end; gap: 10px">
+  <a href="qna-compose-modal-submit.dc.html" style="display: block; text-decoration: none"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="lg" disabled="{{ submitDisabled }}" hint-size="auto,44px">질문 등록하기</x-import></a>
+</div>
+    </div>
+  </main>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" brand="{{ footerBrand }}" onNavigate="{{ nav }}" hint-size="100%,280px"></x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BottomTabBar" active-key="qna" onNavigate="{{ nav }}" hint-size="100%,56px"></x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Toast" open="{{ toastOpen }}" message="{{ toastMessage }}" actions="{{ toastActions }}" onDismiss="{{ toastDismiss }}" hint-size="0px,0px"></x-import>
+  <div style="position: fixed; inset: 0; z-index: 60">{{ dialog }}</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {"country":"일본","scope":"","keyword":"취업 준비","title":"일본 IT 기업 신졸 채용, 한국 대학 졸업생도 지원할 수 있나요?","tags":["일본취업","신졸채용","JLPT"],"toast":null,"ddOpen":null};
+  componentDidMount() {
+    const t = () => (window.MentreeDesignSystem_2f86cf ? this.forceUpdate() : setTimeout(t, 60));
+    t();
+    this.ddBind();
+  }
+  nav(item) { if (item && item.key === "qna") window.location.assign("../../qna-feed/template/qna-feed-normal.dc.html"); }
+  ddBind() {
+    this._ddAway = (e) => { if (!(e.target.closest && e.target.closest("[data-dd]"))) this.ddClose(); };
+    this._ddKey = (e) => { if (e.key === "Escape") this.ddClose(); };
+    document.addEventListener("mousedown", this._ddAway);
+    document.addEventListener("keydown", this._ddKey);
+  }
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this._ddAway);
+    document.removeEventListener("keydown", this._ddKey);
+  }
+  ddClose() { if (this.state.ddOpen) this.setState({ ddOpen: null }); }
+  ddVals(key, options, value, onPick, opts) {
+    const o = opts || {};
+    const items = (options || []).map((it) => {
+      const val = typeof it === "string" ? it : it.value;
+      const lab = typeof it === "string" ? it : it.label;
+      return { value: val, label: lab, selected: val === value, pick: (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        this.setState({ ddOpen: null });
+        onPick(val);
+      } };
+    });
+    const sel = items.filter((i) => i.selected)[0];
+    const out = {};
+    out["ddOpen_" + key] = this.state.ddOpen === key && !o.disabled;
+    out["ddItems_" + key] = items;
+    out["ddLabel_" + key] = sel ? sel.label : "";
+    out["ddFilled_" + key] = !!sel;
+    out["ddPlaceholder_" + key] = !sel;
+    out["ddDisabled_" + key] = !!o.disabled;
+    out["ddEnabled_" + key] = !o.disabled;
+    out["ddToggle_" + key] = () => this.setState((s) => ({ ddOpen: s.ddOpen === key ? null : key }));
+    return out;
+  }
+  renderVals() {
+    const ns = window.MentreeDesignSystem_2f86cf || {};
+    const h = React.createElement;
+    const s = this.state;
+    const setter = (key) => (v) => this.setState({ [key]: v && v.target ? v.target.value : v });
+    const allCountries = s.scope === "all";
+    const link = (key, href, variant, text) => h("a", { key, href, style: { textDecoration: "none" } }, h(ns.Button, { variant, size: "md" }, text));
+    const titleTooLong = s.title.length > 50;
+    const filled = (allCountries || s.country) && s.keyword && s.title.trim().length > 0 && !titleTooLong;
+    const dialog = ns.Dialog ? h(ns.Dialog, { open: true, width: 420, title: "질문을 등록하시겠습니까?", footer: [link("c", "qna-compose-normal.dc.html", "outline", "취소하기"), link("o", "../../qna-detail/template/qna-detail-questioner-empty.dc.html", "primary", "등록하기")] }) : null;
+    const countryOptions = ["일본", "미국", "독일", "영국", "캐나다", "호주", "네덜란드", "프랑스", "대만"];
+    const keywordOptions = ["취업 준비", "비자·이민", "이직", "연봉 협상", "대학원", "현지 생활", "커리어 전환"];
+    return Object.assign({},
+      this.ddVals("country", countryOptions, allCountries ? "" : s.country, setter("country"), { disabled: allCountries }),
+      this.ddVals("keyword", keywordOptions, s.keyword, setter("keyword")),
+      {
+      noop: () => {},
+      nav: (item) => this.nav(item),
+      footerBrand: h("img", { src: "../../../ds-export/project/assets/logo/mentree-logo.svg", alt: "mentree", style: { height: 24, width: "auto", display: "block" } }),
+      preventSubmit: (e) => e.preventDefault(),
+      dialog,
+      toastOpen: !!s.toast, toastMessage: (s.toast && s.toast.message) || "", toastActions: [], toastDismiss: () => this.setState({ toast: null }),
+      country: allCountries ? "" : s.country, set_country: setter("country"), countryDisabled: allCountries,
+      scope: s.scope, set_scope: (v) => this.setState({ scope: s.scope === v ? "" : v }),
+      keyword: s.keyword, set_keyword: setter("keyword"),
+      title: s.title, set_title: (e) => this.setState({ title: (e && e.target ? e.target.value : e || "").slice(0, 50) }),
+      titleCount: s.title.length, titleTooLong,
+      titleCountStyle: { alignSelf: "flex-end", fontSize: "var(--text-caption)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", color: titleTooLong ? "var(--destructive)" : "var(--muted-foreground)" },
+      tags: s.tags, set_tags: (next) => this.setState({ tags: next }),
+      tagSuggestions: ["일본취업", "신졸채용", "취업비자", "연봉협상", "이직준비"],
+      tagCompletions: [],
+      submitDisabled: !filled,
+      countryOptions, keywordOptions,
+      scopeOptions: [{ value: "all", label: "모든 국가에 해당함" }],
+    });
+  }
+}
+</script>
+</body>
+</html>

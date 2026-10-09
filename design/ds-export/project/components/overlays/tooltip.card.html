@@ -1,0 +1,50 @@
+<!-- @dsCard group="Components" viewport="760x720" name="Tooltip" subtitle="DS-77 짧은 설명 — 마우스 300ms · 키보드 포커스 · 탭 토글 · Esc · top layer · 면 --sage-900 · 최대 폭 240 · 꼬리" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+body{margin:0;padding:var(--space-6);background:var(--background);color:var(--foreground);font-family:var(--font-sans);}
+.sec{display:flex;flex-direction:column;gap:var(--space-3);margin-bottom:var(--space-8);}
+.lbl{font-size:var(--text-caption);line-height:var(--text-caption--line-height);font-weight:600;color:var(--muted-foreground);}
+.items{display:flex;align-items:center;gap:var(--space-6);flex-wrap:wrap;}
+.cell{display:flex;flex-direction:column;align-items:center;gap:var(--space-2);}
+.cap{font-size:var(--text-micro);color:var(--muted-foreground);}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { Tooltip, Button } = window.MentreeDesignSystem_2f86cf;
+function Demo() {
+  const kb = React.useRef(null);
+  React.useEffect(() => { const b = kb.current && kb.current.querySelector("button"); if (b) b.focus({ preventScroll: true }); }, []);
+  return (<div>
+    <div className="sec"><div className="lbl">두 방향 — side top · bottom (정지 상태로 열어 둠)</div>
+      <div className="items" style={{ paddingTop: 48, paddingBottom: 48 }}>
+        <Tooltip content="프로필 링크 복사" defaultOpen><Button variant="outline" size="sm" iconLeft="link-01">공유</Button></Tooltip>
+        <Tooltip content="보관함에 저장" side="bottom" defaultOpen><Button variant="outline" size="sm" iconLeft="bookmark-01">저장</Button></Tooltip>
+        <Tooltip content="응답률은 최근 90일 기준으로 계산합니다. 첫 답변까지 걸린 시간의 중앙값입니다." defaultOpen><Button variant="outline" size="sm" iconLeft="information-circle">긴 글</Button></Tooltip>
+      </div></div>
+    <div className="sec"><div className="lbl">키보드 포커스로 연 상태 — 포커스가 떠나면 닫힌다</div>
+      <div ref={kb} className="items" style={{ paddingTop: 40 }}>
+        <Tooltip content="Tab으로 닿으면 바로 열린다"><Button variant="secondary" size="sm">키보드</Button></Tooltip>
+        <Tooltip content="마우스는 300ms 뒤 · 터치는 탭"><Button variant="secondary" size="sm">마우스 · 탭</Button></Tooltip>
+      </div></div>
+    <div className="sec"><div className="lbl">스크롤 상자 안 — top layer라 상자 밖으로 나와도 잘리지 않는다</div>
+      <div style={{ width: 320, height: 120, overflow: "auto", border: "1px solid var(--border)", borderRadius: "var(--radius-md)", padding: "var(--space-3)", background: "var(--card)" }}>
+        <div style={{ height: 8 }}></div>
+        <Tooltip content="상자의 overflow에 잘리지 않는다" defaultOpen><Button variant="outline" size="sm">상자 첫 줄</Button></Tooltip>
+        <div style={{ height: 200 }}></div>
+      </div></div>
+  </div>);
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

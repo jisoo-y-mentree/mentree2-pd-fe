@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+  <script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <style>
+    /* Dialog ✕ — 열릴 때 자동 포커스가 가서 브라우저 기본 링이 "눌린 것"처럼 보인다. 키보드 포커스에만 --ring. */
+    .mt-dialog-panel > div:first-child > button[aria-label="닫기"] { outline: none !important; }
+    .mt-dialog-panel > div:first-child > button[aria-label="닫기"]:focus-visible { outline: 2px solid var(--ring) !important; outline-offset: 2px; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: color-mix(in oklch, var(--primary) 82%, var(--sage-950)); }
+    /* 0. 색 — Figma 그린 스케일 + 주황 악센트(DS-82 · DS-04) */
+    .qf-shell { --primary: #15803D; --primary-foreground: #F0FDF4; --green-50: #F5FAF6; --green-100: #E7F4E9; --muted: #F5FAF6; --sage-100: #F5FAF6; --qf-accent: #F97316; --qf-accent-soft: #FFF7ED; --qf-ink-deep: #052E16; --qf-green-600: #109840; --destructive: oklch(0.50 0.20 27); }
+    .qf-only-mobile { display: none !important; }
+    /* 2. 전폭 탭 — Tabs 의 fill 변형(DS-28) */
+    .qf-tabs .mt-tabs-list { gap: 0 !important; border-bottom: 0 !important; overflow: visible !important; }
+    .qf-tabs .mt-tab { flex: 1 1 0 !important; justify-content: center !important; height: 56px !important; margin-bottom: 0 !important; padding: 0 8px !important; font-size: 16px !important; font-weight: 400 !important; color: var(--muted-foreground) !important; border-bottom: 1px solid var(--border) !important; border-radius: 11px 11px 0 0 !important; white-space: normal !important; text-align: center; }
+    .qf-tabs .mt-tab[aria-selected="true"] { background: var(--green-100) !important; border-bottom-color: var(--primary) !important; color: var(--foreground) !important; font-weight: 600 !important; }
+    /* 5. 목록 행 — QnaListItem default 의 배치 옵션(DS-84) */
+    .qf-row { position: relative; margin: 0; padding: 0; }
+    .qf-row .mt-qna-row { padding: 32px 8px 24px !important; }
+    .qf-row .mt-qli-default { grid-template-areas: 'head head' 'title title' 'excerpt excerpt' 'tags tags' 'ans react' !important; row-gap: 12px !important; }
+    .qf-row .mt-qli-default > .mt-qli-tags { justify-self: start !important; }
+    .qf-row .mt-qli-default > .mt-qli-react { align-self: center !important; justify-self: end !important; }
+    .qf-row .mt-qli-default > h3 { font-weight: 700 !important; }
+    .qf-row .mt-qli-default > div:nth-of-type(2) > span { color: var(--primary) !important; font-size: var(--text-body) !important; line-height: var(--text-body--line-height) !important; font-weight: 500 !important; }
+    .qf-row .mt-qli-default > div:nth-of-type(2) > span > b { font-weight: 500 !important; }
+    .qf-new { position: absolute; top: 32px; right: 8px; z-index: 3; }
+    @media (min-width: 769px) { .qf-row .mt-qli-default > h3 > a { -webkit-line-clamp: 1 !important; } }
+    /* 1. 히어로 — Desktop S 에서 본문 칸이 좁아지면 일러스트를 줄이고(≤1100), 더 좁으면 뺀다(≤900) */
+    @media (max-width: 1180px) { .qf-hero-art { display: none !important; } }
+    /* 해시태그 칩(목록 행 · 태그 박스) — 면 green/100, 글자 green/950. hover 는 한 단계 진하게 */
+    .qf-shell .mt-chip { background: var(--green-100) !important; color: var(--qf-ink-deep) !important; }
+    .qf-shell .mt-chip:hover { background: #D5EBD9 !important; }
+    /* 5. 행 머리 줄 — Badge 를 글자 + 아이콘으로(상자 없음). 키워드 아이콘은 대분류별 HugeIcons(DS-83 후보) */
+    .qf-row .mt-qli-default > div:first-of-type { gap: 16px !important; }
+    .qf-row .mt-qli-default > div:first-of-type > span { height: auto !important; padding: 0 !important; border: 0 !important; background: none !important; border-radius: 0 !important; gap: 8px !important; font-size: 16px !important; font-weight: 500 !important; line-height: 24px !important; color: var(--foreground) !important; }
+    .qf-row .mt-qli-default > div:first-of-type > span > span { width: 22px !important; height: 22px !important; box-shadow: 0 0 0 1px var(--border) !important; }
+    .qf-row .mt-qli-default > div:first-of-type > span:nth-child(2)::before { content: ""; display: inline-block; flex: none; width: 22px; height: 22px; background: var(--primary); -webkit-mask: var(--qf-kw) center / contain no-repeat; mask: var(--qf-kw) center / contain no-repeat; }
+    .qf-row { --qf-kw: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/briefcase-01.svg'); }
+    .qf-row[data-kw="커리어"] { --qf-kw: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/chart-increase.svg'); }
+    .qf-row[data-kw="현지 생활"] { --qf-kw: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/home-01.svg'); }
+    .qf-row[data-kw="학업/재정/그 외"] { --qf-kw: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/mortarboard-01.svg'); }
+    /* 7-1. 추천 통계 — 목록 행과 같은 CountToggle 글리프, 표시 전용(누르지 않음 · 색 고정) */
+    .qf-stat .mt-counttoggle { color: var(--muted-foreground) !important; padding: 0 !important; gap: 4px !important; cursor: default !important; pointer-events: none; }
+    .qf-stat > * { display: inline-flex !important; align-items: center; height: auto !important; min-height: 0 !important; }
+    /* 7-1. 추천 항목 사이 hairline */
+    .qf-reco + .qf-reco { border-top: 1px solid var(--border); }
+    /* 6. 맨 위로 — 1440 기준 오른쪽 108, 좁으면 20 */
+    @media (max-width: 1439px) { .qf-top { right: 20px !important; } }
+    @media (max-width: 768px) {
+      .qf-only-mobile { display: block !important; }
+      .qf-only-desktop { display: none !important; }
+      .qf-body { grid-template-columns: minmax(0, 1fr) !important; gap: 24px !important; padding: 16px 0 48px !important; }
+      .qf-side { display: none !important; }
+      .qf-shell { padding-bottom: calc(56px + env(safe-area-inset-bottom) + 76px) !important; }
+      .qf-hero { height: auto !important; padding: 20px !important; }
+      .qf-hero-art { display: none !important; }
+      .qf-hero-btn { width: 100% !important; }
+      .qf-searchrow { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+      .qf-searchrow > .qf-search { grid-column: 1 / -1 !important; min-width: 0 !important; }
+      .qf-sel { width: 100% !important; }
+      .qf-result { flex-wrap: wrap !important; }
+      .qf-chips { order: 3; flex: 1 1 100% !important; overflow-x: auto !important; flex-wrap: nowrap !important; scrollbar-width: none; padding-bottom: 2px; }
+      .qf-top { right: 16px !important; bottom: calc(56px + env(safe-area-inset-bottom) + 16px + 48px + 12px) !important; }
+    }
+  </style>
+</helmet>
+  <div class="qf-shell" style="display: flex; flex-direction: column; min-height: 100vh; background: var(--background); color: var(--foreground)">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" activeKey="qna" authState="{{ authState }}" user="{{ user }}" unread="{{ unread }}" onNotify="{{ noop }}" onNavigate="{{ nav }}" onAuth="{{ nav }}" hint-size="100%,64px"></x-import>
+    <main style="flex: 1 1 auto; width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-pad)">
+      <div class="qf-body" style="display: grid; grid-template-columns: minmax(0, 1fr) 337px; gap: 32px; align-items: start; padding: 32px 0 64px">
+        <div class="qf-main" style="display: flex; flex-direction: column; min-width: 0">
+<section class="qf-hero" ref="{{ heroRef }}" style="position: relative; display: flex; flex-direction: column; align-items: flex-start; box-sizing: border-box; min-height: 228px; padding: 20px 30px; background: var(--green-100); border-radius: 10px; overflow: hidden">
+  <h1 style="position: relative; z-index: 1; margin: 0; font-size: 32px; line-height: 52px; font-weight: 700; color: var(--foreground)">Q&amp;A 멘토링</h1>
+  <p style="position: relative; z-index: 1; margin: 0; max-width: 560px; font-size: 16px; line-height: 24px; font-weight: 400; color: var(--sage-600)">취업 준비, 커리어, 현지 생활...<br>해외 커리어에 대해서라면 무엇이든 경험 있는 멘토에게 물어보세요</p>
+  <a class="qf-hero-btn" href="{{ composeHref }}" style="position: relative; z-index: 1; display: block; width: 208px; margin-top: 27px; text-decoration: none">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="lg" full-width="{{ true }}" hint-size="100%,48px">Q&amp;A 멘토링 질문하기</x-import>
+  </a>
+  <img class="qf-hero-art" src="assets/qna-feed-hero-illustration.png" alt="" style="position: absolute; right: 25px; bottom: 0; width: 368px; height: 180px; object-fit: cover; object-position: center bottom; pointer-events: none">
+</section>
+<div class="qf-tabs" style="margin-top: 28px">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Tabs" items="{{ statusTabs }}" value="{{ status }}" onChange="{{ set_status }}" idBase="qf-status" ariaLabel="답변 상태" hint-size="100%,56px"></x-import>
+</div>
+<div class="qf-searchrow" style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 28px">
+  <div class="qf-sel" style="width: 180px; flex: none">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ countryOptions }}" value="{{ country }}" onChange="{{ set_country }}" placeholder="국가" aria-label="국가" hint-size="100%,38px"></x-import>
+  </div>
+  <div class="qf-sel" style="width: 180px; flex: none">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ keywordOptions }}" value="{{ keyword }}" onChange="{{ set_keyword }}" placeholder="키워드" aria-label="키워드" hint-size="100%,38px"></x-import>
+  </div>
+  <div class="qf-search" style="flex: 1 1 280px; min-width: 240px">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SearchInput" value="{{ q }}" onChange="{{ set_q }}" onSearch="{{ doSearch }}" completions="{{ completions }}" recent="{{ recent }}" onRemoveRecent="{{ removeRecent }}" placeholder="궁금한 내용을 검색해 보세요" hint-size="100%,38px"></x-import>
+  </div>
+</div>
+<div class="qf-result" style="display: flex; align-items: center; gap: 15px; min-height: 40px; margin-top: 10px">
+  <span class="tabular" style="font-size: 18px; line-height: 28px; font-weight: 700; color: var(--foreground); white-space: nowrap">{{ countText }}</span>
+  <sc-if value="{{ hasFilters }}" hint-placeholder-val="{{ false }}">
+    <div class="qf-chips" style="display: flex; align-items: center; gap: 8px; flex: 1 1 auto; min-width: 0">
+      <sc-for list="{{ filterChips }}" as="c" hint-placeholder-count="1">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterChip" selected="{{ true }}" onChange="{{ c.clear }}" aria-label="{{ c.aria }}" hint-size="auto,32px">{{ c.label }}<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="cancel-01" size="{{ 14 }}" hint-size="14px,14px"></x-import></x-import>
+      </sc-for>
+    </div>
+  </sc-if>
+  <div class="qf-sel" style="width: 140px; flex: none; margin-left: auto">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ sortOptions }}" value="{{ sort }}" onChange="{{ set_sort }}" placeholder="최신순" aria-label="정렬" hint-size="100%,38px"></x-import>
+  </div>
+</div>
+<div aria-busy="true" aria-label="질문을 불러오는 중" style="display: flex; flex-direction: column; margin-top: 20px; border-top: 1px solid var(--sage-200)">
+  <sc-for list="{{ five }}" as="n" hint-placeholder-count="5">
+    <div style="display: flex; flex-direction: column; gap: 12px; padding: 32px 8px 24px; border-bottom: 1px solid var(--sage-200)">
+      <div style="display: flex; gap: 6px"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="64px" height="29px" radius="md" hint-size="64px,29px"></x-import><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="72px" height="29px" radius="md" hint-size="72px,29px"></x-import></div>
+      <div style="width: 574px; max-width: 100%"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="100%" height="29px" hint-size="100%,29px"></x-import></div>
+      <div style="display: flex; flex-direction: column; gap: 6px"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="100%" height="22px" hint-size="100%,22px"></x-import><div style="width: 506px; max-width: 60%"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="100%" height="22px" hint-size="100%,22px"></x-import></div></div>
+    </div>
+  </sc-for>
+</div>
+        </div>
+<aside class="qf-side" style="display: flex; flex-direction: column; gap: 20px; min-width: 0">
+  
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,482px"><section style="display: flex; flex-direction: column; padding: 20px 20px 4px">
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+    <h2 style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 700">추천 Q&amp;A 멘토링</h2>
+    <button type="button" onClick="{{ toList }}" style="display: inline-flex; align-items: center; gap: 2px; margin: 0; padding: 0; border: 0; background: none; font-family: inherit; font-size: 16px; font-weight: 400; color: var(--muted-foreground); cursor: pointer">더보기<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="arrow-right-01" size="{{ 16 }}" hint-size="16px,16px"></x-import></button>
+  </div>
+  <div aria-busy="true" style="display: flex; flex-direction: column; margin-top: 8px">
+    <sc-for list="{{ three }}" as="n" hint-placeholder-count="3">
+      <div style="display: flex; flex-direction: column; gap: 10px; padding: 16px 0; border-top: 1px solid var(--border)">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="120px" height="20px" hint-size="120px,20px"></x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ two }}" height="20px" hint-size="100%,48px"></x-import>
+        <div style="display: flex; justify-content: space-between"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="48px" height="18px" hint-size="48px,18px"></x-import><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="120px" height="18px" hint-size="120px,18px"></x-import></div>
+      </div>
+    </sc-for>
+  </div>
+</section></x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,190px"><section style="display: flex; flex-direction: column; gap: 20px; padding: 24px 16px 28px">
+  <h2 style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 700; text-align: center">주목받는 태그로 찾기</h2>
+  <div class="qf-tagbox" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 8px">
+    <sc-for list="{{ hotTags }}" as="t" hint-placeholder-count="5">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="{{ hash }}" href="{{ t.href }}" hint-size="auto,32px">{{ t.label }}</x-import>
+    </sc-for>
+  </div>
+</section></x-import>
+  <sc-if value="{{ isMember }}" hint-placeholder-val="{{ true }}">
+  <div class="qf-bar" style="display: flex; align-items: stretch; height: 40px; border: 1px solid var(--border); background: #FAFAFA">
+    <a href="#" style="flex: 1 1 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--muted-foreground); text-decoration: none">{{ barLeftLabel }}</a>
+    <a href="#" style="flex: 1 1 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--muted-foreground); text-decoration: none; border-left: 1px solid var(--border)">스크랩한 멘토링</a>
+  </div>
+</sc-if>
+</aside>
+      </div>
+    </main>
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" onNavigate="{{ nav }}" hint-size="100%,280px"></x-import>
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BottomTabBar" activeKey="qna" authState="{{ authState }}" onNavigate="{{ nav }}" onAuth="{{ nav }}" hint-size="100%,56px"></x-import>
+    <sc-if value="{{ heroOut }}">
+  <div class="qf-float qf-only-mobile" style="position: fixed; left: 16px; right: 16px; bottom: calc(56px + env(safe-area-inset-bottom) + 16px); z-index: 40">
+    <a href="../../qna-compose/template/qna-compose-modal-phone.dc.html" style="display: block; text-decoration: none">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="lg" full-width="{{ true }}" hint-size="100%,48px">Q&amp;A 멘토링 질문하기</x-import>
+    </a>
+  </div>
+  <button class="qf-top" type="button" aria-label="맨 위로" onClick="{{ toTop }}" style="position: fixed; right: 108px; bottom: 40px; z-index: 40; display: flex; align-items: center; justify-content: center; width: 49px; height: 49px; margin: 0; padding: 0; border: 0; border-radius: 50%; background: var(--primary); box-shadow: var(--shadow-md); cursor: pointer">
+    <span aria-hidden="true" style="display: block; width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-bottom: 16px solid #fff"></span>
+  </button>
+</sc-if>
+  </div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+// taxonomy.js(_ds/.../components/taxonomy.js)에서 빌드 시 복사한 값 — 화면이 지어내지 않는다.
+const COUNTRY_OPTIONS = ["일본","미국","대한민국","싱가포르","네덜란드","독일","스페인","영국","이탈리아","말레이시아","중국","홍콩","UAE","캐나다","호주"];
+const KEYWORD_OPTIONS = ["취업준비","커리어","현지 생활","학업/재정/그 외"];
+const SORT_OPTIONS = ["최신순"];
+const HOT_TAGS = ["취업 전략","비자·영주권","연봉 협상","면접 준비","정착 생활"];
+const CARDS = [{"id":"f1","country":"japan","countryLabel":"일본","keyword":"취업준비","title":"일본 IT 기업 신졸 채용, 한국 대학 졸업생도 지원할 수 있나요?","excerpt":"내년 3월 한국 대학을 졸업합니다. 도쿄의 자사 서비스 기업 신졸 전형을 보고 있는데 지원 시점을 정하지 못했습니다.","tags":["취업 전략","면접 준비","출국 준비","비자·영주권","이력서·지원서류"],"answerers":[{"name":"박서연"},{"name":"이준호"},{"name":"최민수"},{"name":"김하늘"}],"answerCount":4,"views":1832,"likes":46,"scraps":12,"liked":false,"scrapped":false,"h":3},{"id":"f2","country":"united-states","countryLabel":"미국","keyword":"커리어","title":"미국 빅테크 이직 면접, 시니어 레벨은 무엇을 더 봅니까?","excerpt":"현지 3년차입니다. 같은 직무로 옮기려는데 레벨 협상을 어디서부터 꺼내야 하는지 감이 없습니다.","tags":["이직하기","연봉 협상","면접 준비"],"answerers":[{"name":"정다은"},{"name":"윤태호"}],"answerCount":2,"views":964,"likes":28,"scraps":9,"liked":false,"scrapped":false,"h":72},{"id":"f3","country":"singapore","countryLabel":"싱가포르","keyword":"현지 생활","title":"싱가포르 EP 갱신, 회사를 옮기는 중이면 언제 신청합니까?","excerpt":"퇴사와 입사 사이가 3주 비어 있습니다. 공백 기간에 체류가 끊기는지 확인하고 싶습니다.","tags":["비자·영주권","정착 생활","워라밸·근무 방식","커리어 전환","이직하기"],"answerers":[{"name":"한지우"},{"name":"오세진"},{"name":"임가영"},{"name":"서준영"},{"name":"노은비"}],"answerCount":5,"views":1440,"likes":51,"scraps":22,"liked":false,"scrapped":false,"h":72},{"id":"f4","country":"germany","countryLabel":"독일","keyword":"취업준비","title":"독일 취업, 영어만으로 지원 가능한 회사를 어떻게 찾습니까?","excerpt":"베를린 스타트업 위주로 보고 있습니다. 독일어 요구 수준이 공고마다 달라 기준을 세우기 어렵습니다.","tags":["취업 전략","이력서·지원서류","네트워킹","출국 준비"],"answerers":[{"name":"강민서"}],"answerCount":1,"views":712,"likes":19,"scraps":6,"liked":false,"scrapped":false,"h":72},{"id":"f5","country":"south-korea","countryLabel":"대한민국","keyword":"커리어","title":"해외 5년 후 한국 리턴, 경력을 어떻게 설명해야 합니까?","excerpt":"도쿄에서 5년 일했습니다. 한국 기업 면접에서 현지 경력이 잘 전달되지 않는 느낌입니다.","tags":["한국 리턴","커리어 전환","면접 준비","네트워킹","자기 개발"],"answerers":[{"name":"문지호"},{"name":"배수진"},{"name":"황예린"}],"answerCount":3,"views":1108,"likes":37,"scraps":15,"liked":false,"scrapped":false,"h":72},{"id":"f6","country":"australia","countryLabel":"호주","keyword":"학업/재정/그 외","title":"호주 석사 진학과 현지 취업, 순서를 어떻게 잡습니까?","excerpt":"워홀로 1년 있었습니다. 학교를 먼저 갈지 취업을 먼저 할지 판단이 서지 않습니다.","tags":["대학/대학원 진학","재테크","출국 준비"],"answerers":[{"name":"천서우"},{"name":"구자현"}],"answerCount":2,"views":588,"likes":14,"scraps":4,"liked":false,"scrapped":false,"h":72},{"id":"l1","country":"netherlands","countryLabel":"네덜란드","keyword":"현지 생활","title":"암스테르담 정착 초기, 집 계약에서 무엇을 확인해야 합니까?","excerpt":"회사가 정한 3개월 임시 숙소가 끝납니다. 계약서에서 놓치기 쉬운 항목을 알고 싶습니다.","tags":["정착 생활","비자·영주권","재테크","워라밸·근무 방식","취미 생활"],"answerers":[{"name":"고은솔"},{"name":"류지민"}],"answerCount":2,"views":431,"likes":11,"scraps":3,"liked":false,"scrapped":false,"h":12},{"id":"l2","country":"japan","countryLabel":"일본","keyword":"커리어","title":"일본 회사에서 매니저 제안을 받았습니다. 지금 받는 것이 맞습니까?","excerpt":"5년차 개발자입니다. 팀 리드 제안을 받았는데 기술 트랙으로 남는 선택과 비교하고 싶습니다.","tags":["승진","매니징","커리어 전환"],"answerers":[{"name":"장우석"},{"name":"신아름"},{"name":"권도윤"},{"name":"조하린"},{"name":"백서율"}],"answerCount":7,"views":2210,"likes":88,"scraps":31,"liked":true,"scrapped":false,"h":72},{"id":"l3","country":"united-kingdom","countryLabel":"영국","keyword":"취업준비","title":"런던 금융권 지원, 한국 경력은 어떻게 환산됩니까?","excerpt":"서울에서 4년 리스크 업무를 했습니다. 같은 직무로 지원할 때 레벨이 어떻게 잡히는지 궁금합니다.","tags":["취업 전략","이력서·지원서류","연봉 협상","면접 준비","네트워킹"],"answerers":[],"answerCount":0,"views":276,"likes":5,"scraps":2,"liked":false,"scrapped":false,"h":6},{"id":"l4","country":"canada","countryLabel":"캐나다","keyword":"현지 생활","title":"밴쿠버에서 아이와 함께 일하는 하루가 어떻게 돌아갑니까?","excerpt":"이직과 함께 가족이 같이 갑니다. 보육 일정과 근무 시간을 어떻게 맞추는지 듣고 싶습니다.","tags":["육아와 일 병행","워라밸·근무 방식","정착 생활","여성 커리어"],"answerers":[{"name":"이수민"},{"name":"정혜원"}],"answerCount":2,"views":519,"likes":23,"scraps":8,"liked":false,"scrapped":false,"h":72},{"id":"l5","country":"spain","countryLabel":"스페인","keyword":"학업/재정/그 외","title":"스페인 원격 근무 비자, 한국 소득만으로 신청됩니까?","excerpt":"한국 회사에 소속된 채로 바르셀로나에 1년 머물 계획입니다. 소득 증빙 기준을 확인하고 싶습니다.","tags":["비자·영주권","재테크","프리랜서·부업","정착 생활","기타"],"answerers":[{"name":"남기훈"}],"answerCount":1,"views":347,"likes":9,"scraps":5,"liked":false,"scrapped":false,"h":72},{"id":"l6","country":"uae","countryLabel":"UAE","keyword":"커리어","title":"두바이 이직 후 번아웃, 어떻게 회복하셨습니까?","excerpt":"옮긴 지 반년입니다. 업무량은 예상했는데 회복하는 방법을 못 찾고 있습니다.","tags":["번아웃","자기 개발","커뮤니케이션","워라밸·근무 방식","취미 생활"],"answerers":[{"name":"표지원"},{"name":"안소희"},{"name":"라예준"}],"answerCount":3,"views":903,"likes":42,"scraps":17,"liked":false,"scrapped":true,"h":72},{"id":"q1","country":"canada","countryLabel":"캐나다","keyword":"취업준비","title":"토론토 신입 개발자, 코업 경험 없이 지원해도 됩니까?","excerpt":"한국에서 학부를 마쳤고 현지 인턴 경험이 없습니다. 첫 지원서에서 무엇을 먼저 보여줘야 할지 모르겠습니다.","tags":["취업 전략","이력서·지원서류"],"answerers":[],"answerCount":0,"views":88,"likes":2,"scraps":1,"liked":false,"scrapped":false,"h":2},{"id":"q2","country":"germany","countryLabel":"독일","keyword":"현지 생활","title":"뮌헨 안멜둥 예약이 두 달 뒤입니다. 그 전에 일을 시작해도 됩니까?","excerpt":"입사일이 먼저 옵니다. 등록 전 계좌와 세금 번호를 어떻게 처리하는지 궁금합니다.","tags":["정착 생활","비자·영주권","출국 준비"],"answerers":[],"answerCount":0,"views":64,"likes":1,"scraps":2,"liked":false,"scrapped":false,"h":72},{"id":"q3","country":"united-states","countryLabel":"미국","keyword":"커리어","title":"H-1B 추첨에서 떨어졌습니다. 다음 해까지 무엇을 준비해야 합니까?","excerpt":"OPT 기간이 1년 남았습니다. 회사는 한 번 더 신청해 준다고 했는데 그 사이 선택지를 알고 싶습니다.","tags":["비자·영주권","커리어 전환","이직하기"],"answerers":[],"answerCount":0,"views":152,"likes":4,"scraps":3,"liked":false,"scrapped":false,"h":72},{"id":"q4","country":"japan","countryLabel":"일본","keyword":"학업/재정/그 외","title":"일본 대학원 연구생 과정, 입학 전에 교수 컨택은 어떻게 합니까?","excerpt":"석사 진학을 준비합니다. 첫 메일에 연구 계획을 어디까지 적어야 하는지 모르겠습니다.","tags":["대학/대학원 진학","커뮤니케이션"],"answerers":[],"answerCount":0,"views":47,"likes":0,"scraps":1,"liked":false,"scrapped":false,"h":72},{"id":"q5","country":"australia","countryLabel":"호주","keyword":"커리어","title":"시드니 회사에서 파트타임 전환을 요청해도 됩니까?","excerpt":"육아 때문에 주 3일 근무를 원합니다. 현지에서 이런 요청이 얼마나 자연스러운지 듣고 싶습니다.","tags":["육아와 일 병행","워라밸·근무 방식","여성 커리어"],"answerers":[],"answerCount":0,"views":71,"likes":3,"scraps":2,"liked":false,"scrapped":false,"h":72},{"id":"w1","country":"japan","countryLabel":"일본","keyword":"취업준비","title":"도쿄 신졸 전형 일정, 지금 시작해도 늦지 않습니까?","excerpt":"리크나비 일정을 방금 확인했습니다. 준비 순서를 어떻게 잡아야 할지 묻고 싶습니다.","tags":["취업 전략","출국 준비"],"answerers":[{"name":"박서연"},{"name":"이준호"}],"answerCount":2,"views":214,"likes":7,"scraps":3,"liked":false,"scrapped":false,"h":72},{"id":"w2","country":"united-states","countryLabel":"미국","keyword":"커리어","title":"연봉 협상 메일, 어디까지 숫자를 적어야 합니까?","excerpt":"오퍼를 받았습니다. 첫 회신에 희망 금액을 적는 것이 맞는지 판단이 서지 않습니다.","tags":["연봉 협상","커뮤니케이션"],"answerers":[{"name":"정다은"}],"answerCount":1,"views":178,"likes":6,"scraps":2,"liked":false,"scrapped":false,"h":20},{"id":"w3","country":"singapore","countryLabel":"싱가포르","keyword":"현지 생활","title":"싱가포르 월세와 생활비, 실제로 얼마나 듭니까?","excerpt":"오퍼 금액으로 생활이 되는지 계산하고 있습니다. 실제 지출을 듣고 싶습니다.","tags":["정착 생활","재테크"],"answerers":[{"name":"한지우"},{"name":"오세진"},{"name":"임가영"}],"answerCount":3,"views":402,"likes":12,"scraps":6,"liked":false,"scrapped":false,"h":72}];
+const FEATURED = ["f1","f2","f3","f4","f5","f6"];
+const ANSWERED = ["f1","l1","f2","l2","f3","l4","f4","l5","f5","l6","f6","w1","w2","w3"];
+const WAITING = ["q1","l3","q2","q3","q4","q5"];
+const PAGE = "loading";
+const DEFAULT_ROLE = "mentee";
+const QF_BATCH = 10;
+// A-1. 멘토 피드만 「답변을 기다리는 질문」이 먼저 · 기본 선택. URL 값은 같다.
+const MENTOR_PAGE = PAGE === "mentor";
+const DEFAULT_STATUS = MENTOR_PAGE ? "waiting" : "answered";
+// 모바일은 작성 진입이 전화번호 인증 모달부터. 처음 한 번만 판정.
+const QF_MOBILE = window.matchMedia("(max-width: 768px)").matches;
+const byId = (id) => CARDS.filter((c) => c.id === id)[0];
+const matches = (c, q) => {
+  const raw = String(q || "").trim();
+  if (!raw) return true;
+  if (raw.charAt(0) === "#") { const t = raw.slice(1).trim(); return (c.tags || []).indexOf(t) >= 0 || c.keyword === t; }
+  const n = raw.toLowerCase();
+  return c.title.toLowerCase().indexOf(n) >= 0 || c.excerpt.toLowerCase().indexOf(n) >= 0 || (c.tags || []).some((t) => t.toLowerCase().indexOf(n) >= 0);
+};
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const p = new URLSearchParams(location.search);
+    const role = ["guest", "mentee", "mentor"].indexOf(p.get("role")) >= 0 ? p.get("role") : DEFAULT_ROLE;
+    this.state = {
+      role,
+      status: p.get("status") === "waiting" ? "waiting" : p.get("status") === "answered" ? "answered" : DEFAULT_STATUS,
+      country: p.get("country") || "", keyword: p.get("keyword") || "",
+      q: p.get("q") != null ? p.get("q") : "",
+      sort: "최신순", batches: 1, moreLoading: false, heroOut: false, cards: {},
+    };
+  }
+  componentWillUnmount() { if (this.io) this.io.disconnect(); if (this.heroIo) this.heroIo.disconnect(); clearTimeout(this.loadT); }
+  withRole(href) { const r = new URLSearchParams(location.search).get("role"); return r ? href + (href.indexOf("?") >= 0 ? "&" : "?") + "role=" + r : href; }
+  syncUrl() {
+    const s = this.state, p = new URLSearchParams(location.search);
+    const put = (k, v, def) => { if (v && v !== def) p.set(k, v); else p.delete(k); };
+    put("status", s.status, DEFAULT_STATUS); put("country", s.country); put("keyword", s.keyword);
+    if (PAGE === "search" || PAGE === "empty") put("q", s.q);
+    const qs = p.toString();
+    history.replaceState(null, "", location.pathname + (qs ? "?" + qs : ""));
+  }
+  setFilter(key) { return (v) => this.setState({ [key]: v, batches: 1, moreLoading: false }, () => this.syncUrl()); }
+  // 무한 스크롤 — 목록 끝이 뷰포트 아래 400 안에 들어오면 다음 10건.
+  observeSentinel(el) {
+    if (el === this.sentinelEl) return;
+    if (this.io) this.io.disconnect();
+    this.sentinelEl = el;
+    if (!el || !window.IntersectionObserver) return;
+    this.io = new IntersectionObserver((es) => { if (es[0].isIntersecting) this.loadMore(); }, { rootMargin: "400px 0px" });
+    this.io.observe(el);
+  }
+  loadMore() {
+    const s = this.state;
+    if (PAGE !== "normal" && PAGE !== "widget-empty" && PAGE !== "mentor") return;
+    if (s.moreLoading || s.batches * QF_BATCH >= this.pool().length) return;
+    this.setState({ moreLoading: true });
+    this.loadT = setTimeout(() => this.setState((st) => ({ batches: st.batches + 1, moreLoading: false }), () => {
+      requestAnimationFrame(() => { if (this.io && this.sentinelEl) { this.io.unobserve(this.sentinelEl); this.io.observe(this.sentinelEl); } });
+    }), 700);
+  }
+  // 히어로가 스크롤로 사라진 뒤에만 「맨 위로」 · 모바일 질문하기가 뜬다.
+  observeHero(el) {
+    if (el === this.heroEl) return;
+    if (this.heroIo) this.heroIo.disconnect();
+    this.heroEl = el;
+    if (!el || !window.IntersectionObserver) return;
+    this.heroIo = new IntersectionObserver((es) => {
+      const e = es[0], out = !e.isIntersecting && e.boundingClientRect.top < 0;
+      if (out !== this.state.heroOut) this.setState({ heroOut: out });
+    }, { threshold: 0 });
+    this.heroIo.observe(el);
+  }
+  scrollToList() {
+    const el = this.listEl; if (!el) return;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 88, behavior: "smooth" });
+  }
+  actionButton(label, href, iconLeft) {
+    const ns = window.MentreeDesignSystem_2f86cf;
+    return React.createElement("a", { href: href, style: { textDecoration: "none", display: "inline-flex" } },
+      React.createElement(ns.Button, { variant: "primary", size: "md", iconLeft: iconLeft }, label));
+  }
+  doSearch(text) {
+    const raw = String(text || "").trim();
+    if (!raw) return;
+    const hit = CARDS.some((c) => matches(c, raw));
+    location.assign(this.withRole((hit ? "qna-feed-search.dc.html" : "qna-feed-empty.dc.html") + "?q=" + encodeURIComponent(raw)));
+  }
+  // 행 클릭 → 전체 페이지(데스크톱도). 간단보기 패널은 없다(2026-10-09).
+  detailHref(has) {
+    const mentor = this.state.role === "mentor";
+    return mentor ? (has ? "../../qna-detail/template/qna-detail-mentor-answers.dc.html" : "../../qna-detail/template/qna-detail-mentor.dc.html") : (has ? "../../qna-detail/template/qna-detail-normal.dc.html" : "../../qna-detail/template/qna-detail-empty.dc.html");
+  }
+  cardVals(base) {
+    const id = base.id, s = this.state.cards[id] || {};
+    const liked = s.liked === undefined ? base.liked : s.liked;
+    const scrapped = s.scrapped === undefined ? base.scrapped : s.scrapped;
+    const bump = (n, on, was) => (n || 0) + (on ? 1 : 0) - (was ? 1 : 0);
+    const likes = bump(base.likes, liked, base.liked), scraps = bump(base.scraps, scrapped, base.scrapped);
+    return Object.assign({}, base, {
+      liked, scrapped, likes, scraps,
+      isNew: base.h < 24,
+      href: this.detailHref(base.answerCount > 0),
+      metaText: base.countryLabel + " / " + base.keyword,
+      answerText: base.answerCount > 0 ? "답변 " + base.answerCount : "답변 대기",
+      viewsText: (base.views || 0).toLocaleString("ko-KR"), likesText: likes.toLocaleString("ko-KR"), scrapsText: scraps.toLocaleString("ko-KR"),
+      onLike: (next) => this.setState((st) => ({ cards: Object.assign({}, st.cards, { [id]: Object.assign({}, st.cards[id], { liked: next }) }) })),
+      onScrap: (next) => this.setState((st) => ({ cards: Object.assign({}, st.cards, { [id]: Object.assign({}, st.cards[id], { scrapped: next }) }) })),
+    });
+  }
+  // 목록 풀 — 탭(답변 완료/기다리는) · 국가 · 키워드 · (검색 페이지) 검색어로 거른다.
+  pool() {
+    const s = this.state;
+    const base = (s.status === "waiting" ? WAITING : ANSWERED).map(byId).filter((c) => PAGE !== "search" || matches(c, s.q));
+    return base.filter((c) => (!s.country || c.countryLabel === s.country) && (!s.keyword || c.keyword === s.keyword));
+  }
+  renderVals() {
+    const s = this.state, h = React.createElement;
+    const isMember = s.role !== "guest", mentor = s.role === "mentor";
+    const pool = this.pool();
+    const shown = pool.slice(0, s.batches * QF_BATCH);
+    const n = PAGE === "loading" ? "—" : pool.length;
+    const unit = s.status === "waiting" ? "개의 질문" : "개의 답변";
+    const chips = [];
+    if (s.country) chips.push({ label: s.country, aria: "국가 조건 해제: " + s.country, clear: () => this.setFilter("country")("") });
+    if (s.keyword) chips.push({ label: s.keyword, aria: "키워드 조건 해제: " + s.keyword, clear: () => this.setFilter("keyword")("") });
+    if (PAGE === "search" && s.q) chips.push({ label: s.q, aria: "검색어 해제: " + s.q, clear: () => location.assign(this.withRole("qna-feed-normal.dc.html")) });
+    const reco = FEATURED.map(byId).slice().sort((a, b) => (b.answerCount - a.answerCount) || (b.likes - a.likes)).slice(0, 3).map((c) => this.cardVals(c));
+    const composeHref = QF_MOBILE ? "../../qna-compose/template/qna-compose-modal-phone.dc.html" : "../../qna-compose/template/qna-compose-normal.dc.html";
+    // B-1. 모바일 태그 박스 — 10번째 행 뒤 한 번. 10건이 안 되면 목록 끝.
+    const tagAt = shown.length >= QF_BATCH ? QF_BATCH - 1 : shown.length - 1;
+    return {
+      summaryCardStyle: { style: { border: "1px solid var(--qf-green-600)", borderRadius: 13, boxShadow: "none" } },
+      two: 2, one: [0], three: [0, 1, 2], five: [0, 1, 2, 3, 4], gap12: 12,
+      authState: s.role, user: { name: mentor ? "박서연" : "김도윤" }, unread: isMember,
+      noop: () => {}, nav: (e) => { if (e && e.preventDefault) e.preventDefault(); },
+      isMember, composeHref,
+      heroRef: this.heroRef || (this.heroRef = (el) => this.observeHero(el)),
+      listRef: this.listRef || (this.listRef = (el) => { this.listEl = el; }),
+      sentinelRef: this.sentinelRef || (this.sentinelRef = (el) => this.observeSentinel(el)),
+      heroOut: s.heroOut,
+      toTop: () => window.scrollTo({ top: 0, behavior: "smooth" }),
+      toList: () => this.scrollToList(),
+      statusTabs: MENTOR_PAGE ? [{ value: "waiting", label: "답변을 기다리는 질문" }, { value: "answered", label: "답변이 완료된 질문" }] : [{ value: "answered", label: "답변이 완료된 질문" }, { value: "waiting", label: "답변을 기다리는 질문" }],
+      status: s.status, set_status: this.setFilter("status"),
+      countryOptions: COUNTRY_OPTIONS, country: s.country, set_country: this.setFilter("country"),
+      keywordOptions: KEYWORD_OPTIONS, keyword: s.keyword, set_keyword: this.setFilter("keyword"),
+      sortOptions: SORT_OPTIONS, sort: s.sort, set_sort: (v) => this.setState({ sort: v }),
+      q: s.q, set_q: (v) => this.setState({ q: v }), doSearch: (v) => this.doSearch(v),
+      completions: s.q ? CARDS.map((c) => c.title).filter((t) => t.indexOf(s.q) >= 0).slice(0, 5) : [],
+      recent: ["일본 신졸", "연봉 협상", "비자 갱신"], removeRecent: () => {},
+      countText: n + unit,
+      hasFilters: chips.length > 0, filterChips: chips,
+      listCards: shown.map((c, i) => Object.assign(this.cardVals(c), { tagBoxAfter: i === tagAt })),
+      tagHref: (t) => "qna-feed-search.dc.html?q=" + encodeURIComponent("#" + t),
+      moreLoading: s.moreLoading,
+      listEnd: PAGE !== "loading" && PAGE !== "error" && !s.moreLoading && shown.length >= pool.length,
+      reco,
+      hotTags: HOT_TAGS.map((t) => ({ label: t, href: "qna-feed-search.dc.html?q=" + encodeURIComponent("#" + t) })),
+      hash: h("span", { "aria-hidden": "true", style: { color: "var(--primary)", fontWeight: 800, marginRight: 3 } }, "#"),
+      barLeftLabel: mentor ? "내가 답변한 멘토링" : "나의 Q&A 멘토링",
+      askAction: this.actionButton("Q&A 멘토링 질문하기", composeHref),
+      retryAction: this.actionButton("다시 시도하기", this.withRole("qna-feed-normal.dc.html"), "refresh"),
+    };
+  }
+}
+</script>
+</body>
+</html>

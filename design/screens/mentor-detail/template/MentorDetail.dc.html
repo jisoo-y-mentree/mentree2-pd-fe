@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>박서연 멘토 · 멘트리</title>
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <script src="assets/map/world-d.js"></script>
+  <style>
+    html, body { margin: 0; }
+    body { background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+    a { color: var(--primary); }
+    a:hover { color: var(--foreground); }
+    @media (max-width: 768px) {
+      body { padding-bottom: calc(var(--mt-bottom-bar-height, 0px) + env(safe-area-inset-bottom) + 16px); }
+    }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: var(--background); color: var(--foreground); font-family: var(--font-sans);">
+
+  <sc-if value="{{ showDemoBar }}" hint-placeholder-val="{{ true }}">
+    <div data-demo-shell="bar" style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 8px var(--container-pad); background: var(--muted); border-bottom: 1px solid var(--border); font-size: var(--text-caption); line-height: var(--text-caption--line-height); color: var(--foreground);">
+      <span style="font-size: var(--text-micro); font-weight: 600; color: var(--muted-foreground);">데모</span>
+      <label style="display: flex; align-items: center; gap: 4px;">역할
+        <select value="{{ role }}" onChange="{{ onRole }}" style="height: 28px; padding: 0 4px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--background); color: var(--foreground); font: inherit;">
+          <option value="guest">비로그인</option>
+          <option value="mentee">멘티</option>
+          <option value="mentor">다른 멘토</option>
+          <option value="self">본인</option>
+        </select>
+      </label>
+      <label style="display: flex; align-items: center; gap: 4px;">데이터
+        <select value="{{ data }}" onChange="{{ onData }}" style="height: 28px; padding: 0 4px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--background); color: var(--foreground); font: inherit;">
+          <option value="default">기본</option>
+          <option value="two-interviews">인터뷰 2편</option>
+          <option value="new">신규</option>
+        </select>
+      </label>
+      <label style="display: flex; align-items: center; gap: 4px;">상태
+        <select value="{{ st }}" onChange="{{ onSt }}" style="height: 28px; padding: 0 4px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--background); color: var(--foreground); font: inherit;">
+          <option value="ok">정상</option>
+          <option value="loading">로딩</option>
+          <option value="404">404</option>
+          <option value="error">에러</option>
+          <option value="tab-error">탭 에러</option>
+        </select>
+      </label>
+      <label style="display: flex; align-items: center; gap: 4px;">폭
+        <select value="{{ frame }}" onChange="{{ onFrame }}" style="height: 28px; padding: 0 4px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--background); color: var(--foreground); font: inherit;">
+          <option value="desktop">데스크톱</option>
+          <option value="mobile">모바일 390</option>
+        </select>
+      </label>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showFrame }}" hint-placeholder-val="{{ false }}">
+    <div data-demo-shell="frame" style="display: flex; justify-content: center; padding: 32px 16px; background: var(--muted); min-height: calc(100vh - 45px); box-sizing: border-box;">{{ frameEl }}</div>
+  </sc-if>
+
+  <sc-if value="{{ showPage }}" hint-placeholder-val="{{ true }}">
+    <div data-screen-label="멘토 상세" style="position: relative;">
+
+      <sc-if value="{{ hydrated }}" hint-placeholder-val="{{ false }}">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" activeKey="mentors" authState="{{ headerAuth }}" user="{{ headerUser }}" brand="{{ logoEl }}" hideOnScroll="{{ mobile }}" onNavigate="{{ noop }}" onAuth="{{ goLogin }}" hint-size="100%,65px"></x-import>
+      </sc-if>
+
+      <sc-if value="{{ gone }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; justify-content: center; padding: 96px var(--container-pad); min-height: 50vh; box-sizing: border-box;">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" icon="{{ goneIcon }}" title="{{ goneTitle }}" description="{{ goneDesc }}" action="{{ goneAction }}" hint-size="100%,240px"></x-import>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isPage }}" hint-placeholder-val="{{ true }}">
+        <section data-temp="DS-54" aria-busy="{{ loading }}" style="position: relative; overflow: hidden; background: var(--sage-50); border-bottom: 1px solid var(--border);">
+          <sc-if value="{{ ready }}" hint-placeholder-val="{{ true }}">
+            <div aria-hidden="true" style="{{ pinAnchorStyle }}">
+              {{ mapEl }}
+              <span style="position: absolute; left: -18px; top: -18px; width: 36px; height: 36px; border-radius: 50%; background: var(--green-100);"></span>
+              <span style="position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; box-sizing: border-box; border-radius: 50%; background: var(--primary); border: 3px solid var(--background); box-shadow: var(--shadow-sm);"></span>
+            </div>
+          </sc-if>
+          <div style="{{ bandInnerStyle }}">
+            <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+              <div style="{{ identityStyle }}">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="{{ avatarSize }}" height="{{ avatarSize }}" radius="full" hint-size="88px,88px"></x-import>
+                <div style="display: flex; flex-direction: column; gap: 10px; width: 280px; max-width: 100%;">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="{{ 140 }}" height="{{ 28 }}" hint-size="140px,28px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="100%" height="{{ 18 }}" hint-size="100%,18px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="{{ 120 }}" height="{{ 14 }}" hint-size="120px,14px"></x-import>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ ready }}" hint-placeholder-val="{{ true }}">
+              <div style="{{ identityStyle }}">
+                <div style="position: relative; flex: 0 0 auto; display: inline-flex;">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" src="assets/img/2-avatar.png" name="박서연" alt="박서연 멘토" size="{{ avatarSize }}" hint-size="88px,88px"></x-import>
+                  <sc-if value="{{ isSelf }}" hint-placeholder-val="{{ false }}">
+                    <span style="position: absolute; right: -6px; bottom: -6px; display: inline-flex; border-radius: var(--radius-md); background: var(--background);">
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="pencil-edit-02" size="sm" variant="outline" ariaLabel="프로필 사진 수정" onClick="{{ onEdit }}" hint-size="32px,32px"></x-import>
+                    </span>
+                  </sc-if>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0;">
+                  <h1 style="margin: 0; font-size: var(--text-h1); font-weight: 600; line-height: var(--text-h1--line-height); letter-spacing: var(--text-h1--letter-spacing);">박서연</h1>
+                  <p style="margin: 0; font-size: var(--text-body); line-height: var(--text-body--line-height); letter-spacing: var(--text-body--letter-spacing);">프로덕트 엔지니어 @메르카리 · 4년차</p>
+                  <p style="margin: 0; display: flex; align-items: center; gap: 6px; font-size: var(--text-caption); line-height: var(--text-caption--line-height); color: var(--muted-foreground);">
+                    <img src="../../../ds-export/project/assets/flags/japan.svg" alt="일본" style="display: block; width: 16px; height: 16px; border-radius: 50%;">
+                    <span>도쿄에서 활동</span>
+                  </p>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+        </section>
+
+        <div ref="{{ anchorRef }}" style="height: 0;"></div>
+
+        <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+          <div style="padding: 12px var(--container-pad) 16px;">
+            <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="{{ 48 }}" radius="md" hint-size="100%,48px"></x-import>
+            </sc-if>
+            <sc-if value="{{ ready }}" hint-placeholder-val="{{ true }}">
+              <p style="margin: 0; padding: 12px 16px; background: var(--green-50); border: 1px solid var(--green-100); border-radius: var(--radius-md); color: var(--sage-700); font-size: var(--text-body); line-height: var(--text-body--line-height); letter-spacing: var(--text-body--letter-spacing); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden;">{{ summary }}</p>
+            </sc-if>
+          </div>
+          <div ref="{{ tabsAnchorRef }}" style="height: 0;"></div>
+          <div style="{{ mTabRowStyle }}">
+            <div aria-hidden="{{ nameHidden }}" style="{{ mNameRowStyle }}">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" src="assets/img/2-avatar.png" name="박서연" size="{{ 24 }}" hint-size="24px,24px"></x-import>
+              <span style="font-size: var(--text-body); font-weight: 600; line-height: var(--text-body--line-height);">박서연</span>
+            </div>
+            <div style="flex: 1 1 auto; min-width: 0; margin-bottom: -1px;">
+              <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+                <div style="padding-bottom: 6px;">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="{{ 260 }}" height="{{ 30 }}" radius="md" hint-size="260px,30px"></x-import>
+                </div>
+              </sc-if>
+              <sc-if value="{{ ready }}" hint-placeholder-val="{{ false }}">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Tabs" items="{{ tabItems }}" value="{{ tab }}" onChange="{{ onTab }}" idBase="md-tabs" ariaLabel="멘토 상세" hint-size="100%,43px"></x-import>
+              </sc-if>
+            </div>
+          </div>
+        </sc-if>
+
+        <div style="{{ mainStyle }}">
+          <div style="{{ gridStyle }}">
+
+            <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+              <aside ref="{{ asideRef }}" aria-busy="{{ loading }}" style="position: sticky; top: calc(var(--mt-header-offset, 65px) + 24px); align-self: start; display: flex; flex-direction: column; gap: var(--space-8); min-width: 0;">
+                <div style="display: flex; flex-direction: column; margin-bottom: calc(var(--space-6) - var(--space-8));">
+                  <div aria-hidden="{{ nameHidden }}" style="{{ infoWrapStyle }}">
+                    <div style="min-height: 0; overflow: hidden;">
+                      <div style="{{ infoInnerStyle }}">
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" src="assets/img/2-avatar.png" name="박서연" size="{{ 40 }}" hint-size="40px,40px"></x-import>
+                        <div style="display: flex; flex-direction: column; min-width: 0;">
+                          <span style="font-size: var(--text-h3); font-weight: 600; line-height: var(--text-h3--line-height); letter-spacing: var(--text-h3--letter-spacing);">박서연</span>
+                          <span style="font-size: var(--text-caption); line-height: var(--text-caption--line-height); color: var(--muted-foreground);">프로덕트 엔지니어</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="{{ 48 }}" radius="md" hint-size="100%,48px"></x-import>
+                  </sc-if>
+                  <sc-if value="{{ ready }}" hint-placeholder-val="{{ true }}">
+                    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+                      <sc-if value="{{ notSelf }}" hint-placeholder-val="{{ true }}">
+                        <div style="{{ applyWrapStyle }}">
+                          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="lg" onClick="{{ onApply }}" hint-size="100%,48px">1:1 멘토링 신청하기</x-import>
+                        </div>
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="bookmark-02" size="lg" pressed="{{ bookmarked }}" ariaLabel="관심있는 멘토" onClick="{{ onBookmark }}" hint-size="48px,48px"></x-import>
+                      </sc-if>
+                      <sc-if value="{{ isSelf }}" hint-placeholder-val="{{ false }}">
+                        <div style="flex: 1 1 auto; min-width: 0; display: grid;">
+                          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="lg" onClick="{{ onEdit }}" hint-size="100%,48px">프로필 수정하기</x-import>
+                        </div>
+                      </sc-if>
+                      <div style="position: relative; display: inline-flex;">
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="share-08" size="lg" variant="outline" ariaLabel="공유" onClick="{{ onShare }}" hint-size="48px,48px"></x-import>
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Popover" open="{{ shareOpen }}" onClose="{{ closeShare }}" align="{{ popAlign }}" role="menu" hint-size="0px,0px">
+                          <button type="button" role="menuitem" class="mt-popover-menuitem" onClick="{{ copyLink }}" style="display: flex; align-items: center; gap: 8px; width: 100%; padding: 8px 10px; border: none; background: none; border-radius: var(--radius-sm); font: inherit; font-size: var(--text-body); line-height: var(--text-body--line-height); color: var(--foreground); text-align: left; cursor: pointer;">
+                            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="link-01" size="{{ 18 }}" hint-size="18px,18px"></x-import>
+                            <span>링크 복사</span>
+                          </button>
+                          <button type="button" role="menuitem" class="mt-popover-menuitem" onClick="{{ shareMenu }}" style="display: flex; align-items: center; gap: 8px; width: 100%; padding: 8px 10px; border: none; background: none; border-radius: var(--radius-sm); font: inherit; font-size: var(--text-body); line-height: var(--text-body--line-height); color: var(--foreground); text-align: left; cursor: pointer;">
+                            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="share-08" size="{{ 18 }}" hint-size="18px,18px"></x-import>
+                            <span>공유하기</span>
+                          </button>
+                        </x-import>
+                      </div>
+                    </div>
+                  </sc-if>
+                </div>
+                <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+                                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="{{ 120 }}" height="{{ 22 }}" hint-size="120px,22px"></x-import>
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="{{ 32 }}" count="{{ 2 }}" radius="md" hint-size="100%,72px"></x-import>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="{{ 120 }}" height="{{ 22 }}" hint-size="120px,22px"></x-import>
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ 4 }}" hint-size="100%,96px"></x-import>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ ready }}" hint-placeholder-val="{{ true }}">
+                  <p style="margin: 0; padding: 10px; background: var(--green-50); border: 1px solid var(--green-100); border-radius: var(--radius-md); color: var(--sage-700); font-size: var(--text-body); line-height: var(--text-body--line-height); letter-spacing: var(--text-body--letter-spacing); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden;">{{ summary }}</p>
+
+                  <section style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 4px; height: var(--text-h3--line-height);">
+                      <h2 style="margin: 0; font-size: var(--text-h3); font-weight: 600; line-height: var(--text-h3--line-height); letter-spacing: var(--text-h3--letter-spacing);">인사이트 키워드</h2>
+                      <sc-if value="{{ isSelf }}" hint-placeholder-val="{{ false }}">
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="pencil-edit-02" size="sm" variant="ghost" ariaLabel="인사이트 키워드 수정" onClick="{{ onEdit }}" hint-size="32px,32px"></x-import>
+                      </sc-if>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                      <sc-for list="{{ keywords }}" as="k" hint-placeholder-count="6">
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" hint-size="auto,32px">{{ k }}</x-import>
+                      </sc-for>
+                    </div>
+                  </section>
+
+                  <section style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 4px; height: var(--text-h3--line-height);">
+                      <h2 style="margin: 0; font-size: var(--text-h3); font-weight: 600; line-height: var(--text-h3--line-height); letter-spacing: var(--text-h3--letter-spacing);">커리어 히스토리</h2>
+                      <sc-if value="{{ isSelf }}" hint-placeholder-val="{{ false }}">
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="pencil-edit-02" size="sm" variant="ghost" ariaLabel="커리어 히스토리 수정" onClick="{{ onEdit }}" hint-size="32px,32px"></x-import>
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="add-01" size="sm" variant="ghost" ariaLabel="커리어 추가" onClick="{{ onEdit }}" hint-size="32px,32px"></x-import>
+                      </sc-if>
+                    </div>
+                    <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px;">
+                      <sc-for list="{{ careers }}" as="c" hint-placeholder-count="2">
+                        <li style="display: flex; align-items: flex-start; gap: 12px;">
+                          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" name="{{ c.org }}" size="{{ 40 }}" hint-size="40px,40px"></x-import>
+                          <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+                            <span style="font-size: var(--text-caption); line-height: var(--text-caption--line-height); color: var(--muted-foreground); font-variant-numeric: tabular-nums;">{{ c.period }}</span>
+                            <span style="font-size: var(--text-body); font-weight: 600; line-height: var(--text-body--line-height);">{{ c.org }}</span>
+                            <span style="font-size: var(--text-caption); line-height: var(--text-caption--line-height); color: var(--muted-foreground);">{{ c.role }}</span>
+                          </div>
+                        </li>
+                      </sc-for>
+                    </ol>
+                  </section>
+
+                  <sc-if value="{{ hasEdu }}" hint-placeholder-val="{{ true }}">
+                    <section style="display: flex; flex-direction: column; gap: 12px;">
+                      <div style="display: flex; align-items: center; gap: 4px; height: var(--text-h3--line-height);">
+                        <h2 style="margin: 0; font-size: var(--text-h3); font-weight: 600; line-height: var(--text-h3--line-height); letter-spacing: var(--text-h3--letter-spacing);">학력 히스토리</h2>
+                        <sc-if value="{{ isSelf }}" hint-placeholder-val="{{ false }}">
+                          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="pencil-edit-02" size="sm" variant="ghost" ariaLabel="학력 히스토리 수정" onClick="{{ onEdit }}" hint-size="32px,32px"></x-import>
+                          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="add-01" size="sm" variant="ghost" ariaLabel="학력 추가" onClick="{{ onEdit }}" hint-size="32px,32px"></x-import>
+                        </sc-if>
+                      </div>
+                      <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px;">
+                        <sc-for list="{{ education }}" as="c" hint-placeholder-count="1">
+                          <li style="display: flex; align-items: flex-start; gap: 12px;">
+                            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" name="{{ c.org }}" size="{{ 40 }}" hint-size="40px,40px"></x-import>
+                            <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+                              <span style="font-size: var(--text-caption); line-height: var(--text-caption--line-height); color: var(--muted-foreground); font-variant-numeric: tabular-nums;">{{ c.period }}</span>
+                              <span style="font-size: var(--text-body); font-weight: 600; line-height: var(--text-body--line-height);">{{ c.org }}</span>
+                              <span style="font-size: var(--text-caption); line-height: var(--text-caption--line-height); color: var(--muted-foreground);">{{ c.role }}</span>
+                            </div>
+                          </li>
+                        </sc-for>
+                      </ol>
+                    </section>
+                  </sc-if>
+                </sc-if>
+              </aside>
+            </sc-if>
+
+            <div style="min-width: 0;">
+              <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+                <div ref="{{ tabsAnchorRef }}" style="height: 0;"></div>
+                <div style="position: sticky; top: calc(var(--mt-header-offset, 65px) + 24px); z-index: 20; background: var(--background); box-shadow: 0 calc(-1 * var(--space-6)) 0 0 var(--background); margin-bottom: var(--space-6); height: 48px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end;">
+                  <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="{{ 48 }}" radius="md" hint-size="100%,48px"></x-import>
+                  </sc-if>
+                  <sc-if value="{{ ready }}" hint-placeholder-val="{{ false }}">
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Tabs" items="{{ tabItems }}" value="{{ tab }}" onChange="{{ onTab }}" idBase="md-tabs" ariaLabel="멘토 상세" hint-size="100%,43px"></x-import>
+                  </sc-if>
+                </div>
+              </sc-if>
+              <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+                <div aria-busy="true" style="display: flex; flex-direction: column; gap: 24px;">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="{{ 300 }}" radius="md" hint-size="100%,300px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ 4 }}" hint-size="100%,96px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ 3 }}" hint-size="100%,72px"></x-import>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ ready }}" hint-placeholder-val="{{ true }}">
+                <div ref="{{ panelRef }}" role="tabpanel" id="{{ panelId }}" aria-labelledby="{{ panelLabel }}">
+
+                  <sc-if value="{{ tabError }}" hint-placeholder-val="{{ false }}">
+                    <div style="padding: 64px 0;">
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" icon="alert-02" title="불러오지 못했어요" action="{{ retryAction }}" hint-size="100%,200px"></x-import>
+                    </div>
+                  </sc-if>
+
+                  <sc-if value="{{ showProfile }}" hint-placeholder-val="{{ true }}">
+                    <div style="display: flex; flex-direction: column; gap: 48px;">
+
+                      <div data-temp="DS-67">
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,340px">
+                          <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+                            <div style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 8px; padding: var(--card-media-margin);">
+                              <img src="../../insight-list/template/assets/img/2.png" alt="박서연 멘토 인터뷰 사진" style="display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: var(--card-media-radius); background: var(--sage-100);">
+                              <div style="position: relative; min-width: 0;">
+                                <div style="position: absolute; inset: 0; display: flex; flex-direction: column; gap: 12px; padding: 10px 10px 0;">
+                                  <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" size="md" leading="flag" flag="japan" flagBase="../../../ds-export/project/assets/flags/" hint-size="64px,28px">일본</x-import>
+                                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" size="md" hint-size="72px,28px">취업 준비</x-import>
+                                  </div>
+                                  <h3 style="margin: 0; font-size: var(--text-h1); font-weight: 600; line-height: var(--text-h1--line-height); letter-spacing: var(--text-h1--letter-spacing); text-wrap: pretty;">{{ latest.title }}</h3>
+                                  <div style="flex: 1 1 auto; min-height: 0; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, var(--foreground) 25%, transparent 85%); mask-image: linear-gradient(to bottom, var(--foreground) 25%, transparent 85%);">
+                                    <sc-for list="{{ coverParas }}" as="t" hint-placeholder-count="3">
+                                      <p style="margin: 0 0 12px; font-size: var(--text-body); line-height: var(--text-body--line-height); letter-spacing: var(--text-body--letter-spacing); color: var(--muted-foreground); text-wrap: pretty;">{{ t }}</p>
+                                    </sc-for>
+                                  </div>
+                                </div>
+                                <div style="position: absolute; left: 0; right: 0; bottom: 12px; display: flex; justify-content: center;">
+                                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" onClick="{{ readMore }}" hint-size="110px,40px">이어서 보기</x-import>
+                                </div>
+                              </div>
+                            </div>
+                          </sc-if>
+                          <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+                            <div style="display: flex; flex-direction: column; padding: var(--card-media-margin);">
+                              <img src="../../insight-list/template/assets/img/2.png" alt="박서연 멘토 인터뷰 사진" style="display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--card-media-radius); background: var(--sage-100);">
+                              <div style="display: flex; flex-direction: column; gap: 12px; padding: 14px 10px 10px;">
+                                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" size="md" leading="flag" flag="japan" flagBase="../../../ds-export/project/assets/flags/" hint-size="64px,28px">일본</x-import>
+                                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" size="md" hint-size="72px,28px">취업 준비</x-import>
+                                </div>
+                                <h3 style="margin: 0; font-size: var(--text-h1); font-weight: 600; line-height: var(--text-h1--line-height); letter-spacing: var(--text-h1--letter-spacing); text-wrap: pretty;">{{ latest.title }}</h3>
+                                <div style="position: relative;">
+                                  <div style="height: 168px; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, var(--foreground) 25%, transparent 90%); mask-image: linear-gradient(to bottom, var(--foreground) 25%, transparent 90%);">
+                                    <sc-for list="{{ coverParas }}" as="t" hint-placeholder-count="3">
+                                      <p style="margin: 0 0 12px; font-size: var(--text-body); line-height: var(--text-body--line-height); letter-spacing: var(--text-body--letter-spacing); color: var(--muted-foreground); text-wrap: pretty;">{{ t }}</p>
+                                    </sc-for>
+                                  </div>
+                                  <div style="position: absolute; left: 0; right: 0; bottom: 4px; display: flex; justify-content: center;">
+                                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" onClick="{{ readMore }}" hint-size="110px,40px">이어서 보기</x-import>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </sc-if>
+                        </x-import>
+                      </div>
+
+                      <section style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="display: flex; align-items: center; gap: 4px; min-height: 32px;">
+                          <h2 style="margin: 0; font-size: var(--text-h2); font-weight: 600; line-height: var(--text-h2--line-height); letter-spacing: var(--text-h2--letter-spacing);">멘토 소개</h2>
+                          <sc-if value="{{ isSelf }}" hint-placeholder-val="{{ false }}">
+                            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="pencil-edit-02" size="sm" variant="ghost" ariaLabel="멘토 소개 수정" onClick="{{ onEdit }}" hint-size="32px,32px"></x-import>
+                          </sc-if>
+                        </div>
+                        <div ref="{{ introRef }}" style="background: var(--sage-50); border-radius: var(--radius-lg); padding: 24px;">
+                          <p style="{{ introTextStyle }}">{{ intro }}</p>
+                        </div>
+                      </section>
+
+                      <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+                        <section style="display: flex; flex-direction: column; gap: 12px;">
+                          <div style="display: flex; align-items: center; gap: 4px; min-height: 32px;">
+                            <h2 style="margin: 0; font-size: var(--text-h2); font-weight: 600; line-height: var(--text-h2--line-height); letter-spacing: var(--text-h2--letter-spacing);">인사이트 키워드</h2>
+                            <sc-if value="{{ isSelf }}" hint-placeholder-val="{{ false }}">
+                              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="pencil-edit-02" size="sm" variant="ghost" ariaLabel="인사이트 키워드 수정" onClick="{{ onEdit }}" hint-size="32px,32px"></x-import>
+                            </sc-if>
+                          </div>
+                          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            <sc-for list="{{ keywords }}" as="k" hint-placeholder-count="6">
+                              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" hint-size="auto,32px">{{ k }}</x-import>
+                            </sc-for>
+                          </div>
+                        </section>
+                        <section style="display: flex; flex-direction: column; gap: 12px;">
+                          <div style="display: flex; align-items: center; gap: 4px; min-height: 32px;">
+                            <h2 style="margin: 0; font-size: var(--text-h2); font-weight: 600; line-height: var(--text-h2--line-height); letter-spacing: var(--text-h2--letter-spacing);">커리어 히스토리</h2>
+                            <sc-if value="{{ isSelf }}" hint-placeholder-val="{{ false }}">
+                              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="pencil-edit-02" size="sm" variant="ghost" ariaLabel="커리어 히스토리 수정" onClick="{{ onEdit }}" hint-size="32px,32px"></x-import>
+                              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="add-01" size="sm" variant="ghost" ariaLabel="커리어 추가" onClick="{{ onEdit }}" hint-size="32px,32px"></x-import>
+                            </sc-if>
+                          </div>
+                          <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px;">
+                            <sc-for list="{{ careers }}" as="c" hint-placeholder-count="2">
+                              <li style="display: flex; align-items: flex-start; gap: 12px;">
+                                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" name="{{ c.org }}" size="{{ 40 }}" hint-size="40px,40px"></x-import>
+                                <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+                                  <span style="font-size: var(--text-caption); line-height: var(--text-caption--line-height); color: var(--muted-foreground); font-variant-numeric: tabular-nums;">{{ c.period }}</span>
+                                  <span style="font-size: var(--text-body); font-weight: 600; line-height: var(--text-body--line-height);">{{ c.org }}</span>
+                                  <span style="font-size: var(--text-caption); line-height: var(--text-caption--line-height); color: var(--muted-foreground);">{{ c.role }}</span>
+                                </div>
+                              </li>
+                            </sc-for>
+                          </ol>
+                        </section>
+                        <sc-if value="{{ hasEdu }}" hint-placeholder-val="{{ true }}">
+                          <section style="display: flex; flex-direction: column; gap: 12px;">
+                            <div style="display: flex; align-items: center; gap: 4px; min-height: 32px;">
+                              <h2 style="margin: 0; font-size: var(--text-h2); font-weight: 600; line-height: var(--text-h2--line-height); letter-spacing: var(--text-h2--letter-spacing);">학력 히스토리</h2>
+                              <sc-if value="{{ isSelf }}" hint-placeholder-val="{{ false }}">
+                                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="pencil-edit-02" size="sm" variant="ghost" ariaLabel="학력 히스토리 수정" onClick="{{ onEdit }}" hint-size="32px,32px"></x-import>
+                                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="add-01" size="sm" variant="ghost" ariaLabel="학력 추가" onClick="{{ onEdit }}" hint-size="32px,32px"></x-import>
+                              </sc-if>
+                            </div>
+                            <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px;">
+                              <sc-for list="{{ education }}" as="c" hint-placeholder-count="1">
+                                <li style="display: flex; align-items: flex-start; gap: 12px;">
+                                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" name="{{ c.org }}" size="{{ 40 }}" hint-size="40px,40px"></x-import>
+                                  <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+                                    <span style="font-size: var(--text-caption); line-height: var(--text-caption--line-height); color: var(--muted-foreground); font-variant-numeric: tabular-nums;">{{ c.period }}</span>
+                                    <span style="font-size: var(--text-body); font-weight: 600; line-height: var(--text-body--line-height);">{{ c.org }}</span>
+                                    <span style="font-size: var(--text-caption); line-height: var(--text-caption--line-height); color: var(--muted-foreground);">{{ c.role }}</span>
+                                  </div>
+                                </li>
+                              </sc-for>
+                            </ol>
+                          </section>
+                        </sc-if>
+                      </sc-if>
+
+                      <sc-if value="{{ hasPairs }}" hint-placeholder-val="{{ true }}">
+                        <section style="display: flex; flex-direction: column; gap: 12px;">
+                          <div style="display: flex; align-items: center; gap: 4px; min-height: 32px;">
+                            <h2 style="margin: 0; font-size: var(--text-h2); font-weight: 600; line-height: var(--text-h2--line-height); letter-spacing: var(--text-h2--letter-spacing);">멘토 {{ pairsCount }}문{{ pairsCount }}답</h2>
+                            <sc-if value="{{ isSelf }}" hint-placeholder-val="{{ false }}">
+                              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="pencil-edit-02" size="sm" variant="ghost" ariaLabel="멘토 N문N답 수정" onClick="{{ onEdit }}" hint-size="32px,32px"></x-import>
+                            </sc-if>
+                          </div>
+                          <div style="display: flex; flex-direction: column;">
+                            <sc-for list="{{ pairs }}" as="p" hint-placeholder-count="4">
+                              <div style="display: flex; flex-direction: column; gap: 8px; padding: 20px 0; border-top: 1px solid var(--border);">
+                                <p style="margin: 0; display: flex; gap: 8px; font-size: var(--text-body); font-weight: 600; line-height: var(--text-body--line-height);">
+                                  <span style="flex: 0 0 auto; color: var(--primary);">Q</span>
+                                  <span>{{ p.q }}</span>
+                                </p>
+                                <p style="margin: 0; padding-left: 20px; font-size: var(--text-body); line-height: var(--text-body--line-height); letter-spacing: var(--text-body--letter-spacing); color: var(--foreground); text-wrap: pretty;">{{ p.a }}</p>
+                              </div>
+                            </sc-for>
+                          </div>
+                        </section>
+                      </sc-if>
+
+                      <sc-if value="{{ hasActivities }}" hint-placeholder-val="{{ true }}">
+                        <section style="display: flex; flex-direction: column; gap: 12px;">
+                          <div style="display: flex; align-items: center; gap: 4px; min-height: 32px;">
+                            <h2 style="margin: 0; font-size: var(--text-h2); font-weight: 600; line-height: var(--text-h2--line-height); letter-spacing: var(--text-h2--letter-spacing);">커리어 관련 활동</h2>
+                            <sc-if value="{{ isSelf }}" hint-placeholder-val="{{ false }}">
+                              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="pencil-edit-02" size="sm" variant="ghost" ariaLabel="커리어 관련 활동 수정" onClick="{{ onEdit }}" hint-size="32px,32px"></x-import>
+                              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="add-01" size="sm" variant="ghost" ariaLabel="커리어 관련 활동 추가" onClick="{{ onEdit }}" hint-size="32px,32px"></x-import>
+                            </sc-if>
+                          </div>
+                          <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <sc-for list="{{ activities }}" as="a" hint-placeholder-count="3">
+                              <a href="{{ a.href }}" target="_blank" rel="noopener" style="display: grid; grid-template-columns: 160px minmax(0, 1fr); align-items: center; gap: 16px; padding: 8px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--card); color: var(--foreground); text-decoration: none; box-shadow: var(--shadow-xs); transition: box-shadow 150ms ease;" style-hover="box-shadow: var(--shadow-md); color: var(--foreground);">
+                                <span aria-hidden="true" style="{{ a.thumbStyle }}"></span>
+                                <span style="display: flex; flex-direction: column; gap: 4px; min-width: 0;">
+                                  <span style="display: flex; align-items: center; gap: 4px; font-size: var(--text-caption); line-height: var(--text-caption--line-height); color: var(--muted-foreground);">
+                                    <span>{{ a.source }}</span>
+                                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="arrow-up-right-01" size="{{ 14 }}" hint-size="14px,14px"></x-import>
+                                  </span>
+                                  <span style="font-size: var(--text-body); font-weight: 600; line-height: var(--text-body--line-height); text-wrap: pretty;">{{ a.title }}</span>
+                                </span>
+                              </a>
+                            </sc-for>
+                          </div>
+                        </section>
+                      </sc-if>
+                    </div>
+                  </sc-if>
+
+                  <sc-if value="{{ showInterview }}" hint-placeholder-val="{{ false }}">
+                    <div style="display: flex; flex-direction: column; gap: 56px;">
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ArticleBody" badges="{{ iv.badges }}" title="{{ iv.title }}" date="{{ iv.date }}" blocks="{{ iv.blocks }}" flagBase="../../../ds-export/project/assets/flags/" hint-size="100%,1200px"></x-import>
+                      <sc-if value="{{ hasOther }}" hint-placeholder-val="{{ false }}">
+                        <section style="display: flex; flex-direction: column; gap: 16px; padding-top: 32px; border-top: 1px solid var(--border);">
+                          <h2 style="margin: 0; font-size: var(--text-h2); font-weight: 600; line-height: var(--text-h2--line-height); letter-spacing: var(--text-h2--letter-spacing);">{{ otherTitle }}</h2>
+                          <div style="max-width: 400px;">
+                            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.InterviewCard" title="{{ other.title }}" excerpt="{{ other.excerpt }}" image="{{ other.image }}" personName="박서연" jobTitle="프로덕트 엔지니어" company="메르카리" field="{{ other.field }}" country="japan" countryLabel="일본" href="{{ other.href }}" onClick="{{ openOther }}" hint-size="100%,420px"></x-import>
+                          </div>
+                        </section>
+                      </sc-if>
+                    </div>
+                  </sc-if>
+
+                  <sc-if value="{{ showQna }}" hint-placeholder-val="{{ false }}">
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                      <sc-for list="{{ qnaItems }}" as="q" hint-placeholder-count="5">
+                        <div data-temp="DS-57">
+                          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,160px">
+                            <div style="position: relative; display: flex; flex-direction: column; gap: 8px; padding: var(--card-content-padding);">
+                              <a href="#qna-detail" style="display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: var(--text-body); font-weight: 600; line-height: var(--text-body--line-height); color: var(--foreground); text-decoration: none;" style-hover="color: var(--primary);" style-after="content: ''; position: absolute; inset: 0;">{{ q.title }}</a>
+                              <p style="margin: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; font-size: var(--text-body); line-height: var(--text-body--line-height); letter-spacing: var(--text-body--letter-spacing); color: var(--foreground);">{{ q.answer }}</p>
+                              <div style="position: relative; z-index: 1; display: flex; align-items: center; gap: 16px; margin-top: 4px;">
+                                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CountToggle" icon="favourite" tone="rose" selected="{{ q.helpfulOn }}" count="{{ q.helpful }}" onChange="{{ q.onHelpful }}" ariaLabel="도움돼요" hint-size="56px,32px"></x-import>
+                                <span style="display: inline-flex; align-items: center; gap: 4px; font-size: var(--text-caption); line-height: var(--text-caption--line-height); color: var(--muted-foreground); font-variant-numeric: tabular-nums;">
+                                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="view" size="{{ 16 }}" hint-size="16px,16px"></x-import>
+                                  <span>조회 {{ q.views }}</span>
+                                </span>
+                                <span style="flex: 1 1 auto;"></span>
+                                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CountToggle" icon="bookmark" tone="dark" selected="{{ q.scrapOn }}" count="{{ q.scraps }}" onChange="{{ q.onScrap }}" ariaLabel="스크랩" hint-size="56px,32px"></x-import>
+                              </div>
+                            </div>
+                          </x-import>
+                        </div>
+                      </sc-for>
+                      <sc-if value="{{ qnaMore }}" hint-placeholder-val="{{ true }}">
+                        <div style="display: flex; justify-content: center; padding-top: 8px;">
+                          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" onClick="{{ moreQna }}" hint-size="96px,40px">더보기</x-import>
+                        </div>
+                      </sc-if>
+                    </div>
+                  </sc-if>
+
+                  <sc-if value="{{ showReview }}" hint-placeholder-val="{{ false }}">
+                    <section style="display: flex; flex-direction: column; gap: 8px;">
+                      <h2 style="margin: 0 0 8px; display: flex; gap: 6px; font-size: var(--text-h2); font-weight: 600; line-height: var(--text-h2--line-height); letter-spacing: var(--text-h2--letter-spacing);">
+                        <span>리뷰</span>
+                        <span style="font-variant-numeric: tabular-nums; color: var(--primary);">{{ reviewCount }}</span>
+                      </h2>
+                      <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column;">
+                        <sc-for list="{{ reviewItems }}" as="r" hint-placeholder-count="5">
+                          <li style="display: flex; flex-direction: column; gap: 8px; padding: 20px 0; border-top: 1px solid var(--border);">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" name="{{ r.initial }}" alt="{{ r.masked }}" size="md" hint-size="32px,32px"></x-import>
+                              <span style="font-size: var(--text-caption); font-weight: 600; line-height: var(--text-caption--line-height);">{{ r.masked }}</span>
+                              <span style="font-size: var(--text-caption); line-height: var(--text-caption--line-height); color: var(--muted-foreground); font-variant-numeric: tabular-nums;">{{ r.dateLabel }}</span>
+                            </div>
+                            <p style="margin: 0; font-size: var(--text-body); font-weight: 600; line-height: var(--text-body--line-height);">{{ r.title }}</p>
+                            <sc-if value="{{ r.clamped }}" hint-placeholder-val="{{ true }}">
+                              <p data-review-body="{{ r.id }}" style="margin: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; line-clamp: 4; overflow: hidden; font-size: var(--text-body); line-height: var(--text-body--line-height); letter-spacing: var(--text-body--letter-spacing); text-wrap: pretty;">{{ r.body }}</p>
+                            </sc-if>
+                            <sc-if value="{{ r.expanded }}" hint-placeholder-val="{{ false }}">
+                              <p style="margin: 0; font-size: var(--text-body); line-height: var(--text-body--line-height); letter-spacing: var(--text-body--letter-spacing); text-wrap: pretty;">{{ r.body }}</p>
+                            </sc-if>
+                            <sc-if value="{{ r.showMore }}" hint-placeholder-val="{{ false }}">
+                              <div style="display: flex;">
+                                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" onClick="{{ r.expand }}" hint-size="48px,32px">더보기</x-import>
+                              </div>
+                            </sc-if>
+                          </li>
+                        </sc-for>
+                      </ul>
+                      <sc-if value="{{ reviewMore }}" hint-placeholder-val="{{ true }}">
+                        <div style="display: flex; justify-content: center; padding-top: 8px;">
+                          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" onClick="{{ moreReview }}" hint-size="96px,40px">더보기</x-import>
+                        </div>
+                      </sc-if>
+                    </section>
+                  </sc-if>
+                </div>
+
+                <sc-if value="{{ showBanner }}" hint-placeholder-val="{{ true }}">
+                  <div style="margin-top: 56px;">
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ActionBanner" layout="stacked" title="이 멘토와 직접 이야기 나누고 싶나요?" description="1:1 멘토링을 통해 자세한 커리어 히스토리와 본인의 고민거리를 물어보세요." actionLabel="1:1 멘토링 신청하기" onAction="{{ onBannerAction }}" hint-size="100%,200px"></x-import>
+                  </div>
+                </sc-if>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" brand="{{ logoEl }}" onNavigate="{{ noop }}" hint-size="100%,240px"></x-import>
+      </sc-if>
+
+      <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BottomTabBar" activeKey="mentors" authState="{{ headerAuth }}" hideOnScroll="{{ true }}" accessory="{{ applyBar }}" onNavigate="{{ noop }}" onAuth="{{ goLogin }}" hint-size="100%,56px"></x-import>
+      </sc-if>
+
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Toast" open="{{ toastOpen }}" message="{{ toastMsg }}" actions="{{ toastActions }}" onDismiss="{{ dismissToast }}" style="{{ toastStyle }}" hint-size="0px,0px"></x-import>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const DS = '../../../ds-export/project/';
+const IMG = '../../insight-list/template/assets/img/';
+const NSN = 'MentreeDesignSystem_2f86cf';
+const TODAY = new Date(2026, 8, 24);
+const TAB_KEYS = ['profile', 'interview', 'qna', 'review'];
+const ROLES = ['guest', 'mentee', 'mentor', 'self'];
+const DATAS = ['default', 'two-interviews', 'new'];
+const STATES = ['ok', 'loading', '404', 'error', 'tab-error'];
+const TABS_H = 43;
+const M_TABS_H = 44;
+const M_NAME_H = 40;
+// 등장방형(x = 경도 + 180, y = 90 − 위도) · Natural Earth 110m 육지 · 자리표시(화풍은 아트디렉션)
+const WORLD_D = () => window.MD_WORLD_D || '';
+
+const MENTOR = { city: { lon: 139.69, lat: 35.69 }, countryCenter: { lon: 138.25, lat: 36.2 } };
+const SUMMARY = '졸업 전 인턴에서 신졸 입사까지, 일본 취업 준비를 함께 봅니다';
+const INTRO = '박서연 멘토는 한빛대학교에서 컴퓨터공학을 전공하고, 졸업 1년 전 여름 메르카리 서머 인턴을 거쳐 2022년 신졸로 입사했다. 지금은 도쿄에서 프로덕트 엔지니어로 일하며 거래 화면의 프론트엔드를 맡고 있다. 교환학생으로 처음 일본에 왔을 때 신졸 채용 일정을 몰라 한 해를 놓칠 뻔했던 경험이 있어, 지금은 지원 일정 짜기와 일본어 서류, 모의 면접을 중심으로 멘티를 돕는다.';
+const INTRO_NEW = '박서연 멘토는 도쿄에서 프로덕트 엔지니어로 일한다. 신졸 취업 준비를 함께 본다.';
+const KEYWORDS = ['신졸 취업', '일본어 서류', '면접 준비', '인턴', '프론트엔드', '취업 비자'];
+const CAREERS = [
+  { start: '2022.04', end: null, org: '메르카리', role: '프로덕트 엔지니어' },
+  { start: '2021.08', end: '2021.08', org: '메르카리', role: '서머 인턴' },
+];
+const EDUCATION = [{ start: '2018.03', end: '2022.02', org: '한빛대학교', role: '컴퓨터공학' }];
+const PAIRS = [
+  { q: '어떤 계기로 일본에 오게 되었나요?', a: '대학 3학년 때 교환학생으로 도쿄에서 한 학기를 보냈습니다. 그때 만난 현지 개발자들이 신졸 채용을 권해 줬고, 전형 일정을 알아보다 보니 자연스럽게 지원까지 이어졌습니다.' },
+  { q: '커리어를 돌아봤을 때 위기와 극복한 경험을 들려주세요.', a: '입사 첫해에 맡은 결제 화면 개편이 일정보다 두 달 늦어졌습니다. 진행 상황을 일본어로 정확히 전하지 못한 것이 컸는데, 그 뒤로 매주 금요일 짧은 문서로 먼저 공유하는 습관을 들였습니다. 지금은 그 문서가 팀의 주간 보고 형식이 됐습니다.' },
+  { q: '지금 사는 나라의 만족스러운 점을 알려주세요.', a: '야근을 당연하게 여기지 않는 분위기가 가장 만족스럽습니다. 퇴근 뒤 시간을 계획할 수 있어서 일본어 공부와 운동을 꾸준히 이어 가고 있습니다.' },
+  { q: '도전하려는 멘티에게 어떤 멘토링을 해 줄 수 있나요?', a: '신졸 전형 일정표를 함께 짜고, 일본어 이력서와 자기소개서를 한 문장씩 같이 봅니다. 모의 면접은 실제 전형 순서대로 인사 · 팀 리드 · 임원 세 단계로 나눠 진행합니다.' },
+];
+const ACTIVITIES = [
+  { source: 'YouTube', title: '일본 신졸 취업, 졸업 1년 전에 시작해야 하는 이유', thumb: IMG + '4.png', href: 'https://www.youtube.com/' },
+  { source: 'brunch', title: '일본어 이력서를 한 장으로 줄인 방법', thumb: IMG + '6.png', href: 'https://brunch.co.kr/' },
+  { source: 'brunch', title: '메르카리 면접, 세 번의 질문', thumb: IMG + '7.png', href: 'https://brunch.co.kr/' },
+];
+
+const IV_LATEST = {
+  id: 'iv-2026-05',
+  title: '메르카리 프로덕트 엔지니어 박서연 — 졸업 전 지원이 유리한 이유',
+  field: '취업 준비',
+  badges: [{ type: 'country', label: '일본', flag: 'japan' }, { type: 'keyword', label: '취업 준비' }],
+  date: '2026.05.30',
+  image: IMG + '2.png',
+  excerpt: '박서연 님은 졸업 1년 전 여름에 첫 인턴 지원을 넣었습니다. 준비가 덜 된 상태였지만, 전형 일정이 그때 열렸기 때문입니다.',
+  blocks: [
+    { type: 'h2', id: 'sec-1', text: '지원 시점 — 졸업 1년 전 여름' },
+    { type: 'p', content: '박서연 님은 졸업 1년 전 여름에 첫 인턴 지원을 넣었습니다. 준비가 덜 된 상태였지만, 전형 일정이 그때 열렸기 때문입니다.' },
+    { type: 'p', content: [{ mark: '「신졸 전형은 경력을 묻지 않는 대신 준비 기간을 봅니다」' }, '라는 말로 그 판단을 설명했습니다. 결과적으로 인턴 경험이 본전형의 이야기 소재가 됐습니다.'] },
+    { type: 'p', content: '지원 시점을 앞당긴 대가로 포트폴리오는 여름 내내 다시 썼습니다. 그 과정이 면접 답변을 정리하는 시간이 됐다고 합니다.' },
+    { type: 'p', content: '당시 일본어는 N2를 막 취득한 상태였습니다. 급수를 올리는 대신 지원서에 쓸 문장을 다듬는 데 시간을 썼고, 그 판단을 지금도 바꾸지 않겠다고 말했습니다.' },
+    { type: 'p', content: '인턴은 2주 일정이었습니다. 짧았지만 팀의 개발 흐름을 한 번 통과해 본 경험이 본전형 면접에서 가장 많이 언급된 소재가 됐습니다.' },
+    { type: 'figure', src: IMG + '2.png', alt: '도쿄 오피스에서 만난 박서연 님', caption: '도쿄 오피스에서 만난 박서연 님. 현재 프로덕트 엔지니어로 일하고 있다.' },
+    { type: 'h2', id: 'sec-2', text: '서류 — 무엇을 남기고 무엇을 버렸는가' },
+    { type: 'p', content: '이력서는 한 장으로 줄였습니다. 학부 프로젝트 여섯 개 중 두 개만 남기고, 남긴 두 개에 각각 다섯 줄을 썼습니다.' },
+    { type: 'p', content: '기준은 「면접에서 10분 동안 이야기할 수 있는가」였습니다. 설명이 짧아지는 항목은 아예 지웠습니다.' },
+    { type: 'p', content: [{ mark: '일본어 서류는 표현을 꾸미지 않고, 맡은 범위와 결과를 숫자로 적는 편이 반응이 좋았다고 합니다.' }] },
+    { type: 'p', content: '자기소개서는 회사마다 첫 문단만 바꿨습니다. 지원 동기는 회사별로 다르지만 경험의 서술은 같아야 한다는 것이 기준이었습니다.' },
+    { type: 'h2', id: 'sec-3', text: '면접 — 세 번의 질문' },
+    { type: 'p', content: '1차는 인사 담당자, 2차는 팀 리드, 최종은 임원 면접이었습니다. 질문의 결이 단계마다 달라졌습니다.' },
+    { type: 'p', content: '1차는 지원 동기와 체류 계획을 확인하는 자리였습니다. 일본에서 계속 일할 의사가 있는지를 에둘러 여러 번 물었다고 합니다.' },
+    { type: 'p', content: '2차에서는 코드 리뷰를 어떻게 받아들이는지, 의견이 다를 때 어떻게 정리하는지를 물었습니다. 기술 질문보다 협업 방식에 대한 질문이 길었습니다.' },
+    { type: 'p', content: '최종 면접은 20분으로 짧았습니다. 지금까지의 답변을 다시 확인하는 자리였고, 준비한 역질문 세 개 중 두 개를 썼습니다.' },
+    { type: 'p', content: ['준비 방법을 묻자 같은 직무 멘토와의 모의 면접을 꼽았습니다. ', { link: '같은 회사·직무의 멘토를 찾는 일', href: '#mentor-search' }, '부터 시작하길 권했습니다.'] },
+  ],
+};
+const IV_OLD = {
+  id: 'iv-2025-11',
+  title: '입사 3년 차, 프로덕트 엔지니어가 본 일본 개발 조직',
+  field: '직장 생활',
+  badges: [{ type: 'country', label: '일본', flag: 'japan' }, { type: 'keyword', label: '직장 생활' }],
+  date: '2025.11.12',
+  image: 'assets/img/2-cover-alt.png',
+  excerpt: '입사 3년 차가 된 박서연 님이 가장 먼저 꼽은 차이는 코드 리뷰였습니다. 리뷰 코멘트는 결론보다 근거를 먼저 적는 것이 팀의 약속이라고 합니다.',
+  blocks: [
+    { type: 'h2', id: 'old-sec-1', text: '리뷰 문화 — 결론보다 근거를 먼저' },
+    { type: 'p', content: '입사 3년 차가 된 박서연 님이 가장 먼저 꼽은 차이는 코드 리뷰였습니다. 리뷰 코멘트는 결론보다 근거를 먼저 적는 것이 팀의 약속이라고 합니다.' },
+    { type: 'p', content: '처음에는 코멘트가 길어서 부담스러웠지만, 근거가 먼저 오니 의견이 달라도 어디서 갈리는지 바로 보였다고 말했습니다.' },
+    { type: 'p', content: '지금은 신입 리뷰를 맡으며, 코멘트마다 참고할 문서 링크를 하나씩 붙이는 습관을 팀에 퍼뜨리고 있습니다.' },
+    { type: 'h2', id: 'old-sec-2', text: '일하는 방식 — 문서로 남기는 조직' },
+    { type: 'p', content: '회의는 짧고, 결정은 문서로 남깁니다. 회의가 끝나면 누가 무엇을 언제까지 하는지 한 장으로 정리해 공유합니다.' },
+    { type: 'p', content: '일본어가 서툴렀던 첫해에는 이 문서가 큰 도움이 됐습니다. 회의에서 놓친 내용을 문서로 다시 확인할 수 있었기 때문입니다.' },
+    { type: 'p', content: '앞으로는 해외 인재가 처음 3개월 동안 적응하는 과정을 문서로 정리해, 다음 입사자가 같은 자리에서 헤매지 않게 하고 싶다고 했습니다.' },
+  ],
+};
+// 표지 발췌 = 인터뷰 전문의 첫머리 문단들(첫 그림 앞까지)
+const COVER_PARAS = (() => {
+  const out = [];
+  for (let i = 1; i < IV_LATEST.blocks.length; i++) {
+    const b = IV_LATEST.blocks[i];
+    if (b.type !== 'p') break;
+    out.push(Array.isArray(b.content) ? b.content.map((c) => (typeof c === 'string' ? c : c.mark || c.link || '')).join('') : b.content);
+  }
+  return out;
+})();
+
+const QNA = [
+  { id: 'q1', date: '2026-09-02', helpful: 42, scraps: 26, views: 1280, title: 'N2 로 신졸 전형에 지원할 수 있을까요?', answer: '지원 자체는 충분히 가능합니다. 제가 지원할 때도 N2였고, 같은 기수 외국인 동기 중 절반 정도가 N2였습니다. 다만 서류와 면접에서 자기 경험을 일본어로 정확히 설명할 수 있어야 하기 때문에, 급수를 올리기보다 지원서 문장과 면접 답변을 소리 내어 연습하는 데 시간을 쓰시길 권합니다. IT 직군은 기술 면접 비중이 커서 N2로 합격한 사례도 많습니다.' },
+  { id: 'q2', date: '2026-08-21', helpful: 38, scraps: 31, views: 964, title: '일본어 이력서와 직무경력서는 어떻게 다르게 써야 하나요?', answer: '이력서는 정해진 양식에 학력과 자격을 빠짐없이 적는 서류이고, 직무경력서는 무엇을 맡아 어떤 결과를 냈는지 보여 주는 서류입니다. 신졸은 경력서 대신 자기 PR 을 따로 쓰는 경우가 많은데, 프로젝트 두세 개를 골라 맡은 범위와 결과를 숫자로 적으면 충분합니다. 꾸미는 표현보다 사실을 짧게 적는 쪽이 읽기 편하다는 피드백을 많이 받았습니다.' },
+  { id: 'q3', date: '2026-08-10', helpful: 31, scraps: 14, views: 812, title: '졸업 전에 인턴을 못 했는데 신졸 전형에서 불리할까요?', answer: '인턴 경험이 없다고 서류에서 떨어지는 경우는 드뭅니다. 신졸 전형은 경력보다 준비 기간과 태도를 보기 때문에, 학부 프로젝트나 개인 프로젝트를 면접에서 10분 동안 설명할 수 있을 정도로 정리해 두면 충분히 대신할 수 있습니다. 다만 여름 인턴 전형 자체가 본전형으로 이어지는 회사가 많으니, 일정이 남았다면 지원해 보는 쪽을 권합니다.' },
+  { id: 'q4', date: '2026-07-30', helpful: 27, scraps: 22, views: 1045, title: '취업 비자는 회사가 준비해 주나요, 제가 준비해야 하나요?', answer: '대부분의 회사가 내정 뒤에 필요한 서류 목록을 보내 주고, 신청은 회사나 회사가 맡긴 행정서사가 대신 진행합니다. 본인이 준비할 것은 졸업 증명서, 성적 증명서, 여권 사본 정도입니다. 졸업 증명서 발급이 늦어지면 입사일이 밀릴 수 있으니, 학교에 영문 증명서 발급 일정을 미리 확인해 두세요.' },
+  { id: 'q5', date: '2026-06-18', helpful: 27, scraps: 9, views: 690, title: '코딩 테스트는 한국 기업과 비슷한 수준인가요?', answer: '회사마다 다르지만 제가 본 곳들은 알고리즘 난도보다 코드를 읽기 쉽게 쓰는지를 더 봤습니다. 온라인 테스트 뒤에 작성한 코드를 면접관과 함께 읽으며 왜 이렇게 썼는지 설명하는 단계가 있었고, 그 설명이 점수에 크게 반영됐습니다. 문제를 푸는 연습과 함께 자기 코드를 말로 설명하는 연습을 꼭 해 보세요.' },
+  { id: 'q6', date: '2026-05-27', helpful: 19, scraps: 17, views: 530, title: '도쿄에서 첫 월세 계약할 때 보증인이 꼭 필요한가요?', answer: '요즘은 보증인 대신 보증회사를 쓰는 계약이 대부분입니다. 첫 달 월세의 절반에서 한 달 치 정도를 보증료로 내면 되고, 회사 내정 통지서나 재직 증명서를 내면 심사가 수월합니다. 외국인 입주를 받지 않는 집도 아직 있으니, 외국인 상담이 가능한 부동산을 먼저 찾는 것이 시간을 아끼는 방법입니다.' },
+  { id: 'q7', date: '2026-04-11', helpful: 12, scraps: 6, views: 402, title: '입사 후 일본어 회의에 적응하는 데 얼마나 걸렸나요?', answer: '회의 내용을 거의 다 알아듣는 데 반년 정도 걸렸습니다. 처음 석 달은 회의가 끝나면 회의록을 다시 읽으며 모르는 표현을 정리했고, 발언하기 전에 할 말을 메모로 먼저 적어 두었습니다. 팀에서도 외국인 멤버가 있는 회의는 결정 사항을 문서로 남기는 편이라 생각보다 빨리 익숙해질 수 있었습니다.' },
+];
+
+const REVIEWS = [
+  { id: 'r1', name: '김', date: '2026-09-21', title: '서류 방향을 처음부터 다시 잡았어요', body: '신졸 전형 준비를 혼자 하다가 방향을 못 잡아서 신청했습니다. 첫 시간에 제가 써 온 이력서를 같이 읽으면서, 프로젝트를 다섯 개나 넣을 필요가 없다는 이야기를 들었어요. 두 개만 남기고 각각 면접에서 10분 동안 이야기할 수 있게 다시 쓰자고 하셨는데, 실제로 그렇게 고치고 나니 서류 통과율이 확 올랐습니다. 두 번째 시간에는 자기 PR 문단을 한 문장씩 같이 봤고, 표현을 꾸미기보다 맡은 범위와 결과를 숫자로 적으라는 조언이 가장 도움이 됐습니다. 마지막에는 제가 지원하려는 회사별로 첫 문단만 바꾸는 방법까지 알려 주셔서, 지원서를 쓰는 시간이 절반으로 줄었어요. 일본 취업을 처음 준비하는 분께 꼭 추천하고 싶습니다.' },
+  { id: 'r2', name: '이', date: '2026-09-14', title: '모의 면접이 실제 면접과 거의 같았습니다', body: '인사 · 팀 리드 · 임원 순서로 나눠서 모의 면접을 해 주셨는데, 실제 면접에서 받은 질문이 거의 비슷했습니다. 특히 체류 계획을 에둘러 묻는 질문을 미리 연습해서 당황하지 않았어요.' },
+  { id: 'r3', name: '최', date: '2026-09-08', title: '비자 절차를 순서대로 정리해 주셨어요', body: '내정 뒤에 무엇을 언제 준비해야 하는지 표로 정리해 주셔서 졸업 증명서 발급 일정을 놓치지 않았습니다.' },
+  { id: 'r4', name: '정', date: '2026-08-30', title: 'N2 로도 지원할 용기가 생겼습니다', body: 'N1 을 따기 전에는 지원하면 안 된다고 생각하고 있었는데, 멘토님도 N2 로 입사하셨다는 이야기를 듣고 생각이 바뀌었습니다. 급수 공부에 쓰던 시간을 지원서 문장과 면접 답변을 소리 내어 연습하는 데 쓰라고 하셨고, 실제로 그렇게 두 달을 보냈습니다. 매주 제가 녹음한 면접 답변을 들어 주시고 어색한 표현을 짚어 주셨는데, 문법보다 문장의 순서를 바꾸는 것만으로도 훨씬 자연스러워진다는 걸 알게 됐어요. 결과적으로 가고 싶던 회사 두 곳의 최종 면접까지 갔고, 한 곳에서 내정을 받았습니다. 준비 기간을 어떻게 쓰는지가 급수보다 중요하다는 말이 무슨 뜻인지 이제 알 것 같습니다. 정말 감사했습니다.' },
+  { id: 'r5', name: '한', date: '2026-08-12', title: '자기 PR 을 한 장으로 줄였습니다', body: '세 장이던 자기 PR 을 한 장으로 줄이는 과정을 함께 해 주셨습니다. 무엇을 버릴지 기준을 알려 주셔서 다른 서류를 쓸 때도 혼자 판단할 수 있게 됐어요. 면접관이 제 서류를 읽고 바로 질문을 이어 가서 대화가 편했습니다.' },
+  { id: 'r6', name: '윤', date: '2026-07-28', title: '인턴 준비 일정을 같이 짜 주셨어요', body: '여름 인턴 전형 일정을 거꾸로 세어서 언제까지 무엇을 끝내야 하는지 함께 정리했습니다. 막막했던 준비가 할 일 목록이 됐어요.' },
+  { id: 'r7', name: '오', date: '2026-06-15', title: '현지 생활 이야기까지 들을 수 있었어요', body: '면접 준비로 신청했는데, 도쿄에서 처음 집을 구할 때 보증회사를 쓰는 방법이나 외국인 상담이 되는 부동산을 찾는 요령까지 알려 주셨습니다. 입사 첫해에 일본어 회의를 따라가기 위해 회의록을 다시 읽으며 표현을 정리했다는 이야기도 인상 깊었어요. 제가 가장 걱정하던 부분이 일을 시작한 뒤의 적응이었는데, 멘토님이 실제로 쓰던 방법을 구체적으로 들으니 불안이 많이 줄었습니다. 취업 준비뿐 아니라 그다음까지 생각해 볼 수 있었던 시간이라 한 번 더 신청할 생각입니다.' },
+  { id: 'r8', name: '서', date: '2026-05-02', title: '질문을 미리 정리해 가면 더 좋아요', body: '궁금한 것을 미리 적어 갔더니 한 시간 안에 전부 답을 들을 수 있었습니다. 설명이 차분하고 구체적이었어요.' },
+];
+
+function readQuery() {
+  const q = new URLSearchParams(location.search);
+  const pick = (k, list, d) => (list.includes(q.get(k)) ? q.get(k) : d);
+  return {
+    tab: pick('tab', TAB_KEYS, 'profile'),
+    role: pick('role', ROLES, 'guest'),
+    data: pick('data', DATAS, 'default'),
+    st: pick('state', STATES, 'ok'),
+    view: q.get('view') === 'mobile' ? 'mobile' : '',
+    interview: q.get('interview') || null,
+  };
+}
+function relDate(iso) {
+  const [y, m, d] = iso.split('-').map(Number);
+  const days = Math.round((TODAY - new Date(y, m - 1, d)) / 86400000);
+  if (days <= 0) return '오늘';
+  if (days < 7) return days + '일 전';
+  if (days <= 30) return Math.floor(days / 7) + '주 전';
+  return iso.replace(/-/g, '.');
+}
+function visibleTabs(data) {
+  const isNew = data === 'new';
+  return TAB_KEYS.filter((t) => !(isNew && (t === 'qna' || t === 'review')));
+}
+function cssPx(name, fallback) {
+  const v = parseFloat(getComputedStyle(document.documentElement).getPropertyValue(name));
+  return isNaN(v) ? fallback : v;
+}
+
+class Component extends DCLogic {
+  state = Object.assign(readQuery(), {
+    winW: window.innerWidth,
+    frame: 'desktop',
+    stuck: false,
+    introW: 0,
+    bookmarked: false,
+    helpful: {},
+    scrap: {},
+    qnaShown: 5,
+    reviewShown: 5,
+    expanded: {},
+    overflow: {},
+    toastOpen: false,
+    toastMsg: '',
+    toastActions: [],
+    shareOpen: false,
+    nsReady: !!window[NSN],
+  });
+  anchorRef = React.createRef();
+  tabsAnchorRef = React.createRef();
+  asideRef = React.createRef();
+  panelRef = React.createRef();
+  introRef = React.createRef();
+
+  isMobile() { return this.state.winW <= 768; }
+  reduced() { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+
+  componentDidMount() {
+    document.documentElement.lang = 'ko';
+    document.title = '박서연 멘토 · 멘트리';
+    this.onResize = () => {
+      if (window.innerWidth !== this.state.winW) this.setState({ winW: window.innerWidth, shareOpen: false });
+      this.layoutAside(); this.measureReviews(); this.checkStuck();
+    };
+    window.addEventListener('resize', this.onResize);
+    this.onScroll = () => {
+      if (this._raf) return;
+      this._raf = requestAnimationFrame(() => { this._raf = null; this.checkStuck(); });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.ro = new ResizeObserver(() => { this.layoutAside(); this.measureIntro(); });
+    if (!this.state.nsReady) {
+      this.nsTimer = setInterval(() => { if (window[NSN]) { clearInterval(this.nsTimer); this.setState({ nsReady: true }); } }, 50);
+    }
+    const vis = visibleTabs(this.state.data);
+    if (!vis.includes(this.state.tab)) this.setState({ tab: 'profile' }, () => this.syncUrl());
+    else this.syncUrl();
+    this.afterRender();
+    this.flagTimer = setTimeout(() => this.afterRender(), 400);
+  }
+  componentDidUpdate() { this.afterRender(); }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
+    if (this.ro) this.ro.disconnect();
+    clearInterval(this.nsTimer);
+    clearTimeout(this.flagTimer);
+  }
+  afterRender() {
+    [['_oa', this.asideRef], ['_oi', this.introRef]].forEach(([k, ref]) => {
+      const el = ref.current;
+      if (el !== this[k]) {
+        if (this[k]) this.ro.unobserve(this[k]);
+        if (el) this.ro.observe(el);
+        this[k] = el;
+      }
+    });
+    document.documentElement.style.setProperty('--article-anchor-offset', 'calc(var(--mt-header-offset, 65px) + ' + (this.isMobile() ? M_NAME_H + M_TABS_H : 24 + TABS_H) + 'px)');
+    this.layoutAside();
+    this.measureIntro();
+    this.measureReviews();
+    this.fixFlags();
+    this.checkStuck();
+  }
+  // InterviewCard 는 flagBase 를 Badge 에 넘기지 않는다(기본 ../../assets/flags/) — 데모에서만 경로를 고친다
+  fixFlags() {
+    document.querySelectorAll('img[src*="assets/flags/"]').forEach((img) => {
+      const src = img.getAttribute('src');
+      if (src.indexOf(DS) === -1) img.setAttribute('src', DS + 'assets/flags/' + src.split('assets/flags/')[1]);
+    });
+  }
+  // 왼쪽 열: 멘토 바 아래 24 에 붙는다. 화면보다 길면 끝까지 읽은 뒤 아래 24 에 붙는다.
+  layoutAside() {
+    const el = this.asideRef.current;
+    if (!el) return;
+    const off = cssPx('--mt-header-offset', 65);
+    const topNormal = off + 24;
+    const h = el.offsetHeight;
+    const fits = topNormal + h + 24 <= window.innerHeight;
+    el.style.top = fits ? 'calc(var(--mt-header-offset, 65px) + 24px)' : (window.innerHeight - h - 24) + 'px';
+    this._asideTop = fits ? topNormal : window.innerHeight - h - 24;
+  }
+  measureIntro() {
+    const el = this.introRef.current;
+    const w = el ? Math.round(el.clientWidth) : 0;
+    if (w !== this.state.introW) this.setState({ introW: w });
+  }
+  measureReviews() {
+    const els = document.querySelectorAll('[data-review-body]');
+    if (!els.length) return;
+    const next = Object.assign({}, this.state.overflow);
+    let changed = false;
+    els.forEach((el) => {
+      const id = el.getAttribute('data-review-body');
+      const over = el.scrollHeight > el.clientHeight + 1;
+      if (next[id] !== over) { next[id] = over; changed = true; }
+    });
+    if (changed) this.setState({ overflow: next });
+  }
+  // stuck = 페이지 헤더(지도 띠)가 화면에서 사라졌다
+  checkStuck() {
+    const a = this.anchorRef.current;
+    const stuck = !!a && a.getBoundingClientRect().top <= cssPx('--mt-header-offset', 65) + 0.5;
+    if (stuck !== this.state.stuck) this.setState({ stuck });
+  }
+  // 탭 바가 붙는 자리 — 데스크톱 top = 헤더 + 24 · 모바일 top = 헤더(내려가면 0) + 이름 줄 40
+  tabStickTop(goingDown) {
+    const hh = cssPx('--mt-header-height', 65);
+    if (!this.isMobile()) return hh + 24;
+    return (goingDown ? 0 : hh) + M_NAME_H;
+  }
+  tabsStuck() {
+    const a = this.tabsAnchorRef.current;
+    if (!a) return false;
+    const top = this.isMobile() ? cssPx('--mt-header-offset', 65) + (this.state.stuck ? M_NAME_H : 0) : cssPx('--mt-header-offset', 65) + 24;
+    return a.getBoundingClientRect().top <= top + 1;
+  }
+  targetY() {
+    const a = this.tabsAnchorRef.current;
+    if (!a) return null;
+    const docTop = a.getBoundingClientRect().top + window.scrollY;
+    const down = window.scrollY < docTop - this.tabStickTop(true);
+    return Math.round(docTop - this.tabStickTop(down));
+  }
+
+  syncUrl() {
+    const s = this.state;
+    const p = new URLSearchParams();
+    if (s.tab !== 'profile') p.set('tab', s.tab);
+    if (s.role !== 'guest') p.set('role', s.role);
+    if (s.data !== 'default') p.set('data', s.data);
+    if (s.st !== 'ok') p.set('state', s.st);
+    if (s.view) p.set('view', s.view);
+    if (s.tab === 'interview' && s.interview) p.set('interview', s.interview);
+    const qs = p.toString();
+    history.replaceState(history.state, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
+  }
+
+  onTab = (t) => {
+    if (t === this.state.tab) return;
+    const stuck = this.tabsStuck();
+    this.setState({ tab: t, interview: t === 'interview' ? this.state.interview : null, shareOpen: false }, () => {
+      this.syncUrl();
+      if (stuck) { const y = this.targetY(); if (y != null) window.scrollTo(0, y); }
+    });
+  };
+  readMore = () => {
+    this.setState({ tab: 'interview', interview: null, shareOpen: false }, () => {
+      this.syncUrl();
+      const reduced = this.reduced();
+      const p = this.panelRef.current;
+      if (p && !reduced && p.animate) p.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 150, easing: 'ease-out' });
+      // Tabs 가 선택 탭을 보이는 자리로 옮기는 가로 스크롤과 겹치지 않게 한 프레임 뒤에 민다
+      setTimeout(() => {
+        const y = this.targetY();
+        if (y != null) window.scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' });
+      }, 60);
+    });
+  };
+  openInterview(id, e) {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState({ tab: 'interview', interview: id }, () => {
+      this.syncUrl();
+      const y = this.targetY();
+      if (y != null && window.scrollY > y) window.scrollTo(0, y);
+    });
+  }
+
+  goLogin = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    location.hash = 'login';
+    this.toast('로그인 화면으로 갑니다');
+  };
+  gate() { if (this.state.role === 'guest') { this.goLogin(); return true; } return false; }
+  toast(msg, actions) {
+    this.setState({ toastOpen: false }, () => this.setState({ toastOpen: true, toastMsg: msg, toastActions: actions || [] }));
+  }
+  onApply = () => {
+    if (this.gate()) return;
+    location.hash = 'apply';
+    this.toast('멘토링 신청 화면으로 갑니다');
+  };
+  onBookmark = () => {
+    if (this.gate()) return;
+    const next = !this.state.bookmarked;
+    this.setState({ bookmarked: next });
+    this.toast(next ? '관심있는 멘토에 추가했어요' : '관심있는 멘토에서 뺐어요', [
+      { label: '실행취소', emphasis: 'primary', onClick: () => this.setState({ bookmarked: !next, toastOpen: false }) },
+    ]);
+  };
+  onEdit = () => this.toast('편집은 다음 라운드에 만듭니다');
+
+  shareUrl() {
+    const p = new URLSearchParams();
+    if (this.state.tab !== 'profile') p.set('tab', this.state.tab);
+    const qs = p.toString();
+    return location.href.split(/[?#]/)[0] + (qs ? '?' + qs : '');
+  }
+  copyLink = () => {
+    const done = () => this.toast('링크를 복사했어요');
+    this.setState({ shareOpen: false });
+    try { navigator.clipboard.writeText(this.shareUrl()).then(done, done); } catch (err) { done(); }
+  };
+  nativeShare() {
+    if (navigator.share) {
+      navigator.share({ title: document.title, url: this.shareUrl() }).catch((err) => { if (!err || err.name !== 'AbortError') this.copyLink(); });
+    } else this.copyLink();
+  }
+  onShare = () => {
+    if (this.isMobile()) { this.nativeShare(); return; }
+    if (Date.now() - (this._closedAt || 0) < 300) return;
+    this.setState({ shareOpen: !this.state.shareOpen });
+  };
+  closeShare = () => { this._closedAt = Date.now(); this.setState({ shareOpen: false }); };
+  shareMenu = () => { this.setState({ shareOpen: false }); this.nativeShare(); };
+
+  toggleHelpful(id, next) { if (this.gate()) return; this.setState({ helpful: Object.assign({}, this.state.helpful, { [id]: next }) }); }
+  toggleScrap(id, next) { if (this.gate()) return; this.setState({ scrap: Object.assign({}, this.state.scrap, { [id]: next }) }); }
+
+  buildApplyBar() {
+    const NS = window[NSN];
+    if (!NS) return null;
+    const h = React.createElement;
+    const s = this.state;
+    const self = s.role === 'self';
+    return h('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
+      h('div', { style: { flex: '1 1 auto', minWidth: 0, display: 'flex' } },
+        self
+          ? h(NS.Button, { variant: 'outline', size: 'lg', onClick: this.onEdit, style: { width: '100%' } }, '프로필 수정하기')
+          : h(NS.Button, { variant: 'primary', size: 'lg', onClick: this.onApply, style: { width: '100%' } }, '1:1 멘토링 신청하기')),
+      self ? null : h(NS.IconButton, { icon: 'bookmark-02', size: 'lg', pressed: s.bookmarked, ariaLabel: '관심있는 멘토', onClick: this.onBookmark }),
+      h(NS.IconButton, { icon: 'share-08', size: 'lg', variant: 'outline', ariaLabel: '공유', onClick: this.onShare }));
+  }
+  buildMap(sc, c) {
+    const h = React.createElement;
+    return h('svg', {
+      viewBox: '-360 0 1080 180', preserveAspectRatio: 'none', 'aria-hidden': 'true', focusable: 'false',
+      style: { position: 'absolute', left: -((c.lon + 180) * sc + 360 * sc), top: -((90 - c.lat) * sc), width: 360 * sc * 3, height: 180 * sc, color: 'var(--sage-200)', display: 'block' },
+    },
+    h('defs', null, h('path', { id: 'md-world', d: WORLD_D(), fill: 'currentColor' })),
+    h('use', { href: '#md-world', x: -360, style: { fill: 'currentColor' } }),
+    h('use', { href: '#md-world', style: { fill: 'currentColor' } }),
+    h('use', { href: '#md-world', x: 360, style: { fill: 'currentColor' } }));
+  }
+
+  renderVals() {
+    const s = this.state;
+    const NS = window[NSN];
+    const h = React.createElement;
+    const mobile = this.isMobile();
+    const narrow = !mobile && s.winW <= 1024;
+    const leftW = narrow ? 280 : 360;
+    const reduced = this.reduced();
+    const isNew = s.data === 'new';
+    const two = s.data === 'two-interviews';
+    const vis = visibleTabs(s.data);
+    const tab = vis.includes(s.tab) ? s.tab : 'profile';
+    const inFrame = s.view === 'mobile';
+    const showFrame = !inFrame && s.frame === 'mobile';
+    const gone = s.st === '404' || s.st === 'error';
+    const loading = s.st === 'loading';
+    const isPage = !gone;
+    const ready = isPage && !loading;
+    const tabError = s.st === 'tab-error';
+    const isSelf = s.role === 'self';
+    const stuck = s.stuck && ready;
+
+    const fp = new URLSearchParams({ view: 'mobile', role: s.role, data: s.data, state: s.st, tab });
+    const qna = isNew ? [] : QNA.slice().sort((a, b) => b.helpful - a.helpful || (a.date < b.date ? 1 : -1));
+    const reviews = isNew ? [] : REVIEWS;
+    const c = MENTOR.city || MENTOR.countryCenter;
+
+    const iv = two && s.interview === IV_OLD.id ? IV_OLD : IV_LATEST;
+    const other = iv === IV_OLD ? IV_LATEST : IV_OLD;
+
+    const tabItems = [
+      { value: 'profile', label: '프로필' },
+      { value: 'interview', label: '인터뷰' },
+      { value: 'qna', label: 'Q&A', count: qna.length },
+      { value: 'review', label: '리뷰', count: reviews.length },
+    ].filter((t) => vis.includes(t.value));
+
+    // 멘토 소개 단 수 — 기본 2단. 한 단이 300 아래로 내려가거나 글이 짧으면(약 150자 미만) 1단.
+    const intro = isNew ? INTRO_NEW : INTRO;
+    const innerW = Math.max(0, s.introW - 48);
+    const cols = !mobile && innerW > 0 && (innerW - 32) / 2 >= 300 && intro.length >= 150 ? 2 : 1;
+
+    const period = (x) => x.start + ' ~ ' + (x.end || '현재');
+    const logoEl = h('img', { src: DS + 'assets/logo/mentree-logo.svg', alt: 'mentree', style: { height: 24, display: 'block' } });
+    const btn = (label, onClick, variant) => (NS ? h(NS.Button, { variant: variant || 'primary', size: 'md', onClick }, label) : null);
+    const retry = () => this.setState({ st: 'ok' }, () => this.syncUrl());
+    const fade = reduced ? 'none' : 'opacity 150ms ease, visibility 150ms';
+
+    return {
+      hydrated: true,
+      showDemoBar: !inFrame,
+      showFrame,
+      showPage: !showFrame,
+      frameEl: showFrame ? h('iframe', {
+        key: fp.toString(), src: '?' + fp.toString(), title: '모바일 목업 390 × 844',
+        style: { flex: '0 0 auto', width: 390, height: 844, border: '1px solid var(--border)', borderRadius: 'var(--radius-2xl)', background: 'var(--background)', boxShadow: 'var(--shadow-lg)' },
+      }) : null,
+      role: s.role, data: s.data, st: s.st, frame: s.frame,
+      onRole: (e) => this.setState({ role: e.target.value, bookmarked: false, helpful: {}, scrap: {}, shareOpen: false, toastOpen: false }, () => this.syncUrl()),
+      onData: (e) => {
+        const d = e.target.value;
+        const t = visibleTabs(d).includes(this.state.tab) ? this.state.tab : 'profile';
+        this.setState({ data: d, tab: t, interview: null, qnaShown: 5, reviewShown: 5, expanded: {}, overflow: {} }, () => this.syncUrl());
+      },
+      onSt: (e) => this.setState({ st: e.target.value }, () => this.syncUrl()),
+      onFrame: (e) => this.setState({ frame: e.target.value }),
+
+      anchorRef: this.anchorRef, tabsAnchorRef: this.tabsAnchorRef, asideRef: this.asideRef, panelRef: this.panelRef, introRef: this.introRef,
+      headerAuth: s.role === 'guest' ? 'guest' : s.role === 'mentee' ? 'mentee' : 'mentor',
+      headerUser: s.role === 'mentee' ? { name: '김' } : s.role === 'mentor' ? { name: '이준호', avatarUrl: IMG + '8.png' } : s.role === 'self' ? { name: '박서연', avatarUrl: 'assets/img/2-avatar.png' } : undefined,
+      logoEl,
+      noop: () => {},
+      goLogin: this.goLogin,
+
+      gone, isPage, loading, ready, tabError,
+      goneIcon: s.st === '404' ? 'user-search-01' : 'alert-02',
+      goneTitle: s.st === '404' ? '멘토를 찾을 수 없어요' : '멘토 정보를 불러오지 못했어요',
+      goneDesc: s.st === '404' ? '주소가 바뀌었거나 활동을 멈춘 멘토일 수 있어요.' : '잠시 뒤에 다시 시도해 주세요.',
+      goneAction: s.st === '404' ? btn('멘토 찾기로', () => { location.hash = 'mentor-search'; }) : btn('다시 시도', retry),
+      retryAction: btn('다시 시도', retry, 'outline'),
+
+      desktop: !mobile, mobile, isSelf, notSelf: !isSelf,
+      summary: SUMMARY,
+      avatarSize: mobile ? 64 : 88,
+      mapEl: this.buildMap(mobile ? 12 : 4, c),
+      pinAnchorStyle: { position: 'absolute', left: mobile ? '84%' : '72%', top: '50%', width: 0, height: 0 },
+      bandInnerStyle: mobile
+        ? { position: 'relative', zIndex: 1, boxSizing: 'border-box', display: 'flex', maxWidth: 'var(--container-max)', margin: '0 auto', padding: '20px var(--container-pad)' }
+        : { position: 'relative', zIndex: 1, boxSizing: 'border-box', display: 'flex', alignItems: 'center', maxWidth: 'var(--container-max)', margin: '0 auto', minHeight: 200, padding: '24px var(--container-pad)' },
+      identityStyle: { display: 'flex', flexDirection: mobile ? 'column' : 'row', alignItems: mobile ? 'flex-start' : 'center', gap: mobile ? 12 : 24, minWidth: 0, maxWidth: mobile ? '78%' : '60%' },
+
+      nameHidden: stuck ? 'false' : 'true',
+      infoWrapStyle: { display: 'grid', gridTemplateRows: stuck ? '1fr' : '0fr', opacity: stuck ? 1 : 0, visibility: stuck ? 'visible' : 'hidden', transition: reduced ? 'none' : 'grid-template-rows 200ms ease-out, opacity 200ms ease-out, visibility 200ms' },
+      infoInnerStyle: { display: 'flex', alignItems: 'center', gap: 12, paddingBottom: 'var(--space-3)', transform: stuck ? 'none' : 'translateY(-8px)', transition: reduced ? 'none' : 'transform 200ms ease-out' },
+      applyWrapStyle: { flex: narrow ? '1 1 100%' : '1 1 auto', minWidth: 0, display: 'grid' },
+      popAlign: narrow ? 'start' : 'end',
+      mTabRowStyle: { position: 'sticky', top: stuck ? 'calc(var(--mt-header-offset, 65px) + ' + M_NAME_H + 'px)' : 'var(--mt-header-offset, 65px)', transition: reduced ? 'none' : 'top 200ms ease-out', zIndex: 30, height: M_TABS_H, boxSizing: 'border-box', display: 'flex', alignItems: 'flex-end', padding: '0 var(--container-pad)', background: 'var(--background)', borderBottom: '1px solid var(--border)' },
+      mNameRowStyle: { position: 'absolute', left: 0, right: 0, bottom: '100%', height: M_NAME_H, boxSizing: 'border-box', padding: '0 var(--container-pad)', display: 'flex', alignItems: 'center', gap: 8, background: 'var(--background)', opacity: stuck ? 1 : 0, visibility: stuck ? 'visible' : 'hidden', transform: stuck ? 'none' : 'translateY(-' + M_NAME_H + 'px)', transition: reduced ? 'none' : 'transform 200ms ease-out, opacity 200ms ease-out, visibility 200ms', pointerEvents: stuck ? 'auto' : 'none' },
+      mainStyle: { boxSizing: 'border-box', maxWidth: 'var(--container-max)', margin: '0 auto', padding: mobile ? '24px var(--container-pad) 32px' : '24px var(--container-pad) 96px' },
+      gridStyle: { display: 'grid', gridTemplateColumns: mobile ? 'minmax(0, 1fr)' : leftW + 'px minmax(0, 1fr)', gap: 32 },
+
+      bookmarked: s.bookmarked,
+      onApply: this.onApply, onBookmark: this.onBookmark, onEdit: this.onEdit,
+      onShare: this.onShare, shareOpen: s.shareOpen && !mobile, closeShare: this.closeShare, copyLink: this.copyLink, shareMenu: this.shareMenu,
+      applyBar: ready && mobile ? this.buildApplyBar() : null,
+
+      keywords: KEYWORDS,
+      careers: CAREERS.map((x) => Object.assign({}, x, { period: period(x) })),
+      education: (isNew ? [] : EDUCATION).map((x) => Object.assign({}, x, { period: period(x) })),
+      hasEdu: !isNew && EDUCATION.length > 0,
+
+      tabItems, tab, onTab: this.onTab,
+      panelId: 'md-tabs-panel-' + tab, panelLabel: 'md-tabs-tab-' + tab,
+      showProfile: !tabError && tab === 'profile',
+      showInterview: !tabError && tab === 'interview',
+      showQna: !tabError && tab === 'qna',
+      showReview: !tabError && tab === 'review',
+
+      latest: IV_LATEST,
+      coverParas: COVER_PARAS,
+      readMore: this.readMore,
+      intro,
+      introTextStyle: { margin: 0, columnCount: cols, columnGap: 32, fontSize: 'var(--text-body)', lineHeight: 'var(--text-body--line-height)', letterSpacing: 'var(--text-body--letter-spacing)', color: 'var(--foreground)', textWrap: 'pretty' },
+      pairs: isNew ? [] : PAIRS, hasPairs: !isNew, pairsCount: PAIRS.length,
+      activities: (isNew ? [] : ACTIVITIES).map((a) => Object.assign({}, a, {
+        thumbStyle: { display: 'block', width: 160, aspectRatio: '16 / 9', borderRadius: 'var(--radius-md)', background: 'var(--sage-100) url("' + a.thumb + '") center / cover no-repeat' },
+      })),
+      hasActivities: !isNew,
+
+      iv, hasOther: two, other: Object.assign({}, other, { href: '?tab=interview&interview=' + other.id }),
+      otherTitle: iv === IV_OLD ? '최신 인터뷰' : '지난 인터뷰',
+      openOther: (e) => this.openInterview(other.id, e),
+
+      qnaItems: qna.slice(0, s.qnaShown).map((q) => ({
+        id: q.id, title: q.title, answer: q.answer,
+        views: q.views.toLocaleString('ko-KR'),
+        helpfulOn: !!s.helpful[q.id], helpful: q.helpful + (s.helpful[q.id] ? 1 : 0),
+        onHelpful: (next) => this.toggleHelpful(q.id, next),
+        scrapOn: !!s.scrap[q.id], scraps: q.scraps + (s.scrap[q.id] ? 1 : 0),
+        onScrap: (next) => this.toggleScrap(q.id, next),
+      })),
+      qnaMore: s.qnaShown < qna.length,
+      moreQna: () => this.setState({ qnaShown: this.state.qnaShown + 5 }),
+
+      reviewCount: reviews.length,
+      reviewItems: reviews.slice(0, s.reviewShown).map((r) => {
+        const exp = !!s.expanded[r.id];
+        return {
+          id: r.id, initial: r.name, masked: r.name + '**', dateLabel: relDate(r.date), title: r.title, body: r.body,
+          clamped: !exp, expanded: exp, showMore: !exp && !!s.overflow[r.id],
+          expand: () => this.setState({ expanded: Object.assign({}, this.state.expanded, { [r.id]: true }) }),
+        };
+      }),
+      reviewMore: s.reviewShown < reviews.length,
+      moreReview: () => this.setState({ reviewShown: this.state.reviewShown + 5 }),
+
+      showBanner: !isSelf,
+      onBannerAction: (e) => { if (e && e.preventDefault) e.preventDefault(); this.onApply(); },
+
+      toastOpen: s.toastOpen, toastMsg: s.toastMsg, toastActions: s.toastActions,
+      dismissToast: () => this.setState({ toastOpen: false }),
+      toastStyle: mobile ? { bottom: 'calc(var(--mt-bottom-bar-height, 56px) + env(safe-area-inset-bottom) + 16px)' } : undefined,
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!-- @dsCard group="Components" viewport="1280x760" name="ReorderList" subtitle="DS-73 순서를 바꾸는 목록 — 1건은 핸들 없음 · 마우스 끌기 / 터치 길게 눌러 끌기 · 키보드 Space 집기 → ↑↓ → Space 놓기" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+html,body{margin:0}
+body{padding:24px;background:var(--background);font-family:var(--font-sans);color:var(--foreground)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:28px 32px;align-items:start}
+.cell{display:flex;flex-direction:column;gap:10px;min-width:0}
+.label{font-size:var(--text-micro);line-height:var(--text-micro--line-height);letter-spacing:var(--text-micro--letter-spacing);font-weight:600;color:var(--muted-foreground)}
+@media (max-width:480px){body{padding:20px 16px}}
+
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+
+  const { ReorderList, Field, Input } = window.MentreeDesignSystem_2f86cf;
+  const QS = [
+    { id: "a", q: "해외 취업을 결심한 계기는?" },
+    { id: "b", q: "첫 직장은 어떻게 구했나요?" },
+    { id: "c", q: "현지에서 가장 힘들었던 점은?" },
+  ];
+  function L({ n = 3, tag }) {
+    const [items, setItems] = React.useState(QS.slice(0, n));
+    return (
+      <div data-demo={tag}>
+        <ReorderList items={items} onReorder={setItems} itemLabel={(it) => it.q}
+          renderItem={(it, i) => (
+            <Field label={"질문 " + (i + 1)} htmlFor={tag + it.id}><Input id={tag + it.id} defaultValue={it.q} /></Field>
+          )} />
+      </div>
+    );
+  }
+  function Demo() {
+    React.useEffect(() => {
+      const t = setTimeout(() => {
+        const h = document.querySelector('[data-demo="drag"] .mt-reorder-handle');
+        if (h) {
+          const r = h.getBoundingClientRect();
+          h.dispatchEvent(new PointerEvent("pointerdown", { bubbles: true, pointerType: "mouse", button: 0, clientX: r.left + 10, clientY: r.top + 10 }));
+          window.dispatchEvent(new PointerEvent("pointermove", { bubbles: true, pointerType: "mouse", clientX: r.left + 10, clientY: r.top + 70 }));
+        }
+        const k = document.querySelector('[data-demo="kb"] .mt-reorder-handle');
+        if (k) {
+          k.focus();
+          k.dispatchEvent(new KeyboardEvent("keydown", { key: " ", bubbles: true }));
+          setTimeout(() => k.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true })), 60);
+        }
+      }, 400);
+      return () => clearTimeout(t);
+    }, []);
+    return (
+      <div className="grid">
+        <div className="cell"><div className="label">1건 — 핸들 없음</div><L n={1} tag="one" /></div>
+        <div className="cell"><div className="label">3건 — 핸들(≡)을 끌어 순서를 바꾼다</div><L tag="three" /></div>
+        <div className="cell"><div className="label">끄는 중 — 뜬 항목(--shadow-md) · 비켜선 자리</div><L tag="drag" /></div>
+        <div className="cell"><div className="label">키보드로 집은 상태 — Space 집기 → ↓ 한 칸</div><L tag="kb" /></div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

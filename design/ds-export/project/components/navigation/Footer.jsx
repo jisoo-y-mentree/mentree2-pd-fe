@@ -24,8 +24,9 @@ export function Footer({
     display: "inline-flex",
     alignItems: "center",
     gap: 4,
-    fontSize: "var(--text-body)",
-    letterSpacing: "-0.01em",
+    fontSize: "var(--text-caption)",
+    lineHeight: "var(--text-caption--line-height)",
+    letterSpacing: "var(--text-caption--letter-spacing)",
     textDecoration: "none",
     color: isBiz ? "var(--biz-primary)" : "var(--muted-foreground)",
     width: "fit-content",
@@ -33,7 +34,7 @@ export function Footer({
 
   const Column = ({ title, items }) => (
     <div style={{ display: "flex", flexDirection: "column", gap: 10, minWidth: 120 }}>
-      <div style={{ fontSize: "var(--text-caption)", fontWeight: 600, color: "var(--foreground)", letterSpacing: "0.02em" }}>
+      <div style={{ fontSize: "var(--text-caption)", fontWeight: 600, color: "var(--foreground)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)" }}>
         {title}
       </div>
       {items.map((item) => {
@@ -91,7 +92,7 @@ export function Footer({
                 }}
               />
             )}
-            <p style={{ fontSize: "var(--text-caption)", color: "var(--muted-foreground)", lineHeight: 1.6, margin: 0 }}>
+            <p style={{ fontSize: "var(--text-caption)", color: "var(--muted-foreground)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", margin: 0 }}>
               멘토와 멘티를 잇는 멘토링 플랫폼
             </p>
           </div>
@@ -117,12 +118,12 @@ export function Footer({
             justifyContent: "space-between",
           }}
         >
-          <span className="tabular" style={{ fontSize: "var(--text-caption)", color: "var(--muted-foreground)" }}>
+          <span className="tabular" style={{ fontSize: "var(--text-caption)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", color: "var(--muted-foreground)" }}>
             {copyright}
           </span>
           <div style={{ display: "flex", gap: 16 }}>
-            <a href="/terms" style={{ fontSize: "var(--text-caption)", color: "var(--muted-foreground)", textDecoration: "none" }}>이용약관</a>
-            <a href="/privacy" style={{ fontSize: "var(--text-caption)", color: "var(--muted-foreground)", textDecoration: "none", fontWeight: 600 }}>개인정보처리방침</a>
+            <a href="/terms" style={{ fontSize: "var(--text-caption)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", color: "var(--muted-foreground)", textDecoration: "none" }}>이용약관</a>
+            <a href="/privacy" style={{ fontSize: "var(--text-caption)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", color: "var(--muted-foreground)", textDecoration: "none", fontWeight: 600 }}>개인정보처리방침</a>
           </div>
         </div>
       </div>

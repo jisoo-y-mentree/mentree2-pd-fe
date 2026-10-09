@@ -1,17 +1,40 @@
-<!-- @dsCard group="Foundations" viewport="700x230" name="타입 스케일" subtitle="h1 24 · h2 20 · h3 16 · body 14 · caption 12" -->
+<!-- @dsCard group="Foundations" viewport="760x660" name="타입 스케일" subtitle="9개 토큰 — 카드 폭이 제목을 정한다(~280 body 16 · 280–360 h3 18 · 360+ h2 20). 반응형은 display·h0·h1 세 단에만" -->
 <!DOCTYPE html>
 <html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
 <style>
   body{margin:0;padding:20px 22px;background:var(--background);color:var(--foreground)}
+  .cap{font-size:11px;color:var(--muted-foreground);padding:2px 0 10px;text-transform:uppercase;letter-spacing:.04em}
+  .frame{border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;margin-bottom:16px}
+  .frame-label{font-size:11px;color:var(--muted-foreground);padding:6px 12px;border-bottom:1px solid var(--border);background:var(--muted)}
+  .frame-body{width:var(--fw);padding:10px 16px}
   .row{display:flex;align-items:baseline;gap:14px;padding:5px 0;border-bottom:1px solid var(--border)}
   .row:last-child{border:none}
-  .tok{width:90px;font-size:11px;color:var(--muted-foreground);font-variant-numeric:tabular-nums}
-  .meta{margin-left:auto;font-size:11px;color:var(--muted-foreground);font-variant-numeric:tabular-nums}
+  .tok{width:70px;font-size:11px;color:var(--muted-foreground);font-variant-numeric:tabular-nums}
+  .meta{margin-left:auto;font-size:11px;color:var(--muted-foreground);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .widthrow{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--border)}
+  .widthrow:last-child{border:none}
+  .wtok{width:90px;font-size:11px;color:var(--muted-foreground)}
 </style></head>
 <body>
-  <div class="row"><span class="tok">h1</span><span class="text-h1">멘토와 함께 성장</span><span class="meta">24 / 1.3 / +.01em · 600</span></div>
-  <div class="row"><span class="tok">h2</span><span class="text-h2">이번 주 멘토링 세션</span><span class="meta">20 / 1.4 / +.01em · 600</span></div>
-  <div class="row"><span class="tok">h3</span><span class="text-h3">추천 멘토 3명</span><span class="meta">16 / 1.5 · 600</span></div>
-  <div class="row"><span class="tok">body</span><span class="text-body">멘토링을 시작하려면 관심 분야를 선택하세요. メンタリングを始めましょう。</span><span class="meta">14 / 1.7 / −.01em</span></div>
-  <div class="row"><span class="tok">caption</span><span class="text-caption">마지막 업데이트 · 2026-07-07</span><span class="meta">12 / 1.6</span></div>
+  <div class="cap">Desktop (1280)</div>
+  <div class="frame"><div class="frame-label">1280</div><div class="frame-body" style="--fw:720px">
+    <div class="row"><span class="tok">display</span><span class="text-display">해외 커리어의 시작</span><span class="meta">32 / 40 / −.025em · 600</span></div>
+    <div class="row"><span class="tok">h0</span><span class="text-h0">멘토와 함께 성장</span><span class="meta">24 / 32 / −.02em · 600 (Mobile 20 / 28)</span></div>
+    <div class="row"><span class="tok">h1</span><span class="text-h1">페이지 안 큰 제목</span><span class="meta">22 / 30 / −.015em · 600</span></div>
+    <div class="row"><span class="tok">h2</span><span class="text-h2">추천 멘토 3명</span><span class="meta">20 / 28 / −.005em · 600</span></div>
+    <div class="row"><span class="tok">h3</span><span class="text-h3">멘토링을 시작해보세요</span><span class="meta">18 / 26 / 0 · 600</span></div>
+    <div class="row"><span class="tok">article</span><span class="text-article">아티클·인터뷰 상세·답변 전문의 읽을거리 본문입니다. メンタリングを始めましょう。</span><span class="meta">17 / 28 / 0 · 400</span></div>
+    <div class="row"><span class="tok">body</span><span class="text-body">멘토링을 시작하려면 관심 분야를 선택하세요.</span><span class="meta">16 / 24 / 0 · 400</span></div>
+    <div class="row"><span class="tok">caption</span><span class="text-caption">카드 안 글·보조 — 2026-09-15</span><span class="meta">14 / 20 / +.005em · 500</span></div>
+    <div class="row"><span class="tok">micro</span><span class="text-micro">신규</span><span class="meta">12 / 16 / +.01em · 600</span></div>
+  </div></div>
+  <div class="cap">Mobile (390) — display·h0·h1 세 단만 줄어든다. h2·h3·article 이하는 그대로(카드 제목은 폭 규칙이, article은 벤치마크가 고정을 말한다)</div>
+  <div class="frame"><div class="frame-label">390</div><iframe src="type-scale.mobile.html" style="width:390px;height:420px;border:none;display:block"></iframe></div>
+
+  <div class="cap">카드 제목은 카드 폭이 정한다 — 3구간(원티드 실측 2026-09-15 @1280: 250→16 · 333→17 / 토스: 238→20 · 652→20)</div>
+  <div class="frame"><div class="frame-body" style="--fw:400px;padding:14px 16px">
+    <div class="widthrow"><span class="wtok">~280</span><span class="text-body" style="font-weight:600">body 16 · 600</span></div>
+    <div class="widthrow"><span class="wtok">280–360</span><span class="text-h3">h3 18 — MentorCard·QnaCard·ArticlePreview(296)</span></div>
+    <div class="widthrow"><span class="wtok">360+</span><span class="text-h2">h2 20 — InterviewCard(400). 폭이 더 커져도 여기서 멈춘다</span></div>
+  </div></div>
 </body></html>
