@@ -2,11 +2,13 @@
 
 - Claude Design: 프로젝트 **`Mentree 2.0 Insight feed`**(radarlab 계정). 공개 공유 링크는 적지 않는다([ADR-0002](../../../../docs/adr/0002-rebuild-design-system-instead-of-sharing.md))
 - 원본: export 폴더 `Mentree 2.0 Insight feed`(20장 · **3판 2026-09-17 14:09** · 2판 09-17 11:14 · 1판 09-16 16:05)
-- **생성일: 2026-09-17**
-- 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md) — §1~11 확정 2026-09-16
+- **생성일: 2026-10-09 17:24**(4판 · zip SHA-256 `d11491d84041` · `design/_import/export-1008/Mentree 2.0 Insight feed (4).zip`. 프롬프트 `_import/prompts/insight-round4-1009.md` · Figma `1695:90735`. 1〜3판은 2026-09-16〜17). 상세 1본 ＋ 얇은 7장 — `article-detail-modal-mentors` 를 지웠다
+- 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md) — 2026-10-09 개정(§4 · §6 · §8 · §9)
 - 디자인 시스템: `ds-export/` 의 **2026-09-16 판**(폴더 해시 `4ec9a3f66119`). export 의 사본과 같은 판이다 — [insight-list 의 SOURCE.md](../../insight-list/template/SOURCE.md) 「디자인 시스템이 어긋났었다」. **2026-10-08 에 `ds-export/` 가 52본 판(zip SHA-256 `5424904758ba`)으로 교체됐다**(PR #37). 이 template 은 그 번들로 그려진다. 이 판에 있던 부품은 전부 그대로다
 
 ## 무엇이 들어 있나
+
+**4판(2026-10-09)에서 바뀐 것** — 「목록으로 돌아가기」가 떠난 목록의 자리로(`history.back` ＋ `sessionStorage`) · 부속 블록 머리의 화살표 → 「더보기 >」(관련 아티클은 키워드 칩 걸린 목록 · 멘토 쪽은 `#`) · 데스크톱 4장 격자 · 인사이트 글의 배너 → 관련 멘토 박스(멘토 칩 3 · `.ad-mentor-chip`) · 모달 삭제 · 좌 레일 스크랩 초록(`.ad-scrap`). 덮은 CSS 는 `.ad-` 접두사다
 
 **얇은 페이지 8장 ＋ 공용 화면 부품 1본.**
 

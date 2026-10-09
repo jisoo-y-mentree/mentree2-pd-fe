@@ -27,7 +27,17 @@
     .qi-clamp2 { -webkit-line-clamp: 2; }
     .qi-clamp3 { -webkit-line-clamp: 3; }
     .qi-row + .qi-row { border-top: 1px solid var(--border); }
+    .qi-row:first-child { padding-top: 0 !important; }
     .qi-fs > button, .qi-fs > * > button:first-child, .qi-fs > * > * > button:first-child { width: 100%; }
+    .qi-filters .qi-fs button[aria-haspopup="dialog"] { height: 40px !important; }
+    .qi-cats a:not([aria-current="page"]):hover { background: var(--sidebar-accent) !important; color: var(--sidebar-accent-foreground) !important; }
+    /* 4차(10-09) 화면 CSS — 페이지 루트 토큰 덮기. 색칩·스크랩 색은 DS 가 정하면 이 블록만 지운다. */
+    .il-shell { --primary: #15803D; --primary-foreground: #F0FDF4; --green-50: #F5FAF6; --green-100: #E7F4E9; --il-featured: #082F49; --il-new: #1BAA51; --il-scrap-on-bg: #F5FAF6; --il-scrap-on-border: #008236; --il-scrap-on-icon: #00A63E; }
+    .il-featured { transition: box-shadow 150ms ease; }
+    .il-featured:hover { box-shadow: var(--shadow-md); }
+    .il-count[data-after-featured="true"] { margin-top: 32px !important; }
+    /* A-3 스크랩 켜짐 — 부품(BookmarkToggle)의 --sage-900 반전을 덮는다(DS-35 로 돌려보낼 것) */
+    .il-scrap button[aria-pressed="true"] { background: var(--il-scrap-on-bg) !important; border: 1px solid var(--il-scrap-on-border) !important; color: var(--il-scrap-on-icon) !important; }
     @media (max-width: 768px) {
       .qi-only-mobile { display: block !important; }
       .qi-only-desktop { display: none !important; }
@@ -36,15 +46,23 @@
       .qi-filters .qi-fs > * { width: 100% !important; }
       .qi-filters .qi-search { flex: 1 1 100%; }
       .qi-chipbar { flex-wrap: wrap; }
+      .il-featured { flex-direction: column !important; height: auto !important; }
+      .il-featured-img { flex: 0 0 180px !important; height: 180px; }
+      .il-featured-panel { flex: 1 1 auto !important; padding: 20px !important; }
+      .il-featured-title { font-size: 20px !important; }
+      .il-featured-excerpt { -webkit-line-clamp: 2 !important; }
+      .il-count { flex-wrap: wrap; }
+      .il-pager > *, .il-pager > * > * { flex: 1 1 0; min-width: 0; }
+      .il-pager button { width: 100% !important; }
       .qi-pad-bottom { padding-bottom: calc(56px + env(safe-area-inset-bottom) + 32px) !important; }
     }
   </style>
 </helmet>
-<div style="min-height:100vh;display:flex;flex-direction:column">
+<div class="il-shell" style="min-height:100vh;display:flex;flex-direction:column">
   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" active-key="insights" on-navigate="{{ onNav }}" hint-size="100%,64px"></x-import>
   <main class="qi-pad-bottom" style="flex:1;width:100%;max-width:var(--container-max);margin:0 auto;padding:40px var(--container-pad) 88px;box-sizing:border-box">
     <h1 style="margin:0;font-size:var(--text-h0);font-weight:600;letter-spacing:var(--text-h0--letter-spacing)">멘트리 인사이트</h1>
-    <p data-copy="tbd" style="margin:12px 0 0;max-width:720px;font-size:var(--text-body);line-height:1.7;color:var(--muted-foreground)">해외 취업과 현지 생활에 필요한 정보를 멘트리가 직접 정리해 싣습니다.<br>멘토 인터뷰와 이벤트 기록도 같은 자리에서 보실 수 있습니다.</p>
+    <p data-copy="tbd" style="margin:12px 0 0;max-width:720px;font-size:var(--text-body);line-height:1.7;color:var(--muted-foreground)">해외 취업과 현지 생활에 필요한 정보를 멘트리가 직접 정리해드립니다.</p>
     <div class="qi-only-mobile" style="margin-top:24px">
       <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Tabs" items="{{ tabItems }}" value="{{ tabValue }}" on-change="{{ onTab }}" aria-label="카테고리" hint-size="100%,44px"></x-import>
     </div>
@@ -53,7 +71,7 @@
         <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="240px,220px">
           <div style="padding:20px 16px;display:flex;flex-direction:column;gap:12px">
             <div style="font-size:var(--text-h3);font-weight:600;padding:0 4px">카테고리</div>
-            <nav style="display:flex;flex-direction:column;gap:4px">
+            <nav class="qi-cats" style="display:flex;flex-direction:column;gap:4px">
               <sc-for list="{{ cats }}" as="cat" hint-placeholder-count="4">
                 <a href="{{ cat.href }}" aria-current="{{ cat.aria }}" style="{{ cat.style }}">{{ cat.label }}</a>
               </sc-for>
@@ -65,17 +83,17 @@
         <div class="qi-filters" style="display:flex;align-items:center;gap:8px">
           <sc-if value="{{ showCountry }}" hint-placeholder-val="{{ true }}">
             <div class="qi-fs" style="flex:0 0 160px">
-              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterSelect" label="국가" groups="{{ countryGroups }}" value="{{ filters.country }}" on-change="{{ setCountry }}" dc-props="{{ w160 }}" hint-size="160px,32px"></x-import>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterSelect" label="국가" groups="{{ countryGroups }}" value="{{ filters.country }}" on-change="{{ setCountry }}" dc-props="{{ w160 }}" hint-size="160px,40px"></x-import>
             </div>
           </sc-if>
           <sc-if value="{{ showJob }}" hint-placeholder-val="{{ false }}">
             <div class="qi-fs" style="flex:0 0 160px">
-              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterSelect" label="직종" groups="{{ jobGroups }}" value="{{ filters.job }}" on-change="{{ setJob }}" dc-props="{{ w160 }}" hint-size="160px,32px"></x-import>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterSelect" label="직종" groups="{{ jobGroups }}" value="{{ filters.job }}" on-change="{{ setJob }}" dc-props="{{ w160 }}" hint-size="160px,40px"></x-import>
             </div>
           </sc-if>
           <sc-if value="{{ showKeyword }}" hint-placeholder-val="{{ true }}">
             <div class="qi-fs" style="flex:0 0 160px">
-              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterSelect" label="키워드" groups="{{ keywordGroups }}" value="{{ filters.keyword }}" on-change="{{ setKeyword }}" dc-props="{{ w160 }}" hint-size="160px,32px"></x-import>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterSelect" label="키워드" groups="{{ keywordGroups }}" value="{{ filters.keyword }}" on-change="{{ setKeyword }}" dc-props="{{ w160 }}" hint-size="160px,40px"></x-import>
             </div>
           </sc-if>
           <sc-if value="{{ showKind }}" hint-placeholder-val="{{ false }}">
@@ -88,20 +106,34 @@
             <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SearchInput" id="qi-search" value="{{ q }}" on-change="{{ setQ }}" on-search="{{ onSearch }}" completions="{{ completions }}" recent="{{ recent }}" on-remove-recent="{{ removeRecent }}" placeholder="아티클 검색" hint-size="100%,40px"></x-import>
           </div>
         </div>
-        <div class="qi-chipbar" style="display:flex;align-items:center;gap:8px;margin-top:16px;min-height:32px">
-          <sc-if value="{{ hasChips }}" hint-placeholder-val="{{ false }}">
-            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex:1">
-              <sc-for list="{{ chips }}" as="chip" hint-placeholder-count="2">
-                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" on-remove="{{ chip.remove }}" remove-aria-label="{{ chip.removeLabel }}" hint-size="90px,32px">{{ chip.label }}</x-import>
-              </sc-for>
-              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" on-click="{{ resetFilters }}" hint-size="80px,32px">필터 초기화</x-import>
+        <sc-if value="{{ showFeatured }}" hint-placeholder-val="{{ true }}">
+          <a class="il-featured" data-temp="FeaturedArticle" href="{{ featured.href }}" style="position:relative;display:flex;height:300px;margin-top:24px;border-radius:16px;overflow:hidden;text-decoration:none;color:inherit">
+            <div class="il-featured-img" style="flex:0 0 50%;min-width:0;background:var(--green-100);display:flex;align-items:flex-end;justify-content:center;overflow:hidden">
+              <img src="{{ featured.featuredImg }}" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block">
             </div>
-          </sc-if>
-          <div class="qi-fs" style="margin-left:auto;width:160px">
+            <div class="il-featured-panel" style="flex:0 0 50%;min-width:0;box-sizing:border-box;background:var(--il-featured);padding:0 44px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="tag" hue="neutral" size="md" hint-size="72px,28px">{{ featured.keyword }}</x-import>
+              <div class="il-featured-title qi-clamp2" style="margin-top:16px;font-size:24px;font-weight:600;line-height:1.4;letter-spacing:-0.01em;color:#F9FBF9;text-wrap:pretty">{{ featured.title }}</div>
+              <div class="il-featured-excerpt qi-clamp3" style="margin-top:12px;font-size:14px;font-weight:400;line-height:1.6;color:#E3E8E4">{{ featured.excerpt }}</div>
+            </div>
+            <span class="il-new" style="position:absolute;top:0;left:0;width:97px;height:31px;display:inline-flex;align-items:center;justify-content:center;background:var(--il-new);color:#FFFFFF;font-size:15px;font-weight:600;border-radius:16px 0 16px 0">신규 아티클</span>
+          </a>
+        </sc-if>
+        <sc-if value="{{ hasChips }}" hint-placeholder-val="{{ false }}">
+          <div class="qi-chipbar" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:16px">
+            <sc-for list="{{ chips }}" as="chip" hint-placeholder-count="2">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" on-remove="{{ chip.remove }}" remove-aria-label="{{ chip.removeLabel }}" hint-size="90px,32px">{{ chip.label }}</x-import>
+            </sc-for>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" on-click="{{ resetFilters }}" hint-size="80px,32px">필터 초기화</x-import>
+          </div>
+        </sc-if>
+        <div class="il-count" data-after-featured="{{ showFeatured }}" style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:24px">
+          <h2 style="margin:0;font-size:24px;font-weight:700;line-height:1.3;color:var(--foreground)"><span class="tabular">{{ totalCount }}</span>건의 아티클</h2>
+          <div class="qi-fs" style="flex:0 0 160px;width:160px">
             <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ sortOptions }}" value="{{ sort }}" on-change="{{ setSort }}" aria-label="정렬" dc-props="{{ w160 }}" hint-size="160px,40px"></x-import>
           </div>
         </div>
-        <div id="qi-list-head" style="margin-top:8px">
+        <div id="qi-list-head" style="margin-top:16px">
           <sc-if value="{{ isOk }}" hint-placeholder-val="{{ true }}">
             <div>
               <div class="qi-only-desktop">
@@ -114,18 +146,20 @@
                       </div>
                       <a href="{{ row.href }}" class="mt-card-link qi-clamp2" style="display:block;font-size:var(--text-h3);font-weight:600;line-height:var(--text-h3--line-height);color:inherit;text-decoration:none">{{ row.title }}</a>
                       <div class="qi-clamp3" style="font-size:var(--text-body);line-height:1.7;color:var(--muted-foreground)">{{ row.excerpt }}</div>
-                      <div class="tabular" style="font-size:var(--text-caption);color:var(--muted-foreground)">{{ row.date }}</div>
+                      <sc-if value="{{ row.showDate }}" hint-placeholder-val="{{ true }}">
+                        <div class="tabular" style="font-size:var(--text-caption);color:var(--muted-foreground)">{{ row.date }}</div>
+                      </sc-if>
                     </div>
                     <div style="position:relative;flex:0 0 296px;width:296px;aspect-ratio:16 / 9;border-radius:var(--card-media-radius);overflow:hidden;background:var(--sage-100)">
                       <img src="{{ row.img }}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
-                      <div style="position:absolute;top:8px;right:8px;z-index:3" on-click="{{ stop }}">
+                      <div class="il-scrap" style="position:absolute;top:8px;right:8px;z-index:3" on-click="{{ stop }}">
                         <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BookmarkToggle" selected="{{ row.saved }}" on-change="{{ row.toggleSave }}" hint-size="38px,38px"></x-import>
                       </div>
                     </div>
                   </article>
                 </sc-for>
               </div>
-              <div class="qi-only-mobile" style="padding-top:24px">
+              <div class="qi-only-mobile">
                 <div style="display:flex;flex-direction:column;gap:32px">
                   <sc-for list="{{ rows }}" as="row" hint-placeholder-count="4">
                     <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ArticlePreview" title="{{ row.title }}" excerpt="{{ row.excerpt }}" image="{{ row.img }}" tags="{{ row.tags }}" href="{{ row.href }}" hint-size="100%,320px"></x-import>
@@ -139,13 +173,13 @@
               <sc-for list="{{ skeletons }}" as="sk" hint-placeholder-count="5">
                 <div class="qi-row" style="display:flex;gap:24px;padding:24px 0">
                   <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:12px">
-                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="140" height="24" radius="md" hint-size="140px,24px"></x-import>
-                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="80%" height="26" hint-size="80%,26px"></x-import>
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" dc-props="{{ skBadge }}" hint-size="140px,24px"></x-import>
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" dc-props="{{ skTitle }}" hint-size="80%,26px"></x-import>
                     <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ sk.lines }}" hint-size="100%,60px"></x-import>
-                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="96" height="16" hint-size="96px,16px"></x-import>
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" dc-props="{{ skDate }}" hint-size="96px,16px"></x-import>
                   </div>
-                  <div style="flex:0 0 296px;width:296px">
-                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="296" height="167" radius="md" hint-size="296px,167px"></x-import>
+                  <div style="flex:0 0 296px;width:296px;aspect-ratio:16 / 9">
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" dc-props="{{ skThumb }}" hint-size="296px,167px"></x-import>
                   </div>
                 </div>
               </sc-for>
@@ -164,7 +198,19 @@
           </sc-if>
         </div>
         <sc-if value="{{ showPagination }}" hint-placeholder-val="{{ false }}">
-          <div style="margin-top:40px;display:flex;justify-content:center">
+          <sc-if value="{{ hasPager }}" hint-placeholder-val="{{ false }}">
+            <div class="il-pager" style="margin-top:40px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+              <sc-if value="{{ hasPrev }}" hint-placeholder-val="{{ false }}">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" icon-left="arrow-left-01" on-click="{{ goPrev }}" hint-size="140px,40px">이전 페이지로</x-import>
+              </sc-if>
+              <sc-if value="{{ hasNext }}" hint-placeholder-val="{{ true }}">
+                <div style="margin-left:auto;display:flex">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" icon-right="arrow-right-01" on-click="{{ goNext }}" hint-size="140px,40px">다음 페이지로</x-import>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+          <div style="margin-top:16px;display:flex;justify-content:center">
             <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Pagination" page="{{ page }}" total-pages="{{ totalPages }}" on-page-change="{{ onPageChange }}" hint-size="320px,44px"></x-import>
           </div>
         </sc-if>
@@ -235,10 +281,14 @@ class Component extends DCLogic {
   initFilters() {
     const f = { country: [], keyword: [], kind: "", job: [], q: "" };
     const p = this.props.preset;
-    if (p === "filtered") { f.country = ["일본"]; f.keyword = ["취업 준비"]; }
-    if (p === "empty") { f.country = ["캐나다"]; f.q = "비자 면접"; }
-    if (typeof location !== "undefined" && location.search) {
-      const s = new URLSearchParams(location.search);
+    const s = typeof location !== "undefined" && location.search ? new URLSearchParams(location.search) : null;
+    // URL 에 조건이 있으면 그것이 정본(상세의 「더보기 >」가 keyword 만 걸어 보낸다). 없을 때만 판의 preset.
+    const fromUrl = s && ["country", "keyword", "job", "kind", "q"].some(k => s.get(k));
+    if (!fromUrl && p === "filtered") { f.country = ["일본"]; f.keyword = ["취업 준비"]; }
+    if (!fromUrl && p === "empty") { f.country = ["캐나다"]; f.q = "비자 면접"; }
+    // 상세의 「더보기 >」에서 온 경우 — 보고 있던 글은 목록에서 뺀다(칩으로 보이지 않는 조건).
+    this.exclude = s && s.get("exclude") ? s.get("exclude") : "";
+    if (s) {
       if (s.get("country")) f.country = s.get("country").split(",");
       if (s.get("keyword")) f.keyword = s.get("keyword").split(",");
       if (s.get("job")) f.job = s.get("job").split(",");
@@ -259,6 +309,33 @@ class Component extends DCLogic {
     if (s.get("sort")) next.sort = s.get("sort");
     if (s.get("page")) next.page = Number(s.get("page")) || 1;
     if (Object.keys(next).length) this.setState(next);
+
+    // A-5 상태 복원 — 상세로 갈 때 적어 둔 URL · scrollY 를 「목록으로 돌아가기」로 돌아왔을 때만 되돌린다.
+    this.onLinkClick = e => {
+      const a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+      if (!a || !/article-detail-[a-z]+\.dc\.html/.test(a.getAttribute("href") || "")) return;
+      try { sessionStorage.setItem("qi-list-return", JSON.stringify({ url: location.href, y: window.scrollY })); } catch (err) {}
+    };
+    document.addEventListener("click", this.onLinkClick, true);
+    try {
+      if (sessionStorage.getItem("qi-list-restore") === "1") {
+        sessionStorage.removeItem("qi-list-restore");
+        const saved = JSON.parse(sessionStorage.getItem("qi-list-return") || "null");
+        if (saved && saved.url === location.href && saved.y > 0) {
+          const t0 = Date.now();
+          const tryScroll = () => {
+            const ready = document.documentElement.scrollHeight - window.innerHeight >= saved.y;
+            if (ready || Date.now() - t0 > 2000) window.scrollTo(0, saved.y);
+            else requestAnimationFrame(tryScroll);
+          };
+          requestAnimationFrame(tryScroll);
+        }
+      }
+    } catch (err) {}
+  }
+
+  componentWillUnmount() {
+    if (this.onLinkClick) document.removeEventListener("click", this.onLinkClick, true);
   }
 
   syncUrl(filters, sort, page) {
@@ -268,6 +345,7 @@ class Component extends DCLogic {
     if (filters.job.length) s.set("job", filters.job.join(","));
     if (filters.kind) s.set("kind", filters.kind);
     if (filters.q) s.set("q", filters.q);
+    if (this.exclude) s.set("exclude", this.exclude);
     s.set("sort", sort);
     if (page > 1) s.set("page", String(page));
     history.replaceState(null, "", location.pathname + "?" + s.toString());
@@ -294,7 +372,7 @@ class Component extends DCLogic {
 
   renderVals() {
     const cat = this.cat, mode = this.mode, f = this.state.filters;
-    const pool = ART.filter(a => cat === "all" || a.cat === cat).filter(a => this.matches(a));
+    const pool = ART.filter(a => cat === "all" || a.cat === cat).filter(a => a.id !== this.exclude).filter(a => this.matches(a));
     const sorted = pool.slice().sort((a, b) => this.state.sort === "latest" ? b.date.localeCompare(a.date) : a.date.localeCompare(b.date));
 
     const chips = [];
@@ -306,19 +384,38 @@ class Component extends DCLogic {
 
     const B = (window.MentreeDesignSystem_2f86cf || {}).Button;
     const per = 10;
-    const samplePages = Math.max(1, Math.ceil(sorted.length / per));
-    // insight-list-all 은 페이지네이션 시작형(1~7 … 30)을 보여 주는 판이라 30 을 유지한다.
-    const totalPages = cat === "all" && mode === "ok" && chips.length === 0 ? 30 : samplePages;
+    // A-1 피처드 — 조건 없는 1페이지에만. 전체는 인사이트+이벤트 중 최신(인터뷰 제외), 인터뷰 카테고리는 없음.
+    const featPool = cat === "interview" ? [] : ART.filter(a => a.cat !== "interview" && (cat === "all" || a.cat === cat));
+    const featArt = featPool.slice().sort((a, b) => b.date.localeCompare(a.date))[0];
+    const showFeatured = mode === "ok" && chips.length === 0 && this.state.page === 1 && !!featArt;
+    // 피처드로 선 글은 목록에서 뺀다(바로 아래 같은 글이 또 서지 않게).
+    const listed = showFeatured ? sorted.filter(a => a.id !== featArt.id) : sorted;
+
+    // insight-list-all(조건 없음)은 표본보다 많은 48건으로 잡아 페이지네이션(1~5)을 보여 준다.
+    const isAllPlain = cat === "all" && mode === "ok" && chips.length === 0;
+    const totalCountNum = isAllPlain ? 48 : listed.length;
+    const totalPages = Math.max(1, Math.ceil(totalCountNum / per));
     const page = Math.min(this.state.page, totalPages);
-    let pageItems = sorted.slice((page - 1) * per, page * per);
-    if (!pageItems.length && sorted.length) {
+    const totalCount = mode === "loading" || mode === "error" ? "—" : mode === "empty" ? "0" : String(totalCountNum);
+    // 인사이트 글은 기본 일러스트(green-100 면이 그려진 PNG), 이벤트 글은 현장 썸네일 그대로.
+    const featured = featArt
+      ? { ...featArt, href: DETAIL[featArt.cat], featuredImg: featArt.cat === "insight" ? "assets/img/featured-insight.png" : featArt.img }
+      : { href: "#", featuredImg: "" };
+    let pageItems = listed.slice((page - 1) * per, page * per);
+    if (!pageItems.length && listed.length) {
       // 표본을 넘어선 페이지는 순환해서 채운다(카드가 비지 않게).
-      const n = Math.min(per, sorted.length);
-      pageItems = Array.from({ length: n }, (_, i) => sorted[((page - 1) * per + i) % sorted.length]);
+      const n = Math.min(per, listed.length);
+      pageItems = Array.from({ length: n }, (_, i) => listed[((page - 1) * per + i) % listed.length]);
     }
+    const goPage = n => {
+      this.setState(st => { this.syncUrl(st.filters, st.sort, n); return { page: n }; });
+      const el = document.getElementById("qi-list-head");
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 96, behavior: "smooth" });
+    };
     const rows = pageItems.map(a => ({
       ...a,
       href: DETAIL[a.cat],
+      showDate: a.cat !== "interview",
       tags: [{ label: a.countryLabel, hue: "indigo" }, { label: a.keyword, hue: "amber" }],
       saved: !!this.state.saved[a.id],
       toggleSave: next => this.setState(st => ({ saved: { ...st.saved, [a.id]: next } }))
@@ -327,8 +424,8 @@ class Component extends DCLogic {
     return {
       cats: CATS.map(c => ({
         label: c.label, href: c.href, aria: c.key === cat ? "page" : "false",
-        style: "display:flex;align-items:center;height:40px;padding:0 12px;border-radius:var(--radius-md);font-size:var(--text-body);text-decoration:none;" +
-          (c.key === cat ? "background:var(--sage-100);color:var(--foreground);font-weight:600" : "background:transparent;color:var(--muted-foreground);font-weight:400")
+        style: "display:flex;align-items:center;height:40px;padding:0 12px;border-radius:var(--radius-md);font-size:var(--text-body);letter-spacing:-0.01em;text-decoration:none;transition:background-color 120ms ease,color 120ms ease;" +
+          (c.key === cat ? "background:var(--sidebar-primary);color:var(--sidebar-primary-foreground);font-weight:600" : "background:transparent;color:var(--sidebar-foreground);font-weight:500")
       })),
       tabItems: CATS.map(c => ({ value: c.key, label: c.label })),
       tabValue: cat,
@@ -361,15 +458,20 @@ class Component extends DCLogic {
       stop: e => e.stopPropagation(),
       isOk: mode === "ok", isLoading: mode === "loading", isEmpty: mode === "empty", isError: mode === "error",
       skeletons: [{ lines: 3 }, { lines: 3 }, { lines: 3 }, { lines: 3 }, { lines: 3 }],
+      skBadge: { width: 140, height: 24, radius: "md" },
+      skTitle: { width: "80%", height: 26 },
+      skDate: { width: 96, height: 16 },
+      skThumb: { width: "100%", height: "100%", radius: "md" },
       emptyDesc: "조건을 하나씩 풀어 보시거나, 전체 카테고리에서 다시 찾아보세요.",
       emptyAction: B ? React.createElement(B, { variant: "primary", size: "md", onClick: () => { location.href = "insight-list-all.dc.html"; } }, "조건 초기화") : null,
       retry: () => location.reload(),
-      page, totalPages, showPagination: totalPages > 1,
-      onPageChange: n => {
-        this.setState(st => { this.syncUrl(st.filters, st.sort, n); return { page: n }; });
-        const el = document.getElementById("qi-list-head");
-        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 96, behavior: "smooth" });
-      }
+      showFeatured, featured, totalCount,
+      // 페이지네이션은 건수가 정한다 — 1쪽이면 「1」 하나만, 이전/다음 버튼은 갈 곳이 있을 때만.
+      page, totalPages, showPagination: mode === "ok" && listed.length > 0,
+      hasPrev: page > 1, hasNext: page < totalPages, hasPager: page > 1 || page < totalPages,
+      goPrev: () => { if (page > 1) goPage(page - 1); },
+      goNext: () => { if (page < totalPages) goPage(page + 1); },
+      onPageChange: goPage
     };
   }
 }
