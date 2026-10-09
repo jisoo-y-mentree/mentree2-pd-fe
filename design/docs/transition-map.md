@@ -203,39 +203,38 @@ flowchart TD
 ```mermaid
 flowchart LR
   qa["Q&A 멘토링(피드)"]
-  side["간단보기 : 사이드 패널"]
+  search["Q&A 피드 · 검색 결과"]
   qad["Q&A 상세 : 전체보기"]
   comp["Q&A 질문 작성"]
   phone["전화번호 인증"]
   leave["이탈 방지"]
   mdetP["멘토 상세 · 프로필 · 새 창"]
-  mdetQ["멘토 상세 · Q&A 탭 · 새 창"]
   mpe["마이페이지 · 나의 Q&A · 나의 스크랩"]
 
-  qa -->|"카드 클릭"| side -->|"전체페이지로"| qad
+  qa -->|"행 클릭"| qad
   qa -->|"질문하기 CTA"| comp
   comp --> phone
   comp -.->|"이탈"| leave
-  qad -->|"이 멘토의 프로필 보기"| mdetP
-  qad -->|"이 멘토의 다른 답변 보기"| mdetQ
-  qa -->|"사이드바 위젯 더보기"| mpe
+  qad -->|"멘토 프로필 보기"| mdetP
+  qad -->|"연관 Q&A 더보기"| search
+  qad -->|"목록으로"| qa
+  qa -->|"2링크 바"| mpe
 
   classDef s fill:#a8c7fa,stroke:#4a76ad,color:#000
   classDef b fill:#ffffff,stroke:#888888,color:#000
   classDef m fill:#fff6d6,stroke:#c9a227,color:#000
-  class qa,qad,comp,mdetP,mdetQ,mpe s
-  class side b
+  class qa,qad,comp,mdetP,mpe,search s
   class phone,leave m
 ```
 
 | 판정 조건 | 아크션 |
 |---|---|
-| 「이 멘토의 다른 답변 보기」를 누른다 | **멘토 상세의 「Q&A」 탭으로 보낸다. 새 창이다.** 전용 화면을 만들지 않는다. 탭은 URL(`?tab=`)에 담는다([mentor-detail §5](../screens/mentor-detail/UI-SPEC.md)) |
-| 답변이 0건이다 | 그 탭이 숨겨진다. **이 전이는 답변이 1건 이상일 때만 생긴다** |
+| 피드에서 행을 누른다 | **전체 페이지로 간다.** 간단보기 패널은 2026-10-09 에 지웠다 — 데스크톱도 모바일도 같다 |
+| 연관 Q&A 의 「더보기 >」 를 누른다 | **그 질문의 키워드로 검색한 피드**로 보낸다. 전용 화면을 만들지 않는다 |
 | 질문 작성으로 들어간다 | **페이지 이동과 동시에 전화번호 인증 모달**을 띄운다. 와이어의 주석대로다 |
 | 비로그인이 도움돼요·스크랩을 누른다 | 로그인으로 유도한다. **돌아오는 자리는 미결이다**(아래 4번) |
 
-**근거**: 「이 멘토의 다른 답변 보기 → 이 멘토의 답변만 모은 페이지 / 둘 다 새 창으로」가 Q&A 상세의 주석이고, 그 목적지를 멘토 상세의 기존 탭으로 정했다(2026-09-10).
+**근거**: Q&A 상세의 주석(2026-09-10)과 Figma 개정판 `1697:34438`(2026-10-09). 「이 멘토의 다른 답변 보기」 는 개정판 카드에 없어 전이에서 뺐다 — 멘토 상세의 Q&A 탭 자체는 남는다.
 
 ---
 

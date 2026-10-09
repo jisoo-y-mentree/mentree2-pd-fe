@@ -23,7 +23,7 @@
     a { color: var(--primary); text-decoration: none; }
     a:hover { color: color-mix(in oklch, var(--primary) 82%, var(--sage-950)); }
     /* 0. 색 — Figma 그린 스케일 + 주황 악센트(DS-82 · DS-04) */
-    .qf-shell { --primary: #15803D; --primary-foreground: #F0FDF4; --green-50: #F5FAF6; --green-100: #E7F4E9; --muted: #F5FAF6; --sage-100: #F5FAF6; --qf-accent: #F97316; --qf-accent-soft: #FFF7ED; --qf-ink-deep: #052E16; }
+    .qf-shell { --primary: #15803D; --primary-foreground: #F0FDF4; --green-50: #F5FAF6; --green-100: #E7F4E9; --muted: #F5FAF6; --sage-100: #F5FAF6; --qf-accent: #F97316; --qf-accent-soft: #FFF7ED; --qf-ink-deep: #052E16; --qf-green-600: #109840; }
     .qf-only-mobile { display: none !important; }
     /* 2. 전폭 탭 — Tabs 의 fill 변형(DS-28) */
     .qf-tabs .mt-tabs-list { gap: 0 !important; border-bottom: 0 !important; overflow: visible !important; }
@@ -41,8 +41,7 @@
     .qf-new { position: absolute; top: 32px; right: 8px; z-index: 3; }
     @media (min-width: 769px) { .qf-row .mt-qli-default > h3 > a { -webkit-line-clamp: 1 !important; } }
     /* 1. 히어로 — Desktop S 에서 본문 칸이 좁아지면 일러스트를 줄이고(≤1100), 더 좁으면 뺀다(≤900) */
-    @media (max-width: 1100px) { .qf-hero-art { width: 280px !important; height: 137px !important; right: 16px !important; } }
-    @media (max-width: 900px) { .qf-hero-art { display: none !important; } }
+    @media (max-width: 1180px) { .qf-hero-art { display: none !important; } }
     /* 해시태그 칩(목록 행 · 태그 박스) — 면 green/100, 글자 green/950. hover 는 한 단계 진하게 */
     .qf-shell .mt-chip { background: var(--green-100) !important; color: var(--qf-ink-deep) !important; }
     .qf-shell .mt-chip:hover { background: #D5EBD9 !important; }
@@ -93,6 +92,13 @@
   </a>
   <img class="qf-hero-art" src="assets/qna-feed-hero-illustration.png" alt="" style="position: absolute; right: 25px; bottom: 0; width: 368px; height: 180px; object-fit: cover; object-position: center bottom; pointer-events: none">
 </section>
+<div class="qf-only-mobile qf-summary" style="margin-top: 20px"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" dc-props="{{ summaryCardStyle }}" hint-size="100%,138px"><section aria-label="Q&amp;A멘토링 활동 요약" style="display: flex; flex-direction: column; box-sizing: border-box; min-height: 138px; padding: 20px">
+    <h2 style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 700; text-align: center; color: var(--foreground)">Q&amp;A멘토링 활동 요약</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; margin-top: 20px">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 8px"><span style="font-size: 14px; line-height: 18px; font-weight: 500; color: var(--foreground)">나의 답변 수</span><span class="tabular" style="font-size: 24px; line-height: 24px; font-weight: 700; color: var(--primary)">15</span></div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 8px"><span style="font-size: 14px; line-height: 18px; font-weight: 500; color: var(--foreground)">받은 도움돼요 수</span><span class="tabular" style="font-size: 24px; line-height: 24px; font-weight: 700; color: var(--primary)">124</span></div>
+    </div>
+  </section></x-import></div>
 <div class="qf-tabs" style="margin-top: 28px">
   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Tabs" items="{{ statusTabs }}" value="{{ status }}" onChange="{{ set_status }}" idBase="qf-status" ariaLabel="답변 상태" hint-size="100%,56px"></x-import>
 </div>
@@ -145,6 +151,14 @@
     <li class="qf-row" data-kw="{{ k.keyword }}">
       <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaListItem" variant="default" href="{{ k.href }}" country="{{ k.country }}" country-label="{{ k.countryLabel }}" keyword="{{ k.keyword }}" title="{{ k.title }}" excerpt="{{ k.excerpt }}" tags="{{ k.tags }}" tagHref="{{ tagHref }}" answerers="{{ k.answerers }}" answer-count="{{ k.answerCount }}" views="{{ k.views }}" likes="{{ k.likes }}" liked="{{ k.liked }}" onLikeChange="{{ k.onLike }}" scraps="{{ k.scraps }}" scrapped="{{ k.scrapped }}" onScrapChange="{{ k.onScrap }}" hint-size="100%,237px"></x-import>
       <sc-if value="{{ k.isNew }}"><span class="qf-new" aria-label="24시간 안에 올라온 질문" style="display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border: 1px solid var(--qf-accent); border-radius: 99px; background: var(--qf-accent-soft); color: var(--qf-accent); font-size: 16px; font-weight: 600; line-height: 1">New</span></sc-if>
+      <sc-if value="{{ k.tagBoxAfter }}"><div class="qf-only-mobile" style="margin: 24px 0"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,190px"><section style="display: flex; flex-direction: column; gap: 20px; padding: 24px 16px 28px">
+  <h2 style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 700; text-align: center">주목받는 태그로 찾기</h2>
+  <div class="qf-tagbox" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 8px">
+    <sc-for list="{{ hotTags }}" as="t" hint-placeholder-count="5">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Chip" size="md" prefix="{{ hash }}" href="{{ t.href }}" hint-size="auto,32px">{{ t.label }}</x-import>
+    </sc-for>
+  </div>
+</section></x-import></div></sc-if>
     </li>
   </sc-for>
 </ul>
@@ -165,6 +179,13 @@
 </sc-if>
         </div>
 <aside class="qf-side" style="display: flex; flex-direction: column; gap: 20px; min-width: 0">
+  <div class="qf-summary"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" dc-props="{{ summaryCardStyle }}" hint-size="100%,138px"><section aria-label="Q&amp;A멘토링 활동 요약" style="display: flex; flex-direction: column; box-sizing: border-box; min-height: 138px; padding: 20px">
+    <h2 style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 700; text-align: center; color: var(--foreground)">Q&amp;A멘토링 활동 요약</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; margin-top: 20px">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 8px"><span style="font-size: 14px; line-height: 18px; font-weight: 500; color: var(--foreground)">나의 답변 수</span><span class="tabular" style="font-size: 24px; line-height: 24px; font-weight: 700; color: var(--primary)">15</span></div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 8px"><span style="font-size: 14px; line-height: 18px; font-weight: 500; color: var(--foreground)">받은 도움돼요 수</span><span class="tabular" style="font-size: 24px; line-height: 24px; font-weight: 700; color: var(--primary)">124</span></div>
+    </div>
+  </section></x-import></div>
   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,482px"><section style="display: flex; flex-direction: column; padding: 20px 20px 4px">
   <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
     <h2 style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 700">추천 Q&amp;A 멘토링</h2>
@@ -230,13 +251,16 @@ const WAITING = ["q1","l3","q2","q3","q4","q5"];
 const PAGE = "mentor";
 const DEFAULT_ROLE = "mentor";
 const QF_BATCH = 10;
-// 모바일에서는 간단보기 패널이 화면을 전부 덮어 전체 페이지와 같다 — 그래서 전체 페이지로 보낸다. 처음 한 번만 판정.
+// A-1. 멘토 피드만 「답변을 기다리는 질문」이 먼저 · 기본 선택. URL 값은 같다.
+const MENTOR_PAGE = PAGE === "mentor";
+const DEFAULT_STATUS = MENTOR_PAGE ? "waiting" : "answered";
+// 모바일은 작성 진입이 전화번호 인증 모달부터. 처음 한 번만 판정.
 const QF_MOBILE = window.matchMedia("(max-width: 768px)").matches;
 const byId = (id) => CARDS.filter((c) => c.id === id)[0];
 const matches = (c, q) => {
   const raw = String(q || "").trim();
   if (!raw) return true;
-  if (raw.charAt(0) === "#") { const t = raw.slice(1).trim(); return (c.tags || []).indexOf(t) >= 0; }
+  if (raw.charAt(0) === "#") { const t = raw.slice(1).trim(); return (c.tags || []).indexOf(t) >= 0 || c.keyword === t; }
   const n = raw.toLowerCase();
   return c.title.toLowerCase().indexOf(n) >= 0 || c.excerpt.toLowerCase().indexOf(n) >= 0 || (c.tags || []).some((t) => t.toLowerCase().indexOf(n) >= 0);
 };
@@ -248,7 +272,7 @@ class Component extends DCLogic {
     const role = ["guest", "mentee", "mentor"].indexOf(p.get("role")) >= 0 ? p.get("role") : DEFAULT_ROLE;
     this.state = {
       role,
-      status: p.get("status") === "waiting" ? "waiting" : "answered",
+      status: p.get("status") === "waiting" ? "waiting" : p.get("status") === "answered" ? "answered" : DEFAULT_STATUS,
       country: p.get("country") || "", keyword: p.get("keyword") || "",
       q: p.get("q") != null ? p.get("q") : "",
       sort: "최신순", batches: 1, moreLoading: false, heroOut: false, cards: {},
@@ -259,7 +283,7 @@ class Component extends DCLogic {
   syncUrl() {
     const s = this.state, p = new URLSearchParams(location.search);
     const put = (k, v, def) => { if (v && v !== def) p.set(k, v); else p.delete(k); };
-    put("status", s.status, "answered"); put("country", s.country); put("keyword", s.keyword);
+    put("status", s.status, DEFAULT_STATUS); put("country", s.country); put("keyword", s.keyword);
     if (PAGE === "search" || PAGE === "empty") put("q", s.q);
     const qs = p.toString();
     history.replaceState(null, "", location.pathname + (qs ? "?" + qs : ""));
@@ -310,10 +334,10 @@ class Component extends DCLogic {
     const hit = CARDS.some((c) => matches(c, raw));
     location.assign(this.withRole((hit ? "qna-feed-search.dc.html" : "qna-feed-empty.dc.html") + "?q=" + encodeURIComponent(raw)));
   }
+  // 행 클릭 → 전체 페이지(데스크톱도). 간단보기 패널은 없다(2026-10-09).
   detailHref(has) {
     const mentor = this.state.role === "mentor";
-    if (QF_MOBILE) return mentor ? (has ? "../../qna-detail/template/qna-detail-mentor-answers.dc.html" : "../../qna-detail/template/qna-detail-mentor.dc.html") : (has ? "../../qna-detail/template/qna-detail-normal.dc.html" : "../../qna-detail/template/qna-detail-empty.dc.html");
-    return mentor ? (has ? "../../qna-detail/template/qna-detail-side-mentor-answers.dc.html" : "../../qna-detail/template/qna-detail-side-mentor.dc.html") : (has ? "../../qna-detail/template/qna-detail-side.dc.html" : "../../qna-detail/template/qna-detail-side-empty.dc.html");
+    return mentor ? (has ? "../../qna-detail/template/qna-detail-mentor-answers.dc.html" : "../../qna-detail/template/qna-detail-mentor.dc.html") : (has ? "../../qna-detail/template/qna-detail-normal.dc.html" : "../../qna-detail/template/qna-detail-empty.dc.html");
   }
   cardVals(base) {
     const id = base.id, s = this.state.cards[id] || {};
@@ -335,7 +359,7 @@ class Component extends DCLogic {
   // 목록 풀 — 탭(답변 완료/기다리는) · 국가 · 키워드 · (검색 페이지) 검색어로 거른다.
   pool() {
     const s = this.state;
-    const base = PAGE === "search" ? CARDS.filter((c) => matches(c, s.q)) : (s.status === "waiting" ? WAITING : ANSWERED).map(byId);
+    const base = (s.status === "waiting" ? WAITING : ANSWERED).map(byId).filter((c) => PAGE !== "search" || matches(c, s.q));
     return base.filter((c) => (!s.country || c.countryLabel === s.country) && (!s.keyword || c.keyword === s.keyword));
   }
   renderVals() {
@@ -344,14 +368,17 @@ class Component extends DCLogic {
     const pool = this.pool();
     const shown = pool.slice(0, s.batches * QF_BATCH);
     const n = PAGE === "loading" ? "—" : pool.length;
-    const unit = (PAGE === "search" || s.status === "waiting") ? "개의 질문" : "개의 답변";
+    const unit = s.status === "waiting" ? "개의 질문" : "개의 답변";
     const chips = [];
     if (s.country) chips.push({ label: s.country, aria: "국가 조건 해제: " + s.country, clear: () => this.setFilter("country")("") });
     if (s.keyword) chips.push({ label: s.keyword, aria: "키워드 조건 해제: " + s.keyword, clear: () => this.setFilter("keyword")("") });
     if (PAGE === "search" && s.q) chips.push({ label: s.q, aria: "검색어 해제: " + s.q, clear: () => location.assign(this.withRole("qna-feed-normal.dc.html")) });
     const reco = FEATURED.map(byId).slice().sort((a, b) => (b.answerCount - a.answerCount) || (b.likes - a.likes)).slice(0, 3).map((c) => this.cardVals(c));
     const composeHref = QF_MOBILE ? "../../qna-compose/template/qna-compose-modal-phone.dc.html" : "../../qna-compose/template/qna-compose-normal.dc.html";
+    // B-1. 모바일 태그 박스 — 10번째 행 뒤 한 번. 10건이 안 되면 목록 끝.
+    const tagAt = shown.length >= QF_BATCH ? QF_BATCH - 1 : shown.length - 1;
     return {
+      summaryCardStyle: { style: { border: "1px solid var(--qf-green-600)", borderRadius: 13, boxShadow: "none" } },
       two: 2, one: [0], three: [0, 1, 2], five: [0, 1, 2, 3, 4], gap12: 12,
       authState: s.role, user: { name: mentor ? "박서연" : "김도윤" }, unread: isMember,
       noop: () => {}, nav: (e) => { if (e && e.preventDefault) e.preventDefault(); },
@@ -362,7 +389,7 @@ class Component extends DCLogic {
       heroOut: s.heroOut,
       toTop: () => window.scrollTo({ top: 0, behavior: "smooth" }),
       toList: () => this.scrollToList(),
-      statusTabs: [{ value: "answered", label: "답변이 완료된 질문" }, { value: "waiting", label: "답변을 기다리는 질문" }],
+      statusTabs: MENTOR_PAGE ? [{ value: "waiting", label: "답변을 기다리는 질문" }, { value: "answered", label: "답변이 완료된 질문" }] : [{ value: "answered", label: "답변이 완료된 질문" }, { value: "waiting", label: "답변을 기다리는 질문" }],
       status: s.status, set_status: this.setFilter("status"),
       countryOptions: COUNTRY_OPTIONS, country: s.country, set_country: this.setFilter("country"),
       keywordOptions: KEYWORD_OPTIONS, keyword: s.keyword, set_keyword: this.setFilter("keyword"),
@@ -372,7 +399,7 @@ class Component extends DCLogic {
       recent: ["일본 신졸", "연봉 협상", "비자 갱신"], removeRecent: () => {},
       countText: n + unit,
       hasFilters: chips.length > 0, filterChips: chips,
-      listCards: shown.map((c) => this.cardVals(c)),
+      listCards: shown.map((c, i) => Object.assign(this.cardVals(c), { tagBoxAfter: i === tagAt })),
       tagHref: (t) => "qna-feed-search.dc.html?q=" + encodeURIComponent("#" + t),
       moreLoading: s.moreLoading,
       listEnd: PAGE !== "loading" && PAGE !== "error" && !s.moreLoading && shown.length >= pool.length,

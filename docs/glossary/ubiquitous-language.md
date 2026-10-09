@@ -41,7 +41,7 @@
 | 한국어 | English | 설명 |
 |---|---|---|
 | Q&A 멘토링 | `Qna` | 멘티의 질문에 멘토가 답하는 것. 1인 1답이다 |
-| Q&A 상세 | `qna-detail` | 화면. 간단보기·전체보기 2형태 |
+| Q&A 상세 | `qna-detail` | 화면. 전체 페이지 하나 — 간단보기(사이드 패널)는 2026-10-09 에 지웠다 |
 | Q&A 질문 작성 | `qna-compose` | 화면. 전화번호 인증이 필요하다 |
 | Q&A 목록 행 | `QnaListItem` | 컴포넌트. surfaces(`DS-57`). Q&A 한 건을 카드 셸 없이 **목록의 한 줄**로. 변형 4 — default · compact · answer · question. 카드 격자는 `QnaCard` 다 |
 | Q&A 카드 | `QnaCard` | 컴포넌트. surfaces |

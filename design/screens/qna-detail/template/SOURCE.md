@@ -1,14 +1,16 @@
 # template 의 출처
 
 - Claude Design: 프로젝트 **`Mentree 2.0 Q&A Feed`**(radarlab 계정). 공개 공유 링크는 적지 않는다([ADR-0002](../../../../docs/adr/0002-rebuild-design-system-instead-of-sharing.md))
-- 원본: `Mentree 2.0 Q&A Feed.zip`
-- **생성일: 2026-10-08**(1판 2026-09-14 · 링크판 2026-09-14 밤 · Figma 대조판 2026-09-15 · **모바일 2판 ＋ 관점별 간단보기 2026-10-08 export**)
-- 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md) — 커밋 `256f3f0`(2026-09-15 개정)
+- 원본: `Mentree 2.0 Q&A Feed.zip`(4판 · SHA-256 `a883703b0d2c` · `design/_import/export-1008/Mentree 2.0 Q&A Feed (4).zip` 으로 옮겼다)
+- **생성일: 2026-10-09 15:10**(1판 2026-09-14 · 링크판 2026-09-14 밤 · Figma 대조판 2026-09-15 · 모바일 2판 ＋ 간단보기 2026-10-08 · **Figma 개정판 `1697:34438` 2026-10-09** — 프롬프트 `_import/prompts/qna-round2-1009.md`)
+- 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md) — 2026-10-09 개정(§4 · §6〜§11)
 - 디자인 시스템: 이 export 의 `_ds` 사본은 **09-16 판**(43본 · 번들 247,136바이트)이다. 같은 PR 에서 `ds-export/` 를 **2026-10-08 판**(52본 · SHA-256 `5424904758ba` · 번들 368,536바이트)으로 교체했고, 이 template 은 **그 번들로 그려진다.** 09-16 판에 있던 부품은 전부 그대로 있다
 
 ## 무엇이 들어 있나
 
-**15장.** 전체 페이지 **9장** — normal · questioner · mentor · mentor-answers · questioner-empty · modal-answer-submit · empty · loading · error. 간단보기 패널 **6장** — side · side-questioner · side-questioner-empty · side-mentor · side-mentor-answers · side-empty. 패널 5장은 10-08 export 에서 새로 왔다 — 관점 4종과 0건을 패널에서도 가른다. 멘토의 답변 작성 카드는 등록 버튼이 카드 안에 든다(`qna-mobile.md` 2판)
+**9장.** normal · questioner · questioner-empty · mentor · mentor-answers · modal-answer-submit · empty · loading · error. **간단보기 패널 6장(`qna-detail-side-*`)은 2026-10-09 에 지웠다** — 상혁 「간단보기 삭제」. 피드의 행은 데스크톱에서도 전체 페이지로 온다.
+
+**4판에서 바뀐 것** — 본문 한 열 최대 768 · 「< 목록으로」 · 본문 15px `--sage-700` · 답변 카드를 화면에서 그린다(`.qd-answer` · 3상태 · 하트 다회) · 연관 Q&A 를 목록 행 3건으로 · 배너 테두리 없음 · 인기 태그 가운데 · 멘토 작성 카드의 등록 버튼 비활성 → primary · 플로팅 삭제. 덮은 CSS 는 `.qd-` 접두사 한 블록이다(`DS-23` · `86` · `87`).
 
 **파일마다 화면 상태가 하나다.** 화면 상태(로딩·0건·에러·관점)를 갈아끼우는 JS 는 없다. **부품 인터랙션의 상태(도움돼요·스크랩·탭·전환·셀렉트·페이지·팝오버·토스트)는 페이지 스크립트가 든다**(2026-09-15 · 상혁 지시). DS 부품은 전부 제어형이라 화면이 `selected`·`value` 와 `onChange` 를 넘겨야 반응한다. 1판은 아무것도 안 넘겨 눌러도 반응이 없었다.
 

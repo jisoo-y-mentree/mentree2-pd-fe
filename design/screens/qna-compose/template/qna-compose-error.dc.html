@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -20,6 +22,8 @@
   <style>
     a { color: var(--primary); text-decoration: none; }
     a:hover { color: color-mix(in oklch, var(--primary) 82%, var(--sage-950)); }
+    .qc-shell { --primary: #15803D; --primary-foreground: #F0FDF4; --green-50: #F5FAF6; --green-100: #E7F4E9; --qf-accent: #F97316; --qf-accent-soft: #FFF7ED; --qf-ink-deep: #052E16; --qf-green-600: #109840; }
+    .qc-shell .mt-chip { background: var(--green-100) !important; color: var(--qf-ink-deep) !important; }
     @media (max-width: 768px) {
       .qc-main { padding: 24px 0 40px !important; gap: 24px !important; }
       .qc-shell { padding-bottom: calc(56px + env(safe-area-inset-bottom)) !important; }
@@ -35,11 +39,11 @@
 <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,900px"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CardContent" hint-size="100%,880px"><form style="display: flex; flex-direction: column; gap: 28px" onSubmit="{{ preventSubmit }}">
   <div class="qc-two" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start">
     <div style="display: flex; flex-direction: column; gap: 10px">
-      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="국가" required="{{ true }}" description="어느 국가에 해당하는 질문인지 선택해주세요." html-for="qc-country" error="[문구 미정] 국가를 선택해 주세요." hint-size="100%,110px"><div data-dd="true" style="position: relative">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="국가" required="{{ true }}" html-for="qc-country" error="[문구 미정] 국가를 선택해 주세요." hint-size="100%,70px"><div data-dd="true" style="position: relative">
   <sc-if value="{{ ddEnabled_country }}" hint-placeholder-val="{{ true }}">
     <button type="button" id="qc-country" aria-haspopup="listbox" aria-expanded="{{ ddOpen_country }}" onClick="{{ ddToggle_country }}" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; height: 38px; padding: 0 11px 0 12px; background: var(--card); border: 1px solid var(--destructive); border-radius: var(--radius-md); font-family: var(--font-sans); font-size: var(--text-body); line-height: 1; letter-spacing: 0; text-align: left; color: var(--foreground); opacity: 1; cursor: pointer">
     <sc-if value="{{ ddFilled_country }}" hint-placeholder-val="{{ true }}"><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ ddLabel_country }}</span></sc-if>
-    <sc-if value="{{ ddPlaceholder_country }}"><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted-foreground)">국가 선택</span></sc-if>
+    <sc-if value="{{ ddPlaceholder_country }}"><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted-foreground)">해당 국가 선택</span></sc-if>
     <span class="hgi" style="--hgi: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/arrow-down-01.svg'); flex: none; font-size: 16px; color: var(--muted-foreground)"></span>
   </button>
     <sc-if value="{{ ddOpen_country }}">
@@ -56,17 +60,17 @@
   <sc-if value="{{ ddDisabled_country }}">
     <button type="button" id="qc-country" disabled aria-haspopup="listbox" aria-expanded="{{ ddOpen_country }}" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; height: 38px; padding: 0 11px 0 12px; background: var(--muted); border: 1px solid var(--destructive); border-radius: var(--radius-md); font-family: var(--font-sans); font-size: var(--text-body); line-height: 1; letter-spacing: 0; text-align: left; color: var(--foreground); opacity: 0.6; cursor: not-allowed">
     <sc-if value="{{ ddFilled_country }}" hint-placeholder-val="{{ true }}"><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ ddLabel_country }}</span></sc-if>
-    <sc-if value="{{ ddPlaceholder_country }}"><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted-foreground)">국가 선택</span></sc-if>
+    <sc-if value="{{ ddPlaceholder_country }}"><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted-foreground)">해당 국가 선택</span></sc-if>
     <span class="hgi" style="--hgi: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/arrow-down-01.svg'); flex: none; font-size: 16px; color: var(--muted-foreground)"></span>
   </button>
   </sc-if>
 </div></x-import>
       <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.RadioGroup" name="qc-country-scope" options="{{ scopeOptions }}" value="{{ scope }}" onChange="{{ set_scope }}" hint-size="100%,24px"></x-import>
     </div>
-    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="키워드" required="{{ true }}" description="질문하려는 키워드를 선택해주세요." html-for="qc-keyword" hint-size="100%,110px"><div data-dd="true" style="position: relative">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="키워드" required="{{ true }}" html-for="qc-keyword" hint-size="100%,70px"><div data-dd="true" style="position: relative">
   <button type="button" id="qc-keyword" aria-haspopup="listbox" aria-expanded="{{ ddOpen_keyword }}" onClick="{{ ddToggle_keyword }}" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; height: 38px; padding: 0 11px 0 12px; background: var(--card); border: 1px solid var(--input); border-radius: var(--radius-md); font-family: var(--font-sans); font-size: var(--text-body); line-height: 1; letter-spacing: 0; text-align: left; color: var(--foreground); opacity: 1; cursor: pointer">
     <sc-if value="{{ ddFilled_keyword }}" hint-placeholder-val="{{ true }}"><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ ddLabel_keyword }}</span></sc-if>
-    <sc-if value="{{ ddPlaceholder_keyword }}"><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted-foreground)">질문 키워드 선택</span></sc-if>
+    <sc-if value="{{ ddPlaceholder_keyword }}"><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted-foreground)">해당 키워드 선택</span></sc-if>
     <span class="hgi" style="--hgi: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/arrow-down-01.svg'); flex: none; font-size: 16px; color: var(--muted-foreground)"></span>
   </button>
   <sc-if value="{{ ddOpen_keyword }}">
@@ -102,7 +106,7 @@
     <div class="tabular" style="align-self: flex-end; font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); color: var(--muted-foreground)">248/1000자</div>
   </div></x-import>
 
-  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="태그" description="최대 10개까지 태그 설정이 가능합니다." html-for="qc-tags" hint-size="100%,130px"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.TagInput" id="qc-tags" value="{{ tags }}" onChange="{{ set_tags }}" suggestions="{{ tagSuggestions }}" completions="{{ tagCompletions }}" max="10" placeholder="태그 입력하기" hint-size="100%,96px"></x-import></x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="태그" description="최대 5개까지 태그 설정이 가능합니다." html-for="qc-tags" hint-size="100%,130px"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.TagInput" id="qc-tags" value="{{ tags }}" onChange="{{ set_tags }}" suggestions="{{ tagSuggestions }}" completions="{{ tagCompletions }}" max="{{ 5 }}" placeholder="태그 입력하기" hint-size="100%,96px"></x-import></x-import>
 </form></x-import></x-import>
 <div class="qc-actions" style="display: flex; justify-content: flex-end; gap: 10px">
   <a href="qna-compose-modal-submit.dc.html" style="display: block; text-decoration: none"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="lg" disabled="{{ submitDisabled }}" hint-size="auto,44px">질문 등록하기</x-import></a>
