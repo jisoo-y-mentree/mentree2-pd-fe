@@ -1,13 +1,14 @@
-<!-- @dsCard group="Components" viewport="700x140" name="IconButton" subtitle="정사각 아이콘 전용 버튼 — primary·secondary·outline·ghost / sm·md·lg" -->
+<!-- @dsCard group="Components" viewport="720x640" name="IconButton" subtitle="정사각 아이콘 버튼 — 4 variant · sm32/md40/lg48(Button과 같은 높이) · pressed 토글 — 켜지면 반전(DS-35)" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8" />
 <link rel="stylesheet" href="../../styles.css" />
 <style>
-  body { padding: 20px 22px; background: var(--background); }
-  .row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
-  .label { width: 100%; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted-foreground); margin-bottom: 2px; }
+body{padding:20px 22px;background:var(--background);margin:0}
+.row{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:18px}
+.label{width:100%;font-size:var(--text-micro);color:var(--muted-foreground);margin-bottom:2px}
+.pair{display:flex;align-items:center;gap:8px;padding:4px;background:repeating-linear-gradient(0deg,transparent 0 7px,var(--sage-100) 7px 8px)}
 </style>
 </head>
 <body>
@@ -17,7 +18,15 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script src="../../_ds_bundle.js"></script>
 <script type="text/babel">
-  const { IconButton } = window.MentreeDesignSystem_2f86cf;
+  const { IconButton, Button, BookmarkToggle } = window.MentreeDesignSystem_2f86cf;
+  function Toggle({ size, initial, icon = "bookmark-02", label = "스크랩" }) {
+    const [on, setOn] = React.useState(initial);
+    return <IconButton icon={icon} size={size} pressed={on} onClick={() => setOn(v => !v)} ariaLabel={label} />;
+  }
+  function PressedRow({ icon, label }) {
+    return <React.Fragment>{["sm", "md", "lg"].map(s => <React.Fragment key={s}><Toggle size={s} initial={false} icon={icon} label={label} /><Toggle size={s} initial={true} icon={icon} label={label} /></React.Fragment>)}</React.Fragment>;
+  }
+  function BT() { const [on, setOn] = React.useState(true); return <BookmarkToggle selected={on} onChange={setOn} />; }
   function Demo() {
     return (
       <React.Fragment>
@@ -26,11 +35,18 @@
           <IconButton icon="settings-01" variant="secondary" ariaLabel="설정" />
           <IconButton icon="search-01" variant="outline" ariaLabel="검색" />
           <IconButton icon="notification-01" variant="ghost" ariaLabel="알림" />
+          <IconButton icon="search-01" variant="outline" disabled ariaLabel="검색" />
         </div>
-        <div className="row"><span className="label">sizes — 32 · 38 · 44</span>
-          <IconButton icon="search-01" size="sm" variant="outline" ariaLabel="검색" />
-          <IconButton icon="search-01" size="md" variant="outline" ariaLabel="검색" />
-          <IconButton icon="search-01" size="lg" variant="outline" ariaLabel="검색" />
+        <div className="row"><span className="label">pressed 북마크(bookmark-02) — 꺼짐 outline · 켜짐 반전(--sage-900 면 + --sage-50 아이콘, 속 채움) × sm 32 · md 40 · lg 48 · 클릭하면 토글</span><PressedRow icon="bookmark-02" label="관심있는 멘토" /></div>
+        <div className="row"><span className="label">pressed 하트(favourite) — 켜지면 속 채움</span><PressedRow icon="favourite" label="도움돼요" /></div>
+        <div className="row"><span className="label">pressed 그 밖의 아이콘(notification-01) — 채움 없이 면만 반전</span><PressedRow icon="notification-01" label="알림 받기" /></div>
+        <div className="row"><span className="label">BookmarkToggle 켜짐(38 고정) ↔ IconButton pressed 켜짐(md 40) — 같은 반전 모양</span>
+          <BT /><Toggle size="md" initial={true} icon="bookmark-02" label="관심있는 멘토" />
+        </div>
+        <div className="row"><span className="label">Button과 나란히 — 같은 size면 높이가 같다(배경 가로줄 8px 격자)</span>
+          <div className="pair"><Button size="sm">신청하기</Button><Toggle size="sm" initial={false} /><IconButton size="sm" icon="share-08" variant="outline" ariaLabel="공유" /></div>
+          <div className="pair"><Button size="md">신청하기</Button><Toggle size="md" initial={true} /><IconButton size="md" icon="share-08" variant="outline" ariaLabel="공유" /></div>
+          <div className="pair"><Button size="lg">신청하기</Button><Toggle size="lg" initial={false} /><IconButton size="lg" icon="share-08" variant="outline" ariaLabel="공유" /></div>
         </div>
       </React.Fragment>
     );

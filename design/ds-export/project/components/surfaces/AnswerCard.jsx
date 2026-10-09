@@ -44,7 +44,7 @@ function linkButtonStyle(variant) {
   return {
     display: "inline-flex", alignItems: "center", justifyContent: "center", height: 32, padding: "0 12px",
     fontFamily: "var(--font-sans)", fontSize: "var(--text-caption)", fontWeight: 500, lineHeight: 1,
-    letterSpacing: "-0.01em", borderRadius: "var(--radius-md)", textDecoration: "none", whiteSpace: "nowrap", ...v,
+    letterSpacing: 0, borderRadius: "var(--radius-md)", textDecoration: "none", whiteSpace: "nowrap", ...v,
   };
 }
 
@@ -140,11 +140,11 @@ export function AnswerCard({
             <Avatar src={mentorPhoto} name={mentorName} size="lg" />
             <div style={{ display: "flex", flexDirection: "column", gap: 4, minWidth: 0 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
-                <span className="mt-ac-mentor-name" style={{ fontSize: "var(--text-h3)", fontWeight: 600 }}>{mentorName}</span>
+                <span className="mt-ac-mentor-name" style={{ fontSize: "var(--text-h3)", fontWeight: 600, lineHeight: "var(--text-h3--line-height)", letterSpacing: "var(--text-h3--letter-spacing)" }}>{mentorName}</span>
                 {(country || countryLabel) && <Badge size="sm" leading="flag" flag={country}>{countryLabel}</Badge>}
-                {activityLocation && <span style={{ fontSize: "var(--text-caption)", color: "var(--muted-foreground)" }}>{activityLocation}</span>}
+                {activityLocation && <span style={{ fontSize: "var(--text-caption)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", color: "var(--muted-foreground)" }}>{activityLocation}</span>}
               </div>
-              {headline && <span style={{ fontSize: "var(--text-body)", fontWeight: 500, color: "var(--muted-foreground)" }}>{headline}</span>}
+              {headline && <span style={{ fontSize: "var(--text-caption)", fontWeight: 500, lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", color: "var(--muted-foreground)" }}>{headline}</span>}
             </div>
           </div>
         </a>
@@ -157,11 +157,11 @@ export function AnswerCard({
         </a>
       </div>
 
-      {/* 2) 본문 — 전문, line-clamp 없음(QnaCard와 다름). 禁則 유지. */}
-      <div style={{ fontSize: "var(--text-body)", fontWeight: 400, color: "var(--foreground)", lineHeight: 1.7, whiteSpace: "pre-wrap", ...clampNone }}>{body}</div>
+      {/* 2) 본문 — 전문, line-clamp 없음(QnaCard와 다름). 읽을거리 본문이라 --text-article 17/lh28이다. 禁則 유지. */}
+      <div style={{ fontSize: "var(--text-article)", fontWeight: 400, color: "var(--foreground)", lineHeight: "var(--text-article--line-height)", letterSpacing: "var(--text-article--letter-spacing)", whiteSpace: "pre-wrap", ...clampNone }}>{body}</div>
 
       {/* 3) 날짜 — 연월일만 */}
-      {date && <span style={{ fontSize: "var(--text-caption)", color: "var(--muted-foreground)" }}>{formatDate(date)}</span>}
+      {date && <span style={{ fontSize: "var(--text-caption)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", color: "var(--muted-foreground)" }}>{formatDate(date)}</span>}
 
       {/* 4)+5)+6) 액션 줄 — 한 줄, 좌우 양끝 정렬(space-between). 좌: 도움돼요·공유. 우: 채택 배지+감사인사 보내기(함께 내려간다, 갈라지지 않음). */}
       <div style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
@@ -183,7 +183,7 @@ export function AnswerCard({
         {(accepted || isQuestionerView) && (
           <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", justifyContent: "flex-end" }}>
             {accepted && (
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: "var(--text-caption)", fontWeight: 500, color: "var(--primary)", whiteSpace: "nowrap" }}>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: "var(--text-caption)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", fontWeight: 500, color: "var(--primary)", whiteSpace: "nowrap" }}>
                 <Icon name="checkmark-circle-02" size={15} />
                 질문자가 도움된다고 한 답변입니다
               </span>

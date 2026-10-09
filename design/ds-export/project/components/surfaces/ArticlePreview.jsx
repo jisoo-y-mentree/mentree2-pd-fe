@@ -27,7 +27,8 @@ if (typeof document !== "undefined" && !document.getElementById("mt-card-link-st
     ".mt-card-link::after{content:'';position:absolute;inset:0;z-index:1;}" +
     ".mt-card-link:focus-visible{outline:none;}" +
     // 포커스 링은 제목 글자가 아니라 카드 테두리에 그린다 — 무엇이 선택됐는지 보이게.
-    "article:has(.mt-card-link:focus-visible){outline:2px solid var(--ring);outline-offset:2px;}";
+    "article:has(.mt-card-link:focus-visible){outline:2px solid var(--ring);outline-offset:2px;}" +
+    "@media (hover:hover){article:hover a.mt-card-link{color:var(--primary);}article:hover .mt-card-media-img{transform:scale(1.03);}}.mt-card-media-img{transition:transform 250ms ease-out;}a.mt-card-link{transition:color 250ms ease-out;}@media (prefers-reduced-motion:reduce){.mt-card-media-img{transform:none !important;transition:none;}}";
   document.head.appendChild(s);
 }
 
@@ -71,6 +72,7 @@ export function ArticlePreview({
       <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 9", background: "var(--sage-100)", borderRadius: "var(--card-media-radius)", overflow: "hidden", boxShadow: hover ? "var(--shadow-sm)" : "none", transition: "box-shadow 150ms ease" }}>
         {showImg ? (
           <img
+            className="mt-card-media-img"
             src={image}
             alt=""
             onError={() => setImgError(true)}
@@ -84,9 +86,9 @@ export function ArticlePreview({
       </div>
 
       {/* 제목 h3, 2줄 고정 — 카드의 유일한 링크(스트레치 링크). */}
-      <a href={href} className="mt-card-link" style={{ display: "block", fontSize: "var(--text-h3)", fontWeight: 600, lineHeight: 1.5, ...clamp(2) }}>{title}</a>
-      {/* 발췌 body muted, 3줄 고정 */}
-      <div style={{ fontSize: "var(--text-body)", fontWeight: 400, color: "var(--muted-foreground)", lineHeight: 1.6, ...clamp(3) }}>{excerpt}</div>
+      <a href={href} className="mt-card-link" style={{ display: "block", fontSize: "var(--text-h3)", fontWeight: 600, lineHeight: "var(--text-h3--line-height)", letterSpacing: "var(--text-h3--letter-spacing)", ...clamp(2) }}>{title}</a>
+      {/* 발췌 — caption muted, 3줄 고정(카드 안에서 훑는 글) */}
+      <div style={{ fontSize: "var(--text-caption)", fontWeight: 400, color: "var(--muted-foreground)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", ...clamp(3) }}>{excerpt}</div>
       {/* 하단 컬러 태그 — 질적태그 팔레트(뉴트럴/회색 금지), size sm */}
       {tags.length > 0 && (
         <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap", marginTop: 2 }}>

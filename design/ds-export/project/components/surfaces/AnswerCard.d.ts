@@ -25,7 +25,7 @@ export interface AnswerCardProps extends React.HTMLAttributes<HTMLElement> {
   mentorProfileHref?: string;
   /** 이 멘토의 다른 답변 링크(outline 버튼 — 이 카드에서 테두리를 가진 유일한 요소). 새 창으로 연다. */
   mentorAnswersHref?: string;
-  /** 답변 본문(전문). line-clamp 없음 — QnaCard와 다르다. */
+  /** 답변 본문(전문). --text-article 17(읽을거리 본문). line-clamp 없음 — QnaCard와 다르다. */
   body: string;
   /** 작성일(ISO 문자열 또는 Date). 연월일만 표시(시간 없음). */
   date?: string | Date;

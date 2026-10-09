@@ -1,0 +1,79 @@
+<!-- @dsCard group="Components" viewport="1100x2600" name="QnaListItem" subtitle="DS-57 Q&amp;A 목록 한 줄 — 변형 4(default 전부 · compact 제목만 · answer 그 멘토의 답변 · question 질문과 답변 수) · hairline 셸 · 스트레치 링크 · loading" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+body{margin:0;padding:var(--space-6);background:var(--background);color:var(--foreground);font-family:var(--font-sans);}
+.sec{display:flex;flex-direction:column;gap:var(--space-2);margin-bottom:var(--space-10);}
+.lbl{font-size:var(--text-caption);line-height:var(--text-caption--line-height);color:var(--muted-foreground);font-weight:600;}
+.frame{width:390px;border:1px dashed var(--sage-300);}
+.band{background:var(--sage-100);padding:var(--space-6) var(--space-4);}
+.log{font-size:var(--text-caption);color:var(--muted-foreground);}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { QnaListItem } = window.MentreeDesignSystem_2f86cf;
+const NL = { country: "netherlands", countryLabel: "네덜란드", keyword: "현지 생활" };
+const Q1 = { ...NL, title: "암스테르담 정착 초기, 집 계약에서 무엇을 확인해야 합니까?", excerpt: "회사가 정한 3개월 임시 숙소가 끝납니다. 계약서에서 놓치기 쉬운 조항과 보증금 반환 조건, 등록 가능한 주소인지를 어떻게 확인하는지 궁금합니다.", tags: ["정착 생활", "비자·영주권", "재테크"], answerers: [{ name: "김도윤" }, { name: "이서연" }], answerCount: 2, views: 431, likes: 11, scraps: 3 };
+const Q0 = { country: "japan", countryLabel: "일본", keyword: "취업준비", title: "도쿄 신졸 전형 일정, 지금 시작해도 늦지 않을까요?", excerpt: "3학년 가을인데 아직 자기분석도 못 했습니다. 인턴 없이 본선형으로 가도 되는지 궁금합니다.", tags: ["신졸", "취업"], answerCount: 0, views: 58, likes: 0, scraps: 1 };
+const Q7 = { country: "united-states", countryLabel: "미국", keyword: "커리어", title: "미국 빅테크 이직 면접, 시니어 레벨은 무엇을 더 봅니까?", excerpt: "시스템 디자인과 행동 면접에서 시니어에게 기대하는 신호가 무엇인지, 주니어 때와 준비를 어떻게 달리해야 하는지 알고 싶습니다.", tags: ["이직", "면접", "시니어", "시스템디자인", "연봉협상", "비자", "레퍼런스"], answerers: [{ name: "한지민" }, { name: "정하늘" }, { name: "최유진" }, { name: "박지훈" }, { name: "김도윤" }, { name: "이서연" }], answerCount: 6, views: 964, likes: 28, scraps: 14 };
+const ANS_LONG = "지원 자체는 충분히 가능합니다. 제가 지원할 때도 N2였고, 같은 기수 외국인 동기 중 절반 정도가 N2였습니다. 다만 서류와 면접에서 자기 경험을 일본어로 구체적으로 설명할 수 있어야 합니다. 저는 ES를 쓰기 전에 경험을 다섯 개로 추려 일본어로 1분씩 말하는 연습을 했고, 그게 면접에서 가장 도움이 됐습니다.";
+
+function Ctl({ onScrap, ...props }) {
+  const [liked, setLiked] = React.useState(!!props.liked);
+  const [scrapped, setScrapped] = React.useState(!!props.scrapped);
+  return <QnaListItem {...props} liked={liked} likes={(props.likes || 0) + (liked && !props.liked ? 1 : 0)} onLikeChange={setLiked} scrapped={scrapped} scraps={(props.scraps || 0) + (scrapped ? 0 : props.scrapped ? -1 : 0)} onScrapChange={(n) => { setScrapped(n); onScrap && onScrap(n); }} />;
+}
+
+function Demo() {
+  const [log, setLog] = React.useState("—");
+  const focusRef = React.useRef(null);
+  React.useEffect(() => { const a = focusRef.current && focusRef.current.querySelector("a.mt-card-link"); if (a) a.focus({ preventScroll: true }); }, []);
+  return (<div>
+    <div className="sec"><div className="lbl">1 · default — 답변 있음 · 0건 · 해시태그 7개(3 + 「+4」)</div>
+      <div><Ctl {...Q1} /><Ctl {...Q0} /><Ctl {...Q7} /></div></div>
+    <div className="sec"><div className="lbl">1b · default — tagHref={"{(t) => \"/search?tag=\" + encodeURIComponent(t)}"} (태그에 마우스를 올리면 주소가 보인다)</div>
+      <div><Ctl {...Q1} tagHref={(t) => "/search?tag=" + encodeURIComponent(t)} /></div></div>
+    <div className="sec"><div className="lbl">2 · default @390 — 해시태그가 한 줄을 따로 쓴다</div>
+      <div className="frame"><Ctl {...Q1} tags={["정착 생활", "비자·영주권", "재테크", "주거", "세금"]} /><Ctl {...Q0} /></div></div>
+    <div className="sec"><div className="lbl">3 · compact — 답변 있음 · 답변 대기 · showScrap</div>
+      <div style={{ width: 360 }}>
+        <Ctl variant="compact" {...Q0} answerCount={2} />
+        <Ctl variant="compact" {...Q1} answerCount={0} />
+        <Ctl variant="compact" {...Q7} showScrap scrapped scraps={6} onScrap={(n) => setLog("onScrapChange(" + n + ")")} />
+      </div>
+      <div className="log">showScrap 토글 → {log}</div></div>
+    <div className="sec"><div className="lbl">4 · answer — 발췌 3줄 이내 · 3줄 넘음(말줄임)</div>
+      <div style={{ maxWidth: 720 }}>
+        <Ctl variant="answer" title="N2 로 신졸 전형에 지원할 수 있을까요?" answerExcerpt="지원 자체는 충분히 가능합니다. 제가 지원할 때도 N2였습니다." likes={42} views={1280} scraps={26} />
+        <Ctl variant="answer" title="N2 로 신졸 전형에 지원할 수 있을까요? 서류 단계에서 어학 점수를 얼마나 보는지도 궁금합니다" answerExcerpt={ANS_LONG} likes={42} liked views={1280} scraps={26} />
+      </div></div>
+    <div className="sec"><div className="lbl">5 · question — --sage-100 밴드 위 · 답변 1자리 · 2자리 · 0건</div>
+      <div className="band"><div style={{ maxWidth: 520 }}>
+        <QnaListItem variant="question" {...Q7} />
+        <QnaListItem variant="question" {...Q1} keyword="현지 생활" answerCount={12} />
+        <QnaListItem variant="question" {...Q0} />
+      </div></div></div>
+    <div className="sec"><div className="lbl">6 · loading — 변형마다 1줄(default · compact · answer · question)</div>
+      <div style={{ maxWidth: 720 }}>
+        <QnaListItem loading title="" />
+        <QnaListItem loading variant="compact" title="" />
+        <QnaListItem loading variant="answer" title="" />
+        <QnaListItem loading variant="question" title="" />
+      </div></div>
+    <div className="sec"><div className="lbl">7 · 키보드 포커스 — 제목 링크에 포커스, 링은 줄 전체</div>
+      <div ref={focusRef} style={{ maxWidth: 720, padding: 4 }}><Ctl {...Q1} /></div></div>
+  </div>);
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

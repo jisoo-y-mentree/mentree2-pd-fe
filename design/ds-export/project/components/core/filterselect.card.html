@@ -1,0 +1,87 @@
+<!-- @dsCard group="Components" viewport="820x520" name="FilterSelect" subtitle="조건 축 트리거+모달(Dialog 600) — 그룹별 FilterChip 다중 선택, 하단 요약+초기화/적용, 적용 전까지 즉시 반영 없음" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .stack { display: flex; flex-direction: column; gap: 28px; }
+  .row { display: flex; align-items: flex-start; gap: 22px; flex-wrap: wrap; }
+  .cell { display: flex; flex-direction: column; gap: 8px; }
+  .lbl { font-size: var(--text-caption); font-weight: 600; color: var(--muted-foreground); }
+  .cap { font-size: var(--text-caption); color: var(--muted-foreground); line-height: 1.6; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { FilterSelect } = window.MentreeDesignSystem_2f86cf;
+  const GROUPS = [
+    { label: "아시아 · 중동", options: [
+      { value: "japan", label: "일본", flag: "japan" },
+      { value: "south-korea", label: "대한민국", flag: "south-korea" },
+      { value: "china", label: "중국", flag: "china" },
+      { value: "hong-kong", label: "홍콩", flag: "hong-kong" },
+    ]},
+    { label: "유럽", options: [
+      { value: "germany", label: "독일", flag: "germany" },
+      { value: "france", label: "프랑스", flag: "france" },
+      { value: "united-kingdom", label: "영국", flag: "united-kingdom" },
+    ]},
+    { label: "북미 · 오세아니아", options: [
+      { value: "united-states", label: "미국", flag: "united-states" },
+      { value: "canada", label: "캐나다", flag: "canada" },
+      { value: "australia", label: "호주", flag: "australia" },
+    ]},
+  ];
+
+  function OpenDemo({ initial }) {
+    const ref = React.useRef(null);
+    const [value, setValue] = React.useState(initial);
+    React.useEffect(() => { const btn = ref.current && ref.current.querySelector("button"); if (btn) btn.click(); }, []);
+    return <div ref={ref}><FilterSelect label="국가" groups={GROUPS} value={value} onChange={setValue} /></div>;
+  }
+
+  function Demo() {
+    const [empty, setEmpty] = React.useState([]);
+    const [one, setOne] = React.useState(["japan"]);
+    const [outN, setOutN] = React.useState(["japan", "south-korea", "united-states"]);
+    return (
+      <div className="stack">
+        <div className="row">
+          <div className="cell">
+            <span className="lbl">트리거 · 0개</span>
+            <FilterSelect label="국가" groups={GROUPS} value={empty} onChange={setEmpty} />
+          </div>
+          <div className="cell">
+            <span className="lbl">트리거 · 1개</span>
+            <FilterSelect label="국가" groups={GROUPS} value={one} onChange={setOne} />
+          </div>
+          <div className="cell">
+            <span className="lbl">트리거 · "일본 외 2"</span>
+            <FilterSelect label="국가" groups={GROUPS} value={outN} onChange={setOutN} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="cell">
+            <span className="lbl">② 모달 열림 · 그룹 3개 · 3개 선택</span>
+            <OpenDemo initial={["japan", "south-korea", "united-states"]} />
+          </div>
+          <div className="cell">
+            <span className="lbl">③ 모달 열림 · 선택 0개(요약 줄 감춤)</span>
+            <OpenDemo initial={[]} />
+          </div>
+        </div>
+        <div className="cap">모달 안 선택은 "N개 적용하기"를 눌러야 바깥에 반영된다. "초기화"는 로컬만 비우고 모달을 열어둔다. ESC·✕·바깥 클릭은 고른 것을 버린다.</div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

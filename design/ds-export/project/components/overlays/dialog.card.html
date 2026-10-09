@@ -1,0 +1,32 @@
+<!-- @dsCard group="Components" viewport="1280x1720" name="Dialog · 편집 모달" subtitle="DS-69 긴 본문(머리·푸터 고정, 본문만 스크롤) · footerLayout stack · mobile fullscreen(390, 제목에 포커스) · width 520 · 뒤 페이지 스크롤 잠금 · 안의 목록은 top layer" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+html,body{margin:0}
+body{padding:20px;background:var(--background);font-family:var(--font-sans);color:var(--foreground)}
+.row{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;margin-bottom:24px}
+.cell{display:flex;flex-direction:column;gap:8px;max-width:100%}
+.cap{font-size:var(--text-caption);line-height:var(--text-caption--line-height);color:var(--muted-foreground)}
+iframe{display:block;max-width:100%;border:0;outline:1px solid var(--sage-200);border-radius:var(--radius-md);background:var(--sage-50)}
+@media (max-width:480px){body{padding:16px 0}.cap{padding:0 16px}}
+</style>
+</head>
+<body>
+<div class="row">
+<div class="cell"><div class="cap">① 짧은 본문 · footerLayout="end" — 지금 모양</div><iframe src="dialog.demo.html?state=1" title="Dialog 짧은 본문" style="width:600px;height:380px"></iframe></div>
+<div class="cell"><div class="cap">⑤ width={520}</div><iframe src="dialog.demo.html?state=5" title="Dialog 폭 520" style="width:600px;height:380px"></iframe></div>
+</div>
+<div class="row">
+<div class="cell"><div class="cap">② 긴 본문 — 머리·푸터 고정, 본문만 스크롤</div><iframe src="dialog.demo.html?state=2" title="Dialog 긴 본문" style="width:400px;height:720px"></iframe></div>
+<div class="cell"><div class="cap">③ footerLayout="stack" — 수정하기(폭 전체) + 커리어 삭제(ghost sm · 가운데)</div><iframe src="dialog.demo.html?state=3" title="Dialog 쌓는 푸터" style="width:400px;height:720px"></iframe></div>
+<div class="cell"><div class="cap">④ 390 폰 틀 · mobile="fullscreen" — 포커스는 제목(링)</div><iframe src="dialog.demo.html?state=4" title="Dialog 전체 화면" style="width:390px;height:720px"></iframe></div>
+</div>
+<div class="row">
+<div class="cell"><div class="cap">⑥ 긴 페이지(600까지 내려감) 위의 모달 — 휠을 굴려도 뒤가 움직이지 않는다 · 닫으면 600으로</div><iframe src="dialog.demo.html?state=7" title="Dialog 스크롤 잠금" style="width:600px;height:380px"></iframe></div>
+<div class="cell"><div class="cap">⑦ 짧은 본문 Dialog 안의 MultiSelect — 목록이 푸터 위로 뜬다(DS-74)</div><iframe src="dialog.demo.html?state=6" title="Dialog 안 MultiSelect" style="width:600px;height:600px"></iframe></div>
+</div>
+</body>
+</html>

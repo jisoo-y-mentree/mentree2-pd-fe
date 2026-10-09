@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="820x420" name="Avatar / AvatarGroup" subtitle="원형 아바타 + 이니셜 fallback(sage) · 겹침 그룹 + 흰 링 + '+K' 오버플로우 [DS-GAP]" -->
+<!-- @dsCard group="Components" viewport="820x560" name="Avatar / AvatarGroup" subtitle="원형 아바타 + 이니셜 fallback(sage) · 겹침 그룹 + 흰 링 + '+K' 오버플로우 [DS-GAP]" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -24,6 +24,7 @@
 <script type="text/babel">
   const NS = window.MentreeDesignSystem_2f86cf;
   const { Avatar, AvatarGroup } = NS;
+  const LOGO = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Crect width='120' height='40' rx='6' fill='%233a6ea5'/%3E%3C/svg%3E";
   const IMG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect width='80' height='80' fill='%23c9cfca'/%3E%3Cg stroke='%23b0b7b1' stroke-width='9'%3E%3Cpath d='M-10 20 L20 -10 M-10 50 L50 -10 M-10 80 L80 -10 M10 90 L90 10 M40 90 L90 40'/%3E%3C/g%3E%3C/svg%3E";
   const people = [
     { name: "박지훈" }, { src: IMG, name: "김도윤" }, { name: "이서연" },
@@ -56,6 +57,19 @@
             <div className="cell"><Avatar name="정하늘" size="lg" /><span className="cap">이미지 없음 → 이니셜</span></div>
             <div className="cell"><Avatar src="https://invalid.example/x.png" name="정하늘" size="lg" /><span className="cap">이미지 실패 → 이니셜</span></div>
             <div className="cell"><Avatar src={IMG} name="김도윤" size="lg" /><span className="cap">이미지 로드됨</span></div>
+          </div>
+        </div>
+        <hr />
+        <div className="row">
+          <div className="lbl">DS-80 — shape(원 · 둥근 사각) × 사진 / 아이콘 / 이니셜</div>
+          <div className="items">
+            <div className="cell"><Avatar src={IMG} name="김도윤" size="lg" /><span className="cap">원 · 사진</span></div>
+            <div className="cell"><Avatar icon="user" name="김도윤" size="lg" /><span className="cap">원 · 아이콘</span></div>
+            <div className="cell"><Avatar name="김도윤" size="lg" /><span className="cap">원 · 이니셜</span></div>
+            <div className="cell"><Avatar shape="rounded" src={LOGO} name="가로 로고" size="lg" /><span className="cap">둥근 사각 · 로고(contain — 가로 3:1도 안 잘린다)</span></div>
+            <div className="cell"><Avatar shape="rounded" icon="building-03" name="회사" size="lg" /><span className="cap">회사 building-03</span></div>
+            <div className="cell"><Avatar shape="rounded" icon="mortarboard-01" name="학교" size="lg" /><span className="cap">학교 mortarboard-01</span></div>
+            <div className="cell"><Avatar shape="rounded" name="Toyota" size="lg" /><span className="cap">둥근 사각 · 이니셜</span></div>
           </div>
         </div>
         <hr />

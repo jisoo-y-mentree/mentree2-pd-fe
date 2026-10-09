@@ -1,4 +1,4 @@
-<!-- @dsCard group="Navigation" viewport="1100x360" name="Header" subtitle="제품 기본 상단 네비(sticky) — 좌 로고 / 중 메뉴3(28px 컬러 아이콘 슬롯·활성 green) / 우 회원가입·로그인+기업서비스" -->
+<!-- @dsCard group="Navigation" viewport="1100x760" name="Header" subtitle="제품 기본 상단 네비(sticky) — 3열 그리드(1fr auto 1fr), 중앙 메뉴는 항상 화면 폭 중앙. Mobile 오버레이는 header 형제" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,6 +9,11 @@
   body { background: var(--background); color: var(--foreground); font-family: var(--font-sans); padding: 0 0 24px; }
   .cap { font-size: var(--text-caption); color: var(--muted-foreground); padding: 16px 24px 6px; }
   .stage { padding: 20px 24px; max-width: 1200px; margin: 0 auto; color: var(--muted-foreground); font-size: var(--text-caption); }
+  .frame-row { display: flex; gap: 24px; align-items: flex-start; padding: 0 24px; flex-wrap: wrap; }
+  .frame { border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+  .frame-label { font-size: var(--text-caption); color: var(--muted-foreground); padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  .frame-body { width: var(--fw); height: var(--fh); overflow: hidden; position: relative; contain: layout; }
+  .frame-body > div { width: var(--fw); }
 </style>
 </head>
 <body>
@@ -26,10 +31,36 @@
       <div>
         <div className="cap">비로그인(guest) — 활성: 멘토 찾기. 우측: 회원가입/로그인(green 하나) + 기업 서비스(파랑 아웃라인 ↗)</div>
         <Header activeKey={active} authState="guest" onNavigate={nav} />
-        <div className="stage">중앙 메뉴 3개, 각 좌측 28px 컬러 아이콘 슬롯(placeholder — 오리지널 컬러 SVG 예정). 활성 메뉴는 primary green.</div>
+        <div className="stage">중앙 메뉴 3개, 각 좌측 20px HugeIcons 모노 아이콘 + 16px·600 라벨. 활성은 색(--primary)으로만 구분.</div>
 
-        <div className="cap">로그인 상태 분기 — mentor / mentee (분기 자리만, 미구현 placeholder)</div>
-        <Header activeKey="qna" authState="mentor" onNavigate={nav} />
+        <div className="cap">로그인(mentee) — 사진 아바타 + unread 켬 → 빨간 점</div>
+        <Header activeKey="qna" authState="mentee" user={{ name: "김민지", avatarUrl: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect width='80' height='80' fill='%23c8a97e'/%3E%3Ccircle cx='40' cy='30' r='16' fill='%23fff' opacity='.9'/%3E%3Cellipse cx='40' cy='72' rx='26' ry='20' fill='%23fff' opacity='.9'/%3E%3C/svg%3E" }} unread onNavigate={nav} onNotify={() => {}} />
+
+        <div className="cap">로그인(mentee) — unread 끔 → 점 없음</div>
+        <Header activeKey="insights" authState="mentee" user={{ name: "김민지", avatarUrl: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect width='80' height='80' fill='%23c8a97e'/%3E%3Ccircle cx='40' cy='30' r='16' fill='%23fff' opacity='.9'/%3E%3Cellipse cx='40' cy='72' rx='26' ry='20' fill='%23fff' opacity='.9'/%3E%3C/svg%3E" }} onNavigate={nav} onNotify={() => {}} />
+
+        <div className="cap">로그인(mentor) — user 없음 → 아바타 이니셜 fallback. mentee와 모양 동일, 목적지만 다름</div>
+        <Header activeKey="mentors" authState="mentor" onNavigate={nav} onNotify={() => {}} />
+
+        <div className="cap">DS-33 · DS-34 · DS-35 확인 — 1280(guest/mentee 메뉴 중앙 640, 우측 88 · 컨테이너 끝) / 390(오버레이)</div>
+        <div className="frame-row">
+          <div className="frame">
+            <div className="frame-label">1280 · guest — 메뉴 묶음 중앙 x = 640</div>
+            <div className="frame-body" style={{ "--fw": "1280px", "--fh": "140px" }}>
+              <Header activeKey="mentors" authState="guest" onNavigate={() => {}} />
+            </div>
+          </div>
+          <div className="frame">
+            <div className="frame-label">1280 · mentee — 우측이 바뀌어도 메뉴 중앙 640 그대로, 우측 묶음 88 컨테이너 끝</div>
+            <div className="frame-body" style={{ "--fw": "1280px", "--fh": "140px" }}>
+              <Header activeKey="mentors" authState="mentee" user={{ name: "김민지", avatarUrl: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect width='80' height='80' fill='%23c8a97e'/%3E%3Ccircle cx='40' cy='30' r='16' fill='%23fff' opacity='.9'/%3E%3Cellipse cx='40' cy='72' rx='26' ry='20' fill='%23fff' opacity='.9'/%3E%3C/svg%3E" }} unread onNavigate={() => {}} onNotify={() => {}} />
+            </div>
+          </div>
+          <div className="frame">
+            <div className="frame-label">390 — 햄버거 클릭 → 오버레이 (높이 = 뷰포트 − 64) — 실제 390px 뷰포트 iframe</div>
+            <iframe src="header.card.mobile.html" style={{ width: 390, height: 600, border: "none", display: "block" }} title="Header mobile 390" />
+          </div>
+        </div>
       </div>
     );
   }

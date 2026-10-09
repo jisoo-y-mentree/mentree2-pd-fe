@@ -13,3 +13,11 @@
 - **Avatar**: 이미지가 있으면 표시, 없거나 실패하면 이니셜(sage-100 배경 / sage-700 텍스트). 로딩 전엔 sage placeholder. 크기 `xs`(20)·`sm`(24)·`md`(32)·`lg`(40) 또는 px 숫자.
 - **AvatarGroup**: 음수 마진으로 겹치고 각 아바타에 흰색 링(`--card`)으로 분리. `max` 초과분은 마지막 자리에 sage `+K` 칩(`.tabular`).
 - 재사용처: Q&A 카드, 지도 팝오버, 세션/멘토링 목록.
+
+## shape · icon (DS-80) — 로고 자리
+
+`<Avatar shape="rounded" src="/logo/toyota.svg" name="Toyota" />` · `<Avatar shape="rounded" icon="building-03" name="Toyota" />`
+
+- `shape="rounded"`(반경 `--radius-md`) — 회사 · 학교 로고. 사진(로고)이 있으면 **흰 바탕 · 1px `--border` 위에 `contain`** — 자르지 않는다(안쪽 여백 12%).
+- `icon` — 사진이 없을 때 이니셜 대신. **흰 바탕 · 1px `--border` · 아이콘 `--primary`**(Badge `leading="icon"`과 같은 계열). 회사 `building-03` · 학교 `mortarboard-01`.
+- `shape="circle"`은 지금과 같다(사람 사진). `icon`도 사진도 없으면 이니셜(sage).

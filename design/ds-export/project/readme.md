@@ -30,6 +30,18 @@
 
 > **기업 서비스(Biz)** 는 mentree 본체가 아니라 **외부 사이트로 나가는 출구 링크**입니다. 내부 페이지처럼 다루지 말고 외부 이탈 진입점으로 취급합니다(`external` + 외부 링크 표시).
 
+### 분류 체계(taxonomy) — 국가·직무·테마 태그 공통 소스(SSoT)
+
+국가·직무·테마 태그의 단일 소스는 **`components/taxonomy.js`** 하나입니다. **화면이 값을 지어내지 않습니다** — TOP·멘토찾기·Q&A·멘토 상세가 이 파일을 공통 참조하므로, 바꿀 때는 여기만 고칩니다. Figma 「국가, 직무 & 태그 정리」(node 1059:35100, 2026-09-15)를 그대로 옮긴 것입니다.
+
+- **국가 15개국** / 대분류 4 — 단독(일본·미국·대한민국·싱가포르) · 유럽 · 아시아/중동 · 북미/오세아니아. 개별 국가에만 국기(`flag` → `assets/flags/<flag>.svg`)가 붙고 **묶음 대분류에는 아이콘이 없습니다**.
+- **직무 12개** / 대분류 2 — 단독 8개 ＋ 「기타」 4개.
+- **테마 태그 25개** / 대분류 4 — 취업준비 · 커리어 · 현지 생활 · 학업/재정/그 외.
+- **홈 표시:** `COUNTRY_TOP` 7개 · `JOB_TOP` 9개.
+- 구조는 `FilterSelect`가 바로 먹는 모양(`groups = [{ label, options }]`)이고, 첫 그룹의 `label`은 빈 문자열입니다(제목 없이 칩만 섬).
+- `value`는 **한국어 라벨 그대로**입니다 — 백엔드 코드값이 아직 없으므로 지금 영어 식별자를 만들면 나중에 두 벌이 됩니다.
+- 부품은 이 파일을 import하지 않습니다 — `FilterSelect`는 `groups`, `MentorCard`는 `country`/`countryLabel`, `Badge`는 `flag` prop을 받는 구조 그대로이고 데이터는 화면이 넘깁니다.
+
 ---
 
 ## 브랜드 자산
@@ -63,7 +75,7 @@
 - *Biz 서브브랜드* — **파랑**(`--biz-*`): 외부 “기업 서비스(Biz)” **전용**. ⚠ 본체 시맨틱 토큰(`primary/accent/chart` 등)에 파랑을 절대 섞지 말 것 — Biz 진입점/밴드에만.
 - 카드/팝오버는 **흰색**. hex 하드코딩 금지 — 시맨틱 토큰(`--card`, `--muted-foreground`, `--border`…) 또는 노출된 raw 스케일(`--sage-*`)만.
 
-**타입.** Pretendard JP Variable, 전부. 스케일: `h1` 24/1.3 · `h2` 20/1.4 · `h3` 16/1.5 · `body` 14/1.7 · `caption` 12/1.6. Inter / DM Sans / Nunito **금지**.
+**타입.** Pretendard JP Variable, 전부. 9개 토큰(display 40·h0 30·h1 24·h2 20·h3 18·article 18·body 16·caption 14·micro 12) — 반응형은 display~h3+article(제목·아티클)에만 걸고, body·caption·micro는 폭과 무관하게 고정(원티드·토스 실측 근거). **카드 제목은 카드 폭이 정한다**: ~280→body16 · 280–360→h3 18 · 360–430→h2 20 · 430+→h1 24. Inter / DM Sans / Nunito **금지**.
 
 **간격.** 4px 베이스 스케일. 카드 안쪽은 넉넉하게, 답답하지 않게.
 
@@ -103,7 +115,7 @@
 
 ## 컴포넌트
 
-관습적 프리미티브는 현 토큰 기준으로 정돈해 유지합니다: **Button · IconButton · Icon · Badge · Chip · Avatar/AvatarGroup · BookmarkToggle · CountToggle · FilterChip · Input · Field/FieldGroup · TagInput · Select · Checkbox · RadioGroup · Switch · ToggleGroup · Card · Table · Dialog · Sheet · Popover · Toast**. 네비게이션은 **Header · Footer**(canon), **Sidebar**(참조·레거시).
+관습적 프리미티브는 현 토큰 기준으로 정돈해 유지합니다: **Button · IconButton · Icon · Badge · Chip · Avatar/AvatarGroup · BookmarkToggle · CountToggle · FilterChip · FilterSelect · Input · Field/FieldGroup · TagInput · SearchInput · Select · Checkbox · RadioGroup · Switch · ToggleGroup · Card · Table · Dialog · Sheet · Popover · Toast · Breadcrumb**. 네비게이션은 **Header · Footer**(canon), **Sidebar**(참조·레거시).
 
 카드가 의존할 기반 프리미티브 3종:
 
@@ -113,24 +125,36 @@
 - **BookmarkToggle** — 미디어 오버레이 전용 아이콘 토글(사진 위·단독·반전). IconButton default 형태 그대로(박스 38·아이콘 18). CountToggle과 경계는 "카운트 유무"가 아니라 "어디에 놓이는가"(2026-09-11 CountToggle로 흡수 → 09-12 되돌림).
 - **CountToggle** — 메타 줄 인라인 전용 아이콘+카운트 토글(도움돼요·스크랩 공용, count 필수). selected는 반전하지 않음(아이콘 fill + tone 색만, green 없음) — 목록 다수 노출 시 반전 과다를 피하는 예외.
 - **FilterChip** — Toggle 계열 텍스트 칩(BookmarkToggle의 형제, 아이콘형↔텍스트칩형). 선택 가능한 필터 요소(정적 Badge와 구분). 버튼 sm 기하(높이 32·radius-md·caption/500, pill 아님). "selected=반전" 공통 원칙 상속 — FilterChip은 primary green 반전. leading none·flag(원형 국기 재사용).
+- **FilterSelect** — 조건 축의 트리거+모달 한 벌(Dialog width=600). 선택지가 많아 팝오버에 안 들어가 Dialog로 간다 — 새로 만든 건 트리거와 조립뿐, Dialog·FilterChip·Chip·Button을 그대로 감싼다. 트리거는 Button sm 기하, 0개=투명+muted-foreground, 1개 이상=--muted 채움+1px --sage-400+foreground 600(green 반전 없음). 모달 안 선택은 "N개 적용하기"를 눌러야 반영(즉시 반영 없음), "초기화"는 모달만 비운다. 그룹별로 나열, 하단 요약 칩+초기화/적용 바.
+- **Textarea** (DS-70) — 여러 줄 입력. rows 3→maxRows 8 자동 높이, `limit` 글자 수(넘치면 invalid, 잘라내지 않음). 같은 `limit`이 `Input`에도 있다.
+- **MultiSelect** (DS-71) — 여러 개를 고르는 셀렉트. 트리거 위 Chip 줄 · 항목을 눌러도 목록이 닫히지 않음 · `groups`(taxonomy 모양).
+- **ImageCropper** (DS-72) — 사진 한 장에서 원형(아바타)과 직사각형(3:2) 두 영역. 직사각형 좌우 · 원 상하 · 1〜3배 · ↻ 90°.
+- **ReorderList** (DS-73) — 순서를 바꾸는 목록. 1건은 핸들 없음 · 마우스/길게 눌러 끌기 · 키보드 Space 집기.
+- **SearchInput** — 자동완성·최근 검색어 검색창. TagInput과 같은 골격(한 자리를 갈아끼운다) — 다른 점은 제안 줄이 상자 밖 드롭다운이라는 것. 포커스+빈값=최근 검색어(Chip md+onRemove), 입력 중=자동완성(일치 부분 --primary 600), 둘을 쌓지 않는다. 정렬·필터·개수 제한은 화면의 일.
 
-`window.MentreeDesignSystem_2f86cf`에서 읽습니다(47개). 각 컴포넌트의 `*.prompt.md` 참조.
+`window.MentreeDesignSystem_2f86cf`에서 읽습니다(66개). 각 컴포넌트의 `*.prompt.md` 참조.
 
 ### 배치 컴포넌트
 
-- **SectionHeader** — 가로 양끝 정렬 섹션 헤더(좌 제목 / 우 액션). 좌: 장식 아이콘 칩·제목(30 bold, green 강조 조각)·부가 스트링·Badge 독립 슬롯. 우: 전체보기(고스트+화살표)·아웃라인 버튼·캐러셀 화살표 세그먼트 그룹(끝 도달 시 disabled). 배지·버튼·IconButton·아이콘 재사용. (DS-GAP: 제목 30은 타입스케일 밖 — h0/display 정리 별도 작업.)
+- **SectionHeader** — 가로 양끝 정렬 섹션 헤더(좌 제목 / 우 액션). 좌: 장식 아이콘 칩·제목(`--text-h0` semibold, green 강조 조각)·부가 스트링·Badge 독립 슬롯. 우: 전체보기(고스트+화살표)·아웃라인 버튼·캐러셀 화살표 세그먼트 그룹(끝 도달 시 disabled). 배지·버튼·IconButton·아이콘 재사용. (DS-GAP: 제목 30은 타입스케일 밖 — h0/display 정리 별도 작업.)
 - **Carousel** — 범용 스크롤/스냅 컨테이너(담는 카드 종류 무관). 조작부 없음 — 화살표는 SectionHeader가 담당, Carousel은 스크롤/스냅만. gap prop 주입, 표시 개수 컨테이너 폭에 유동, 카드/1단위 스냅. ref(scrollPrev/scrollNext)·onEdgeChange로 SectionHeader 화살표 연동. 데스크톱 기본 거동만(리스폰시브는 범위 밖).
 - **CalloutBar** — 블리드 풀폭 띠(각진 radius 0). 헤더 위/아래 공지·안내·상태·경고. info(sage)·success(green)·warning(amber)·error(destructive) 4종, 옅은 배경+진한 텍스트(Badge 50/700 상속). 아이콘·인라인 링크·닫기 독립 옵션, 정렬 center/left, 2줄까지 허용.
 - **Banner** — 인라인 둥근 프로모/유도 블록(자유 영역 slot). CalloutBar와 구분(둥근 인라인). 외곽 최소 규칙만 고정(radius 22·인라인·기본 패딩 16·전체 클리커블·폰트/禁則/시맨틱 상속), 배경(과감한 색·그라데이션)·효과·레이아웃·CTA는 자유. variant 없음.
-- **BottomTabBar** — Mobile(\~768) 전용 하단 고정 4탭 네비(56 + safe-area). 멘토 찾기·Q&A 멘토링·멘트리 인사이트·MY 멘트리. HugeIcons 모노(헤더 오버레이의 컬러 SVG와 별개), 활성=green/비활성=muted, frosted(linen-50 반투명+blur) 배경+상단 sage hairline 풀블리드. Desktop(769+) 숨김. guest의 MY 탭은 로그인 유도 자리만(OPEN #9).
+- **BottomTabBar** — Mobile(\~768) 전용 하단 고정 4탭 네비(56 + safe-area). 멘토 찾기·Q&A 멘토링·멘트리 인사이트·MY 멘트리. HugeIcons 모노(헤더 오버레이의 컬러 SVG와 별개), 활성=green/비활성=muted, frosted(linen-50 반투명+blur) 배경+상단 sage hairline 풀블리드. Desktop(769+) 숨김. guest의 MY 탭은 로그인 유도 자리만(OPEN #9). DS-55: `accessory`(탭 줄 위 칸) · `hideOnScroll`(탭 줄만 숨김) · `scrollContainer`, 높이를 `--mt-bottom-bar-height`로 알린다.
+- **ActionBanner** (DS-34) — 문구 + 버튼 배너, 모양 고정(Banner는 자유 슬롯). `--green-50` 면 · 1px `--primary` · `--radius-lg`. inline / stacked, 768 이하 항상 stacked.
 
 ### 조립 카드 (프리미티브 조합)
 
+- **ArticleBody** (DS-56) — 아티클 본문. 머리(배지 국가→키워드·h1 display·날짜) + blocks(h2·p·figure), 형광펜 `--highlight` · 링크. max-width 720, 스스로 가운데 정렬하지 않는다. 아티클 상세·멘토 상세 인터뷰 탭 공용.
+
 - **MentorCard** — 세로형 멘토 카드. Badge·BookmarkToggle 조립. 카드 공통 셸(white·1px sage-200·shadow-sm·radius-lg, hover 시 shadow-md만)을 정의 — 이후 다른 카드가 상속. 카드 전체=상세 링크, 우상단 북마크=독립 클릭.
 - **QnaCard** — 미디어 없는 Q&A 텍스트 카드. 카드 기하·elevation·동심원 상속(패딩 --card-content-padding 통일). 상단 카테고리 배지 + 조회수/좋아요(무상태 카운트), 제목 h3·발췌 2줄 고정(line-clamp), 하단 답변자 AvatarGroup + "멘토 답변 N개".
+- **Tooltip** (DS-77) — 가리키는 요소 하나의 짧은 설명(글자만). 마우스 300ms · 키보드 포커스 · 탭 토글 · Esc. top layer. 면 --sage-900.
+- **Flag** (DS-78) — 원형 국기 하나(1px --border 링) · sm16/md20/lg24/xl28 · aria-label「국가 · 도시」+ Tooltip. 이름 오른쪽에 둔다.
+- **QnaListItem** (DS-57) — Q&A 한 건을 목록의 한 줄로(카드 셸 없음 · 줄 위아래 hairline). 변형 = 강조점 4개: default(전부) · compact(제목만) · answer(그 멘토의 답변) · question(질문과 답변 수). props는 QnaCard와 같은 이름·뜻, answerExcerpt만 새로. 카드 격자는 QnaCard가 그대로 맡는다.
 - **ArticlePreview** — **투명 콘텐츠 프리뷰(카드 아님)**. 표면 규칙상 썸네일이 경계를 만들어 카드 셸 미상속(배경 투명·테두리/그림자/마진 없음). 동심원 기하는 미디어에만(16:9 + radius 14). 제목 h3 2줄·발췌 3줄 고정, 하단 컬러 태그(질적태그 팔레트만). hover 시 썸네일에만 elevation(이동 없음). 카드 전체=아티클 상세 링크.
-- **InterviewCard** — 인물 인터뷰 카드(표면 규칙 1단계). 좌우 가로 분할(좌 1:1 미디어 / 우 정보), 카드 셸·동심원 상속. featured(대형·발췌 있음)/compact(소
-- **AnswerCard** — Q&A 상세의 멘토 답변 1건. QnaCard(질문·카드 전체 클릭)와 달리 갈 곳이 없어 스트레치 링크 없음(href 없음). 멘토 헤더(전환 핵심 루트)+본문 전문+도움돼요(rose)+공유+채택 표시+감사인사. 스크랩 없음(목록 단위가 질문이라 질문 카드에만).형·발췌 없음) size 변형. 국기+직무 배지, 제목, 인물명(강조)·회사·직함(muted). 카드 전체=인터뷰 상세, 북마크 없음.
+- **InterviewCard** — 인물 인터뷰 카드(표면 규칙 1단계). 세로형 1종(캐러셀에서 3장이 같은 크기로 선다) — 미디어 3:2 위 배지(국가+직무, 좌상단 오버레이) · 제목 2줄 · 발췌 3줄(둘 다 고정 clamp) · 인물명(강조)·직함 같은 줄, 회사 다음 줄(muted). 카드 셸·동심원은 MentorCard와 같은 값(폭은 카드가 고정하지 않음 — 부모/캐러셀이 정한다). 카드 전체=인터뷰 상세, 북마크 없음.
+- **AnswerCard** — Q&A 상세의 멘토 답변 1건. QnaCard(질문·카드 전체 클릭)와 달리 갈 곳이 없어 스트레치 링크 없음(href 없음). 멘토 헤더(전환 핵심 루트)+본문 전문+도움돼요(rose)+공유+채택 표시+감사인사. 스크랩 없음(목록 단위가 질문이라 질문 카드에만).
 
 ### 표면 (surfaces)
 
@@ -163,7 +187,7 @@
 | **Mobile** | \~768 | 헤더 축약(로고+회원가입/로그인+햄버거) + 하단 탭바 4탭. |
 
 - 컨테이너: `--container-max` 1280 / `--container-pad` 24 → 16(Mobile). 배경 풀블리드, 콘텐츠만 1280 정렬. Header·본문·Footer 공통 참조로 좌우 끝선 일치.
-- 타입스케일 반응형: display 40 → 24, h0 30 → 20. 나머지(h1 24 / h2 20 / h3 16 / body 14 / caption 12)는 고정.
+- 타입스케일 반응형: display 40 → 30, h0 30 → 24, h1 24 → 20, h2 20 → 18, h3 18 → 17(제목 5단+article만 축소). body 16 / caption 14 / micro 12는 폭과 무관하게 고정. 카드 제목은 카드 폭이 정한다(~280→body16 · 280–360→h3 18 · 360–430→h2 20 · 430+→h1 24).
 - 캐러셀: Desktop L/S는 화살표(SectionHeader) + overflow 페이드, Mobile은 화살표·페이드 없이 스와이프.
 - 헤더 햄버거 = 전체화면 오버레이(GNB 바 유지, 28px 컬러 SVG는 ⚠ placeholder). 헤더·탭바는 같은 frosted glass 표면 언어.
 - 전체 지침: **`guidelines/03-responsive.md`**.
@@ -189,7 +213,7 @@
 - `assets/flags/` — 원형 국기 SVG(프로토타입용, 하이픈 국가명).
 - `assets/logo/mentree-logo.svg` — mentree 워드마크(canon). `assets/fonts/PretendardJPVariable.ttf`.
 - `guidelines/` — 파운데이션 스펙 카드(Design System 탭).
-- `components/` — 프리미티브. `navigation/nav-ia.js`가 헤더·푸터 IA의 SSoT.
+- `components/` — 프리미티브. `navigation/nav-ia.js`가 헤더·푸터 IA의 SSoT, `taxonomy.js`가 국가·직무·테마 태그의 SSoT.
 - `ui_kits/mentree-top/index.html` — **TOP(메인) 화면 recreation, canon.** Design System 탭 카드 + Starting Point.
 - `ui_kits/mentree-app-legacy/index.html` — 사이드바 앱 셸. 참조·레거시(canon 아님).
 - `guidelines/03-responsive.md` — 리스폰시브 3구간 지침.

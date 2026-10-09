@@ -106,7 +106,7 @@ export function Toast({ open, message, actions = [], onDismiss, style, ...rest }
       }}
       {...rest}
     >
-      <span style={{ flex: "1 1 auto", fontSize: "var(--text-body)", color: "var(--foreground)", lineHeight: 1.5 }}>{message}</span>
+      <span style={{ flex: "1 1 auto", fontSize: "var(--text-body)", color: "var(--foreground)", lineHeight: "var(--text-body--line-height)", letterSpacing: "var(--text-body--letter-spacing)" }}>{message}</span>
       {actions.length > 0 && (
         <div style={{ display: "flex", alignItems: "center", gap: 12, flex: "0 0 auto" }}>
           {actions.map((a, i) => (
@@ -122,7 +122,8 @@ export function Toast({ open, message, actions = [], onDismiss, style, ...rest }
                 fontFamily: "var(--font-sans)",
                 fontSize: "var(--text-caption)",
                 fontWeight: 500,
-                letterSpacing: "-0.01em",
+                lineHeight: 1,
+                letterSpacing: 0,
                 color: a.emphasis === "primary" ? "var(--primary)" : "var(--foreground)",
                 cursor: "pointer",
                 whiteSpace: "nowrap",

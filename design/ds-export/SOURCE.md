@@ -5,9 +5,9 @@
 > 두 축의 정의는 [docs/SOURCES.md](../../docs/SOURCES.md) 「정본의 두 축」이 갖는다. FE 인계의 입력이다([ADR-0005](../../docs/adr/0005-design-team-deliverables.md)).
 
 - 출처: Claude Design (radarlab 계정) — 프로젝트 이름 **`M2 Design System`**
-- 원본: `M2 Design System-handoff (6).zip`
-- **반입일: 2026-09-12**
-- 원본 SHA-256: `06a76b378765d09db1936a3c0471f8b99d9c6df69505f141e63d28f97b5b7890`
+- 원본: `M2 Design System.zip`(디자이너가 `design/` 에 놓았다. 커밋하지 않고 `design/_import/export-1008/` 로 옮겼다)
+- **반입일: 2026-10-08**
+- 원본 해시: `5424904758ba37149d71cd29f368617e1ee78f4b69be960959923a89e5deee5d` — zip 의 SHA-256 이다
 
 ### 교체 이력
 
@@ -17,6 +17,85 @@
 | **2026-09-10** | `M2-Design-System-handoff.zip` | `727c5d60feaf` | **컴포넌트·토큰·guidelines 는 무변경**(166본 바이트 동일). 아래 2건만 |
 | **2026-09-12** | `M2 Design System-handoff (3).zip` | `26a7c12eb6d2` | **컴포넌트가 30본에서 39본이 됐다.** 아래 |
 | **2026-09-12** | `M2 Design System-handoff (6).zip` | `06a76b378765` | **`TagInput` 1본이 늘어 40본이 됐다.** ＋ `Chip` 개정. 아래 |
+| **2026-09-14** | `M2 Design System.zip` | `7649857370a5` | **40본에서 43본.** 신규 `Breadcrumb`·`FilterSelect`·`SearchInput`. 삭제 0 |
+| **2026-09-16** | 폴더 `M2 Design System` | `4ec9a3f66119`(폴더 해시) | **43본 그대로. 32본 개정.** 타입 스케일 개정 · `Select` 커스텀 리스트박스 · `Header` 3열 그리드 ＋ 로그인 상태 · guidelines 2본 신규. 아래 |
+| **2026-09-28** | 폴더 `M2 Design System` | `e2f9d58c9470`(폴더 해시) | **43본에서 45본.** 신규 `ActionBanner` · `ArticleBody` ／ 개정 `IconButton` · `BottomTabBar` · `Header` ／ 토큰 `--highlight`. 삭제 0. 아래 |
+| **2026-10-08** | `M2 Design System.zip` | `5424904758ba` | **45본에서 52본.** 신규 `QnaListItem` · `Textarea` · `MultiSelect` · `ImageCropper` · `ReorderList` · `Tooltip` · `Flag` ／ 개정 `Dialog` · `Popover` · `Field` · `Input` · `Checkbox` · `Switch` · `RadioGroup` · `Badge` · `Avatar` · `Button` · `QnaCard` · `taxonomy.js`. 삭제 0. 아래 |
+
+### 2026-10-08 — 45본에서 52본. `mentor-detail` 편집 면의 미구현 4건과 `DS-57` 이 들어왔다
+
+**신규 7 · 개정 12 · 삭제 0.** 파일로는 242본에서 **275본**이다(신규 33 · 개정 39). 들어간 파일은 전부 원본과 바이트가 같다. 리포에만 있는 파일은 0 이다. `ui_kits/mentree-top/index.html` 은 zip 에 있고 리포와 바이트가 같다(SHA-256 `b57f9aaa8365`). 배치 때 「zip 에 없다」고 잘못 적었다가 리뷰(#37)에서 바로잡았다 — 대조 스크립트가 zip 쪽 `ui_kits/` 를 통째로 빼고 셌다.
+
+| 무엇 | 파일 | 내용 | `DS-nn` |
+|---|---|---|---|
+| **`QnaListItem`** 신규 · surfaces | `.jsx` · `.d.ts` · `.prompt.md` · `.card.html` | Q&A 한 건을 **목록의 한 줄**로. 카드 셸 없음 · 줄 위아래 hairline. 변형 4 — `default`(피드 목록) · `compact`(제목만) · `answer`(그 멘토의 답변) · `question`(답변 수 강조). props 는 `QnaCard` 와 같은 이름 | `DS-57` |
+| **`Textarea`** 신규 · forms | 같다 | 여러 줄 입력. 자동 높이(3→8줄) · `limit` 글자 수(넘치면 invalid · 잘라내지 않음) | `DS-70` |
+| **`MultiSelect`** 신규 · forms | 같다 | 여러 개를 고르는 셀렉트. 트리거 위 `Chip` 줄 · `groups` | `DS-71` |
+| **`ImageCropper`** 신규 · forms | 같다 | 사진 한 장에서 원형(아바타)과 직사각형(3:2) 두 영역 | `DS-72` |
+| **`ReorderList`** 신규 · forms | 같다 | 순서 바꾸는 목록. 끌기 ＋ 키보드 Space | `DS-73` |
+| **`Tooltip`** 신규 · overlays | 같다 | 글자만 든 짧은 설명. top layer · 면 `--sage-900` | `DS-77` |
+| **`Flag`** 신규 · core | 같다 | 원형 국기 하나 ＋ 1px `--border` 링. sm16 · md20 · lg24 · xl28. `Tooltip` 으로 「국가 · 도시」 | `DS-78` |
+| **`Dialog`** 개정 | `.jsx` · `.d.ts` · `.prompt.md` ＋ `dialog.card.html` · `.demo.html` 신규 | 긴 본문은 머리 · 푸터 고정 ＋ 본문만 스크롤 · `mobile="fullscreen"` · `footerLayout="stack"` · 스크롤 잠금 · 포커스 가두기 | `DS-69` |
+| **`Popover`** 개정 | `.jsx` · `.prompt.md` · `.card.html` | HTML `popover="manual"` 로 **top layer**. 잘라내는 상자 · 푸터 밑에 묻히지 않는다. 위아래 뒤집기 | `DS-74` |
+| **`Checkbox` · `Switch` · `RadioGroup`** 개정 | `.jsx` · `.d.ts` ＋ `forms/controlFocus.js` 신규 | 속에 **네이티브 입력** — Tab · Space · 라벨이 이름 · 포커스 링 | `DS-75` |
+| **`Field`** 개정 | `.jsx` · `.d.ts` · `.prompt.md` ＋ `field.card.html` 신규 | 라벨 `--text-body` 600 · **설명이 라벨 바로 아래** · `FieldGroup label` 묶음 제목 ＋ `columns={2}` | `DS-32` |
+| **`Input`** 개정 | `.jsx` · `.d.ts` · `.prompt.md` | `limit` 글자 수 — `Textarea` 와 같은 규칙 | `DS-70` |
+| **`Badge`** 개정 | `.jsx` · `.d.ts` · `.prompt.md` · `.card.html` | `leading="icon"` — 앞자리 HugeIcons 아이콘 · 아이콘만 `--primary` | `DS-79` |
+| **`Avatar`** 개정 | 같다 | `shape="rounded"` ＋ `icon` — 회사 · 학교 로고 자리 | `DS-80` |
+| **`Button`** 개정 | 같다 | `tone="primary"` — `outline` · `ghost` 에만. 「더보기」 · 「이어서 보기」 | `DS-81` |
+| **`QnaCard`** 개정 | `.jsx` · `.d.ts` · `.card.html` | `tagHref` — 해시태그 `Chip` 의 주소를 화면이 만든다 | — |
+| `taxonomy.js` | — | `KEYWORD_GROUPS[].options[].icon` — 키워드 25개마다 HugeIcons 하나 | `DS-79` |
+| `_ds_bundle.js` · `_ds_manifest.json` · `_adherence.oxlintrc.json` · `readme.md` | — | 생성물. manifest 의 components 62 → **69** · cards 57 → 66 | — |
+
+**외부 의존성은 여전히 0이다.** 52본의 `import` 가 `react` 와 `taxonomy.js` 뿐임을 실측했다.
+
+**`DS-79` · `80` · `81` 은 디자이너가 Claude Design 에서 번호를 붙여 바로 만들었다.** 이 리포의 표에는 행이 없었다 — 이번 교체에서 완료 상태로 행을 만든다(「기표 없이 들어왔다」가 아니라 **번호가 먼저 붙었다**).
+
+**혁님 화면 3개(`qna-*`)는 이 디렉터리를 직접 부른다.** 같은 PR 에서 Q&A 3화면 export(10-08)를 함께 배치했다 — 그 export 의 `_ds` 사본은 **09-16 판**(247,136바이트)이고 이 판은 368,536바이트다. 화면은 이 판으로 그려진다.
+
+### 2026-09-28 — 43본에서 45본. `mentor-detail` 이 기다리던 5건이 들어왔다
+
+**신규 2 · 개정 3 · 삭제 0.** 파일로는 228본에서 242본이다(신규 14 · 개정 17). 신규 14본 중 `a.png` 는 09-16 에 뺐던 표본 사진이다 — 아래 「표본 사진을 가르는 판정 조건」. 들어간 파일 242본은 전부 원본과 바이트가 같다.
+
+| 무엇 | 파일 | 내용 | `DS-nn` |
+|---|---|---|---|
+| **`ActionBanner`** 신규 · navigation | `.jsx` · `.d.ts` · `.prompt.md` · `.card.html` · `.demo.html` | 문구 ＋ 버튼 배너. 문구 2줄 · **`layout="stacked"` 세로형**. `href` 를 주면 그 주소로 옮긴다 | `DS-34` |
+| **`ArticleBody`** 신규 · surfaces | 같다 | 아티클 본문 — 머리(배지 · 제목 · 날짜)와 블록(소제목 · 문단 · 그림 · 캡션 · 형광펜). 본문 글자는 `--text-article` | `DS-56` |
+| 토큰 `colors.css` | — | **`--highlight`** 추가 — 형광펜. `article-detail` 의 `rgba(134, 239, 172, 0.7)` 을 oklch 로 옮긴 값 | `DS-56` |
+| **`IconButton`** 개정 | `.jsx` · `.d.ts` · `.prompt.md` · `.card.html` | **`pressed`** 추가 — 토글 버튼(`aria-pressed`). **켜지면 반전**(`--sage-900` 면 ＋ `--sage-50` 아이콘). 북마크 · 하트는 속을 채운다 | `DS-35` |
+| `BookmarkToggle.prompt.md` · `readme.md` | — | 「혼자 서는 토글은 켜지면 반전한다 · 메타 줄의 토글은 `CountToggle` 이고 반전하지 않는다」 한 줄. `readme` 의 export 수 50 → 62 | `DS-35` |
+| **`BottomTabBar`** 개정 | `.jsx` · `.d.ts` · `.prompt.md` · `.card.html` ＋ `.demo.html` 신규 | **`accessory`**(탭 줄 위에 얹는 칸) · **`hideOnScroll`** · `scrollContainer`. 높이를 `--mt-bottom-bar-height` 로 쓴다. **안 주면 이전과 같다** | `DS-55` |
+| **`Header`** 개정 | `.jsx` · `.d.ts` · `.prompt.md` ＋ `header.scroll.card.html` · `.demo.html` 신규 | **`hideOnScroll`** · `scrollContainer`. 켜지 않아도 **`--mt-header-height` · `--mt-header-offset` 을 `:root` 에 늘 쓴다**. 숨기는 것은 켠 화면만이다 | `DS-68` |
+| `_ds_bundle.js` · `_ds_manifest.json` · `_adherence.oxlintrc.json` | — | 생성물. manifest 의 components 60 → 62 · cards 54 → 57 | — |
+
+**외부 의존성은 여전히 0이다.** 45본의 `import` 가 `react` 와 서로뿐임을 실측했다.
+
+**`.demo.html` 이 새로 생겼다.** 카드가 iframe 으로 부르는 폭별 · 상태별 데모다(3본). 카드와 한 벌이라 함께 둔다.
+
+**`mentor-detail` export 의 `_ds` 사본과 같은 판이다.** 사본 235본이 이 판과 바이트가 같다. 다른 것은 `iconbutton.card.html` 1본이다. 사본 쪽이 카드를 고치기 전 판이다.
+
+**혁님 화면 5개(`qna-*` 3 · `insight-list` · `article-detail`)는 이 디렉터리를 직접 부른다.** 교체 전후로 5화면 39장을 1280 · 390 에서 찍어 대조했다 — 결과는 `mentor-detail/UI-REVIEW.md` 「`ds-export` 교체의 영향」.
+
+### 2026-09-16 — 43본 그대로, 32본이 바뀌었다
+
+**신규 0 · 삭제 0 · 개정 32.** 인사이트 2화면 export 의 `_ds` 사본과 **같은 판**이다(번들 바이트 동일). 인사이트 template 이 어긋나 있던 것이 이 교체로 맞았다.
+
+| 무엇 | 내용 |
+|---|---|
+| **타입 스케일 개정** — 토큰 `typography.css` · guidelines `type-roles.html` · `type-scale.mobile.html` 신규 | 크기마다 `--text-*--line-height` · `--letter-spacing` 토큰이 붙었다. 읽을거리 본문용 `--text-article`(17/28)이 생겼다. 카드 제목은 폭 규칙(~280 → body · 280~360 → h3 · 360＋ → h2). 반응형은 display · h0 · h1 세 단에만 |
+| **`Select` 커스텀 리스트박스** | 네이티브 `<select>` 를 버렸다. 트리거 ＋ `Popover` 목록 · 키보드 · placeholder 는 항목이 아니다. **Q&A 09-15 감사가 「국가 · 키워드 셀렉트의 펼친 목록은 브라우저 기본 팝업이라 화면에서 못 잡는다 — 기표 후보」라고 적은 것이 풀렸다** |
+| **`Header` 개정** | 3열 그리드(minmax(0,1fr) auto minmax(0,1fr)) — 중앙 메뉴가 늘 화면 중앙. 메뉴 아이콘이 **28px 컬러 SVG placeholder → 20px HugeIcons 모노**(전역 아이콘 원칙의 예외가 사라졌다 · `DS-05` 의 헤더 쪽). **로그인 상태(mentor · mentee)** — 알림 ＋ 아바타. 모바일 오버레이는 header 의 형제 |
+| **치수** — `Button` sm32/md40/lg48 · 글자 14 고정 · ghost 좌우 패딩 0 ／ `IconButton` sm32/md40/lg48 ／ `Badge` sm24/md28/lg34 ／ `Chip` sm h24 · md 14px | 원티드 · 토스 실측 기반(2026-09-15) |
+| **`MentorCard`** | 이름 h3 · 직무 · 회사 caption · 소개 박스가 green-50 면 ＋ green-100 테두리로 미디어와 같은 폭. `fluid` 의 모바일 최소 폭 179 는 그대로다(`DS-37`) |
+| **`QnaCard`** | 태그 행이 개수가 아니라 **폭**으로 접힌다(ResizeObserver · 항상 1줄 · `+N`). 카드가 자기 높이를 정하지 않는다 |
+| **`Pagination`** | 390 에서 358 안에 들게 모바일 치수(히트 40 · 면 36) · 「…」 보정 끔. **시작 · 끝 형태(`DS-27`)는 여전히 없다** |
+| 토큰 `colors.css` | `--green-50` · `--green-100` 추가(와이어 tailwind green/50 · 100) |
+| 토큰 `spacing.css` | 컨테이너 좌우 패딩 Mobile 16 을 미디어쿼리로 |
+| 그 밖 24본 | 글자 크기에 `line-height` · `letter-spacing` 토큰을 붙인 치수 정리. 동작 변화 없음 |
+
+**열려 있는 요구 중 이 판에 들어온 것은 없다.** `DS-23`(답변 카드) · `DS-27`(페이지 시작 · 끝) · `DS-30`(칩 색) · `DS-32`(필드 라벨) · `DS-17` · `DS-33~37` 전부 그대로다. 각 행에 적었다.
+
+**`assets/img/` 18본 중 16본을 뺐다.** 부품 · 카드 · ui_kits · readme 어디도 참조하지 않는 화면 표본 사진이고, 16본은 `design/screens/insight-list/template/assets/img/` 에 **같은 파일**이 이미 있다(바이트 동일 확인) — 사본이라 뺀다. **`14.png` · `15.png` 2본은 남겼다.** 사본도 프롬프트도 아니어서 「멈추고 묻는다」에 든다 — 디자이너가 무엇인지 말해 주면 빼거나 옮긴다.
 
 ### 2026-09-12(2) — TagInput 이 들어왔다
 
@@ -62,6 +141,22 @@
 - `README.md` — 폴더·프로젝트 이름이 `mentree-design-system` / `mentree Design System` 에서 **`m2-design-system` / `M2 Design System`** 으로 바뀌었다
 - `project/readme.md` — **linen 배경 문단이 삭제됐다**(「평평한 따뜻한 린넨 … `#fefaf1`」). 재개 팩의 「linen 완전 폐지 → white 기반」이 문서에도 반영됐다. 그 밖은 마크다운 이스케이프·표 구분선 서식 차이다
 
+### 2026-09-14 — 40본에서 43본
+
+**신규 3본.** 삭제 0.
+
+| 부품 | 어느 요구 | 무엇 |
+|---|---|---|
+| **`Breadcrumb`** | `DS-16` | 목록 → 상세 2단. **3단 이상·홈 아이콘·드롭다운을 일부러 만들지 않았다** |
+| **`FilterSelect`** | **기표 없음** | 조건 축 트리거 ＋ `Dialog`(600) 모달. **다중 선택**이고 「N개 적용하기」로 확정한다 |
+| **`SearchInput`** | **기표 없음** | 자동완성 ＋ 최근 검색어. 제안 줄이 상자 밖 드롭다운이다 |
+
+**뒤의 둘에 `DS-nn` 을 만들지 않는다.** [DS-update-list](../DS-update-list.md) 는 **미비·미정**의 그릇이고 저 둘은 이미 있다.
+
+**수정 3본** — `MentorCard` · `InterviewCard` · `Carousel`.
+
+**`FilterSelect` 는 `qna-feed` 에 쓰지 않는다.** 부품은 다중 선택 ＋ 확정 버튼인데 그 화면의 와이어(`1059:36083`)는 **「즉시, and, 각 필터 안에서는 단일선택」** 이다. 다중이 필요한 화면(`mentor-search`·`insight-list`)의 것으로 본다.
+
 ## 취급
 
 | 판정 조건 | 아크션 |
@@ -79,16 +174,16 @@
 |---|---|---|
 | `project/tokens/` | 토큰 6본 — base · colors · typography · spacing · icons · fonts | ① 값의 정본 |
 | `project/styles.css` | 토큰을 묶는 진입점 | ① |
-| `project/components/` | 컴포넌트 **40본**. 각 `.jsx` ＋ `.d.ts` ＋ `.prompt.md` ＋ `.card.html` | ② 소스 |
-| `project/_ds_bundle.js` | 컴포넌트 **52 export** 번들 | ② |
+| `project/components/` | 컴포넌트 **52본**. 각 `.jsx` ＋ `.d.ts` ＋ `.prompt.md` ＋ `.card.html`. `forms/controlFocus.js` 는 셋이 같이 쓰는 포커스 링 | ② 소스 |
+| `project/_ds_bundle.js` | 컴포넌트 **69 export** 번들 | ② |
 | `project/_ds_manifest.json` | 컴포넌트·카드·토큰·폰트의 목록 | ② |
-| `project/guidelines/` | 원칙 16본(HTML) — 색 · 타입 · 간격 · 표면 · 동심중첩 · 브랜드 ／ **`03-responsive.md` — 반응형 3구간의 통합 지침** | ③ 원칙 |
+| `project/guidelines/` | 원칙 18본(HTML) — 색 · 타입(역할 · 스케일 · 모바일 스케일) · 간격 · 표면 · 동심중첩 · 브랜드 ／ **`03-responsive.md` — 반응형 3구간의 통합 지침** | ③ 원칙 |
 | `project/readme.md` · `SKILL.md` | DS 전체 서술과 빠른 참조 | ③ |
-| `project/assets/` | 국기 SVG 19본 · 로고 2본 | 자산 |
+| `project/assets/` | 국기 SVG 19본 · 로고 2본 · 표본 사진 4본(`1` · `14` · `15` · `a`) | 자산 |
 | `project/ui_kits/mentree-top/` | TOP 화면 조립 예시(HTML) | ⑤ 화면 정적 |
 | `project/_adherence.oxlintrc.json` | Claude Design 쪽 lint 설정 | 참고 |
 
-컴포넌트가 40본인데 export 가 52개인 이유는 **하위 export** 때문이다. `Avatar`/`AvatarGroup`, `Card` 계열 6, `nav-ia.js` 의 `NAV_*` 4, `Field`/`FieldGroup` 이 별도로 세어진다.
+컴포넌트가 52본인데 export 가 69개인 이유는 **하위 export 17개** 때문이다. `AvatarGroup` · `Card` 하위 5 · `FieldGroup` · `TabPanel` · `nav-ia.js` 의 `NAV_*` 4 · `taxonomy.js` 의 분류 5 가 따로 세어진다(2026-10-08 manifest 로 셌다).
 
 ## 무엇을 뺐는가
 
@@ -96,6 +191,7 @@
 |---|---|---|
 | `assets/fonts/PretendardJPVariable.ttf` | 13MB | **폰트 바이너리를 리포에 넣지 않는다.** 아래 참조 |
 | `uploads/` | 13MB | **Claude Design 에 올린 입력물이 쌓이는 자리다.** 사양이 아니다. 아래 |
+| `assets/img/` | 3.9MB | **화면 표본 사진 14본.** 이 디렉터리의 어느 파일도 참조하지 않는다. 아래 「표본 사진을 가르는 판정 조건」 |
 | `ui_kits/mentree-app-legacy/` | 10.5MB | 2.0 데모다. 사양이 아니다([ADR-0004](../../docs/adr/0004-no-as-is-survey.md)) |
 
 **폰트**: `Pretendard JP Variable` 을 쓴다. 지정의 정본은 `project/tokens/fonts.css` 다. 바이너리는 위 원본 zip 에 들어 있다. 배포 방식(웹폰트 호스팅 / 번들)은 FE 가 정한다.
@@ -114,6 +210,16 @@
 | **위 둘 중 어느 것도 아니다** | **멈추고 묻는다.** 근거 없이 빼지 않는다 |
 
 **「평면 사본이다」 한 줄로 빼고 있었다**(2026-09-12 리뷰 지적). `.md` 3본에는 그 근거가 성립하지 않았다.
+
+### 표본 사진을 가르는 판정 조건
+
+**09-16 의 근거가 5본에서 깨졌다.** 그때는 「`insight-list/template/assets/img/` 에 같은 파일이 있다 — 사본이다」로 16본을 뺐다. 그 뒤 insight-list 가 `10` · `11` · `a` · `b` · `c` 를 지웠다(09-17 `6631428`). 이번 판의 `articlebody.demo.html` 은 그중 `a.png` 를 쓴다. 그래서 사본인지가 아니라 **이 디렉터리가 쓰는지**로 가른다(2026-09-28).
+
+| 판정 조건 | 아크션 |
+|---|---|
+| 부품 · 카드 · 데모 · `ui_kits` · `readme` 가 참조한다 | **남긴다.** 빼면 그 카드 · 데모의 그림이 끊긴다 — `a.png`(`articlebody.demo.html`) · **`1.png`(`imagecropper.card.html` · 2026-10-08)** |
+| 어느 파일도 참조하지 않는다 | **뺀다.** 화면의 사진은 그 화면의 `template/` 이 갖는다 — `2`〜`13` · `b` · `c` |
+| 09-16 에 「멈추고 묻는다」로 남겨 둔 것이다 | **그대로 둔다.** 답을 받을 때까지 옮기지 않는다 — `14` · `15` |
 
 ## 여기에 없는 것
 

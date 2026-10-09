@@ -1,0 +1,31 @@
+<!-- @dsCard group="Components" viewport="1760x1500" name="ArticleBody" subtitle="아티클 본문(DS-56) — 머리(배지·h1·날짜) + h2·p·figure · 형광펜 · 링크 / 1280 · 390 실제 뷰포트" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+html,body{margin:0}
+body{background:var(--sage-50);font-family:var(--font-sans);color:var(--foreground);padding:24px}
+.frames{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start}
+.frame{display:flex;flex-direction:column;gap:8px;max-width:100%;overflow-x:auto}
+.cap{font-size:var(--text-caption);color:var(--muted-foreground)}
+iframe{display:block;border:0;outline:1px solid var(--sage-200);border-radius:var(--radius-md);background:var(--background);box-sizing:content-box}
+@media (max-width:480px){body{padding:24px 0}.cap{padding:0 16px}}
+</style>
+</head>
+<body>
+<div class="frames">
+<div class="frame"><div class="cap">1280 — 놓는 쪽이 가운데로 둔다(데모) · 본문 720</div><iframe data-src="articlebody.demo.html?w=1280" src="articlebody.demo.html?w=1280" style="width:1280px;height:1400px" title="ArticleBody 1280"></iframe></div>
+<div class="frame"><div class="cap">390 — container-pad 16 · 본문 358 · 글자 크기 동일(제목만 display 모바일 26)</div><iframe data-src="articlebody.demo.html?w=390" src="articlebody.demo.html?w=390" style="width:390px;height:1400px" title="ArticleBody 390"></iframe></div>
+</div>
+<script>
+window.addEventListener("message", (e) => {
+  if (!e.data || !e.data.mtDemo) return;
+  document.querySelectorAll("iframe").forEach((f) => {
+    if (e.data.mtDemo.endsWith(f.dataset.src)) f.style.height = e.data.h + "px";
+  });
+});
+</script>
+</body>
+</html>

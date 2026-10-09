@@ -50,7 +50,8 @@ export function CalloutBar({
         color: v.text,
         fontFamily: "var(--font-sans)",
         fontSize: "var(--text-body)",
-        lineHeight: 1.5,
+        lineHeight: "var(--text-body--line-height)",
+        letterSpacing: "var(--text-body--letter-spacing)",
         wordBreak: "keep-all",
         overflowWrap: "break-word", // 禁則: break-all 금지
         ...style,

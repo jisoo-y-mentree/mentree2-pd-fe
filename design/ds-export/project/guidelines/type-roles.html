@@ -1,0 +1,51 @@
+<!-- @dsCard group="Foundations" viewport="900x1040" name="역할 → 토큰" subtitle="R1~R10 — 어느 글에 어느 토큰인가. 읽을거리 본문 article 17 / 카드 안 글 caption 14의 가르는 기준" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:20px 22px;background:var(--background);color:var(--foreground)}
+  .cap{font-size:11px;color:var(--muted-foreground);padding:2px 0 10px;text-transform:uppercase;letter-spacing:.04em}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:22px}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+  th{font-size:11px;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:.04em;background:var(--muted)}
+  td.r{width:34px;color:var(--muted-foreground);font-variant-numeric:tabular-nums}
+  td.tok{width:132px;font-family:ui-monospace,monospace;font-size:12px;color:var(--primary);white-space:nowrap}
+  td.sz{width:74px;color:var(--muted-foreground);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .rule{border:1px solid var(--sage-100);background:var(--sage-50);border-radius:var(--radius-md);padding:14px 16px;margin-bottom:22px}
+  .rule h3{margin:0 0 8px;font-size:14px;font-weight:600;color:var(--sage-700)}
+  .rule p{margin:0 0 6px;font-size:13px;line-height:20px;color:var(--sage-700)}
+  .rule b{font-weight:600}
+  .rule .test{margin:8px 0 0;padding-top:8px;border-top:1px solid var(--sage-100);font-size:13px;color:var(--sage-700)}
+  .note{font-size:12px;line-height:19px;color:var(--muted-foreground)}
+  .note code{font-family:ui-monospace,monospace;font-size:11px}
+</style></head>
+<body>
+  <div class="cap">가르는 기준 — 판정 조건으로 쓴다</div>
+  <div class="rule">
+    <h3>읽을거리 본문 17 / 카드 안 글 14</h3>
+    <p><b>읽을거리 본문</b> = 페이지의 주된 읽을 대상. 길고, 스크롤해서 읽는다. → <code>--text-article</code> 17</p>
+    <p><b>카드 안 글</b> = 목록에서 훑는 대상. 짧고, 말줄임이 걸린다. → <code>--text-caption</code> 14</p>
+    <p class="test"><b>판정:</b> 말줄임(<code>line-clamp</code>)이 걸려 있으면 거의 언제나 카드 안 글이다.</p>
+  </div>
+
+  <div class="cap">역할 → 토큰</div>
+  <table>
+    <tr><th></th><th>역할</th><th>토큰</th><th>크기</th><th>쓰는 곳</th></tr>
+    <tr><td class="r">R1</td><td>히어로 제목</td><td class="tok">--text-display</td><td class="sz">32 / 40</td><td>화면 최상단 한 자리. 페이지에 하나뿐</td></tr>
+    <tr><td class="r">R2</td><td>섹션 제목</td><td class="tok">--text-h0</td><td class="sz">24 / 32<br>M 20 / 28</td><td><code>SectionHeader</code> 제목</td></tr>
+    <tr><td class="r">R3</td><td>페이지 안 큰 제목</td><td class="tok">--text-h1</td><td class="sz">22 / 30</td><td>상세 페이지 주제목. <b>카드 제목으로는 쓰지 않는다</b></td></tr>
+    <tr><td class="r">R4</td><td>카드 제목</td><td class="tok">--text-h2 / h3 / body</td><td class="sz">20 / 18 / 16</td><td><b>카드 폭이 정한다</b> — ~280 body · 280–360 h3 · 360+ h2</td></tr>
+    <tr><td class="r">R5</td><td>읽을거리 본문</td><td class="tok">--text-article</td><td class="sz">17 / 28</td><td>아티클·인터뷰 상세 · <code>AnswerCard</code> 답변 전문</td></tr>
+    <tr><td class="r">R6</td><td>일반 본문·목록 항목</td><td class="tok">--text-body</td><td class="sz">16 / 24</td><td><code>Toast</code>·<code>CalloutBar</code>·<code>Table</code> 셀·<code>Popover</code> 항목·<code>Tabs</code>·<code>Pagination</code>·<code>Header</code> 메뉴 라벨(600)</td></tr>
+    <tr><td class="r">R7</td><td>카드 안 글·보조</td><td class="tok">--text-caption</td><td class="sz">14 / 20</td><td>카드 발췌·소개·직무·회사·메타 · <code>Field</code> 라벨/도움말/에러 · <code>Breadcrumb</code> · <code>Footer</code> 링크 · <code>EmptyState</code> 설명</td></tr>
+    <tr><td class="r">R8</td><td>작은 라벨</td><td class="tok">--text-micro</td><td class="sz">12 / 16</td><td><code>BottomTabBar</code> 라벨</td></tr>
+    <tr><td class="r">R9</td><td>컨트롤 라벨</td><td class="tok">숫자 그대로</td><td class="sz">14 / 12</td><td><code>Button</code> 14 · <code>Chip</code> sm 12 / md 14 · <code>FilterChip</code> 14 · <code>Badge</code> sm 12 / md·lg 14. <b>토큰으로 바꾸지 않는다</b> — 높이 고정 상자의 라벨이라 스케일을 따라 움직이면 안 된다. 줄높이 1 · 자간 0</td></tr>
+    <tr><td class="r">R10</td><td>입력 안의 글자</td><td class="tok">--text-body</td><td class="sz">16</td><td><code>Input</code>·<code>Select</code>·<code>SearchInput</code>·<code>TagInput</code>. 크기만 토큰, <b>줄높이 1 · 자간 0</b>(상자 안에서 가운데 맞춘다)</td></tr>
+  </table>
+
+  <div class="cap">세 줄이 한 묶음</div>
+  <p class="note">
+    <code>fontSize</code>에 <code>var(--text-X)</code>를 쓰는 곳은 <code>lineHeight: var(--text-X--line-height)</code>와
+    <code>letterSpacing: var(--text-X--letter-spacing)</code>도 함께 쓴다. 예외는 R9·R10(컨트롤·입력) 둘뿐 — 줄높이 1 · 자간 0 고정.<br>
+    말줄임이 걸린 곳은 <b>반드시 토큰 줄높이</b>를 쓴다 — 숫자를 쓰면 카드 높이가 스케일과 어긋난다.
+  </p>
+</body></html>

@@ -37,8 +37,8 @@ export function Sheet({ open, onClose, side = "right", title, description, child
       <div role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()} style={panelStyle}>
         <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, padding: "20px 20px 14px", borderBottom: "1px solid var(--border)" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-            {title && <div style={{ fontSize: "var(--text-h3)", fontWeight: 600 }}>{title}</div>}
-            {description && <div style={{ fontSize: "var(--text-caption)", color: "var(--muted-foreground)" }}>{description}</div>}
+            {title && <div style={{ fontSize: "var(--text-h3)", fontWeight: 600, lineHeight: "var(--text-h3--line-height)", letterSpacing: "var(--text-h3--letter-spacing)" }}>{title}</div>}
+            {description && <div style={{ fontSize: "var(--text-caption)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", color: "var(--muted-foreground)" }}>{description}</div>}
           </div>
           <IconButton icon="cancel-01" variant="ghost" size="sm" ariaLabel="닫기" onClick={onClose} />
         </div>
