@@ -20,6 +20,9 @@
   <script src="ds-asset-path.js"></script>
   <script src="../../../ds-export/project/_ds_bundle.js"></script>
   <style>
+    /* Dialog ✕ — 열릴 때 자동 포커스가 가서 브라우저 기본 링이 "눌린 것"처럼 보인다. 키보드 포커스에만 --ring. */
+    .mt-dialog-panel > div:first-child > button[aria-label="닫기"] { outline: none !important; }
+    .mt-dialog-panel > div:first-child > button[aria-label="닫기"]:focus-visible { outline: 2px solid var(--ring) !important; outline-offset: 2px; }
     a { color: var(--primary); text-decoration: none; }
     a:hover { color: color-mix(in oklch, var(--primary) 82%, var(--sage-950)); }
     /* 0. 색 — Figma 그린 스케일 + 주황 악센트(DS-82 · DS-04) */
@@ -119,6 +122,26 @@
     <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ sortOptions }}" value="{{ sort }}" onChange="{{ set_sort }}" placeholder="최신순" aria-label="정렬" hint-size="100%,38px"></x-import>
   </div>
 </div>
+<div class="qf-only-mobile" style="margin-top: 24px">
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <h2 style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 700">추천 Q&amp;A 멘토링</h2>
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Carousel" gap="{{ gap12 }}" mode="peek" hint-size="100%,180px">
+      <sc-for list="{{ reco }}" as="r" hint-placeholder-count="3">
+        <div style="flex: 0 0 auto; width: 280px; scroll-snap-align: start; scroll-snap-stop: always"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="280px,170px"><ul role="list" style="list-style: none; margin: 0; padding: 0 16px"> <li class="qf-reco" style="position: relative; display: flex; flex-direction: column; gap: 8px; padding: 16px 0; margin: 0">
+  <div style="display: flex; align-items: center; gap: 8px; min-width: 0">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Flag" country="{{ r.country }}" label="{{ r.countryLabel }}" size="md" tooltip="{{ false }}" hint-size="20px,20px"></x-import>
+    <span style="font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); color: var(--muted-foreground); overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ r.metaText }}</span>
+  </div>
+  <h3 style="margin: 0; font-size: 16px; line-height: 1.4; font-weight: 700; min-width: 0"><a href="{{ r.href }}" class="mt-card-link" style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; word-break: keep-all; overflow-wrap: break-word; color: var(--foreground); text-decoration: none">{{ r.title }}</a></h3>
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+    <span class="tabular" style="font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); font-weight: 500; color: var(--primary); white-space: nowrap">{{ r.answerText }}</span>
+    <div style="display: flex; align-items: center; gap: 12px"><span style="display: inline-flex; align-items: center; gap: 4px; font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); color: var(--muted-foreground)"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="view" size="{{ 16 }}" hint-size="16px,16px"></x-import><span class="tabular">{{ r.viewsText }}</span></span><span class="qf-stat" style="display: inline-flex; align-items: center; line-height: 1"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CountToggle" icon="favourite" tone="dark" selected="{{ false }}" count="{{ r.likesText }}" onChange="{{ noop }}" aria-hidden="true" tabIndex="{{ -1 }}" hint-size="auto,16px"></x-import></span><span class="qf-stat" style="display: inline-flex; align-items: center; line-height: 1"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CountToggle" icon="bookmark" tone="dark" selected="{{ false }}" count="{{ r.scrapsText }}" onChange="{{ noop }}" aria-hidden="true" tabIndex="{{ -1 }}" hint-size="auto,16px"></x-import></span></div>
+  </div>
+</li></ul></x-import></div>
+      </sc-for>
+    </x-import>
+  </div>
+</div>
 <ul class="qf-list" ref="{{ listRef }}" role="list" style="list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column">
   <sc-for list="{{ listCards }}" as="k" hint-placeholder-count="10">
     <li class="qf-row" data-kw="{{ k.keyword }}">
@@ -158,9 +181,21 @@
     <h2 style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 700">추천 Q&amp;A 멘토링</h2>
     <button type="button" onClick="{{ toList }}" style="display: inline-flex; align-items: center; gap: 2px; margin: 0; padding: 0; border: 0; background: none; font-family: inherit; font-size: 16px; font-weight: 400; color: var(--muted-foreground); cursor: pointer">더보기<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="arrow-right-01" size="{{ 16 }}" hint-size="16px,16px"></x-import></button>
   </div>
-  <div style="padding: 24px 0 20px">
-    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" icon="message-question" size="sm" title="아직 추천할 질문이 없어요" action="{{ askAction }}" hint-size="100%,200px"></x-import>
+  <ul role="list" style="list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column">
+    <sc-for list="{{ reco }}" as="r" hint-placeholder-count="3">
+      <li class="qf-reco" style="position: relative; display: flex; flex-direction: column; gap: 8px; padding: 16px 0; margin: 0">
+  <div style="display: flex; align-items: center; gap: 8px; min-width: 0">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Flag" country="{{ r.country }}" label="{{ r.countryLabel }}" size="md" tooltip="{{ false }}" hint-size="20px,20px"></x-import>
+    <span style="font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); color: var(--muted-foreground); overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ r.metaText }}</span>
   </div>
+  <h3 style="margin: 0; font-size: 16px; line-height: 1.4; font-weight: 700; min-width: 0"><a href="{{ r.href }}" class="mt-card-link" style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; word-break: keep-all; overflow-wrap: break-word; color: var(--foreground); text-decoration: none">{{ r.title }}</a></h3>
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+    <span class="tabular" style="font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); font-weight: 500; color: var(--primary); white-space: nowrap">{{ r.answerText }}</span>
+    <div style="display: flex; align-items: center; gap: 12px"><span style="display: inline-flex; align-items: center; gap: 4px; font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); color: var(--muted-foreground)"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="view" size="{{ 16 }}" hint-size="16px,16px"></x-import><span class="tabular">{{ r.viewsText }}</span></span><span class="qf-stat" style="display: inline-flex; align-items: center; line-height: 1"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CountToggle" icon="favourite" tone="dark" selected="{{ false }}" count="{{ r.likesText }}" onChange="{{ noop }}" aria-hidden="true" tabIndex="{{ -1 }}" hint-size="auto,16px"></x-import></span><span class="qf-stat" style="display: inline-flex; align-items: center; line-height: 1"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CountToggle" icon="bookmark" tone="dark" selected="{{ false }}" count="{{ r.scrapsText }}" onChange="{{ noop }}" aria-hidden="true" tabIndex="{{ -1 }}" hint-size="auto,16px"></x-import></span></div>
+  </div>
+</li>
+    </sc-for>
+  </ul>
 </section></x-import>
   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,190px"><section style="display: flex; flex-direction: column; gap: 20px; padding: 24px 16px 28px">
   <h2 style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 700; text-align: center">주목받는 태그로 찾기</h2>

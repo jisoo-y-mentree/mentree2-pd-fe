@@ -20,6 +20,9 @@
   <script src="ds-asset-path.js"></script>
   <script src="../../../ds-export/project/_ds_bundle.js"></script>
   <style>
+    /* Dialog ✕ — 열릴 때 자동 포커스가 가서 브라우저 기본 링이 "눌린 것"처럼 보인다. 키보드 포커스에만 --ring. */
+    .mt-dialog-panel > div:first-child > button[aria-label="닫기"] { outline: none !important; }
+    .mt-dialog-panel > div:first-child > button[aria-label="닫기"]:focus-visible { outline: 2px solid var(--ring) !important; outline-offset: 2px; }
     a { color: var(--primary); text-decoration: none; }
     a:hover { color: color-mix(in oklch, var(--primary) 82%, var(--sage-950)); }
     /* 0. 색 — Figma 그린 스케일 + 주황 악센트(DS-82 · DS-04) */

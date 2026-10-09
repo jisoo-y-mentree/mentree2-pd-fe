@@ -22,6 +22,9 @@
   <style>
     a { color: var(--primary); text-decoration: none; }
     a:hover { color: color-mix(in oklch, var(--primary) 82%, var(--sage-950)); }
+    /* Dialog ✕ — 열릴 때 자동 포커스가 가서 브라우저 기본 링이 "눌린 것"처럼 보인다. 키보드 포커스에만 --ring. */
+    .mt-dialog-panel > div:first-child > button[aria-label="닫기"] { outline: none !important; }
+    .mt-dialog-panel > div:first-child > button[aria-label="닫기"]:focus-visible { outline: 2px solid var(--ring) !important; outline-offset: 2px; }
     /* 0. 색 — 피드 1차와 같은 블록 */
     .qd-shell { --primary: #15803D; --primary-foreground: #F0FDF4; --green-50: #F5FAF6; --green-100: #E7F4E9; --qf-accent: #F97316; --qf-accent-soft: #FFF7ED; --qf-ink-deep: #052E16; --qf-green-600: #109840; --destructive: oklch(0.50 0.20 27); }
     .qd-shell .mt-chip { background: var(--green-100) !important; color: var(--qf-ink-deep) !important; }
