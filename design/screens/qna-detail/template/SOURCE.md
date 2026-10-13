@@ -8,7 +8,7 @@
 
 ## 무엇이 들어 있나
 
-**9장.** normal · questioner · questioner-empty · mentor · mentor-answers · modal-answer-submit · empty · loading · error. **간단보기 패널 6장(`qna-detail-side-*`)은 2026-10-09 에 지웠다** — 상혁 「간단보기 삭제」. 피드의 행은 데스크톱에서도 전체 페이지로 온다.
+**15장.** normal · questioner · questioner-empty · mentor · mentor-answers · modal-answer-submit · empty · loading · error ＋ 간단보기 패널 6장(`qna-detail-side-*`). **패널 6장은 2026-10-08 판 그대로다** — 10-09 에 「삭제」로 지웠다가 2026-10-13 에 되돌렸다(상혁 「삭제된 것 아니다」). 4판의 답변 카드 · 하트 · 본문 글자는 패널에 아직 반영되지 않았다. 다음 export 에서 맞춘다.
 
 **4판에서 바뀐 것** — 본문 한 열 최대 768 · 「< 목록으로」 · 본문 15px `--sage-700` · 답변 카드를 화면에서 그린다(`.qd-answer` · 3상태 · 하트 다회) · 연관 Q&A 를 목록 행 3건으로 · 배너 테두리 없음 · 인기 태그 가운데 · 멘토 작성 카드의 등록 버튼 비활성 → primary · 플로팅 삭제. 덮은 CSS 는 `.qd-` 접두사 한 블록이다(`DS-23` · `86` · `87`).
 
