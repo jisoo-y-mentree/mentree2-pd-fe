@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+<script src="../../../ds-export/project/_ds_bundle.js"></script>
+</helmet>
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Dialog" open="{{ isOpen }}" onClose="{{ close }}" title="{{ title }}" width="{{ 640 }}" footer="{{ footer }}" footerLayout="stack" mobile="fullscreen" hint-size="0px,0px">
+  <div style="display:flex; flex-direction:column; gap:20px">
+
+    <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ true }}">
+      <h3 style="margin:0; text-align:center; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600; color:var(--primary)">{{ statusText }}</h3>
+      <sc-if value="{{ showMsgBox }}" hint-placeholder-val="{{ false }}">
+        <div style="background:var(--green-50); border-radius:var(--radius-md); padding:16px; display:flex; flex-direction:column; gap:6px">
+          <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:600; color:var(--green-900)">{{ msgBoxLabel }}</div>
+          <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground)">{{ card.message }}</p>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isFixed }}" hint-placeholder-val="{{ false }}">
+        <div style="background:var(--green-50); border-radius:var(--radius-md); padding:16px; display:flex; flex-direction:column; gap:12px">
+          <div style="display:flex; flex-direction:column; gap:6px">
+            <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:600; color:var(--green-900)">멘토링 실시 예정 시간</div>
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
+              <div class="tabular" style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600; color:var(--foreground)">{{ card.scheduledLong }}</div>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" iconLeft="calendar-add-01" onClick="{{ addCalendar }}" hint-size="auto,32px">구글 캘린더 추가</x-import>
+            </div>
+            <div class="tabular" style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">{{ otherTzLabel }} : {{ card.scheduledOtherTz }}</div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:6px">
+            <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:600; color:var(--green-900)">멘토링 실시 예정 링크</div>
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
+              <a href="{{ card.meetingUrl }}" target="_blank" rel="noopener" style="font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--primary); text-decoration:underline; overflow-wrap:anywhere">{{ card.meetingUrl }}</a>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" iconLeft="copy-01" onClick="{{ copyLink }}" hint-size="auto,32px">링크 복사하기</x-import>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+      <div style="display:flex; flex-direction:column; gap:20px">
+        <div style="display:flex; flex-direction:column; gap:8px">
+          <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">{{ personLabel }}</div>
+          <dc-import name="PersonCard" person="{{ card.person }}" href="{{ personHref }}" hint-size="260px,82px"></dc-import>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:4px">
+          <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">멘토링 신청일</div>
+          <div class="tabular" style="font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground)">{{ card.appliedDate }}</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:4px">
+          <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">멘토링 유형</div>
+          <div style="font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground)">{{ card.type }}</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:4px">
+          <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">멘토링 제목</div>
+          <div style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600; color:var(--foreground)">{{ card.title }}</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:4px">
+          <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">멘토링 요청 상세 내용</div>
+          <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground); white-space:pre-line">{{ requestFull }}</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:4px">
+          <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">멘토링 시간</div>
+          <div style="font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground)">{{ duration }}</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:4px">
+          <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">일정 조율 요청사항</div>
+          <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground)">{{ scheduleNote }}</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:4px">
+          <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">{{ flowersKey }}</div>
+          <div class="tabular" style="display:flex; align-items:center; gap:6px; font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600; color:var(--foreground)">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="flower" size="{{ 18 }}" color="var(--primary)" hint-size="18px,18px"></x-import>
+            {{ flowersLabel }}
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isCancel1 }}" hint-placeholder-val="{{ false }}">
+      <sc-if value="{{ showFeeLine }}" hint-placeholder-val="{{ false }}">
+        <p style="margin:0; font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">멘토가 수락한 뒤의 취소에는 수수료가 붙습니다</p>
+      </sc-if>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="{{ cancelReasonLabel }}" required="{{ true }}" hint-size="100%,160px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.RadioGroup" options="{{ cancelReasons }}" value="{{ cancelReason }}" onChange="{{ setCancelReason }}" name="mp-cancel-reason" hint-size="100%,140px"></x-import>
+      </x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="{{ cancelNoteLabel }}" hint-size="100%,120px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Textarea" value="{{ cancelNote }}" onChange="{{ setCancelNote }}" rows="{{ 3 }}" limit="{{ 500 }}" placeholder="취소 사정을 짧게 남겨주세요" hint-size="100%,96px"></x-import>
+      </x-import>
+    </sc-if>
+
+    <sc-if value="{{ isCancel2 }}" hint-placeholder-val="{{ false }}">
+      <h3 style="margin:0; text-align:center; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600; color:var(--foreground)">{{ cancel2Title }}</h3>
+      <div style="background:var(--muted); border-radius:var(--radius-md); padding:16px; display:flex; flex-direction:column; gap:12px">
+        <div style="display:flex; flex-direction:column; gap:2px">
+          <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">멘토링 제목</div>
+          <div style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600; color:var(--foreground)">{{ card.title }}</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:2px">
+          <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">멘토링 예정일</div>
+          <div class="tabular" style="font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground)">{{ scheduledOrDash }}</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:2px">
+          <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">꽃송이</div>
+          <div class="tabular" style="font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground)">{{ flowersLabel }}</div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isFixSchedule }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:0; font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">멘토가 보낸 일정 중 하나를 골라주세요. 시각은 나의 시간대 기준이고, 괄호 안은 멘토 시간대입니다.</p>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.RadioGroup" options="{{ slotOptions }}" value="{{ pickedSlot }}" onChange="{{ setPickedSlot }}" name="mp-slot" hint-size="100%,140px"></x-import>
+    </sc-if>
+
+    <sc-if value="{{ isReschedule }}" hint-placeholder-val="{{ false }}">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="희망 시간대를 적어주세요" required="{{ true }}" hint-size="100%,140px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Textarea" value="{{ rescheduleText }}" onChange="{{ setRescheduleText }}" rows="{{ 4 }}" limit="{{ 1000 }}" placeholder="예) 10월 셋째 주 평일 19시 이후, 주말은 오전이 좋습니다" hint-size="100%,120px"></x-import>
+      </x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="요청 사유" hint-size="100%,72px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ rescheduleReasons }}" value="{{ rescheduleReason }}" onChange="{{ setRescheduleReason }}" placeholder="사유를 골라주세요" hint-size="100%,40px"></x-import>
+      </x-import>
+    </sc-if>
+
+    <sc-if value="{{ isAccept }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:0; font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">일정을 3개 제안해주세요(최소 3일 뒤). 시각은 나의 시간대 기준입니다.</p>
+      <div style="display:flex; flex-direction:column; gap:12px">
+        <sc-for list="{{ acceptSlots }}" as="s" hint-placeholder-count="3">
+          <div style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; align-items:end">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="{{ s.label }}" hint-size="100%,72px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" type="date" min="{{ minDate }}" value="{{ s.date }}" onChange="{{ s.onDate }}" hint-size="100%,40px"></x-import>
+            </x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="시각" hint-size="100%,72px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ timeOptions }}" value="{{ s.time }}" onChange="{{ s.onTime }}" placeholder="시각" hint-size="100%,40px"></x-import>
+            </x-import>
+          </div>
+        </sc-for>
+      </div>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="멘티에게 한마디" hint-size="100%,120px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Textarea" value="{{ acceptNote }}" onChange="{{ setAcceptNote }}" rows="{{ 3 }}" limit="{{ 500 }}" placeholder="예) 신청해주셔서 감사합니다. 편한 시간을 골라주세요." hint-size="100%,96px"></x-import>
+      </x-import>
+    </sc-if>
+
+    <sc-if value="{{ isAcceptDone }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:12px; padding:16px 0; text-align:center">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="checkmark-circle-02" size="{{ 48 }}" color="var(--primary)" hint-size="48px,48px"></x-import>
+        <h3 style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600; color:var(--foreground)">수락 완료</h3>
+        <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--muted-foreground)">멘티가 일정을 고르면 알려드릴게요</p>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isReview }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground)">이번 멘토링의 리뷰를 작성해주세요. 감사의 마음을 담은 정성스러운 리뷰는 멘토에게 큰 힘이 됩니다.</p>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="전반적인 멘토링 내용은 어땠나요? (필수)" hint-size="100%,150px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Textarea" value="{{ reviewMain }}" onChange="{{ setReviewMain }}" rows="{{ 4 }}" limit="{{ 1000 }}" placeholder="멘토링에서 도움이 된 점을 적어주세요" hint-size="100%,120px"></x-import>
+      </x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="특별히 인상깊었던 부분이 있다면 적어주세요 (임의)" hint-size="100%,150px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Textarea" value="{{ reviewExtra }}" onChange="{{ setReviewExtra }}" rows="{{ 4 }}" limit="{{ 1000 }}" placeholder="기억에 남는 조언이나 순간이 있었나요?" hint-size="100%,120px"></x-import>
+      </x-import>
+    </sc-if>
+
+    <sc-if value="{{ isReviewDone }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:16px; padding:8px 0; text-align:center">
+        <div style="width:96px; height:96px; border-radius:50%; background:var(--green-50); display:flex; align-items:center; justify-content:center">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="favourite" size="{{ 36 }}" color="var(--primary)" hint-size="36px,36px"></x-import>
+        </div>
+        <h3 style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600; color:var(--foreground)">리뷰 작성이 완료되었습니다.</h3>
+        <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--muted-foreground)">이 멘토에게 후속 멘토링을 의뢰하고 싶다면 [후속 멘토링 신청하기]를 눌러주세요</p>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isCheerRead }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:0; text-align:center; font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600; color:var(--primary)">멘토로부터 격려 메세지가 도착했습니다.</p>
+      <div style="background:var(--green-50); border-radius:var(--radius-md); padding:16px; display:flex; flex-direction:column; gap:12px">
+        <dc-import name="PersonCard" person="{{ card.person }}" href="{{ personHref }}" hint-size="260px,82px"></dc-import>
+        <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground); white-space:pre-line">{{ cheerMessage }}</p>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isCheerWrite }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground)">멘티에게 격려 메세지를 보냅니다. 멘토링에서 다루지 못한 조언이나 응원을 남겨주세요.</p>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="격려 메세지" required="{{ true }}" hint-size="100%,160px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Textarea" value="{{ cheerText }}" onChange="{{ setCheerText }}" rows="{{ 5 }}" limit="{{ 1000 }}" placeholder="예) 오늘 이야기 나눠서 즐거웠습니다. 포트폴리오 정리 꼭 마무리하시길 응원할게요." hint-size="100%,140px"></x-import>
+      </x-import>
+    </sc-if>
+
+    <sc-if value="{{ isCheerSent }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:12px; padding:16px 0; text-align:center">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="mail-send-01" size="{{ 48 }}" color="var(--primary)" hint-size="48px,48px"></x-import>
+        <h3 style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600; color:var(--foreground)">메세지를 보냈습니다</h3>
+      </div>
+    </sc-if>
+
+  </div>
+</x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;open&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;modal&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;detail-fixed&quot;,&quot;options&quot;:[&quot;detail-applied&quot;,&quot;detail-scheduling-sent&quot;,&quot;detail-scheduling-received&quot;,&quot;detail-fixed&quot;,&quot;detail-done&quot;,&quot;detail-done-reviewed&quot;,&quot;detail-cancelled&quot;,&quot;cancel-1&quot;,&quot;cancel-2&quot;,&quot;fix-schedule&quot;,&quot;reschedule&quot;,&quot;accept&quot;,&quot;accept-done&quot;,&quot;review&quot;,&quot;review-done&quot;,&quot;cheer-read&quot;,&quot;cheer-write&quot;,&quot;cheer-sent&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;perspective&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;mentee&quot;,&quot;options&quot;:[&quot;mentee&quot;,&quot;mentor&quot;],&quot;tsType&quot;:&quot;'mentee' | 'mentor'&quot;},&quot;card&quot;:{&quot;editor&quot;:null,&quot;default&quot;:{&quot;id&quot;:&quot;m1&quot;,&quot;status&quot;:&quot;fixed&quot;,&quot;title&quot;:&quot;일본 디자이너 면접과 포트폴리오 리뷰 요청드립니다.&quot;,&quot;flag&quot;:&quot;japan&quot;,&quot;countryLabel&quot;:&quot;일본&quot;,&quot;keyword&quot;:&quot;해외취업&quot;,&quot;appliedDate&quot;:&quot;2026.06.03&quot;,&quot;flowers&quot;:4,&quot;scheduledAt&quot;:&quot;2026.07.16 15:00&quot;,&quot;scheduledLong&quot;:&quot;2026년 10월 14일 (수) 18:00~18:30&quot;,&quot;scheduledOtherTz&quot;:&quot;2026년 10월 14일 (수) 12:00~12:30&quot;,&quot;meetingUrl&quot;:&quot;https://meet.google.com/kqx-mrpt-dvh&quot;,&quot;type&quot;:&quot;포트폴리오 첨삭 및 면접 대비&quot;,&quot;duration&quot;:&quot;30분&quot;,&quot;scheduleNote&quot;:&quot;평일 저녁 7시 이후나 주말 오전이 좋습니다.&quot;,&quot;request&quot;:&quot;안녕하세요. 저는 서울의 모 대학교에서 디자인을 공부중인 학생입니다.&quot;,&quot;person&quot;:{&quot;name&quot;:&quot;이서연&quot;,&quot;org&quot;:&quot;라쿠텐&quot;,&quot;title&quot;:&quot;프로덕트 디자이너&quot;,&quot;avatar&quot;:&quot;../../../ds-export/project/assets/img/9.png&quot;}},&quot;tsType&quot;:&quot;MentoringCardData&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;onGo&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;(modalKey: string) =&gt; void&quot;},&quot;onToast&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;(message: string) =&gt; void&quot;},&quot;onCardUpdate&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;(id: string, patch: object) =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = this.freshForm();
+  freshForm() {
+    return { cancelReason: "", cancelNote: "", pickedSlot: "", rescheduleText: "", rescheduleReason: "", acceptSlots: [{ date: "", time: "" }, { date: "", time: "" }, { date: "", time: "" }], acceptNote: "", reviewMain: "", reviewExtra: "", cheerText: "" };
+  }
+  componentDidUpdate(prev) {
+    const wasDetail = (prev.modal || "").startsWith("detail-");
+    const nowDetail = (this.props.modal || "").startsWith("detail-");
+    if ((prev.open && !this.props.open) || (!wasDetail && nowDetail) || (prev.card && this.props.card && prev.card.id !== this.props.card.id)) this.setState(this.freshForm());
+  }
+  btn(label, variant, onClick, extra) {
+    const DS = window.MentreeDesignSystem_2f86cf;
+    if (!DS) return null;
+    return React.createElement(DS.Button, Object.assign({ key: label, variant, size: "md", onClick }, extra || {}), label);
+  }
+  go(key) { this.props.onGo && this.props.onGo(key); }
+  close() { this.props.onClose && this.props.onClose(); }
+  toast(msg) { this.props.onToast && this.props.onToast(msg); }
+  update(patch) { const c = this.props.card; if (c && this.props.onCardUpdate) this.props.onCardUpdate(c.id, patch); }
+  renderVals() {
+    const card = this.props.card || {};
+    const modal = this.props.modal || "";
+    const open = !!this.props.open && !!this.props.card;
+    const p = this.props.perspective === "mentor" ? "mentor" : "mentee";
+    const st = card.status || "applied";
+    const s = this.state;
+    const isDetail = modal.startsWith("detail-");
+    const screen = isDetail ? "detail" : modal;
+    const flowers = card.flowers || 0;
+    const flowersLabel = `${flowers}송이 (${flowers * 2}만원)`;
+    const scheduled = card.scheduledAt || "";
+    const cancelIsDecline = p === "mentor" && st === "applied";
+
+    // 상태 문구 (카드와 같다)
+    let statusText = "";
+    if (p === "mentee") {
+      statusText = { applied: "멘토의 수락을 기다리는 중입니다.", "scheduling-received": "멘토가 멘토링을 수락했습니다. 일정을 확정해주세요.", "scheduling-sent": "멘토에게 일정 재조정을 요청했습니다.", fixed: `멘토링이 확정되었습니다. ${scheduled}에 멘토링이 진행됩니다.`, done: "멘토링이 완료되었습니다. 리뷰를 작성해주세요.", "done-reviewed": "멘토링이 완료되었습니다. 리뷰를 작성해주세요.", cancelled: card.cancelledBy === "me" ? "나의 요청에 의해 취소되었습니다." : "멘토의 사정에 의해 취소되었습니다." }[st] || "";
+    } else {
+      statusText = { applied: "멘티로부터 멘토링 신청이 도착했습니다.", "scheduling-sent": "멘티에게 일정 조율 요청을 보냈습니다.", "scheduling-received": "멘티로부터 일정 재조정 요청이 도착했습니다.", fixed: `멘토링이 확정되었습니다. ${scheduled}에 멘토링이 진행됩니다.`, done: "멘토링이 완료되었습니다.", "done-reviewed": "멘토링이 완료되었습니다.", cancelled: card.cancelledBy === "me" ? "나의 요청에 의해 취소되었습니다." : "멘티의 사정에 의해 취소되었습니다." }[st] || "";
+    }
+
+    // 제목
+    const titles = { detail: "1:1 멘토링 신청 내용", "cancel-1": cancelIsDecline ? "멘토링 사양하기" : "멘토링 취소하기", "cancel-2": cancelIsDecline ? "멘토링 사양하기" : "멘토링 취소하기", "fix-schedule": "멘토링 일정 확정", reschedule: "멘토링 일정 재조정 요청", accept: st === "scheduling-received" ? "멘토링 일정 재조정" : "멘토링 수락하기", "accept-done": st === "scheduling-received" ? "멘토링 일정 재조정" : "멘토링 수락하기", review: "리뷰 작성하기", "review-done": "리뷰 작성하기", "cheer-read": "격려 메세지", "cheer-write": "격려 메세지 작성", "cheer-sent": "격려 메세지 작성" };
+
+    // 바닥 버튼
+    const B = (l, v, f, e) => this.btn(l, v, f, e);
+    const cancelBtn = (v) => B(cancelIsDecline ? "사양하기" : "멘토링 취소하기", v || "outline", () => this.go("cancel-1"));
+    const closeBtn = () => B("닫기", "outline", () => this.close());
+    const join = () => { if (card.meetingUrl) window.open(card.meetingUrl, "_blank", "noopener"); };
+    let footer = [];
+    if (screen === "detail") {
+      if (p === "mentee") {
+        if (st === "applied") footer = [cancelBtn()];
+        else if (st === "scheduling-received") footer = [B("일정 확정하기", "primary", () => this.go("fix-schedule")), cancelBtn()];
+        else if (st === "scheduling-sent") footer = [cancelBtn()];
+        else if (st === "fixed") footer = [B("멘토링 참가하기", "primary", join), cancelBtn("ghost")];
+        else if (st === "done") footer = [B("리뷰 작성하기", "primary", () => this.go("review")), card.hasCheer && B("멘토로부터의 격려 메세지 보기", "outline", () => this.go("cheer-read"))].filter(Boolean);
+        else if (st === "done-reviewed") footer = [B("후속 멘토링 신청하기", "primary", () => { window.location.href = card.personHref || "#"; }), closeBtn()];
+        else if (st === "cancelled") footer = card.cancelledBy !== "me" && card.hasCheer ? [B("격려 메세지 보기", "outline", () => this.go("cheer-read"))] : [];
+      } else {
+        if (st === "applied") footer = [B("멘토링 수락하기", "primary", () => this.go("accept")), cancelBtn()];
+        else if (st === "scheduling-sent") footer = [cancelBtn()];
+        else if (st === "scheduling-received") footer = [B("일정 재조정하기", "primary", () => this.go("accept")), cancelBtn()];
+        else if (st === "fixed") footer = [B("멘토링 참가하기", "primary", join), cancelBtn("ghost")];
+        else if (st === "done" || st === "done-reviewed" || st === "cancelled") footer = card.messageSent || (st === "cancelled" && card.cancelledBy === "me") ? [] : [B("멘티에게 메세지 보내기", "outline", () => this.go("cheer-write"))];
+      }
+    } else if (screen === "cancel-1") {
+      footer = [B("다음", "primary", () => this.go("cancel-2"), { disabled: !s.cancelReason })];
+    } else if (screen === "cancel-2") {
+      footer = [B(cancelIsDecline ? "사양 확정" : "취소 확정", "destructive", () => { this.update({ status: "cancelled", cancelledBy: "me", message: s.cancelNote || card.message }); this.toast(cancelIsDecline ? "멘토링을 사양했어요" : "멘토링을 취소했어요"); this.close(); }), B("돌아가기", "outline", () => this.go("cancel-1"))];
+    } else if (screen === "fix-schedule") {
+      footer = [B("이 일정으로 확정", "primary", () => { const slot = (card.slots || [])[Number(s.pickedSlot)]; this.update({ status: "fixed", scheduledAt: slot ? slot.short : card.scheduledAt, scheduledLong: slot ? slot.long : card.scheduledLong, scheduledOtherTz: slot ? slot.other : card.scheduledOtherTz }); this.toast("멘토링 일정을 확정했어요"); this.close(); }, { disabled: s.pickedSlot === "" }), B("다른 일정 요청하기", "ghost", () => this.go("reschedule"))];
+    } else if (screen === "reschedule") {
+      footer = [B("요청 보내기", "primary", () => { this.update({ status: "scheduling-sent", message: s.rescheduleText }); this.toast("일정 재조정을 요청했어요"); this.close(); }, { disabled: !s.rescheduleText.trim() })];
+    } else if (screen === "accept") {
+      const ok = s.acceptSlots.every(x => x.date && x.time);
+      footer = [B(st === "scheduling-received" ? "일정 다시 보내기" : "수락하고 일정 보내기", "primary", () => { this.update({ status: "scheduling-sent" }); this.go("accept-done"); }, { disabled: !ok })];
+    } else if (screen === "accept-done") {
+      footer = [closeBtn()];
+    } else if (screen === "review") {
+      footer = [B("리뷰 작성하기", "primary", () => { this.update({ status: "done-reviewed" }); this.go("review-done"); }, { disabled: !s.reviewMain.trim() })];
+    } else if (screen === "review-done") {
+      footer = [B("후속 멘토링 신청하기", "primary", () => { window.location.href = card.personHref || "#"; }), closeBtn()];
+    } else if (screen === "cheer-read") {
+      footer = st === "done" ? [B("리뷰 작성하기", "primary", () => this.go("review")), closeBtn()] : [closeBtn()];
+    } else if (screen === "cheer-write") {
+      footer = [B("보내기", "primary", () => { this.update({ messageSent: true }); this.go("cheer-sent"); }, { disabled: !s.cheerText.trim() })];
+    } else if (screen === "cheer-sent") {
+      footer = [closeBtn()];
+    }
+
+    // 수락 일정 3줄
+    const times = [];
+    for (let h = 9; h <= 21; h++) for (const m of ["00", "30"]) times.push(`${String(h).padStart(2, "0")}:${m}`);
+    const minD = new Date(); minD.setDate(minD.getDate() + 3);
+    const minDate = minD.toISOString().slice(0, 10);
+    const acceptSlots = s.acceptSlots.map((x, i) => ({
+      label: `일정 ${i + 1}`, date: x.date, time: x.time,
+      onDate: (e) => { const v = e && e.target ? e.target.value : e; this.setState(st2 => { const a = st2.acceptSlots.slice(); a[i] = { ...a[i], date: v }; return { acceptSlots: a }; }); },
+      onTime: (v) => this.setState(st2 => { const a = st2.acceptSlots.slice(); a[i] = { ...a[i], time: v }; return { acceptSlots: a }; }),
+    }));
+    const slotOptions = (card.slots || []).map((x, i) => ({ value: String(i), label: `${x.long} (멘토 시간대 ${x.otherTime})` }));
+    const tv = (f) => (e) => this.setState({ [f]: e && e.target ? e.target.value : e });
+
+    return {
+      isOpen: open,
+      title: titles[screen] || "1:1 멘토링 신청 내용",
+      footer: footer.length ? footer : null,
+      close: () => this.close(),
+      card,
+      statusText,
+      isDetail, isFixed: isDetail && st === "fixed",
+      showMsgBox: isDetail && !!card.message && (st.startsWith("scheduling") || st === "cancelled" || st === "done" || st === "done-reviewed"),
+      msgBoxLabel: p === "mentee" ? "멘토에게 보낸 메세지" : "멘티로부터의 메세지",
+      otherTzLabel: p === "mentee" ? "멘토 시간대" : "멘티 시간대",
+      personLabel: p === "mentee" ? "멘토 정보" : "멘티 정보",
+      personHref: card.personHref || "#",
+      requestFull: card.requestFull || card.request || "",
+      duration: card.duration || "30분",
+      scheduleNote: card.scheduleNote || "",
+      flowersKey: p === "mentor" && (st === "fixed" || st === "done" || st === "done-reviewed") ? "선물받을 꽃송이" : "선물 예정 꽃송이",
+      flowersLabel,
+      scheduledOrDash: scheduled || "미정",
+      cheerMessage: card.cheerMessage || "",
+      addCalendar: () => window.open("https://calendar.google.com/calendar/r/eventedit", "_blank", "noopener"),
+      copyLink: () => { if (navigator.clipboard && card.meetingUrl) navigator.clipboard.writeText(card.meetingUrl).catch(() => {}); this.toast("링크를 복사했어요"); },
+      // cancel
+      isCancel1: screen === "cancel-1", isCancel2: screen === "cancel-2",
+      showFeeLine: !cancelIsDecline && p === "mentee" && st !== "applied",
+      cancelReasonLabel: cancelIsDecline ? "사양 사유" : "취소 사유",
+      cancelReasons: ["일정이 맞지 않음", "필요 없어짐", cancelIsDecline ? "제가 도울 수 있는 주제가 아님" : "다른 멘토를 찾음", "그 밖"],
+      cancelReason: s.cancelReason, setCancelReason: (v) => this.setState({ cancelReason: v }),
+      cancelNoteLabel: p === "mentee" ? "멘토에게 남길 말 (선택)" : "멘티에게 남길 말 (선택)",
+      cancelNote: s.cancelNote, setCancelNote: tv("cancelNote"),
+      cancel2Title: cancelIsDecline ? "정말 사양할까요?" : "정말 취소할까요?",
+      // schedule
+      isFixSchedule: screen === "fix-schedule", slotOptions, pickedSlot: s.pickedSlot, setPickedSlot: (v) => this.setState({ pickedSlot: v }),
+      isReschedule: screen === "reschedule", rescheduleText: s.rescheduleText, setRescheduleText: tv("rescheduleText"),
+      rescheduleReasons: ["제안된 시간이 모두 어려움", "일정이 바뀜", "그 밖"], rescheduleReason: s.rescheduleReason, setRescheduleReason: (v) => this.setState({ rescheduleReason: v }),
+      // accept
+      isAccept: screen === "accept", isAcceptDone: screen === "accept-done", acceptSlots, timeOptions: times, minDate,
+      acceptNote: s.acceptNote, setAcceptNote: tv("acceptNote"),
+      // review · cheer
+      isReview: screen === "review", isReviewDone: screen === "review-done",
+      reviewMain: s.reviewMain, setReviewMain: tv("reviewMain"), reviewExtra: s.reviewExtra, setReviewExtra: tv("reviewExtra"),
+      isCheerRead: screen === "cheer-read", isCheerWrite: screen === "cheer-write", isCheerSent: screen === "cheer-sent",
+      cheerText: s.cheerText, setCheerText: tv("cheerText"),
+    };
+  }
+}
+</script>
+</body>
+</html>
