@@ -172,7 +172,8 @@ class Component extends DCLogic {
       topHref: this.href({ screen: "popover" }),
       onNotify: this.onNotify, openPanel: this.openPanel, closePanel: this.closePanel,
       panelOpen: s.panelOpen, bellRef: this.bellRef,
-      popProps: { style: { padding: 0, borderRadius: 16, overflow: "hidden" } },
+      // 와이어 1059:40256: 머리 · 바닥 모서리 32 · 헤더 바로 아래. 부품은 종 버튼 아래 4px 에 붙이므로 8px 내리고, 오른쪽 끝을 아바타 끝(종 ＋ 8 ＋ 40)에 맞춘다
+      popProps: { style: { padding: 0, borderRadius: 32, overflow: "hidden", transform: "translate(48px, 8px)" } },
       onRead: this.onRead, onReadAll: this.onReadAll, onDelete: this.onDelete,
       onDismissBanner: this.onDismissBanner, onLoadMore: this.onLoadMore, onRetry: this.onRetry,
       toastOpen: s.toastOpen,

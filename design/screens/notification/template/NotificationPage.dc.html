@@ -24,10 +24,10 @@
 <main class="nt-page" data-screen-label="전체형" style="width:100%;max-width:var(--container-max);margin:0 auto;padding-top:32px;padding-left:var(--container-pad);padding-right:var(--container-pad);display:flex;flex-direction:column;font-family:var(--font-sans);color:var(--foreground)">
   <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
     <div style="display:flex;align-items:center;gap:12px;min-width:0">
-      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="arrow-left-01" variant="outline" size="md" aria-label="뒤로 가기" onClick="{{ goBack }}" hint-size="40px,40px"></x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="arrow-left-01" variant="outline" size="md" shape="circle" aria-label="뒤로 가기" onClick="{{ goBack }}" hint-size="40px,40px"></x-import>
       <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Breadcrumb" items="{{ crumbs }}" hint-size="auto,20px"></x-import>
     </div>
-    <span class="nt-desktop-only"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" icon-right="arrow-up-right-01" onClick="{{ openPanel }}" hint-size="auto,32px">간단보기</x-import></span>
+    <span class="nt-desktop-only"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" icon-right="circle-arrow-up-right-02" onClick="{{ openPanel }}" hint-size="auto,32px">간단보기</x-import></span>
   </div>
   <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:24px">
     <h1 style="margin:0;font-size:var(--text-h0);line-height:var(--text-h0--line-height);letter-spacing:var(--text-h0--letter-spacing);font-weight:600">알림 내역</h1>
@@ -54,8 +54,8 @@
                 </sc-if>
               </div>
               <div class="nt-action">
-                <sc-if value="{{ c.isL1 }}" hint-placeholder-val="{{ true }}"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" tone="primary" size="sm" icon-right="arrow-up-right-01" onClick="{{ c.onAction }}" hint-size="auto,32px">{{ c.actionLabel }}</x-import></sc-if>
-                <sc-if value="{{ c.notL1 }}" hint-placeholder-val="{{ false }}"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" onClick="{{ c.onAction }}" hint-size="auto,32px">{{ c.actionLabel }}</x-import></sc-if>
+                <sc-if value="{{ c.isL1 }}" hint-placeholder-val="{{ true }}"><a class="nt-link" href="{{ c.href }}" onClick="{{ c.onAction }}">{{ c.actionLabel }}<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="circle-arrow-up-right-02" size="{{ 32 }}" hint-size="32px,32px"></x-import></a></sc-if>
+                <sc-if value="{{ c.notL1 }}" hint-placeholder-val="{{ false }}"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" onClick="{{ c.onAction }}" hint-size="auto,40px">{{ c.actionLabel }}</x-import></sc-if>
               </div>
               <sc-if value="{{ c.canDelete }}" hint-placeholder-val="{{ false }}">
                 <span class="nt-del"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="cancel-01" variant="ghost" size="sm" aria-label="알림 삭제" onClick="{{ c.onDelete }}" hint-size="32px,32px"></x-import></span>
@@ -65,7 +65,7 @@
         </sc-for>
       </div>
       <sc-if value="{{ hasBanner }}" hint-placeholder-val="{{ false }}">
-        <div class="nt-banner">
+        <div class="nt-banner nt-banner--wide">
           <a class="nt-banner-link" href="{{ banner.href }}" aria-label="{{ banner.title }}" onClick="{{ onBannerClick }}"></a>
           <span class="nt-banner-icon"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="rocket-01" size="{{ 24 }}" hint-size="24px,24px"></x-import></span>
           <span class="nt-banner-copy"><span class="nt-banner-label">{{ banner.label }}</span><span class="nt-banner-title">{{ banner.title }}</span></span>

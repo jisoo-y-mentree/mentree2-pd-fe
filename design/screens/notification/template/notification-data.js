@@ -94,7 +94,8 @@ export function getItems(role, state) {
   }
 }
 
-const ICON = { 2: "piggy-bank", 3: "alert-circle" };
+// 와이어 1059:41331 의 아이콘 — 거래는 돼지저금통, 경고는 alert-square
+const ICON = { 2: "piggy-bank", 3: "alert-square" };
 
 /**
  * 카드 뷰모델 — 템플릿이 그대로 읽는 평평한 값과 핸들러.
@@ -122,10 +123,12 @@ export function cardViewModels(items, ctx) {
       avatars: it.group ? it.group.avatars : [],
       more: it.group ? it.group.more : "",
       actionLabel: it.action.label,
+      href: href || "#",
       canDelete: it.level < 3,
       swiping: dx < 0,
       swipeStyle: dx ? { transform: "translateX(" + dx + "px)" } : undefined,
       onAction: (e) => {
+        if (e && e.preventDefault) e.preventDefault(); // <a> 의 기본 이동 대신 아래에서 간다(읽음 처리 뒤)
         if (sw.moved) return;
         ctx.onRead && ctx.onRead(it.id);
         ctx.afterAction && ctx.afterAction();

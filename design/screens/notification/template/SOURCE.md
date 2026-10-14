@@ -27,6 +27,13 @@
 | `notification-data.js` | 표본 알림 · 카드 뷰모델 · 쓸기 거동 |
 | `notification.css` | 알림 카드 · 공지 띠 조립(`.nt-` · `data-temp="DS-117"`) |
 
+## 여는 법
+
+| 판정 조건 | 아크션 |
+|---|---|
+| 화면을 본다 | **리포 루트에서 `python3 -m http.server 8765` 를 돌리고 `http://127.0.0.1:8765/design/screens/notification/template/Notification.dc.html` 을 연다.** 주소 값으로 상태를 고른다 |
+| 파일을 더블클릭해 `file://` 로 연다 | **바탕 · 간략형 · 전체형이 회색 상자로 남는다.** 입구가 부품 3본(`NotificationPanel` · `NotificationPage` · `TopBackdrop`)을 `dc-import` 로 읽어 오는데 브라우저가 `file://` 의 읽기를 막는다. 원본 export 도 같다 — 배치 때문이 아니다. Q&A 는 한 파일이라 `file://` 로도 열린다 |
+
 ## 손댄 곳
 
 | 무엇 | 원본 | 리포 | 왜 |
@@ -35,8 +42,9 @@
 | 자산 심 | 없음 | `ds-asset-path.js`(TOP export 의 `ds-asset-base.js` 를 바탕으로 자산 루트만 ds-export 로) | 헤더 로고 · 부품 기본 자산이 `../../assets/` 를 가리킨다 |
 | **TOP 바탕** | `TopSkeleton.dc.html`(블록 윤곽) | **`TopBackdrop.dc.html`** — 이 화면의 헤더 ＋ 진짜 TOP(`../../top/template/Top.dc.html?embed=1`)을 헤더 아래부터 | 상혁 2026-10-14 「톱화면을 포함해서」. TOP 의 모양은 TOP 의 template 이 정본이고 여기서 고치지 않는다 |
 | 카드 모양 3건 | `notification.css` | 점은 L1 에만 · 본문 최대 2줄(빈 줄 없음) · L3 는 읽어도 안 흐려짐 · 768 이하 ✕ 늘 보임 | 리포 검수 ①②③⑤ — [UI-REVIEW](../UI-REVIEW.md) |
+| **와이어 수치 대조 12곳** | `notification.css` · `NotificationPanel` · `NotificationPage` · `Notification`(팝오버 자리 · 반경) · `notification-data.js`(아이콘 · href) | 팝오버 자리 · 모서리 32 · 제목 24 · 바닥 링크 20 · 카드 반경 16 · 안쪽 16/24 · 메타 12/16 · 「자세히 보기」 글자 링크 ＋ 아이콘 · 빨강 카드 왼쪽 바 삭제 · 원형 되돌아가기 · 공지 띠 | 2차 검수 — [UI-REVIEW](../UI-REVIEW.md) 「2차 검수」 |
 | 표본 2건 | `notification-data.js` | 얼굴(아이콘 그림 → 사진 · 이니셜) · 출시 초기 5패턴 밖 문장 교체 | 리포 검수 ④⑥ |
 
-**Claude Design 쪽에도 같은 고침을 돌려야 한다.** 다음 export 가 이 고침을 덮어쓰지 않게 프롬프트 `_import/prompts/notification-r2-1014.md` 를 돌린다. 배치는 `design/_import/place-notification.sh`(TopSkeleton → TopBackdrop 교체 포함).
+**Claude Design 쪽에도 같은 고침을 돌려야 한다.** 다음 export 가 이 고침을 덮어쓰지 않게 프롬프트 `_import/prompts/notification-r2-1014.md` 를 돌린다 — 리포 검수 6건 ＋ 와이어 대조 12곳 ＋ 진짜 TOP. 배치는 `design/_import/place-notification.sh`(TopSkeleton → TopBackdrop 교체 포함).
 
 **캡처** — 헤드리스 Chrome · 간략형은 창 1440×900, 전체형은 1440 전체 높이, 모바일은 390 iframe. `~/Desktop/notification-1014/`.
