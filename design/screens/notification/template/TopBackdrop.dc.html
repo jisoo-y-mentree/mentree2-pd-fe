@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+<link rel="stylesheet" href="../../../ds-export/project/styles.css">
+<script src="ds-asset-path.js"></script>
+<script src="../../../ds-export/project/_ds_bundle.js"></script>
+<link rel="stylesheet" href="notification.css">
+</helmet>
+<!-- 리포 배치 때 만들었다(2026-10-14, Claude Code). export 의 TopSkeleton(블록 윤곽)을 대신한다.
+     간략형이 얹히는 바탕을 진짜 TOP(design/screens/top/template/Top.dc.html)으로 깐다.
+     헤더는 이 화면의 것(종 · 주황 점 · 팝오버 앵커)이고, TOP 은 헤더 아래 본문부터 보인다(자기 헤더를 잘라 낸다).
+     TOP 의 모양은 TOP 의 template 이 정본이다. 여기서 TOP 을 고치지 않는다. -->
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" auth-state="{{ role }}" unread="{{ unread }}" user="{{ user }}" on-notify="{{ onNotify }}" on-navigate="{{ noop }}" hint-size="100%,64px"></x-import>
+<div data-screen-label="TOP 바탕" style="overflow:hidden;height:{{ boxH }}">
+  <iframe title="TOP" src="{{ topSrc }}" scrolling="no" tabindex="-1" onLoad="{{ onFrameLoad }}" style="display:block;width:100%;border:0;height:{{ frameH }};margin-top:{{ crop }}"></iframe>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;role&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;mentee&quot;,&quot;mentor&quot;],&quot;default&quot;:&quot;mentee&quot;,&quot;tsType&quot;:&quot;\&quot;mentee\&quot; | \&quot;mentor\&quot;&quot;},&quot;unread&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;user&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;{ name?: string; avatarUrl?: string }&quot;},&quot;onNotify&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;(e: MouseEvent) =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { h: 900, crop: 0 };
+  componentWillUnmount() { clearTimeout(this.t1); clearTimeout(this.t2); this.ro && this.ro.disconnect(); }
+  measure(f) {
+    let doc;
+    try { doc = f.contentDocument; } catch (e) { return; }
+    if (!doc || !doc.body) return;
+    const head = doc.querySelector("header");
+    const crop = head ? Math.round(head.getBoundingClientRect().bottom) : 0;
+    const foot = doc.querySelector("footer");
+    const h = Math.max(doc.documentElement.scrollHeight, foot ? Math.round(foot.getBoundingClientRect().bottom) : 0);
+    if (h !== this.state.h || crop !== this.state.crop) this.setState({ h, crop });
+  }
+  onFrameLoad = (e) => {
+    const f = e.currentTarget;
+    this.measure(f);
+    // 사진 · 글꼴이 늦게 들어와 높이가 바뀐다 — 두 번 더 잰다
+    this.t1 = setTimeout(() => this.measure(f), 600);
+    this.t2 = setTimeout(() => this.measure(f), 2000);
+    try {
+      if (typeof ResizeObserver !== "undefined" && f.contentDocument) {
+        this.ro = new ResizeObserver(() => this.measure(f));
+        this.ro.observe(f.contentDocument.body);
+      }
+    } catch (err) {}
+  };
+  renderVals() {
+    const p = this.props, s = this.state;
+    const role = p.role ?? "mentee";
+    return {
+      role,
+      unread: !!p.unread,
+      user: p.user ?? { name: "멘트리" },
+      onNotify: p.onNotify ?? (() => {}),
+      noop: () => {},
+      topSrc: "../../top/template/Top.dc.html?embed=1&role=" + role + "&state=normal&event=on&view=desktop",
+      onFrameLoad: this.onFrameLoad,
+      frameH: s.h + "px",
+      crop: -s.crop + "px",
+      boxH: Math.max(0, s.h - s.crop) + "px",
+    };
+  }
+}
+</script>
+</body>
+</html>

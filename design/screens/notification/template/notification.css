@@ -1,0 +1,92 @@
+/* notification.css — 알림 카드(DS-117) · 공지 띠 조립. 화면 전용 .nt- 접두사. 토큰 값을 덮어쓰지 않는다. */
+
+.nt-list { display: flex; flex-direction: column; gap: 12px; }
+.nt-list--page { gap: 16px; }
+
+/* 쓸기(768 이하) — 카드 뒤에 깔리는 삭제 면 */
+.nt-swipe { position: relative; border-radius: 12px; }
+.nt-swipe-bg {
+  position: absolute; inset: 0; border-radius: 12px;
+  display: flex; align-items: center; justify-content: flex-end; padding-right: 24px;
+  background: var(--destructive); color: var(--destructive-foreground);
+  font-size: var(--text-caption); line-height: var(--text-caption--line-height); font-weight: 600;
+}
+
+/* 카드 — 반경 12 · 안쪽 16 20 · 6슬롯 그리드 */
+.nt-card {
+  position: relative; display: grid; column-gap: 10px; row-gap: 6px; align-items: start;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  grid-template-areas: "icon dot text text" "icon dot meta action";
+  padding: 16px 20px; border-radius: 12px;
+  border: 1px solid var(--border); background: var(--card); color: var(--foreground);
+  touch-action: pan-y; transition: transform 160ms ease;
+}
+.nt-card.nt-dragging { transition: none; }
+.nt-l1 { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "dot text text" "dot meta action"; }
+.nt-l2 { background: var(--green-50); border-color: var(--green-200); }
+.nt-l3 {
+  background: color-mix(in oklch, var(--destructive) 6%, var(--card));
+  border-color: var(--destructive);
+  box-shadow: inset 3px 0 0 var(--destructive);
+}
+/* 리포 검수 2026-10-14 ①: 상태 점은 L1 에만. L2 · L3 는 아이콘이 그 자리를 갖는다(와이어 1059:41331 · 패턴 보드 실물) */
+.nt-l2, .nt-l3 { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "icon text text" "icon meta action"; }
+.nt-l2 .nt-dot, .nt-l3 .nt-dot { display: none; }
+
+.nt-icon { grid-area: icon; width: 32px; height: 32px; margin-top: -4px; display: flex; align-items: center; justify-content: center; color: var(--green-700); }
+.nt-l3 .nt-icon { border-radius: 50%; border: 1px solid var(--destructive); background: var(--card); color: var(--destructive); }
+.nt-dot { grid-area: dot; width: 8px; height: 8px; margin-top: 8px; border-radius: 50%; background: var(--primary); }
+.nt-read .nt-dot { visibility: hidden; }
+
+.nt-text {
+  grid-area: text; margin: 0;
+  font-size: var(--text-body); line-height: var(--text-body--line-height); letter-spacing: var(--text-body--letter-spacing); font-weight: 600;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+}
+/* 리포 검수 ②: 본문은 「최대」 2줄이다. 한 줄 알림에 빈 줄을 두지 않는다(min-height 48 을 뺐다) */
+/* 리포 검수 ⑤: 지울 수 있는 카드(L1 · L2)는 오른쪽 위 ✕ 자리만큼 본문을 비운다 */
+.nt-l1 .nt-text, .nt-l2 .nt-text { padding-right: 28px; }
+.nt-read .nt-text { color: var(--muted-foreground); font-weight: 400; }
+/* 리포 검수 ③: L3 는 읽어도 흐려지지 않는다 — 해결될 때까지 그대로(와이어 「읽음」 1059:41479) */
+.nt-l3.nt-read .nt-text { color: var(--foreground); font-weight: 600; }
+
+.nt-meta {
+  grid-area: meta; min-width: 0; min-height: 32px; display: flex; align-items: center; gap: 8px;
+  font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); color: var(--muted-foreground);
+}
+.nt-deadline { color: var(--destructive); }
+.nt-more { color: var(--primary); }
+.nt-action { grid-area: action; display: flex; align-items: center; justify-self: end; }
+
+/* 삭제 ✕ — 769 이상에서 hover · focus-within 에만(768 이하는 늘 — 아래) */
+.nt-del { position: absolute; top: 6px; right: 6px; opacity: 0; transition: opacity 120ms ease; }
+.nt-card:hover .nt-del, .nt-card:focus-within .nt-del { opacity: 1; }
+
+/* 전체형 769 이상: 액션은 카드 오른쪽 끝 세로 가운데(와이어 1059:40860) */
+@media (min-width: 769px) {
+  .nt-card--wide { grid-template-areas: "icon dot text action" "icon dot meta action"; min-height: 112px; }
+  .nt-card--wide.nt-l1 { grid-template-areas: "dot text action" "dot meta action"; }
+  .nt-card--wide.nt-l2, .nt-card--wide.nt-l3 { grid-template-areas: "icon text action" "icon meta action"; }
+  .nt-card--wide .nt-action { align-self: center; margin-left: 16px; }
+}
+/* 리포 검수 ⑤: 768 이하에도 ✕ 를 늘 보인다. 쓸기만 있으면 쓸기를 못 하는 사람이 지울 길이 없다(WCAG 2.5.1) */
+@media (max-width: 768px) {
+  .nt-del { opacity: 1; }
+  .nt-desktop-only { display: none !important; }
+}
+
+.nt-page { padding-bottom: 96px; }
+@media (max-width: 768px) {
+  .nt-page { padding-bottom: calc(var(--mt-bottom-bar-height, 56px) + 40px); }
+}
+
+/* 공지 · 프로모션 띠 — 점선 1px · 반경 12 · 안쪽 16 · 띠 전체가 링크 */
+.nt-banner { position: relative; display: flex; align-items: center; gap: 12px; padding: 16px; border: 1px dashed var(--border); border-radius: 12px; background: var(--card); }
+.nt-banner-link { position: absolute; inset: 0; border-radius: 12px; }
+.nt-banner-link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+.nt-banner:hover .nt-banner-title { text-decoration: underline; text-underline-offset: 3px; }
+.nt-banner-icon { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 10px; background: var(--muted); display: flex; align-items: center; justify-content: center; color: var(--foreground); }
+.nt-banner-copy { min-width: 0; flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px; }
+.nt-banner-label { font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); color: var(--muted-foreground); }
+.nt-banner-title { font-size: var(--text-body); line-height: var(--text-body--line-height); letter-spacing: var(--text-body--letter-spacing); font-weight: 600; color: var(--foreground); }
+.nt-banner-close { position: relative; z-index: 1; flex: 0 0 auto; }

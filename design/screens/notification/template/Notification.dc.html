@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+<link rel="stylesheet" href="../../../ds-export/project/styles.css">
+<script src="ds-asset-path.js"></script>
+<script src="../../../ds-export/project/_ds_bundle.js"></script>
+<link rel="stylesheet" href="notification.css">
+<style>a{color:var(--primary)}a:hover{color:var(--green-800)}</style>
+</helmet>
+<sc-if value="{{ showDemo }}" hint-placeholder-val="{{ false }}">
+  <div data-screen-label="데모 줄" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;padding:10px var(--container-pad);background:var(--sage-50);border-bottom:1px solid var(--border);font-family:var(--font-sans)">
+    <div style="display:flex;align-items:center;gap:8px"><span style="font-size:var(--text-caption);line-height:var(--text-caption--line-height);letter-spacing:var(--text-caption--letter-spacing);color:var(--muted-foreground)">화면</span><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ToggleGroup" size="sm" options="{{ screenOpts }}" value="{{ screen }}" on-change="{{ setScreen }}" hint-size="auto,38px"></x-import></div>
+    <div style="display:flex;align-items:center;gap:8px"><span style="font-size:var(--text-caption);line-height:var(--text-caption--line-height);letter-spacing:var(--text-caption--letter-spacing);color:var(--muted-foreground)">역할</span><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ToggleGroup" size="sm" options="{{ roleOpts }}" value="{{ role }}" on-change="{{ setRole }}" hint-size="auto,38px"></x-import></div>
+    <div style="display:flex;align-items:center;gap:8px"><span style="font-size:var(--text-caption);line-height:var(--text-caption--line-height);letter-spacing:var(--text-caption--letter-spacing);color:var(--muted-foreground)">상태</span><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ToggleGroup" size="sm" options="{{ stateOpts }}" value="{{ stateVal }}" on-change="{{ setStateParam }}" hint-size="auto,38px"></x-import></div>
+    <div style="display:flex;align-items:center;gap:8px"><span style="font-size:var(--text-caption);line-height:var(--text-caption--line-height);letter-spacing:var(--text-caption--letter-spacing);color:var(--muted-foreground)">뷰</span><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ToggleGroup" size="sm" options="{{ viewOpts }}" value="{{ view }}" on-change="{{ setView }}" hint-size="auto,38px"></x-import></div>
+  </div>
+</sc-if>
+<sc-if value="{{ isMobileDemo }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;justify-content:center;padding:24px;background:var(--sage-100);min-height:calc(100vh - 59px)">
+    <iframe title="모바일 미리보기(390)" src="{{ iframeSrc }}" style="width:390px;height:844px;max-width:100%;border:1px solid var(--border);border-radius:28px;background:var(--background);display:block;box-shadow:var(--shadow-lg)"></iframe>
+  </div>
+</sc-if>
+<sc-if value="{{ showTop }}" hint-placeholder-val="{{ true }}">
+  <dc-import name="TopBackdrop" role="{{ role }}" unread="{{ unread }}" user="{{ user }}" on-notify="{{ onNotify }}" hint-size="100%,900px"></dc-import>
+</sc-if>
+<sc-if value="{{ showPage }}" hint-placeholder-val="{{ false }}">
+  <dc-import name="NotificationPage" role="{{ role }}" ui-state="{{ uiState }}" items="{{ items }}" banner="{{ banner }}" unread-count="{{ unreadCount }}" has-more="{{ hasMore }}" loading-more="{{ loadingMore }}" is-mobile="{{ isMobile }}" user="{{ user }}" top-href="{{ topHref }}" on-notify="{{ onNotify }}" on-open-panel="{{ openPanel }}" on-read="{{ onRead }}" on-delete="{{ onDelete }}" on-read-all="{{ onReadAll }}" on-dismiss-banner="{{ onDismissBanner }}" on-load-more="{{ onLoadMore }}" on-retry="{{ onRetry }}" hint-size="100%,900px"></dc-import>
+</sc-if>
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Popover" open="{{ panelOpen }}" on-close="{{ closePanel }}" side="bottom" align="end" min-width="{{ 520 }}" trigger-ref="{{ bellRef }}" dc-props="{{ popProps }}" hint-size="0px,0px">
+  <dc-import name="NotificationPanel" role="{{ role }}" ui-state="{{ uiState }}" items="{{ items }}" banner="{{ banner }}" unread-count="{{ unreadCount }}" page-href="{{ pageHref }}" on-read="{{ onRead }}" on-delete="{{ onDelete }}" on-read-all="{{ onReadAll }}" on-dismiss-banner="{{ onDismissBanner }}" on-close="{{ closePanel }}" on-retry="{{ onRetry }}" hint-size="520px,480px"></dc-import>
+</x-import>
+<div onPointerDown="{{ stopPointer }}">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Toast" open="{{ toastOpen }}" message="알림을 지웠어요" actions="{{ toastActions }}" on-dismiss="{{ dismissToast }}" hint-size="0px,0px"></x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const q = new URLSearchParams(location.search);
+    const pick = (k, list, d) => (list.includes(q.get(k)) ? q.get(k) : d);
+    this.q = {
+      screen: pick("screen", ["popover", "page"], "popover"),
+      role: pick("role", ["mentee", "mentor"], "mentee"),
+      state: pick("state", ["normal", "read", "empty", "loading", "error", "end"], "normal"),
+      view: pick("view", ["desktop", "mobile"], "desktop"),
+      frame: q.get("frame") === "1",
+    };
+    this.state = {
+      narrow: window.matchMedia("(max-width: 768px)").matches,
+      uiState: this.q.state, items: [], more: [], bannerOpen: false,
+      panelOpen: false, toastOpen: false, loadingMore: false,
+    };
+    this.bellRef = { current: null };
+    this.closedAt = 0;
+    this.undo = null;
+  }
+  get isMobile() { return this.q.view === "mobile" || this.state.narrow; }
+  get isMobileDemo() { return this.q.view === "mobile" && !this.state.narrow && !this.q.frame; }
+  get effScreen() { return this.q.screen === "popover" && this.isMobile ? "page" : this.q.screen; }
+  href(over) {
+    const p = new URLSearchParams(location.search);
+    Object.keys(over).forEach((k) => (over[k] == null ? p.delete(k) : p.set(k, over[k])));
+    return location.pathname + "?" + p.toString();
+  }
+  componentDidMount() {
+    document.documentElement.lang = "ko";
+    document.title = this.effScreen === "page" ? "알림 내역 · 멘트리" : "알림 · 멘트리";
+    this.mq = window.matchMedia("(max-width: 768px)");
+    this.onMq = () => this.setState({ narrow: this.mq.matches });
+    this.mq.addEventListener("change", this.onMq);
+    import(new URL("./notification-data.js", document.baseURI).href).then((m) => {
+      this.mod = m;
+      const d = m.getItems(this.q.role, this.q.state);
+      this.setState({ items: d.items, more: d.more, bannerOpen: d.banner }, () => {
+        // 종(Header 의 알림 버튼)을 찾아 Popover 의 앵커로 삼는다. 데이터가 든 뒤, 간략형 화면이면 연다.
+        this.findBell(() => { if (this.q.screen === "popover" && !this.isMobile && !this.isMobileDemo) this.setState({ panelOpen: true }); });
+      });
+    });
+  }
+  componentWillUnmount() { this.mq && this.mq.removeEventListener("change", this.onMq); }
+  findBell(cb) {
+    let n = 0;
+    const tick = () => {
+      const el = document.querySelector('.mt-header-round[aria-label="알림"]');
+      if (el) { this.bellRef.current = el; cb && cb(); }
+      else if (n++ < 400) requestAnimationFrame(tick);
+    };
+    tick();
+  }
+  onNotify = (e) => {
+    if (e && e.currentTarget) this.bellRef.current = e.currentTarget;
+    if (this.isMobile) { location.assign(this.href({ screen: "page" })); return; }
+    const rendered = !!document.querySelector('[role="dialog"][aria-label="알림 내역"]');
+    if (this.state.panelOpen && rendered) { this.setState({ panelOpen: false }); return; }
+    if (this.state.panelOpen && !rendered) { this.setState({ panelOpen: false }, () => this.setState({ panelOpen: true })); return; }
+    if (Date.now() - this.closedAt < 300) return; // 바깥 클릭(pointerdown)으로 막 닫힌 같은 클릭 — 다시 열지 않는다
+    this.setState({ panelOpen: true });
+  };
+  closePanel = () => { this.closedAt = Date.now(); this.setState({ panelOpen: false }); };
+  openPanel = () => { if (!this.bellRef.current) this.findBell(); this.setState({ panelOpen: true }); };
+  onRead = (id) => this.setState((s) => ({ items: s.items.map((i) => (i.id === id ? { ...i, read: true } : i)) }));
+  onReadAll = () => this.setState((s) => ({ items: s.items.map((i) => ({ ...i, read: true })) }));
+  onDelete = (id) => {
+    const idx = this.state.items.findIndex((i) => i.id === id);
+    if (idx < 0) return;
+    this.undo = { item: this.state.items[idx], idx };
+    const items = this.state.items.slice(); items.splice(idx, 1);
+    this.setState({ items, toastOpen: false });
+    requestAnimationFrame(() => this.setState({ toastOpen: true }));
+  };
+  undoDelete = () => {
+    const u = this.undo; this.undo = null;
+    if (!u) return;
+    this.setState((s) => { const items = s.items.slice(); items.splice(Math.min(u.idx, items.length), 0, u.item); return { items, toastOpen: false }; });
+  };
+  dismissToast = () => { this.undo = null; this.setState({ toastOpen: false }); };
+  onDismissBanner = () => this.setState({ bannerOpen: false });
+  onLoadMore = () => {
+    if (this.state.loadingMore) return;
+    this.setState({ loadingMore: true });
+    setTimeout(() => this.setState((s) => ({ items: s.items.concat(s.more), more: [], loadingMore: false })), 900);
+  };
+  onRetry = () => {
+    this.setState({ uiState: "loading" });
+    setTimeout(() => {
+      const d = this.mod ? this.mod.getItems(this.q.role, "normal") : { items: [], more: [], banner: false };
+      this.setState({ uiState: "normal", items: d.items, more: d.more, bannerOpen: d.banner });
+    }, 900);
+  };
+  renderVals() {
+    const s = this.state, q = this.q, m = this.mod;
+    const unreadCount = s.items.filter((i) => !i.read).length;
+    const eff = this.effScreen, demo = this.isMobileDemo;
+    return {
+      showDemo: !q.frame,
+      isMobileDemo: demo,
+      iframeSrc: this.href({ view: "mobile", frame: "1" }),
+      showTop: !demo && eff === "popover",
+      showPage: !demo && eff === "page",
+      screen: q.screen, role: q.role, stateVal: q.state, view: q.view,
+      screenOpts: [{ value: "popover", label: "간략형" }, { value: "page", label: "전체형" }],
+      roleOpts: [{ value: "mentee", label: "멘티" }, { value: "mentor", label: "멘토" }],
+      stateOpts: [{ value: "normal", label: "일반" }, { value: "read", label: "읽음" }, { value: "empty", label: "없음" }, { value: "loading", label: "로딩" }, { value: "error", label: "오류" }, { value: "end", label: "마지막" }],
+      viewOpts: [{ value: "desktop", label: "데스크톱" }, { value: "mobile", label: "모바일" }],
+      setScreen: (v) => location.assign(this.href({ screen: v })),
+      setRole: (v) => location.assign(this.href({ role: v })),
+      setStateParam: (v) => location.assign(this.href({ state: v })),
+      setView: (v) => location.assign(this.href({ view: v })),
+      unread: unreadCount > 0, unreadCount,
+      user: m ? m.USERS[q.role] : { name: "" },
+      items: s.items,
+      banner: s.bannerOpen && m ? m.BANNER : null,
+      uiState: s.uiState,
+      hasMore: s.more.length > 0,
+      loadingMore: s.loadingMore,
+      isMobile: this.isMobile,
+      pageHref: this.href({ screen: "page" }),
+      topHref: this.href({ screen: "popover" }),
+      onNotify: this.onNotify, openPanel: this.openPanel, closePanel: this.closePanel,
+      panelOpen: s.panelOpen, bellRef: this.bellRef,
+      popProps: { style: { padding: 0, borderRadius: 16, overflow: "hidden" } },
+      onRead: this.onRead, onReadAll: this.onReadAll, onDelete: this.onDelete,
+      onDismissBanner: this.onDismissBanner, onLoadMore: this.onLoadMore, onRetry: this.onRetry,
+      toastOpen: s.toastOpen,
+      toastActions: [{ label: "실행취소", emphasis: "primary", onClick: this.undoDelete }],
+      dismissToast: this.dismissToast,
+      stopPointer: (e) => e.stopPropagation(),
+    };
+  }
+}
+</script>
+</body>
+</html>

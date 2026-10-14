@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+<link rel="stylesheet" href="../../../ds-export/project/styles.css">
+<script src="ds-asset-path.js"></script>
+<script src="../../../ds-export/project/_ds_bundle.js"></script>
+<link rel="stylesheet" href="notification.css">
+<style>a{color:var(--primary)}a:hover{color:var(--green-800)}</style>
+</helmet>
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" auth-state="{{ role }}" unread="{{ unread }}" user="{{ user }}" on-notify="{{ onNotify }}" on-navigate="{{ noop }}" hint-size="100%,64px"></x-import>
+<main class="nt-page" data-screen-label="전체형" style="width:100%;max-width:var(--container-max);margin:0 auto;padding-top:32px;padding-left:var(--container-pad);padding-right:var(--container-pad);display:flex;flex-direction:column;font-family:var(--font-sans);color:var(--foreground)">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+    <div style="display:flex;align-items:center;gap:12px;min-width:0">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="arrow-left-01" variant="outline" size="md" aria-label="뒤로 가기" onClick="{{ goBack }}" hint-size="40px,40px"></x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Breadcrumb" items="{{ crumbs }}" hint-size="auto,20px"></x-import>
+    </div>
+    <span class="nt-desktop-only"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" icon-right="arrow-up-right-01" onClick="{{ openPanel }}" hint-size="auto,32px">간단보기</x-import></span>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:24px">
+    <h1 style="margin:0;font-size:var(--text-h0);line-height:var(--text-h0--line-height);letter-spacing:var(--text-h0--letter-spacing);font-weight:600">알림 내역</h1>
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" disabled="{{ noUnread }}" dc-props="{{ mutedBtn }}" onClick="{{ onReadAll }}" hint-size="auto,32px">모두 읽음</x-import>
+  </div>
+  <div style="margin-top:24px;display:flex;flex-direction:column;gap:16px">
+    <sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
+      <div class="nt-list nt-list--page">
+        <sc-for list="{{ cards }}" as="c" hint-placeholder-count="5">
+          <div class="nt-swipe">
+            <sc-if value="{{ c.swiping }}" hint-placeholder-val="{{ false }}"><div class="nt-swipe-bg" aria-hidden="true">삭제</div></sc-if>
+            <article class="{{ c.cls }}" data-temp="DS-117" style="{{ c.swipeStyle }}" onPointerDown="{{ c.onDown }}" onPointerMove="{{ c.onMove }}" onPointerUp="{{ c.onUp }}" onPointerCancel="{{ c.onUp }}">
+              <sc-if value="{{ c.hasIcon }}" hint-placeholder-val="{{ false }}">
+                <span class="nt-icon"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="{{ c.icon }}" size="{{ 24 }}" hint-size="24px,24px"></x-import></span>
+              </sc-if>
+              <span class="nt-dot" aria-hidden="true"></span>
+              <p class="nt-text">{{ c.text }}</p>
+              <div class="nt-meta">
+                <sc-if value="{{ c.hasTime }}" hint-placeholder-val="{{ true }}"><span>{{ c.time }}</span></sc-if>
+                <sc-if value="{{ c.hasDeadline }}" hint-placeholder-val="{{ false }}"><span class="nt-deadline">{{ c.deadline }}</span></sc-if>
+                <sc-if value="{{ c.hasGroup }}" hint-placeholder-val="{{ false }}">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.AvatarGroup" items="{{ c.avatars }}" max="{{ 3 }}" size="xs" hint-size="52px,20px"></x-import>
+                  <span class="nt-more">{{ c.more }}</span>
+                </sc-if>
+              </div>
+              <div class="nt-action">
+                <sc-if value="{{ c.isL1 }}" hint-placeholder-val="{{ true }}"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" tone="primary" size="sm" icon-right="arrow-up-right-01" onClick="{{ c.onAction }}" hint-size="auto,32px">{{ c.actionLabel }}</x-import></sc-if>
+                <sc-if value="{{ c.notL1 }}" hint-placeholder-val="{{ false }}"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" onClick="{{ c.onAction }}" hint-size="auto,32px">{{ c.actionLabel }}</x-import></sc-if>
+              </div>
+              <sc-if value="{{ c.canDelete }}" hint-placeholder-val="{{ false }}">
+                <span class="nt-del"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="cancel-01" variant="ghost" size="sm" aria-label="알림 삭제" onClick="{{ c.onDelete }}" hint-size="32px,32px"></x-import></span>
+              </sc-if>
+            </article>
+          </div>
+        </sc-for>
+      </div>
+      <sc-if value="{{ hasBanner }}" hint-placeholder-val="{{ false }}">
+        <div class="nt-banner">
+          <a class="nt-banner-link" href="{{ banner.href }}" aria-label="{{ banner.title }}" onClick="{{ onBannerClick }}"></a>
+          <span class="nt-banner-icon"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="rocket-01" size="{{ 24 }}" hint-size="24px,24px"></x-import></span>
+          <span class="nt-banner-copy"><span class="nt-banner-label">{{ banner.label }}</span><span class="nt-banner-title">{{ banner.title }}</span></span>
+          <span class="nt-banner-close"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="cancel-01" variant="ghost" size="sm" aria-label="닫기" onClick="{{ onDismissBanner }}" hint-size="32px,32px"></x-import></span>
+        </div>
+      </sc-if>
+    </sc-if>
+    <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" size="md" icon="package-open" title="새 알림이 없습니다" description="질문에 답변이 달리거나 세션이 잡히면 여기에서 알려드립니다." hint-size="100%,200px"></x-import>
+    </sc-if>
+    <sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}">
+      <div class="nt-list nt-list--page" aria-busy="true">
+        <sc-for list="{{ five }}" as="n" hint-placeholder-count="5"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="{{ 96 }}" radius="md" hint-size="100%,96px"></x-import></sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
+      <div style="min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
+        <p style="margin:0;font-size:var(--text-body);line-height:var(--text-body--line-height);letter-spacing:var(--text-body--letter-spacing);color:var(--foreground)">알림을 불러오지 못했어요</p>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" onClick="{{ onRetry }}" hint-size="auto,32px">다시 시도</x-import>
+      </div>
+    </sc-if>
+    <sc-if value="{{ loadingMore }}" hint-placeholder-val="{{ false }}">
+      <div class="nt-list nt-list--page" aria-busy="true">
+        <sc-for list="{{ three }}" as="n" hint-placeholder-count="3"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="{{ 96 }}" radius="md" hint-size="100%,96px"></x-import></sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{ showMore }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;justify-content:center;margin-top:16px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="md" disabled="{{ loadingMore }}" full-width="{{ isMobile }}" onClick="{{ onLoadMore }}" hint-size="auto,40px">더보기</x-import>
+      </div>
+    </sc-if>
+  </div>
+</main>
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" on-navigate="{{ noop }}" hint-size="100%,220px"></x-import>
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BottomTabBar" auth-state="{{ role }}" on-navigate="{{ noop }}" on-auth="{{ noop }}" hint-size="0px,0px"></x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;role&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;mentee&quot;,&quot;mentor&quot;],&quot;default&quot;:&quot;mentee&quot;,&quot;tsType&quot;:&quot;\&quot;mentee\&quot; | \&quot;mentor\&quot;&quot;},&quot;uiState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;normal&quot;,&quot;end&quot;,&quot;loading&quot;,&quot;empty&quot;,&quot;error&quot;],&quot;default&quot;:&quot;normal&quot;,&quot;tsType&quot;:&quot;\&quot;normal\&quot; | \&quot;end\&quot; | \&quot;loading\&quot; | \&quot;empty\&quot; | \&quot;error\&quot;&quot;},&quot;items&quot;:{&quot;editor&quot;:null,&quot;default&quot;:[],&quot;tsType&quot;:&quot;NotificationItem[]&quot;},&quot;banner&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;{ label: string; title: string; href: string } | null&quot;},&quot;unreadCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:5,&quot;min&quot;:0,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;},&quot;hasMore&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;loadingMore&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;isMobile&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;user&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;{ name?: string; avatarUrl?: string }&quot;},&quot;topHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;?screen=popover&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onNotify&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;(e: MouseEvent) =&gt; void&quot;},&quot;onOpenPanel&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;onRead&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;(id: string) =&gt; void&quot;},&quot;onDelete&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;(id: string) =&gt; void&quot;},&quot;onReadAll&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;onDismissBanner&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;onLoadMore&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;onRetry&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { swipe: { id: null, dx: 0, moved: false } };
+  componentDidMount() {
+    import(new URL("./notification-data.js", document.baseURI).href).then((m) => {
+      this.mod = m;
+      this.swipeFor = m.makeSwipe(this, (id) => this.props.onDelete && this.props.onDelete(id));
+      this.forceUpdate();
+    });
+  }
+  renderVals() {
+    const p = this.props;
+    const st = p.uiState ?? "normal";
+    const items = p.items ?? [];
+    const unread = p.unreadCount ?? items.filter((i) => !i.read).length;
+    const listState = st === "normal" || st === "read" || st === "end";
+    const isList = listState && items.length > 0;
+    const isEmpty = st === "empty" || (listState && items.length === 0);
+    const cards = this.mod
+      ? this.mod.cardViewModels(items, { onRead: p.onRead, onDelete: p.onDelete, swipe: this.state.swipe, swipeHandlers: this.swipeFor, wide: true })
+      : [];
+    const banner = p.banner || null;
+    const loadingMore = !!p.loadingMore;
+    return {
+      role: p.role ?? "mentee",
+      unread: unread > 0,
+      user: p.user ?? { name: "멘트리" },
+      onNotify: p.onNotify ?? (() => {}),
+      noop: () => {},
+      crumbs: [{ label: "알림 내역 상세" }],
+      cards,
+      noUnread: unread === 0,
+      isList, isEmpty,
+      isLoading: st === "loading",
+      isError: st === "error",
+      loadingMore,
+      showMore: isList && !!p.hasMore,
+      isMobile: !!p.isMobile,
+      five: [1, 2, 3, 4, 5],
+      three: [1, 2, 3],
+      hasBanner: isList && !!banner,
+      banner: banner || { href: "#", title: "", label: "" },
+      mutedBtn: { style: { color: "var(--muted-foreground)" } },
+      onReadAll: () => p.onReadAll && p.onReadAll(),
+      onRetry: () => p.onRetry && p.onRetry(),
+      onLoadMore: () => p.onLoadMore && p.onLoadMore(),
+      onDismissBanner: () => p.onDismissBanner && p.onDismissBanner(),
+      onBannerClick: (e) => { if (!banner || banner.href === "#") e.preventDefault(); },
+      openPanel: () => p.onOpenPanel && p.onOpenPanel(),
+      goBack: () => location.assign(p.topHref ?? "?screen=popover"),
+    };
+  }
+}
+</script>
+</body>
+</html>
