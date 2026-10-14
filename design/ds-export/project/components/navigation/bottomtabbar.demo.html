@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+html,body{margin:0}
+body{background:var(--background);font-family:var(--font-sans);color:var(--foreground)}
+.page{padding:16px var(--container-pad);display:flex;flex-direction:column;gap:12px}
+.line{height:12px;border-radius:6px;background:var(--sage-100)}
+.blk{height:120px;border-radius:var(--radius-md);background:var(--sage-100)}
+.cap{font-size:var(--text-caption);line-height:var(--text-caption--line-height);color:var(--muted-foreground)}
+.scroller{height:100vh;overflow:auto}
+.scroller .page{padding-bottom:calc(var(--mt-bottom-bar-height, 56px) + 16px)}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { BottomTabBar, Button, IconButton } = window.MentreeDesignSystem_2f86cf;
+  const state = new URLSearchParams(location.search).get("state") || "1";
+
+  function Apply() {
+    const [saved, setSaved] = React.useState(false);
+    return (
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <Button size="lg" style={{ flex: 1, minWidth: 0 }}>1:1 멘토링 신청하기</Button>
+        <IconButton size="lg" icon="bookmark-02" pressed={saved} onClick={() => setSaved((v) => !v)} ariaLabel="관심있는 멘토" />
+        <IconButton size="lg" icon="share-08" variant="outline" ariaLabel="공유" />
+      </div>
+    );
+  }
+  function Filler({ n, note }) {
+    return (
+      <div className="page">
+        {note && <div className="cap">{note}</div>}
+        {Array.from({ length: n }).map((_, i) => i % 4 === 0 ? <div key={i} className="blk"></div> : <div key={i} className="line" style={{ width: `${60 + (i * 17) % 40}%` }}></div>)}
+      </div>
+    );
+  }
+  function Demo() {
+    const [active, setActive] = React.useState("mentors");
+    const ref = React.useRef(null);
+    const common = { activeKey: active, onNavigate: (t) => setActive(t.key), onAuth: () => {} };
+    React.useEffect(() => { if (state !== "3") return; let n = 0; const t = setInterval(() => { if (window.scrollY < 400) window.scrollTo(0, 400); if (window.scrollY >= 400 || ++n > 40) { clearInterval(t); window.dispatchEvent(new Event("scroll")); } }, 200); return () => clearInterval(t); }, []);
+    if (state === "1") return <React.Fragment><Filler n={4} /><BottomTabBar {...common} /></React.Fragment>;
+    if (state === "2") return <React.Fragment><Filler n={4} /><BottomTabBar {...common} accessory={<Apply />} /></React.Fragment>;
+    if (state === "3") return <React.Fragment><Filler n={40} /><BottomTabBar {...common} hideOnScroll accessory={<Apply />} /></React.Fragment>;
+    return (
+      <div className="scroller" ref={ref}>
+        <Filler n={48} note="아래로 스크롤하면 탭 줄만 숨고 신청 바가 바닥으로 내려온다. 위로 8px 이상 올리면 돌아온다. 본문 아래 여백 = --mt-bottom-bar-height(고정값)." />
+        <BottomTabBar {...common} hideOnScroll scrollContainer={ref} accessory={<Apply />} />
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+html,body{margin:0}
+body{background:var(--background);color:var(--foreground);font-family:var(--font-sans)}
+.place{padding:48px var(--container-pad) 64px;display:flex;justify-content:center}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { ArticleBody } = window.MentreeDesignSystem_2f86cf;
+  const blocks = [
+    { type: "h2", id: "first-year", text: "첫 1년 — 비자와 집 구하기" },
+    { type: "p", content: ["일본 취업 비자는 대부분 회사가 스폰서가 되는 구조다. 합격 통보를 받고 나서 재류자격 인정증명서가 나오기까지 ", { mark: "평균 1~3개월이 걸리고, 그동안 한국에서 퇴사 일정과 인수인계를 조율해야 한다는 점을 가장 늦게 알았다. 이 기간을 짧게 잡으면 두 회사 사이에서 몇 달을 무급으로 보내게 된다" }, ". 서류 목록은 ", { link: "출입국재류관리청", href: "https://www.moj.go.jp/isa/" }, " 안내를 기준으로 챙겼다."] },
+    { type: "p", content: "집은 보증회사 심사가 관건이다. 외국인이고 첫 입사라면 심사에서 한 번쯤 떨어진다고 생각하고 후보를 두세 곳 함께 넣는 편이 낫다." },
+    { type: "figure", src: "../../assets/img/a.png", alt: "시부야 사무실 창가 자리", caption: "입사 첫 주의 시부야 사무실. 창가 자리는 연차 순이다." },
+    { type: "h2", id: "work", text: "일하는 방식의 차이" },
+    { type: "p", content: ["회의는 짧고 문서는 길다. 결정은 회의에서 나지 않고, 회의 전에 돌린 문서의 코멘트에서 난다. ", { link: "사내 가이드", href: "#guide" }, "에 적힌 대로 초안을 먼저 공유하는 습관을 들이자 일이 훨씬 빨라졌다."] },
+    { type: "figure", src: "../../assets/img/missing.png", alt: "이미지 없음", caption: "이미지를 불러오지 못하면 sage placeholder가 선다." },
+    { type: "p", content: "5년이 지난 지금은 팀에서 가장 오래 일한 디자이너가 됐다. 처음 1년을 버티면 그다음은 생각보다 평범한 회사 생활이다." },
+  ];
+  function Demo() {
+    return (
+      <div className="place">
+        <ArticleBody
+          flagBase="../../assets/flags/"
+          badges={[{ type: "keyword", label: "이직" }, { type: "country", label: "일본", flag: "japan" }, { type: "keyword", label: "비자" }]}
+          title="도쿄에서 5년, 프로덕트 디자이너로 살아남기"
+          date="2026-09-20"
+          blocks={blocks}
+        />
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+  const post = () => parent.postMessage({ mtDemo: location.pathname + location.search, h: document.body.scrollHeight }, "*");
+  new ResizeObserver(post).observe(document.body);
+</script>
+</body>
+</html>

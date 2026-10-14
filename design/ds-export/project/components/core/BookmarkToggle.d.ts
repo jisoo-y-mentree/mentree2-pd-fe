@@ -6,11 +6,11 @@ import React from "react";
  *  아니라 "어디에 놓이는가"다. 한 번 CountToggle로 흡수됐다가 되돌아왔다(09-11 → 09-12).
  *
  *  형태 = IconButton default(md) 그대로(박스 38 · 아이콘 18 · radius-md).
- *  미선택 = outline(card 배경 + sage 아웃라인). 선택 = 반전(배경 --sage-900 + 아이콘 --sage-50).
+ *  미선택 = outline(card 배경 + sage 아웃라인). 선택 = 초록(DS-94 — 면 --green-50 · 1px --green-700 · 채운 --green-700 아이콘). 반경 12.
  *  count를 받지 않는다 — 숫자가 붙는 자리는 CountToggle.
  */
 export interface BookmarkToggleProps {
-  /** 선택(스크랩) 여부(제어형). 선택 시 배경 --sage-900 반전 + 아이콘 --sage-50. */
+  /** 선택(스크랩) 여부(제어형). 선택 시 면 --green-50 · 1px --green-700 · 채운 --green-700 아이콘. */
   selected?: boolean;
   /** 토글 콜백. 다음 selected 값을 넘긴다. */
   onChange?: (next: boolean) => void;

@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="820x260" name="BookmarkToggle" subtitle="미디어 오버레이 아이콘 토글 — IconButton default 형태, selected는 반전(--sage-900+--sage-50). CountToggle과 경계는 '어디에 놓이는가'" -->
+<!-- @dsCard group="Components" viewport="820x340" name="BookmarkToggle" subtitle="DS-94 켜짐 = 초록(--green-50 면 · --green-700 테두리 · 채운 아이콘) · IconButton default 형태 · 반경 12. CountToggle과 경계는 '어디에 놓이는가'" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -33,21 +33,24 @@
           <span className="lbl">기본</span>
           <Live initial={false} />
           <Live initial={true} />
-          <span className="cap">미선택=outline · 선택=반전(--sage-900 + --sage-50)</span>
+          <span className="cap">미선택=outline · 선택=초록(--green-50 + 1px --green-700 + 채운 --green-700)</span>
         </div>
         <div className="row">
           <span className="lbl">disabled</span>
           <BookmarkToggle disabled />
           <BookmarkToggle selected disabled />
         </div>
-        <div className="row">
-          <span className="lbl">사진 위</span>
-          <div style={{ position: "relative", width: 180, height: 110, borderRadius: "var(--radius-md)", overflow: "hidden", background: "linear-gradient(135deg, var(--sage-400), var(--sage-700))" }}>
-            <div style={{ position: "absolute", top: 8, right: 8 }}>
-              <Live initial={false} />
+        <div className="row" style={{ alignItems: "flex-start" }}>
+          <span className="lbl">면 위 · 꺼짐/켜짐</span>
+          {[["흰 면", "var(--card)"], ["사진", "url(../../assets/img/1.png) center / cover"], ["초록", "var(--primary)"], ["주황", "var(--orange-500)"], ["파랑", "var(--biz-primary)"]].map(([n, bg]) => (
+            <div key={n} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+              <div style={{ display: "flex", gap: 8, padding: 10, width: 116, boxSizing: "border-box", justifyContent: "center", borderRadius: "var(--radius-md)", border: "1px solid var(--border)", background: bg }}>
+                <BookmarkToggle selected={false} />
+                <BookmarkToggle selected />
+              </div>
+              <span className="cap">{n}</span>
             </div>
-          </div>
-          <span className="cap">미디어 오버레이 단독 액션 — IconButton과 같은 박스라 사진 위에서도 또렷하다</span>
+          ))}
         </div>
       </div>
     );

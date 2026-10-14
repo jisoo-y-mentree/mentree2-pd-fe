@@ -1,40 +1,28 @@
-<!-- @dsCard group="Navigation" viewport="420x260" name="BottomTabBar" subtitle="Mobile 전용 하단 고정 4탭 — 모노 아이콘+caption 라벨, 활성 green, safe-area 대응" -->
+<!-- @dsCard group="Navigation" viewport="1280x900" name="BottomTabBar" subtitle="Mobile 하단 고정 4탭 — accessory 칸 · 스크롤 숨김(DS-55) · 390 실제 뷰포트 iframe" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8" />
 <link rel="stylesheet" href="../../styles.css" />
 <style>
-  html, body { margin: 0; }
-  body { background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
-  .cap { font-size: var(--text-caption); color: var(--muted-foreground); padding: 16px 20px 6px; }
-  /* 카드 데모: fixed를 스테이지 안에 가두기 */
-  .stage { position: relative; height: 90px; overflow: hidden; border-top: 1px dashed var(--border); }
-  .stage .mt-tabbar { position: absolute !important; }
+html,body{margin:0}
+body{background:var(--sage-50);font-family:var(--font-sans);color:var(--foreground);padding:24px}
+.grid{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+.col{display:flex;flex-direction:column;gap:24px;max-width:100%}
+.cell{display:flex;flex-direction:column;gap:8px;max-width:100%;overflow-x:auto}
+.cap{font-size:var(--text-caption);line-height:var(--text-caption--line-height);color:var(--muted-foreground);max-width:390px}
+iframe{display:block;width:390px;box-sizing:content-box;border:0;outline:1px solid var(--sage-200);border-radius:var(--radius-md);background:var(--background)}
+@media (max-width:480px){body{padding:24px 0}.cap{padding:0 16px}}
 </style>
 </head>
 <body>
-<div id="root"></div>
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script src="../../_ds_bundle.js"></script>
-<script type="text/babel">
-  const { BottomTabBar } = window.MentreeDesignSystem_2f86cf;
-  function Demo() {
-    const [active, setActive] = React.useState("mentors");
-    return (
-      <div>
-        <div className="cap">Mobile(~768) 전용 — 활성 탭 green, guest의 MY 멘트리는 로그인 유도(자리만)</div>
-        <div className="stage">
-          <BottomTabBar activeKey={active} authState="guest"
-            onNavigate={(t) => setActive(t.key)}
-            onAuth={() => alert("로그인 유도 (자리만 — OPEN #9)")} />
-        </div>
-      </div>
-    );
-  }
-  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
-</script>
+<div class="grid">
+<div class="col">
+<div class="cell"><div class="cap">① 지금 모양 — accessory 없음 · 56 + safe-area</div><iframe src="bottomtabbar.demo.html?state=1" style="height:200px" title="BottomTabBar 기본"></iframe></div>
+<div class="cell"><div class="cap">② accessory — Button primary lg(남은 폭) + IconButton pressed(북마크) + IconButton(공유) · 칸 여백 8/16</div><iframe src="bottomtabbar.demo.html?state=2" style="height:240px" title="BottomTabBar accessory"></iframe></div>
+<div class="cell"><div class="cap">③ 숨은 모양 — 컨테이너 56px 아래 · accessory만 바닥 · 탭 줄 inert</div><iframe src="bottomtabbar.demo.html?state=3" style="height:240px" title="BottomTabBar 숨김"></iframe></div>
+</div>
+<div class="cell"><div class="cap">④ 390 폰 틀 스크롤 데모 — scrollContainer · 아래로 숨고 위로 나온다</div><iframe src="bottomtabbar.demo.html?state=4" style="height:760px" title="BottomTabBar 스크롤 데모"></iframe></div>
+</div>
 </body>
 </html>
