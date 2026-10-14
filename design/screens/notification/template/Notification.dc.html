@@ -39,8 +39,8 @@
 <sc-if value="{{ showPage }}" hint-placeholder-val="{{ false }}">
   <dc-import name="NotificationPage" role="{{ role }}" ui-state="{{ uiState }}" items="{{ items }}" banner="{{ banner }}" unread-count="{{ unreadCount }}" has-more="{{ hasMore }}" loading-more="{{ loadingMore }}" is-mobile="{{ isMobile }}" user="{{ user }}" top-href="{{ topHref }}" on-notify="{{ onNotify }}" on-open-panel="{{ openPanel }}" on-read="{{ onRead }}" on-delete="{{ onDelete }}" on-read-all="{{ onReadAll }}" on-dismiss-banner="{{ onDismissBanner }}" on-load-more="{{ onLoadMore }}" on-retry="{{ onRetry }}" hint-size="100%,900px"></dc-import>
 </sc-if>
-<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Popover" open="{{ panelOpen }}" on-close="{{ closePanel }}" side="bottom" align="end" min-width="{{ 520 }}" trigger-ref="{{ bellRef }}" dc-props="{{ popProps }}" hint-size="0px,0px">
-  <dc-import name="NotificationPanel" role="{{ role }}" ui-state="{{ uiState }}" items="{{ items }}" banner="{{ banner }}" unread-count="{{ unreadCount }}" page-href="{{ pageHref }}" on-read="{{ onRead }}" on-delete="{{ onDelete }}" on-read-all="{{ onReadAll }}" on-dismiss-banner="{{ onDismissBanner }}" on-close="{{ closePanel }}" on-retry="{{ onRetry }}" hint-size="520px,480px"></dc-import>
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Popover" open="{{ panelOpen }}" on-close="{{ closePanel }}" side="bottom" align="end" min-width="{{ 416 }}" trigger-ref="{{ anchorRef }}" dc-props="{{ popProps }}" hint-size="0px,0px">
+  <dc-import name="NotificationPanel" role="{{ role }}" ui-state="{{ uiState }}" items="{{ items }}" banner="{{ banner }}" unread-count="{{ unreadCount }}" page-href="{{ pageHref }}" on-read="{{ onRead }}" on-delete="{{ onDelete }}" on-read-all="{{ onReadAll }}" on-dismiss-banner="{{ onDismissBanner }}" on-close="{{ closePanel }}" on-retry="{{ onRetry }}" hint-size="416px,400px"></dc-import>
 </x-import>
 <div onPointerDown="{{ stopPointer }}">
   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Toast" open="{{ toastOpen }}" message="알림을 지웠어요" actions="{{ toastActions }}" on-dismiss="{{ dismissToast }}" hint-size="0px,0px"></x-import>
@@ -65,6 +65,7 @@ class Component extends DCLogic {
       panelOpen: false, toastOpen: false, loadingMore: false,
     };
     this.bellRef = { current: null };
+    this.anchorRef = { current: null };
     this.closedAt = 0;
     this.undo = null;
   }
@@ -82,6 +83,7 @@ class Component extends DCLogic {
     this.mq = window.matchMedia("(max-width: 768px)");
     this.onMq = () => this.setState({ narrow: this.mq.matches });
     this.mq.addEventListener("change", this.onMq);
+    window.addEventListener("resize", this.onResize);
     import(new URL("./notification-data.js", document.baseURI).href).then((m) => {
       this.mod = m;
       const d = m.getItems(this.q.role, this.q.state);
@@ -91,13 +93,31 @@ class Component extends DCLogic {
       });
     });
   }
-  componentWillUnmount() { this.mq && this.mq.removeEventListener("change", this.onMq); }
+  componentWillUnmount() { this.mq && this.mq.removeEventListener("change", this.onMq); window.removeEventListener("resize", this.onResize); }
+  onResize = () => { if (this.state.panelOpen) this.forceUpdate(); };
+  panelMax() {
+    const h = document.querySelector(".mt-header");
+    const bottom = h ? h.getBoundingClientRect().bottom : 64;
+    return Math.max(240, Math.min(Math.round(window.innerHeight * 0.7), Math.round(window.innerHeight - bottom - 16)));
+  }
   findBell(cb) {
     let n = 0;
     const tick = () => {
       const el = document.querySelector('.mt-header-round[aria-label="알림"]');
-      if (el) { this.bellRef.current = el; cb && cb(); }
-      else if (n++ < 400) requestAnimationFrame(tick);
+      if (el) {
+        this.bellRef.current = el;
+        // Popover 의 앵커 — 정본(1059:40256)대로 창 오른쪽 끝 · 헤더 바로 아래. 보이지 않는 고정 점을 앵커로 쓴다(부품은 앵커 아래 4px · 오른쪽 끝 맞춤).
+        if (!this.anchorRef.current || !this.anchorRef.current.isConnected) {
+          // 헤더(sticky) 안에 absolute 로 둔다 — 데모 줄 아래에 있든 스크롤로 맨 위에 붙었든 헤더 상자를 따라간다.
+          const header = el.closest(".mt-header") || el.closest("header");
+          const a = document.createElement("div");
+          a.setAttribute("aria-hidden", "true");
+          a.style.cssText = "position:absolute;right:2px;bottom:-2px;width:0;height:0;pointer-events:none";
+          header.appendChild(a);
+          this.anchorRef.current = a;
+        }
+        cb && cb();
+      } else if (n++ < 400) requestAnimationFrame(tick);
     };
     tick();
   }
@@ -110,7 +130,11 @@ class Component extends DCLogic {
     if (Date.now() - this.closedAt < 300) return; // 바깥 클릭(pointerdown)으로 막 닫힌 같은 클릭 — 다시 열지 않는다
     this.setState({ panelOpen: true });
   };
-  closePanel = () => { this.closedAt = Date.now(); this.setState({ panelOpen: false }); };
+  closePanel = () => {
+    this.closedAt = Date.now();
+    // Popover 의 포커스 복귀(useEffect · 앵커=아바타)보다 뒤에 종으로 되돌린다
+    this.setState({ panelOpen: false }, () => setTimeout(() => { const b = this.bellRef.current; if (b) b.focus(); }, 0));
+  };
   openPanel = () => { if (!this.bellRef.current) this.findBell(); this.setState({ panelOpen: true }); };
   onRead = (id) => this.setState((s) => ({ items: s.items.map((i) => (i.id === id ? { ...i, read: true } : i)) }));
   onReadAll = () => this.setState((s) => ({ items: s.items.map((i) => ({ ...i, read: true })) }));
@@ -171,9 +195,10 @@ class Component extends DCLogic {
       pageHref: this.href({ screen: "page" }),
       topHref: this.href({ screen: "popover" }),
       onNotify: this.onNotify, openPanel: this.openPanel, closePanel: this.closePanel,
-      panelOpen: s.panelOpen, bellRef: this.bellRef,
-      // 와이어 1059:40256: 머리 · 바닥 모서리 32 · 헤더 바로 아래. 부품은 종 버튼 아래 4px 에 붙이므로 8px 내리고, 오른쪽 끝을 아바타 끝(종 ＋ 8 ＋ 40)에 맞춘다
-      popProps: { style: { padding: 0, borderRadius: 32, overflow: "hidden", transform: "translate(48px, 8px)" } },
+      panelOpen: s.panelOpen, anchorRef: this.anchorRef,
+      // 위 끝은 헤더 아래 선(부품의 4px 에 8 더함) · 오른쪽 끝은 앵커(아바타) 오른쪽 끝 · 모서리 32
+      // 상한 = 창 아래 끝 − 헤더 아래 선 − 16(숫자여야 Popover 가 maxHeight 로 읽는다). 섹션은 max-height:100% 로 이 상자를 따른다.
+      popProps: { style: { padding: 0, borderRadius: 32, overflow: "hidden", display: "flex", flexDirection: "column", maxHeight: this.panelMax() } },
       onRead: this.onRead, onReadAll: this.onReadAll, onDelete: this.onDelete,
       onDismissBanner: this.onDismissBanner, onLoadMore: this.onLoadMore, onRetry: this.onRetry,
       toastOpen: s.toastOpen,

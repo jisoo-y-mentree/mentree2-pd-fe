@@ -1,6 +1,5 @@
-// 리포 배치용(2026-10-14, Claude Code). export 의 ds-asset-base.js 를 바탕으로 자산 루트만 ds-export 로 돌렸다.
-// DS 부품의 기본 자산 경로 "../../assets/"(DS 카드 기준)를 design/ds-export/project/assets/ 로 바꾼다.
-// 자산의 정본은 ds-export 다. template/ 에 사본을 두지 않는다. 번들보다 먼저 읽는다.
+// 리포 배치용(2026-10-14, Claude Code). DS 부품의 기본 자산 경로 "../../assets/"(DS 카드 기준)를
+// design/ds-export/project/assets/ 로 바꾼다. 자산의 정본은 ds-export 다. template/ 에 사본을 두지 않는다. 번들보다 먼저 읽는다.
 (function () {
   var D = new URL("../../../ds-export/project/assets/", location.href).href;
   var fix = function (v) { return typeof v === "string" && v.indexOf("../../assets/") !== -1 ? v.split("../../assets/").join(D) : v; };

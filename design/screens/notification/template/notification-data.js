@@ -1,12 +1,6 @@
 // notification-data.js — 알림 화면 공용 데이터 · 카드 뷰모델 · 쓸기 거동. 모양은 notification.css(.nt-)에 있다.
 const IMG = "../../../ds-export/project/assets/img/";
-// 리포 검수 2026-10-14 ④: a · b · c.png 는 사람이 아니라 진입 아이콘 그림이다. 멘티 얼굴은 표본이 없어 이니셜로 둔다.
-//  멘토 본인은 사진 마스터(8 · 박지훈 — top · mentor-search · qna-feed 공통)를 쓴다.
-const AVATARS = [
-  { name: "정하은" },
-  { name: "이준호" },
-  { name: "김하늘" },
-];
+const AVATARS = [{ name: "정하은" }, { name: "이준호" }, { name: "김하늘" }]; // 사진 없이 이니셜
 
 export const USERS = {
   mentor: { name: "박지훈", avatarUrl: IMG + "8.png" },
@@ -94,12 +88,12 @@ export function getItems(role, state) {
   }
 }
 
-// 와이어 1059:41331 의 아이콘 — 거래는 돼지저금통, 경고는 alert-square
 const ICON = { 2: "piggy-bank", 3: "alert-square" };
 
 /**
  * 카드 뷰모델 — 템플릿이 그대로 읽는 평평한 값과 핸들러.
- * ctx: { onRead(id) · onDelete(id) · afterAction() · swipe({id,dx,dragging}) · swipeHandlers(item) · wide }
+ * ctx: { onRead(id) · onDelete(id) · afterAction() · swipe({id,dx,dragging}) · swipeHandlers(item) · wide(전체형 769 이상) }
+ * wide 면 「자세히 보기」 14 + circle-arrow-up-right-02 20. 아니면 12 + link-square-02 16. 아이콘 24 · 버튼 sm 은 공통.
  */
 export function cardViewModels(items, ctx) {
   const sw = ctx.swipe || {};
@@ -114,6 +108,11 @@ export function cardViewModels(items, ctx) {
       notL1: it.level !== 1,
       hasIcon: it.level > 1,
       icon: ICON[it.level] || "",
+      iconSize: 24,
+      href,
+      linkIcon: ctx.wide ? "circle-arrow-up-right-02" : "link-square-02",
+      linkIconSize: ctx.wide ? 20 : 16,
+      btnSize: "sm",
       text: it.text,
       hasTime: !!it.time,
       time: it.time || "",
@@ -123,12 +122,12 @@ export function cardViewModels(items, ctx) {
       avatars: it.group ? it.group.avatars : [],
       more: it.group ? it.group.more : "",
       actionLabel: it.action.label,
-      href: href || "#",
+      srPrefix: it.level === 3 ? "해결 필요, " : it.read ? "" : "읽지 않음, ",
       canDelete: it.level < 3,
       swiping: dx < 0,
       swipeStyle: dx ? { transform: "translateX(" + dx + "px)" } : undefined,
       onAction: (e) => {
-        if (e && e.preventDefault) e.preventDefault(); // <a> 의 기본 이동 대신 아래에서 간다(읽음 처리 뒤)
+        if (e && e.preventDefault) e.preventDefault(); // 기본 이동을 막고 읽음 처리 뒤에 간다
         if (sw.moved) return;
         ctx.onRead && ctx.onRead(it.id);
         ctx.afterAction && ctx.afterAction();
