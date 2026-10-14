@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="1280x1720" name="Dialog · 편집 모달" subtitle="DS-69 긴 본문(머리·푸터 고정, 본문만 스크롤) · footerLayout stack · mobile fullscreen(390, 제목에 포커스) · width 520 · 뒤 페이지 스크롤 잠금 · 안의 목록은 top layer" -->
+<!-- @dsCard group="Components" viewport="1280x2560" name="Dialog · 편집 모달" subtitle="DS-115 본문 없는 확인 · DS-69 긴 본문(머리·푸터 고정, 본문만 스크롤) · footerLayout stack · mobile fullscreen(390, 제목에 포커스) · width 520 · 뒤 페이지 스크롤 잠금 · 안의 목록은 top layer" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -27,6 +27,13 @@ iframe{display:block;max-width:100%;border:0;outline:1px solid var(--sage-200);b
 <div class="row">
 <div class="cell"><div class="cap">⑥ 긴 페이지(600까지 내려감) 위의 모달 — 휠을 굴려도 뒤가 움직이지 않는다 · 닫으면 600으로</div><iframe src="dialog.demo.html?state=7" title="Dialog 스크롤 잠금" style="width:600px;height:380px"></iframe></div>
 <div class="cell"><div class="cap">⑦ 짧은 본문 Dialog 안의 MultiSelect — 목록이 푸터 위로 뜬다(DS-74)</div><iframe src="dialog.demo.html?state=6" title="Dialog 안 MultiSelect" style="width:600px;height:600px"></iframe></div>
+</div>
+<div class="row">
+<div class="cell"><div class="cap">⑨ DS-115 · 본문 없는 확인 — 몸 칸 · 구분선 없음, 제목 → 버튼 줄 24</div><iframe src="dialog.demo.html?state=9" title="Dialog 본문 없는 확인" style="width:480px;height:320px"></iframe></div>
+<div class="cell"><div class="cap">⑩ 같은 확인 + 본문 — 지금 모양(구분선 · 몸 칸)</div><iframe src="dialog.demo.html?state=10" title="Dialog 본문 있는 확인" style="width:480px;height:320px"></iframe></div>
+</div>
+<div class="row">
+<div class="cell"><div class="cap">⑧ DS-110 · width={320} — 제목 · 본문이 어절 단위로만 줄을 바꾼다</div><iframe src="dialog.demo.html?state=8" title="Dialog 폭 320 어절 줄바꿈" style="width:400px;height:380px"></iframe></div>
 </div>
 </body>
 </html>

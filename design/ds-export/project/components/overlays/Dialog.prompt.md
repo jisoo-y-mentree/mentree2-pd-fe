@@ -23,3 +23,5 @@
 - **`mobile`**: `"center"`(기본) · `"fullscreen"` — ~768에서 화면 전체, 반경·스크림 없음, ✕는 머리에, 푸터는 바닥 + safe-area. 소프트 키보드가 올라오면 푸터가 키보드 위에 남는다(`visualViewport`). 뒤로가기 → `onClose`(열 때 기록 하나를 쌓고, 화면이 닫지 않으면 다시 쌓는다).
 
 사이드 패널은 `Sheet`를 사용.
+
+- **DS-110** — 제목 · 설명 · 본문은 `word-break: keep-all` + `overflow-wrap: anywhere`(어절 단위 줄바꿈 · 긴 영문/URL 은 넘치지 않음). 버튼 글자는 그대로.

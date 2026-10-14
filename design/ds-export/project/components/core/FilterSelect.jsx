@@ -13,8 +13,13 @@ import { Dialog } from "../overlays/Dialog.jsx";
  *  (green 반전은 하지 않는다 — 반전은 안의 FilterChip 것).
  *  모달 안 선택은 "적용" 전까지 로컬 상태로만 쌓인다 — onChange는 적용에서만 부른다. 열 때마다 현재 value로 리셋.
  *  ESC·✕·바깥 클릭은 버린다. "초기화"는 로컬 선택만 비우고 모달은 열어둔다(onChange 호출 없음).
+ *  size(DS-112) — "md"(기본) 32 · "lg" 40(SearchInput · Select 와 같은 높이) — 글자 --text-body · 아이콘 16 · 좌우 14 · 반경 --radius-md · 간격 8.
+ *  icon(DS-97) — 칩 라벨 왼쪽에 선 아이콘 하나 · --primary · 14(닫힘 화살표와 같다). 칩 크기 · 글자는 그대로.
  */
-export function FilterSelect({ label, groups = [], value = [], onChange, disabled = false, style, ...rest }) {
+export function FilterSelect({ label, icon, size = "md", groups = [], value = [], onChange, disabled = false, style, ...rest }) {
+  // DS-112 — size="lg": 높이 40 · 글자 --text-body · 아이콘 16 · 좌우 14 · 간격 8 · 반경 --radius-md(SearchInput · Select 와 같다). md 는 그대로.
+  const lg = size === "lg";
+  const iconSize = lg ? 16 : 14;
   const [open, setOpen] = React.useState(false);
   const [draft, setDraft] = React.useState(value);
   const triggerRef = React.useRef(null);
@@ -47,11 +52,12 @@ export function FilterSelect({ label, groups = [], value = [], onChange, disable
         style={{
           display: "inline-flex",
           alignItems: "center",
-          gap: 6,
-          height: 32,
-          padding: "0 12px",
+          gap: lg ? 8 : 6,
+          height: lg ? 40 : 32,
+          padding: lg ? "0 14px" : "0 12px",
+          boxSizing: "border-box",
           fontFamily: "var(--font-sans)",
-          fontSize: "var(--text-caption)",
+          fontSize: lg ? "var(--text-body)" : "var(--text-caption)",
           fontWeight: filled ? 600 : 500,
           lineHeight: 1,
           letterSpacing: 0,
@@ -65,8 +71,9 @@ export function FilterSelect({ label, groups = [], value = [], onChange, disable
           transition: "background-color 150ms ease, color 150ms ease, border-color 150ms ease",
         }}
       >
+        {icon && <Icon name={icon} size={iconSize} aria-hidden="true" aria-label={undefined} role={undefined} style={{ color: "var(--primary)" }} />}
         {triggerText}
-        <Icon name="arrow-down-01" size={14} style={{ transform: open ? "rotate(180deg)" : "none", transition: "transform 150ms ease" }} />
+        <Icon name="arrow-down-01" size={iconSize} style={{ transform: open ? "rotate(180deg)" : "none", transition: "transform 150ms ease" }} />
       </button>
 
       <Dialog

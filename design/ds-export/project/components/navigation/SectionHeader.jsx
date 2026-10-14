@@ -22,6 +22,7 @@ export function SectionHeader({
   onViewAll,
   action,
   carousel = false,
+  size = "md",
   onPrev,
   onNext,
   prevDisabled = false,
@@ -29,6 +30,8 @@ export function SectionHeader({
   style,
   ...rest
 }) {
+  // DS-29 — size "md"(기본) = --text-h0 · "lg" = --text-display(32/40 · Mobile 26/34, TOP). 오른쪽 조작·부가 글자는 그대로, 세로 가운데만 맞춘다.
+  const tk = size === "lg" ? "display" : "h0";
   return (
     <div
       style={{
@@ -65,7 +68,7 @@ export function SectionHeader({
         )}
         <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0, flexWrap: "wrap" }}>
           {/* 제목 30 semibold — 일반 + green 강조 조각(옵션) */}
-          <h2 style={{ margin: 0, fontSize: "var(--text-h0)", fontWeight: 600, letterSpacing: "var(--text-h0--letter-spacing)", lineHeight: "var(--text-h0--line-height)", wordBreak: "keep-all", overflowWrap: "break-word" }}>
+          <h2 style={{ margin: 0, fontSize: `var(--text-${tk})`, fontWeight: 600, letterSpacing: `var(--text-${tk}--letter-spacing)`, lineHeight: `var(--text-${tk}--line-height)`, wordBreak: "keep-all", overflowWrap: "break-word" }}>
             {/* accentFirst — 강조가 앞에 오는 제목(「멘토의 이야기를 읽어보세요」)을 위한 것. 기본은 뒤(「지금 주목받는 Q&A 멘토링」). */}
             {accentFirst ? (
               <>
@@ -91,7 +94,10 @@ export function SectionHeader({
         <div style={{ flex: "0 0 auto", display: "flex", alignItems: "center", gap: 8 }}>
           {action}
           {viewAll && (
-            <Button variant="ghost" size="md" iconRight="circle-arrow-up-right" onClick={onViewAll}>
+            <Button variant="ghost" size="md" iconRight={
+              // DS-105 — 전체보기 아이콘 ›(아트디렉션 · 전 화면)
+              "arrow-right-01"
+            } onClick={onViewAll}>
               전체보기
             </Button>
           )}

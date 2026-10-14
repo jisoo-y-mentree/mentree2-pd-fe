@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="640x460" name="SearchInput" subtitle="자동완성·최근 검색어 검색창 — TagInput과 같은 골격, 제안 줄만 상자 밖 드롭다운. 최근검색어↔자동완성 갈아끼움" -->
+<!-- @dsCard group="Components" viewport="640x560" name="SearchInput" subtitle="DS-97 submitLabel(「검색」 버튼 · 반경 10 · --primary 600) · 자동완성·최근 검색어 검색창 — TagInput과 같은 골격, 제안 줄만 상자 밖 드롭다운. 최근검색어↔자동완성 갈아끼움" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -23,6 +23,8 @@
   const ALL = ["일본어 통역", "일본 취업", "일본 워킹홀리데이", "한국 IT 이직", "미국 대학원", "UX 디자이너", "백엔드 개발자"];
 
   function Demo() {
+    const [q0, setQ0] = React.useState("");
+    const [last, setLast] = React.useState(null);
     const [q1, setQ1] = React.useState("");
     const [q2, setQ2] = React.useState("");
     const [q3, setQ3] = React.useState("일본");
@@ -32,6 +34,11 @@
 
     return (
       <div className="stack">
+        <div className="cell">
+          <span className="lbl">submitLabel="검색" — 버튼 또는 Enter로 onSearch(입력 중에는 부르지 않는다)</span>
+          <SearchInput value={q0} onChange={setQ0} onSearch={(v) => setLast(v)} submitLabel="검색" placeholder="멘토 · 질문 · 키워드" />
+          <span className="cap">마지막 onSearch: {last === null ? "—" : `"${last}"`}</span>
+        </div>
         <div className="cell">
           <span className="lbl">① 비어 있고 닫힘</span>
           <SearchInput value={q1} onChange={setQ1} onSearch={() => {}} recent={recent} onRemoveRecent={(r) => setRecent(recent.filter((x) => x !== r))} />

@@ -21,7 +21,7 @@ export type AuthState = "guest" | "mentor" | "mentee";
  * 로그인(`mentor`·`mentee`)은 우측이 알림 버튼(40, `secondary`) + 아바타(40), 간격 8 이다.
  * 회원가입·기업 서비스는 나오지 않는다. 두 상태의 모양은 같고 아바타의 목적지만 다르다 —
  * 멘토는 `mypage-mentor`, 멘티는 `mypage-mentee`. 아바타는 메뉴를 열지 않고 마이페이지 「프로필」
- * 탭으로 직행한다. `unread`면 알림 버튼 우상단에 빨간 점(8, 숫자 없음). 알림 popover는 이 부품이
+ * 탭으로 직행한다. `unread`면 알림 버튼 우상단에 주황 점(--orange-600)(8, 숫자 없음). 알림 popover는 이 부품이
  * 열지 않는다(`onNotify`까지).
  *
  * Mobile(~768): 중앙 메뉴가 햄버거로 접히고, 누르면 GNB 아래를 채우는 전체화면 오버레이가 열린다.
@@ -38,7 +38,7 @@ export interface HeaderProps {
   authState?: AuthState;
   /** 로그인 유저. authState가 "mentor"·"mentee"일 때 아바타에 쓴다. */
   user?: { name?: string; avatarUrl?: string };
-  /** 읽지 않은 알림이 있다 — 알림 버튼 우상단에 빨간 점. 숫자는 넣지 않는다. */
+  /** 읽지 않은 알림이 있다 — 알림 버튼 우상단에 주황 점(--orange-600). 숫자는 넣지 않는다. */
   unread?: boolean;
   /** 메뉴/로고/기업서비스/아바타 이동 콜백. */
   onNavigate?: (item: NavItem) => void;

@@ -9,7 +9,7 @@ import React from "react";
 export interface SectionHeaderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
   /** 장식 아이콘(옵션, 제목 앞 사각 sage 칩). HugeIcons 이름. IconButton 아님. */
   icon?: string;
-  /** 제목(--text-h0 semibold). */
+  /** 제목(--text-h0 semibold · size="lg"면 --text-display). */
   title: React.ReactNode;
   /** green 강조 조각(옵션). 기본은 제목 뒤 — accentFirst면 앞. */
   titleAccent?: React.ReactNode;
@@ -24,6 +24,8 @@ export interface SectionHeaderProps extends Omit<React.HTMLAttributes<HTMLDivEle
   onViewAll?: React.MouseEventHandler;
   /** 추가 액션(옵션, 아웃라인 버튼 등 임의 엘리먼트). */
   action?: React.ReactNode;
+  /** DS-29 — 제목 크기. "md"(기본) = --text-h0 600 · "lg" = --text-display 600(32/40 · Mobile 26/34, TOP 섹션 제목). 오른쪽 조작·강조·부가 글자는 그대로. */
+  size?: "md" | "lg";
   /** 캐러셀 좌우 화살표 IconButton 2개 표시. */
   carousel?: boolean;
   onPrev?: React.MouseEventHandler;

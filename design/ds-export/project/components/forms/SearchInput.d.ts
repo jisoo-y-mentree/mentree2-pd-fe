@@ -17,6 +17,9 @@ export interface SearchInputProps {
   recent?: string[];
   onRemoveRecent?: (v: string) => void;
   placeholder?: string;
+  /** DS-97. 주면 검색창 안 오른쪽에 작은 버튼(높이 32 · 좌우 14 · 1px --border · 반경 10 · 흰 면 · --primary 600 · --text-caption).
+   *  누르거나 Enter로 onSearch. 입력 중에는 부르지 않는다. 검색창 면은 초록으로 채우지 않는다. 예: "검색". */
+  submitLabel?: string;
   disabled?: boolean;
   /** 에러 상태(빨간 경계) — Input의 invalid와 같다. */
   invalid?: boolean;

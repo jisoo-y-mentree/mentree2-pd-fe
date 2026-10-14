@@ -23,7 +23,7 @@
 
 - **38 고정** — 박스 38px · 아이콘 18px · radius(`--radius-md`).
 - 미선택 = **outline**(`--card` 배경 + `--border` 아웃라인).
-- 선택 = **반전**. 배경 `--sage-900` 채움 + 아이콘 `--sage-50`.
+- 선택 = **초록**(DS-94). 면 `--green-50` · 1px `--green-700` · 채운 `--green-700` 아이콘.
 - HugeIcons 정적 CDN에 solid 북마크가 없어 stroke 1.6 라운드의 인라인 SVG로 outline↔fill을 토글한다.
 
 ## 상태
@@ -43,3 +43,4 @@
 ```jsx
 <BookmarkToggle selected={saved} onChange={setSaved} />
 ```
+- 켜짐(DS-94): 면 `--green-50` · 1px `--green-700` · 채운 `--green-700` 아이콘. 검정 반전은 쓰지 않는다. 반경 12.

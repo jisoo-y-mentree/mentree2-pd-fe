@@ -9,6 +9,8 @@ import { Chip } from "../core/Chip.jsx";
  *  포커스+입력 빈값=최근 검색어, 입력 중=자동완성. 둘을 쌓지 않는다(갈아끼움).
  *  자동완성 0건이면 드롭다운을 닫는다("결과 없음"을 띄우지 않는다 — 아래 목록이 이미 답한다).
  *  정렬·필터·개수 제한은 부품이 하지 않는다 — completions/recent는 바깥이 이미 정렬해 넘긴 배열이다.
+ *  submitLabel(DS-97) — 주면 검색창 안 오른쪽에 작은 버튼(높이 32 · 좌우 14 · 1px --border · 반경 10 · 흰 면 ·
+ *   --primary 600 · --text-caption). 누르거나 Enter로 onSearch. 입력 중에는 부르지 않는다. 검색창 면은 채우지 않는다.
  */
 function highlightMatch(item, query) {
   if (!query) return item;
@@ -31,6 +33,7 @@ export function SearchInput({
   recent = [],
   onRemoveRecent,
   placeholder = "검색어를 입력하세요",
+  submitLabel,
   disabled = false,
   invalid = false,
   id,
@@ -147,6 +150,34 @@ export function SearchInput({
             onClick={() => { onChange(""); inputRef.current && inputRef.current.focus(); }}
             style={{ width: 24, height: 24 }}
           />
+        )}
+        {submitLabel && (
+          <button
+            type="button"
+            className="mt-search-submit"
+            disabled={disabled}
+            onClick={() => { setClosedByEsc(true); commitSearch(value); }}
+            style={{
+              flex: "0 0 auto",
+              height: 32,
+              padding: "0 14px",
+              marginRight: -4,
+              border: "1px solid var(--border)",
+              borderRadius: 10,
+              background: "var(--card)",
+              color: "var(--primary)",
+              fontFamily: "var(--font-sans)",
+              fontSize: "var(--text-caption)",
+              fontWeight: 600,
+              lineHeight: 1,
+              letterSpacing: 0,
+              whiteSpace: "nowrap",
+              cursor: disabled ? "not-allowed" : "pointer",
+              transition: "background-color 150ms ease",
+            }}
+          >
+            {submitLabel}
+          </button>
         )}
       </div>
 

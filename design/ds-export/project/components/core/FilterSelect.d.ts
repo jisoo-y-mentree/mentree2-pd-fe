@@ -20,6 +20,10 @@ export interface FilterSelectGroup {
 export interface FilterSelectProps extends React.HTMLAttributes<HTMLDivElement> {
   /** 축 이름. 트리거(0개일 때)와 모달 제목에 같이 쓴다. */
   label: string;
+  /** DS-97. 칩 라벨 왼쪽 선 아이콘(HugeIcons) · --primary · 14. 예: 국가 globe-02 · 키워드 tag-01 · 직종 briefcase-01. 칩 크기·글자는 그대로. */
+  icon?: string;
+  /** DS-112. 트리거 높이. "md"(기본) 32 · "lg" 40 — SearchInput · Select 와 같은 줄에 설 때. lg 는 글자 --text-body · 아이콘 16 · 좌우 14 · 반경 --radius-md. 모달은 그대로. */
+  size?: "md" | "lg";
   groups: FilterSelectGroup[];
   /** 적용된 값(다중). "N개 적용하기"에서만 갱신된다. */
   value: string[];

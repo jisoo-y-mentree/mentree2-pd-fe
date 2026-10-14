@@ -5,7 +5,7 @@ import { Button } from "../core/Button.jsx";
  * ActionBanner — 문구 + 버튼 배너(DS-34). 모양이 고정이다.
  *  Banner(자유 프로모 슬롯, 배경·효과 자유)와 다르다 — 이 부품은 면·글자·버튼 규칙이 정해져 있다.
  *  쓰는 곳: Q&A 상세 멘토 유도 · 아티클 상세 카테고리 CTA · 멘토 상세 탭 끝 CTA.
- *  면: --green-50 · 1px --primary · --radius-lg · 24/32.
+ *  면: --green-100(DS-98 · Figma 1647:50863) · 1px --primary · --radius-lg · 24/32. 설명 글 --sage-700(muted는 green-100 위 3.82:1로 모자란다).
  *  inline(기본): 문구 좌 · Button primary md 우 · 간격 24 · 세로 가운데.
  *  stacked: 가운데 정렬 · 문구 아래 Button primary lg · 간격 16.
  *  ≤768: inline도 stacked로 · 안쪽 여백 20 · 버튼 폭 100%(높이 48 = lg).
@@ -44,7 +44,7 @@ export function ActionBanner({ title, description, actionLabel, href, onAction, 
         padding: "24px 32px",
         boxSizing: "border-box",
         width: "100%",
-        background: "var(--green-50)",
+        background: "var(--green-100)",
         border: "1px solid var(--primary)",
         borderRadius: "var(--radius-lg)",
         color: "var(--foreground)",
@@ -56,7 +56,7 @@ export function ActionBanner({ title, description, actionLabel, href, onAction, 
       <div style={{ display: "flex", flexDirection: "column", gap: 4, minWidth: 0 }}>
         <div style={{ fontSize: "var(--text-h3)", fontWeight: 600, lineHeight: "var(--text-h3--line-height)", letterSpacing: "var(--text-h3--letter-spacing)", textWrap: "balance" }}>{title}</div>
         {description && (
-          <div style={{ fontSize: "var(--text-body)", lineHeight: "var(--text-body--line-height)", letterSpacing: "var(--text-body--letter-spacing)", color: "var(--muted-foreground)", textWrap: "pretty" }}>{description}</div>
+          <div style={{ fontSize: "var(--text-body)", lineHeight: "var(--text-body--line-height)", letterSpacing: "var(--text-body--letter-spacing)", color: "var(--sage-700)", textWrap: "pretty" }}>{description}</div>
         )}
       </div>
       {actionLabel && (

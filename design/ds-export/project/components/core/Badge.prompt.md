@@ -24,3 +24,6 @@
 `<Badge leading="icon" icon="briefcase-01">취업 전략</Badge>` — 앞자리에 HugeIcons 아이콘. **아이콘만 `--primary`**, 면 · 글자 · 경계는 계열(`category`면 흰 바탕 · 아웃라인)의 모양 그대로.
 아이콘 크기는 Badge 크기를 따른다(sm 14 · md 16 · lg 18). 앞자리 접면 패딩은 `flag`와 같다(sm5 · md6 · lg7).
 키워드 아이콘은 `taxonomy.js` `KEYWORD_GROUPS[].options[].icon`(키워드마다 하나, 25개 모두 다르다)을 쓴다. 대분류에는 아이콘이 없다.
+- `tone="primary"`(DS-91, `variant="category"`) — 흰 면 · 1px `--green-200` · `--green-900` 글자(아이콘은 `--primary`). 직종 아이콘은 `JOB_GROUPS[].options[].icon`.
+- `flagShape="rect"`(DS-99, `leading="flag"`) — 직사각 국기를 배지 틀에 담는다. sm 21×14 · md 24×16 · lg 30×20, 세로 가운데 · 반경 2 · 1px `--border` 링 · 자산 `assets/flags-rect/`. `Flag` 의 2px 흰 여백 틀은 쓰지 않는다. `labelHidden` 과 함께면 국기만 담은 배지(좌우 `padSlot` — md 36×28). 라벨은 접근 이름으로 남는다. 멘토 상세 인터뷰 머리 줄: `<Badge variant="category" tone="primary" leading="flag" flagShape="rect" flag="japan" labelHidden>일본</Badge>` 옆에 직종 배지(`tone="primary"`).
+- `variant="accent"`(DS-83) — 주황 「New」. 면 `--orange-50` · 1px `--orange-700` · `--orange-700` 글자 · 600 · 양끝 반원. 글자는 화면이 넘긴다. 사진 위 상태 배지는 계속 `status="new"`.

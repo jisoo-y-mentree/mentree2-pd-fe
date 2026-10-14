@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="760x560" name="Flag" subtitle="DS-78 원형 국기 하나 — sm16 · md20 · lg24 · xl28 · 1px --border 링 · aria-label「국가 · 도시」+ Tooltip · 이름 오른쪽" -->
+<!-- @dsCard group="Components" viewport="760x700" name="Flag" subtitle="DS-78 · DS-90 원형 · 직사각(rect 1.5배 폭 · 2px 여백 · 반경 4) — sm16 · md20 · lg24 · xl28 · 1px --border 링 · aria-label「국가 · 도시」+ Tooltip · 이름 오른쪽" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -25,23 +25,27 @@ function Demo() {
   const f = React.useRef(null);
   React.useEffect(() => { const el = f.current && f.current.querySelector(".mt-flag"); if (el) el.focus({ preventScroll: true }); }, []);
   return (<div>
-    <div className="sec"><div className="lbl">크기 — sm 16 · md 20 · lg 24 · xl 28</div>
-      <div className="items">{["sm","md","lg","xl"].map((s) => <div className="cell" key={s}><Flag country="united-states" label="미국" size={s} /><span className="cap">{s}</span></div>)}</div></div>
+    <div className="sec"><div className="lbl">shape × 크기 — circle(부품 안) · rect(이름 옆, 높이 = size · 폭 1.5배)</div>
+      <div className="items">{["sm","md","lg","xl"].map((s) => <div className="cell" key={s}><Flag country="united-states" label="미국" size={s} /><span className="cap">circle {s}</span></div>)}</div>
+      <div className="items">{[["sm","24×16"],["md","30×20"],["lg","36×24"],["xl","42×28"]].map(([s,d]) => <div className="cell" key={s}><Flag country="united-states" label="미국" size={s} shape="rect" /><span className="cap">rect {s} · {d}</span></div>)}</div></div>
     <div className="sec"><div className="lbl">흰 면이 많은 국기 — 1px --border 링으로 흰 바탕에 묻히지 않는다</div>
       <div className="items">
         <div className="cell"><Flag country="japan" label="일본" size="xl" /><span className="cap">일본 xl</span></div>
         <div className="cell"><Flag country="south-korea" label="대한민국" size="xl" /><span className="cap">대한민국 xl</span></div>
         <div className="cell"><Flag country="switzerland" label="스위스" size="xl" /><span className="cap">스위스 xl</span></div>
+        <div className="cell"><Flag country="japan" label="일본" size="xl" shape="rect" /><span className="cap">일본 rect</span></div>
+        <div className="cell"><Flag country="south-korea" label="대한민국" size="xl" shape="rect" /><span className="cap">대한민국 rect</span></div>
+        <div className="cell"><Flag country="thailand" label="태국" size="xl" shape="rect" /><span className="cap">태국 rect</span></div>
       </div></div>
     <div className="sec"><div className="lbl">이름 — 도시 있음「일본 · 도쿄」 / 없음「네덜란드」 · 툴팁 열림(키보드 포커스)</div>
       <div ref={f} className="items" style={{ paddingTop: 36 }}>
         <div className="cell"><Flag country="japan" label="일본" city="도쿄" size="lg" /><span className="cap">aria-label 일본 · 도쿄</span></div>
         <div className="cell"><Flag country="netherlands" label="네덜란드" size="lg" /><span className="cap">aria-label 네덜란드</span></div>
       </div></div>
-    <div className="sec"><div className="lbl">--text-display 이름 오른쪽에 xl — 글자의 세로 가운데</div>
+    <div className="sec"><div className="lbl">이름 오른쪽에 rect — 글자의 세로 가운데</div>
       <div style={{ display: "flex", alignItems: "center", gap: "var(--space-2)" }}>
         <span style={{ fontSize: "var(--text-display)", lineHeight: "var(--text-display--line-height)", letterSpacing: "var(--text-display--letter-spacing)", fontWeight: 600 }}>박서연</span>
-        <Flag country="japan" label="일본" city="도쿄" size="xl" />
+        <Flag country="japan" label="일본" city="도쿄" size="xl" shape="rect" />
       </div></div>
   </div>);
 }

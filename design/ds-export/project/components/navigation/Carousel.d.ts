@@ -28,6 +28,8 @@ export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
   snap?: "card" | "unit";
   /** 레이아웃 모드. "snap-fit"=카드가 컨테이너 폭에 딱 떨어짐(잘림 없음, 기본) · "peek"=마지막 카드가 의도적으로 걸침(N+1, "더 있음"). */
   mode?: "peek" | "snap-fit";
+  /** DS-106 — 좌우 페이드. true(기본) = 넘치고 그 방향에 더 있으면 걸고, 1장씩(첫 실물 카드 폭 = 트랙 보이는 폭)이면 걸지 않는다. false = 늘 걸지 않는다(예: TOP 「멘토의 이야기」). 카드 폭은 display:contents 감싸개를 건너뛰고 첫 실물 카드에서 잰다. */
+  fade?: boolean;
   /** 스크롤 위치 변화 시 끝 도달 상태 통지. */
   onEdgeChange?: (edges: { atStart: boolean; atEnd: boolean }) => void;
 }

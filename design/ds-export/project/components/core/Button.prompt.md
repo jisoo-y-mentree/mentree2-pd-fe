@@ -13,3 +13,4 @@ variant: `primary`(초록), `secondary`(sage), `outline`(흰색+경계), `ghost`
 - `outline` + `tone="primary"` — 흰 바탕 · 1px `--primary` 경계 · `--primary` 글자와 아이콘 · hover 면 `--green-50`. 예: 「이어서 보기」.
 - `ghost` + `tone="primary"` — 면 · 경계 없음 · `--primary` 글자와 아이콘 · hover 밑줄. 예: 「더보기」 `iconRight="arrow-down-01"` · 「접기」 `arrow-up-01` · 「모두 보기」.
 - 포커스 · 비활성 · 치수는 다른 변형과 같다. `secondary`는 고치지 않는다.
+- **반경 10**(DS-89) — sm · md · lg 모두. `IconButton` · `BookmarkToggle` 은 12 그대로다.

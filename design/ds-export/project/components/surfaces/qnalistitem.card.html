@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="1100x2600" name="QnaListItem" subtitle="DS-57 Q&amp;A 목록 한 줄 — 변형 4(default 전부 · compact 제목만 · answer 그 멘토의 답변 · question 질문과 답변 수) · hairline 셸 · 스트레치 링크 · loading" -->
+<!-- @dsCard group="Components" viewport="1100x2900" name="QnaListItem" subtitle="DS-57 · DS-84 Q&amp;A 목록 한 줄 — default(글자 머리 · New · 해시태그 한 줄 · 끝 줄 반응) · question(카드 · 첫 줄 green-100) · compact · answer · loading" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -11,6 +11,7 @@ body{margin:0;padding:var(--space-6);background:var(--background);color:var(--fo
 .frame{width:390px;border:1px dashed var(--sage-300);}
 .band{background:var(--sage-100);padding:var(--space-6) var(--space-4);}
 .log{font-size:var(--text-caption);color:var(--muted-foreground);}
+  .demo-q-hover{background:var(--green-100);}
 </style>
 </head>
 <body>
@@ -38,12 +39,14 @@ function Demo() {
   const focusRef = React.useRef(null);
   React.useEffect(() => { const a = focusRef.current && focusRef.current.querySelector("a.mt-card-link"); if (a) a.focus({ preventScroll: true }); }, []);
   return (<div>
-    <div className="sec"><div className="lbl">1 · default — 답변 있음 · 0건 · 해시태그 7개(3 + 「+4」)</div>
-      <div><Ctl {...Q1} /><Ctl {...Q0} /><Ctl {...Q7} /></div></div>
+    <div className="sec"><div className="lbl">1 · default — 키워드 넷 하나씩 · New 있음 · 답변자 6명(얼굴 3 + 「+3」) · 해시태그 7개(3 + 「+4」)</div>
+      <div><Ctl {...Q0} isNew /><Ctl {...Q7} /><Ctl {...Q1} isNew /><Ctl {...Q1} country="germany" countryLabel="독일" keyword="학업/재정/그 외" title="독일 석사 유학, 블로킹 계좌 금액은 어떻게 준비했습니까?" /></div>
+      <div className="lbl" style={{ marginTop: 12 }}>DS-108 · 키워드 대분류 넷 — 취업준비 briefcase-01 · 커리어 chart-increase · 현지 생활 location-01 · 학업/재정/그 외 book-open-01</div>
+      <div className="lbl" style={{ marginTop: 4 }}>DS-109 · 「커리어」 줄 — 답변자 6명 → 얼굴 3 ＋ 「+3」 · 「멘토 답변 6개」</div></div>
     <div className="sec"><div className="lbl">1b · default — tagHref={"{(t) => \"/search?tag=\" + encodeURIComponent(t)}"} (태그에 마우스를 올리면 주소가 보인다)</div>
       <div><Ctl {...Q1} tagHref={(t) => "/search?tag=" + encodeURIComponent(t)} /></div></div>
-    <div className="sec"><div className="lbl">2 · default @390 — 해시태그가 한 줄을 따로 쓴다</div>
-      <div className="frame"><Ctl {...Q1} tags={["정착 생활", "비자·영주권", "재테크", "주거", "세금"]} /><Ctl {...Q0} /></div></div>
+    <div className="sec"><div className="lbl">2 · default @390 — 제목 2줄 · 반응 묶음이 답변 수 아래 줄로</div>
+      <div className="frame"><Ctl {...Q1} isNew tags={["정착 생활", "비자·영주권", "재테크", "주거", "세금"]} /><Ctl {...Q0} /></div></div>
     <div className="sec"><div className="lbl">3 · compact — 답변 있음 · 답변 대기 · showScrap</div>
       <div style={{ width: 360 }}>
         <Ctl variant="compact" {...Q0} answerCount={2} />
@@ -56,12 +59,21 @@ function Demo() {
         <Ctl variant="answer" title="N2 로 신졸 전형에 지원할 수 있을까요?" answerExcerpt="지원 자체는 충분히 가능합니다. 제가 지원할 때도 N2였습니다." likes={42} views={1280} scraps={26} />
         <Ctl variant="answer" title="N2 로 신졸 전형에 지원할 수 있을까요? 서류 단계에서 어학 점수를 얼마나 보는지도 궁금합니다" answerExcerpt={ANS_LONG} likes={42} liked views={1280} scraps={26} />
       </div></div>
-    <div className="sec"><div className="lbl">5 · question — --sage-100 밴드 위 · 답변 1자리 · 2자리 · 0건</div>
-      <div className="band"><div style={{ maxWidth: 520 }}>
+    <div className="sec"><div className="lbl">5 · question — TOP 밴드 · 3줄(hover --green-100 · 제목 색 그대로) · 줄 사이 16</div>
+      <div style={{ maxWidth: 640 }}>
         <QnaListItem variant="question" {...Q7} />
-        <QnaListItem variant="question" {...Q1} keyword="현지 생활" answerCount={12} />
+        <QnaListItem variant="question" {...Q1} answerCount={12} />
         <QnaListItem variant="question" {...Q0} />
-      </div></div></div>
+      </div>
+      <div className="lbl" style={{ marginTop: 16 }}>호버 — 면 --green-100</div>
+      <div style={{ maxWidth: 640 }}>
+        <QnaListItem variant="question" className="demo-q-hover" {...Q7} />
+      </div>
+      <div className="lbl" style={{ marginTop: 16 }}>DS-102 · 폭 358 — 줄 폭 768 이하라 제목 2줄 · 넘치면 말줄임</div>
+      <div style={{ width: 358 }}>
+        <QnaListItem variant="question" {...Q7} title="이력서에 영어 점수가 없어도 미국 취업이 가능할까요? 현지 채용 담당자가 실제로 보는 것" />
+        <QnaListItem variant="question" {...Q1} answerCount={12} />
+      </div></div>
     <div className="sec"><div className="lbl">6 · loading — 변형마다 1줄(default · compact · answer · question)</div>
       <div style={{ maxWidth: 720 }}>
         <QnaListItem loading title="" />

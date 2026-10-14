@@ -47,3 +47,10 @@
 - **테두리와 면은 hover에서 안 바뀐다** — 평상시도 hover도 테두리 `--sage-200`, 면 `--card` 흰색이다.
 - **확대는 `img`에만.** 미디어 상자에 걸면 배지·스크랩 토글이 같이 커진다. 상자는 이미 `overflow: hidden`이라 확대분은 잘린다. 1.03을 넘기지 않는다 — 「움직였다」가 아니라 「살아났다」로 읽혀야 한다.
 - **가드 둘**: `@media (hover: hover)`로 감싼다(터치에서는 hover가 눌린 채 붙어 탭한 카드가 계속 커져 있다) · `prefers-reduced-motion: reduce`에서는 **확대만** 끈다(색·그림자는 움직임이 아니다).
+
+## DS-37 B안(아트디렉션 4회차) — 위 설명보다 이것이 우선한다
+
+- 사진 아래쪽 검정 그라데이션(바닥 60% → 44% 지점 0) · 왼쪽 위 「신규 멘토」(면 `--green-700` · 흰 글자 caption 500 · 반경 8 · 좌우 6) · 오른쪽 위 `BookmarkToggle`(반투명 받침 없음) · 왼쪽 아래 직종 배지 하나(`Badge tone="primary" size="sm" leading="icon"`). **국가 배지는 사진 위에서 뺐다.**
+- 이름 h2 600(카드 폭이 정한다 — 280+ h2 · 200〜280 h3 · 200 미만 body) ＋ `Flag shape="rect" size="sm"` ＋ `countryExtra` 「+N」(잠정).
+- 직무 caption 500 `--sage-700` · 회사 caption muted · 소개 상자 `--green-100` · 테두리 없음 · `--green-900` caption 500 · 1줄.
+- `fluid` min-width 160(375 화면 2열 = 163).

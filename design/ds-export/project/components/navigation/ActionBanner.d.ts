@@ -2,7 +2,7 @@ import * as React from "react";
 
 /**
  * ActionBanner — 문구 + 버튼 배너(DS-34). 모양 고정 — 자유 프로모 슬롯 Banner와 다르다.
- * 면 --green-50 · 1px --primary · --radius-lg · 24/32. title --text-h3 600 · description --text-body muted.
+ * 면 --green-100 · 1px --primary · --radius-lg · 24/32. title --text-h3 600 · description --text-body --sage-700(DS-98).
  * inline: 좌 문구 · 우 Button primary md(간격 24). stacked: 가운데 · 아래 Button primary lg(간격 16).
  * ≤768: 항상 stacked · 여백 20 · 버튼 폭 100%.
  */

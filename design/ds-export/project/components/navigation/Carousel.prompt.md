@@ -25,6 +25,9 @@ const [edges, setEdges] = React.useState({ atStart: true, atEnd: false });
 - **끝 처리(데스크톱 기본)**: 1280 충족 시 끝에서 딱 멈춤.
 - **mode**: `snap-fit`(기본) = 카드가 컨테이너 폭에 딱 떨어짐(잘림 없음) · `peek` = 마지막 카드가 의도적으로 걸침(N+1, "더 있음" 강조).
 - **페이드**: **넘치고 그 방향에 더 있으면 페이드한다** — `mode`와 무관(peek든 snap-fit이든 같다), 폭과도 무관(1280에서만이 아니라 769에서도 동작). 모양은 좌우 40px · `linear-gradient(--background → transparent)` · `pointer-events:none` · opacity 150ms. **Mobile(~768)은 페이드하지 않는다** — 가장자리 폭이 귀하고(좌우 80px는 390 화면의 1/5) 화살표 대신 스와이프가 그 일을 한다. CSS(`@media (max-width:768px){.mt-carousel-fade{display:none}}`)로 끈다 — `matchMedia`로 JS 분기하지 않는다(리사이즈 재계산 방지).
+- **DS-101 — 1장씩이면 페이드 없음**: 첫 카드 폭이 트랙의 보이는 폭과 같으면(차 1 이하 — 예: TOP 「멘토의 이야기」 `CoverCard` 100%) 양쪽 페이드를 걸지 않는다. 폭이 바뀌면 다시 판정. 여러 장(`peek` · `snap-fit`)은 그대로.
 - **스크롤·스냅**: 자유 스크롤 + 카드 1장 단위 스냅(손 스크롤 정렬). 화살표 이동 단위는 이와 **별개** — 현재 표시 개수(컨테이너 폭 ÷ (카드폭+gap))만큼 = **한 페이지 넘기기**(4개 보이면 4장, 3이면 3장). `snap="unit"`이면 1단위(표시 개수=1단위, 예: 인터뷰 featured 1 + compact 2) 구성만큼 이동.
 - **화살표 연동**: `ref`(CarouselHandle)의 `scrollPrev/scrollNext`(한 페이지 이동), 끝 도달은 `onEdgeChange({atStart, atEnd})` → SectionHeader 화살표 disabled.
 - **카드 높이**: 트랙은 `align-items: flex-start`다. 기본값 `stretch`면 짧은 카드가 가장 긴 카드에 맞춰 늘어나 아래에 빈 공간이 생긴다 — 내용이 늘어난 게 아니라 상자만 늘어난 것이다. **카드는 자기 내용만큼만 높고 윗줄에 정렬된다.** 카드 높이를 서로 맞추지 않는다.
+
+- **DS-106 — 감싸개 너머의 카드를 잰다 · `fade`**: 카드 폭(1장씩 판정 · 한 페이지 이동)은 `display:contents` 자식을 건너뛰고 첫 실물 카드에서 잰다(화면의 `div.sc-host-x` 감싸개 대응). 없으면 0 — 넘기지 않는다. `fade={false}` 면 늘 페이드 없음(TOP 「멘토의 이야기」).

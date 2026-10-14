@@ -13,12 +13,12 @@ import { NAV_PRIMARY } from "./nav-ia.js";
  *  좌: mentree 워드마크 풀컬러 그린(헤더는 밝은 배경 → 풀컬러 유지), 클릭 → 홈.
  *  중: 최상위 메뉴 3개(멘토 찾기·Q&A 멘토링·멘트리 인사이트). 각 메뉴 좌측 20px HugeIcons 모노 아이콘
  *     (전역 아이콘 원칙의 예외 아님). 라벨 16px·600, 활성은 굵기가 아니라 색(--primary)으로만 구분.
- *  우(guest): 회원가입/로그인(green 버튼 하나로 합침) + 기업 서비스(중립 outline, 외부 ↗).
+ *  우(guest): 회원가입/로그인(green 버튼 하나로 합침) + 기업 서비스(중립 outline 안에 비즈 로고 16 — DS-100).
  *     공지사항·뉴스는 헤더에 두지 않음(푸터에만).
  *  우(mentor·mentee): 알림 버튼 + 아바타, 간격 8 — 평상시 면 없이 아이콘 20 · 사진 32만 보이고 hover·focus에서만 40 원형 면.
  *     클릭·터치 영역은 항상 40×40. 회원가입·기업서비스 없음.
  *     두 상태는 모양이 같고 아바타 목적지만 다르다(mypage-mentor / mypage-mentee).
- *     아바타는 메뉴를 열지 않고 마이페이지 「프로필」 탭으로 직행. unread면 알림 아이콘(40 면이 아니다) 우상단에 빨간 점(8, 숫자 없음).
+ *     아바타는 메뉴를 열지 않고 마이페이지 「프로필」 탭으로 직행. unread면 알림 아이콘(40 면이 아니다) 우상단에 주황 점(8 · --orange-600, DS-83 · 숫자 없음).
  *     알림 popover는 이 부품이 열지 않는다(onNotify까지).
  *
  *  반응형 3구간:
@@ -38,6 +38,9 @@ import { NAV_PRIMARY } from "./nav-ia.js";
  */
 
 const HEADER_H = 64;
+// DS-100 — 기업 서비스 입구의 멘트리 비즈 로고(149×32 원본 색 그대로). nav-ia.js의 label은 다른 자리에서 쓴다.
+const BIZ_LOGO = "../../assets/logo/biz.svg";
+const BIZ_ARIA = "기업 서비스(멘트리 비즈)";
 const SCROLL_DELTA = 8;
 const HEIGHT_VAR = "--mt-header-height";
 const OFFSET_VAR = "--mt-header-offset";
@@ -239,8 +242,10 @@ export function Header({
                   size="md"
                   variant="outline"
                   onClick={(e) => go(e, biz)}
+                  aria-label={BIZ_ARIA}
                 >
-                  기업 서비스
+                  {/* DS-100 — 글자 대신 멘트리 비즈 로고(높이 16 · 폭 ≈75). 버튼 높이·테두리·반경·좌우 여백은 그대로. 이름은 버튼이 갖는다. */}
+                  <img src={BIZ_LOGO} alt="" style={{ height: 16, width: "auto", display: "block" }} />
                 </Button>
               )}
             </>
@@ -264,7 +269,7 @@ export function Header({
                         width: 8,
                         height: 8,
                         borderRadius: "50%",
-                        background: "var(--destructive)",
+                        background: "var(--orange-600)", /* DS-83 — 주황 악센트(흰 바탕 3.56:1 · 500은 2.80:1로 모자라다) */
                         boxShadow: "0 0 0 2px var(--background)",
                       }}
                     />
@@ -380,11 +385,12 @@ export function Header({
             </a>
             {/* 구분선(상시) */}
             <hr style={{ border: "none", borderTop: "1px solid var(--border)", margin: "10px 8px" }} />
-            {/* 기업 서비스 — biz 파랑 텍스트 + 외부 ↗ (상시) */}
+            {/* 기업 서비스 — DS-100: 비즈 로고(높이 18) + 외부 ↗(--biz-primary) (상시). 이름은 링크가 갖는다. */}
             {biz && (
               <a
                 href={biz.href}
                 onClick={(e) => go(e, biz)}
+                aria-label={BIZ_ARIA}
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -400,7 +406,7 @@ export function Header({
                   color: "var(--biz-primary)",
                 }}
               >
-                {biz.label}
+                <img src={BIZ_LOGO} alt="" style={{ height: 18, width: "auto", display: "block" }} />
                 <Icon name="arrow-up-right-01" size={18} aria-hidden="true" />
               </a>
             )}

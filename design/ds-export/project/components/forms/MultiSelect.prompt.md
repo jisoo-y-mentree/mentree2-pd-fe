@@ -15,3 +15,4 @@ import { COUNTRY_GROUPS } from "…/components/taxonomy.js"; // 화면이 넘긴
 - **키보드**: Enter/Space/↓ 열기 · ↑↓ Home End · Space/Enter 켜고 끄기 · 첫 글자로 건너뛰기.
 - **접근성**: `role="listbox"` + `aria-multiselectable="true"`, 항목 `aria-selected`. 트리거 `role="combobox"`.
 - **경계**: 하나만 고르면 `Select`. 필터 모달은 `FilterSelect` — 편집 모달 안에서는 모달이 겹치므로 이것을 쓴다.
+- 고른 칩(DS-91): 흰 면 · 1px `--green-200` · `--green-900` 글자 · ✕ `--green-900`(Badge `tone="primary"` 와 같은 초록 외곽선).

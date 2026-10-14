@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="820x520" name="FilterSelect" subtitle="조건 축 트리거+모달(Dialog 600) — 그룹별 FilterChip 다중 선택, 하단 요약+초기화/적용, 적용 전까지 즉시 반영 없음" -->
+<!-- @dsCard group="Components" viewport="900x700" name="FilterSelect" subtitle="DS-97 icon(--primary) · 조건 축 트리거+모달(Dialog 600) — 그룹별 FilterChip 다중 선택, 하단 요약+초기화/적용, 적용 전까지 즉시 반영 없음" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -20,7 +20,7 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script src="../../_ds_bundle.js"></script>
 <script type="text/babel">
-  const { FilterSelect } = window.MentreeDesignSystem_2f86cf;
+  const { FilterSelect, SearchInput, Select, KEYWORD_GROUPS, JOB_GROUPS } = window.MentreeDesignSystem_2f86cf;
   const GROUPS = [
     { label: "아시아 · 중동", options: [
       { value: "japan", label: "일본", flag: "japan" },
@@ -49,10 +49,37 @@
 
   function Demo() {
     const [empty, setEmpty] = React.useState([]);
+    const [kw, setKw] = React.useState([]);
+    const [job, setJob] = React.useState(["개발"]);
     const [one, setOne] = React.useState(["japan"]);
     const [outN, setOutN] = React.useState(["japan", "south-korea", "united-states"]);
+    const [lgC, setLgC] = React.useState([]);
+    const [lgK, setLgK] = React.useState(["취업 전략"]);
+    const [q, setQ] = React.useState("");
+    const [sort, setSort] = React.useState("latest");
     return (
       <div className="stack">
+        <div className="row">
+          <div className="cell">
+            <span className="lbl">DS-112 · lg · 한 줄 — FilterSelect lg 둘 + SearchInput + Select · 넷 모두 높이 40</span>
+            <div style={{ display: "flex", gap: 8, alignItems: "center", width: 852 }}>
+              <FilterSelect size="lg" label="국가" icon="globe-02" groups={GROUPS} value={lgC} onChange={setLgC} />
+              <FilterSelect size="lg" label="키워드" icon="tag-01" groups={KEYWORD_GROUPS} value={lgK} onChange={setLgK} />
+              <div style={{ flex: 1, minWidth: 0 }}><SearchInput value={q} onChange={setQ} onSearch={() => {}} placeholder="질문 검색" submitLabel="검색" /></div>
+              <div style={{ width: 140 }}><Select value={sort} onChange={setSort} options={[{ value: "latest", label: "최신순" }, { value: "popular", label: "인기순" }]} /></div>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="cell">
+            <span className="lbl">icon — 국가 globe-02 · 키워드 tag-01 · 직종 briefcase-01</span>
+            <div style={{ display: "flex", gap: 8 }}>
+              <FilterSelect label="국가" icon="globe-02" groups={GROUPS} value={empty} onChange={setEmpty} />
+              <FilterSelect label="키워드" icon="tag-01" groups={KEYWORD_GROUPS} value={kw} onChange={setKw} />
+              <FilterSelect label="직종" icon="briefcase-01" groups={JOB_GROUPS} value={job} onChange={setJob} />
+            </div>
+          </div>
+        </div>
         <div className="row">
           <div className="cell">
             <span className="lbl">트리거 · 0개</span>

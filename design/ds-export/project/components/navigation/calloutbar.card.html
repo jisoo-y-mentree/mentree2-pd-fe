@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="900x460" name="CalloutBar" subtitle="블리드 풀폭 띠(각진 radius 0) — info·success·warning·error. 아이콘·링크·닫기 옵션" -->
+<!-- @dsCard group="Components" viewport="900x640" name="CalloutBar" subtitle="블리드 풀폭 띠(각진 radius 0) — info·success·warning·error · event(DS-92 이벤트 띠). 아이콘·링크·닫기 옵션" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,6 +21,18 @@
   function Demo() {
     return (
       <div className="stack">
+        <div>
+          <div className="cap">event · 그림 있음 — 띠 전체가 링크</div>
+          <CalloutBar variant="event" href="#" image="../../assets/logo/mentree-logo.svg" heading="10월 멘토링 위크">첫 멘토링 50% 할인 · 10/31까지</CalloutBar>
+        </div>
+        <div>
+          <div className="cap">event · 그림 없음</div>
+          <CalloutBar variant="event" href="#" heading="신규 멘토 30명 합류">일본 · 싱가포르 · 네덜란드 현직자를 지금 만나 보세요</CalloutBar>
+        </div>
+        <div style={{ width: 375 }}>
+          <div className="cap">event · 375 — 설명이 길면 2줄까지</div>
+          <CalloutBar variant="event" href="#" heading="10월 멘토링 위크">첫 멘토링 50% 할인, 질문 무제한 답변 이벤트가 10월 31일까지 이어집니다</CalloutBar>
+        </div>
         <div>
           <div className="cap">info · 중앙(기본) · 링크</div>
           <CalloutBar variant="info" linkLabel="자세히 보기" linkHref="#">7월 4일 새벽 2~4시 정기 점검이 예정되어 있습니다.</CalloutBar>

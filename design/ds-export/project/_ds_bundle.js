@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"MentreeDesignSystem_2f86cf","components":[{"name":"Avatar","sourcePath":"components/core/Avatar.jsx"},{"name":"AvatarGroup","sourcePath":"components/core/Avatar.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"BookmarkToggle","sourcePath":"components/core/BookmarkToggle.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Chip","sourcePath":"components/core/Chip.jsx"},{"name":"CountToggle","sourcePath":"components/core/CountToggle.jsx"},{"name":"FilterChip","sourcePath":"components/core/FilterChip.jsx"},{"name":"FilterSelect","sourcePath":"components/core/FilterSelect.jsx"},{"name":"Flag","sourcePath":"components/core/Flag.jsx"},{"name":"Icon","sourcePath":"components/core/Icon.jsx"},{"name":"IconButton","sourcePath":"components/core/IconButton.jsx"},{"name":"Checkbox","sourcePath":"components/forms/Checkbox.jsx"},{"name":"Field","sourcePath":"components/forms/Field.jsx"},{"name":"FieldGroup","sourcePath":"components/forms/Field.jsx"},{"name":"ImageCropper","sourcePath":"components/forms/ImageCropper.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"MultiSelect","sourcePath":"components/forms/MultiSelect.jsx"},{"name":"RadioGroup","sourcePath":"components/forms/RadioGroup.jsx"},{"name":"ReorderList","sourcePath":"components/forms/ReorderList.jsx"},{"name":"SearchInput","sourcePath":"components/forms/SearchInput.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"},{"name":"TagInput","sourcePath":"components/forms/TagInput.jsx"},{"name":"Textarea","sourcePath":"components/forms/Textarea.jsx"},{"name":"ToggleGroup","sourcePath":"components/forms/ToggleGroup.jsx"},{"name":"ActionBanner","sourcePath":"components/navigation/ActionBanner.jsx"},{"name":"Banner","sourcePath":"components/navigation/Banner.jsx"},{"name":"BottomTabBar","sourcePath":"components/navigation/BottomTabBar.jsx"},{"name":"Breadcrumb","sourcePath":"components/navigation/Breadcrumb.jsx"},{"name":"CalloutBar","sourcePath":"components/navigation/CalloutBar.jsx"},{"name":"Carousel","sourcePath":"components/navigation/Carousel.jsx"},{"name":"Footer","sourcePath":"components/navigation/Footer.jsx"},{"name":"Header","sourcePath":"components/navigation/Header.jsx"},{"name":"Pagination","sourcePath":"components/navigation/Pagination.jsx"},{"name":"SectionHeader","sourcePath":"components/navigation/SectionHeader.jsx"},{"name":"Sidebar","sourcePath":"components/navigation/Sidebar.jsx"},{"name":"Tabs","sourcePath":"components/navigation/Tabs.jsx"},{"name":"TabPanel","sourcePath":"components/navigation/Tabs.jsx"},{"name":"NAV_PRIMARY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_AUTH","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_UTILITY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_DETAIL","sourcePath":"components/navigation/nav-ia.js"},{"name":"Dialog","sourcePath":"components/overlays/Dialog.jsx"},{"name":"Popover","sourcePath":"components/overlays/Popover.jsx"},{"name":"Sheet","sourcePath":"components/overlays/Sheet.jsx"},{"name":"Toast","sourcePath":"components/overlays/Toast.jsx"},{"name":"Tooltip","sourcePath":"components/overlays/Tooltip.jsx"},{"name":"AnswerCard","sourcePath":"components/surfaces/AnswerCard.jsx"},{"name":"ArticleBody","sourcePath":"components/surfaces/ArticleBody.jsx"},{"name":"ArticlePreview","sourcePath":"components/surfaces/ArticlePreview.jsx"},{"name":"Card","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardHeader","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardTitle","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardDescription","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardContent","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardFooter","sourcePath":"components/surfaces/Card.jsx"},{"name":"EmptyState","sourcePath":"components/surfaces/EmptyState.jsx"},{"name":"InterviewCard","sourcePath":"components/surfaces/InterviewCard.jsx"},{"name":"MentorCard","sourcePath":"components/surfaces/MentorCard.jsx"},{"name":"QnaCard","sourcePath":"components/surfaces/QnaCard.jsx"},{"name":"QnaListItem","sourcePath":"components/surfaces/QnaListItem.jsx"},{"name":"Skeleton","sourcePath":"components/surfaces/Skeleton.jsx"},{"name":"Table","sourcePath":"components/surfaces/Table.jsx"},{"name":"COUNTRY_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"JOB_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"KEYWORD_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"COUNTRY_TOP","sourcePath":"components/taxonomy.js"},{"name":"JOB_TOP","sourcePath":"components/taxonomy.js"}],"sourceHashes":{"components/core/Avatar.jsx":"1f2223afdaea","components/core/Badge.jsx":"80d75aca8c7b","components/core/BookmarkToggle.jsx":"7ea2c991107e","components/core/Button.jsx":"b3053dbf6a00","components/core/Chip.jsx":"d7cf7e832461","components/core/CountToggle.jsx":"aca1e44ee376","components/core/FilterChip.jsx":"db672a544318","components/core/FilterSelect.jsx":"59fb7f178268","components/core/Flag.jsx":"74832595304d","components/core/Icon.jsx":"021313e06cd9","components/core/IconButton.jsx":"c0490a7cbccf","components/forms/Checkbox.jsx":"cdde026b2f7c","components/forms/Field.jsx":"24ed14eb14de","components/forms/ImageCropper.jsx":"1d9e655b2d94","components/forms/Input.jsx":"5c57a42a0782","components/forms/MultiSelect.jsx":"f786c4bbb700","components/forms/RadioGroup.jsx":"e62d2c3a6398","components/forms/ReorderList.jsx":"12a6c8dbe883","components/forms/SearchInput.jsx":"39c0fb25b4f9","components/forms/Select.jsx":"3c5febb41c06","components/forms/Switch.jsx":"21ed31da69e8","components/forms/TagInput.jsx":"748307e15ce8","components/forms/Textarea.jsx":"073a0eb29cb8","components/forms/ToggleGroup.jsx":"c7a2bba81517","components/forms/controlFocus.js":"0fe51fcaf5ae","components/navigation/ActionBanner.jsx":"5204d38dc408","components/navigation/Banner.jsx":"897c8f74939c","components/navigation/BottomTabBar.jsx":"767b55c3e3f9","components/navigation/Breadcrumb.jsx":"a5d10eea3061","components/navigation/CalloutBar.jsx":"3e4793b23751","components/navigation/Carousel.jsx":"b664875b96c2","components/navigation/Footer.jsx":"94d4c354b355","components/navigation/Header.jsx":"98c6c3bc02a8","components/navigation/Pagination.jsx":"47a61cee20d5","components/navigation/SectionHeader.jsx":"bf39d764ef2c","components/navigation/Sidebar.jsx":"d290d8096d0f","components/navigation/Tabs.jsx":"93fd0080e9ef","components/navigation/nav-ia.js":"00ab9777819d","components/overlays/Dialog.jsx":"cfb8a3b72cce","components/overlays/Popover.jsx":"a59330cd2e21","components/overlays/Sheet.jsx":"36f615dbd282","components/overlays/Toast.jsx":"6850f5ea9e88","components/overlays/Tooltip.jsx":"1503286c3874","components/surfaces/AnswerCard.jsx":"74e7b2d01806","components/surfaces/ArticleBody.jsx":"bffdcf112266","components/surfaces/ArticlePreview.jsx":"b59d0810994a","components/surfaces/Card.jsx":"b7959424f7bf","components/surfaces/EmptyState.jsx":"22c03cdb98d0","components/surfaces/InterviewCard.jsx":"0a9fa24f5aa0","components/surfaces/MentorCard.jsx":"a831738bdf1a","components/surfaces/QnaCard.jsx":"d7f1c6e61df9","components/surfaces/QnaListItem.jsx":"b71c408ee123","components/surfaces/Skeleton.jsx":"5816ddc5bd5d","components/surfaces/Table.jsx":"d6f67958bbb6","components/taxonomy.js":"57fdf00e92be"},"inlinedExternals":[],"unexposedExports":[{"name":"ensureControlFocusStyle","sourcePath":"components/forms/controlFocus.js"},{"name":"popoverMenuItemStyle","sourcePath":"components/overlays/Popover.jsx"}]} */
+/* @ds-bundle: {"format":4,"namespace":"MentreeDesignSystem_2f86cf","components":[{"name":"Avatar","sourcePath":"components/core/Avatar.jsx"},{"name":"AvatarGroup","sourcePath":"components/core/Avatar.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"BookmarkToggle","sourcePath":"components/core/BookmarkToggle.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Chip","sourcePath":"components/core/Chip.jsx"},{"name":"CountToggle","sourcePath":"components/core/CountToggle.jsx"},{"name":"FilterChip","sourcePath":"components/core/FilterChip.jsx"},{"name":"FilterSelect","sourcePath":"components/core/FilterSelect.jsx"},{"name":"Flag","sourcePath":"components/core/Flag.jsx"},{"name":"Icon","sourcePath":"components/core/Icon.jsx"},{"name":"IconButton","sourcePath":"components/core/IconButton.jsx"},{"name":"Checkbox","sourcePath":"components/forms/Checkbox.jsx"},{"name":"Field","sourcePath":"components/forms/Field.jsx"},{"name":"FieldGroup","sourcePath":"components/forms/Field.jsx"},{"name":"ImageCropper","sourcePath":"components/forms/ImageCropper.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"MultiSelect","sourcePath":"components/forms/MultiSelect.jsx"},{"name":"RadioGroup","sourcePath":"components/forms/RadioGroup.jsx"},{"name":"ReorderList","sourcePath":"components/forms/ReorderList.jsx"},{"name":"SearchInput","sourcePath":"components/forms/SearchInput.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"},{"name":"TagInput","sourcePath":"components/forms/TagInput.jsx"},{"name":"Textarea","sourcePath":"components/forms/Textarea.jsx"},{"name":"ToggleGroup","sourcePath":"components/forms/ToggleGroup.jsx"},{"name":"ActionBanner","sourcePath":"components/navigation/ActionBanner.jsx"},{"name":"Banner","sourcePath":"components/navigation/Banner.jsx"},{"name":"BottomTabBar","sourcePath":"components/navigation/BottomTabBar.jsx"},{"name":"Breadcrumb","sourcePath":"components/navigation/Breadcrumb.jsx"},{"name":"CalloutBar","sourcePath":"components/navigation/CalloutBar.jsx"},{"name":"Carousel","sourcePath":"components/navigation/Carousel.jsx"},{"name":"Footer","sourcePath":"components/navigation/Footer.jsx"},{"name":"Header","sourcePath":"components/navigation/Header.jsx"},{"name":"Pagination","sourcePath":"components/navigation/Pagination.jsx"},{"name":"SectionHeader","sourcePath":"components/navigation/SectionHeader.jsx"},{"name":"Sidebar","sourcePath":"components/navigation/Sidebar.jsx"},{"name":"Tabs","sourcePath":"components/navigation/Tabs.jsx"},{"name":"TabPanel","sourcePath":"components/navigation/Tabs.jsx"},{"name":"NAV_PRIMARY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_AUTH","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_UTILITY","sourcePath":"components/navigation/nav-ia.js"},{"name":"NAV_DETAIL","sourcePath":"components/navigation/nav-ia.js"},{"name":"Dialog","sourcePath":"components/overlays/Dialog.jsx"},{"name":"Popover","sourcePath":"components/overlays/Popover.jsx"},{"name":"Sheet","sourcePath":"components/overlays/Sheet.jsx"},{"name":"Toast","sourcePath":"components/overlays/Toast.jsx"},{"name":"Tooltip","sourcePath":"components/overlays/Tooltip.jsx"},{"name":"AnswerCard","sourcePath":"components/surfaces/AnswerCard.jsx"},{"name":"ArticleBody","sourcePath":"components/surfaces/ArticleBody.jsx"},{"name":"ArticlePreview","sourcePath":"components/surfaces/ArticlePreview.jsx"},{"name":"Card","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardHeader","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardTitle","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardDescription","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardContent","sourcePath":"components/surfaces/Card.jsx"},{"name":"CardFooter","sourcePath":"components/surfaces/Card.jsx"},{"name":"CoverCard","sourcePath":"components/surfaces/CoverCard.jsx"},{"name":"EmptyState","sourcePath":"components/surfaces/EmptyState.jsx"},{"name":"InterviewCard","sourcePath":"components/surfaces/InterviewCard.jsx"},{"name":"MentorCard","sourcePath":"components/surfaces/MentorCard.jsx"},{"name":"QnaCard","sourcePath":"components/surfaces/QnaCard.jsx"},{"name":"QnaListItem","sourcePath":"components/surfaces/QnaListItem.jsx"},{"name":"Skeleton","sourcePath":"components/surfaces/Skeleton.jsx"},{"name":"Table","sourcePath":"components/surfaces/Table.jsx"},{"name":"COUNTRY_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"JOB_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"KEYWORD_GROUPS","sourcePath":"components/taxonomy.js"},{"name":"COUNTRY_TOP","sourcePath":"components/taxonomy.js"},{"name":"JOB_TOP","sourcePath":"components/taxonomy.js"}],"sourceHashes":{"components/core/Avatar.jsx":"1f2223afdaea","components/core/Badge.jsx":"121746e2c5cb","components/core/BookmarkToggle.jsx":"a202daa6a347","components/core/Button.jsx":"4947b070b3a0","components/core/Chip.jsx":"d7cf7e832461","components/core/CountToggle.jsx":"fa840c62f4ac","components/core/FilterChip.jsx":"db672a544318","components/core/FilterSelect.jsx":"126f3976186f","components/core/Flag.jsx":"5e1a0be1638c","components/core/Icon.jsx":"70a6c4a2e1ef","components/core/IconButton.jsx":"349e7acff5e4","components/forms/Checkbox.jsx":"cdde026b2f7c","components/forms/Field.jsx":"24ed14eb14de","components/forms/ImageCropper.jsx":"1d9e655b2d94","components/forms/Input.jsx":"5c57a42a0782","components/forms/MultiSelect.jsx":"1463bf39c1e8","components/forms/RadioGroup.jsx":"e62d2c3a6398","components/forms/ReorderList.jsx":"12a6c8dbe883","components/forms/SearchInput.jsx":"4677616f0a4a","components/forms/Select.jsx":"3c5febb41c06","components/forms/Switch.jsx":"21ed31da69e8","components/forms/TagInput.jsx":"748307e15ce8","components/forms/Textarea.jsx":"073a0eb29cb8","components/forms/ToggleGroup.jsx":"c7a2bba81517","components/forms/controlFocus.js":"0fe51fcaf5ae","components/navigation/ActionBanner.jsx":"ca538cf65c3b","components/navigation/Banner.jsx":"897c8f74939c","components/navigation/BottomTabBar.jsx":"767b55c3e3f9","components/navigation/Breadcrumb.jsx":"a5d10eea3061","components/navigation/CalloutBar.jsx":"18679b4b2294","components/navigation/Carousel.jsx":"88f631cef6b3","components/navigation/Footer.jsx":"94d4c354b355","components/navigation/Header.jsx":"972c08c55fbe","components/navigation/Pagination.jsx":"47a61cee20d5","components/navigation/SectionHeader.jsx":"9c6352a891e9","components/navigation/Sidebar.jsx":"d290d8096d0f","components/navigation/Tabs.jsx":"938997d2b20c","components/navigation/nav-ia.js":"00ab9777819d","components/overlays/Dialog.jsx":"437c786624c3","components/overlays/Popover.jsx":"a59330cd2e21","components/overlays/Sheet.jsx":"2f4f863ef235","components/overlays/Toast.jsx":"6850f5ea9e88","components/overlays/Tooltip.jsx":"1503286c3874","components/surfaces/AnswerCard.jsx":"e0f34ca84c4e","components/surfaces/ArticleBody.jsx":"bffdcf112266","components/surfaces/ArticlePreview.jsx":"74018ffe5640","components/surfaces/Card.jsx":"b7959424f7bf","components/surfaces/CoverCard.jsx":"474e4e5f4e91","components/surfaces/EmptyState.jsx":"22c03cdb98d0","components/surfaces/InterviewCard.jsx":"0a9fa24f5aa0","components/surfaces/MentorCard.jsx":"da80663d2489","components/surfaces/QnaCard.jsx":"d7f1c6e61df9","components/surfaces/QnaListItem.jsx":"b832efe892dc","components/surfaces/Skeleton.jsx":"5816ddc5bd5d","components/surfaces/Table.jsx":"d6f67958bbb6","components/taxonomy.js":"880a32c1f3ea"},"inlinedExternals":[],"unexposedExports":[{"name":"ensureControlFocusStyle","sourcePath":"components/forms/controlFocus.js"},{"name":"popoverMenuItemStyle","sourcePath":"components/overlays/Popover.jsx"}]} */
 
 (() => {
 
@@ -22,7 +22,8 @@ const {
  *  한 번 합쳤다가 되돌렸다(2026-09-11 CountToggle로 흡수 → 2026-09-12 되돌림). 이 줄이 없으면 또 합치게 된다.
  *
  *  형태는 IconButton default(md)를 그대로 쓴다 — 같은 박스 38·아이콘 18·radius-md.
- *  미선택=outline(card+sage 아웃라인), 선택=반전(배경 --sage-900 채움 + 아이콘 --sage-50).
+ *  미선택=outline(card+sage 아웃라인), 선택=초록(DS-94 — 면 --green-50 · 1px --green-700 · 채운 --green-700 아이콘).
+ *   검정 반전(--sage-900)은 버렸다. 반경 12 그대로(Button의 10과 다르다 — IconButton과 같다).
  *  HugeIcons 정적 CDN에 solid 북마크가 없어 stroke 1.6 라운드 인라인 SVG로 outline↔fill을 토글한다.
  *  제어형: selected + onChange(next). 서버 저장 로직은 범위 밖. count는 받지 않는다(그 자리는 CountToggle).
  */
@@ -44,10 +45,10 @@ function BookmarkToggle({
     s.textContent = ".mt-bookmarktoggle:focus-visible{outline:2px solid var(--ring);outline-offset:2px;}";
     document.head.appendChild(s);
   }, []);
-  const bg = selected ? "var(--sage-900)" : hover ? "var(--secondary)" : "var(--card)";
-  const border = selected ? "1px solid transparent" : "1px solid var(--border)";
-  const color = selected ? "var(--sage-50)" : "var(--foreground)";
-  const filter = !disabled && selected && hover ? "brightness(0.92)" : "none";
+  const bg = selected ? "var(--green-50)" : hover ? "var(--secondary)" : "var(--card)";
+  const border = selected ? "1px solid var(--green-700)" : "1px solid var(--border)";
+  const color = selected ? "var(--green-700)" : "var(--foreground)";
+  const filter = !disabled && selected && hover ? "brightness(0.97)" : "none";
   return /*#__PURE__*/React.createElement("button", _extends({
     type: "button",
     className: "mt-bookmarktoggle",
@@ -119,6 +120,12 @@ const {
  *   도움돼요·스크랩이 나란히 놓이므로 색으로 갈라야 어느 쪽을 눌렀는지 한눈에 보인다. 숫자도 아이콘과 같은 색. 배경은 여전히 없음(반전 아님).
  *  HugeIcons 정적 CDN에 해당 solid가 없어, stroke 1.6 라운드 인라인 SVG로 outline↔fill을 토글한다.
  *  (서버 저장·비로그인 유도는 범위 밖 — 화면이 onChange를 가로챈다. 컴포넌트는 상태 표현만.)
+ *  [appearance] DS-86 — "inline"(기본, 위 그대로 · QnaCard·QnaListItem) · "box"(높이 48 · --radius-md · 1px --border · 흰 면 · 좌우 16 ·
+ *   아이콘 18 + 간격 6 + 수 caption tabular). IconButton lg와 나란히 서면 높이·반경이 같다. box의 dark 켜짐은 --foreground.
+ *  [repeat] DS-23 — 누를 때마다 onIncrement()를 부르고 수를 하나 올린다(끄는 동작 없음 · 상한 없음). selected = 한 번 이상 눌렀다(아이콘 채움).
+ *   aria-pressed를 달지 않는다(토글이 아니다). 접근 이름은 「도움돼요 77」, 수가 바뀌면 aria-live="polite".
+ *   DS-116 — 수와 채움은 바깥 값만 따른다. 누르면 onIncrement 만 부른다 — 부품은 수를 올리지도 채움을 켜지도 않는다.
+ *   바깥이 count 를 올리면 오르고, 그대로 두면(거절 · 비로그인) 그대로, 내리면(실패 되돌림) 내린 수. 채움 = selected.
  */
 const PATHS = {
   favourite: "M12 20.25c-.24 0-.47-.07-.67-.2-1.02-.66-3.64-2.44-5.86-4.79C3.33 12.98 2 10.86 2 8.66 2 5.92 4.19 3.75 6.9 3.75c2.02 0 3.6 1.1 5.1 2.98 1.5-1.88 3.08-2.98 5.1-2.98 2.71 0 4.9 2.17 4.9 4.91 0 2.2-1.33 4.32-3.47 6.6-2.22 2.35-4.84 4.13-5.86 4.79-.2.13-.43.2-.67.2z",
@@ -137,7 +144,10 @@ function CountToggle({
   tone = "dark",
   selected = false,
   onChange,
+  onIncrement,
   count,
+  appearance = "inline",
+  repeat = false,
   disabled = false,
   ariaLabel,
   style,
@@ -145,6 +155,19 @@ function CountToggle({
 }) {
   const [hover, setHover] = useState(false);
   const [pressed, setPressed] = useState(false);
+  const box = appearance === "box";
+  // DS-116 — repeat 도 바깥 count 만 보인다(로컬로 올리지 않는다). aria-label 의 수도 같다.
+  const shown = count;
+  const name = (ariaLabel || LABEL[icon] || "토글") + (repeat && shown != null ? " " + shown : "");
+  const onClick = () => {
+    if (disabled) return;
+    // DS-116 — repeat: onIncrement 만 부른다. 수 · 채움은 바깥이 정한다.
+    if (repeat) {
+      if (onIncrement) onIncrement();
+      return;
+    }
+    if (onChange) onChange(!selected);
+  };
   useEffect(() => {
     if (document.getElementById("mt-counttoggle-style")) return;
     const s = document.createElement("style");
@@ -152,16 +175,14 @@ function CountToggle({
     s.textContent = ".mt-counttoggle:focus-visible{outline:2px solid var(--ring);outline-offset:2px;}";
     document.head.appendChild(s);
   }, []);
-  const color = disabled ? "var(--sage-400)" : selected ? TONE[tone] || TONE.dark : hover ? "var(--sage-700)" : "var(--muted-foreground)";
+  const color = disabled ? "var(--sage-400)" : selected ? box && tone !== "rose" ? "var(--foreground)" : TONE[tone] || TONE.dark : hover ? "var(--sage-700)" : box ? "var(--foreground)" : "var(--muted-foreground)";
   return /*#__PURE__*/React.createElement("button", _extends({
     type: "button",
     className: "mt-counttoggle",
-    "aria-pressed": selected,
-    "aria-label": ariaLabel || LABEL[icon] || "토글",
+    "aria-pressed": repeat ? undefined : selected,
+    "aria-label": name,
     disabled: disabled,
-    onClick: () => {
-      if (!disabled && onChange) onChange(!selected);
-    },
+    onClick: onClick,
     onMouseEnter: () => setHover(true),
     onMouseLeave: () => {
       setHover(false);
@@ -174,10 +195,13 @@ function CountToggle({
     style: {
       display: "inline-flex",
       alignItems: "center",
-      gap: 5,
-      border: "none",
-      background: "transparent",
-      padding: "4px 2px",
+      gap: box ? 6 : 5,
+      border: box ? "1px solid var(--border)" : "none",
+      borderRadius: box ? "var(--radius-md)" : undefined,
+      background: box ? hover && !disabled ? "var(--secondary)" : "var(--card)" : "transparent",
+      height: box ? 48 : undefined,
+      boxSizing: "border-box",
+      padding: box ? "0 16px" : "4px 2px",
       margin: 0,
       fontFamily: "var(--font-sans)",
       fontSize: "var(--text-caption)",
@@ -186,12 +210,12 @@ function CountToggle({
       cursor: disabled ? "not-allowed" : "pointer",
       opacity: disabled ? 0.55 : 1,
       transform: pressed ? "translateY(0.5px)" : "none",
-      transition: "color 150ms ease, transform 120ms ease",
+      transition: "color 150ms ease, background-color 150ms ease, transform 120ms ease",
       ...style
     }
   }, rest), /*#__PURE__*/React.createElement("svg", {
-    width: 16,
-    height: 16,
+    width: box ? 18 : 16,
+    height: box ? 18 : 16,
     viewBox: "0 0 24 24",
     fill: selected ? "currentColor" : "none",
     stroke: "currentColor",
@@ -201,12 +225,13 @@ function CountToggle({
     "aria-hidden": "true"
   }, /*#__PURE__*/React.createElement("path", {
     d: PATHS[icon] || PATHS.favourite
-  })), count != null && /*#__PURE__*/React.createElement("span", {
+  })), shown != null && /*#__PURE__*/React.createElement("span", {
+    "aria-live": repeat ? "polite" : undefined,
     style: {
       fontVariantNumeric: "tabular-nums",
       lineHeight: 1
     }
-  }, count));
+  }, shown));
 }
 Object.assign(__ds_scope, { CountToggle });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/core/CountToggle.jsx", error: String((e && e.message) || e) }); }
@@ -332,7 +357,13 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
 /**
  * Icon — HugeIcons static SVG recolored to currentColor via CSS mask.
  * The only icon primitive; HugeIcons is the mentree icon set.
+ * DS 자체 아이콘(LOCAL) — 이름이 여기 있으면 CDN 대신 이것을 쓴다. 원본은 assets/icons/<이름>.svg.
+ *  마스크 url 은 문서 기준으로 풀려 소비처마다 경로가 달라지므로, 같은 파일 내용을 data URI 로 싣는다.
+ *  answer-done(DS-96) — 둥근 말풍선(타원 호 몸통 · 꼬리 오른쪽 아래 · 체크 하나). 3회차 지시의 경로 그대로. HugeIcons 경로를 복사 · 뒤집지 않았다(패키지는 「있는 그대로만 사용」).
  */
+const LOCAL = {
+  "answer-done": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19.28 17.29A9.5 9 0 1 0 16.01 19.66Q18.4 20.75 21 21.25Q19.95 19.45 19.28 17.29Z"/><path d="M8.25 11.75L10.75 14.25L15.75 9.25"/></svg>'
+};
 function Icon({
   name,
   size = 20,
@@ -342,7 +373,7 @@ function Icon({
   className,
   ...rest
 }) {
-  const url = strokeUrl || `https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/${name}.svg`;
+  const url = strokeUrl || (LOCAL[name] ? `data:image/svg+xml;utf8,${encodeURIComponent(LOCAL[name])}` : null) || `https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/${name}.svg`;
   return /*#__PURE__*/React.createElement("span", _extends({
     role: "img",
     "aria-label": name,
@@ -533,7 +564,8 @@ const {
 } = React;
 /**
  * Badge — 계열 × leading × 사이즈 색 시스템.
- *  계열(variant): "category"(분류·뉴트럴 sage) · "status"(상태) · "tag"(질적태그 8색).
+ *  계열(variant): "category"(분류·뉴트럴 sage · tone="primary"면 초록 외곽선, DS-91) · "status"(상태) · "tag"(질적태그 8색)
+ *   · "accent"(DS-83 — 주황 「New」. 면 orange-50 · 테두리/글자 orange-700 · 600 · 양끝 반원).
  *  status(상태값): "active"(진행중·green) · "new"(신규·green tint) · "closed"(마감·destructive) · "waiting"(대기·muted) · "hold"(보류·muted).
  *  hue(질적태그 8색): neutral·blue·sky·indigo·amber·rose·purple·teal.
  *  leading(전 계열 공통 앞자리 슬롯): "none" · "dot" · "flag"(국기) · "avatar" · "icon"(DS-79 — HugeIcons, 아이콘만 --primary).
@@ -550,7 +582,9 @@ const SIZES = {
     gap: 5,
     slot: 16,
     dot: 5,
-    icon: 14
+    icon: 14,
+    rectW: 21,
+    rectH: 14
   },
   md: {
     h: 28,
@@ -561,7 +595,9 @@ const SIZES = {
     gap: 6,
     slot: 18,
     dot: 6,
-    icon: 16
+    icon: 16,
+    rectW: 24,
+    rectH: 16
   },
   lg: {
     h: 34,
@@ -572,12 +608,28 @@ const SIZES = {
     gap: 7,
     slot: 22,
     dot: 7,
-    icon: 18
+    icon: 18,
+    rectW: 30,
+    rectH: 20
   }
 };
 
 // flag 국기 에셋 기본 경로(DS 카드 기준). 소비처는 flagBase prop으로 재정의.
 const FLAG_BASE = "../../assets/flags/";
+// DS-99 — flagShape="rect" 기본 경로(30×20 자산)
+const FLAG_RECT_BASE = "../../assets/flags-rect/";
+// 라벨이 숨어도 접근 이름으로 남긴다
+const SR_ONLY = {
+  position: "absolute",
+  width: 1,
+  height: 1,
+  padding: 0,
+  margin: -1,
+  overflow: "hidden",
+  clip: "rect(0 0 0 0)",
+  whiteSpace: "nowrap",
+  border: 0
+};
 
 // 질적 태그 8색 — [배경 50, 아웃라인 200, 라벨 700(밝은 hue는 800)]
 const HUES = {
@@ -623,8 +675,20 @@ const STATUS = {
     text: "var(--muted-foreground)"
   }
 };
-function palette(variant, status, hue) {
+function palette(variant, status, hue, tone) {
   if (variant === "status") return STATUS[status] || STATUS.waiting;
+  // DS-83 — 주황 「New」. 대비로 단을 골랐다(700 글자 4.88:1 — 500은 2.64:1로 모자라다)
+  if (variant === "accent") return {
+    bg: "var(--orange-50)",
+    line: "var(--orange-700)",
+    text: "var(--orange-700)"
+  };
+  // DS-91 — 초록 외곽선. 흰 면 · green-200 테두리 · green-900 글자(MultiSelect 고른 칩과 같다)
+  if (variant === "category" && tone === "primary") return {
+    bg: "var(--card)",
+    line: "var(--green-200)",
+    text: "var(--green-900)"
+  };
   const h = variant === "tag" ? HUES[hue] || HUES.neutral : HUES.neutral;
   return {
     bg: `var(${h[0]})`,
@@ -634,11 +698,13 @@ function palette(variant, status, hue) {
 }
 function Badge({
   variant = "category",
+  tone = "neutral",
   status,
   hue = "neutral",
   leading = "none",
   flag,
-  flagBase = FLAG_BASE,
+  flagShape = "circle",
+  flagBase,
   avatar,
   icon,
   size = "md",
@@ -649,7 +715,8 @@ function Badge({
   ...rest
 }) {
   const s = SIZES[size] || SIZES.md;
-  const p = palette(variant, status, hue);
+  const p = palette(variant, status, hue, tone);
+  const accent = variant === "accent";
   // 접면 기반 좌우 패딩 — 각 변을 독립 판단: 텍스트 접면=padText, 슬롯(국기·아바타·dot·"+N ⌄") 접면=padSlot.
   const hasLead = leading !== "none" && !(leading === "avatar" && !avatar) && !(leading === "icon" && !icon);
   const labelShown = !labelHidden && children != null && children !== "";
@@ -678,20 +745,31 @@ function Badge({
       }
     });
   } else if (leading === "flag") {
-    // 원형 국기 SVG(assets/flags/{국가명}.svg). 미등록/실패 시 빈 원형 placeholder.
+    // circle: 원형 국기 SVG(assets/flags/). rect(DS-99): 직사각 국기(assets/flags-rect/) · 크기 sm21×14 · md24×16 · lg30×20
+    //  · 반경 2 · 1px --border 링(흰 국기가 흰 면에 묻히지 않게). Flag 의 2px 흰 여백 틀은 쓰지 않는다. 미등록/실패 시 빈 placeholder.
+    const rect = flagShape === "rect";
+    const base = flagBase || (rect ? FLAG_RECT_BASE : FLAG_BASE);
+    const frame = rect ? {
+      width: s.rectW,
+      height: s.rectH,
+      borderRadius: 2,
+      boxShadow: "0 0 0 1px var(--border)"
+    } : {
+      width: s.slot,
+      height: s.slot,
+      borderRadius: "50%",
+      boxShadow: "0 0 0 1px color-mix(in oklch, var(--sage-950) 8%, transparent)"
+    };
     lead = /*#__PURE__*/React.createElement("span", {
       style: {
-        width: s.slot,
-        height: s.slot,
-        borderRadius: "50%",
+        ...frame,
         overflow: "hidden",
         flex: "0 0 auto",
         background: "var(--sage-100)",
-        display: "inline-flex",
-        boxShadow: "0 0 0 1px color-mix(in oklch, var(--sage-950) 8%, transparent)"
+        display: "inline-flex"
       }
     }, flag && /*#__PURE__*/React.createElement("img", {
-      src: `${flagBase}${flag}.svg`,
+      src: `${base}${flag}.svg`,
       alt: "",
       onError: e => {
         e.currentTarget.style.display = "none";
@@ -729,7 +807,7 @@ function Badge({
   return /*#__PURE__*/React.createElement("span", _extends({
     ref: rootRef,
     style: {
-      position: hasExtra ? "relative" : undefined,
+      position: hasExtra || labelHidden ? "relative" : undefined,
       display: "inline-flex",
       alignItems: "center",
       gap: s.gap,
@@ -738,16 +816,18 @@ function Badge({
       paddingRight: hasExtra || !labelShown ? s.padSlot : s.padText,
       fontFamily: "var(--font-sans)",
       fontSize: s.fs,
-      fontWeight: 500,
+      fontWeight: accent ? 600 : 500,
       lineHeight: 1,
-      borderRadius: s.radius,
+      borderRadius: accent ? 9999 : s.radius,
       background: p.bg,
       color: p.text,
       border: `1px solid ${p.line}`,
       whiteSpace: "nowrap",
       ...style
     }
-  }, rest), lead, !labelHidden && children, hasExtra && /*#__PURE__*/React.createElement("button", {
+  }, rest), lead, labelHidden ? children != null && children !== "" ? /*#__PURE__*/React.createElement("span", {
+    style: SR_ONLY
+  }, children) : null : children, hasExtra && /*#__PURE__*/React.createElement("button", {
     type: "button",
     onClick: onToggle,
     onPointerDown: e => e.stopPropagation(),
@@ -812,7 +892,8 @@ Object.assign(__ds_scope, { Badge });
 // components/core/Button.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-const RADIUS = "var(--radius-md)";
+// DS-89 — 모든 크기 10. IconButton · BookmarkToggle 은 12 그대로(반경 토큰은 안 바꾼다)
+const RADIUS = 10;
 const SIZES = {
   sm: {
     height: 32,
@@ -1179,16 +1260,16 @@ const VARIANTS = {
 };
 
 // DS-35 — 토글 상태. pressed를 주면 variant 대신 이 둘을 쓴다.
-// 혼자 서는 토글은 켜지면 반전한다 — BookmarkToggle 선택 값과 같다(--sage-900 면 + --sage-50 아이콘 + 테두리 투명).
+// DS-94 — 혼자 서는 토글의 켜짐은 초록이다. BookmarkToggle 켜짐과 같은 값(면 --green-50 · 1px --green-700 · 아이콘 --green-700).
 const PRESSED_OFF = VARIANTS.outline;
 const PRESSED_ON = {
-  background: "var(--sage-900)",
-  color: "var(--sage-50)",
-  border: "1px solid transparent"
+  background: "var(--green-50)",
+  color: "var(--green-700)",
+  border: "1px solid var(--green-700)"
 };
 
 // 켜지면 속을 채우는 아이콘 — HugeIcons 정적 CDN에 solid가 없어 BookmarkToggle처럼 인라인 SVG로 선↔채움을 바꾼다.
-// 그 밖의 아이콘은 채움 없이 반전 면만 바뀐다.
+// 그 밖의 아이콘은 채움 없이 초록 켜짐 면만 바뀐다.
 const BOOKMARK_PATH = "M5 4.6C5 3.72 5.72 3 6.6 3h10.8c.88 0 1.6.72 1.6 1.6v15.5c0 .82-.92 1.3-1.58.82L12 17.4l-5.42 3.52C5.92 21.4 5 20.92 5 20.1V4.6z";
 const HEART_PATH = "M12 20.2c-.28 0-.55-.09-.78-.27C8.3 17.64 3 13.5 3 8.86 3 6.18 5.1 4 7.72 4c1.7 0 3.2.9 4.28 2.3C13.08 4.9 14.58 4 16.28 4 18.9 4 21 6.18 21 8.86c0 4.64-5.3 8.78-8.22 11.07-.23.18-.5.27-.78.27z";
 const FILLABLE = {
@@ -1206,7 +1287,8 @@ function ensureToggleStyle() {
 
 /**
  * IconButton — square button with a single HugeIcons glyph. 높이는 Button과 맞춘다(sm32·md40·lg48).
- * DS-35: pressed(boolean)를 주면 켜짐·꺼짐 토글 — false=outline, true=반전(--sage-900 면 + 아이콘 --sage-50 + 테두리 투명).
+ * DS-35 · DS-94: pressed(boolean)를 주면 켜짐·꺼짐 토글 — false=outline, true=초록 켜짐(면 --green-50 · 1px --green-700 · 아이콘 --green-700).
+ * DS-85: shape="rounded"(기본 · 반경 12) · "circle"(폭 = 높이 · 반경 50%). 맨 위로 버튼은 화면이 primary lg circle arrow-up-01로 조립한다.
  *  bookmark-01·bookmark-02·favourite는 켜지면 속을 채운다. aria-pressed를 단다.
  *  hover·active·focus-visible은 BookmarkToggle과 같다. pressed를 안 주면 이전과 같다(variant 그대로).
  */
@@ -1215,6 +1297,7 @@ const IconButton = React.forwardRef(function IconButton({
   variant = "ghost",
   size = "md",
   pressed,
+  shape = "rounded",
   disabled = false,
   ariaLabel,
   style,
@@ -1224,6 +1307,7 @@ const IconButton = React.forwardRef(function IconButton({
   const dim = SIZES[size] || SIZES.md;
   const iconSize = ICON[size] || ICON.md;
   const isToggle = typeof pressed === "boolean";
+  const radius = shape === "circle" ? "50%" : "var(--radius-md)";
   const [hover, setHover] = React.useState(false);
   const [down, setDown] = React.useState(false);
   React.useEffect(() => {
@@ -1255,11 +1339,11 @@ const IconButton = React.forwardRef(function IconButton({
         width: dim,
         height: dim,
         padding: 0,
-        borderRadius: "var(--radius-md)",
+        borderRadius: radius,
         border: v.border,
         color: v.color,
         background: !pressed && hover && !disabled ? "var(--secondary)" : v.background,
-        filter: !disabled && pressed && hover ? "brightness(0.92)" : "none",
+        filter: !disabled && pressed && hover ? "brightness(0.97)" : "none",
         cursor: disabled ? "not-allowed" : "pointer",
         opacity: disabled ? 0.5 : 1,
         transform: down ? "translateY(0.5px)" : "none",
@@ -1297,7 +1381,8 @@ const IconButton = React.forwardRef(function IconButton({
       justifyContent: "center",
       width: dim,
       height: dim,
-      borderRadius: "var(--radius-md)",
+      padding: 0,
+      borderRadius: radius,
       cursor: disabled ? "not-allowed" : "pointer",
       opacity: disabled ? 0.5 : 1,
       transition: "background-color 150ms ease, color 150ms ease, filter 150ms ease",
@@ -2373,6 +2458,8 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
  *  포커스+입력 빈값=최근 검색어, 입력 중=자동완성. 둘을 쌓지 않는다(갈아끼움).
  *  자동완성 0건이면 드롭다운을 닫는다("결과 없음"을 띄우지 않는다 — 아래 목록이 이미 답한다).
  *  정렬·필터·개수 제한은 부품이 하지 않는다 — completions/recent는 바깥이 이미 정렬해 넘긴 배열이다.
+ *  submitLabel(DS-97) — 주면 검색창 안 오른쪽에 작은 버튼(높이 32 · 좌우 14 · 1px --border · 반경 10 · 흰 면 ·
+ *   --primary 600 · --text-caption). 누르거나 Enter로 onSearch. 입력 중에는 부르지 않는다. 검색창 면은 채우지 않는다.
  */
 function highlightMatch(item, query) {
   if (!query) return item;
@@ -2393,6 +2480,7 @@ function SearchInput({
   recent = [],
   onRemoveRecent,
   placeholder = "검색어를 입력하세요",
+  submitLabel,
   disabled = false,
   invalid = false,
   id,
@@ -2529,7 +2617,33 @@ function SearchInput({
       width: 24,
       height: 24
     }
-  })), open && /*#__PURE__*/React.createElement("div", {
+  }), submitLabel && /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: "mt-search-submit",
+    disabled: disabled,
+    onClick: () => {
+      setClosedByEsc(true);
+      commitSearch(value);
+    },
+    style: {
+      flex: "0 0 auto",
+      height: 32,
+      padding: "0 14px",
+      marginRight: -4,
+      border: "1px solid var(--border)",
+      borderRadius: 10,
+      background: "var(--card)",
+      color: "var(--primary)",
+      fontFamily: "var(--font-sans)",
+      fontSize: "var(--text-caption)",
+      fontWeight: 600,
+      lineHeight: 1,
+      letterSpacing: 0,
+      whiteSpace: "nowrap",
+      cursor: disabled ? "not-allowed" : "pointer",
+      transition: "background-color 150ms ease"
+    }
+  }, submitLabel)), open && /*#__PURE__*/React.createElement("div", {
     id: listboxId,
     role: "listbox",
     style: {
@@ -3324,7 +3438,7 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
  * ActionBanner — 문구 + 버튼 배너(DS-34). 모양이 고정이다.
  *  Banner(자유 프로모 슬롯, 배경·효과 자유)와 다르다 — 이 부품은 면·글자·버튼 규칙이 정해져 있다.
  *  쓰는 곳: Q&A 상세 멘토 유도 · 아티클 상세 카테고리 CTA · 멘토 상세 탭 끝 CTA.
- *  면: --green-50 · 1px --primary · --radius-lg · 24/32.
+ *  면: --green-100(DS-98 · Figma 1647:50863) · 1px --primary · --radius-lg · 24/32. 설명 글 --sage-700(muted는 green-100 위 3.82:1로 모자란다).
  *  inline(기본): 문구 좌 · Button primary md 우 · 간격 24 · 세로 가운데.
  *  stacked: 가운데 정렬 · 문구 아래 Button primary lg · 간격 16.
  *  ≤768: inline도 stacked로 · 안쪽 여백 20 · 버튼 폭 100%(높이 48 = lg).
@@ -3365,7 +3479,7 @@ function ActionBanner({
       padding: "24px 32px",
       boxSizing: "border-box",
       width: "100%",
-      background: "var(--green-50)",
+      background: "var(--green-100)",
       border: "1px solid var(--primary)",
       borderRadius: "var(--radius-lg)",
       color: "var(--foreground)",
@@ -3392,7 +3506,7 @@ function ActionBanner({
       fontSize: "var(--text-body)",
       lineHeight: "var(--text-body--line-height)",
       letterSpacing: "var(--text-body--letter-spacing)",
-      color: "var(--muted-foreground)",
+      color: "var(--sage-700)",
       textWrap: "pretty"
     }
   }, description)), actionLabel && /*#__PURE__*/React.createElement("div", {
@@ -3774,7 +3888,16 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
  *  얇은 한 줄 기준(44 전후), 텍스트 2줄까지 허용(모바일). 정렬 center(기본)/left.
  *  구성: (아이콘) + 메시지 + (인라인 링크 "자세히 보기 >") + (닫기 X) — 각각 독립 옵션.
  *  variant 4종: 옅은 배경 + 진한 텍스트/아이콘(Badge 50/700 패턴 상속).
+ *  variant="event"(DS-92 · Figma 1610:26665) — 이벤트 띠. 면 --green-950 · 위아래 12 · 가운데 · 띠 전체가 링크 하나(href).
+ *   [image 높이 32] → 12 → 제목(heading) caption 700 흰 → 12 → 설명(children) caption 400 흰 → 8 → arrow-right-double 16 흰.
+ *   닫기 없음(세울지는 화면이 정한다). 좁은 폭에서 2줄까지.
  */
+if (typeof document !== "undefined" && !document.getElementById("mt-callout-event-style")) {
+  const s = document.createElement("style");
+  s.id = "mt-callout-event-style";
+  s.textContent = ".mt-callout-event:hover span span{text-decoration:underline;text-underline-offset:3px;}.mt-callout-event:focus-visible{outline:2px solid var(--ring);outline-offset:-4px;}";
+  document.head.appendChild(s);
+}
 const VARIANTS = {
   info: {
     bg: "var(--sage-50)",
@@ -3811,9 +3934,75 @@ function CalloutBar({
   linkHref,
   onLinkClick,
   onClose,
+  heading,
+  href,
+  image,
   style,
   ...rest
 }) {
+  if (variant === "event") {
+    return /*#__PURE__*/React.createElement("a", _extends({
+      href: href || "#",
+      className: "mt-callout-event",
+      style: {
+        width: "100%",
+        boxSizing: "border-box",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 12,
+        padding: "12px 20px",
+        borderRadius: 0,
+        background: "var(--green-950)",
+        color: "var(--card)",
+        textDecoration: "none",
+        fontFamily: "var(--font-sans)",
+        fontSize: "var(--text-caption)",
+        lineHeight: "var(--text-caption--line-height)",
+        letterSpacing: "var(--text-caption--letter-spacing)",
+        wordBreak: "keep-all",
+        overflowWrap: "break-word",
+        ...style
+      }
+    }, rest), image && /*#__PURE__*/React.createElement("img", {
+      src: image,
+      alt: "",
+      style: {
+        height: 32,
+        width: "auto",
+        flex: "0 0 auto",
+        display: "block"
+      }
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        minWidth: 0,
+        display: "-webkit-box",
+        WebkitBoxOrient: "vertical",
+        WebkitLineClamp: 2,
+        overflow: "hidden"
+      }
+    }, heading && /*#__PURE__*/React.createElement("b", {
+      style: {
+        fontWeight: 700,
+        marginRight: 12
+      }
+    }, heading), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontWeight: 400
+      }
+    }, children), /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+      name: "arrow-right-double",
+      size: 16,
+      "aria-hidden": "true",
+      "aria-label": undefined,
+      role: undefined,
+      style: {
+        marginLeft: 8,
+        verticalAlign: "-3px",
+        color: "var(--card)"
+      }
+    })));
+  }
   const v = VARIANTS[variant] || VARIANTS.info;
   const iconName = icon || v.defaultIcon;
   return /*#__PURE__*/React.createElement("div", _extends({
@@ -3916,16 +4105,33 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
  *  데스크톱 기본 거동. mode("peek"|"snap-fit")와 좌우 배경(white) 페이드 추가.
  *   peek: 마지막 카드가 의도적으로 잘려 걸침(N+1) — "더 있음" 강조. snap-fit: 컨테이너 폭에 딱 떨어짐(잘림 없음).
  *   페이드: 넘치고 그 방향에 더 있으면 걸린다(mode·폭과 무관 — 1280이 아니어도 동작). Mobile(~768)은 페이드하지 않는다(CSS로 끈다).
+ *   DS-101 — 1장씩(첫 카드 폭 = 트랙 보이는 폭)이면 페이드를 걸지 않는다.
  *   세로 그림자: 스크롤 트랙 상하 여유 패딩 + 동일 크기 음수 마진으로, 가로 스크롤을 유지하면서 카드 세로 그림자가 잘리지 않게(외부 점유 박스 불변).
  *
  *  화살표 연동: ref로 scrollPrev()/scrollNext() 호출(1단위=현재 표시 개수만큼 이동).
  *  끝 도달은 onEdgeChange({atStart, atEnd})로 통지 → SectionHeader 화살표 disabled.
  */
+// DS-106 — display:contents 감싸개(화면의 div.sc-host-x 등)는 건너뛰고 그 안으로 내려가 상자 있는 첫 요소를 찾는다.
+function boxesOf(node, out, firstOnly) {
+  for (const c of Array.from(node.children)) {
+    if (getComputedStyle(c).display === "contents") {
+      boxesOf(c, out, firstOnly);
+    } else out.push(c);
+    if (firstOnly && out.length) return out;
+  }
+  return out;
+}
+// DS-106 — 카드 폭은 첫 실물 카드에서 잰다. 없으면 0.
+function firstCardWidth(el) {
+  const b = boxesOf(el, [], true)[0];
+  return b ? b.getBoundingClientRect().width : 0;
+}
 const Carousel = React.forwardRef(function Carousel({
   children,
   gap = 16,
   snap = "card",
   mode = "snap-fit",
+  fade: fadeOn = true,
   onEdgeChange,
   style,
   ...rest
@@ -3952,15 +4158,22 @@ const Carousel = React.forwardRef(function Carousel({
     const atEnd = el.scrollLeft >= el.scrollWidth - el.clientWidth - 1;
     // 페이드는 넘치는 방향에 대해 걸린다. mode·폭과 무관 — peek든 snap-fit이든, 1280이 아니어도 동일.
     // Mobile(~768)에서는 CSS로 끈다(className 참조, matchMedia로 JS 분기하지 않는다).
+    // DS-101 — 1장씩(첫 카드 폭 = 트랙 보이는 폭, 차 1 이하)이면 양쪽 페이드를 걸지 않는다. 넘치든 아니든 같다.
+    //  페이드는 「걸친 카드가 더 있다」 신호인데 1장씩이면 걸친 카드가 없고 ← → 가 그 일을 한다.
+    //  (페이드가 그림자 여유 18까지 덮어 위 SectionHeader → 버튼 아래 테두리를 지우던 문제도 함께 사라진다.)
+    // DS-106 — 「첫 카드」는 감싸개 너머의 첫 실물 카드(firstCardWidth). fade={false}면 늘 걸지 않는다.
+    const cw = firstCardWidth(el);
+    const single = cw > 0 && Math.abs(cw - el.clientWidth) <= 1;
+    const on = fadeOn && !single && overflow;
     setFade({
-      left: overflow && !atStart,
-      right: overflow && !atEnd
+      left: on && !atStart,
+      right: on && !atEnd
     });
     if (onEdgeChange) onEdgeChange({
       atStart,
       atEnd
     });
-  }, [onEdgeChange]);
+  }, [onEdgeChange, fadeOn]);
 
   // 화살표 = 한 페이지 넘기기. 자유 스크롤의 카드 1장 스냅과는 별개.
   //  snap="unit": 1단위 = 트랙 가시 폭 한 화면.
@@ -3968,13 +4181,13 @@ const Carousel = React.forwardRef(function Carousel({
   const stepBy = React.useCallback(dir => {
     const el = trackRef.current;
     if (!el) return;
-    const items = Array.from(el.children);
-    if (!items.length) return;
     let amount;
     if (snap === "unit") {
       amount = el.clientWidth + gap;
     } else {
-      const cardW = items[0].getBoundingClientRect().width;
+      // DS-106 — 한 페이지 이동도 감싸개 너머의 첫 실물 카드 폭을 쓴다. 0이면 넘기지 않는다.
+      const cardW = firstCardWidth(el);
+      if (!cardW) return;
       const perView = Math.max(1, Math.floor((el.clientWidth + gap) / (cardW + gap)));
       amount = (cardW + gap) * perView;
     }
@@ -3998,6 +4211,22 @@ const Carousel = React.forwardRef(function Carousel({
       };
     }
   }), [stepBy]);
+
+  // DS-106 — 감싸개 안의 카드에도 트랙 자식과 같은 flex:0 0 auto · 스냅 정렬을 준다(cloneElement 는 감싸개에만 닿는다).
+  React.useLayoutEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    Array.from(el.children).forEach(c => {
+      if (getComputedStyle(c).display !== "contents") return;
+      boxesOf(c, [], false).forEach(b => {
+        if (!b.style.flex) b.style.flex = "0 0 auto";
+        if (!b.style.scrollSnapAlign) {
+          b.style.scrollSnapAlign = "start";
+          b.style.scrollSnapStop = "always";
+        }
+      });
+    });
+  });
   React.useEffect(() => {
     readEdges();
     const el = trackRef.current;
@@ -4006,9 +4235,18 @@ const Carousel = React.forwardRef(function Carousel({
       passive: true
     });
     window.addEventListener("resize", readEdges);
+    // DS-101 — 트랙 · 첫 카드 폭이 바뀌면(창 크기 · 부모 폭) 1장씩 판정을 다시 한다.
+    let ro;
+    if (typeof ResizeObserver !== "undefined") {
+      ro = new ResizeObserver(() => readEdges());
+      ro.observe(el);
+      const b = boxesOf(el, [], true)[0];
+      if (b) ro.observe(b);
+    }
     return () => {
       el.removeEventListener("scroll", readEdges);
       window.removeEventListener("resize", readEdges);
+      if (ro) ro.disconnect();
     };
   }, [readEdges]);
   return /*#__PURE__*/React.createElement("div", {
@@ -4292,6 +4530,7 @@ function SectionHeader({
   onViewAll,
   action,
   carousel = false,
+  size = "md",
   onPrev,
   onNext,
   prevDisabled = false,
@@ -4299,6 +4538,8 @@ function SectionHeader({
   style,
   ...rest
 }) {
+  // DS-29 — size "md"(기본) = --text-h0 · "lg" = --text-display(32/40 · Mobile 26/34, TOP). 오른쪽 조작·부가 글자는 그대로, 세로 가운데만 맞춘다.
+  const tk = size === "lg" ? "display" : "h0";
   return /*#__PURE__*/React.createElement("div", _extends({
     style: {
       display: "flex",
@@ -4344,10 +4585,10 @@ function SectionHeader({
   }, /*#__PURE__*/React.createElement("h2", {
     style: {
       margin: 0,
-      fontSize: "var(--text-h0)",
+      fontSize: `var(--text-${tk})`,
       fontWeight: 600,
-      letterSpacing: "var(--text-h0--letter-spacing)",
-      lineHeight: "var(--text-h0--line-height)",
+      letterSpacing: `var(--text-${tk}--letter-spacing)`,
+      lineHeight: `var(--text-${tk}--line-height)`,
       wordBreak: "keep-all",
       overflowWrap: "break-word"
     }
@@ -4376,7 +4617,9 @@ function SectionHeader({
   }, action, viewAll && /*#__PURE__*/React.createElement(__ds_scope.Button, {
     variant: "ghost",
     size: "md",
-    iconRight: "circle-arrow-up-right",
+    iconRight:
+    // DS-105 — 전체보기 아이콘 ›(아트디렉션 · 전 화면)
+    "arrow-right-01",
     onClick: onViewAll
   }, "\uC804\uCCB4\uBCF4\uAE30"), carousel &&
   /*#__PURE__*/
@@ -4543,7 +4786,12 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
  * Tabs — 같은 셸 안에서 내용을 바꾸는 전환(화면을 떠나지 않는다). WAI-ARIA tabs 패턴.
  * [ToggleGroup과의 경계] ToggleGroup=같은 목록의 조건을 바꾼다(면을 채운다) ·
  *  Tabs=내용 자체가 바뀐다(밑줄을 긋는다). 이 시각 차이로 둘을 구별한다 — Tabs는 면을 채우지 않는다.
- * [선택 표시] 밑줄(--primary 2px) + 라벨 색(--foreground/600). 색만으로 가르지 않는다(WCAG 1.4.1).
+ * [선택 표시] DS-96 — 높이 4 · 양끝 반원 · --primary 막대, 내용(아이콘 + 라벨 + 카운트) 폭. 아래 1px 구분선 위에 얹는다.
+ *  + 라벨 색(--foreground)·굵기. 색만으로 가르지 않는다(WCAG 1.4.1).
+ * [크기] size="s"(기본 · 멘토 상세) 라벨 폭 · 높이 42 · --text-body 600/500.
+ *  size="l"(Q&A 피드) 컨테이너를 같은 폭으로 나눈다 · 높이 60 · --text-h3 700/500 ·
+ *  항목 icon을 라벨 왼쪽에 22 · 간격 8(선택일 때만 --primary, 아니면 --muted-foreground).
+ * [fill] DS-111 — 탭들이 줄 폭을 똑같이 나누고(둘이면 반씩) 라벨은 탭 가운데 · 선택 막대가 탭 폭 전체. s · l 둘 다. 기본(없음)은 그대로.
  * [카운트] count를 넘기면 라벨 뒤에 Badge sm — 선택 탭은 status/active(green tint), 미선택은 분류(뉴트럴).
  *  배지는 눌리지 않는다(탭 버튼 안의 표시).
  * [폭] 탭 수 2~10. 줄바꿈하지 않는다(두 줄이 되면 셸 높이가 탭 수에 따라 변한다) — 가로 스크롤 +
@@ -4564,6 +4812,8 @@ function Tabs({
   onChange,
   idBase = "tabs",
   ariaLabel = "탭",
+  size = "s",
+  fill = false,
   style,
   ...rest
 }) {
@@ -4649,7 +4899,8 @@ function Tabs({
     style: {
       display: "flex",
       alignItems: "stretch",
-      gap: 4,
+      // DS-111 — fill 이면 탭 사이 간격 없이 줄 폭을 똑같이 나눈다
+      gap: size === "l" || fill ? 0 : 4,
       overflowX: "auto",
       overflowY: "hidden",
       flexWrap: "nowrap",
@@ -4662,6 +4913,8 @@ function Tabs({
       key: t.value,
       tab: t,
       selected: on,
+      size: size,
+      fill: fill,
       idBase: idBase,
       onSelect: () => {
         if (!t.disabled && onChange) onChange(t.value);
@@ -4697,11 +4950,14 @@ function Tabs({
 function TabButton({
   tab,
   selected,
+  size,
+  fill,
   idBase,
   onSelect,
   buttonRef
 }) {
   const [hover, setHover] = React.useState(false);
+  const L = size === "l";
   const color = tab.disabled ? "var(--sage-400)" : selected ? "var(--foreground)" : hover ? "var(--sage-700)" : "var(--muted-foreground)";
   return /*#__PURE__*/React.createElement("button", {
     type: "button",
@@ -4719,31 +4975,73 @@ function TabButton({
     onMouseLeave: () => setHover(false),
     style: {
       display: "inline-flex",
-      alignItems: "center",
-      gap: 6,
-      flex: "0 0 auto",
-      height: 42,
+      alignItems: "stretch",
+      justifyContent: "center",
+      // DS-111 — fill: 같은 폭(1 1 0) · 막대 기준이 되도록 relative
+      flex: L || fill ? "1 1 0" : "0 0 auto",
+      minWidth: L || fill ? 0 : undefined,
+      position: fill ? "relative" : undefined,
+      height: L ? 60 : 42,
       padding: "0 12px",
       margin: 0,
       border: "none",
       background: "transparent",
-      borderBottom: `2px solid ${selected ? "var(--primary)" : "transparent"}`,
       marginBottom: -1,
       color,
       fontFamily: "var(--font-sans)",
-      fontSize: "var(--text-body)",
-      fontWeight: selected ? 600 : 500,
+      fontSize: L ? "var(--text-h3)" : "var(--text-body)",
+      fontWeight: selected ? L ? 700 : 600 : 500,
       lineHeight: 1,
       whiteSpace: "nowrap",
       cursor: tab.disabled ? "not-allowed" : "pointer",
       opacity: tab.disabled ? 0.6 : 1,
-      transition: "color 150ms ease, border-color 150ms ease"
+      transition: "color 150ms ease"
     }
-  }, tab.label, tab.count != null && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      position: "relative",
+      display: "inline-flex",
+      alignItems: "center",
+      gap: L ? 8 : 6
+    }
+  }, L && tab.icon && /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: tab.icon,
+    size: 22,
+    "aria-hidden": "true",
+    "aria-label": undefined,
+    role: undefined,
+    style: {
+      color: selected ? "var(--primary)" : "var(--muted-foreground)",
+      transition: "background-color 150ms ease"
+    }
+  }), tab.label, tab.count != null && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
     size: "sm",
     variant: selected ? "status" : "category",
     status: selected ? "active" : undefined
-  }, tab.count));
+  }, tab.count), selected && !fill && /*#__PURE__*/React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      left: 0,
+      right: 0,
+      bottom: 0,
+      height: 4,
+      borderRadius: 2,
+      background: "var(--primary)"
+    }
+  })), selected && fill && /*#__PURE__*/React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      // DS-111 — fill: 선택 막대가 탭 폭 전체(높이 4 · 양끝 반원 · --primary 그대로)
+      position: "absolute",
+      left: 0,
+      right: 0,
+      bottom: 0,
+      height: 4,
+      borderRadius: 2,
+      background: "var(--primary)"
+    }
+  }));
 }
 
 /** 탭 패널 — Tabs와 같은 idBase를 넘긴다. 선택된 값만 렌더한다. */
@@ -5054,12 +5352,12 @@ try { (() => {
  *  좌: mentree 워드마크 풀컬러 그린(헤더는 밝은 배경 → 풀컬러 유지), 클릭 → 홈.
  *  중: 최상위 메뉴 3개(멘토 찾기·Q&A 멘토링·멘트리 인사이트). 각 메뉴 좌측 20px HugeIcons 모노 아이콘
  *     (전역 아이콘 원칙의 예외 아님). 라벨 16px·600, 활성은 굵기가 아니라 색(--primary)으로만 구분.
- *  우(guest): 회원가입/로그인(green 버튼 하나로 합침) + 기업 서비스(중립 outline, 외부 ↗).
+ *  우(guest): 회원가입/로그인(green 버튼 하나로 합침) + 기업 서비스(중립 outline 안에 비즈 로고 16 — DS-100).
  *     공지사항·뉴스는 헤더에 두지 않음(푸터에만).
  *  우(mentor·mentee): 알림 버튼 + 아바타, 간격 8 — 평상시 면 없이 아이콘 20 · 사진 32만 보이고 hover·focus에서만 40 원형 면.
  *     클릭·터치 영역은 항상 40×40. 회원가입·기업서비스 없음.
  *     두 상태는 모양이 같고 아바타 목적지만 다르다(mypage-mentor / mypage-mentee).
- *     아바타는 메뉴를 열지 않고 마이페이지 「프로필」 탭으로 직행. unread면 알림 아이콘(40 면이 아니다) 우상단에 빨간 점(8, 숫자 없음).
+ *     아바타는 메뉴를 열지 않고 마이페이지 「프로필」 탭으로 직행. unread면 알림 아이콘(40 면이 아니다) 우상단에 주황 점(8 · --orange-600, DS-83 · 숫자 없음).
  *     알림 popover는 이 부품이 열지 않는다(onNotify까지).
  *
  *  반응형 3구간:
@@ -5079,6 +5377,9 @@ try { (() => {
  */
 
 const HEADER_H = 64;
+// DS-100 — 기업 서비스 입구의 멘트리 비즈 로고(149×32 원본 색 그대로). nav-ia.js의 label은 다른 자리에서 쓴다.
+const BIZ_LOGO = "../../assets/logo/biz.svg";
+const BIZ_ARIA = "기업 서비스(멘트리 비즈)";
 const SCROLL_DELTA = 8;
 const HEIGHT_VAR = "--mt-header-height";
 const OFFSET_VAR = "--mt-header-offset";
@@ -5326,8 +5627,17 @@ function Header({
     className: "mt-header-bizbtn",
     size: "md",
     variant: "outline",
-    onClick: e => go(e, biz)
-  }, "\uAE30\uC5C5 \uC11C\uBE44\uC2A4")) :
+    onClick: e => go(e, biz),
+    "aria-label": BIZ_ARIA
+  }, /*#__PURE__*/React.createElement("img", {
+    src: BIZ_LOGO,
+    alt: "",
+    style: {
+      height: 16,
+      width: "auto",
+      display: "block"
+    }
+  }))) :
   /*#__PURE__*/
   /* 로그인(mentor·mentee) — 알림 40 + 아바타 40, 간격 8. 모양은 같고 아바타 목적지만 다르다. */
   React.createElement("div", {
@@ -5358,7 +5668,8 @@ function Header({
       width: 8,
       height: 8,
       borderRadius: "50%",
-      background: "var(--destructive)",
+      background: "var(--orange-600)",
+      /* DS-83 — 주황 악센트(흰 바탕 3.56:1 · 500은 2.80:1로 모자라다) */
       boxShadow: "0 0 0 2px var(--background)"
     }
   }))), /*#__PURE__*/React.createElement("a", {
@@ -5472,6 +5783,7 @@ function Header({
   }), biz && /*#__PURE__*/React.createElement("a", {
     href: biz.href,
     onClick: e => go(e, biz),
+    "aria-label": BIZ_ARIA,
     style: {
       display: "flex",
       alignItems: "center",
@@ -5486,7 +5798,15 @@ function Header({
       textDecoration: "none",
       color: "var(--biz-primary)"
     }
-  }, biz.label, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+  }, /*#__PURE__*/React.createElement("img", {
+    src: BIZ_LOGO,
+    alt: "",
+    style: {
+      height: 18,
+      width: "auto",
+      display: "block"
+    }
+  }), /*#__PURE__*/React.createElement(__ds_scope.Icon, {
     name: "arrow-up-right-01",
     size: 18,
     "aria-hidden": "true"
@@ -5531,12 +5851,15 @@ try { (() => {
  *  [닫기] Esc · 스크림 · ✕ → onClose. 닫을지는 화면이 정한다(open을 true로 두면 그대로 남는다).
  *   Esc는 안에 열린 목록([aria-expanded="true"])이 있거나 안쪽 부품이 이미 처리(preventDefault)했으면 넘긴다.
  *  [포커스] 열리면 안에 가둔다 — 첫 입력 칸, 없으면 ✕. 닫히면 연 요소로 돌려준다.
+ *  [DS-110] 제목 · 설명 · 본문 word-break: keep-all + overflow-wrap: anywhere. 버튼 글자는 그대로.
  *  [footerLayout] "end"(기본, 오른쪽 정렬) · "stack"(세로 — 첫 버튼 폭 전체, 그 아래 버튼은 가운데).
  *  [mobile] "center"(기본) · "fullscreen" — ≤768에서 화면 전체, 반경·스크림 없음, 푸터는 바닥 + safe-area.
  *   visualViewport로 소프트 키보드 위에 푸터를 남긴다. 뒤로가기 → onClose(열 때 기록 하나를 쌓고, 화면이 안 닫으면 다시 쌓는다).
  *   fullscreen(≤768)에서 열리면 포커스는 제목(tabIndex -1) — 키보드가 바로 올라오지 않게. 769 이상은 첫 입력 칸.
  *  [스크롤 잠금] 열리면 뒤 페이지를 잠근다 — body fixed + top = −scrollY(iOS Safari 포함) + 스크롤바 폭만큼 padding-right.
  *   닫히면 풀고 스크롤 위치를 되돌린다. 둘 이상 열려 있으면 마지막이 닫힐 때 푼다.
+ *  [DS-115] children 이 비었으면 몸 칸과 머리 아래 구분선을 그리지 않는다 — 제목(+설명) 다음이 바로 버튼 줄.
+ *   간격 = 머리 아래 8 + 푸터 위 16 = 24. fullscreen(≤768)은 그대로(몸 칸이 푸터를 바닥으로 민다).
  */
 
 let lockCount = 0;
@@ -5588,7 +5911,9 @@ function ensureDialogStyle() {
   if (typeof document === "undefined" || document.getElementById("mt-dialog-style")) return;
   const s = document.createElement("style");
   s.id = "mt-dialog-style";
-  s.textContent = ["@keyframes mt-fade{from{opacity:0}to{opacity:1}}@keyframes mt-pop{from{opacity:0;transform:scale(0.97)}to{opacity:1;transform:scale(1)}}", ".mt-dialog-footer[data-layout=stack]>:first-child{width:100%}", ".mt-dialog-title{outline:none;border-radius:var(--radius-sm)}.mt-dialog-title:focus-visible{outline:2px solid var(--ring);outline-offset:2px}", ".mt-dialog-footer[data-layout=stack]>:not(:first-child){align-self:center}", "@media (max-width:768px){", ".mt-dialog-overlay[data-mobile=fullscreen]{padding:0 !important;background:transparent !important;backdrop-filter:none !important;align-items:stretch !important}", ".mt-dialog-overlay[data-mobile=fullscreen]>.mt-dialog-panel{max-width:none !important;max-height:none !important;height:100%;border:0 !important;border-radius:0 !important;box-shadow:none !important;animation:none !important}", ".mt-dialog-overlay[data-mobile=fullscreen] .mt-dialog-footer{padding-bottom:calc(20px + env(safe-area-inset-bottom)) !important}", "}", "@media (prefers-reduced-motion:reduce){.mt-dialog-overlay,.mt-dialog-panel{animation:none !important}}"].join("");
+  s.textContent = ["@keyframes mt-fade{from{opacity:0}to{opacity:1}}@keyframes mt-pop{from{opacity:0;transform:scale(0.97)}to{opacity:1;transform:scale(1)}}", ".mt-dialog-footer[data-layout=stack]>:first-child{width:100%}",
+  // DS-110 — 제목 · 설명 · 본문은 어절 단위로 줄을 바꾼다(keep-all) · 긴 영문 · URL 은 넘치지 않게(anywhere). 버튼(푸터)은 그대로.
+  ".mt-dialog-title,.mt-dialog-desc,.mt-dialog-body{word-break:keep-all;overflow-wrap:anywhere}", ".mt-dialog-title{outline:none;border-radius:var(--radius-sm)}.mt-dialog-title:focus-visible{outline:2px solid var(--ring);outline-offset:2px}", ".mt-dialog-footer[data-layout=stack]>:not(:first-child){align-self:center}", "@media (max-width:768px){", ".mt-dialog-overlay[data-mobile=fullscreen]{padding:0 !important;background:transparent !important;backdrop-filter:none !important;align-items:stretch !important}", ".mt-dialog-overlay[data-mobile=fullscreen]>.mt-dialog-panel{max-width:none !important;max-height:none !important;height:100%;border:0 !important;border-radius:0 !important;box-shadow:none !important;animation:none !important}", ".mt-dialog-overlay[data-mobile=fullscreen] .mt-dialog-footer{padding-bottom:calc(20px + env(safe-area-inset-bottom)) !important}", "}", "@media (prefers-reduced-motion:reduce){.mt-dialog-overlay,.mt-dialog-panel{animation:none !important}}"].join("");
   document.head.appendChild(s);
 }
 function Dialog({
@@ -5771,6 +6096,9 @@ function Dialog({
   }, [open, isFs]);
   if (!open) return null;
   const stack = footerLayout === "stack";
+  // DS-115 — 본문이 비었는지(null · false · "" 는 없는 것으로).
+  const hasBody = React.Children.toArray(children).some(c => !(typeof c === "string" && c.trim() === ""));
+  const drawBody = hasBody || isFs;
   return /*#__PURE__*/React.createElement("div", {
     className: "mt-dialog-overlay",
     "data-mobile": mobile,
@@ -5830,8 +6158,8 @@ function Dialog({
       alignItems: "flex-start",
       justifyContent: "space-between",
       gap: 12,
-      padding: "20px 20px 16px",
-      borderBottom: "1px solid var(--border)"
+      padding: drawBody ? "20px 20px 16px" : footer ? "20px 20px 8px" : "20px",
+      borderBottom: drawBody ? "1px solid var(--border)" : "none" /* DS-115 — 본문 없으면 구분선 없음 · 아래 여백 8 */
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -5853,6 +6181,7 @@ function Dialog({
     }
   }, title), description && /*#__PURE__*/React.createElement("div", {
     id: descId,
+    className: "mt-dialog-desc",
     style: {
       fontSize: "var(--text-caption)",
       lineHeight: "var(--text-caption--line-height)",
@@ -5866,7 +6195,7 @@ function Dialog({
     size: "sm",
     ariaLabel: "\uB2EB\uAE30",
     onClick: onClose
-  })), /*#__PURE__*/React.createElement("div", {
+  })), drawBody && /*#__PURE__*/React.createElement("div", {
     ref: bodyRef,
     className: "mt-dialog-body",
     onScroll: measure,
@@ -5908,9 +6237,13 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
  *  (green 반전은 하지 않는다 — 반전은 안의 FilterChip 것).
  *  모달 안 선택은 "적용" 전까지 로컬 상태로만 쌓인다 — onChange는 적용에서만 부른다. 열 때마다 현재 value로 리셋.
  *  ESC·✕·바깥 클릭은 버린다. "초기화"는 로컬 선택만 비우고 모달은 열어둔다(onChange 호출 없음).
+ *  size(DS-112) — "md"(기본) 32 · "lg" 40(SearchInput · Select 와 같은 높이) — 글자 --text-body · 아이콘 16 · 좌우 14 · 반경 --radius-md · 간격 8.
+ *  icon(DS-97) — 칩 라벨 왼쪽에 선 아이콘 하나 · --primary · 14(닫힘 화살표와 같다). 칩 크기 · 글자는 그대로.
  */
 function FilterSelect({
   label,
+  icon,
+  size = "md",
   groups = [],
   value = [],
   onChange,
@@ -5918,6 +6251,9 @@ function FilterSelect({
   style,
   ...rest
 }) {
+  // DS-112 — size="lg": 높이 40 · 글자 --text-body · 아이콘 16 · 좌우 14 · 간격 8 · 반경 --radius-md(SearchInput · Select 와 같다). md 는 그대로.
+  const lg = size === "lg";
+  const iconSize = lg ? 16 : 14;
   const [open, setOpen] = React.useState(false);
   const [draft, setDraft] = React.useState(value);
   const triggerRef = React.useRef(null);
@@ -5958,11 +6294,12 @@ function FilterSelect({
     style: {
       display: "inline-flex",
       alignItems: "center",
-      gap: 6,
-      height: 32,
-      padding: "0 12px",
+      gap: lg ? 8 : 6,
+      height: lg ? 40 : 32,
+      padding: lg ? "0 14px" : "0 12px",
+      boxSizing: "border-box",
       fontFamily: "var(--font-sans)",
-      fontSize: "var(--text-caption)",
+      fontSize: lg ? "var(--text-body)" : "var(--text-caption)",
       fontWeight: filled ? 600 : 500,
       lineHeight: 1,
       letterSpacing: 0,
@@ -5975,9 +6312,18 @@ function FilterSelect({
       opacity: disabled ? 0.5 : 1,
       transition: "background-color 150ms ease, color 150ms ease, border-color 150ms ease"
     }
-  }, triggerText, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+  }, icon && /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: icon,
+    size: iconSize,
+    "aria-hidden": "true",
+    "aria-label": undefined,
+    role: undefined,
+    style: {
+      color: "var(--primary)"
+    }
+  }), triggerText, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
     name: "arrow-down-01",
-    size: 14,
+    size: iconSize,
     style: {
       transform: open ? "rotate(180deg)" : "none",
       transition: "transform 150ms ease"
@@ -6349,7 +6695,9 @@ try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /**
  * MultiSelect — 여러 개를 고르는 셀렉트(DS-71). Select를 고치지 않은 새 부품. 트리거·목록·키보드는 Select에 맞춘다.
- *  [칩 줄] 고른 것은 트리거 위에 Chip(md)으로 선다(⊗ = 빼기, 「{이름} 빼기」). 넘치면 여러 줄로 접힌다.
+ *  [칩 줄] 고른 것은 트리거 위에 칩으로 선다(✕ = 빼기, 「{이름} 빼기」). 넘치면 여러 줄로 접힌다.
+ *   DS-91 — 초록 외곽선(Badge tone="primary"와 같다): 흰 면 · 1px --green-200 · --green-900 글자 · ✕도 --green-900 ·
+ *   hover 면 --green-50. 치수는 Chip md(h32 · 반경 --radius-md · 14/500 · 좌12 우6)를 그대로 따른다.
  *  [트리거] 고른 것이 있어도 placeholder를 둔다(--muted-foreground). 높이 40 · Input과 같은 겉모양.
  *  [목록] Popover · 트리거 아래 4px · 트리거 폭 · max-height 320. 항목마다 체크 상자. 항목을 눌러도 닫지 않는다.
  *   role="listbox" + aria-multiselectable="true", 항목 aria-selected. groups를 주면 묶음 제목(고를 수 없음).
@@ -6364,7 +6712,7 @@ const norm = o => typeof o === "string" ? {
 if (typeof document !== "undefined" && !document.getElementById("mt-multiselect-style")) {
   const s = document.createElement("style");
   s.id = "mt-multiselect-style";
-  s.textContent = ".mt-multiselect-option:hover{background:var(--muted);}";
+  s.textContent = ".mt-multiselect-option:hover{background:var(--muted);}" + ".mt-multiselect-chip:hover{background:var(--green-50) !important;}" + ".mt-multiselect-chip-remove{position:relative;}.mt-multiselect-chip-remove::after{content:'';position:absolute;inset:-4px;}" + ".mt-multiselect-chip-remove:focus-visible{outline:2px solid var(--ring);outline-offset:2px;}";
   document.head.appendChild(s);
 }
 function MultiSelect({
@@ -6508,13 +6856,56 @@ function MultiSelect({
       flexWrap: "wrap",
       gap: 8
     }
-  }, value.map(v => /*#__PURE__*/React.createElement(__ds_scope.Chip, {
+  }, value.map(v => /*#__PURE__*/React.createElement("span", {
     key: v,
-    size: "md",
+    className: "mt-multiselect-chip",
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 6,
+      height: 32,
+      boxSizing: "border-box",
+      padding: "0 6px 0 12px",
+      borderRadius: "var(--radius-md)",
+      background: "var(--card)",
+      border: "1px solid var(--green-200)",
+      color: "var(--green-900)",
+      fontFamily: "var(--font-sans)",
+      fontSize: 14,
+      fontWeight: 500,
+      lineHeight: 1,
+      letterSpacing: 0,
+      whiteSpace: "nowrap",
+      opacity: disabled ? 0.5 : 1,
+      transition: "background-color 150ms ease"
+    }
+  }, /*#__PURE__*/React.createElement("span", null, labelOf(v)), /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: "mt-multiselect-chip-remove",
+    "aria-label": `${labelOf(v)} 빼기`,
     disabled: disabled,
-    onRemove: disabled ? undefined : () => remove(v),
-    removeAriaLabel: `${labelOf(v)} 빼기`
-  }, labelOf(v)))), /*#__PURE__*/React.createElement("div", {
+    onClick: e => {
+      e.stopPropagation();
+      if (!disabled) remove(v);
+    },
+    style: {
+      width: 22,
+      height: 22,
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: 0,
+      border: "none",
+      background: "transparent",
+      borderRadius: "50%",
+      color: "var(--green-900)",
+      cursor: disabled ? "not-allowed" : "pointer",
+      flex: "0 0 auto"
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: "cancel-01",
+    size: 13
+  }))))), /*#__PURE__*/React.createElement("div", {
     style: {
       position: "relative"
     }
@@ -6923,7 +7314,59 @@ Object.assign(__ds_scope, { Select });
 try { (() => {
 /**
  * Sheet — panel that slides in from an edge over a dimmed scrim.
+ *
+ * DS-113 — 키보드 · 포커스 · 스크롤 잠금 · headerAction.
+ *  [Esc] 열려 있으면 onClose. 안에 열린 목록([aria-expanded="true"])이 있거나 안쪽 부품이 이미 처리(preventDefault)했으면 넘긴다.
+ *  [포커스] 열리면 패널 안 첫 조작 요소로 · Tab/Shift+Tab 은 패널 안에서만 돈다 · 닫히면 열기 직전 요소로 되돌린다.
+ *  [스크롤 잠금] 열리면 뒤 문서를 잠근다(body fixed + top = −scrollY + 스크롤바 폭 padding). 닫으면 풀고 위치를 되돌린다.
+ *   Dialog 등이 이미 잠갔으면(body[data-mt-scroll-lock]) 건드리지 않는다.
+ *  [aria-labelledby] 제목이 있으면 제목 id.
+ *  [headerAction] 머리의 ✕ 왼쪽 자리(간격 4). 없으면 지금 그대로.
+ *
+ * DS-114 — 맨 위 층만 키를 받는다. 포커스가 Sheet 패널이 아닌 다른 aria-modal(위에 띄운 Dialog 등) 안에 있으면
+ *  Sheet 는 Esc · Tab 을 처리하지 않는다. 그 모달이 닫히면 포커스가 패널 안 연 요소로 돌아오고 다시 Sheet 가 받는다.
+ *  스크롤 잠금은 그대로(모달이 닫혀도 Sheet 가 열려 있으면 잠긴 채).
  */
+
+const SHEET_FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]):not([type="hidden"]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+let sheetSeq = 0;
+
+// DS-113 — 뒤 문서 스크롤 잠금. 이미 다른 부품이 잠갔으면 null(건드리지 않음).
+function sheetLockScroll() {
+  if (typeof document === "undefined") return null;
+  const b = document.body,
+    h = document.documentElement;
+  if (b.dataset.mtScrollLock != null) return null;
+  const y = window.scrollY || h.scrollTop || 0;
+  const sbw = window.innerWidth - h.clientWidth;
+  const pr = parseFloat(getComputedStyle(b).paddingRight) || 0;
+  const saved = {
+    y,
+    style: b.getAttribute("style")
+  };
+  Object.assign(b.style, {
+    position: "fixed",
+    top: -y + "px",
+    left: "0",
+    right: "0",
+    width: "100%",
+    overflow: "hidden"
+  });
+  if (sbw > 0) b.style.paddingRight = pr + sbw + "px";
+  b.dataset.mtScrollLock = String(y);
+  return saved;
+}
+function sheetUnlockScroll(saved) {
+  if (!saved || typeof document === "undefined") return;
+  const b = document.body,
+    h = document.documentElement;
+  if (saved.style == null) b.removeAttribute("style");else b.setAttribute("style", saved.style);
+  delete b.dataset.mtScrollLock;
+  const prev = h.style.scrollBehavior;
+  h.style.scrollBehavior = "auto";
+  window.scrollTo(0, saved.y);
+  h.style.scrollBehavior = prev;
+}
 function Sheet({
   open,
   onClose,
@@ -6932,9 +7375,72 @@ function Sheet({
   description,
   children,
   footer,
+  headerAction,
   size = 380,
   style
 }) {
+  const panelRef = React.useRef(null);
+  const closeRef = React.useRef(onClose);
+  closeRef.current = onClose;
+  const [titleId] = React.useState(() => "mt-sheet-title-" + ++sheetSeq);
+
+  // DS-113 — 열림: 포커스 이동 · 스크롤 잠금 · Esc · Tab 가두기. 닫힘: 포커스 되돌림 · 잠금 해제.
+  React.useEffect(() => {
+    if (!open) return;
+    const opener = typeof document !== "undefined" ? document.activeElement : null;
+    const saved = sheetLockScroll();
+    const panel = panelRef.current;
+    const items = () => panel ? Array.from(panel.querySelectorAll(SHEET_FOCUSABLE)).filter(el => el.offsetParent !== null || el === document.activeElement) : [];
+    const raf = requestAnimationFrame(() => {
+      const first = items()[0];
+      (first || panel)?.focus({
+        preventScroll: true
+      });
+    });
+    const onKey = e => {
+      if (!panel) return;
+      if (e.key !== "Escape" && e.key !== "Tab") return;
+      // DS-114 — 포커스가 다른 aria-modal(위 층) 안이면 키를 양보한다.
+      const a0 = document.activeElement;
+      const top = a0 && a0.closest ? a0.closest('[aria-modal="true"]') : null;
+      if (top && top !== panel) return;
+      if (e.key === "Escape") {
+        if (e.defaultPrevented || panel.querySelector('[aria-expanded="true"]')) return;
+        e.preventDefault();
+        closeRef.current?.();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const list = items();
+      if (!list.length) {
+        e.preventDefault();
+        panel.focus();
+        return;
+      }
+      const first = list[0],
+        last = list[list.length - 1],
+        a = document.activeElement;
+      if (!panel.contains(a)) {
+        e.preventDefault();
+        (e.shiftKey ? last : first).focus();
+      } else if (e.shiftKey && (a === first || a === panel)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && a === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      cancelAnimationFrame(raf);
+      document.removeEventListener("keydown", onKey);
+      sheetUnlockScroll(saved);
+      if (opener && typeof opener.focus === "function" && document.contains(opener)) opener.focus({
+        preventScroll: true
+      });
+    };
+  }, [open]);
   if (!open) return null;
   const horizontal = side === "left" || side === "right";
   const from = {
@@ -6950,6 +7456,7 @@ function Sheet({
     boxShadow: "var(--shadow-lg)",
     display: "flex",
     flexDirection: "column",
+    outline: "none",
     animation: "mt-slide 200ms ease",
     "--mt-from": from,
     ...(horizontal ? {
@@ -6980,8 +7487,11 @@ function Sheet({
       animation: "mt-fade 150ms ease"
     }
   }, /*#__PURE__*/React.createElement("div", {
+    ref: panelRef,
     role: "dialog",
     "aria-modal": "true",
+    "aria-labelledby": title ? titleId : undefined,
+    tabIndex: -1,
     onClick: e => e.stopPropagation(),
     style: panelStyle
   }, /*#__PURE__*/React.createElement("div", {
@@ -6997,9 +7507,11 @@ function Sheet({
     style: {
       display: "flex",
       flexDirection: "column",
-      gap: 4
+      gap: 4,
+      minWidth: 0
     }
   }, title && /*#__PURE__*/React.createElement("div", {
+    id: titleId,
     style: {
       fontSize: "var(--text-h3)",
       fontWeight: 600,
@@ -7013,7 +7525,23 @@ function Sheet({
       letterSpacing: "var(--text-caption--letter-spacing)",
       color: "var(--muted-foreground)"
     }
-  }, description)), /*#__PURE__*/React.createElement(__ds_scope.IconButton, {
+  }, description)), headerAction ?
+  /*#__PURE__*/
+  // DS-113 — headerAction 은 ✕ 왼쪽, 사이 4px. ✕ 와 세로 가운데 정렬.
+  React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 4,
+      flexShrink: 0
+    }
+  }, headerAction, /*#__PURE__*/React.createElement(__ds_scope.IconButton, {
+    icon: "cancel-01",
+    variant: "ghost",
+    size: "sm",
+    ariaLabel: "\uB2EB\uAE30",
+    onClick: onClose
+  })) : /*#__PURE__*/React.createElement(__ds_scope.IconButton, {
     icon: "cancel-01",
     variant: "ghost",
     size: "sm",
@@ -7446,9 +7974,12 @@ Object.assign(__ds_scope, { Tooltip });
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /**
- * Flag (DS-78) — 원형 국기 하나. 태그 · 아웃라인 · 글자 없음. 흰 면이 많은 국기가 묻히지 않게 1px --border 링.
- *  이름 = role="img" + aria-label「국가 · 도시」. tooltip이면 Tooltip(describe={false} — 이름과 같은 글)으로 띄우고
- *  tabIndex=0으로 키보드가 닿는다. 포커스 링은 원을 따른다. 이름과 같이 쓰면 이름 오른쪽, 글자의 세로 가운데.
+ * Flag (DS-78 · DS-90) — 국기 하나. 태그 · 아웃라인 · 글자 없음.
+ *  shape="circle"(기본 · 부품 안 — 칩 · 필터 · 배지 앞자리) · "rect"(이름 옆).
+ *  circle: 지름 = size, 1px --border 링. rect: 높이 = size, 폭 1.5배, 2px 안쪽 여백 · 반경 4 · 1px --border 링 —
+ *  흰 바탕 국기(일본 등)가 흰 면에서 묻히지 않게(원형의 링과 같은 이유).
+ *  이름 = role="img" + aria-label「국가 · 도시」. tooltip이면 Tooltip(describe={false})으로 띄우고 tabIndex=0.
+ *  자산: Figma 국기 라이브러리(1758:672626) — 원형 assets/flags/ · 직사각 assets/flags-rect/(30×20).
  */
 const SIZES = {
   sm: 16,
@@ -7457,7 +7988,7 @@ const SIZES = {
   xl: 28
 };
 const FLAG_BASE = "../../assets/flags/"; // Badge와 같다
-
+const FLAG_RECT_BASE = "../../assets/flags-rect/";
 if (typeof document !== "undefined" && !document.getElementById("mt-flag-style")) {
   const s = document.createElement("style");
   s.id = "mt-flag-style";
@@ -7469,12 +8000,15 @@ function Flag({
   label,
   city,
   size = "md",
-  flagBase = FLAG_BASE,
+  shape = "circle",
+  flagBase,
   tooltip = true,
   style,
   ...rest
 }) {
   const px = typeof size === "number" ? size : SIZES[size] || SIZES.md;
+  const rect = shape === "rect";
+  const base = flagBase || (rect ? FLAG_RECT_BASE : FLAG_BASE);
   const name = [label, city].filter(Boolean).join(" · ");
   const [failed, setFailed] = React.useState(false);
   const flag = /*#__PURE__*/React.createElement("span", _extends({
@@ -7485,24 +8019,27 @@ function Flag({
     style: {
       display: "inline-flex",
       flex: "0 0 auto",
-      width: px,
+      boxSizing: "border-box",
+      width: rect ? Math.round(px * 1.5) : px,
       height: px,
-      borderRadius: "50%",
+      padding: rect ? 2 : 0,
+      borderRadius: rect ? 4 : "50%",
       overflow: "hidden",
       verticalAlign: "middle",
-      background: "var(--sage-100)",
+      background: rect ? "var(--card)" : "var(--sage-100)",
       boxShadow: "0 0 0 1px var(--border)",
       ...style
     }
   }, rest), country && !failed && /*#__PURE__*/React.createElement("img", {
-    src: `${flagBase}${country}.svg`,
+    src: `${base}${country}.svg`,
     alt: "",
     onError: () => setFailed(true),
     style: {
       width: "100%",
       height: "100%",
       objectFit: "cover",
-      display: "block"
+      display: "block",
+      borderRadius: rect ? 2 : 0
     }
   }));
   if (!tooltip || !name) return flag;
@@ -7518,29 +8055,27 @@ Object.assign(__ds_scope, { Flag });
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /**
- * AnswerCard — Q&A 상세의 멘토 답변 1건. QnaCard(질문)와 다르다: 답변은 갈 곳이 없다
- *  (답변 상세 페이지가 없다) — 그래서 스트레치 링크를 만들지 않는다. href를 받지 않는다. 루트는 <article>.
+ * AnswerCard — Q&A 상세의 멘토 답변 1건(DS-23 개정 · Figma 1695:90003 / 90005 / 90004). 루트는 <article>.
+ *  답변은 갈 곳이 없다(답변 상세 페이지 없음) — 카드 전체 링크를 만들지 않는다. 링크는 머리 상자 하나뿐.
  *
- * [구조] 멘토 헤더(아바타 큰 사이즈 + 이름 + 국가 flag 배지 + 활동지 + 헤드라인 — 헤더 블록 전체가 이름에 걸린 스트레치
- *  링크로 멘토 상세行, 새 창. 접근 이름="멘토명" 하나) → "이 멘토의 다른 답변 보기"(outline, 헤더 링크 밖·독립 클릭 —
- *  이 카드에서 테두리를 가진 것은 이 버튼 하나뿐. 헤드라인과는 좁은 간격으로 한 덩어리, 본문과는 넓은 간격으로 분리) →
- *  본문(전문, line-clamp 없음·禁則 유지) → 날짜(연월일만) →
- *  액션 줄 한 줄(좌: 도움돼요 CountToggle tone="rose"·공유(Popover) / 우: 채택 배지+감사인사 보내기, space-between).
- *  이 카드의 유일한 primary 버튼은 "감사인사 보내기"뿐 — 멘토 프로필 이동은 버튼이 아니라 헤더 블록 자체가 링크.
- *  공유·더보기는 overlays/Popover(앵커·닫힘·ESC·포커스 복귀 공통 컴포넌트)를 쓴다 — 각자 자신을 가지지 않는다.
- * [스크랩 없음] 스크랩의 목록 단위는 질문이라 답변마다 두면 한 질문에 여러 개가 동시에 켜진다 — 스크랩은 QnaCard(질문)에만.
- * [채택 표시] 질문자가 도움돼요를 누른 답변에만. 질문자는 "김**"로 익명화되므로 질문자 아바타는 병기하지 않는다.
- * [상태] 기본 · accepted(채택) · isQuestionerView(질문자 시점 → 감사인사 버튼) · isMine(내 답변 → 더보기 메뉴).
- *  네 상태는 배타가 아니다 — 동시에 겹칠 수 있다.
- * [범위 밖] 답변 작성 폼(qna-detail 화면이 Card+Avatar+RichTextEditor+Button으로 조립) · 답변 0건 표시(EmptyState).
- *
- * QnaCard와의 경계: QnaCard=질문(카드 전체 클릭 → 상세로 이동) · AnswerCard=답변(갈 곳이 없어 카드 전체 클릭이 없다).
+ * [구조] 위에서 아래로.
+ *  카드 = 1px --border · 흰 면 · 안쪽 여백 10 · 바깥 반경 = --radius-lg + 10(머리 상자와 동심원, DESIGN.md §7).
+ *  ① 머리 상자 = --green-50 · --radius-lg · 16/20. 상자 전체가 멘토 상세로 가는 <a> 하나(새 창).
+ *     Avatar 60 | 이름 --text-h2 700 + Flag rect md / 「국가 · 직무 @회사 (연차)」 --text-body-sm muted | 「멘토 프로필 보기 ›」 --primary h3 700(글자일 뿐).
+ *  ② 도움 표시(accepted) — checkmark-circle-02 14 + caption 500 --primary.
+ *  ③ 본문 --text-article 전문 · ④ 날짜 caption muted. ③〜⑥ 의 왼쪽 끝은 카드 가장자리에서 18(머리 상자보다 8 안쪽).
+ *  ⑤ 동작 줄(간격 8) — 하트 박스(CountToggle box repeat · dark) → 「감사인사 작성」(질문자 시점 · thanks 없을 때) → 공유(IconButton outline lg).
+ *  ⑥ 감사 인사(thanks) — 왼쪽 3px --primary 줄 · 이니셜 Avatar sm · 이름 body 600 · 날짜 caption muted · 글 body.
+ *  내 답변 ⋯ 메뉴는 머리 상자 오른쪽 위 — 링크 위에서 따로 눌린다.
+ * [좁은 폭 < 560] 머리 상자: 「멘토 프로필 보기 ›」가 이름 묶음 아래 한 줄로 내려간다(아바타 48).
+ *  동작 줄: 하트 · 공유가 첫 줄, 「감사인사 작성」은 다음 줄 전체 폭.
+ * [빼는 것] 「이 멘토의 다른 답변 보기」 · 오른쪽 채택 배지 + 「감사인사 보내기」 · activityLocation — prop 은 받되 그리지 않는다.
  */
+const NARROW = 560;
 const clampNone = {
   wordBreak: "keep-all",
   overflowWrap: "break-word"
-}; // 禁則: break-all 금지. line-clamp 없음(전문 노출)
-
+};
 function formatDate(d) {
   if (!d) return "";
   const dt = typeof d === "string" ? new Date(d) : d;
@@ -7548,72 +8083,56 @@ function formatDate(d) {
   const p = n => String(n).padStart(2, "0");
   return `${dt.getFullYear()}.${p(dt.getMonth() + 1)}.${p(dt.getDate())}`;
 }
-
-// Button은 <button> 고정(새 창 이동이 불가) — 멘토 이동 버튼 2개만 같은 sm 레시피를 쓰는 <a>로 직접 구현.
-function linkButtonStyle(variant) {
-  const v = variant === "primary" ? {
-    background: "var(--primary)",
-    color: "var(--primary-foreground)",
-    border: "1px solid transparent"
-  } : {
-    background: "var(--card)",
-    color: "var(--foreground)",
-    border: "1px solid var(--border)"
-  }; // outline — 이 카드에서 테두리를 가진 유일한 요소. secondary(sage-100 채움) 금지: Chip과 같은 채움이라 버튼·칩이 같아 보인다.
-  return {
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    height: 32,
-    padding: "0 12px",
-    fontFamily: "var(--font-sans)",
-    fontSize: "var(--text-caption)",
-    fontWeight: 500,
-    lineHeight: 1,
-    letterSpacing: 0,
-    borderRadius: "var(--radius-md)",
-    textDecoration: "none",
-    whiteSpace: "nowrap",
-    ...v
-  };
-}
 if (typeof document !== "undefined" && !document.getElementById("mt-answercard-link-style")) {
   const s = document.createElement("style");
   s.id = "mt-answercard-link-style";
-  s.textContent = ".mt-ac-mentor-link{position:relative;color:inherit;text-decoration:none;}" + ".mt-ac-mentor-link::after{content:'';position:absolute;inset:0;z-index:1;}" + ".mt-ac-mentor-link:hover .mt-ac-mentor-name{color:var(--primary);text-decoration:underline;}" + ".mt-ac-mentor-link:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:4px;}";
+  s.textContent = ".mt-ac-head{color:inherit;text-decoration:none;transition:filter 150ms ease;}" + ".mt-ac-head:hover{filter:brightness(0.985);}" + ".mt-ac-head:hover .mt-ac-go{text-decoration:underline;text-underline-offset:3px;}" + ".mt-ac-head:focus-visible{outline:2px solid var(--ring);outline-offset:2px;}";
   document.head.appendChild(s);
 }
+const cap = {
+  fontSize: "var(--text-caption)",
+  lineHeight: "var(--text-caption--line-height)",
+  letterSpacing: "var(--text-caption--letter-spacing)"
+};
 function AnswerCard({
   mentorName,
   mentorPhoto,
   country,
   countryLabel,
   activityLocation,
+  // eslint-disable-line no-unused-vars — DS-23: 그리지 않는다
   headline,
   mentorProfileHref = "#",
-  mentorAnswersHref = "#",
+  mentorAnswersHref,
+  // eslint-disable-line no-unused-vars — DS-23: 그리지 않는다
   body,
   date,
   liked = false,
+  onLike,
   onLikeChange,
+  // eslint-disable-line no-unused-vars — 남겨 두되 쓰지 않는다
   likeCount = 0,
   answerUrl,
   onCopyLink,
   accepted = false,
   isQuestionerView = false,
   onThanks,
+  thanks,
   isMine = false,
   onEdit,
   onDelete,
   style,
   ...rest
 }) {
-  const likeControlled = onLikeChange != null;
-  const [likedU, setLikedU] = React.useState(liked);
-  const isLiked = likeControlled ? liked : likedU;
-  const setLiked = n => {
-    if (likeControlled) onLikeChange(n);else setLikedU(n);
-  };
+  const rootRef = React.useRef(null);
+  const [narrow, setNarrow] = React.useState(false);
+  React.useEffect(() => {
+    const el = rootRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return undefined;
+    const ro = new ResizeObserver(([e]) => setNarrow(e.contentRect.width < NARROW));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
   const [shareOpen, setShareOpen] = React.useState(false);
   const [moreOpen, setMoreOpen] = React.useState(false);
   const shareTriggerRef = React.useRef(null);
@@ -7622,28 +8141,50 @@ function AnswerCard({
     if (onCopyLink) onCopyLink();else if (answerUrl && navigator.clipboard) navigator.clipboard.writeText(answerUrl);
     setShareOpen(false);
   };
+  const sub = [countryLabel, headline].filter(Boolean).join(" · ");
+  const showThanksBtn = isQuestionerView && !thanks;
+  const go = /*#__PURE__*/React.createElement("span", {
+    className: "mt-ac-go",
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 2,
+      flex: "0 0 auto",
+      color: "var(--primary)",
+      fontSize: "var(--text-h3)",
+      lineHeight: "var(--text-h3--line-height)",
+      letterSpacing: "var(--text-h3--letter-spacing)",
+      fontWeight: 700,
+      whiteSpace: "nowrap"
+    }
+  }, "\uBA58\uD1A0 \uD504\uB85C\uD544 \uBCF4\uAE30", /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: "arrow-right-01",
+    size: 18,
+    "aria-hidden": "true",
+    "aria-label": undefined,
+    role: undefined
+  }));
   return /*#__PURE__*/React.createElement("article", _extends({
+    ref: rootRef,
     style: {
       position: "relative",
       display: "flex",
       flexDirection: "column",
-      gap: 16,
       width: "100%",
       boxSizing: "border-box",
+      padding: 10,
       color: "var(--foreground)",
       fontFamily: "var(--font-sans)",
       background: "var(--card)",
-      border: "1px solid var(--sage-200)",
-      borderRadius: "var(--card-radius)",
-      boxShadow: "var(--card-shadow)",
-      padding: "var(--card-content-padding)",
+      border: "1px solid var(--border)",
+      borderRadius: "calc(var(--radius-lg) + 10px)",
       ...style
     }
   }, rest), isMine && /*#__PURE__*/React.createElement("div", {
     style: {
       position: "absolute",
-      top: 14,
-      right: 14,
+      top: 18,
+      right: 18,
       zIndex: 2
     }
   }, /*#__PURE__*/React.createElement(__ds_scope.IconButton, {
@@ -7679,35 +8220,35 @@ function AnswerCard({
       setMoreOpen(false);
       onDelete && onDelete();
     }
-  }, "\uC0AD\uC81C"))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "column",
-      gap: 8,
-      paddingRight: isMine ? 32 : 0
-    }
-  }, /*#__PURE__*/React.createElement("a", {
+  }, "\uC0AD\uC81C"))), /*#__PURE__*/React.createElement("a", {
     href: mentorProfileHref,
     target: "_blank",
     rel: "noopener noreferrer",
-    className: "mt-ac-mentor-link",
-    "aria-label": mentorName,
+    className: "mt-ac-head",
+    "aria-label": `${mentorName} 멘토 프로필 보기`,
     style: {
       display: "flex",
-      flexDirection: "column",
-      gap: 10,
-      cursor: "pointer"
+      flexDirection: narrow ? "column" : "row",
+      alignItems: narrow ? "stretch" : "flex-end",
+      /* R4 — 「멘토 프로필 보기 ›」는 메타 줄과 같은 높이(오른쪽 아래) */
+      gap: narrow ? 12 : 16,
+      padding: "16px 20px",
+      paddingRight: isMine ? 52 : 20,
+      borderRadius: "var(--radius-lg)",
+      background: "var(--green-50)"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
-      alignItems: "flex-start",
-      gap: 10
+      alignItems: "center",
+      gap: 14,
+      flex: "1 1 auto",
+      minWidth: 0
     }
   }, /*#__PURE__*/React.createElement(__ds_scope.Avatar, {
     src: mentorPhoto,
     name: mentorName,
-    size: "lg"
+    size: narrow ? 48 : 60
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
@@ -7719,57 +8260,59 @@ function AnswerCard({
     style: {
       display: "flex",
       alignItems: "center",
-      gap: 6,
-      flexWrap: "wrap"
+      gap: 8,
+      minWidth: 0
     }
   }, /*#__PURE__*/React.createElement("span", {
-    className: "mt-ac-mentor-name",
     style: {
-      fontSize: "var(--text-h3)",
-      fontWeight: 600,
-      lineHeight: "var(--text-h3--line-height)",
-      letterSpacing: "var(--text-h3--letter-spacing)"
+      fontSize: "var(--text-h2)",
+      lineHeight: "var(--text-h2--line-height)",
+      letterSpacing: "var(--text-h2--letter-spacing)",
+      fontWeight: 700,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap"
     }
-  }, mentorName), (country || countryLabel) && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
-    size: "sm",
-    leading: "flag",
-    flag: country
-  }, countryLabel), activityLocation && /*#__PURE__*/React.createElement("span", {
+  }, mentorName), country && /*#__PURE__*/React.createElement(__ds_scope.Flag, {
+    country: country,
+    label: countryLabel,
+    shape: "rect",
+    size: "md",
+    tooltip: false,
+    "aria-hidden": "true"
+  })), sub && /*#__PURE__*/React.createElement("span", {
     style: {
-      fontSize: "var(--text-caption)",
-      lineHeight: "var(--text-caption--line-height)",
-      letterSpacing: "var(--text-caption--letter-spacing)",
-      color: "var(--muted-foreground)"
+      fontSize: "var(--text-body-sm)",
+      lineHeight: "var(--text-body-sm--line-height)",
+      letterSpacing: "var(--text-body-sm--letter-spacing)",
+      color: "var(--muted-foreground)",
+      ...clampNone
     }
-  }, activityLocation)), headline && /*#__PURE__*/React.createElement("span", {
+  }, sub))), go), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: "var(--text-caption)",
+      display: "flex",
+      flexDirection: "column",
+      padding: "20px 8px 10px"
+    }
+  }, accepted && /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 4,
+      marginBottom: 12,
+      ...cap,
       fontWeight: 500,
-      lineHeight: "var(--text-caption--line-height)",
-      letterSpacing: "var(--text-caption--letter-spacing)",
-      color: "var(--muted-foreground)"
+      color: "var(--primary)"
     }
-  }, headline)))), /*#__PURE__*/React.createElement("a", {
-    href: mentorAnswersHref,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    style: {
-      position: "relative",
-      zIndex: 2,
-      alignSelf: "flex-start",
-      ...linkButtonStyle("outline")
-    }
-  }, "\uC774 \uBA58\uD1A0\uC758 \uB2E4\uB978 \uB2F5\uBCC0 \uBCF4\uAE30", /*#__PURE__*/React.createElement(__ds_scope.Icon, {
-    name: "arrow-up-right-01",
+  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: "checkmark-circle-02",
     size: 14,
-    style: {
-      marginLeft: 4
-    }
-  }))), /*#__PURE__*/React.createElement("div", {
+    "aria-hidden": "true",
+    "aria-label": undefined,
+    role: undefined
+  }), "\uC9C8\uBB38\uC790\uAC00 \uB3C4\uC6C0\uB41C\uB2E4\uACE0 \uD55C \uB2F5\uBCC0\uC785\uB2C8\uB2E4"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: "var(--text-article)",
-      fontWeight: 400,
-      color: "var(--foreground)",
       lineHeight: "var(--text-article--line-height)",
       letterSpacing: "var(--text-article--letter-spacing)",
       whiteSpace: "pre-wrap",
@@ -7777,42 +8320,47 @@ function AnswerCard({
     }
   }, body), date && /*#__PURE__*/React.createElement("span", {
     style: {
-      fontSize: "var(--text-caption)",
-      lineHeight: "var(--text-caption--line-height)",
-      letterSpacing: "var(--text-caption--letter-spacing)",
+      marginTop: 12,
+      ...cap,
       color: "var(--muted-foreground)"
     }
   }, formatDate(date)), /*#__PURE__*/React.createElement("div", {
     style: {
-      position: "relative",
-      zIndex: 2,
       display: "flex",
       alignItems: "center",
-      justifyContent: "space-between",
-      gap: 12,
-      flexWrap: "wrap"
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 10
+      gap: 8,
+      flexWrap: "wrap",
+      marginTop: 20
     }
   }, /*#__PURE__*/React.createElement(__ds_scope.CountToggle, {
+    appearance: "box",
+    repeat: true,
     icon: "favourite",
-    tone: "rose",
-    selected: isLiked,
+    tone: "dark"
+    // DS-116 — 하트는 likeCount · liked 만 따른다. 누르면 onLike 만(부품 안 상태로 채움을 켜지 않는다).
+    ,
+    selected: liked,
     count: likeCount,
-    onChange: setLiked
-  }), /*#__PURE__*/React.createElement("div", {
+    onIncrement: onLike
+  }), showThanksBtn && /*#__PURE__*/React.createElement(__ds_scope.Button, {
+    variant: "outline",
+    size: "lg",
+    iconLeft: "bubble-chat-favourite",
+    onClick: onThanks,
+    style: narrow ? {
+      order: 3,
+      flex: "1 1 100%"
+    } : undefined
+  }, "\uAC10\uC0AC\uC778\uC0AC \uC791\uC131"), /*#__PURE__*/React.createElement("div", {
     style: {
-      position: "relative"
+      position: "relative",
+      order: narrow ? 2 : undefined
     }
   }, /*#__PURE__*/React.createElement(__ds_scope.IconButton, {
     ref: shareTriggerRef,
     icon: "share-08",
-    variant: "ghost",
-    size: "sm",
+    variant: "outline",
+    size: "lg",
     ariaLabel: "\uACF5\uC720",
     onClick: () => setShareOpen(v => !v)
   }), /*#__PURE__*/React.createElement(__ds_scope.Popover, {
@@ -7833,34 +8381,51 @@ function AnswerCard({
     style: {
       color: "var(--muted-foreground)"
     }
-  }), "\uC774 \uB2F5\uBCC0 \uB9C1\uD06C \uBCF5\uC0AC")))), (accepted || isQuestionerView) && /*#__PURE__*/React.createElement("div", {
+  }), "\uC774 \uB2F5\uBCC0 \uB9C1\uD06C \uBCF5\uC0AC")))), thanks && /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
-      alignItems: "center",
       gap: 12,
-      flexWrap: "wrap",
-      justifyContent: "flex-end"
+      marginTop: 24,
+      paddingLeft: 14,
+      borderLeft: "3px solid var(--primary)"
     }
-  }, accepted && /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement(__ds_scope.Avatar, {
+    name: thanks.author,
+    size: "sm"
+  }), /*#__PURE__*/React.createElement("div", {
     style: {
-      display: "inline-flex",
-      alignItems: "center",
+      display: "flex",
+      flexDirection: "column",
       gap: 4,
-      fontSize: "var(--text-caption)",
-      lineHeight: "var(--text-caption--line-height)",
-      letterSpacing: "var(--text-caption--letter-spacing)",
-      fontWeight: 500,
-      color: "var(--primary)",
-      whiteSpace: "nowrap"
+      minWidth: 0
     }
-  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
-    name: "checkmark-circle-02",
-    size: 15
-  }), "\uC9C8\uBB38\uC790\uAC00 \uB3C4\uC6C0\uB41C\uB2E4\uACE0 \uD55C \uB2F5\uBCC0\uC785\uB2C8\uB2E4"), isQuestionerView && /*#__PURE__*/React.createElement(__ds_scope.Button, {
-    variant: "primary",
-    size: "sm",
-    onClick: onThanks
-  }, "\uAC10\uC0AC\uC778\uC0AC \uBCF4\uB0B4\uAE30"))));
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "baseline",
+      gap: 8,
+      flexWrap: "wrap"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: "var(--text-body)",
+      lineHeight: "var(--text-body--line-height)",
+      fontWeight: 600
+    }
+  }, thanks.author), thanks.date && /*#__PURE__*/React.createElement("span", {
+    style: {
+      ...cap,
+      color: "var(--muted-foreground)"
+    }
+  }, formatDate(thanks.date))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: "var(--text-body)",
+      lineHeight: "var(--text-body--line-height)",
+      letterSpacing: "var(--text-body--letter-spacing)",
+      whiteSpace: "pre-wrap",
+      ...clampNone
+    }
+  }, thanks.text)))));
 }
 Object.assign(__ds_scope, { AnswerCard });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/surfaces/AnswerCard.jsx", error: String((e && e.message) || e) }); }
@@ -8103,6 +8668,14 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
  *  hover: 썸네일에만 elevation 한 단계 상승(카드 elevation 토큰 재사용, 미세). 컨테이너 배경 없음.
  * [스트레치 링크] 루트는 <article>(position:relative) — <a>가 아니다. 제목에만 <a>를 걸고 그 ::after가
  *  카드 전면을 덮어 카드 전체 클릭을 낸다. 카드의 접근 이름 = 제목 링크 텍스트.
+ * [DS-33 variant]
+ *  default — 세로형. ratio "16:9"(기본) · "3:2"(TOP 큰 카드). label = 제목 위 body 600 --primary(「신규 아티클」).
+ *   제목 · 발췌 크기는 카드 폭이 정한다 — 560+ 제목 h0 600 · 발췌 body 500 muted / 그보다 좁으면 h3 · caption.
+ *  row — 인사이트 목록 한 줄(Figma 1695:90429). 왼쪽 글 · 오른쪽 썸네일 296 16:9 + BookmarkToggle(안쪽 8).
+ *   셸 없음 · hairline --border · 위아래 24 · 사이 40. 태그 → 8 → 제목 h3 700 2줄 → 12 → 발췌 body muted 3줄 → 12 → 날짜 caption muted.
+ *   좁은 폭: 640 미만 썸네일 160 · 사이 20 · 발췌 2줄 / 440 미만 썸네일 128 · 사이 16.
+ *  compact — TOP 인사이트 밴드의 작은 줄(Figma 1610:30038). 썸네일 196 3:2 · 0.5px --border → 16 → 제목 h2 600 1줄 / 16 / 태그. 형제 줄 사이 24.
+ *   DS-103 — 줄 폭 560 미만이면 썸네일 120(120×80) · 제목 2줄 말줄임.
  */
 const clamp = lines => ({
   display: "-webkit-box",
@@ -8120,53 +8693,40 @@ if (typeof document !== "undefined" && !document.getElementById("mt-card-link-st
   "article:has(.mt-card-link:focus-visible){outline:2px solid var(--ring);outline-offset:2px;}" + "@media (hover:hover){article:hover a.mt-card-link{color:var(--primary);}article:hover .mt-card-media-img{transform:scale(1.03);}}.mt-card-media-img{transition:transform 250ms ease-out;}a.mt-card-link{transition:color 250ms ease-out;}@media (prefers-reduced-motion:reduce){.mt-card-media-img{transform:none !important;transition:none;}}";
   document.head.appendChild(s);
 }
-function ArticlePreview({
-  title,
-  excerpt,
+if (typeof document !== "undefined" && !document.getElementById("mt-ap-style")) {
+  const s = document.createElement("style");
+  s.id = "mt-ap-style";
+  s.textContent = ".mt-ap{container-type:inline-size;}" + ".mt-ap-t{font-size:var(--text-h3);line-height:var(--text-h3--line-height);letter-spacing:var(--text-h3--letter-spacing);}" + ".mt-ap-x{font-size:var(--text-caption);line-height:var(--text-caption--line-height);letter-spacing:var(--text-caption--letter-spacing);font-weight:400;}" + "@container (min-width:560px){.mt-ap-t{font-size:var(--text-h0);line-height:var(--text-h0--line-height);letter-spacing:var(--text-h0--letter-spacing);}.mt-ap-x{font-size:var(--text-body);line-height:var(--text-body--line-height);letter-spacing:var(--text-body--letter-spacing);font-weight:500;}}" + ".mt-ap-row-g{display:grid;grid-template-columns:minmax(0,1fr) 296px;column-gap:40px;align-items:start;}" + ".mt-ap-row-x{-webkit-line-clamp:3;}" + "@container (max-width:639px){.mt-ap-row-g{grid-template-columns:minmax(0,1fr) 160px;column-gap:20px;}.mt-ap-row-x{-webkit-line-clamp:2;}}" + "@container (max-width:439px){.mt-ap-row-g{grid-template-columns:minmax(0,1fr) 128px;column-gap:16px;}}" + ".mt-ap-crow+.mt-ap-crow{margin-top:24px;}" +
+  // DS-103 — compact: 줄 폭 560 미만이면 썸네일 120(3:2 · 120×80) · 제목 2줄. 560 이상은 196 · 1줄.
+  ".mt-ap-c-th{flex:0 0 196px;}" + ".mt-ap-c-t{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}" + "@container (max-width:559px){.mt-ap-c-th{flex-basis:120px;}.mt-ap-c-t{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;white-space:normal;word-break:keep-all;overflow-wrap:break-word;}}";
+  document.head.appendChild(s);
+}
+function formatDate(d) {
+  if (!d) return "";
+  const dt = typeof d === "string" ? new Date(d) : d;
+  if (Number.isNaN(dt.getTime())) return String(d);
+  const p = n => String(n).padStart(2, "0");
+  return `${dt.getFullYear()}.${p(dt.getMonth() + 1)}.${p(dt.getDate())}`;
+}
+function Thumb({
   image,
-  tags = [{
-    label: "디자인",
-    hue: "indigo"
-  }, {
-    label: "인사이트",
-    hue: "amber"
-  }],
-  href = "#",
-  style,
-  ...rest
+  ratio,
+  width = "100%",
+  hover,
+  border,
+  children
 }) {
-  const [hover, setHover] = React.useState(false);
   const [imgError, setImgError] = React.useState(false);
   const showImg = image && !imgError;
-  return /*#__PURE__*/React.createElement("article", _extends({
-    onMouseEnter: () => setHover(true),
-    onMouseLeave: () => setHover(false),
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       position: "relative",
-      display: "flex",
-      flexDirection: "column",
-      gap: 10,
-      width: "100%",
-      boxSizing: "border-box",
-      color: "var(--foreground)",
-      fontFamily: "var(--font-sans)",
-      // 투명: 배경/테두리/그림자/마진 없음. hover 신호는 썸네일 elevation으로만(컨테이너 배경 없음).
-      background: "transparent",
-      border: "none",
-      boxShadow: "none",
-      borderRadius: "var(--card-media-radius)",
-      padding: 0,
-      ...style
-    }
-  }, rest), /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: "relative",
-      width: "100%",
-      aspectRatio: "16 / 9",
+      width,
+      aspectRatio: ratio,
       background: "var(--sage-100)",
       borderRadius: "var(--card-media-radius)",
       overflow: "hidden",
-      boxShadow: hover ? "var(--shadow-sm)" : "none",
+      boxShadow: [hover ? "var(--shadow-sm)" : null, border ? "inset 0 0 0 0.5px var(--border)" : null].filter(Boolean).join(", ") || "none",
       transition: "box-shadow 150ms ease"
     }
   }, showImg ? /*#__PURE__*/React.createElement("img", {
@@ -8192,40 +8752,228 @@ function ArticlePreview({
   }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
     name: "image-01",
     size: 30
-  }))), /*#__PURE__*/React.createElement("a", {
+  })), children);
+}
+const Tags = ({
+  tags,
+  style
+}) => tags.length > 0 ? /*#__PURE__*/React.createElement("div", {
+  style: {
+    display: "flex",
+    alignItems: "center",
+    gap: 6,
+    flexWrap: "wrap",
+    ...style
+  }
+}, tags.map((tg, i) => /*#__PURE__*/React.createElement(__ds_scope.Badge, {
+  key: i,
+  variant: "tag",
+  hue: tg.hue,
+  size: "sm"
+}, tg.label))) : null;
+const DEFAULT_TAGS = [{
+  label: "디자인",
+  hue: "indigo"
+}, {
+  label: "인사이트",
+  hue: "amber"
+}];
+function ArticlePreview({
+  variant = "default",
+  title,
+  excerpt,
+  image,
+  tags = DEFAULT_TAGS,
+  href = "#",
+  ratio = "16:9",
+  label,
+  date,
+  bookmarked = false,
+  onBookmarkChange,
+  className,
+  style,
+  ...rest
+}) {
+  const [hover, setHover] = React.useState(false);
+  const controlled = onBookmarkChange != null;
+  const [savedU, setSavedU] = React.useState(bookmarked);
+  const saved = controlled ? bookmarked : savedU;
+  const setSaved = n => {
+    if (controlled) onBookmarkChange(n);else setSavedU(n);
+  };
+  const hov = {
+    onMouseEnter: () => setHover(true),
+    onMouseLeave: () => setHover(false)
+  };
+  const base = {
+    position: "relative",
+    boxSizing: "border-box",
+    width: "100%",
+    color: "var(--foreground)",
+    fontFamily: "var(--font-sans)",
+    background: "transparent"
+  };
+  const cls = x => ["mt-ap", x, className].filter(Boolean).join(" ");
+  if (variant === "row") {
+    return /*#__PURE__*/React.createElement("article", _extends({
+      className: cls("mt-ap-row")
+    }, hov, {
+      style: {
+        ...base,
+        display: "block",
+        padding: "24px 0",
+        marginTop: -1,
+        borderTop: "1px solid var(--border)",
+        borderBottom: "1px solid var(--border)",
+        ...style
+      }
+    }, rest), /*#__PURE__*/React.createElement("div", {
+      className: "mt-ap-row-g"
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement(Tags, {
+      tags: tags,
+      style: {
+        marginBottom: 8
+      }
+    }), /*#__PURE__*/React.createElement("a", {
+      href: href,
+      className: "mt-card-link",
+      style: {
+        display: "block",
+        fontSize: "var(--text-h3)",
+        fontWeight: 700,
+        lineHeight: "var(--text-h3--line-height)",
+        letterSpacing: "var(--text-h3--letter-spacing)",
+        ...clamp(2)
+      }
+    }, title), excerpt && /*#__PURE__*/React.createElement("p", {
+      className: "mt-ap-row-x",
+      style: {
+        margin: "12px 0 0",
+        fontSize: "var(--text-body)",
+        lineHeight: "var(--text-body--line-height)",
+        letterSpacing: "var(--text-body--letter-spacing)",
+        color: "var(--muted-foreground)",
+        display: "-webkit-box",
+        WebkitBoxOrient: "vertical",
+        overflow: "hidden",
+        wordBreak: "keep-all",
+        overflowWrap: "break-word"
+      }
+    }, excerpt), date && /*#__PURE__*/React.createElement("span", {
+      style: {
+        marginTop: 12,
+        fontSize: "var(--text-caption)",
+        lineHeight: "var(--text-caption--line-height)",
+        color: "var(--muted-foreground)"
+      }
+    }, formatDate(date))), /*#__PURE__*/React.createElement(Thumb, {
+      image: image,
+      ratio: "16 / 9",
+      hover: hover
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "absolute",
+        top: 8,
+        right: 8,
+        zIndex: 2,
+        display: "inline-flex"
+      }
+    }, /*#__PURE__*/React.createElement(__ds_scope.BookmarkToggle, {
+      ariaLabel: "\uC2A4\uD06C\uB7A9",
+      selected: saved,
+      onChange: setSaved
+    })))));
+  }
+  if (variant === "compact") {
+    return /*#__PURE__*/React.createElement("article", _extends({
+      className: cls("mt-ap-crow")
+    }, hov, {
+      style: {
+        ...base,
+        display: "flex",
+        alignItems: "center",
+        gap: 16,
+        ...style
+      }
+    }, rest), /*#__PURE__*/React.createElement("div", {
+      className: "mt-ap-c-th"
+    }, /*#__PURE__*/React.createElement(Thumb, {
+      image: image,
+      ratio: "3 / 2",
+      hover: hover,
+      border: true
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        gap: 16,
+        minWidth: 0,
+        flex: "1 1 auto"
+      }
+    }, /*#__PURE__*/React.createElement("a", {
+      href: href,
+      className: "mt-card-link mt-ap-c-t",
+      style: {
+        fontSize: "var(--text-h2)",
+        fontWeight: 600,
+        lineHeight: "var(--text-h2--line-height)",
+        letterSpacing: "var(--text-h2--letter-spacing)"
+      }
+    }, title), /*#__PURE__*/React.createElement(Tags, {
+      tags: tags
+    })));
+  }
+  return /*#__PURE__*/React.createElement("article", _extends({
+    className: cls()
+  }, hov, {
+    style: {
+      ...base,
+      display: "flex",
+      flexDirection: "column",
+      gap: 10,
+      border: "none",
+      boxShadow: "none",
+      borderRadius: "var(--card-media-radius)",
+      padding: 0,
+      ...style
+    }
+  }, rest), /*#__PURE__*/React.createElement(Thumb, {
+    image: image,
+    ratio: ratio === "3:2" ? "3 / 2" : "16 / 9",
+    hover: hover
+  }), label && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: "var(--text-body)",
+      lineHeight: "var(--text-body--line-height)",
+      fontWeight: 600,
+      color: "var(--primary)"
+    }
+  }, label), /*#__PURE__*/React.createElement("a", {
     href: href,
-    className: "mt-card-link",
+    className: "mt-card-link mt-ap-t",
     style: {
       display: "block",
-      fontSize: "var(--text-h3)",
       fontWeight: 600,
-      lineHeight: "var(--text-h3--line-height)",
-      letterSpacing: "var(--text-h3--letter-spacing)",
       ...clamp(2)
     }
-  }, title), /*#__PURE__*/React.createElement("div", {
+  }, title), excerpt && /*#__PURE__*/React.createElement("div", {
+    className: "mt-ap-x",
     style: {
-      fontSize: "var(--text-caption)",
-      fontWeight: 400,
       color: "var(--muted-foreground)",
-      lineHeight: "var(--text-caption--line-height)",
-      letterSpacing: "var(--text-caption--letter-spacing)",
       ...clamp(3)
     }
-  }, excerpt), tags.length > 0 && /*#__PURE__*/React.createElement("div", {
+  }, excerpt), /*#__PURE__*/React.createElement(Tags, {
+    tags: tags,
     style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 6,
-      flexWrap: "wrap",
       marginTop: 2
     }
-  }, tags.map((t, i) => /*#__PURE__*/React.createElement(__ds_scope.Badge, {
-    key: i,
-    variant: "tag",
-    hue: t.hue,
-    size: "sm"
-  }, t.label))));
+  }));
 }
 Object.assign(__ds_scope, { ArticlePreview });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/surfaces/ArticlePreview.jsx", error: String((e && e.message) || e) }); }
@@ -8329,6 +9077,232 @@ function CardFooter({
 }
 Object.assign(__ds_scope, { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/surfaces/Card.jsx", error: String((e && e.message) || e) }); }
+
+// components/surfaces/CoverCard.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * CoverCard (DS-67) — 이미지 반쪽 + 표지색 패널 반쪽의 가로형 표지. TOP 인터뷰 표지 · 인사이트 피처드가 같은 부품이다
+ *  (Figma TOP 1610:26692 · 좁은 폭 1599:28246 · 4색 1610:29494 · 인사이트 피처드 1697:64466). InterviewCard(세로형)와 별개.
+ * [판] 부품 자신의 폭(container query)으로 가른다 — 768 이상 넓은 판(왼쪽 이미지 · 오른쪽 패널, 정확히 반반), 미만 좁은 판(이미지 16:9 위 · 패널 아래).
+ *  이미지 칸은 반쪽 폭을 넘지 않는다. 16:10은 패널이 그보다 낮을 때의 최소 높이일 뿐 — 칸 높이는 패널을 따르고 이미지는 cover로 잘린다.
+ * [셸] --card-radius · overflow hidden · 테두리 · 그림자 없음.
+ * [패널] 면 = tone 의 --cover-*(green · sky · rose · gray). 돌리는 순서는 화면이 정한다 — 부품은 받은 tone 하나만.
+ *  넓은 판 · 좁은 판 모두 가로 가운데 정렬(묶음 · text-align center, R5). 넓은 판: 안쪽 좌우 56 · 세로 가운데 · 배지 → 16 → 제목 display 600 --sage-50 2줄 → 12 → 발췌 h3 400 --sage-200 3줄 → 16 → 사람.
+ *  좁은 판: 안쪽 20/24 · 제목 h2 · 발췌 caption · 이름 h3 + Flag rect sm.
+ *  사람(person 선택): 이름 h2 600 --sage-50 + Flag rect lg / 4 / 직무(500) · 회사(300) caption --sage-200. 없으면 줄이 없다.
+ * [꼬리표 label] 이미지 왼쪽 위 — --green-700 · 흰 글자 body-sm 600 · 좌우 12 · 높이 31 · 왼쪽 위 반경 = 셸 · 오른쪽 아래 16.
+ * [링크] 제목 <a className="mt-card-link"> 스트레치. hover = 이미지 scale(1.03)만 — 패널 위 제목 색은 바꾸지 않는다.
+ */
+const TONES = {
+  green: "var(--cover-green)",
+  sky: "var(--cover-sky)",
+  rose: "var(--cover-rose)",
+  gray: "var(--cover-gray)"
+};
+if (typeof document !== "undefined" && !document.getElementById("mt-cover-style")) {
+  const s = document.createElement("style");
+  s.id = "mt-cover-style";
+  s.textContent = ".mt-cover{container-type:inline-size;}" + ".mt-cover-g{display:grid;grid-template-columns:minmax(0,1fr);}" + ".mt-cover-media{min-width:0;}.mt-cover-sizer{display:block;padding-top:56.25%;}" + ".mt-cover-panel{padding:24px 20px;}" + ".mt-cover-title{font-size:var(--text-h2);line-height:var(--text-h2--line-height);letter-spacing:var(--text-h2--letter-spacing);}" + ".mt-cover-ex{font-size:var(--text-caption);line-height:var(--text-caption--line-height);letter-spacing:var(--text-caption--letter-spacing);}" + ".mt-cover-name{font-size:var(--text-h3);line-height:var(--text-h3--line-height);letter-spacing:var(--text-h3--letter-spacing);}" + ".mt-cover-flag-w{display:none !important;}" + "@container (min-width:768px){" + ".mt-cover-g{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}" + ".mt-cover-sizer{padding-top:62.5%;}" + ".mt-cover-panel{padding:40px 56px;}" + ".mt-cover-title{font-size:var(--text-display);line-height:var(--text-display--line-height);letter-spacing:var(--text-display--letter-spacing);}" + ".mt-cover-ex{font-size:var(--text-h3);line-height:var(--text-h3--line-height);letter-spacing:var(--text-h3--letter-spacing);}" + ".mt-cover-name{font-size:var(--text-h2);line-height:var(--text-h2--line-height);letter-spacing:var(--text-h2--letter-spacing);}" + ".mt-cover-flag-w{display:inline-flex !important;}.mt-cover-flag-n{display:none !important;}}" + ".mt-cover a.mt-card-link,.mt-cover:hover a.mt-card-link{color:var(--sage-50) !important;}" + ".mt-card-link{text-decoration:none;}.mt-card-link::after{content:'';position:absolute;inset:0;z-index:1;}.mt-card-link:focus-visible{outline:none;}" + "article.mt-cover:has(.mt-card-link:focus-visible){outline:2px solid var(--ring);outline-offset:2px;}" + ".mt-cover-img{transition:transform 250ms ease-out;}@media (hover:hover){.mt-cover:hover .mt-cover-img{transform:scale(1.03);}}" + "@media (prefers-reduced-motion:reduce){.mt-cover-img{transform:none !important;transition:none;}}";
+  document.head.appendChild(s);
+}
+const clamp = n => ({
+  display: "-webkit-box",
+  WebkitBoxOrient: "vertical",
+  WebkitLineClamp: n,
+  overflow: "hidden",
+  wordBreak: "keep-all",
+  overflowWrap: "break-word"
+});
+function CoverCard({
+  href = "#",
+  image,
+  tone = "green",
+  badge,
+  title,
+  excerpt,
+  person,
+  label,
+  headingLevel = 3,
+  style,
+  className,
+  ...rest
+}) {
+  const H = `h${Math.min(4, Math.max(2, headingLevel))}`;
+  const [imgError, setImgError] = React.useState(false);
+  const showImg = image && !imgError;
+  return /*#__PURE__*/React.createElement("article", _extends({
+    className: ["mt-cover", className].filter(Boolean).join(" "),
+    style: {
+      position: "relative",
+      display: "block",
+      width: "100%",
+      boxSizing: "border-box",
+      borderRadius: "var(--card-radius)",
+      overflow: "hidden",
+      fontFamily: "var(--font-sans)",
+      background: TONES[tone] || TONES.green,
+      ...style
+    }
+  }, rest), /*#__PURE__*/React.createElement("div", {
+    className: "mt-cover-g"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mt-cover-media",
+    style: {
+      position: "relative",
+      overflow: "hidden",
+      background: "var(--sage-200)"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "mt-cover-sizer",
+    "aria-hidden": "true"
+  }), showImg ? /*#__PURE__*/React.createElement("img", {
+    className: "mt-cover-img",
+    src: image,
+    alt: "",
+    onError: () => setImgError(true),
+    style: {
+      position: "absolute",
+      inset: 0,
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      display: "block"
+    }
+  }) : /*#__PURE__*/React.createElement("span", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "var(--sage-400)"
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: "image-01",
+    size: 32
+  })), label && /*#__PURE__*/React.createElement("span", {
+    style: {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      display: "inline-flex",
+      alignItems: "center",
+      height: 31,
+      padding: "0 12px",
+      background: "var(--green-700)",
+      color: "var(--card)",
+      fontSize: "var(--text-body-sm)",
+      fontWeight: 600,
+      lineHeight: 1,
+      whiteSpace: "nowrap",
+      borderRadius: "var(--card-radius) 0 16px 0"
+    }
+  }, label)), /*#__PURE__*/React.createElement("div", {
+    className: "mt-cover-panel",
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      textAlign: "center",
+      minWidth: 0,
+      boxSizing: "border-box"
+    }
+  }, badge && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
+    size: "sm",
+    style: {
+      marginBottom: 16
+    }
+  }, badge), /*#__PURE__*/React.createElement(H, {
+    className: "mt-cover-title",
+    style: {
+      margin: 0,
+      fontWeight: 600,
+      color: "var(--sage-50)"
+    }
+  }, /*#__PURE__*/React.createElement("a", {
+    href: href,
+    className: "mt-card-link",
+    style: {
+      display: "block",
+      ...clamp(2),
+      // DS-104 — 제목 두 줄을 고르게(text-wrap: balance)
+      textWrap: "balance"
+    }
+  }, title)), excerpt && /*#__PURE__*/React.createElement("p", {
+    className: "mt-cover-ex",
+    style: {
+      margin: "12px 0 0",
+      fontWeight: 400,
+      color: "var(--sage-200)",
+      ...clamp(3)
+    }
+  }, excerpt), person && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      gap: 4,
+      marginTop: 16,
+      minWidth: 0,
+      maxWidth: "100%"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 8,
+      minWidth: 0,
+      maxWidth: "100%"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "mt-cover-name",
+    style: {
+      fontWeight: 600,
+      color: "var(--sage-50)",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap"
+    }
+  }, person.name), person.country && /*#__PURE__*/React.createElement(__ds_scope.Flag, {
+    className: "mt-cover-flag-w",
+    country: person.country,
+    label: person.countryLabel,
+    shape: "rect",
+    size: "lg",
+    tooltip: false
+  }), person.country && /*#__PURE__*/React.createElement(__ds_scope.Flag, {
+    className: "mt-cover-flag-n",
+    country: person.country,
+    label: person.countryLabel,
+    shape: "rect",
+    size: "sm",
+    tooltip: false
+  })), (person.role || person.company) && /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: "flex",
+      justifyContent: "center",
+      gap: 6,
+      flexWrap: "wrap",
+      fontSize: "var(--text-caption)",
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
+      color: "var(--sage-200)"
+    }
+  }, person.role && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 500
+    }
+  }, person.role), person.company && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 300
+    }
+  }, person.company))))));
+}
+Object.assign(__ds_scope, { CoverCard });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/surfaces/CoverCard.jsx", error: String((e && e.message) || e) }); }
 
 // components/surfaces/EmptyState.jsx
 try { (() => {
@@ -8619,272 +9593,6 @@ function InterviewCard({
 }
 Object.assign(__ds_scope, { InterviewCard });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/surfaces/InterviewCard.jsx", error: String((e && e.message) || e) }); }
-
-// components/surfaces/MentorCard.jsx
-try { (() => {
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-/**
- * MentorCard — 세로형 멘토 카드. Desktop 296px 고정. Mobile(~768)에서 폭을 부모가 정하느냐는 `fluid`로 가른다
- *  (기본 false=296 고정 — 캐러셀처럼 부모가 폭을 안 정할 때, true=100%/min-width 179 — 2열 그리드처럼 부모가 정할 때).
- *  프리미티브(Badge·CountToggle) 조립.
- *
- * [카드 공통 셸] white(card) · 1px sage-200 헤어라인 · card-shadow · card-radius(동심원).
- *  hover 시 그림자만 상승(shadow-md), 위치 이동 없음(~150ms).
- * [스트레치 링크] 루트는 <article>(position:relative) — <a>가 아니다. 이름에만 <a>를 걸고 그 ::after가
- *  카드 전면(inset:0·z-index:1)을 덮어 카드 전체 클릭을 낸다. 스크랩·배지 행 오버레이는 z-index:2로
- *  그 위에서 독립 클릭. 카드의 접근 이름 = 이름 링크 텍스트. 탭 순서 = 이름 링크 → 스크랩 → 배지 행.
- * [구조] 미디어(Desktop 3:2 · Mobile 5:4, cover 크롭, media-margin 인셋 + media-radius) *   · 좌상단: "신규 멘토" 배지(green, status/active recipe) — publishedAt 기준 공개 후 1달만 노출
- *   · 우상단: 스크랩 오버레이 — BookmarkToggle(미디어 오버레이 전용, 선택 시 반전). 받침(반투명 흰 면+blur)은
- *     카드 것 그대로 유지 — BookmarkToggle 자체가 IconButton default 크기·radius를 가지므로 패딩 없이 바로 앉힌다.
- *     prop 이름은 카드의 말(bookmarked·onBookmarkChange) 그대로 — 부품 이름과 별개다.
- *   · 미디어 하단 안쪽: 배지 행 — 국가 배지(flag + "대한민국 +N ⌄", +N ⌄는 정적 표시 — 펼침은 Badge 확장 OPEN)
- *     + 직무 배지. 뉴트럴 recipe, size sm. 독립 클릭 영역.
- *  → 이름(h3 18/lh 26, 1줄 …, 카드의 유일한 링크 — fluid일 때만 Mobile에서 body 16) →(4) 직무(caption 14/lh 20, 500)/(4) 회사(caption, muted)
- *  →(8) 소개 박스(green-50 면 + green-100 테두리, 글자 sage-700, caption 14, 1줄 …).
- *  본문 상자는 padding 8/18(Mobile 6·8/12) · 요소 간 4. **소개 박스는 본문 글자가 아니라 미디어와 같은 폭이다**(카드 좌우 8 인셋 —
- *  본문 좌우 패딩 18에서 음수 마진 10으로 뺀다. Mobile은 좌우 12이므로 -4).
- * [Mobile ~768] 국가 배지 = 국기만(텍스트 숨김) · 소개 박스 2줄 허용(폭과 무관, 항상 적용).
- *  `fluid`=true일 때만 폭이 width:100%/min-width:179(max-width 없음, 부모가 넓히면 카드도 넓어진다) — 기본은 296 고정(캐러셀 등 부모가 폭을 안 정하는 컨테이너용).
- */
-
-const NEW_WINDOW_MS = 31 * 24 * 60 * 60 * 1000; // 공개 후 1달
-
-if (typeof document !== "undefined" && !document.getElementById("mt-mcard-style")) {
-  const s = document.createElement("style");
-  s.id = "mt-mcard-style";
-  s.textContent = "@media (max-width:768px){.mt-mcard-fluid{width:100% !important;min-width:179px !important}.mt-mcard-fluid .mt-mcard-clabel{display:none !important}.mt-mcard-fluid .mt-mcard-intro{-webkit-line-clamp:2 !important}.mt-mcard-fluid .mt-mcard-media{aspect-ratio:5/4 !important}.mt-mcard-fluid .mt-mcard-body{padding:6px 12px 8px !important}.mt-mcard-fluid .mt-mcard-introbox{margin-left:-4px !important;margin-right:-4px !important}.mt-mcard-fluid .mt-card-link{font-size:var(--text-body) !important;line-height:var(--text-body--line-height) !important;letter-spacing:var(--text-body--letter-spacing) !important}}";
-  document.head.appendChild(s);
-}
-if (typeof document !== "undefined" && !document.getElementById("mt-card-link-style")) {
-  const s = document.createElement("style");
-  s.id = "mt-card-link-style";
-  s.textContent = ".mt-card-link{color:inherit;text-decoration:none;-webkit-user-drag:none;}" + ".mt-card-link::after{content:'';position:absolute;inset:0;z-index:1;}" + ".mt-card-link:focus-visible{outline:none;}" +
-  // 포커스 링은 제목 글자가 아니라 카드 테두리에 그린다 — 무엇이 선택됐는지 보이게.
-  "article:has(.mt-card-link:focus-visible){outline:2px solid var(--ring);outline-offset:2px;}" + "@media (hover:hover){article:hover a.mt-card-link{color:var(--primary);}article:hover .mt-card-media-img{transform:scale(1.03);}}.mt-card-media-img{transition:transform 250ms ease-out;}a.mt-card-link{transition:color 250ms ease-out;}@media (prefers-reduced-motion:reduce){.mt-card-media-img{transform:none !important;transition:none;}}";
-  document.head.appendChild(s);
-}
-const ellipsis1 = {
-  overflow: "hidden",
-  textOverflow: "ellipsis",
-  whiteSpace: "nowrap"
-};
-function MentorCard({
-  name,
-  role,
-  company,
-  intro,
-  field,
-  country,
-  countryLabel,
-  countryExtra = 0,
-  publishedAt,
-  photo,
-  href = "#",
-  fluid = false,
-  bookmarked = false,
-  onBookmarkChange,
-  style,
-  ...rest
-}) {
-  const controlled = onBookmarkChange != null;
-  const [savedU, setSavedU] = React.useState(bookmarked);
-  const saved = controlled ? bookmarked : savedU;
-  const setSaved = n => {
-    if (controlled) onBookmarkChange(n);else setSavedU(n);
-  };
-  const [hover, setHover] = React.useState(false);
-  const [imgError, setImgError] = React.useState(false);
-  const showImg = photo && !imgError;
-  const isNew = publishedAt && Date.now() - new Date(publishedAt).getTime() <= NEW_WINDOW_MS;
-  return /*#__PURE__*/React.createElement("article", _extends({
-    className: fluid ? "mt-mcard mt-mcard-fluid" : "mt-mcard",
-    onMouseEnter: () => setHover(true),
-    onMouseLeave: () => setHover(false),
-    style: {
-      position: "relative",
-      display: "block",
-      width: 296,
-      flex: "0 0 auto",
-      boxSizing: "border-box",
-      color: "var(--foreground)",
-      fontFamily: "var(--font-sans)",
-      background: "var(--card)",
-      border: "1px solid var(--sage-200)",
-      borderRadius: "var(--card-radius)",
-      boxShadow: hover ? "var(--shadow-md)" : "var(--card-shadow)",
-      transition: "box-shadow 150ms ease",
-      ...style
-    }
-  }, rest), /*#__PURE__*/React.createElement("div", {
-    className: "mt-mcard-media",
-    style: {
-      position: "relative",
-      margin: "var(--card-media-margin) var(--card-media-margin) 0",
-      aspectRatio: "3 / 2",
-      background: "var(--sage-100)",
-      borderRadius: "var(--card-media-radius)",
-      overflow: "hidden"
-    }
-  }, showImg ? /*#__PURE__*/React.createElement("img", {
-    className: "mt-card-media-img",
-    src: photo,
-    alt: name || "",
-    onError: () => setImgError(true),
-    style: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      display: "block"
-    }
-  }) : /*#__PURE__*/React.createElement("span", {
-    style: {
-      position: "absolute",
-      inset: 0,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      color: "var(--sage-400)"
-    }
-  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
-    name: "user",
-    size: 30
-  })), isNew && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
-    variant: "status",
-    status: "active",
-    size: "sm",
-    style: {
-      position: "absolute",
-      top: 8,
-      left: 8,
-      boxShadow: "var(--shadow-sm)"
-    }
-  }, "\uC2E0\uADDC \uBA58\uD1A0"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: "absolute",
-      top: 8,
-      right: 8,
-      zIndex: 2,
-      borderRadius: "var(--radius-md)",
-      background: "color-mix(in oklch, white 82%, transparent)",
-      backdropFilter: "blur(4px)",
-      boxShadow: "var(--shadow-sm), 0 0 0 1px color-mix(in oklch, var(--sage-950) 6%, transparent)",
-      display: "inline-flex"
-    }
-  }, /*#__PURE__*/React.createElement(__ds_scope.BookmarkToggle, {
-    ariaLabel: "\uC2A4\uD06C\uB7A9",
-    selected: saved,
-    onChange: setSaved
-  })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: "absolute",
-      left: 8,
-      right: 8,
-      bottom: 8,
-      zIndex: 2,
-      display: "flex",
-      alignItems: "center",
-      gap: 6,
-      overflow: "hidden"
-    }
-  }, (country || countryLabel) && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
-    size: "sm",
-    leading: "flag",
-    flag: country,
-    style: {
-      boxShadow: "var(--shadow-sm)"
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "mt-mcard-clabel",
-    style: {
-      display: "inline-flex",
-      alignItems: "center",
-      gap: 5
-    }
-  }, countryLabel, countryExtra > 0 && /*#__PURE__*/React.createElement("span", {
-    style: {
-      display: "inline-flex",
-      alignItems: "center",
-      gap: 1,
-      color: "var(--muted-foreground)"
-    }
-  }, "+", countryExtra, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
-    name: "arrow-down-01",
-    size: 13
-  })))), field && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
-    size: "sm",
-    style: {
-      boxShadow: "var(--shadow-sm)"
-    }
-  }, field))), /*#__PURE__*/React.createElement("div", {
-    className: "mt-mcard-body",
-    style: {
-      padding: "8px var(--card-content-padding)",
-      display: "flex",
-      flexDirection: "column",
-      gap: 4
-    }
-  }, /*#__PURE__*/React.createElement("a", {
-    href: href,
-    className: "mt-card-link",
-    style: {
-      display: "block",
-      fontSize: "var(--text-h3)",
-      fontWeight: 600,
-      letterSpacing: "var(--text-h3--letter-spacing)",
-      lineHeight: "var(--text-h3--line-height)",
-      ...ellipsis1
-    }
-  }, name), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "column",
-      gap: 4
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: "var(--text-caption)",
-      fontWeight: 500,
-      lineHeight: "var(--text-caption--line-height)",
-      letterSpacing: "var(--text-caption--letter-spacing)",
-      color: "var(--foreground)",
-      ...ellipsis1
-    }
-  }, role), /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: "var(--text-caption)",
-      fontWeight: 400,
-      lineHeight: "var(--text-caption--line-height)",
-      letterSpacing: "var(--text-caption--letter-spacing)",
-      color: "var(--muted-foreground)",
-      ...ellipsis1
-    }
-  }, company)), intro && /*#__PURE__*/React.createElement("div", {
-    className: "mt-mcard-introbox",
-    style: {
-      marginTop: 4,
-      marginLeft: -10,
-      marginRight: -10,
-      background: "var(--green-50)",
-      border: "1px solid var(--green-100)",
-      borderRadius: "var(--radius-md)",
-      padding: 10
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "mt-mcard-intro",
-    style: {
-      display: "-webkit-box",
-      WebkitBoxOrient: "vertical",
-      WebkitLineClamp: 1,
-      overflow: "hidden",
-      fontSize: "var(--text-caption)",
-      lineHeight: "var(--text-caption--line-height)",
-      letterSpacing: "var(--text-caption--letter-spacing)",
-      color: "var(--sage-700)"
-    }
-  }, intro))));
-}
-Object.assign(__ds_scope, { MentorCard });
-})(); } catch (e) { __ds_ns.__errors.push({ path: "components/surfaces/MentorCard.jsx", error: String((e && e.message) || e) }); }
 
 // components/surfaces/QnaCard.jsx
 try { (() => {
@@ -9246,489 +9954,6 @@ function Skeleton({
 Object.assign(__ds_scope, { Skeleton });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/surfaces/Skeleton.jsx", error: String((e && e.message) || e) }); }
 
-// components/surfaces/QnaListItem.jsx
-try { (() => {
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-/**
- * QnaListItem (DS-57) — Q&A 한 건을 목록의 한 줄로. 변형 이름은 자리가 아니라 강조점이다.
- *  default=전부 · compact=제목만 · answer=그 멘토의 답변 · question=질문과 답변 수.
- * [셸] 카드가 아니다. 줄 위아래 hairline(--sage-200) — 매 줄이 위·아래 선을 갖고 margin-top:-1px로 겹친다.
- *  그래서 첫 줄 위 · 끝 줄 아래에도 선이 서고, 줄 사이는 1px 하나다(li로 감싸도 같다).
- * [링크] 루트 <article>. 제목 <a className="mt-card-link"> — QnaCard의 스트레치 링크 규칙을 그대로 쓴다
- *  (QnaCard를 import해 그 규칙이 먼저 깔리게 한다). 칩·토글은 z-index:2로 위에서 따로 눌린다.
- * [읽는 순서] DOM은 제목이 먼저. 반응 묶음이 오른쪽 위에 보이는 것은 grid-area로 옮긴 것이다.
- *  포커스 = 제목 → 해시태그 → 도움돼요 → 스크랩.
- * [폭] 768 이하 판정은 viewport가 아니라 줄 자신의 폭(container query)으로 한다 — 좁은 칸에 들어가도 같게.
- */
-void __ds_scope.QnaCard;
-const MAX_TAGS = 3;
-if (typeof document !== "undefined" && !document.getElementById("mt-qna-row-style")) {
-  const s = document.createElement("style");
-  s.id = "mt-qna-row-style";
-  s.textContent = ".mt-qna-row{container-type:inline-size;}" + "@media (hover:hover){.mt-qna-row:hover{background:var(--sage-50);}}" + ".mt-qli-g{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:var(--space-3);}" + ".mt-qli-default{row-gap:var(--space-2);grid-template-areas:'head react' 'title title' 'excerpt excerpt' 'ans tags';}" + ".mt-qli-default>.mt-qli-react{justify-self:end;}.mt-qli-default>.mt-qli-tags{justify-self:end;}" + "@container (max-width:768px){.mt-qli-default{grid-template-areas:'head react' 'title title' 'excerpt excerpt' 'ans ans' 'tags tags';}.mt-qli-default>.mt-qli-tags{justify-self:start;}}" + ".mt-qli-compact{row-gap:var(--space-1);grid-template-areas:'head right' 'title title';}" + ".mt-qli-answer{row-gap:var(--space-2);grid-template-areas:'title title' 'body body' 'left right';}" + ".mt-qli-question{row-gap:var(--space-1);column-gap:var(--space-6);grid-template-areas:'head count' 'title count' 'meta count';}";
-  document.head.appendChild(s);
-}
-const clamp = lines => ({
-  display: "-webkit-box",
-  WebkitBoxOrient: "vertical",
-  WebkitLineClamp: lines,
-  overflow: "hidden",
-  wordBreak: "keep-all",
-  overflowWrap: "break-word"
-});
-const type = t => ({
-  fontSize: `var(--text-${t})`,
-  lineHeight: `var(--text-${t}--line-height)`,
-  letterSpacing: `var(--text-${t}--letter-spacing)`
-});
-const nowrap = {
-  whiteSpace: "nowrap"
-};
-const above = {
-  position: "relative",
-  zIndex: 2
-};
-const PAD = {
-  default: "var(--space-4)",
-  compact: "var(--space-3)",
-  answer: "var(--space-4)",
-  question: "var(--space-4)"
-};
-function Views({
-  n
-}) {
-  return /*#__PURE__*/React.createElement("span", {
-    style: {
-      display: "inline-flex",
-      alignItems: "center",
-      gap: 4,
-      color: "var(--muted-foreground)",
-      ...type("caption"),
-      ...nowrap
-    }
-  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
-    name: "view",
-    size: 15
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "tabular"
-  }, n.toLocaleString("ko-KR")));
-}
-
-// 막대 높이 = 그 자리 글자의 line-height(여러 줄은 줄마다 한 칸), 부품 자리는 그 부품의 높이. 칸 사이 간격은 실제 줄의 grid gap 그대로.
-function Lines({
-  n = 1,
-  lh,
-  width = "100%"
-}) {
-  return /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "column"
-    }
-  }, Array.from({
-    length: n
-  }, (_, i) => /*#__PURE__*/React.createElement("div", {
-    key: i,
-    style: {
-      height: `var(--text-${lh}--line-height)`,
-      display: "flex",
-      alignItems: "center"
-    }
-  }, /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
-    width: n > 1 && i === n - 1 ? "60%" : width,
-    height: "calc(100% - var(--space-2))"
-  }))));
-}
-function RowSkeleton({
-  variant
-}) {
-  const g = (area, el, extra) => /*#__PURE__*/React.createElement("div", {
-    style: {
-      gridArea: area,
-      minWidth: 0,
-      ...extra
-    }
-  }, el);
-  if (variant === "compact") return /*#__PURE__*/React.createElement(React.Fragment, null, g("head", /*#__PURE__*/React.createElement(Lines, {
-    lh: "caption",
-    width: 120
-  })), g("right", /*#__PURE__*/React.createElement(Lines, {
-    lh: "caption",
-    width: 48
-  })), g("title", /*#__PURE__*/React.createElement(Lines, {
-    lh: "body",
-    width: "85%"
-  })));
-  if (variant === "answer") return /*#__PURE__*/React.createElement(React.Fragment, null, g("title", /*#__PURE__*/React.createElement(Lines, {
-    lh: "h3",
-    width: "70%"
-  })), g("body", /*#__PURE__*/React.createElement(Lines, {
-    n: 3,
-    lh: "body"
-  })), g("left", /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
-    width: 120,
-    height: 24
-  })), g("right", /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
-    width: 40,
-    height: 24
-  })));
-  if (variant === "question") return /*#__PURE__*/React.createElement(React.Fragment, null, g("head", /*#__PURE__*/React.createElement(Lines, {
-    lh: "caption",
-    width: 80
-  })), g("title", /*#__PURE__*/React.createElement(Lines, {
-    n: 2,
-    lh: "h3"
-  })), g("meta", /*#__PURE__*/React.createElement(Lines, {
-    lh: "caption",
-    width: 140
-  })), g("count", /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
-    width: 40,
-    height: "var(--text-display--line-height)"
-  }), {
-    alignSelf: "center"
-  }));
-  return /*#__PURE__*/React.createElement(React.Fragment, null, g("head", /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
-    width: 160,
-    height: 28
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "mt-qli-react",
-    style: {
-      gridArea: "react"
-    }
-  }, /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
-    width: 140,
-    height: 28
-  })), g("title", /*#__PURE__*/React.createElement(Lines, {
-    n: 2,
-    lh: "h3"
-  })), g("excerpt", /*#__PURE__*/React.createElement(Lines, {
-    n: 2,
-    lh: "caption"
-  })), g("ans", /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
-    width: 150,
-    height: 24
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "mt-qli-tags",
-    style: {
-      gridArea: "tags"
-    }
-  }, /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
-    width: 180,
-    height: 24
-  })));
-}
-function QnaListItem({
-  variant = "default",
-  href = "#",
-  title,
-  headingLevel = 3,
-  country,
-  countryLabel,
-  keyword,
-  excerpt,
-  answerExcerpt,
-  tags = [],
-  tagHref,
-  answerers = [],
-  answerCount,
-  maxAvatars = 3,
-  views = 0,
-  likes = 0,
-  liked = false,
-  onLikeChange,
-  scraps = 0,
-  scrapped = false,
-  onScrapChange,
-  showScrap = false,
-  loading = false,
-  className,
-  style,
-  ...rest
-}) {
-  const v = ["default", "compact", "answer", "question"].includes(variant) ? variant : "default";
-  const count = answerCount != null ? answerCount : answerers.length;
-  const H = `h${Math.min(4, Math.max(2, headingLevel))}`;
-  const shell = {
-    position: "relative",
-    display: "block",
-    boxSizing: "border-box",
-    width: "100%",
-    marginTop: -1,
-    borderTop: "1px solid var(--sage-200)",
-    borderBottom: "1px solid var(--sage-200)",
-    padding: `${PAD[v]} var(--space-4)`,
-    color: "var(--foreground)",
-    fontFamily: "var(--font-sans)",
-    transition: "background-color 150ms ease",
-    ...style
-  };
-  const cls = ["mt-qna-row", className].filter(Boolean).join(" ");
-  const grid = `mt-qli-g mt-qli-${v}`;
-  if (loading) {
-    return /*#__PURE__*/React.createElement("div", _extends({
-      className: cls,
-      "aria-hidden": "true",
-      style: shell
-    }, rest), /*#__PURE__*/React.createElement("div", {
-      className: grid
-    }, /*#__PURE__*/React.createElement(RowSkeleton, {
-      variant: v
-    })));
-  }
-  const titleType = v === "compact" ? "body" : "h3";
-  const titleLines = v === "compact" || v === "answer" ? 1 : 2;
-  const heading = /*#__PURE__*/React.createElement(H, {
-    style: {
-      gridArea: "title",
-      margin: 0,
-      minWidth: 0,
-      fontWeight: 600,
-      ...type(titleType)
-    }
-  }, /*#__PURE__*/React.createElement("a", {
-    href: href,
-    className: "mt-card-link",
-    style: {
-      display: "block",
-      ...clamp(titleLines)
-    }
-  }, title));
-  const like = /*#__PURE__*/React.createElement(__ds_scope.CountToggle, {
-    icon: "favourite",
-    tone: "rose",
-    selected: liked,
-    count: likes,
-    onChange: onLikeChange
-  });
-  const scrap = /*#__PURE__*/React.createElement(__ds_scope.CountToggle, {
-    icon: "bookmark",
-    tone: "dark",
-    selected: scrapped,
-    count: scraps,
-    onChange: onScrapChange
-  });
-  let body;
-  if (v === "default") {
-    const shown = tags.slice(0, MAX_TAGS);
-    const extra = tags.length - shown.length;
-    body = /*#__PURE__*/React.createElement(React.Fragment, null, heading, (country || countryLabel || keyword) && /*#__PURE__*/React.createElement("div", {
-      style: {
-        gridArea: "head",
-        display: "flex",
-        alignItems: "center",
-        gap: 6,
-        flexWrap: "wrap",
-        minWidth: 0
-      }
-    }, (country || countryLabel) && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
-      size: "md",
-      leading: "flag",
-      flag: country
-    }, countryLabel), keyword && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
-      size: "md"
-    }, keyword)), excerpt && /*#__PURE__*/React.createElement("p", {
-      style: {
-        gridArea: "excerpt",
-        margin: 0,
-        color: "var(--muted-foreground)",
-        ...type("caption"),
-        ...clamp(2)
-      }
-    }, excerpt), /*#__PURE__*/React.createElement("div", {
-      style: {
-        gridArea: "ans",
-        alignSelf: "center",
-        display: "flex",
-        alignItems: "center",
-        gap: 10,
-        minWidth: 0
-      }
-    }, count > 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, answerers.length > 0 && /*#__PURE__*/React.createElement(__ds_scope.AvatarGroup, {
-      items: answerers,
-      max: maxAvatars,
-      size: "sm"
-    }), /*#__PURE__*/React.createElement("span", {
-      style: {
-        color: "var(--muted-foreground)",
-        ...type("caption"),
-        ...nowrap
-      }
-    }, "\uBA58\uD1A0 \uB2F5\uBCC0 ", /*#__PURE__*/React.createElement("b", {
-      className: "tabular",
-      style: {
-        color: "var(--primary)",
-        fontWeight: 600
-      }
-    }, count), "\uAC1C")) : /*#__PURE__*/React.createElement("span", {
-      style: {
-        color: "var(--primary)",
-        fontWeight: 500,
-        ...type("caption")
-      }
-    }, "\uC544\uC9C1 \uC791\uC131\uB41C \uB2F5\uBCC0\uC774 \uC5C6\uC2B5\uB2C8\uB2E4")), tags.length > 0 && /*#__PURE__*/React.createElement("div", {
-      className: "mt-qli-tags",
-      style: {
-        gridArea: "tags",
-        alignSelf: "center",
-        display: "flex",
-        flexWrap: "nowrap",
-        alignItems: "center",
-        gap: 6,
-        minWidth: 0,
-        maxWidth: "100%",
-        ...above
-      }
-    }, shown.map((t, i) => /*#__PURE__*/React.createElement(__ds_scope.Chip, {
-      key: i,
-      size: "sm",
-      prefix: "#",
-      href: tagHref ? tagHref(t) : `/tags/${t}`,
-      style: {
-        minWidth: 0,
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        whiteSpace: "nowrap"
-      }
-    }, t)), extra > 0 && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
-      size: "sm",
-      style: {
-        flex: "0 0 auto"
-      }
-    }, "+", extra)), /*#__PURE__*/React.createElement("div", {
-      className: "mt-qli-react",
-      style: {
-        gridArea: "react",
-        alignSelf: "start",
-        display: "flex",
-        alignItems: "center",
-        gap: "var(--space-4)",
-        ...above
-      }
-    }, /*#__PURE__*/React.createElement(Views, {
-      n: views
-    }), like, scrap));
-  } else if (v === "compact") {
-    const meta = [countryLabel, keyword].filter(Boolean).join(" · ");
-    body = /*#__PURE__*/React.createElement(React.Fragment, null, heading, /*#__PURE__*/React.createElement("div", {
-      style: {
-        gridArea: "head",
-        minWidth: 0,
-        color: "var(--muted-foreground)",
-        ...type("caption"),
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        ...nowrap
-      }
-    }, meta), /*#__PURE__*/React.createElement("div", {
-      style: {
-        gridArea: "right",
-        display: "flex",
-        alignItems: "center",
-        gap: "var(--space-3)",
-        ...above
-      }
-    }, /*#__PURE__*/React.createElement("span", {
-      style: {
-        color: "var(--primary)",
-        fontWeight: 600,
-        ...type("caption"),
-        ...nowrap
-      }
-    }, count > 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, "\uB2F5\uBCC0 ", /*#__PURE__*/React.createElement("span", {
-      className: "tabular"
-    }, count)) : "답변 대기"), showScrap && scrap));
-  } else if (v === "answer") {
-    body = /*#__PURE__*/React.createElement(React.Fragment, null, heading, answerExcerpt && /*#__PURE__*/React.createElement("p", {
-      style: {
-        gridArea: "body",
-        margin: 0,
-        color: "var(--foreground)",
-        ...type("body"),
-        ...clamp(3)
-      }
-    }, answerExcerpt), /*#__PURE__*/React.createElement("div", {
-      style: {
-        gridArea: "left",
-        display: "flex",
-        alignItems: "center",
-        gap: "var(--space-4)",
-        ...above
-      }
-    }, like, /*#__PURE__*/React.createElement(Views, {
-      n: views
-    })), /*#__PURE__*/React.createElement("div", {
-      style: {
-        gridArea: "right",
-        display: "flex",
-        alignItems: "center",
-        ...above
-      }
-    }, scrap));
-  } else {
-    body = /*#__PURE__*/React.createElement(React.Fragment, null, heading, /*#__PURE__*/React.createElement("div", {
-      style: {
-        gridArea: "head",
-        display: "flex",
-        alignItems: "baseline",
-        gap: "var(--space-2)",
-        minWidth: 0,
-        ...type("caption")
-      }
-    }, /*#__PURE__*/React.createElement("span", {
-      style: {
-        color: "var(--primary)",
-        fontWeight: 600
-      }
-    }, "Q."), keyword && /*#__PURE__*/React.createElement("span", {
-      style: {
-        color: "var(--muted-foreground)"
-      }
-    }, keyword)), /*#__PURE__*/React.createElement("div", {
-      className: "tabular",
-      style: {
-        gridArea: "meta",
-        color: "var(--muted-foreground)",
-        ...type("caption"),
-        ...nowrap
-      }
-    }, "\uC870\uD68C ", views.toLocaleString("ko-KR"), " \xB7 \uB3C4\uC6C0\uB3FC\uC694 ", likes.toLocaleString("ko-KR")), /*#__PURE__*/React.createElement("div", {
-      style: {
-        gridArea: "count",
-        alignSelf: "center",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        ...nowrap
-      }
-    }, count > 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
-      className: "tabular",
-      style: {
-        color: "var(--foreground)",
-        fontWeight: 600,
-        ...type("display")
-      }
-    }, count), /*#__PURE__*/React.createElement("span", {
-      style: {
-        color: "var(--muted-foreground)",
-        ...type("caption")
-      }
-    }, "\uBA58\uD1A0 \uB2F5\uBCC0")) : /*#__PURE__*/React.createElement("span", {
-      style: {
-        color: "var(--primary)",
-        ...type("caption")
-      }
-    }, "\uB2F5\uBCC0 \uB300\uAE30")));
-  }
-  return /*#__PURE__*/React.createElement("article", _extends({
-    className: cls,
-    style: shell
-  }, rest), /*#__PURE__*/React.createElement("div", {
-    className: grid
-  }, body));
-}
-Object.assign(__ds_scope, { QnaListItem });
-})(); } catch (e) { __ds_ns.__errors.push({ path: "components/surfaces/QnaListItem.jsx", error: String((e && e.message) || e) }); }
-
 // components/surfaces/Table.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
@@ -9802,10 +10027,12 @@ try { (() => {
 /**
  * taxonomy.js — 국가·직무·테마 태그의 단일 소스(SSoT).
  *  화면이 값을 지어내지 않는다. 바꿀 때는 여기만 고친다. nav-ia.js와 같은 성격이다.
+ *  대분류 아이콘(DS-108 · 디자이너 2026-10-13) — KEYWORD_GROUPS 의 각 그룹에 icon(세부 태그의 icon 과 같은 방식).
  *  Figma 「국가, 직무 & 태그 정리」(node 1059:35100, 2026-09-15)를 그대로 옮긴 것이다.
  *  value는 한국어 라벨 그대로다 — 백엔드 코드값이 아직 없다. 지금 영어 식별자를 지어내면
  *  나중에 두 벌이 된다. 코드값이 정해지면 그때 매핑을 붙인다.
- *  국가만 flag 필드에 국기 파일명(영문, assets/flags/<flag>.svg)을 따로 둔다 — 이미 있는 값이다.
+ *  국가만 flag 필드에 국기 파일명(영문 — 원형 assets/flags/<flag>.svg · 직사각 assets/flags-rect/<flag>.svg)과
+ *  iso(ISO 3166-1 alpha-2, DS-90 · Figma 국기 라이브러리 1758:672626 의 mapping)를 둔다. COUNTRY_GROUPS 에만 둔다.
  *
  * [구조] FilterSelect가 바로 먹는 모양이다 — groups = [{ label, options: [{ value, label, flag }] }].
  *  첫 그룹의 label은 빈 문자열이다. FilterSelect는 g.label이 있을 때만 제목을 그리므로
@@ -9824,123 +10051,153 @@ const COUNTRY_GROUPS = [{
   options: [{
     value: "일본",
     label: "일본",
-    flag: "japan"
+    flag: "japan",
+    iso: "JP"
   }, {
     value: "미국",
     label: "미국",
-    flag: "united-states"
+    flag: "united-states",
+    iso: "US"
   }, {
     value: "대한민국",
     label: "대한민국",
-    flag: "south-korea"
+    flag: "south-korea",
+    iso: "KR"
   }, {
     value: "싱가포르",
     label: "싱가포르",
-    flag: "singapore"
+    flag: "singapore",
+    iso: "SG"
   }]
 }, {
   label: "유럽",
   options: [{
     value: "네덜란드",
     label: "네덜란드",
-    flag: "netherlands"
+    flag: "netherlands",
+    iso: "NL"
   }, {
     value: "독일",
     label: "독일",
-    flag: "germany"
+    flag: "germany",
+    iso: "DE"
   }, {
     value: "스페인",
     label: "스페인",
-    flag: "spain"
+    flag: "spain",
+    iso: "ES"
   }, {
     value: "영국",
     label: "영국",
-    flag: "united-kingdom"
+    flag: "united-kingdom",
+    iso: "GB"
   }, {
     value: "이탈리아",
     label: "이탈리아",
-    flag: "italy"
+    flag: "italy",
+    iso: "IT"
   }]
 }, {
   label: "아시아/중동",
   options: [{
     value: "말레이시아",
     label: "말레이시아",
-    flag: "malaysia"
+    flag: "malaysia",
+    iso: "MY"
   }, {
     value: "중국",
     label: "중국",
-    flag: "china"
+    flag: "china",
+    iso: "CN"
   }, {
     value: "홍콩",
     label: "홍콩",
-    flag: "hong-kong"
+    flag: "hong-kong",
+    iso: "HK"
   }, {
     value: "UAE",
     label: "UAE",
-    flag: "uae"
+    flag: "uae",
+    iso: "AE"
   }]
 }, {
   label: "북미/오세아니아",
   options: [{
     value: "캐나다",
     label: "캐나다",
-    flag: "canada"
+    flag: "canada",
+    iso: "CA"
   }, {
     value: "호주",
     label: "호주",
-    flag: "australia"
+    flag: "australia",
+    iso: "AU"
   }]
 }];
 
-// 직무 — 12개 / 대분류 2. 앞의 8개는 단독, 나머지 4개는 「기타」 아래.
+// 직무 — 12개 / 대분류 2. 앞의 8개는 단독, 나머지 4개는 「기타」 아래. icon(DS-91) = 직종마다 하나(HugeIcons, 키워드 25개와 겹치지 않는다).
 const JOB_GROUPS = [{
   label: "",
   options: [{
     value: "개발",
-    label: "개발"
+    label: "개발",
+    icon: "source-code"
   }, {
     value: "디자인",
-    label: "디자인"
+    label: "디자인",
+    icon: "pen-tool-03"
   }, {
     value: "마케팅/광고",
-    label: "마케팅/광고"
+    label: "마케팅/광고",
+    icon: "megaphone-01"
   }, {
     value: "영업/컨설팅",
-    label: "영업/컨설팅"
+    label: "영업/컨설팅",
+    icon: "agreement-01"
   }, {
     value: "금융",
-    label: "금융"
+    label: "금융",
+    icon: "bank"
   }, {
     value: "HR",
-    label: "HR"
+    label: "HR",
+    icon: "user-search-01"
   }, {
     value: "교육",
-    label: "교육"
+    label: "교육",
+    icon: "teacher"
   }, {
     value: "엔지니어링/제조",
-    label: "엔지니어링/제조"
+    label: "엔지니어링/제조",
+    icon: "factory-01"
   }]
 }, {
   label: "기타",
   options: [{
     value: "고객서비스/리테일",
-    label: "고객서비스/리테일"
+    label: "고객서비스/리테일",
+    icon: "customer-support"
   }, {
     value: "공공복지",
-    label: "공공복지"
+    label: "공공복지",
+    icon: "charity"
   }, {
     value: "법률",
-    label: "법률"
+    label: "법률",
+    icon: "legal-hammer"
   }, {
     value: "학생",
-    label: "학생"
+    label: "학생",
+    icon: "student"
   }]
 }];
 
 // 테마 태그(키워드) — 25개 / 대분류 4. icon(DS-79) = 키워드마다 하나(HugeIcons, 25개 모두 다르다). 대분류에는 icon이 없다.
-const KEYWORD_GROUPS = [{
+const KEYWORD_GROUPS = [
+// DS-108 — 대분류 아이콘: 취업준비 briefcase-01 · 커리어 chart-increase · 현지 생활 location-01 · 학업/재정/그 외 book-open-01
+{
   label: "취업준비",
+  icon: "briefcase-01",
   options: [{
     value: "취업 전략",
     label: "취업 전략",
@@ -9960,6 +10217,7 @@ const KEYWORD_GROUPS = [{
   }]
 }, {
   label: "커리어",
+  icon: "chart-increase",
   options: [{
     value: "승진",
     label: "승진",
@@ -10007,6 +10265,7 @@ const KEYWORD_GROUPS = [{
   }]
 }, {
   label: "현지 생활",
+  icon: "location-01",
   options: [{
     value: "정착 생활",
     label: "정착 생활",
@@ -10038,6 +10297,7 @@ const KEYWORD_GROUPS = [{
   }]
 }, {
   label: "학업/재정/그 외",
+  icon: "book-open-01",
   options: [{
     value: "대학/대학원 진학",
     label: "대학/대학원 진학",
@@ -10112,6 +10372,831 @@ const JOB_TOP = [{
 }];
 Object.assign(__ds_scope, { COUNTRY_GROUPS, JOB_GROUPS, KEYWORD_GROUPS, COUNTRY_TOP, JOB_TOP });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/taxonomy.js", error: String((e && e.message) || e) }); }
+
+// components/surfaces/MentorCard.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+const JOB_ICON = {};
+__ds_scope.JOB_GROUPS.forEach(g => g.options.forEach(o => {
+  JOB_ICON[o.value] = o.icon;
+}));
+
+/**
+ * MentorCard — 세로형 멘토 카드(DS-37 B안 · Figma 1646:32976). Desktop 296px 고정. `fluid`면 폭을 부모가 정한다(Mobile ~768 · 100% · min-width 160).
+ *
+ * [카드 공통 셸] white(card) · 1px sage-200 · card-shadow · card-radius · 안쪽 8. hover 시 그림자만 상승(shadow-md).
+ * [스트레치 링크] 루트 <article>. 이름에만 <a>를 걸고 ::after가 카드 전면을 덮는다. 스크랩은 z-index:2로 위에서 따로 눌린다.
+ * [구조] 미디어(Desktop 3:2 · Mobile 5:4 · --card-media-radius) — 아래쪽 검정 그라데이션(바닥 60% → 44% 지점 0)
+ *   · 왼쪽 위 「신규 멘토」 — 면 --green-700 · 흰 글자 caption 500 · 반경 8 · 좌우 6(green-600은 흰 글자 3.76:1로 모자라 700 · 5.02:1). 공개 후 1달만.
+ *   · 오른쪽 위 스크랩 — BookmarkToggle(사진 위 스크랩은 이것, DESIGN.md §8.1). 안쪽 8.
+ *   · 왼쪽 아래 직종 배지 하나 — Badge category tone="primary" sm leading="icon"(JOB_GROUPS icon). 국가 배지는 사진 위에 없다.
+ *  →(8) 이름 h2 600 1줄 … + Flag rect sm(줄지 않는다) + countryExtra 「+N」 caption muted(잠정 표기)
+ *  →(4) 직무 caption 500 --sage-700 →(4) 회사 caption muted →(8) 소개 상자(--green-100 · 테두리 없음 · --green-900 caption 500 · 1줄 … · 미디어와 같은 폭) →(8) 바닥.
+ * [이름 크기] 카드 폭이 정한다(container query) — 280+ h2 · 200〜280 h3 · 200 미만 body.
+ */
+
+const NEW_WINDOW_MS = 31 * 24 * 60 * 60 * 1000; // 공개 후 1달
+
+if (typeof document !== "undefined" && !document.getElementById("mt-mcard-style")) {
+  const s = document.createElement("style");
+  s.id = "mt-mcard-style";
+  s.textContent = ".mt-mcard{container-type:inline-size;}" + ".mt-mcard-name{font-size:var(--text-h2);line-height:var(--text-h2--line-height);letter-spacing:var(--text-h2--letter-spacing);}" + "@container (max-width:279px){.mt-mcard-name{font-size:var(--text-h3);line-height:var(--text-h3--line-height);letter-spacing:var(--text-h3--letter-spacing);}}" + "@container (max-width:199px){.mt-mcard-name{font-size:var(--text-body);line-height:var(--text-body--line-height);letter-spacing:var(--text-body--letter-spacing);}}" + "@media (max-width:768px){.mt-mcard-fluid{width:100% !important;min-width:160px !important}.mt-mcard-fluid .mt-mcard-media{aspect-ratio:5/4 !important}.mt-mcard-fluid .mt-mcard-body{padding:8px 12px !important}.mt-mcard-fluid .mt-mcard-introbox{margin-left:-4px !important;margin-right:-4px !important}}";
+  document.head.appendChild(s);
+}
+if (typeof document !== "undefined" && !document.getElementById("mt-card-link-style")) {
+  const s = document.createElement("style");
+  s.id = "mt-card-link-style";
+  s.textContent = ".mt-card-link{color:inherit;text-decoration:none;-webkit-user-drag:none;}" + ".mt-card-link::after{content:'';position:absolute;inset:0;z-index:1;}" + ".mt-card-link:focus-visible{outline:none;}" +
+  // 포커스 링은 제목 글자가 아니라 카드 테두리에 그린다 — 무엇이 선택됐는지 보이게.
+  "article:has(.mt-card-link:focus-visible){outline:2px solid var(--ring);outline-offset:2px;}" + "@media (hover:hover){article:hover a.mt-card-link{color:var(--primary);}article:hover .mt-card-media-img{transform:scale(1.03);}}.mt-card-media-img{transition:transform 250ms ease-out;}a.mt-card-link{transition:color 250ms ease-out;}@media (prefers-reduced-motion:reduce){.mt-card-media-img{transform:none !important;transition:none;}}";
+  document.head.appendChild(s);
+}
+const ellipsis1 = {
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap"
+};
+function MentorCard({
+  name,
+  role,
+  company,
+  intro,
+  field,
+  country,
+  countryLabel,
+  countryExtra = 0,
+  publishedAt,
+  photo,
+  href = "#",
+  fluid = false,
+  bookmarked = false,
+  onBookmarkChange,
+  style,
+  ...rest
+}) {
+  const controlled = onBookmarkChange != null;
+  const [savedU, setSavedU] = React.useState(bookmarked);
+  const saved = controlled ? bookmarked : savedU;
+  const setSaved = n => {
+    if (controlled) onBookmarkChange(n);else setSavedU(n);
+  };
+  const [hover, setHover] = React.useState(false);
+  const [imgError, setImgError] = React.useState(false);
+  const showImg = photo && !imgError;
+  const isNew = publishedAt && Date.now() - new Date(publishedAt).getTime() <= NEW_WINDOW_MS;
+  return /*#__PURE__*/React.createElement("article", _extends({
+    className: fluid ? "mt-mcard mt-mcard-fluid" : "mt-mcard",
+    onMouseEnter: () => setHover(true),
+    onMouseLeave: () => setHover(false),
+    style: {
+      position: "relative",
+      display: "block",
+      width: 296,
+      flex: "0 0 auto",
+      boxSizing: "border-box",
+      color: "var(--foreground)",
+      fontFamily: "var(--font-sans)",
+      background: "var(--card)",
+      border: "1px solid var(--sage-200)",
+      borderRadius: "var(--card-radius)",
+      boxShadow: hover ? "var(--shadow-md)" : "var(--card-shadow)",
+      transition: "box-shadow 150ms ease",
+      ...style
+    }
+  }, rest), /*#__PURE__*/React.createElement("div", {
+    className: "mt-mcard-media",
+    style: {
+      position: "relative",
+      margin: "var(--card-media-margin) var(--card-media-margin) 0",
+      aspectRatio: "3 / 2",
+      background: "var(--sage-100)",
+      borderRadius: "var(--card-media-radius)",
+      overflow: "hidden"
+    }
+  }, showImg ? /*#__PURE__*/React.createElement("img", {
+    className: "mt-card-media-img",
+    src: photo,
+    alt: name || "",
+    onError: () => setImgError(true),
+    style: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      display: "block"
+    }
+  }) : /*#__PURE__*/React.createElement("span", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "var(--sage-400)"
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: "user",
+    size: 30
+  })), /*#__PURE__*/React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      inset: 0,
+      pointerEvents: "none",
+      background: "linear-gradient(to top, color-mix(in oklch, var(--sage-950) 60%, transparent) 0%, transparent 44%)"
+    }
+  }), isNew && /*#__PURE__*/React.createElement("span", {
+    style: {
+      position: "absolute",
+      top: 8,
+      left: 8,
+      display: "inline-flex",
+      alignItems: "center",
+      height: 24,
+      padding: "0 6px",
+      borderRadius: 8,
+      background: "var(--green-700)",
+      color: "var(--card)",
+      fontSize: "var(--text-caption)",
+      fontWeight: 500,
+      lineHeight: 1,
+      whiteSpace: "nowrap"
+    }
+  }, "\uC2E0\uADDC \uBA58\uD1A0"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "absolute",
+      top: 8,
+      right: 8,
+      zIndex: 2,
+      display: "inline-flex"
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.BookmarkToggle, {
+    ariaLabel: "\uC2A4\uD06C\uB7A9",
+    selected: saved,
+    onChange: setSaved
+  })), field && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "absolute",
+      left: 8,
+      right: 8,
+      bottom: 8,
+      display: "flex",
+      overflow: "hidden"
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.Badge, {
+    tone: "primary",
+    size: "sm",
+    leading: JOB_ICON[field] ? "icon" : "none",
+    icon: JOB_ICON[field],
+    style: {
+      maxWidth: "100%",
+      overflow: "hidden"
+    }
+  }, field))), /*#__PURE__*/React.createElement("div", {
+    className: "mt-mcard-body",
+    style: {
+      padding: "8px var(--card-content-padding)",
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 6,
+      minWidth: 0
+    }
+  }, /*#__PURE__*/React.createElement("a", {
+    href: href,
+    className: "mt-card-link mt-mcard-name",
+    style: {
+      display: "block",
+      minWidth: 0,
+      fontWeight: 600,
+      ...ellipsis1
+    }
+  }, name), country && /*#__PURE__*/React.createElement(__ds_scope.Flag, {
+    country: country,
+    label: countryLabel,
+    shape: "rect",
+    size: "sm",
+    tooltip: false,
+    style: {
+      flex: "0 0 auto"
+    }
+  }), countryExtra > 0 && /*#__PURE__*/React.createElement("span", {
+    style: {
+      flex: "0 0 auto",
+      fontSize: "var(--text-caption)",
+      lineHeight: 1,
+      color: "var(--muted-foreground)"
+    }
+  }, "+", countryExtra)), role && /*#__PURE__*/React.createElement("span", {
+    style: {
+      marginTop: 4,
+      fontSize: "var(--text-caption)",
+      fontWeight: 500,
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
+      color: "var(--sage-700)",
+      ...ellipsis1
+    }
+  }, role), company && /*#__PURE__*/React.createElement("span", {
+    style: {
+      marginTop: 4,
+      fontSize: "var(--text-caption)",
+      fontWeight: 400,
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
+      color: "var(--muted-foreground)",
+      ...ellipsis1
+    }
+  }, company), intro && /*#__PURE__*/React.createElement("div", {
+    className: "mt-mcard-introbox",
+    style: {
+      marginTop: 8,
+      marginLeft: -10,
+      marginRight: -10,
+      background: "var(--green-100)",
+      borderRadius: "var(--card-media-radius)",
+      padding: 10
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: "block",
+      fontSize: "var(--text-caption)",
+      fontWeight: 500,
+      lineHeight: "var(--text-caption--line-height)",
+      letterSpacing: "var(--text-caption--letter-spacing)",
+      color: "var(--green-900)",
+      ...ellipsis1
+    }
+  }, intro))));
+}
+Object.assign(__ds_scope, { MentorCard });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/surfaces/MentorCard.jsx", error: String((e && e.message) || e) }); }
+
+// components/surfaces/QnaListItem.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * QnaListItem (DS-57) — Q&A 한 건을 목록의 한 줄로. 변형 이름은 자리가 아니라 강조점이다.
+ *  default=전부 · compact=제목만 · answer=그 멘토의 답변 · question=질문과 답변 수.
+ * [셸] 카드가 아니다. 줄 위아래 hairline(--sage-200) — 매 줄이 위·아래 선을 갖고 margin-top:-1px로 겹친다.
+ *  그래서 첫 줄 위 · 끝 줄 아래에도 선이 서고, 줄 사이는 1px 하나다(li로 감싸도 같다).
+ * [링크] 루트 <article>. 제목 <a className="mt-card-link"> — QnaCard의 스트레치 링크 규칙을 그대로 쓴다
+ *  (QnaCard를 import해 그 규칙이 먼저 깔리게 한다). 칩·토글은 z-index:2로 위에서 따로 눌린다.
+ * [읽는 순서] DOM은 제목이 먼저. 반응 묶음이 오른쪽 위에 보이는 것은 grid-area로 옮긴 것이다.
+ *  포커스 = 제목 → 해시태그 → 도움돼요 → 스크랩.
+ * [폭] 768 이하 판정은 viewport가 아니라 줄 자신의 폭(container query)으로 한다 — 좁은 칸에 들어가도 같게.
+ * [DS-84 default] Figma 1646:33282. 머리(원형 국기 20 + 국가 · 키워드 아이콘 20 --primary + 키워드 — caption 500 --sage-700, 테두리·면 없음, 묶음 사이 12)
+ *  + 오른쪽 「New」(Badge accent md · isNew) → 제목 h3 700(넓으면 1줄 · 768 이하 2줄) → 발췌 caption muted 2줄 → 해시태그 한 줄(Chip sm # 3개 + 「+N」)
+ *  → 끝 줄(AvatarGroup 40 · 4개 + 「멘토 답변 N개」 body 500 --primary / 오른쪽 조회 · 하트 · 스크랩). 간격 8 · 12 · 16 · 12 · 줄 위아래 24.
+ *  키워드 아이콘은 taxonomy.js KEYWORD_GROUPS 에서 찾는다(prop 없음) — 대분류 이름이면 그룹 icon · 세부 태그면 태그 icon(DS-108). 얼굴 최대 3 + 「+K」(DS-109).
+ * [DS-84 question] Figma 1567:22871. 카드 모양 — --radius-lg · 안 여백 20 · 줄 안 간격 16 · 형제 줄 사이 16 · hairline 없음.
+ *  면 없음 · 호버 면 --green-100(DS-107 — Figma 첫 줄의 green 면은 호버 상태였다. 제목 색은 바꾸지 않는다). 키워드 → 제목 h2 600 1줄(DS-102 — 줄 폭 768 이하 2줄) → 끝 줄(아바타 + 답변 수 / 조회 · 하트 표시만).
+ */
+const KW_ICON = {};
+// DS-108 — 키워드 아이콘은 대분류 이름(그룹 icon)도 찾는다. 세부 태그는 지금처럼 그 태그의 icon.
+__ds_scope.KEYWORD_GROUPS.forEach(g => {
+  if (g.icon) KW_ICON[g.label] = g.icon;
+  g.options.forEach(o => {
+    KW_ICON[o.value] = o.icon;
+  });
+});
+void __ds_scope.QnaCard;
+const MAX_TAGS = 3;
+// DS-109 — 답변자 얼굴은 3명까지(+K 는 AvatarGroup). maxAvatars prop 이 이긴다.
+const MAX_AVATARS = 3;
+if (typeof document !== "undefined" && !document.getElementById("mt-qna-row-style")) {
+  const s = document.createElement("style");
+  s.id = "mt-qna-row-style";
+  s.textContent = ".mt-qna-row{container-type:inline-size;}" + "@media (hover:hover){.mt-qna-row:hover{background:var(--sage-50);}}" +
+  // DS-107 — question 호버 면 --green-100 · 제목 색 그대로(스트레치 링크의 hover --primary 를 이 변형에서만 되돌린다). 포커스 링은 그대로.
+  "@media (hover:hover){.mt-qna-row.mt-qna-qrow:hover{background:var(--green-100);}.mt-qna-row.mt-qna-qrow:hover a.mt-card-link{color:inherit;}}" + ".mt-qli-g{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:var(--space-3);}" + ".mt-qli-default{row-gap:0;grid-template-areas:'head new' 'title title' 'excerpt excerpt' 'tags tags' 'ans react';}" + ".mt-qli-default>.mt-qli-react{justify-self:end;}" + ".mt-qli-t1{-webkit-line-clamp:1;}" + "@container (max-width:768px){.mt-qli-t1{-webkit-line-clamp:2;}}" + "@container (max-width:520px){.mt-qli-default{grid-template-areas:'head new' 'title title' 'excerpt excerpt' 'tags tags' 'ans ans' 'react react';}.mt-qli-default>.mt-qli-react{justify-self:start;margin-top:12px;}}" + ".mt-qna-qrow+.mt-qna-qrow{margin-top:16px !important;}" + ".mt-qli-compact{row-gap:var(--space-1);grid-template-areas:'head right' 'title title';}" + ".mt-qli-answer{row-gap:var(--space-2);grid-template-areas:'title title' 'body body' 'left right';}" + ".mt-qli-question{row-gap:16px;grid-template-areas:'head head' 'title title' 'ans react';}";
+  document.head.appendChild(s);
+}
+const clamp = lines => ({
+  display: "-webkit-box",
+  WebkitBoxOrient: "vertical",
+  WebkitLineClamp: lines,
+  overflow: "hidden",
+  wordBreak: "keep-all",
+  overflowWrap: "break-word"
+});
+const type = t => ({
+  fontSize: `var(--text-${t})`,
+  lineHeight: `var(--text-${t}--line-height)`,
+  letterSpacing: `var(--text-${t}--letter-spacing)`
+});
+const nowrap = {
+  whiteSpace: "nowrap"
+};
+const above = {
+  position: "relative",
+  zIndex: 2
+};
+const PAD = {
+  default: "var(--space-6)",
+  compact: "var(--space-3)",
+  answer: "var(--space-4)",
+  question: "20px"
+};
+const noA11y = {
+  "aria-hidden": "true",
+  "aria-label": undefined,
+  role: undefined
+};
+function Views({
+  n,
+  size = 15
+}) {
+  return /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 4,
+      color: "var(--muted-foreground)",
+      ...type("caption"),
+      ...nowrap
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: "view",
+    size: size
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "tabular"
+  }, n.toLocaleString("ko-KR")));
+}
+
+// 막대 높이 = 그 자리 글자의 line-height(여러 줄은 줄마다 한 칸), 부품 자리는 그 부품의 높이. 칸 사이 간격은 실제 줄의 grid gap 그대로.
+function Lines({
+  n = 1,
+  lh,
+  width = "100%"
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, Array.from({
+    length: n
+  }, (_, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      height: `var(--text-${lh}--line-height)`,
+      display: "flex",
+      alignItems: "center"
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
+    width: n > 1 && i === n - 1 ? "60%" : width,
+    height: "calc(100% - var(--space-2))"
+  }))));
+}
+function RowSkeleton({
+  variant
+}) {
+  const g = (area, el, extra) => /*#__PURE__*/React.createElement("div", {
+    style: {
+      gridArea: area,
+      minWidth: 0,
+      ...extra
+    }
+  }, el);
+  if (variant === "compact") return /*#__PURE__*/React.createElement(React.Fragment, null, g("head", /*#__PURE__*/React.createElement(Lines, {
+    lh: "caption",
+    width: 120
+  })), g("right", /*#__PURE__*/React.createElement(Lines, {
+    lh: "caption",
+    width: 48
+  })), g("title", /*#__PURE__*/React.createElement(Lines, {
+    lh: "body",
+    width: "85%"
+  })));
+  if (variant === "answer") return /*#__PURE__*/React.createElement(React.Fragment, null, g("title", /*#__PURE__*/React.createElement(Lines, {
+    lh: "h3",
+    width: "70%"
+  })), g("body", /*#__PURE__*/React.createElement(Lines, {
+    n: 3,
+    lh: "body"
+  })), g("left", /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
+    width: 120,
+    height: 24
+  })), g("right", /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
+    width: 40,
+    height: 24
+  })));
+  if (variant === "question") return /*#__PURE__*/React.createElement(React.Fragment, null, g("head", /*#__PURE__*/React.createElement(Lines, {
+    lh: "caption",
+    width: 100
+  })), g("title", /*#__PURE__*/React.createElement(Lines, {
+    lh: "h2",
+    width: "80%"
+  })), g("ans", /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
+    width: 200,
+    height: 40
+  })), g("react", /*#__PURE__*/React.createElement(Lines, {
+    lh: "caption",
+    width: 100
+  }), {
+    alignSelf: "center"
+  }));
+  return /*#__PURE__*/React.createElement(React.Fragment, null, g("head", /*#__PURE__*/React.createElement(Lines, {
+    lh: "caption",
+    width: 180
+  })), g("title", /*#__PURE__*/React.createElement(Lines, {
+    lh: "h3",
+    width: "80%"
+  }), {
+    marginTop: 8
+  }), g("excerpt", /*#__PURE__*/React.createElement(Lines, {
+    n: 2,
+    lh: "caption"
+  }), {
+    marginTop: 12
+  }), g("tags", /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
+    width: 200,
+    height: 24
+  }), {
+    marginTop: 16
+  }), g("ans", /*#__PURE__*/React.createElement(__ds_scope.Skeleton, {
+    width: 220,
+    height: 40
+  }), {
+    marginTop: 12
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "mt-qli-react",
+    style: {
+      gridArea: "react",
+      marginTop: 12,
+      alignSelf: "center"
+    }
+  }, /*#__PURE__*/React.createElement(Lines, {
+    lh: "caption",
+    width: 150
+  })));
+}
+function QnaListItem({
+  variant = "default",
+  href = "#",
+  title,
+  headingLevel = 3,
+  country,
+  countryLabel,
+  keyword,
+  excerpt,
+  answerExcerpt,
+  tags = [],
+  tagHref,
+  answerers = [],
+  answerCount,
+  maxAvatars = MAX_AVATARS,
+  isNew = false,
+  views = 0,
+  likes = 0,
+  liked = false,
+  onLikeChange,
+  scraps = 0,
+  scrapped = false,
+  onScrapChange,
+  showScrap = false,
+  loading = false,
+  className,
+  style,
+  ...rest
+}) {
+  const v = ["default", "compact", "answer", "question"].includes(variant) ? variant : "default";
+  const count = answerCount != null ? answerCount : answerers.length;
+  const H = `h${Math.min(4, Math.max(2, headingLevel))}`;
+  const isQ = v === "question";
+  const shell = {
+    position: "relative",
+    display: "block",
+    boxSizing: "border-box",
+    width: "100%",
+    marginTop: isQ ? 0 : -1,
+    borderTop: isQ ? "none" : "1px solid var(--sage-200)",
+    borderBottom: isQ ? "none" : "1px solid var(--sage-200)",
+    borderRadius: isQ ? "var(--radius-lg)" : undefined,
+    padding: isQ ? "20px" : `${PAD[v]} var(--space-4)`,
+    color: "var(--foreground)",
+    fontFamily: "var(--font-sans)",
+    transition: "background-color 150ms ease",
+    ...style
+  };
+  const cls = ["mt-qna-row", isQ ? "mt-qna-qrow" : null, className].filter(Boolean).join(" ");
+  const grid = `mt-qli-g mt-qli-${v}`;
+  if (loading) {
+    return /*#__PURE__*/React.createElement("div", _extends({
+      className: cls,
+      "aria-hidden": "true",
+      style: shell
+    }, rest), /*#__PURE__*/React.createElement("div", {
+      className: grid
+    }, /*#__PURE__*/React.createElement(RowSkeleton, {
+      variant: v
+    })));
+  }
+  const titleType = v === "compact" ? "body" : isQ ? "h2" : "h3";
+  // DS-102 — question 도 default 와 같은 mt-qli-t1(1줄 · 줄 폭 768 이하 2줄, container query)을 쓴다.
+  const titleLines = v === "default" || isQ ? null : 1;
+  const heading = /*#__PURE__*/React.createElement(H, {
+    style: {
+      gridArea: "title",
+      margin: 0,
+      marginTop: v === "default" ? 8 : 0,
+      minWidth: 0,
+      fontWeight: v === "default" ? 700 : 600,
+      ...type(titleType)
+    }
+  }, titleLines == null ? /*#__PURE__*/React.createElement("a", {
+    href: href,
+    className: "mt-card-link mt-qli-t1",
+    style: {
+      display: "-webkit-box",
+      WebkitBoxOrient: "vertical",
+      overflow: "hidden",
+      wordBreak: "keep-all",
+      overflowWrap: "break-word"
+    }
+  }, title) : /*#__PURE__*/React.createElement("a", {
+    href: href,
+    className: "mt-card-link",
+    style: {
+      display: "block",
+      ...clamp(titleLines)
+    }
+  }, title));
+  const kwIcon = keyword ? KW_ICON[keyword] : null;
+  const kwLabel = keyword && /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 6,
+      minWidth: 0
+    }
+  }, kwIcon && /*#__PURE__*/React.createElement(__ds_scope.Icon, _extends({
+    name: kwIcon,
+    size: 20
+  }, noA11y, {
+    style: {
+      color: "var(--primary)"
+    }
+  })), /*#__PURE__*/React.createElement("span", {
+    style: {
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      ...nowrap
+    }
+  }, keyword));
+  const metaText = {
+    color: "var(--sage-700)",
+    fontWeight: 500,
+    ...type("caption")
+  };
+  const answersFoot = /*#__PURE__*/React.createElement("div", {
+    style: {
+      gridArea: "ans",
+      alignSelf: "center",
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      minWidth: 0,
+      marginTop: v === "default" ? 12 : 0
+    }
+  }, count > 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, answerers.length > 0 && /*#__PURE__*/React.createElement(__ds_scope.AvatarGroup, {
+    items: answerers,
+    max: maxAvatars,
+    size: 40
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "var(--primary)",
+      fontWeight: 500,
+      ...type("body"),
+      ...nowrap
+    }
+  }, "\uBA58\uD1A0 \uB2F5\uBCC0 ", /*#__PURE__*/React.createElement("b", {
+    className: "tabular",
+    style: {
+      fontWeight: 700
+    }
+  }, count), "\uAC1C")) : /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "var(--primary)",
+      fontWeight: 500,
+      ...type(isQ ? "caption" : "body")
+    }
+  }, "\uC544\uC9C1 \uC791\uC131\uB41C \uB2F5\uBCC0\uC774 \uC5C6\uC2B5\uB2C8\uB2E4"));
+  const like = /*#__PURE__*/React.createElement(__ds_scope.CountToggle, {
+    icon: "favourite",
+    tone: "rose",
+    selected: liked,
+    count: likes,
+    onChange: onLikeChange
+  });
+  const scrap = /*#__PURE__*/React.createElement(__ds_scope.CountToggle, {
+    icon: "bookmark",
+    tone: "dark",
+    selected: scrapped,
+    count: scraps,
+    onChange: onScrapChange
+  });
+  let body;
+  if (v === "default") {
+    const shown = tags.slice(0, MAX_TAGS);
+    const extra = tags.length - shown.length;
+    body = /*#__PURE__*/React.createElement(React.Fragment, null, heading, (country || countryLabel || keyword) && /*#__PURE__*/React.createElement("div", {
+      style: {
+        gridArea: "head",
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        flexWrap: "wrap",
+        minWidth: 0,
+        ...metaText
+      }
+    }, (country || countryLabel) && /*#__PURE__*/React.createElement("span", {
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 6,
+        ...nowrap
+      }
+    }, country && /*#__PURE__*/React.createElement(__ds_scope.Flag, {
+      country: country,
+      size: "md",
+      tooltip: false,
+      "aria-hidden": "true"
+    }), countryLabel), kwLabel), isNew && /*#__PURE__*/React.createElement("div", {
+      style: {
+        gridArea: "new",
+        alignSelf: "center",
+        justifySelf: "end"
+      }
+    }, /*#__PURE__*/React.createElement(__ds_scope.Badge, {
+      variant: "accent",
+      size: "md"
+    }, "New")), excerpt && /*#__PURE__*/React.createElement("p", {
+      style: {
+        gridArea: "excerpt",
+        margin: 0,
+        marginTop: 12,
+        color: "var(--muted-foreground)",
+        ...type("caption"),
+        ...clamp(2)
+      }
+    }, excerpt), tags.length > 0 && /*#__PURE__*/React.createElement("div", {
+      className: "mt-qli-tags",
+      style: {
+        gridArea: "tags",
+        marginTop: 16,
+        display: "flex",
+        flexWrap: "nowrap",
+        alignItems: "center",
+        gap: 6,
+        minWidth: 0,
+        maxWidth: "100%",
+        ...above
+      }
+    }, shown.map((tg, i) => /*#__PURE__*/React.createElement(__ds_scope.Chip, {
+      key: i,
+      size: "sm",
+      prefix: "#",
+      href: tagHref ? tagHref(tg) : `/tags/${tg}`,
+      style: {
+        minWidth: 0,
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap"
+      }
+    }, tg)), extra > 0 && /*#__PURE__*/React.createElement(__ds_scope.Badge, {
+      size: "sm",
+      style: {
+        flex: "0 0 auto"
+      }
+    }, "+", extra)), answersFoot, /*#__PURE__*/React.createElement("div", {
+      className: "mt-qli-react",
+      style: {
+        gridArea: "react",
+        alignSelf: "center",
+        marginTop: 12,
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-4)",
+        ...above
+      }
+    }, /*#__PURE__*/React.createElement(Views, {
+      n: views,
+      size: 16
+    }), like, scrap));
+  } else if (v === "compact") {
+    const meta = [countryLabel, keyword].filter(Boolean).join(" · ");
+    body = /*#__PURE__*/React.createElement(React.Fragment, null, heading, /*#__PURE__*/React.createElement("div", {
+      style: {
+        gridArea: "head",
+        minWidth: 0,
+        color: "var(--muted-foreground)",
+        ...type("caption"),
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        ...nowrap
+      }
+    }, meta), /*#__PURE__*/React.createElement("div", {
+      style: {
+        gridArea: "right",
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-3)",
+        ...above
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "var(--primary)",
+        fontWeight: 600,
+        ...type("caption"),
+        ...nowrap
+      }
+    }, count > 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, "\uB2F5\uBCC0 ", /*#__PURE__*/React.createElement("span", {
+      className: "tabular"
+    }, count)) : "답변 대기"), showScrap && scrap));
+  } else if (v === "answer") {
+    body = /*#__PURE__*/React.createElement(React.Fragment, null, heading, answerExcerpt && /*#__PURE__*/React.createElement("p", {
+      style: {
+        gridArea: "body",
+        margin: 0,
+        color: "var(--foreground)",
+        ...type("body"),
+        ...clamp(3)
+      }
+    }, answerExcerpt), /*#__PURE__*/React.createElement("div", {
+      style: {
+        gridArea: "left",
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-4)",
+        ...above
+      }
+    }, like, /*#__PURE__*/React.createElement(Views, {
+      n: views
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        gridArea: "right",
+        display: "flex",
+        alignItems: "center",
+        ...above
+      }
+    }, scrap));
+  } else {
+    body = /*#__PURE__*/React.createElement(React.Fragment, null, heading, keyword && /*#__PURE__*/React.createElement("div", {
+      style: {
+        gridArea: "head",
+        display: "flex",
+        minWidth: 0,
+        ...metaText
+      }
+    }, kwLabel), answersFoot, /*#__PURE__*/React.createElement("div", {
+      style: {
+        gridArea: "react",
+        alignSelf: "center",
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-4)"
+      }
+    }, /*#__PURE__*/React.createElement(Views, {
+      n: views,
+      size: 16
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 4,
+        color: "var(--muted-foreground)",
+        ...type("caption"),
+        ...nowrap
+      }
+    }, /*#__PURE__*/React.createElement(__ds_scope.Icon, _extends({
+      name: "favourite",
+      size: 16
+    }, noA11y)), /*#__PURE__*/React.createElement("span", {
+      className: "tabular"
+    }, likes.toLocaleString("ko-KR")), /*#__PURE__*/React.createElement("span", {
+      style: {
+        position: "absolute",
+        width: 1,
+        height: 1,
+        overflow: "hidden",
+        clip: "rect(0 0 0 0)"
+      }
+    }, "\uB3C4\uC6C0\uB3FC\uC694"))));
+  }
+  return /*#__PURE__*/React.createElement("article", _extends({
+    className: cls,
+    style: shell
+  }, rest), /*#__PURE__*/React.createElement("div", {
+    className: grid
+  }, body));
+}
+Object.assign(__ds_scope, { QnaListItem });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/surfaces/QnaListItem.jsx", error: String((e && e.message) || e) }); }
 
 __ds_ns.Avatar = __ds_scope.Avatar;
 
@@ -10226,6 +11311,8 @@ __ds_ns.CardDescription = __ds_scope.CardDescription;
 __ds_ns.CardContent = __ds_scope.CardContent;
 
 __ds_ns.CardFooter = __ds_scope.CardFooter;
+
+__ds_ns.CoverCard = __ds_scope.CoverCard;
 
 __ds_ns.EmptyState = __ds_scope.EmptyState;
 

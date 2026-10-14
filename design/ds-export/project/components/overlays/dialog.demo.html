@@ -46,6 +46,12 @@ body{padding:16px;background:var(--sage-50);min-height:100vh;box-sizing:border-b
       footer={<><Button fullWidth onClick={close}>수정하기</Button><Button variant="ghost" size="sm" onClick={close}>커리어 삭제</Button></>}><Fields n={9} /></Dialog>;
     else if (state === "6") dlg = <Dialog {...common} title="인사이트 태그" description="짧은 본문 — 목록이 푸터 위로 뜬다"
       footer={<><Button variant="ghost" onClick={close}>취소</Button><Button onClick={close}>저장하기</Button></>}><Field label="인사이트 태그" htmlFor="ms-in-dialog"><MS /></Field></Dialog>;
+    else if (state === "8") dlg = <Dialog {...common} width={320} title="전화번호 인증이 필요합니다"
+      footer={<><Button variant="ghost" onClick={close}>나중에</Button><Button onClick={close}>인증하기</Button></>}>지금 인증을 진행할까요? 해외 번호도 SMS 로 인증할 수 있습니다.</Dialog>;
+    else if (state === "9") dlg = <Dialog {...common} width={400} title="질문을 등록하시겠습니까?"
+      footer={<><Button variant="ghost" onClick={close}>취소하기</Button><Button onClick={close}>등록하기</Button></>} />;
+    else if (state === "10") dlg = <Dialog {...common} width={400} title="질문을 등록하시겠습니까?"
+      footer={<><Button variant="ghost" onClick={close}>취소하기</Button><Button onClick={close}>등록하기</Button></>}>등록한 뒤에는 답변이 달리기 전까지 수정할 수 있습니다.</Dialog>;
     else if (state === "7") dlg = <Dialog {...common} title="멘토링 취소" description="휠을 굴려도 뒤 페이지가 움직이지 않는다"
       footer={<><Button variant="ghost" onClick={close}>닫기</Button><Button variant="destructive" onClick={close}>취소하기</Button></>}>뒤 페이지는 600까지 내려간 상태에서 열렸다. 닫으면 600으로 돌아온다.</Dialog>;
     else dlg = <Dialog {...common} width={520} title="한 줄 요약" description="폭 520 — width={520}"

@@ -29,11 +29,11 @@
     const nav = (item) => { if (!item.external && item.href && item.href.startsWith("/")) setActive(item.key); };
     return (
       <div>
-        <div className="cap">비로그인(guest) — 활성: 멘토 찾기. 우측: 회원가입/로그인(green 하나) + 기업 서비스(파랑 아웃라인 ↗)</div>
+        <div className="cap">비로그인(guest) — 활성: 멘토 찾기. 우측: 회원가입/로그인(green 하나) + 기업 서비스(outline 안에 비즈 로고 16 · DS-100)</div>
         <Header activeKey={active} authState="guest" onNavigate={nav} />
         <div className="stage">중앙 메뉴 3개, 각 좌측 20px HugeIcons 모노 아이콘 + 16px·600 라벨. 활성은 색(--primary)으로만 구분.</div>
 
-        <div className="cap">로그인(mentee) — 사진 아바타 + unread 켬 → 빨간 점</div>
+        <div className="cap">로그인(mentee) — 사진 아바타 + unread 켬 → 주황 점(--orange-600)</div>
         <Header activeKey="qna" authState="mentee" user={{ name: "김민지", avatarUrl: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect width='80' height='80' fill='%23c8a97e'/%3E%3Ccircle cx='40' cy='30' r='16' fill='%23fff' opacity='.9'/%3E%3Cellipse cx='40' cy='72' rx='26' ry='20' fill='%23fff' opacity='.9'/%3E%3C/svg%3E" }} unread onNavigate={nav} onNotify={() => {}} />
 
         <div className="cap">로그인(mentee) — unread 끔 → 점 없음</div>

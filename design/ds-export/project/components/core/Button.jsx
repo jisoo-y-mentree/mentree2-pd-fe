@@ -1,7 +1,8 @@
 import React from "react";
 import { Icon } from "./Icon.jsx";
 
-const RADIUS = "var(--radius-md)";
+// DS-89 — 모든 크기 10. IconButton · BookmarkToggle 은 12 그대로(반경 토큰은 안 바꾼다)
+const RADIUS = 10;
 
 const SIZES = {
   sm: { height: 32, padding: "0 14px", fontSize: 14, gap: 6, icon: 16 },

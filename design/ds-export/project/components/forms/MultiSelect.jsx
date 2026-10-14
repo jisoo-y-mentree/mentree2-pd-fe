@@ -1,11 +1,12 @@
 import React from "react";
 import { Icon } from "../core/Icon.jsx";
-import { Chip } from "../core/Chip.jsx";
 import { Popover } from "../overlays/Popover.jsx";
 
 /**
  * MultiSelect — 여러 개를 고르는 셀렉트(DS-71). Select를 고치지 않은 새 부품. 트리거·목록·키보드는 Select에 맞춘다.
- *  [칩 줄] 고른 것은 트리거 위에 Chip(md)으로 선다(⊗ = 빼기, 「{이름} 빼기」). 넘치면 여러 줄로 접힌다.
+ *  [칩 줄] 고른 것은 트리거 위에 칩으로 선다(✕ = 빼기, 「{이름} 빼기」). 넘치면 여러 줄로 접힌다.
+ *   DS-91 — 초록 외곽선(Badge tone="primary"와 같다): 흰 면 · 1px --green-200 · --green-900 글자 · ✕도 --green-900 ·
+ *   hover 면 --green-50. 치수는 Chip md(h32 · 반경 --radius-md · 14/500 · 좌12 우6)를 그대로 따른다.
  *  [트리거] 고른 것이 있어도 placeholder를 둔다(--muted-foreground). 높이 40 · Input과 같은 겉모양.
  *  [목록] Popover · 트리거 아래 4px · 트리거 폭 · max-height 320. 항목마다 체크 상자. 항목을 눌러도 닫지 않는다.
  *   role="listbox" + aria-multiselectable="true", 항목 aria-selected. groups를 주면 묶음 제목(고를 수 없음).
@@ -18,7 +19,10 @@ const norm = (o) => (typeof o === "string" ? { value: o, label: o } : o);
 if (typeof document !== "undefined" && !document.getElementById("mt-multiselect-style")) {
   const s = document.createElement("style");
   s.id = "mt-multiselect-style";
-  s.textContent = ".mt-multiselect-option:hover{background:var(--muted);}";
+  s.textContent = ".mt-multiselect-option:hover{background:var(--muted);}" +
+    ".mt-multiselect-chip:hover{background:var(--green-50) !important;}" +
+    ".mt-multiselect-chip-remove{position:relative;}.mt-multiselect-chip-remove::after{content:'';position:absolute;inset:-4px;}" +
+    ".mt-multiselect-chip-remove:focus-visible{outline:2px solid var(--ring);outline-offset:2px;}";
   document.head.appendChild(s);
 }
 
@@ -127,9 +131,13 @@ export function MultiSelect({
       {value.length > 0 && (
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
           {value.map((v) => (
-            <Chip key={v} size="md" disabled={disabled} onRemove={disabled ? undefined : () => remove(v)} removeAriaLabel={`${labelOf(v)} 빼기`}>
-              {labelOf(v)}
-            </Chip>
+            <span key={v} className="mt-multiselect-chip" style={{ display: "inline-flex", alignItems: "center", gap: 6, height: 32, boxSizing: "border-box", padding: "0 6px 0 12px", borderRadius: "var(--radius-md)", background: "var(--card)", border: "1px solid var(--green-200)", color: "var(--green-900)", fontFamily: "var(--font-sans)", fontSize: 14, fontWeight: 500, lineHeight: 1, letterSpacing: 0, whiteSpace: "nowrap", opacity: disabled ? 0.5 : 1, transition: "background-color 150ms ease" }}>
+              <span>{labelOf(v)}</span>
+              <button type="button" className="mt-multiselect-chip-remove" aria-label={`${labelOf(v)} 빼기`} disabled={disabled} onClick={(e) => { e.stopPropagation(); if (!disabled) remove(v); }}
+                style={{ width: 22, height: 22, display: "inline-flex", alignItems: "center", justifyContent: "center", padding: 0, border: "none", background: "transparent", borderRadius: "50%", color: "var(--green-900)", cursor: disabled ? "not-allowed" : "pointer", flex: "0 0 auto" }}>
+                <Icon name="cancel-01" size={13} />
+              </button>
+            </span>
           ))}
         </div>
       )}

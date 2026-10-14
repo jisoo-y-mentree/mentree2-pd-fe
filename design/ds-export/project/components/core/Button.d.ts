@@ -6,6 +6,7 @@ import React from "react";
  * 14px는 어느 타입 토큰과도 맞지 않는 버튼 전용 값이다.
  * ghost만 좌우 패딩이 0이다 — 면도 테두리도 없고 hover에도 면이 안 뜨므로 여백이 일을 하지 않는다.
  * 높이는 그대로라 터치 타겟(md 40)은 유지된다.
+ * 반경은 모든 크기에서 10(DS-89). IconButton · BookmarkToggle은 12 그대로다.
  */
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** ghost는 좌우 패딩 0(민무늬라 여백이 필요 없다). 나머지는 size별 패딩 14/20/28. */

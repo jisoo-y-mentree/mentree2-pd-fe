@@ -5,9 +5,9 @@
 > 두 축의 정의는 [docs/SOURCES.md](../../docs/SOURCES.md) 「정본의 두 축」이 갖는다. FE 인계의 입력이다([ADR-0005](../../docs/adr/0005-design-team-deliverables.md)).
 
 - 출처: Claude Design (radarlab 계정) — 프로젝트 이름 **`M2 Design System`**
-- 원본: `M2 Design System.zip`(디자이너가 `design/` 에 놓았다. 커밋하지 않고 `design/_import/export-1008/` 로 옮겼다)
-- **반입일: 2026-10-08**
-- 원본 해시: `5424904758ba37149d71cd29f368617e1ee78f4b69be960959923a89e5deee5d` — zip 의 SHA-256 이다
+- 원본: `M2 Design System.zip`(2026-10-14 · 다운로드 폴더에서 `design/_import/export-1008/M2 Design System (1014).zip` 으로 옮겼다. 커밋하지 않는다)
+- **반입일: 2026-10-14**
+- 원본 해시: `af278860480b1d1c46a9bb4b99adc14ae74c1b9da3dfff3ac77e2dbf6031262a` — zip 의 SHA-256 이다
 
 ### 교체 이력
 
@@ -21,6 +21,37 @@
 | **2026-09-16** | 폴더 `M2 Design System` | `4ec9a3f66119`(폴더 해시) | **43본 그대로. 32본 개정.** 타입 스케일 개정 · `Select` 커스텀 리스트박스 · `Header` 3열 그리드 ＋ 로그인 상태 · guidelines 2본 신규. 아래 |
 | **2026-09-28** | 폴더 `M2 Design System` | `e2f9d58c9470`(폴더 해시) | **43본에서 45본.** 신규 `ActionBanner` · `ArticleBody` ／ 개정 `IconButton` · `BottomTabBar` · `Header` ／ 토큰 `--highlight`. 삭제 0. 아래 |
 | **2026-10-08** | `M2 Design System.zip` | `5424904758ba` | **45본에서 52본.** 신규 `QnaListItem` · `Textarea` · `MultiSelect` · `ImageCropper` · `ReorderList` · `Tooltip` · `Flag` ／ 개정 `Dialog` · `Popover` · `Field` · `Input` · `Checkbox` · `Switch` · `RadioGroup` · `Badge` · `Avatar` · `Button` · `QnaCard` · `taxonomy.js`. 삭제 0. 아래 |
+| **2026-10-14** | `M2 Design System.zip` | `af278860480b` | **52본에서 53본.** 신규 `CoverCard` ／ 개정 22본(`AnswerCard` · `ArticlePreview` · `MentorCard` · `QnaListItem` · `Badge` · `BookmarkToggle` · `IconButton` · `CountToggle` · `Tabs` · `SectionHeader` · `ActionBanner` · `CalloutBar` · `Carousel` · `Header` · `Dialog` · `Sheet` · `FilterSelect` · `SearchInput` · `MultiSelect` · `Flag` · `Icon` · `Button`) ／ 토큰 **그린 11단 · 주황 4 · 표지 4색 · 서체 3단**. 삭제 0. 아래 |
+
+### 2026-10-14 — 52본에서 53본. 화면이 CSS 로 덮던 것(그린 스케일 · 주황 · 답변 카드 · 가로 카드 · 피처드)이 부품과 토큰으로 들어왔다
+
+**신규 1 · 개정 22 · 삭제 0.** 파일로는 275본에서 **323본**이다(신규 46 · 개정 114 · `uploads/` 는 뺐다). 들어간 파일은 전부 원본과 바이트가 같다(교체 뒤 대조 · 불일치 0). 리포에만 있는 파일은 0 이다. 지수가 2026-10-13 에 낸 Q&A export 의 `_ds` 사본과 **같은 판**이다(차이 0).
+
+**번호가 어긋난다.** 새 판의 주석은 디자이너가 `DS-91`〜`116` 을 붙여 썼고, `DS-87`〜`90` 은 이 표와 다른 뜻으로 썼다(예: 새 판 `DS-89` ＝ `Button` 반경 10, 이 표의 `DS-89` ＝ 피처드 색칩). 아래 「`DS-nn`」 열은 **이 리포 표의 행 내용**과 맞춘 것이다. 다음 번호는 [DS-update-list.md](../DS-update-list.md) 「다음 새 항목」의 미결을 본다.
+
+| 무엇 | 내용 | `DS-nn` |
+|---|---|---|
+| **`tokens/colors.css`** | 그린을 **11단**으로(앵커 100 · 500 · 700 · 950 · Figma `1611:38940`). `--primary` · `--accent` ＝ `--green-700` · 그 위 글자 ＝ `--green-50`. **`--green-primary` · `--green-on` 삭제**(화면 24본을 검색했고 부르는 곳 0). 주황 `--orange-50/500/600/700`(의미 토큰에 잇지 않는다). 표지색 `--cover-green/sky/rose/gray` | `DS-82` · `DS-04` · `DS-89` |
+| **`tokens/typography.css`** | `--text-display-xl`(48/64 · 모바일 26/34) · `--text-display-lg`(40/48) · **`--text-body-sm`(15/25 · Q&A 본문)** ＋ 같은 이름의 클래스 | `DS-29` · `DS-87`(일부) |
+| **`CoverCard`** 신규 · surfaces | 이미지 반쪽 ＋ 표지색 패널 반쪽의 가로 표지. `tone` 4색 · `label`(「신규 아티클」) · `person`. 부품 폭 768 에서 좌우 ↔ 위아래 | `DS-67` · `DS-88` · `DS-89` |
+| **`AnswerCard`** 개정 | 머리 연초록 면이 멘토 상세 링크 하나 · `Avatar` 60 · `Flag` · 「멘토 프로필 보기 ›」 · ✓ 채택 라벨 · 박스 액션 3(하트 `CountToggle box repeat` · 「감사인사 작성」 · 공유) · `thanks` 블록(왼쪽 3px) · `onLike`(다회). `activityLocation` · `mentorAnswersHref` · `onLikeChange` 는 `@deprecated` | `DS-23` · `DS-86` |
+| **`ArticlePreview`** 개정 | `variant="row"`(가로형 · `date` · 썸네일 위 `BookmarkToggle`) · `compact` · `label` · `ratio` | `DS-33` |
+| **`MentorCard`** 개정 | B안 — 사진 그라데이션 · 직종 배지 1 · 이름 옆 `Flag rect` · `fluid` 최소 폭 179 → 160 | `DS-37` |
+| **`QnaListItem`** 개정 | `default` 재배치(머리 글자 묶음 · 「New」 · 제목 PC 1줄 · 해시태그 자기 줄 · 통계 끝 줄) · `question` 카드형 · `isNew`. `compact` 추천 항목은 아직 | `DS-84`(일부) · `DS-83` |
+| **`Badge`** 개정 | `variant="accent"`(주황 New · 면 orange-50 · 테두리 · 글자 orange-700) · `tone="primary"` · `flagShape="rect"` | `DS-83` |
+| **`CountToggle`** 개정 | `appearance="box"` · `repeat` · `onIncrement`(취소 없음 · 누를 때마다 +1 · `aria-live`) | `DS-86` |
+| **`BookmarkToggle` · `IconButton`** 개정 | 켜짐이 검정 반전에서 **초록**(면 green-50 · green-700). `IconButton shape="circle"`(「맨 위로」 재료) | `DS-35` 덧붙임 · `DS-85`(일부) |
+| **`Tabs`** 개정 | 막대 4px 양끝 반원 · `size="l"` ＋ `icon` · `fill`(2등분). 선택 쪽 연초록 면은 없다 | `DS-28`(일부) |
+| **`SectionHeader`** 개정 | `size="md"\|"lg"` · 「전체보기」 › | `DS-29`(일부) |
+| **`ActionBanner`** 개정 | 면 green-100 · 설명 sage-700(대비 8.87:1). 테두리 없음 변형은 없다 | `DS-34` 덧붙임(일부) |
+| `CalloutBar` · `Carousel` · `Header` · `Dialog` · `Sheet` · `FilterSelect` · `SearchInput` · `MultiSelect` · `Flag` · `Icon` · `Button` 개정 | 이벤트 띠 `variant="event"` ／ `fade` ／ 알림 점 주황 · 기업 서비스 로고 ／ 빈 본문 생략 ／ 포커스 가두기 ＋ 카드 신설 ／ `icon` · `size="lg"` ／ `submitLabel` ／ 고른 칩 초록 외곽선 ／ `shape="rect"` ＋ 국기 자산 교체(직사각 22 ＋ thailand) ／ `answer-done` ／ 반경 12 → 10 | — |
+| `taxonomy.js` | 국가 `iso` · 직무 12 `icon` · 대분류 4 `icon`. 값은 그대로 | — |
+| `guidelines/` | `color-brand`(11단) · `color-accent-cover` 신규 · `type-roles` · `type-scale` · `type-scale.mobile` | — |
+| `assets/` · `ui_kits/` | `flags-rect/` 22 · `flags/` 재제작 · `img/` 표본 14 · `PretendardJPVariable.ttf` · `ui_kits/mentree-app-legacy/` | — |
+
+**손대지 않은 요구**: `DS-17` · `27` · `30` · `36` · `65` · `66` · `90`.
+
+**화면에 미치는 것** — Q&A 3화면과 인사이트 2화면의 template 은 이 판으로 그려진다. 화면 CSS 로 덮던 자리(`.qf-shell` 등의 토큰 덮어쓰기 · `.qd-answer` · `.il-featured` · `.il-scrap` · `.ad-scrap` · 「맨 위로」)는 이제 부품과 토큰에 있으므로 **다음 export 에서 걷는다** — `design/_import/prompts/round3-1014-qna-insight.md` 「묶음 0」.
 
 ### 2026-10-08 — 45본에서 52본. `mentor-detail` 편집 면의 미구현 4건과 `DS-57` 이 들어왔다
 

@@ -1,25 +1,43 @@
-<!-- @dsCard group="Foundations" viewport="700x380" name="브랜드 — Primary & Accent" subtitle="프리셋 Green — 프라이머리 버튼·포커스·활성 네비. 연한 초록 면은 green-50 / 그 위 테두리는 green-100" -->
+<!-- @dsCard group="Foundations" viewport="760x500" name="브랜드 — Green 11단 & Primary" subtitle="DS-82 · 앵커 100·500·700·950. primary/accent = green-700, 그 위 글자 = green-50 (4.75:1)" -->
 <!DOCTYPE html>
 <html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
 <style>
-  body{margin:0;padding:16px;background:var(--background);display:flex;gap:14px;flex-wrap:wrap}
-  .note{flex:0 0 100%;font-size:12px;line-height:19px;color:var(--muted-foreground)}
-  .note code{font-family:ui-monospace,monospace;font-size:11px}
-  .sw{display:flex;flex-direction:column;gap:6px}
-  .chip{width:150px;height:64px;border-radius:var(--radius-md);border:1px solid var(--border);display:flex;align-items:flex-end;padding:8px;box-sizing:border-box}
-  .n{font-size:12px;font-weight:600;color:var(--foreground)}
-  .v{font-size:11px;color:var(--muted-foreground);font-variant-numeric:tabular-nums}
+body{margin:0;padding:16px;background:var(--background);color:var(--foreground);display:flex;flex-direction:column;gap:16px}
+.cap{font-size:11px;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:.04em}
+.scale{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:4px}
+.st{display:flex;flex-direction:column;gap:4px}
+.st .c{height:56px;border-radius:var(--radius-sm);border:1px solid var(--border);box-sizing:border-box}
+.st.a .c{outline:2px solid var(--foreground);outline-offset:2px}
+.st .n{font-size:11px;font-weight:600}.st .v{font-size:10px;color:var(--muted-foreground);font-variant-numeric:tabular-nums}
+.st .k{font-size:9px;font-weight:600;color:var(--foreground);text-transform:uppercase;letter-spacing:.04em;height:12px}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+.sw{display:flex;flex-direction:column;gap:6px}
+.chip{width:150px;height:64px;border-radius:var(--radius-md);border:1px solid var(--border);display:flex;align-items:flex-end;padding:8px;box-sizing:border-box}
+.sn{font-size:12px;font-weight:600}.sv{font-size:11px;color:var(--muted-foreground);font-variant-numeric:tabular-nums}
+.note{font-size:12px;line-height:19px;color:var(--muted-foreground)}
+.note code{font-family:ui-monospace,monospace;font-size:11px}
 </style></head>
 <body>
-  <div class="sw"><div class="chip" style="background:var(--primary)"><span style="color:var(--primary-foreground);font-size:12px;font-weight:600">primary-fg</span></div><div class="n">--primary</div><div class="v">oklch(.527 .154 150)</div></div>
-  <div class="sw"><div class="chip" style="background:var(--accent)"><span style="color:var(--accent-foreground);font-size:12px;font-weight:600">accent-fg</span></div><div class="n">--accent</div><div class="v">= primary (green)</div></div>
-  <div class="sw"><div class="chip" style="background:var(--sidebar-primary)"></div><div class="n">--sidebar-primary</div><div class="v">oklch(.627 .194 149)</div></div>
-  <div class="sw"><div class="chip" style="background:var(--brand-ink)"></div><div class="n">--brand-ink</div><div class="v">#004418 · 로고 (canon)</div></div>
-  <div class="sw"><div class="chip" style="background:var(--green-50);border-color:var(--green-100)"><span style="color:var(--sage-700);font-size:12px;font-weight:600">sage-700</span></div><div class="n">--green-50</div><div class="v">#f0fdf4 · 연한 초록 면</div></div>
-  <div class="sw"><div class="chip" style="background:var(--green-100)"></div><div class="n">--green-100</div><div class="v">#dcfce7 · 그 위 테두리</div></div>
-  <div class="note">
-    <b>연한 초록 면이 필요하면 <code>--green-50</code>, 그 위 테두리는 <code>--green-100</code></b> — 지금 쓰는 곳은 <code>MentorCard</code> 소개 박스 한 곳뿐이다(글자는 <code>--sage-700</code>).
-    뉴트럴한 옅은 면은 계속 <code>--sage-50</code>/<code>--sage-100</code>다(<code>SectionHeader</code> 아이콘 칩 · <code>CalloutBar</code> info · <code>Table</code> 헤더) — 초록으로 바꾸지 말 것.
-    <code>--green-on</code>은 지금 <code>--green-50</code>의 별칭이다(초록 면 위 글자색) — 갈라야 할 때가 오면 다시 독립시킨다.
-  </div>
+<div class="cap">Green scale — 테두리 굵은 칸이 고정 앵커</div>
+<div class="scale">
+<div class="st"><div class="c" style="background:var(--green-50)"></div><div class="k"></div><div class="n">50</div><div class="v">#F5FAF6</div></div>
+<div class="st a"><div class="c" style="background:var(--green-100)"></div><div class="k">anchor</div><div class="n">100</div><div class="v">#E7F4E9</div></div>
+<div class="st"><div class="c" style="background:var(--green-200)"></div><div class="k"></div><div class="n">200</div><div class="v">#BDE6C1</div></div>
+<div class="st"><div class="c" style="background:var(--green-300)"></div><div class="k"></div><div class="n">300</div><div class="v">#91D699</div></div>
+<div class="st"><div class="c" style="background:var(--green-400)"></div><div class="k"></div><div class="n">400</div><div class="v">#60C76F</div></div>
+<div class="st a"><div class="c" style="background:var(--green-500)"></div><div class="k">anchor</div><div class="n">500</div><div class="v">#00B641</div></div>
+<div class="st"><div class="c" style="background:var(--green-600)"></div><div class="k"></div><div class="n">600</div><div class="v">#109840</div></div>
+<div class="st a"><div class="c" style="background:var(--green-700)"></div><div class="k">anchor</div><div class="n">700</div><div class="v">#15803D</div></div>
+<div class="st"><div class="c" style="background:var(--green-800)"></div><div class="k"></div><div class="n">800</div><div class="v">#0E5F2E</div></div>
+<div class="st"><div class="c" style="background:var(--green-900)"></div><div class="k"></div><div class="n">900</div><div class="v">#094420</div></div>
+<div class="st a"><div class="c" style="background:var(--green-950)"></div><div class="k">anchor</div><div class="n">950</div><div class="v">#052E16</div></div>
+</div>
+<div class="cap">의미 토큰</div>
+<div class="row">
+<div class="sw"><div class="chip" style="background:var(--primary)"><span style="color:var(--primary-foreground);font-size:12px;font-weight:600">primary-fg 4.75:1</span></div><div class="sn">--primary</div><div class="sv">= green-700</div></div>
+<div class="sw"><div class="chip" style="background:var(--accent)"><span style="color:var(--accent-foreground);font-size:12px;font-weight:600">accent-fg</span></div><div class="sn">--accent</div><div class="sv">= green-700 (hover·선택 면)</div></div>
+<div class="sw"><div class="chip" style="background:var(--sidebar-primary)"><span style="color:var(--sidebar-primary-foreground);font-size:12px;font-weight:600">fg 3.56:1</span></div><div class="sn">--sidebar-primary</div><div class="sv">= green-600</div></div>
+<div class="sw"><div class="chip" style="background:var(--brand-ink)"></div><div class="sn">--brand-ink</div><div class="sv">#004418 · 로고 (canon)</div></div>
+</div>
+<div class="note"><b>연한 초록 면은 <code>--green-50</code>, 그 위 테두리는 <code>--green-100</code></b>(글자는 <code>--sage-700</code>). 뉴트럴한 옅은 면은 계속 <code>--sage-50</code>/<code>--sage-100</code>. 초록 면 위 글자는 <code>--primary-foreground</code>를 부른다 — <code>--green-primary</code> · <code>--green-on</code>은 DS-82에서 지웠다.</div>
 </body></html>

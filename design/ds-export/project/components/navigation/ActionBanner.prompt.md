@@ -16,9 +16,8 @@
 ```
 
 - 쓰는 곳(3화면): Q&A 상세 멘토 유도 · 아티클 상세 카테고리별 CTA · 멘토 상세 탭 끝 CTA.
-- **면**: 배경 `--green-50` · 테두리 1px `--primary` · `--radius-lg` · 안쪽 여백 24 32.
-  아티클 상세의 기존 조립은 `--sage-50`이었다 — 기표 행 「옅은 초록 채움」을 따라 `--green-50`으로 한다.
-- **title** `--text-h3` 600 · **description** `--text-body` `--muted-foreground` · 둘 사이 4.
+- **면**: 배경 `--green-100`(DS-98 · Figma Q&A 개정판 `1647:50863`과 같다) · 테두리 1px `--primary` · `--radius-lg` · 안쪽 여백 24 32.
+- **title** `--text-h3` 600 · **description** `--text-body` `--sage-700` · 둘 사이 4. (`--muted-foreground`는 `--green-100` 위 3.82:1로 모자라다 — `--sage-700`은 8.87:1.)
 - **inline**(기본): 왼쪽 문구 · 오른쪽 `Button primary md` · 간격 24 · 세로 가운데.
 - **stacked**: 가운데 정렬 · 문구 아래 `Button primary lg` · 간격 16.
 - **≤768**: `inline`이어도 `stacked`로 · 안쪽 여백 20 · 버튼 폭 100%(높이 48).

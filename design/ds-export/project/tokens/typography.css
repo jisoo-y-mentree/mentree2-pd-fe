@@ -27,6 +27,17 @@
   --text-display--line-height: 40px;
   --text-display--letter-spacing: -0.025em;
 
+  /* display-xl — 48px / 64px / -0.025em · 굵기는 쓰는 곳이 준다 · TOP 히어로 카피(DS-29) · Mobile 26/34 */
+  --text-display-xl: 3rem;
+  --text-display-xl--line-height: 64px;
+  --text-display-xl--letter-spacing: -0.025em;
+
+  /* display-lg — 40px / 48px / -0.025em · 600 · 멘토 상세 헤더의 이름 (DS-87 · Mobile 30/38).
+     한 줄 이름이라 행간 1.2 */
+  --text-display-lg: 2.5rem;
+  --text-display-lg--line-height: 48px;
+  --text-display-lg--letter-spacing: -0.025em;
+
   /* h0 — 24px / 32px / -0.02em · 600 · 섹션 제목 (Mobile 22/30) */
   --text-h0: 1.5rem;
   --text-h0--line-height: 32px;
@@ -59,6 +70,12 @@
   --text-body--line-height: 24px;
   --text-body--letter-spacing: 0em;
 
+  /* body-sm — 15px / 25px / 0 · 400 · Q&A 상세의 질문·답변 본문 (DS-29). 반응형 없음.
+     「행간을 넓혀야」 코멘트에 맞춰 article(17/28)과 같은 비율 */
+  --text-body-sm: 0.9375rem;
+  --text-body-sm--line-height: 25px;
+  --text-body-sm--letter-spacing: 0em;
+
   /* caption — 14px 고정 / 20px / +0.005em · 500. 폭과 무관 */
   --text-caption: 0.875rem;
   --text-caption--line-height: 20px;
@@ -85,6 +102,19 @@
   font-size: var(--text-display);
   line-height: var(--text-display--line-height);
   letter-spacing: var(--text-display--letter-spacing);
+  font-weight: var(--font-weight-semibold);
+}
+/* display-xl — 굵기는 쓰는 곳이 준다(클래스는 다른 단과 맞춰 semibold 기본) */
+.text-display-xl {
+  font-size: var(--text-display-xl);
+  line-height: var(--text-display-xl--line-height);
+  letter-spacing: var(--text-display-xl--letter-spacing);
+  font-weight: var(--font-weight-semibold);
+}
+.text-display-lg {
+  font-size: var(--text-display-lg);
+  line-height: var(--text-display-lg--line-height);
+  letter-spacing: var(--text-display-lg--letter-spacing);
   font-weight: var(--font-weight-semibold);
 }
 .text-h0 {
@@ -123,6 +153,12 @@
   letter-spacing: var(--text-body--letter-spacing);
   font-weight: var(--font-weight-normal);
 }
+.text-body-sm {
+  font-size: var(--text-body-sm);
+  line-height: var(--text-body-sm--line-height);
+  letter-spacing: var(--text-body-sm--letter-spacing);
+  font-weight: var(--font-weight-normal);
+}
 .text-caption {
   font-size: var(--text-caption);
   line-height: var(--text-caption--line-height);
@@ -136,7 +172,8 @@
   font-weight: var(--font-weight-semibold);
 }
 
-/* responsive type — display · h0 · h1 세 단에만 건다.
+/* responsive type — display-xl · display-lg · display · h0 · h1 에만 건다(display-lg 는 DS-87, display-xl 은 DS-29 에서 더했다).
+   body-sm 은 줄이지 않는다.
    벤치마크는 모바일에서 거의 안 내린다 — 원티드 홈 최대 제목 22→22, 상세 본문 16→16,
    보조 13→13, 배지 11→11(내려가는 것은 상세 주제목 28→20 하나뿐) / 토스 아티클 h2 30→30,
    본문 17→17, 카드 제목 20→20.
@@ -146,6 +183,8 @@
    body·caption·micro는 폭과 무관하게 고정. */
 @media (max-width: 768px) {
   :root {
+    --text-display-xl: 1.625rem; --text-display-xl--line-height: 34px; /* 48/64→26/34 · TOP 히어로 카피(DS-29) */
+    --text-display-lg: 1.875rem; --text-display-lg--line-height: 38px; /* 40/48→30/38 */
     --text-display: 1.625rem;  --text-display--line-height: 34px;  /* 32/40→26/34 */
     --text-h0:      1.25rem;   --text-h0--line-height:      28px;  /* 24/32→20/28 — 와이어의 섹션 제목이 20이다.
        DS-48에서 22로 잡은 것은 원티드 @390의 홈 최대 제목 22를 본 것인데, 그건 섹션 제목이 아니라

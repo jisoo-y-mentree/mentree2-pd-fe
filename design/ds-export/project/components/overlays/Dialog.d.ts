@@ -19,6 +19,7 @@ export interface DialogProps {
   mobile?: "center" | "fullscreen";
   /** 최대 폭(px). 기본 460. */
   width?: number;
+  /** 본문. DS-115 — 비었으면(없음 · null · "") 몸 칸과 머리 아래 구분선을 그리지 않는다 — 제목(+설명) 바로 아래 버튼 줄(사이 24). mobile="fullscreen"(≤768)은 그대로. */
   children?: React.ReactNode;
   style?: React.CSSProperties;
 }

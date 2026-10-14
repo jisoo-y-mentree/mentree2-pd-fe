@@ -7,7 +7,17 @@ import { Icon } from "../core/Icon.jsx";
  *  얇은 한 줄 기준(44 전후), 텍스트 2줄까지 허용(모바일). 정렬 center(기본)/left.
  *  구성: (아이콘) + 메시지 + (인라인 링크 "자세히 보기 >") + (닫기 X) — 각각 독립 옵션.
  *  variant 4종: 옅은 배경 + 진한 텍스트/아이콘(Badge 50/700 패턴 상속).
+ *  variant="event"(DS-92 · Figma 1610:26665) — 이벤트 띠. 면 --green-950 · 위아래 12 · 가운데 · 띠 전체가 링크 하나(href).
+ *   [image 높이 32] → 12 → 제목(heading) caption 700 흰 → 12 → 설명(children) caption 400 흰 → 8 → arrow-right-double 16 흰.
+ *   닫기 없음(세울지는 화면이 정한다). 좁은 폭에서 2줄까지.
  */
+if (typeof document !== "undefined" && !document.getElementById("mt-callout-event-style")) {
+  const s = document.createElement("style");
+  s.id = "mt-callout-event-style";
+  s.textContent = ".mt-callout-event:hover span span{text-decoration:underline;text-underline-offset:3px;}.mt-callout-event:focus-visible{outline:2px solid var(--ring);outline-offset:-4px;}";
+  document.head.appendChild(s);
+}
+
 const VARIANTS = {
   info:    { bg: "var(--sage-50)",                                        text: "var(--sage-700)",        line: "var(--sage-200)",  defaultIcon: "information-circle" },
   success: { bg: "color-mix(in oklch, var(--primary) 10%, white)",        text: "var(--primary)",         line: "color-mix(in oklch, var(--primary) 22%, transparent)",     defaultIcon: "checkmark-circle-02" },
@@ -25,9 +35,29 @@ export function CalloutBar({
   linkHref,
   onLinkClick,
   onClose,
+  heading,
+  href,
+  image,
   style,
   ...rest
 }) {
+  if (variant === "event") {
+    return (
+      <a
+        href={href || "#"}
+        className="mt-callout-event"
+        style={{ width: "100%", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", gap: 12, padding: "12px 20px", borderRadius: 0, background: "var(--green-950)", color: "var(--card)", textDecoration: "none", fontFamily: "var(--font-sans)", fontSize: "var(--text-caption)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", wordBreak: "keep-all", overflowWrap: "break-word", ...style }}
+        {...rest}
+      >
+        {image && <img src={image} alt="" style={{ height: 32, width: "auto", flex: "0 0 auto", display: "block" }} />}
+        <span style={{ minWidth: 0, display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 2, overflow: "hidden" }}>
+          {heading && <b style={{ fontWeight: 700, marginRight: 12 }}>{heading}</b>}
+          <span style={{ fontWeight: 400 }}>{children}</span>
+          <Icon name="arrow-right-double" size={16} aria-hidden="true" aria-label={undefined} role={undefined} style={{ marginLeft: 8, verticalAlign: "-3px", color: "var(--card)" }} />
+        </span>
+      </a>
+    );
+  }
   const v = VARIANTS[variant] || VARIANTS.info;
   const iconName = icon || v.defaultIcon;
 

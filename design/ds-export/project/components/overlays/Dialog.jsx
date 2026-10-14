@@ -10,12 +10,15 @@ import { IconButton } from "../core/IconButton.jsx";
  *  [닫기] Esc · 스크림 · ✕ → onClose. 닫을지는 화면이 정한다(open을 true로 두면 그대로 남는다).
  *   Esc는 안에 열린 목록([aria-expanded="true"])이 있거나 안쪽 부품이 이미 처리(preventDefault)했으면 넘긴다.
  *  [포커스] 열리면 안에 가둔다 — 첫 입력 칸, 없으면 ✕. 닫히면 연 요소로 돌려준다.
+ *  [DS-110] 제목 · 설명 · 본문 word-break: keep-all + overflow-wrap: anywhere. 버튼 글자는 그대로.
  *  [footerLayout] "end"(기본, 오른쪽 정렬) · "stack"(세로 — 첫 버튼 폭 전체, 그 아래 버튼은 가운데).
  *  [mobile] "center"(기본) · "fullscreen" — ≤768에서 화면 전체, 반경·스크림 없음, 푸터는 바닥 + safe-area.
  *   visualViewport로 소프트 키보드 위에 푸터를 남긴다. 뒤로가기 → onClose(열 때 기록 하나를 쌓고, 화면이 안 닫으면 다시 쌓는다).
  *   fullscreen(≤768)에서 열리면 포커스는 제목(tabIndex -1) — 키보드가 바로 올라오지 않게. 769 이상은 첫 입력 칸.
  *  [스크롤 잠금] 열리면 뒤 페이지를 잠근다 — body fixed + top = −scrollY(iOS Safari 포함) + 스크롤바 폭만큼 padding-right.
  *   닫히면 풀고 스크롤 위치를 되돌린다. 둘 이상 열려 있으면 마지막이 닫힐 때 푼다.
+ *  [DS-115] children 이 비었으면 몸 칸과 머리 아래 구분선을 그리지 않는다 — 제목(+설명) 다음이 바로 버튼 줄.
+ *   간격 = 머리 아래 8 + 푸터 위 16 = 24. fullscreen(≤768)은 그대로(몸 칸이 푸터를 바닥으로 민다).
  */
 
 let lockCount = 0;
@@ -64,6 +67,8 @@ function ensureDialogStyle() {
   s.textContent = [
     "@keyframes mt-fade{from{opacity:0}to{opacity:1}}@keyframes mt-pop{from{opacity:0;transform:scale(0.97)}to{opacity:1;transform:scale(1)}}",
     ".mt-dialog-footer[data-layout=stack]>:first-child{width:100%}",
+    // DS-110 — 제목 · 설명 · 본문은 어절 단위로 줄을 바꾼다(keep-all) · 긴 영문 · URL 은 넘치지 않게(anywhere). 버튼(푸터)은 그대로.
+    ".mt-dialog-title,.mt-dialog-desc,.mt-dialog-body{word-break:keep-all;overflow-wrap:anywhere}",
     ".mt-dialog-title{outline:none;border-radius:var(--radius-sm)}.mt-dialog-title:focus-visible{outline:2px solid var(--ring);outline-offset:2px}",
     ".mt-dialog-footer[data-layout=stack]>:not(:first-child){align-self:center}",
     "@media (max-width:768px){",
@@ -226,6 +231,9 @@ export function Dialog({
 
   if (!open) return null;
   const stack = footerLayout === "stack";
+  // DS-115 — 본문이 비었는지(null · false · "" 는 없는 것으로).
+  const hasBody = React.Children.toArray(children).some((c) => !(typeof c === "string" && c.trim() === ""));
+  const drawBody = hasBody || isFs;
 
   return (
     <div
@@ -274,16 +282,16 @@ export function Dialog({
           ...style,
         }}
       >
-        <div style={{ flex: "0 0 auto", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, padding: "20px 20px 16px", borderBottom: "1px solid var(--border)" }}>
+        <div style={{ flex: "0 0 auto", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, padding: drawBody ? "20px 20px 16px" : footer ? "20px 20px 8px" : "20px", borderBottom: drawBody ? "1px solid var(--border)" : "none" /* DS-115 — 본문 없으면 구분선 없음 · 아래 여백 8 */ }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 4, minWidth: 0 }}>
             {title && <div id={titleId} ref={titleRef} tabIndex={-1} className="mt-dialog-title" style={{ fontSize: "var(--text-h2)", fontWeight: 600, lineHeight: "var(--text-h2--line-height)", letterSpacing: "var(--text-h2--letter-spacing)" }}>{title}</div>}
-            {description && <div id={descId} style={{ fontSize: "var(--text-caption)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", color: "var(--muted-foreground)" }}>{description}</div>}
+            {description && <div id={descId} className="mt-dialog-desc" style={{ fontSize: "var(--text-caption)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", color: "var(--muted-foreground)" }}>{description}</div>}
           </div>
           <IconButton ref={closeRef} icon="cancel-01" variant="ghost" size="sm" ariaLabel="닫기" onClick={onClose} />
         </div>
-        <div ref={bodyRef} className="mt-dialog-body" onScroll={measure} style={{ flex: "1 1 auto", minHeight: 0, overflowY: "auto", overscrollBehavior: "contain", padding: footer ? "16px 20px" : "16px 20px 20px" }}>
+        {drawBody && <div ref={bodyRef} className="mt-dialog-body" onScroll={measure} style={{ flex: "1 1 auto", minHeight: 0, overflowY: "auto", overscrollBehavior: "contain", padding: footer ? "16px 20px" : "16px 20px 20px" }}>
           <div ref={innerRef}>{children}</div>
-        </div>
+        </div>}
         {footer && (
           <div
             className="mt-dialog-footer"

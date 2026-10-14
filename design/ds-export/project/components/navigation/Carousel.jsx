@@ -7,13 +7,29 @@ import React from "react";
  *  데스크톱 기본 거동. mode("peek"|"snap-fit")와 좌우 배경(white) 페이드 추가.
  *   peek: 마지막 카드가 의도적으로 잘려 걸침(N+1) — "더 있음" 강조. snap-fit: 컨테이너 폭에 딱 떨어짐(잘림 없음).
  *   페이드: 넘치고 그 방향에 더 있으면 걸린다(mode·폭과 무관 — 1280이 아니어도 동작). Mobile(~768)은 페이드하지 않는다(CSS로 끈다).
+ *   DS-101 — 1장씩(첫 카드 폭 = 트랙 보이는 폭)이면 페이드를 걸지 않는다.
  *   세로 그림자: 스크롤 트랙 상하 여유 패딩 + 동일 크기 음수 마진으로, 가로 스크롤을 유지하면서 카드 세로 그림자가 잘리지 않게(외부 점유 박스 불변).
  *
  *  화살표 연동: ref로 scrollPrev()/scrollNext() 호출(1단위=현재 표시 개수만큼 이동).
  *  끝 도달은 onEdgeChange({atStart, atEnd})로 통지 → SectionHeader 화살표 disabled.
  */
+// DS-106 — display:contents 감싸개(화면의 div.sc-host-x 등)는 건너뛰고 그 안으로 내려가 상자 있는 첫 요소를 찾는다.
+function boxesOf(node, out, firstOnly) {
+  for (const c of Array.from(node.children)) {
+    if (getComputedStyle(c).display === "contents") { boxesOf(c, out, firstOnly); }
+    else out.push(c);
+    if (firstOnly && out.length) return out;
+  }
+  return out;
+}
+// DS-106 — 카드 폭은 첫 실물 카드에서 잰다. 없으면 0.
+function firstCardWidth(el) {
+  const b = boxesOf(el, [], true)[0];
+  return b ? b.getBoundingClientRect().width : 0;
+}
+
 export const Carousel = React.forwardRef(function Carousel(
-  { children, gap = 16, snap = "card", mode = "snap-fit", onEdgeChange, style, ...rest },
+  { children, gap = 16, snap = "card", mode = "snap-fit", fade: fadeOn = true, onEdgeChange, style, ...rest },
   ref
 ) {
   const trackRef = React.useRef(null);
@@ -37,9 +53,16 @@ export const Carousel = React.forwardRef(function Carousel(
     const atEnd = el.scrollLeft >= el.scrollWidth - el.clientWidth - 1;
     // 페이드는 넘치는 방향에 대해 걸린다. mode·폭과 무관 — peek든 snap-fit이든, 1280이 아니어도 동일.
     // Mobile(~768)에서는 CSS로 끈다(className 참조, matchMedia로 JS 분기하지 않는다).
-    setFade({ left: overflow && !atStart, right: overflow && !atEnd });
+    // DS-101 — 1장씩(첫 카드 폭 = 트랙 보이는 폭, 차 1 이하)이면 양쪽 페이드를 걸지 않는다. 넘치든 아니든 같다.
+    //  페이드는 「걸친 카드가 더 있다」 신호인데 1장씩이면 걸친 카드가 없고 ← → 가 그 일을 한다.
+    //  (페이드가 그림자 여유 18까지 덮어 위 SectionHeader → 버튼 아래 테두리를 지우던 문제도 함께 사라진다.)
+    // DS-106 — 「첫 카드」는 감싸개 너머의 첫 실물 카드(firstCardWidth). fade={false}면 늘 걸지 않는다.
+    const cw = firstCardWidth(el);
+    const single = cw > 0 && Math.abs(cw - el.clientWidth) <= 1;
+    const on = fadeOn && !single && overflow;
+    setFade({ left: on && !atStart, right: on && !atEnd });
     if (onEdgeChange) onEdgeChange({ atStart, atEnd });
-  }, [onEdgeChange]);
+  }, [onEdgeChange, fadeOn]);
 
   // 화살표 = 한 페이지 넘기기. 자유 스크롤의 카드 1장 스냅과는 별개.
   //  snap="unit": 1단위 = 트랙 가시 폭 한 화면.
@@ -47,13 +70,13 @@ export const Carousel = React.forwardRef(function Carousel(
   const stepBy = React.useCallback((dir) => {
     const el = trackRef.current;
     if (!el) return;
-    const items = Array.from(el.children);
-    if (!items.length) return;
     let amount;
     if (snap === "unit") {
       amount = el.clientWidth + gap;
     } else {
-      const cardW = items[0].getBoundingClientRect().width;
+      // DS-106 — 한 페이지 이동도 감싸개 너머의 첫 실물 카드 폭을 쓴다. 0이면 넘기지 않는다.
+      const cardW = firstCardWidth(el);
+      if (!cardW) return;
       const perView = Math.max(1, Math.floor((el.clientWidth + gap) / (cardW + gap)));
       amount = (cardW + gap) * perView;
     }
@@ -73,15 +96,32 @@ export const Carousel = React.forwardRef(function Carousel(
     },
   }), [stepBy]);
 
+  // DS-106 — 감싸개 안의 카드에도 트랙 자식과 같은 flex:0 0 auto · 스냅 정렬을 준다(cloneElement 는 감싸개에만 닿는다).
+  React.useLayoutEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    Array.from(el.children).forEach((c) => {
+      if (getComputedStyle(c).display !== "contents") return;
+      boxesOf(c, [], false).forEach((b) => {
+        if (!b.style.flex) b.style.flex = "0 0 auto";
+        if (!b.style.scrollSnapAlign) { b.style.scrollSnapAlign = "start"; b.style.scrollSnapStop = "always"; }
+      });
+    });
+  });
+
   React.useEffect(() => {
     readEdges();
     const el = trackRef.current;
     if (!el) return;
     el.addEventListener("scroll", readEdges, { passive: true });
     window.addEventListener("resize", readEdges);
+    // DS-101 — 트랙 · 첫 카드 폭이 바뀌면(창 크기 · 부모 폭) 1장씩 판정을 다시 한다.
+    let ro;
+    if (typeof ResizeObserver !== "undefined") { ro = new ResizeObserver(() => readEdges()); ro.observe(el); const b = boxesOf(el, [], true)[0]; if (b) ro.observe(b); }
     return () => {
       el.removeEventListener("scroll", readEdges);
       window.removeEventListener("resize", readEdges);
+      if (ro) ro.disconnect();
     };
   }, [readEdges]);
 
