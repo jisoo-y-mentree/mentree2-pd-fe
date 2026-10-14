@@ -1,0 +1,33 @@
+<!-- @dsCard group="Foundations" viewport="760x400" name="악센트 Orange & 표지 4색" subtitle="DS-83 주황 4단(새 항목·새 통지) · DS-88 표지 패널 4색(1→4 순으로 돌린다)" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+body{margin:0;padding:16px;background:var(--background);color:var(--foreground);display:flex;flex-direction:column;gap:14px}
+.cap{font-size:11px;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:.04em}
+.row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.sw{display:flex;flex-direction:column;gap:5px}
+.c{height:48px;border-radius:var(--radius-sm);border:1px solid var(--border);box-sizing:border-box}
+.n{font-size:12px;font-weight:600}.v{font-size:11px;color:var(--muted-foreground);font-variant-numeric:tabular-nums}
+.cover{height:120px;border-radius:var(--radius-md);padding:14px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:flex-end;gap:4px}
+.cover .t{color:var(--sage-50);font-size:16px;line-height:22px;font-weight:600}
+.cover .b{color:var(--sage-200);font-size:12px;line-height:17px}
+.note{font-size:12px;line-height:19px;color:var(--muted-foreground)}
+.note code{font-family:ui-monospace,monospace;font-size:11px}
+</style></head>
+<body>
+<div class="cap">Orange — 악센트 · 새 항목 · 새 통지 표시 (쓰는 자리는 부품이 정한다)</div>
+<div class="row">
+<div class="sw"><div class="c" style="background:var(--orange-50)"></div><div class="n">--orange-50</div><div class="v">#FFF7ED</div></div>
+<div class="sw"><div class="c" style="background:var(--orange-500)"></div><div class="n">--orange-500</div><div class="v">#F97316</div></div>
+<div class="sw"><div class="c" style="background:var(--orange-600)"></div><div class="n">--orange-600</div><div class="v">#EA580C</div></div>
+<div class="sw"><div class="c" style="background:var(--orange-700)"></div><div class="n">--orange-700</div><div class="v">#C2410C</div></div>
+</div>
+<div class="cap">Cover — 표지 패널 전용 · 제목 sage-50 · 본문 sage-200</div>
+<div class="row">
+<div class="sw"><div class="cover" style="background:var(--cover-green)"><div class="t">런던에서 PM이 되기까지</div><div class="b">인터뷰 · 8분</div></div><div class="n">1 · --cover-green</div><div class="v">= green-950</div></div>
+<div class="sw"><div class="cover" style="background:var(--cover-sky)"><div class="t">런던에서 PM이 되기까지</div><div class="b">인터뷰 · 8분</div></div><div class="n">2 · --cover-sky</div><div class="v">#082F49</div></div>
+<div class="sw"><div class="cover" style="background:var(--cover-rose)"><div class="t">런던에서 PM이 되기까지</div><div class="b">인터뷰 · 8분</div></div><div class="n">3 · --cover-rose</div><div class="v">#4C0519</div></div>
+<div class="sw"><div class="cover" style="background:var(--cover-gray)"><div class="t">런던에서 PM이 되기까지</div><div class="b">인터뷰 · 8분</div></div><div class="n">4 · --cover-gray</div><div class="v">#27272A</div></div>
+</div>
+<div class="note">주황은 의미 토큰(<code>--accent</code> 등)에 잇지 않는다. 표지 4색은 다른 면에 쓰지 않는다.</div>
+</body></html>

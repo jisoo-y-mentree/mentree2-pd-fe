@@ -1,0 +1,48 @@
+<!-- @dsCard group="Navigation" viewport="1280x760" name="ActionBanner" subtitle="문구 + 버튼 배너(DS-34) — 모양 고정 · inline / stacked · 768 이하 stacked · 390 실제 뷰포트" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+html,body{margin:0}
+body{background:var(--background);font-family:var(--font-sans);color:var(--foreground);padding:24px}
+.grid{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start}
+.desk{flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:16px}
+.cap{font-size:var(--text-caption);color:var(--muted-foreground)}
+iframe{display:block;width:390px;box-sizing:content-box;height:560px;border:0;outline:1px solid var(--sage-200);border-radius:var(--radius-md)}
+@media (max-width:480px){body{padding:24px 0}.cap{padding:0 16px}.desk{padding:0 16px}}
+</style>
+</head>
+<body>
+<div class="grid">
+<div class="desk" id="root"></div>
+<div style="display:flex;flex-direction:column;gap:8px;max-width:100%;overflow-x:auto"><div class="cap">390 — 실제 뷰포트 iframe · inline도 stacked · 여백 20 · 버튼 폭 100%</div><iframe data-src="actionbanner.demo.html?w=390" src="actionbanner.demo.html?w=390" title="ActionBanner 390"></iframe></div>
+</div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { ActionBanner } = window.MentreeDesignSystem_2f86cf;
+  const nav = (e) => e.preventDefault();
+  function Demo() {
+    return (
+      <React.Fragment>
+        <div className="cap">inline — 좌 문구 · 우 Button primary md · 간격 24</div>
+        <ActionBanner title="일본 취업, 현직 멘토에게 직접 물어보세요" actionLabel="멘토 찾기" href="#" onAction={nav} />
+        <div className="cap">inline + description</div>
+        <ActionBanner title="이 카테고리의 멘토를 더 만나보세요" description="국가·직무별로 현직 멘토를 찾아볼 수 있어요." actionLabel="멘토 찾기" href="#" onAction={nav} />
+        <div className="cap">stacked — 가운데 · 아래 Button primary lg · 간격 16</div>
+        <ActionBanner layout="stacked" title="이 멘토와 직접 이야기 나누고 싶나요?" description="1:1 멘토링을 통해 자세한 커리어 히스토리와 본인의 고민거리를 물어보세요." actionLabel="1:1 멘토링 신청하기" onAction={nav} />
+      </React.Fragment>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+  window.addEventListener("message", (e) => {
+    if (!e.data || !e.data.mtDemo) return;
+    document.querySelectorAll("iframe").forEach((f) => { if (e.data.mtDemo.endsWith(f.dataset.src)) f.style.height = e.data.h + "px"; });
+  });
+</script>
+</body>
+</html>
