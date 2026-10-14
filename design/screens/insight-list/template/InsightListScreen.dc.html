@@ -26,18 +26,10 @@
     .qi-clamp2, .qi-clamp3 { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
     .qi-clamp2 { -webkit-line-clamp: 2; }
     .qi-clamp3 { -webkit-line-clamp: 3; }
-    .qi-row + .qi-row { border-top: 1px solid var(--border); }
-    .qi-row:first-child { padding-top: 0 !important; }
     .qi-fs > button, .qi-fs > * > button:first-child, .qi-fs > * > * > button:first-child { width: 100%; }
     .qi-filters .qi-fs button[aria-haspopup="dialog"] { height: 40px !important; }
     .qi-cats a:not([aria-current="page"]):hover { background: var(--sidebar-accent) !important; color: var(--sidebar-accent-foreground) !important; }
-    /* 4차(10-09) 화면 CSS — 페이지 루트 토큰 덮기. 색칩·스크랩 색은 DS 가 정하면 이 블록만 지운다. */
-    .il-shell { --primary: #15803D; --primary-foreground: #F0FDF4; --green-50: #F5FAF6; --green-100: #E7F4E9; --il-featured: #082F49; --il-new: #1BAA51; --il-scrap-on-bg: #F5FAF6; --il-scrap-on-border: #008236; --il-scrap-on-icon: #00A63E; }
-    .il-featured { transition: box-shadow 150ms ease; }
-    .il-featured:hover { box-shadow: var(--shadow-md); }
     .il-count[data-after-featured="true"] { margin-top: 32px !important; }
-    /* A-3 스크랩 켜짐 — 부품(BookmarkToggle)의 --sage-900 반전을 덮는다(DS-35 로 돌려보낼 것) */
-    .il-scrap button[aria-pressed="true"] { background: var(--il-scrap-on-bg) !important; border: 1px solid var(--il-scrap-on-border) !important; color: var(--il-scrap-on-icon) !important; }
     @media (max-width: 768px) {
       .qi-only-mobile { display: block !important; }
       .qi-only-desktop { display: none !important; }
@@ -46,19 +38,20 @@
       .qi-filters .qi-fs > * { width: 100% !important; }
       .qi-filters .qi-search { flex: 1 1 100%; }
       .qi-chipbar { flex-wrap: wrap; }
-      .il-featured { flex-direction: column !important; height: auto !important; }
-      .il-featured-img { flex: 0 0 180px !important; height: 180px; }
-      .il-featured-panel { flex: 1 1 auto !important; padding: 20px !important; }
-      .il-featured-title { font-size: 20px !important; }
-      .il-featured-excerpt { -webkit-line-clamp: 2 !important; }
       .il-count { flex-wrap: wrap; }
-      .il-pager > *, .il-pager > * > * { flex: 1 1 0; min-width: 0; }
-      .il-pager button { width: 100% !important; }
+      /* 768 이하 — 이전/다음이 위 줄에서 반반, 번호는 아래 줄. 한쪽이 없어도 전폭으로 늘이지 않는다. */
+      .il-pager { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; }
+      .il-pager-prev { grid-column: 1 !important; grid-row: 1 !important; justify-self: stretch !important; }
+      .il-pager-next { grid-column: 2 !important; grid-row: 1 !important; justify-self: stretch !important; }
+      .il-pager-nums { grid-column: 1 / -1 !important; grid-row: 2 !important; }
+      .il-pager[data-has-pager="false"] { row-gap: 0 !important; }
+      .il-pager-prev > *, .il-pager-next > * { display: block; width: 100%; }
+      .il-pager-prev button, .il-pager-next button { width: 100% !important; }
       .qi-pad-bottom { padding-bottom: calc(56px + env(safe-area-inset-bottom) + 32px) !important; }
     }
   </style>
 </helmet>
-<div class="il-shell" style="min-height:100vh;display:flex;flex-direction:column">
+<div style="min-height:100vh;display:flex;flex-direction:column">
   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" active-key="insights" on-navigate="{{ onNav }}" hint-size="100%,64px"></x-import>
   <main class="qi-pad-bottom" style="flex:1;width:100%;max-width:var(--container-max);margin:0 auto;padding:40px var(--container-pad) 88px;box-sizing:border-box">
     <h1 style="margin:0;font-size:var(--text-h0);font-weight:600;letter-spacing:var(--text-h0--letter-spacing)">멘트리 인사이트</h1>
@@ -107,17 +100,9 @@
           </div>
         </div>
         <sc-if value="{{ showFeatured }}" hint-placeholder-val="{{ true }}">
-          <a class="il-featured" data-temp="FeaturedArticle" href="{{ featured.href }}" style="position:relative;display:flex;height:300px;margin-top:24px;border-radius:16px;overflow:hidden;text-decoration:none;color:inherit">
-            <div class="il-featured-img" style="flex:0 0 50%;min-width:0;background:var(--green-100);display:flex;align-items:flex-end;justify-content:center;overflow:hidden">
-              <img src="{{ featured.featuredImg }}" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block">
-            </div>
-            <div class="il-featured-panel" style="flex:0 0 50%;min-width:0;box-sizing:border-box;background:var(--il-featured);padding:0 44px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
-              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="tag" hue="neutral" size="md" hint-size="72px,28px">{{ featured.keyword }}</x-import>
-              <div class="il-featured-title qi-clamp2" style="margin-top:16px;font-size:24px;font-weight:600;line-height:1.4;letter-spacing:-0.01em;color:#F9FBF9;text-wrap:pretty">{{ featured.title }}</div>
-              <div class="il-featured-excerpt qi-clamp3" style="margin-top:12px;font-size:14px;font-weight:400;line-height:1.6;color:#E3E8E4">{{ featured.excerpt }}</div>
-            </div>
-            <span class="il-new" style="position:absolute;top:0;left:0;width:97px;height:31px;display:inline-flex;align-items:center;justify-content:center;background:var(--il-new);color:#FFFFFF;font-size:15px;font-weight:600;border-radius:16px 0 16px 0">신규 아티클</span>
-          </a>
+          <div style="margin-top:24px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CoverCard" href="{{ featured.href }}" image="{{ featured.featuredImg }}" tone="{{ featured.tone }}" badge="{{ featured.keyword }}" label="신규 아티클" title="{{ featured.title }}" excerpt="{{ featured.excerpt }}" hint-size="100%,300px"></x-import>
+          </div>
         </sc-if>
         <sc-if value="{{ hasChips }}" hint-placeholder-val="{{ false }}">
           <div class="qi-chipbar" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:16px">
@@ -138,25 +123,7 @@
             <div>
               <div class="qi-only-desktop">
                 <sc-for list="{{ rows }}" as="row" hint-placeholder-count="4">
-                  <article class="qi-row" data-temp="DS-33" style="position:relative;display:flex;align-items:flex-start;gap:24px;padding:24px 0">
-                    <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
-                      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="tag" hue="indigo" size="sm" hint-size="56px,24px">{{ row.countryLabel }}</x-import>
-                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="tag" hue="amber" size="sm" hint-size="64px,24px">{{ row.keyword }}</x-import>
-                      </div>
-                      <a href="{{ row.href }}" class="mt-card-link qi-clamp2" style="display:block;font-size:var(--text-h3);font-weight:600;line-height:var(--text-h3--line-height);color:inherit;text-decoration:none">{{ row.title }}</a>
-                      <div class="qi-clamp3" style="font-size:var(--text-body);line-height:1.7;color:var(--muted-foreground)">{{ row.excerpt }}</div>
-                      <sc-if value="{{ row.showDate }}" hint-placeholder-val="{{ true }}">
-                        <div class="tabular" style="font-size:var(--text-caption);color:var(--muted-foreground)">{{ row.date }}</div>
-                      </sc-if>
-                    </div>
-                    <div style="position:relative;flex:0 0 296px;width:296px;aspect-ratio:16 / 9;border-radius:var(--card-media-radius);overflow:hidden;background:var(--sage-100)">
-                      <img src="{{ row.img }}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
-                      <div class="il-scrap" style="position:absolute;top:8px;right:8px;z-index:3" on-click="{{ stop }}">
-                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BookmarkToggle" selected="{{ row.saved }}" on-change="{{ row.toggleSave }}" hint-size="38px,38px"></x-import>
-                      </div>
-                    </div>
-                  </article>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ArticlePreview" variant="row" title="{{ row.title }}" excerpt="{{ row.excerpt }}" image="{{ row.img }}" tags="{{ row.tags }}" href="{{ row.href }}" date="{{ row.rowDate }}" bookmarked="{{ row.saved }}" on-bookmark-change="{{ row.toggleSave }}" hint-size="100%,216px"></x-import>
                 </sc-for>
               </div>
               <div class="qi-only-mobile">
@@ -198,20 +165,16 @@
           </sc-if>
         </div>
         <sc-if value="{{ showPagination }}" hint-placeholder-val="{{ false }}">
-          <sc-if value="{{ hasPager }}" hint-placeholder-val="{{ false }}">
-            <div class="il-pager" style="margin-top:40px;display:flex;align-items:center;justify-content:space-between;gap:12px">
-              <sc-if value="{{ hasPrev }}" hint-placeholder-val="{{ false }}">
-                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" icon-left="arrow-left-01" on-click="{{ goPrev }}" hint-size="140px,40px">이전 페이지로</x-import>
-              </sc-if>
-              <sc-if value="{{ hasNext }}" hint-placeholder-val="{{ true }}">
-                <div style="margin-left:auto;display:flex">
-                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" icon-right="arrow-right-01" on-click="{{ goNext }}" hint-size="140px,40px">다음 페이지로</x-import>
-                </div>
-              </sc-if>
+          <div class="il-pager" data-has-pager="{{ hasPager }}" style="margin-top:40px;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;column-gap:12px;row-gap:16px">
+            <div class="il-pager-prev" style="grid-column:1;grid-row:1;justify-self:start;min-width:0">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" icon-left="arrow-left-01" disabled="{{ noPrev }}" aria-disabled="{{ noPrev }}" on-click="{{ goPrev }}" hint-size="140px,40px">이전 페이지로</x-import>
             </div>
-          </sc-if>
-          <div style="margin-top:16px;display:flex;justify-content:center">
-            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Pagination" page="{{ page }}" total-pages="{{ totalPages }}" on-page-change="{{ onPageChange }}" hint-size="320px,44px"></x-import>
+            <div class="il-pager-nums" style="grid-column:2;grid-row:1;justify-self:center;min-width:0">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Pagination" page="{{ page }}" total-pages="{{ totalPages }}" on-page-change="{{ onPageChange }}" hint-size="320px,44px"></x-import>
+            </div>
+            <div class="il-pager-next" style="grid-column:3;grid-row:1;justify-self:end;min-width:0">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" icon-right="arrow-right-01" disabled="{{ noNext }}" aria-disabled="{{ noNext }}" on-click="{{ goNext }}" hint-size="140px,40px">다음 페이지로</x-import>
+            </div>
           </div>
         </sc-if>
       </div>
@@ -239,13 +202,24 @@ const ART = [
   { id: "v3", cat: "interview", title: "사이보즈 백엔드 엔지니어 이준호 — 취업 활동 비자로 지원한 경로", excerpt: "이준호 님은 졸업 후 취업 활동 비자로 체류하며 지원을 이어갔습니다. 체류 기간과 면접 일정을 맞추는 일이 가장 까다로웠습니다. 비자 연장과 오퍼 시점을 정리해 들려주었습니다.", date: "2026.03.27", countryLabel: "일본", flag: "japan", keyword: "비자·이민", img: "assets/img/3.png" }
 ];
 
-const DETAIL = { insight: "../../article-detail/template/article-detail-insight.dc.html", event: "../../article-detail/template/article-detail-event.dc.html", interview: "../../article-detail/template/article-detail-interview.dc.html" };
+// 페이지는 두 장뿐(InsightList · ArticleDetail) — 상태는 주소 파라미터. frame · view 는 링크를 따라 그대로 간다.
+const KEEP = ["frame", "view"];
+const pageUrl = (file, params) => {
+  const s = typeof location !== "undefined" ? new URLSearchParams(location.search) : new URLSearchParams();
+  const o = new URLSearchParams();
+  KEEP.forEach(k => { if (s.get(k)) o.set(k, s.get(k)); });
+  Object.keys(params || {}).forEach(k => { if (params[k]) o.set(k, params[k]); });
+  const q = o.toString();
+  return file + (q ? "?" + q : "");
+};
+const listUrl = params => pageUrl("InsightList.dc.html", params);
+const detailUrl = type => pageUrl("../../article-detail/template/ArticleDetail.dc.html", { type });
 
 const CATS = [
-  { key: "all", label: "전체", href: "insight-list-all.dc.html" },
-  { key: "insight", label: "멘트리 인사이트", href: "insight-list-insight.dc.html" },
-  { key: "event", label: "멘트리 이벤트", href: "insight-list-event.dc.html" },
-  { key: "interview", label: "멘토 인터뷰", href: "insight-list-interview.dc.html" }
+  { key: "all", label: "전체" },
+  { key: "insight", label: "멘트리 인사이트" },
+  { key: "event", label: "멘트리 이벤트" },
+  { key: "interview", label: "멘토 인터뷰" }
 ];
 
 const COUNTRY_GROUPS = [{ options: [
@@ -313,7 +287,7 @@ class Component extends DCLogic {
     // A-5 상태 복원 — 상세로 갈 때 적어 둔 URL · scrollY 를 「목록으로 돌아가기」로 돌아왔을 때만 되돌린다.
     this.onLinkClick = e => {
       const a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
-      if (!a || !/article-detail-[a-z]+\.dc\.html/.test(a.getAttribute("href") || "")) return;
+      if (!a || !/ArticleDetail\.dc\.html/.test(a.getAttribute("href") || "")) return;
       try { sessionStorage.setItem("qi-list-return", JSON.stringify({ url: location.href, y: window.scrollY })); } catch (err) {}
     };
     document.addEventListener("click", this.onLinkClick, true);
@@ -339,7 +313,9 @@ class Component extends DCLogic {
   }
 
   syncUrl(filters, sort, page) {
-    const s = new URLSearchParams();
+    // 페이지 파라미터(category · state · view · frame)는 남기고 조건 키만 다시 쓴다.
+    const s = new URLSearchParams(location.search);
+    ["country", "keyword", "job", "kind", "q", "exclude", "sort", "page"].forEach(k => s.delete(k));
     if (filters.country.length) s.set("country", filters.country.join(","));
     if (filters.keyword.length) s.set("keyword", filters.keyword.join(","));
     if (filters.job.length) s.set("job", filters.job.join(","));
@@ -397,10 +373,11 @@ class Component extends DCLogic {
     const totalPages = Math.max(1, Math.ceil(totalCountNum / per));
     const page = Math.min(this.state.page, totalPages);
     const totalCount = mode === "loading" || mode === "error" ? "—" : mode === "empty" ? "0" : String(totalCountNum);
-    // 인사이트 글은 기본 일러스트(green-100 면이 그려진 PNG), 이벤트 글은 현장 썸네일 그대로.
+    // 인사이트 글은 기본 일러스트, 이벤트 글은 현장 썸네일 그대로. 표지색(tone)은 글마다 돌린다 — green → sky → rose → gray.
+    const TONES = ["green", "sky", "rose", "gray"];
     const featured = featArt
-      ? { ...featArt, href: DETAIL[featArt.cat], featuredImg: featArt.cat === "insight" ? "assets/img/featured-insight.png" : featArt.img }
-      : { href: "#", featuredImg: "" };
+      ? { ...featArt, href: detailUrl(featArt.cat), tone: TONES[Math.max(0, ART.indexOf(featArt)) % 4], featuredImg: featArt.cat === "insight" ? "assets/img/featured-insight.png" : featArt.img }
+      : { href: "#", tone: "green", featuredImg: "" };
     let pageItems = listed.slice((page - 1) * per, page * per);
     if (!pageItems.length && listed.length) {
       // 표본을 넘어선 페이지는 순환해서 채운다(카드가 비지 않게).
@@ -414,8 +391,9 @@ class Component extends DCLogic {
     };
     const rows = pageItems.map(a => ({
       ...a,
-      href: DETAIL[a.cat],
+      href: detailUrl(a.cat),
       showDate: a.cat !== "interview",
+      rowDate: a.cat !== "interview" ? a.date : undefined,
       tags: [{ label: a.countryLabel, hue: "indigo" }, { label: a.keyword, hue: "amber" }],
       saved: !!this.state.saved[a.id],
       toggleSave: next => this.setState(st => ({ saved: { ...st.saved, [a.id]: next } }))
@@ -423,15 +401,15 @@ class Component extends DCLogic {
 
     return {
       cats: CATS.map(c => ({
-        label: c.label, href: c.href, aria: c.key === cat ? "page" : "false",
+        label: c.label, href: listUrl({ category: c.key }), aria: c.key === cat ? "page" : "false",
         style: "display:flex;align-items:center;height:40px;padding:0 12px;border-radius:var(--radius-md);font-size:var(--text-body);letter-spacing:-0.01em;text-decoration:none;transition:background-color 120ms ease,color 120ms ease;" +
           (c.key === cat ? "background:var(--sidebar-primary);color:var(--sidebar-primary-foreground);font-weight:600" : "background:transparent;color:var(--sidebar-foreground);font-weight:500")
       })),
       tabItems: CATS.map(c => ({ value: c.key, label: c.label })),
       tabValue: cat,
-      onTab: v => { const c = CATS.find(x => x.key === v); if (c) location.href = c.href; },
-      onTabBar: tab => { if (tab.key === "insights") location.href = "insight-list-all.dc.html"; },
-      onNav: item => { if (item.key === "insights") location.href = "insight-list-all.dc.html"; },
+      onTab: v => { const c = CATS.find(x => x.key === v); if (c) location.href = listUrl({ category: c.key }); },
+      onTabBar: tab => { if (tab.key === "insights") location.href = listUrl({ category: "all" }); },
+      onNav: item => { if (item.key === "insights") location.href = listUrl({ category: "all" }); },
       showCountry: cat === "all" || cat === "insight" || cat === "interview",
       showKeyword: cat === "all" || cat === "insight" || cat === "interview",
       showJob: cat === "interview",
@@ -455,7 +433,6 @@ class Component extends DCLogic {
       sort: this.state.sort,
       setSort: v => this.setState(st => { this.syncUrl(st.filters, v, st.page); return { sort: v }; }),
       rows,
-      stop: e => e.stopPropagation(),
       isOk: mode === "ok", isLoading: mode === "loading", isEmpty: mode === "empty", isError: mode === "error",
       skeletons: [{ lines: 3 }, { lines: 3 }, { lines: 3 }, { lines: 3 }, { lines: 3 }],
       skBadge: { width: 140, height: 24, radius: "md" },
@@ -463,12 +440,12 @@ class Component extends DCLogic {
       skDate: { width: 96, height: 16 },
       skThumb: { width: "100%", height: "100%", radius: "md" },
       emptyDesc: "조건을 하나씩 풀어 보시거나, 전체 카테고리에서 다시 찾아보세요.",
-      emptyAction: B ? React.createElement(B, { variant: "primary", size: "md", onClick: () => { location.href = "insight-list-all.dc.html"; } }, "조건 초기화") : null,
+      emptyAction: B ? React.createElement(B, { variant: "primary", size: "md", onClick: () => { location.href = listUrl({ category: "all" }); } }, "조건 초기화") : null,
       retry: () => location.reload(),
       showFeatured, featured, totalCount,
-      // 페이지네이션은 건수가 정한다 — 1쪽이면 「1」 하나만, 이전/다음 버튼은 갈 곳이 있을 때만.
+      // 페이지네이션은 건수가 정한다 — 1쪽이면 「1」 하나만. 이전/다음 버튼은 항상 서고, 갈 곳이 없으면 비활성.
       page, totalPages, showPagination: mode === "ok" && listed.length > 0,
-      hasPrev: page > 1, hasNext: page < totalPages, hasPager: page > 1 || page < totalPages,
+      noPrev: page <= 1, noNext: page >= totalPages, hasPager: true,
       goPrev: () => { if (page > 1) goPage(page - 1); },
       goNext: () => { if (page < totalPages) goPage(page + 1); },
       onPageChange: goPage

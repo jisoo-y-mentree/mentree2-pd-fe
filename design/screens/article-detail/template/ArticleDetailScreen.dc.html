@@ -38,13 +38,11 @@
     .qi-sec-head > div:first-child > div { justify-content: center !important; }
     .qi-sec-head > div:last-child:not(:first-child) { position: absolute; right: 0; top: 50%; transform: translateY(-50%); }
     .qi-subs { position: fixed; right: 32px; bottom: 32px; width: 420px; z-index: 40; }
-    /* 4차(10-09) 화면 CSS — 페이지 루트 토큰 덮기. 스크랩 색은 DS 가 정하면 이 블록만 지운다. */
-    .ad-shell { --primary: #15803D; --primary-foreground: #F0FDF4; --green-50: #F5FAF6; --green-100: #E7F4E9; --il-scrap-on-bg: #F5FAF6; --il-scrap-on-border: #008236; --il-scrap-on-icon: #00A63E; }
-    .ad-scrap button[aria-pressed="true"] { background: var(--il-scrap-on-bg) !important; border: 1px solid var(--il-scrap-on-border) !important; color: var(--il-scrap-on-icon) !important; filter: none !important; }
     .ad-back button { width: 164px; font-weight: 700 !important; }
-    .ad-grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
-    .ad-mentor-chip { transition: box-shadow 150ms ease; }
-    .ad-mentor-chip:hover { box-shadow: var(--shadow-md); }
+    .ad-grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; align-items: start; }
+    /* 769 이상 4열 격자 — MentorCard 는 296 고정이라 칸(minmax(0,1fr))을 따르게 화면에서 덮는다. 이름 크기는 카드 폭이 정한다(부품의 container query). */
+    .ad-grid4 > * { min-width: 0; }
+    .ad-grid4 .mt-mcard { width: 100% !important; min-width: 0 !important; max-width: none !important; }
     @media (max-width: 768px) {
       .qi-only-mobile { display: block !important; }
       .qi-only-desktop { display: none !important; }
@@ -53,22 +51,17 @@
       .qi-banner-cta { order: 9; display: flex; }
       .qi-banner-cta > * { width: 100%; }
       .qi-banner-cta button { width: 100% !important; }
-      .ad-mentor-box { padding: 20px !important; }
-      .ad-mentor-head { flex-direction: column !important; align-items: stretch !important; gap: 16px !important; }
-      .ad-mentor-head a, .ad-mentor-head button { width: 100% !important; }
-      .ad-mentor-row { flex-direction: column !important; }
-      .ad-mentor-chip { width: 100% !important; }
       .qi-grid { display: block; margin-top: 24px; }
       .qi-subs { left: 16px; right: 16px; width: auto; bottom: calc(56px + env(safe-area-inset-bottom) + 16px); }
       .qi-pad-bottom { padding-bottom: calc(56px + env(safe-area-inset-bottom) + 32px) !important; }
     }
   </style>
 </helmet>
-<div class="ad-shell" style="min-height:100vh;display:flex;flex-direction:column">
+<div style="min-height:100vh;display:flex;flex-direction:column">
   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" active-key="insights" on-navigate="{{ onNav }}" hint-size="100%,64px"></x-import>
   <main class="qi-pad-bottom" style="flex:1;width:100%;max-width:var(--container-max);margin:0 auto;padding:24px var(--container-pad) 88px;box-sizing:border-box">
     <div style="display:flex;align-items:center;gap:12px">
-      <a href="../../insight-list/template/insight-list-all.dc.html" aria-label="목록으로 돌아가기" style="display:inline-flex;text-decoration:none">
+      <a href="{{ listHref }}" aria-label="목록으로 돌아가기" style="display:inline-flex;text-decoration:none">
         <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="arrow-left-01" variant="outline" size="md" aria-label="목록으로 돌아가기" dc-props="{{ roundBtn }}" hint-size="40px,40px"></x-import>
       </a>
       <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Breadcrumb" items="{{ crumbs }}" hint-size="240px,24px"></x-import>
@@ -86,18 +79,18 @@
             <div class="tabular" style="font-size:var(--text-caption);color:var(--muted-foreground)">{{ art.date }}</div>
           </sc-if>
           <div class="qi-only-mobile" data-temp="rail" style="margin-top:4px">
-          <div class="ad-scrap" style="display:flex;justify-content:center;gap:12px">
-            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="bookmark-01" variant="outline" size="lg" aria-label="스크랩" aria-pressed="{{ scrapped }}" on-click="{{ toggleScrap }}" hint-size="48px,48px"></x-import>
-            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="favourite" variant="{{ helpfulVariant }}" size="lg" aria-label="도움돼요" aria-pressed="{{ helpful }}" on-click="{{ toggleHelpful }}" hint-size="48px,48px"></x-import>
+          <div style="display:flex;justify-content:center;gap:12px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="bookmark-01" pressed="{{ scrapped }}" size="lg" aria-label="스크랩" on-click="{{ toggleScrap }}" hint-size="48px,48px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="favourite" pressed="{{ helpful }}" size="lg" aria-label="도움돼요" on-click="{{ toggleHelpful }}" hint-size="48px,48px"></x-import>
             <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="share-08" variant="outline" size="lg" aria-label="공유" on-click="{{ share }}" hint-size="48px,48px"></x-import>
           </div>
           </div>
         </header>
 
         <div class="qi-grid">
-          <div class="qi-only-desktop ad-scrap" data-temp="rail" style="justify-self:end;width:48px;position:sticky;top:96px;display:flex;flex-direction:column;gap:8px">
-            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="bookmark-01" variant="outline" size="lg" aria-label="스크랩" aria-pressed="{{ scrapped }}" on-click="{{ toggleScrap }}" hint-size="48px,48px"></x-import>
-            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="favourite" variant="{{ helpfulVariant }}" size="lg" aria-label="도움돼요" aria-pressed="{{ helpful }}" on-click="{{ toggleHelpful }}" hint-size="48px,48px"></x-import>
+          <div class="qi-only-desktop" data-temp="rail" style="justify-self:end;width:48px;position:sticky;top:96px;display:flex;flex-direction:column;gap:8px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="bookmark-01" pressed="{{ scrapped }}" size="lg" aria-label="스크랩" on-click="{{ toggleScrap }}" hint-size="48px,48px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="favourite" pressed="{{ helpful }}" size="lg" aria-label="도움돼요" on-click="{{ toggleHelpful }}" hint-size="48px,48px"></x-import>
             <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="share-08" variant="outline" size="lg" aria-label="공유" on-click="{{ share }}" hint-size="48px,48px"></x-import>
           </div>
 
@@ -198,29 +191,6 @@
         </div>
 
         <div data-subscribe-sentinel aria-hidden="true" style="height:1px"></div>
-        <sc-if value="{{ showMentorBox }}" hint-placeholder-val="{{ true }}">
-          <div style="max-width:720px;margin:56px auto 0">
-            <div class="ad-mentor-box" data-temp="MentorCard compact 후보" style="display:flex;flex-direction:column;gap:20px;box-sizing:border-box;background:#F9FBF9;border:1px solid var(--primary);border-radius:var(--radius-lg);padding:33px">
-              <div class="ad-mentor-head" style="display:flex;align-items:center;justify-content:space-between;gap:24px">
-                <div style="font-size:var(--text-h3);font-weight:700;line-height:1.4">이 주제와 관련된 멘토를 확인하고 싶다면?</div>
-                <a href="#" title="{{ mentorMoreTitle }}" style="flex:0 0 auto;text-decoration:none">
-                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="md" hint-size="145px,40px">관련 멘토 전체보기</x-import>
-                </a>
-              </div>
-              <div class="ad-mentor-row" style="display:flex;gap:12px;min-width:0">
-                <sc-for list="{{ bannerMentors }}" as="bm" hint-placeholder-count="3">
-                  <a class="ad-mentor-chip" href="{{ bm.href }}" title="{{ bm.title }}" style="flex:1 1 0;min-width:0;height:66px;box-sizing:border-box;display:flex;align-items:center;gap:12px;padding:11px 13px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);text-decoration:none;color:var(--foreground)">
-                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" src="{{ bm.photo }}" name="{{ bm.name }}" size="{{ 44 }}" hint-size="44px,44px"></x-import>
-                    <div style="min-width:0;display:flex;flex-direction:column;gap:2px">
-                      <div style="font-size:var(--text-body);font-weight:700;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ bm.name }}</div>
-                      <div style="font-size:var(--text-caption);color:var(--muted-foreground);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ bm.role }}</div>
-                    </div>
-                  </a>
-                </sc-for>
-              </div>
-            </div>
-          </div>
-        </sc-if>
         <sc-if value="{{ showCtaBanner }}" hint-placeholder-val="{{ false }}">
           <div style="max-width:720px;margin:56px auto 0">
             <div class="qi-banner" style="display:flex;flex-direction:column;gap:20px;background:var(--sage-50);border:1px solid var(--primary);border-radius:var(--radius-lg);padding:24px 32px">
@@ -235,36 +205,13 @@
         </sc-if>
 
         <div class="ad-back" style="margin-top:24px;display:flex;justify-content:center;position:relative;z-index:1">
-          <a href="../../insight-list/template/insight-list-all.dc.html" onClick="{{ backToList }}" style="display:inline-flex;text-decoration:none">
+          <a href="{{ listHref }}" onClick="{{ backToList }}" style="display:inline-flex;text-decoration:none">
             <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" icon-left="arrow-left-01" hint-size="164px,40px">목록으로 돌아가기</x-import>
           </a>
         </div>
         <hr aria-hidden="true" style="max-width:720px;margin:32px auto 0;border:0;border-top:1px solid var(--border)">
 
-        <sc-if value="{{ showRelatedArticles }}" hint-placeholder-val="{{ true }}">
-          <section style="margin-top:40px">
-            <div style="position:relative">
-              <x-import class="qi-sec-head" style="position:relative" component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" title="관련 아티클 추천" hint-size="100%,48px"></x-import>
-              <a href="{{ relatedMoreHref }}" title="{{ relatedMoreTitle }}" style="position:absolute;right:0;top:50%;transform:translateY(-50%);text-decoration:none">
-                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" tone="primary" size="sm" icon-right="arrow-right-01" hint-size="72px,32px">더보기</x-import>
-              </a>
-            </div>
-            <div class="qi-only-desktop ad-grid4" style="margin-top:24px">
-              <sc-for list="{{ related }}" as="rel" hint-placeholder-count="4">
-                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ArticlePreview" title="{{ rel.title }}" image="{{ rel.img }}" tags="{{ noTags }}" href="article-detail-insight.dc.html" hint-size="100%,240px"></x-import>
-              </sc-for>
-            </div>
-            <div class="qi-only-mobile qi-related" style="margin-top:24px">
-              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Carousel" gap="{{ 24 }}" mode="snap-fit" hint-size="100%,260px">
-                <sc-for list="{{ related }}" as="rel" hint-placeholder-count="4">
-                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ArticlePreview" title="{{ rel.title }}" image="{{ rel.img }}" tags="{{ noTags }}" href="article-detail-insight.dc.html" dc-props="{{ relCard }}" hint-size="280px,240px"></x-import>
-                </sc-for>
-              </x-import>
-            </div>
-          </section>
-        </sc-if>
-
-        <sc-if value="{{ showMentorCarousel }}" hint-placeholder-val="{{ false }}">
+        <sc-if value="{{ showMentorSection }}" hint-placeholder-val="{{ true }}">
           <section style="margin-top:40px">
             <div style="position:relative">
               <x-import class="qi-sec-head" style="position:relative" component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" title="{{ mentorSectionTitle }}" hint-size="100%,48px"></x-import>
@@ -281,6 +228,30 @@
               <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Carousel" gap="{{ 24 }}" mode="snap-fit" hint-size="100%,340px">
                 <sc-for list="{{ mentors }}" as="m" hint-placeholder-count="4">
                   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.MentorCard" name="{{ m.name }}" role="{{ m.role }}" company="{{ m.company }}" field="{{ m.field }}" country="japan" country-label="일본" photo="{{ m.photo }}" href="#" fluid="{{ true }}" bookmarked="{{ m.saved }}" on-bookmark-change="{{ m.toggleSave }}" hint-size="296px,340px"></x-import>
+                </sc-for>
+              </x-import>
+            </div>
+          </section>
+        </sc-if>
+
+        <sc-if value="{{ showRelatedArticles }}" hint-placeholder-val="{{ true }}">
+          <hr aria-hidden="true" style="margin:56px 0 0;border:0;border-top:1px solid var(--border)">
+          <section style="margin-top:56px">
+            <div style="position:relative">
+              <x-import class="qi-sec-head" style="position:relative" component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" title="관련 아티클 추천" hint-size="100%,48px"></x-import>
+              <a href="{{ relatedMoreHref }}" title="{{ relatedMoreTitle }}" style="position:absolute;right:0;top:50%;transform:translateY(-50%);text-decoration:none">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" tone="primary" size="sm" icon-right="arrow-right-01" hint-size="72px,32px">더보기</x-import>
+              </a>
+            </div>
+            <div class="qi-only-desktop ad-grid4" style="margin-top:24px">
+              <sc-for list="{{ related }}" as="rel" hint-placeholder-count="4">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ArticlePreview" title="{{ rel.title }}" image="{{ rel.img }}" tags="{{ noTags }}" href="{{ detailInsightHref }}" hint-size="100%,240px"></x-import>
+              </sc-for>
+            </div>
+            <div class="qi-only-mobile qi-related" style="margin-top:24px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Carousel" gap="{{ 24 }}" mode="snap-fit" hint-size="100%,260px">
+                <sc-for list="{{ related }}" as="rel" hint-placeholder-count="4">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ArticlePreview" title="{{ rel.title }}" image="{{ rel.img }}" tags="{{ noTags }}" href="{{ detailInsightHref }}" dc-props="{{ relCard }}" hint-size="280px,240px"></x-import>
                 </sc-for>
               </x-import>
             </div>
@@ -366,6 +337,19 @@
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;insight&quot;,&quot;event&quot;,&quot;interview&quot;,&quot;plain&quot;],&quot;default&quot;:&quot;insight&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;state&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ok&quot;,&quot;loading&quot;,&quot;notfound&quot;,&quot;error&quot;],&quot;default&quot;:&quot;ok&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+// 페이지는 두 장뿐(InsightList · ArticleDetail) — 상태는 주소 파라미터. frame · view 는 링크를 따라 그대로 간다.
+const KEEP = ["frame", "view"];
+const pageUrl = (file, params) => {
+  const s = typeof location !== "undefined" ? new URLSearchParams(location.search) : new URLSearchParams();
+  const o = new URLSearchParams();
+  KEEP.forEach(k => { if (s.get(k)) o.set(k, s.get(k)); });
+  Object.keys(params || {}).forEach(k => { if (params[k]) o.set(k, params[k]); });
+  const q = o.toString();
+  return file + (q ? "?" + q : "");
+};
+const listUrl = params => pageUrl("../../insight-list/template/InsightList.dc.html", params);
+const detailUrl = type => pageUrl("ArticleDetail.dc.html", { type });
+
 // id 는 목록(InsightListScreen)의 ART 와 같다 — 「더보기 >」로 간 목록에서 이 글을 빼는 데 쓴다.
 const ART = {
   insight: { id: "i1", title: "2026년 일본 취업을 위해 꼭 필요한 인사이트", countryLabel: "일본", keyword: "취업 준비", date: "2026.07.04" },
@@ -381,7 +365,7 @@ const TOC = {
   plain: []
 };
 
-// B 형(insight · plain)은 배너 대신 관련 멘토 박스(B-3). A 형(event) · C 형(interview)만 문구+버튼 배너.
+// A 형(event) · C 형(interview)만 문구+버튼 배너. B 형(insight · plain)은 배너 없음 — 관련 멘토는 아래 「이 아티클과 관련된 멘토」 섹션.
 const BANNER = {
   event: { text: "이 행사에 참여하고 싶다면?", cta: "참여 신청하기", href: "#", title: "이벤트 신청 — 범위 밖" },
   interview: { text: "이 멘토에게 상담을 받아보고 싶다면?", cta: "멘토링 신청하기", href: "#", title: "멘토 상세 — 다른 화면" }
@@ -470,22 +454,23 @@ class Component extends DCLogic {
     const v = this.variant, mode = this.mode;
     const B = (window.MentreeDesignSystem_2f86cf || {}).Button;
     const toc = TOC[v] || [];
-    const mentorsFor = v === "event" ? MENTORS : v === "interview" ? [MENTORS[1]] : [];
+    // 「이 아티클과 관련된 멘토」 4장(A·B 형 공통) · 인터뷰(C 형)는 이 글의 멘토 1장.
+    const mentorsFor = v === "interview" ? [MENTORS[1]] : MENTORS;
     const art = ART[v] || ART.insight;
     const isB = v === "insight" || v === "plain";
     const mentorMoreTitle = "멘토 찾기(미구현) — 키워드: " + art.keyword;
 
     return {
       art: ART[v] || ART.insight,
-      crumbs: [{ label: "멘트리 인사이트", href: "../../insight-list/template/insight-list-all.dc.html" }, { label: "상세" }],
+      listHref: listUrl(), detailInsightHref: detailUrl("insight"),
+      crumbs: [{ label: "멘트리 인사이트", href: listUrl() }, { label: "상세" }],
       roundBtn: { style: { borderRadius: "50%" } },
-      onNav: item => { if (item.key === "insights") location.href = "../../insight-list/template/insight-list-all.dc.html"; },
-      onTabBar: tab => { if (tab.key === "insights") location.href = "../../insight-list/template/insight-list-all.dc.html"; },
+      onNav: item => { if (item.key === "insights") location.href = listUrl(); },
+      onTabBar: tab => { if (tab.key === "insights") location.href = listUrl(); },
       isOk: mode === "ok", isLoading: mode === "loading", isNotFound: mode === "notfound", isError: mode === "error",
       isInsight: v === "insight", isEvent: v === "event", isInterview: v === "interview", isPlain: v === "plain",
       showDate: v !== "interview",
       scrapped: this.state.scrapped, helpful: this.state.helpful,
-      helpfulVariant: this.state.helpful ? "secondary" : "outline",
       toggleScrap: () => this.setState(s => ({ scrapped: !s.scrapped })),
       toggleHelpful: () => this.setState(s => ({ helpful: !s.helpful })),
       share: () => this.setState({ toast: "링크를 복사했어요" }),
@@ -510,19 +495,16 @@ class Component extends DCLogic {
               : "border-left:2px solid var(--border);color:var(--muted-foreground);font-weight:400")
         };
       }),
-      // B-3 관련 멘토 박스(B 형) — 같은 키워드가 겹치는 멘토 3명(이전 모달의 선정 규칙 그대로)
-      showMentorBox: isB && mode === "ok",
       showCtaBanner: !isB && mode === "ok",
       banner: BANNER[v] || BANNER.event,
       mentorMoreTitle,
-      bannerMentors: [MENTORS[0], MENTORS[1], MENTORS[2]].map(m => ({ ...m, href: "#", title: m.name + " — 멘토 상세(다른 화면)" })),
       showRelatedArticles: v === "insight" && mode === "ok",
       // 보고 있는 글은 추천하지 않는다 — 다른 글만.
       related: RELATED.filter(r => r.title !== art.title), noTags: [],
       relCard: { style: { width: 280, flex: "0 0 auto", scrollSnapAlign: "start" } },
-      relatedMoreHref: "insight-list-filtered.dc.html?keyword=" + encodeURIComponent(art.keyword) + (art.id ? "&exclude=" + art.id : ""),
-      relatedMoreTitle: "멘트리 인사이트 — 키워드 「" + art.keyword + "」 가 걸린 목록",
-      showMentorCarousel: mentorsFor.length > 1 && mode === "ok",
+      relatedMoreHref: listUrl({ country: art.countryLabel, keyword: art.keyword, exclude: art.id || "" }),
+      relatedMoreTitle: "멘트리 인사이트 — 국가 「" + art.countryLabel + "」 · 키워드 「" + art.keyword + "」 가 걸린 목록",
+      showMentorSection: mentorsFor.length > 1 && mode === "ok",
       showSingleMentor: mentorsFor.length === 1 && mode === "ok",
       // B-1 목록에서 왔으면(sessionStorage 에 적힌 것이 있으면) 그 URL 로 — 목록이 조건 · 페이지 · 스크롤을 되돌린다(A-5).
       // history.back() 은 관련 아티클을 거쳐 왔거나 iframe 미리보기에서는 목록이 아닌 곳으로 가므로 적어 둔 URL 로 직접 간다.
@@ -534,14 +516,14 @@ class Component extends DCLogic {
         try { sessionStorage.setItem("qi-list-restore", "1"); } catch (err) {}
         location.href = saved.url;
       },
-      mentorSectionTitle: v === "event" ? "참여 멘토" : "이 글의 멘토",
+      mentorSectionTitle: v === "interview" ? "이 글의 멘토" : "이 아티클과 관련된 멘토",
       mentors: mentorsFor.map(m => ({
         ...m, saved: !!this.state.savedMentors[m.id],
         toggleSave: next => this.setState(s => ({ savedMentors: { ...s.savedMentors, [m.id]: next } }))
       })),
       four: [1, 2, 3, 4],
       notFoundDesc: "주소가 바뀌었거나 글이 내려갔을 수 있어요.",
-      notFoundAction: B ? React.createElement(B, { variant: "primary", size: "md", onClick: () => { location.href = "../../insight-list/template/insight-list-all.dc.html"; } }, "멘트리 인사이트로") : null,
+      notFoundAction: B ? React.createElement(B, { variant: "primary", size: "md", onClick: () => { location.href = listUrl(); } }, "멘트리 인사이트로") : null,
       errorDesc: "잠시 뒤에 다시 시도해 주세요.",
       errorAction: B ? React.createElement(B, { variant: "outline", size: "md", onClick: () => location.reload() }, "다시 시도") : null,
       showSubscribe: this.state.subscribeShown && !this.state.subscribeClosed,
