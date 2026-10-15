@@ -41,7 +41,7 @@
 | 2 | `Field` 이메일 → **`OtpField`**(`DS-122`) |
 | 3 | `otp=verified` 일 때만 `Field` 「새 비밀번호 설정」(눈 토글 · 규칙 caption) ＋ `Field` 「새 비밀번호 확인」 |
 | 4 | `primary` 100% 「비밀번호 재설정하기」 → 「비밀번호가 기억나셨나요? 로그인」 |
-| 완료 | 원 ＋ checkmark-circle-02 → h0 「비밀번호 재설정을 완료했습니다.」 → `primary` 100% 「로그인」 → 글자 링크 「톱 화면으로 가기」 |
+| 완료 | 원 ＋ checkmark-circle-02 → h0 「비밀번호 재설정을 완료했습니다.」 → `primary` 100% 「로그인」 → 초록 글자 버튼 「톱 화면으로 가기」(`Button ghost sm tone="primary"`) |
 
 ## 5. 적용 패턴 (P-nn)
 

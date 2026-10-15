@@ -33,9 +33,9 @@
 
 | 스텝 | 본문 |
 |---|---|
-| 1 | 소제목 「당신의 해외 커리어에 대한 상황을 알려주세요」 → `RadioGroup` 을 카드 4장 2×2(안쪽 20 · 반경 12 · 선택하면 테두리 `--primary` ＋ `--green-50`) — 흥미 시작 · 본격 준비 · 출국 준비 · 해외 재직 |
+| 1 | 소제목 「당신의 해외 커리어에 대한 상황을 알려주세요」 → `RadioGroup` 을 카드 4장 2×2(`Card` · 안쪽 20 · 반경 14 · `--shadow-sm` · 선택하면 테두리 `--primary` ＋ `--green-50` · 4판) — 흥미 시작 · 본격 준비 · 출국 준비 · 해외 재직 |
 | 2 | 「흥미있는 국가는 어디인가요? (복수선택 가능)」 → `FilterChip` 격자(`taxonomy.js` COUNTRY) → 「흥미있는 직종이 있다면 선택해주세요 (복수선택 가능)」 → `FilterChip` 격자(JOB) |
-| 3 | caption 2줄 → `Avatar` 96(비면 이니셜) ＋ `ghost sm` 「프로필 이미지 등록하기」 → `Field` 「자기 소개 메시지」 `Textarea` 500 ＋ 카운터 |
+| 3 | caption 2줄 → `Avatar` 96(비면 이니셜) ＋ 오른쪽 아래 연필 배지(`IconButton pencil-edit-02 sm outline` · 늘 보임 · 4판) ＋ `ghost sm` 초록 「프로필 이미지 등록하기」 → `Field` 「자기 소개 메시지」 `Textarea` 500 ＋ 카운터 |
 | 완료 | `--green-50` 원 160 ＋ 아이콘 party → h0 「회원 가입이 완료되었어요」 → caption 2줄 → `primary` 100% 「톱 화면으로」 |
 
 **768 이하**: 카드 1열 · 칩 줄바꿈 · 모달 전체 화면.
@@ -54,8 +54,8 @@
 | 진행 막대 | **임시 조립** `data-temp="DS-121"` | 막대 3 · 6 · 간격 8 · 반경 999 |
 | 카드 라디오 | `RadioGroup` ＋ `Card` 조립 | 2×2 · 왼쪽 라디오 ＋ 2줄 글자 |
 | 칩 | `FilterChip` | 선택 반전 · 개수 제한 없음 |
-| 사진 | `Avatar` 96 · `ImageCropper`(`Dialog` 안) | 1.0 의 직사각형 ＋ 원형 트리밍 대신 DS 부품(§11 4) |
-| 소개 | `Textarea` 500 | placeholder 「간단하게 커리어와 관련한 자기 소개를 적어주세요.」 |
+| 사진 | `Avatar` 96 ＋ 연필 배지 · `ImageCropper`(`Dialog` 520 · stack · 「저장하기」 lg — 멘토 상세 「프로필 사진 편집하기」와 같은 틀) | 1.0 의 직사각형 ＋ 원형 트리밍 대신 DS 부품(§11 4) |
+| 소개 | `Textarea` 500 · rows 6 · maxRows 10(마이페이지 멘티 소개와 같다) | placeholder 「간단하게 커리어와 관련한 자기 소개를 적어주세요.」 |
 
 ## 7. 상태 목록
 
