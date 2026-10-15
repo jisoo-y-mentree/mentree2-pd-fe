@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="760x260" name="Popover" subtitle="앵커에 붙는 오버레이 껍데기 — 위치·면·닫기(바깥클릭·ESC)·포커스 복귀만. 메뉴로 쓸 때 popoverMenuItemStyle" -->
+<!-- @dsCard group="Components" viewport="760x1120" name="Popover" subtitle="앵커에 붙는 오버레이 껍데기 — 위치·면·닫기(바깥클릭·ESC)·포커스 복귀만. 메뉴로 쓸 때 popoverMenuItemStyle · DS-74 top layer(잘리는 상자·모달 안에서도 잘리지 않음)" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,6 +8,10 @@
   body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
   .row { display: flex; align-items: flex-start; gap: 40px; }
   .cap { margin-top: 10px; font-size: var(--text-caption); color: var(--muted-foreground); max-width: 220px; }
+  .scrollbox { height: 240px; overflow: auto; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 12px; box-sizing: border-box; width: 320px; max-width: 100%; }
+  .filler { height: 12px; border-radius: 6px; background: var(--sage-100); margin-bottom: 12px; }
+  .sec { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; }
+  iframe { display: block; border: 0; outline: 1px solid var(--sage-200); border-radius: var(--radius-md); width: 600px; max-width: 100%; height: 600px; }
   .note { margin-top: 20px; font-size: var(--text-caption); color: var(--muted-foreground); border-top: 1px solid var(--border); padding-top: 14px; line-height: 1.6; }
 </style>
 </head>
@@ -18,7 +22,26 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script src="../../_ds_bundle.js"></script>
 <script type="text/babel">
-  const { Popover, popoverMenuItemStyle, IconButton } = window.MentreeDesignSystem_2f86cf;
+  const { Popover, popoverMenuItemStyle, IconButton, Select, Field } = window.MentreeDesignSystem_2f86cf;
+  function ScrollBoxSelect() {
+    const box = React.useRef(null);
+    const [v, setV] = React.useState("");
+    React.useEffect(() => {
+      const el = box.current; if (!el) return;
+      el.scrollTop = el.scrollHeight;
+      const t = setTimeout(() => { const b = document.getElementById("pop-sb-select"); if (b) b.click(); }, 350);
+      return () => clearTimeout(t);
+    }, []);
+    return (
+      <div>
+        <div className="scrollbox" ref={box}>
+          {Array.from({ length: 10 }).map((_, i) => <div key={i} className="filler" style={{ width: (55 + (i * 13) % 40) + "%" }}></div>)}
+          <Field label="나라" htmlFor="pop-sb-select"><Select id="pop-sb-select" placeholder="나라" value={v} onChange={setV} options={["대한민국","일본","미국","캐나다","독일","네덜란드","영국","싱가포르"]} /></Field>
+        </div>
+        <div className="cap">① 스크롤 상자(높이 240 · overflow auto) 맨 아래의 Select — 위로 뜨고 잘리지 않는다</div>
+      </div>
+    );
+  }
 
   function MoreMenu() {
     const [open, setOpen] = React.useState(false);
@@ -59,6 +82,10 @@
             <MoreMenu />
             <div className="cap">더보기 — align="end". 파괴적 항목은 --destructive</div>
           </div>
+        </div>
+        <div className="sec">
+          <ScrollBoxSelect />
+          <div><iframe src="dialog.demo.html?state=6" title="Dialog 안 MultiSelect"></iframe><div className="cap" style={{ maxWidth: 600 }}>② Dialog 안의 MultiSelect — 목록이 푸터 위로 뜬다</div></div>
         </div>
         <div className="note">
           클릭해서 열고, 바깥 클릭 또는 ESC로 닫아보세요 — 닫히면 포커스가 트리거(⋮ 아이콘)로 돌아갑니다.

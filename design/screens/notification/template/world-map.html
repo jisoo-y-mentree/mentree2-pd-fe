@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>세계지도</title>
+<link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+<style>html,body{margin:0;height:100%;background:transparent;overflow:hidden}svg{display:block;width:100%;height:100%}</style>
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous"></script>
+</head>
+<body>
+<svg id="map" aria-hidden="true"></svg>
+<script>
+// 연초록 세계지도 — Natural Earth 110m(world-atlas). 남극은 뺀다. 핀은 바깥(TopBackdrop)이 얹는다.
+(async () => {
+  if (!window.d3 || !window.topojson) return;
+  const svg = d3.select('#map');
+  const draw = (land) => {
+    const w = innerWidth || 1232, h = innerHeight || 420;
+    svg.attr('viewBox', '0 0 ' + w + ' ' + h);
+    const proj = d3.geoNaturalEarth1().fitWidth(w, land);
+    const [[, y0], [, y1]] = d3.geoPath(proj).bounds(land);
+    const t = proj.translate();
+    proj.translate([t[0], t[1] - y0 + (h - (y1 - y0)) / 2]);
+    svg.selectAll('path').remove();
+    svg.append('path').datum(land).attr('d', d3.geoPath(proj)).attr('fill', 'var(--green-100)').attr('stroke', 'none');
+  };
+  try {
+    const topo = await (await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json')).json();
+    const fc = topojson.feature(topo, topo.objects.countries);
+    fc.features = fc.features.filter((f) => f.id !== '010');
+    draw(fc);
+    addEventListener('resize', () => draw(fc));
+  } catch (_) {}
+})();
+</script>
+</body>
+</html>

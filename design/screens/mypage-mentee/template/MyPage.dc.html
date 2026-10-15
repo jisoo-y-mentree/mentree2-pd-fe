@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>마이페이지 · 멘트리</title>
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+<script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <style>
+    html, body { margin:0; background:var(--background); color:var(--foreground); font-family:var(--font-sans); }
+    a { color:var(--primary); } a:hover { color:var(--green-800); }
+    html[data-mp-frame="1"] { scrollbar-width:none; } html[data-mp-frame="1"]::-webkit-scrollbar { display:none; }
+    /* DS-17 세로 메뉴 항목 — 부품에 없는 조립(Card 안). 높이 40 · padding 0 12 · 반경 md · -0.01em · --sidebar-foreground · hover --sidebar-accent · 선택 --primary 면 + --primary-foreground 600. */
+    .mp-nav-item{display:flex;align-items:center;gap:8px;height:40px;box-sizing:border-box;padding:0 12px;border-radius:var(--radius-md);font-size:var(--text-body);line-height:var(--text-body--line-height);letter-spacing:-0.01em;font-weight:500;color:var(--sidebar-foreground);text-decoration:none;transition:background-color 150ms ease}
+    .mp-nav-item:hover{background:var(--sidebar-accent);color:var(--sidebar-foreground)}
+    .mp-nav-item:focus-visible{outline:2px solid var(--ring);outline-offset:-2px}
+    .mp-nav-item[data-selected="true"],.mp-nav-item[data-selected="true"]:hover{background:var(--primary);color:var(--primary-foreground);font-weight:600}
+    .mp-nav-sub{padding-left:32px}
+    /* DS-120 슬라이더 — 부품에 없는 조립(최소 금액). 트랙 6 · 반경 999 · 채움 --primary · 빈 쪽 --sage-200 · 손잡이 24 흰 원 + 2px --primary + shadow-sm · 포커스 --ring. */
+    .mp-slider-input{position:relative;width:100%;height:24px;margin:0;-webkit-appearance:none;appearance:none;background:transparent;cursor:pointer;outline:none}
+    .mp-slider-input::-webkit-slider-runnable-track{height:24px;background:transparent}
+    .mp-slider-input::-moz-range-track{height:6px;background:transparent}
+    .mp-slider-input::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;background:var(--card);border:2px solid var(--primary);box-shadow:var(--shadow-sm);box-sizing:border-box}
+    .mp-slider-input::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--card);border:2px solid var(--primary);box-shadow:var(--shadow-sm);box-sizing:border-box}
+    .mp-slider-input:focus-visible::-webkit-slider-thumb{outline:2px solid var(--ring);outline-offset:2px}
+    .mp-slider-input:focus-visible::-moz-range-thumb{outline:2px solid var(--ring);outline-offset:2px}
+  </style>
+</helmet>
+
+<sc-if value="{{ showDemo }}" hint-placeholder-val="{{ false }}">
+  <div style="background:var(--sage-900); color:var(--sage-50); padding:10px 16px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; font-size:var(--text-caption); line-height:var(--text-caption--line-height)">
+    <strong style="font-weight:600">마이페이지 데모</strong>
+    <label style="display:flex; align-items:center; gap:6px">역할
+      <select value="{{ role }}" onChange="{{ demoRole }}" style="height:28px; border-radius:6px; border:1px solid var(--sage-600); background:var(--sage-800); color:var(--sage-50); font:inherit; padding:0 6px">
+        <sc-for list="{{ demoRoles }}" as="o" hint-placeholder-count="2"><option value="{{ o.value }}">{{ o.label }}</option></sc-for>
+      </select>
+    </label>
+    <label style="display:flex; align-items:center; gap:6px">메뉴
+      <select value="{{ tab }}" onChange="{{ demoTab }}" style="height:28px; border-radius:6px; border:1px solid var(--sage-600); background:var(--sage-800); color:var(--sage-50); font:inherit; padding:0 6px">
+        <sc-for list="{{ demoTabs }}" as="o" hint-placeholder-count="7"><option value="{{ o.value }}">{{ o.label }}</option></sc-for>
+      </select>
+    </label>
+    <sc-if value="{{ hasSubTabs }}" hint-placeholder-val="{{ false }}">
+      <label style="display:flex; align-items:center; gap:6px">하위 탭
+        <select value="{{ sub }}" onChange="{{ demoSub }}" style="height:28px; border-radius:6px; border:1px solid var(--sage-600); background:var(--sage-800); color:var(--sage-50); font:inherit; padding:0 6px">
+          <sc-for list="{{ demoSubs }}" as="o" hint-placeholder-count="2"><option value="{{ o.value }}">{{ o.label }}</option></sc-for>
+        </select>
+      </label>
+    </sc-if>
+    <label style="display:flex; align-items:center; gap:6px">상태
+      <select value="{{ uiState }}" onChange="{{ demoState }}" style="height:28px; border-radius:6px; border:1px solid var(--sage-600); background:var(--sage-800); color:var(--sage-50); font:inherit; padding:0 6px">
+        <sc-for list="{{ demoStates }}" as="o" hint-placeholder-count="4"><option value="{{ o.value }}">{{ o.label }}</option></sc-for>
+      </select>
+    </label>
+    <label style="display:flex; align-items:center; gap:6px">모달
+      <select value="{{ modal }}" onChange="{{ demoModal }}" style="height:28px; border-radius:6px; border:1px solid var(--sage-600); background:var(--sage-800); color:var(--sage-50); font:inherit; padding:0 6px; max-width:220px">
+        <sc-for list="{{ demoModals }}" as="o" hint-placeholder-count="3"><option value="{{ o.value }}">{{ o.label }}</option></sc-for>
+      </select>
+    </label>
+    <label style="display:flex; align-items:center; gap:6px">뷰
+      <select value="{{ view }}" onChange="{{ demoView }}" style="height:28px; border-radius:6px; border:1px solid var(--sage-600); background:var(--sage-800); color:var(--sage-50); font:inherit; padding:0 6px">
+        <sc-for list="{{ demoViews }}" as="o" hint-placeholder-count="2"><option value="{{ o.value }}">{{ o.label }}</option></sc-for>
+      </select>
+    </label>
+    <span class="tabular" style="margin-left:auto; color:var(--sage-400); font-size:var(--text-micro); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:420px">{{ demoQuery }}</span>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isMobileView }}" hint-placeholder-val="{{ false }}">
+  <div style="background:var(--sage-100); padding:32px 16px; display:flex; justify-content:center; min-height:calc(100vh - 48px); box-sizing:border-box">
+    <iframe title="마이페이지 · 모바일 390" src="{{ mobileSrc }}" style="width:390px; height:844px; border:1px solid var(--border); border-radius:var(--radius-2xl); background:var(--background); box-shadow:var(--shadow-lg); flex:none"></iframe>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isPageView }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex; flex-direction:column; min-height:100vh">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" authState="{{ role }}" user="{{ headerUser }}" unread="{{ true }}" hint-size="100%,64px"></x-import>
+
+  <div style="flex:1; width:100%; max-width:var(--container-max); margin:0 auto; box-sizing:border-box; padding:40px var(--container-pad) 88px; display:flex; flex-direction:column; gap:32px">
+
+    <header style="display:flex; flex-direction:column; gap:12px">
+      <h1 style="margin:0; font-size:var(--text-display); line-height:var(--text-display--line-height); letter-spacing:var(--text-display--letter-spacing); font-weight:600; color:var(--foreground)">마이페이지</h1>
+      <p style="margin:0; max-width:720px; font-size:var(--text-body); line-height:1.7; font-weight:400; color:var(--muted-foreground); text-wrap:pretty">{{ pageDesc }}</p>
+    </header>
+
+    <div style="display:flex; gap:32px; align-items:flex-start">
+
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+        <div data-temp="DS-17" style="position:sticky; top:96px; align-self:flex-start; width:240px; flex:none">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="240px,360px">
+            <nav aria-label="마이페이지 메뉴" style="padding:20px 16px; display:flex; flex-direction:column; gap:4px">
+              <sc-for list="{{ menu }}" as="m" hint-placeholder-count="7">
+                <a class="mp-nav-item" data-selected="{{ m.selected }}" href="{{ m.href }}" onClick="{{ m.onClick }}" aria-current="{{ m.ariaCurrent }}">
+                  <span style="flex:1; min-width:0">{{ m.label }}</span>
+                  <sc-if value="{{ m.expandable }}" hint-placeholder-val="{{ false }}">
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="{{ m.chevron }}" size="{{ 18 }}" hint-size="18px,18px"></x-import>
+                  </sc-if>
+                </a>
+                <sc-if value="{{ m.showChildren }}" hint-placeholder-val="{{ false }}">
+                  <sc-for list="{{ m.children }}" as="c" hint-placeholder-count="2">
+                    <a class="mp-nav-item mp-nav-sub" data-selected="{{ c.selected }}" href="{{ c.href }}" onClick="{{ c.onClick }}" aria-current="{{ c.ariaCurrent }}">
+                      <span style="flex:1; min-width:0">{{ c.label }}</span>
+                      <sc-if value="{{ c.badge }}" hint-placeholder-val="{{ false }}">
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="accent" size="sm" hint-size="auto,24px">{{ c.badge }}</x-import>
+                      </sc-if>
+                    </a>
+                  </sc-for>
+                </sc-if>
+              </sc-for>
+            </nav>
+          </x-import>
+        </div>
+      </sc-if>
+
+      <main ref="{{ listTop }}" style="flex:1; min-width:0; display:flex; flex-direction:column; gap:24px">
+
+        <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Tabs" items="{{ mobileMenuItems }}" value="{{ mobileMenuValue }}" onChange="{{ setMobileMenu }}" size="s" idBase="mp-menu" ariaLabel="마이페이지 메뉴" hint-size="100%,42px"></x-import>
+        </sc-if>
+
+        <header style="display:flex; flex-direction:column; gap:8px">
+          <sc-if value="{{ headHasEyebrow }}" hint-placeholder-val="{{ false }}">
+            <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:500; color:var(--muted-foreground)">{{ head.eyebrow }}</div>
+          </sc-if>
+          <h2 style="margin:0; font-size:var(--text-h0); line-height:var(--text-h0--line-height); letter-spacing:var(--text-h0--letter-spacing); font-weight:600; color:var(--foreground)">{{ head.title }}</h2>
+          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap">
+            <p style="margin:0; font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:500; color:var(--muted-foreground)">{{ head.desc }}</p>
+            <sc-if value="{{ headHasHelp }}" hint-placeholder-val="{{ false }}">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" iconLeft="help-circle" onClick="{{ noop }}" hint-size="auto,32px">{{ head.help }}</x-import>
+            </sc-if>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:8px">
+            <sc-for list="{{ headStats }}" as="st" hint-placeholder-count="0">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" size="lg" hint-size="auto,32px">{{ st.label }} <strong class="tabular" style="font-size:var(--text-h2); font-weight:700; margin-left:6px; color:var(--foreground)">{{ st.value }}</strong></x-import>
+            </sc-for>
+            <sc-for list="{{ headChips }}" as="ch" hint-placeholder-count="0">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" size="md" hint-size="auto,28px">{{ ch.label }}</x-import>
+            </sc-for>
+            <sc-if value="{{ showTz }}" hint-placeholder-val="{{ true }}">
+              <span style="display:inline-flex; align-items:center; gap:4px; white-space:nowrap; flex:none; max-width:100%">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" size="md" leading="icon" icon="globe-02" hint-size="auto,28px">나의 시간대 {{ tzValue }}</x-import>
+                {{ tzHelp }}
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" onClick="{{ openTimezone }}" hint-size="auto,32px">수정하기</x-import>
+              </span>
+            </sc-if>
+          </div>
+        </header>
+
+        <sc-if value="{{ showProfileMentor }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" iconRight="arrow-right-01" onClick="{{ goMentorProfile }}" hint-size="auto,40px">멘토 프로필로</x-import>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ hasSubTabs }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Tabs" items="{{ subTabs }}" value="{{ sub }}" onChange="{{ setSub }}" size="{{ subTabSize }}" fill="{{ true }}" idBase="mp-sub" ariaLabel="하위 탭" hint-size="100%,60px"></x-import>
+        </sc-if>
+
+        <div style="display:flex; flex-direction:column">
+
+          <!-- 로딩 뼈대(목록 줄 탭 밖) -->
+          <sc-if value="{{ loadingOther }}" hint-placeholder-val="{{ false }}">
+            <div aria-busy="true">
+              <sc-if value="{{ loadingCards }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex; flex-direction:column; gap:16px">
+                  <sc-for list="{{ three }}" as="i" hint-placeholder-count="3">
+                    <div style="border:1px solid var(--border); border-radius:var(--radius-lg); padding:24px; display:flex; flex-direction:column; gap:14px">
+                      <div style="display:flex; gap:8px">
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="{{ 72 }}" height="{{ 28 }}" radius="md" hint-size="72px,28px"></x-import>
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="{{ 88 }}" height="{{ 28 }}" radius="md" hint-size="88px,28px"></x-import>
+                      </div>
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="60%" height="{{ 26 }}" hint-size="60%,26px"></x-import>
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ 3 }}" hint-size="100%,72px"></x-import>
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="{{ 260 }}" height="{{ 82 }}" radius="md" hint-size="260px,82px"></x-import>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ loadingProfile }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex; flex-direction:column; gap:16px">
+                  <sc-for list="{{ four }}" as="i" hint-placeholder-count="4">
+                    <div style="border:1px solid var(--border); border-radius:var(--radius-lg); padding:20px 24px 24px; display:flex; flex-direction:column; gap:16px">
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="{{ 120 }}" height="{{ 26 }}" hint-size="120px,26px"></x-import>
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ 3 }}" hint-size="100%,72px"></x-import>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ loadingArticles }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex; flex-direction:column">
+                  <sc-for list="{{ five }}" as="i" hint-placeholder-count="5">
+                    <div data-temp="DS-123" style="display:grid; grid-template-columns:minmax(0,1fr) clamp(128px, 31%, 296px); column-gap:clamp(16px, 4.2%, 40px); align-items:start; padding:24px 0; margin-top:-1px; border-top:1px solid var(--border); border-bottom:1px solid var(--border)">
+                      <div style="display:flex; flex-direction:column; gap:12px; min-width:0">
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="{{ 120 }}" height="{{ 24 }}" hint-size="120px,24px"></x-import>
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="85%" height="{{ 26 }}" hint-size="85%,26px"></x-import>
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ 2 }}" hint-size="100%,48px"></x-import>
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="{{ 80 }}" height="{{ 20 }}" hint-size="80px,20px"></x-import>
+                      </div>
+                      <div style="width:100%; aspect-ratio:16 / 9">
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="100%" height="100%" radius="md" hint-size="100%,100%"></x-import>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ loadingMentors }}" hint-placeholder-val="{{ false }}">
+                <div style="display:grid; grid-template-columns:{{ mentorCols }}; gap:16px">
+                  <sc-for list="{{ six }}" as="i" hint-placeholder-count="6">
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="{{ 335 }}" radius="md" hint-size="100%,335px"></x-import>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ loadingFollowers }}" hint-placeholder-val="{{ false }}">
+                <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:16px">
+                  <sc-for list="{{ six }}" as="i" hint-placeholder-count="6">
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="{{ 82 }}" radius="md" hint-size="100%,82px"></x-import>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ loadingRows }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex; flex-direction:column; gap:16px">
+                  <sc-for list="{{ five }}" as="i" hint-placeholder-count="5">
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="{{ 76 }}" radius="md" hint-size="100%,76px"></x-import>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:72px 0">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" icon="{{ emptyIcon }}" title="{{ emptyTitle }}" description="{{ emptyDesc }}" action="{{ emptyAction }}" hint-size="100%,200px"></x-import>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:72px 0">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" icon="alert-02" title="목록을 불러오지 못했습니다" description="일시적인 오류입니다. 잠시 후 다시 시도해 주세요." action="{{ errorAction }}" hint-size="100%,200px"></x-import>
+            </div>
+          </sc-if>
+
+          <!-- 1. 프로필 (멘티) -->
+          <sc-if value="{{ showProfileMentee }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex; flex-direction:column; gap:16px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,200px">
+                <div style="padding:20px 24px 24px; display:flex; flex-direction:column; gap:20px">
+                  <div style="display:flex; align-items:center; justify-content:space-between; gap:12px">
+                    <h3 style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600">기본 정보</h3>
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" iconLeft="pencil-edit-02" onClick="{{ openProfileEdit }}" hint-size="auto,32px">수정하기</x-import>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap">
+                    <div style="position:relative; display:inline-flex; flex:none">
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" src="{{ me.avatar }}" name="{{ me.name }}" size="{{ avatarSize }}" hint-size="88px,88px"></x-import>
+                      <span style="position:absolute; right:-6px; bottom:-6px; display:inline-flex; border-radius:var(--radius-md); background:var(--background); box-shadow:0 0 0 2px var(--background)">
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="pencil-edit-02" size="sm" variant="outline" ariaLabel="프로필 사진 편집하기" onClick="{{ openPhoto }}" hint-size="32px,32px"></x-import>
+                      </span>
+                    </div>
+                    <div style="display:flex; flex-direction:column; gap:6px; min-width:0">
+                      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap">
+                        <div style="font-size:var(--text-h2); line-height:var(--text-h2--line-height); letter-spacing:var(--text-h2--letter-spacing); font-weight:600">{{ me.name }}</div>
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Flag" country="{{ me.flag }}" label="{{ me.flagLabel }}" city="{{ me.city }}" size="md" shape="rect" hint-size="30px,20px"></x-import>
+                        <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">{{ me.location }}</span>
+                      </div>
+                      <div style="font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--sage-700)">{{ me.statusLine }}</div>
+                    </div>
+                  </div>
+                </div>
+              </x-import>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,180px">
+                <div style="padding:20px 24px 24px; display:flex; flex-direction:column; gap:16px">
+                  <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:32px">
+                    <h3 style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600">자기소개</h3>
+                    <sc-if value="{{ hasIntro }}" hint-placeholder-val="{{ true }}">
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" iconLeft="pencil-edit-02" onClick="{{ openIntro }}" hint-size="auto,32px">수정하기</x-import>
+                    </sc-if>
+                  </div>
+                  <sc-if value="{{ hasIntro }}" hint-placeholder-val="{{ true }}">
+                    <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground); white-space:pre-line">{{ me.intro }}</p>
+                  </sc-if>
+                  <sc-if value="{{ noIntro }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex; flex-direction:column; align-items:flex-start; gap:8px">
+                      <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--muted-foreground)">아직 자기소개가 없어요</p>
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="md" iconLeft="add-01" onClick="{{ openIntro }}" hint-size="auto,40px">추가하기</x-import>
+                    </div>
+                  </sc-if>
+                </div>
+              </x-import>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,120px">
+                <div style="padding:20px 24px 24px; display:flex; flex-direction:column; gap:16px">
+                  <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:32px">
+                    <h3 style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600">흥미있는 국가</h3>
+                    <sc-if value="{{ hasCountries }}" hint-placeholder-val="{{ true }}">
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" iconLeft="pencil-edit-02" onClick="{{ openCountries }}" hint-size="auto,32px">수정하기</x-import>
+                    </sc-if>
+                  </div>
+                  <sc-if value="{{ hasCountries }}" hint-placeholder-val="{{ true }}">
+                    <div style="display:flex; gap:8px; flex-wrap:wrap">
+                      <sc-for list="{{ meCountries }}" as="c" hint-placeholder-count="3">
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="category" tone="primary" size="lg" leading="flag" flag="{{ c.flag }}" hint-size="auto,32px">{{ c.value }}</x-import>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ noCountries }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex; flex-direction:column; align-items:flex-start; gap:8px">
+                      <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--muted-foreground)">아직 흥미있는 국가가 없어요</p>
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="md" iconLeft="add-01" onClick="{{ openCountries }}" hint-size="auto,40px">추가하기</x-import>
+                    </div>
+                  </sc-if>
+                </div>
+              </x-import>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,120px">
+                <div style="padding:20px 24px 24px; display:flex; flex-direction:column; gap:16px">
+                  <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:32px">
+                    <h3 style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600">흥미있는 직종</h3>
+                    <sc-if value="{{ hasJobs }}" hint-placeholder-val="{{ true }}">
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" iconLeft="pencil-edit-02" onClick="{{ openJobs }}" hint-size="auto,32px">수정하기</x-import>
+                    </sc-if>
+                  </div>
+                  <sc-if value="{{ hasJobs }}" hint-placeholder-val="{{ true }}">
+                    <div style="display:flex; gap:8px; flex-wrap:wrap">
+                      <sc-for list="{{ meJobs }}" as="j" hint-placeholder-count="3">
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="category" tone="primary" size="lg" leading="icon" icon="{{ j.icon }}" hint-size="auto,32px">{{ j.value }}</x-import>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ noJobs }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex; flex-direction:column; align-items:flex-start; gap:8px">
+                      <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--muted-foreground)">아직 흥미있는 직종이 없어요</p>
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="md" iconLeft="add-01" onClick="{{ openJobs }}" hint-size="auto,40px">추가하기</x-import>
+                    </div>
+                  </sc-if>
+                </div>
+              </x-import>
+            </div>
+          </sc-if>
+
+          <!-- 2. 나의 Q&A · 스크랩한 Q&A — Q&A 피드와 같은 줄 목록 -->
+          <sc-if value="{{ showRowsTab }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex; flex-direction:column; gap:16px">
+              <sc-if value="{{ showCountRow }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
+                  <p style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); letter-spacing:var(--text-h3--letter-spacing); font-weight:700; color:var(--foreground)"><span class="tabular">{{ countN }}</span>건의 {{ countNoun }}</p>
+                  <div style="width:140px; flex:none">
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ qnaSortOptions }}" value="{{ qnaSort }}" onChange="{{ setQnaSort }}" aria-label="정렬" hint-size="140px,40px"></x-import>
+                  </div>
+                </div>
+              </sc-if>
+              <div aria-busy="{{ rowsLoading }}" style="display:flex; flex-direction:column">
+                <sc-if value="{{ rowsLoading }}" hint-placeholder-val="{{ false }}">
+                  <sc-for list="{{ five }}" as="i" hint-placeholder-count="5">
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaListItem" variant="{{ rowsVariant }}" loading="{{ true }}" title="" hint-size="100%,220px"></x-import>
+                  </sc-for>
+                </sc-if>
+                <sc-if value="{{ rowsNormal }}" hint-placeholder-val="{{ false }}">
+                  <sc-for list="{{ rows }}" as="q" hint-placeholder-count="3">
+                    <div style="position:relative">
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaListItem" variant="{{ rowsVariant }}" href="#" title="{{ q.title }}" country="{{ q.country }}" countryLabel="{{ q.countryLabel }}" excerpt="{{ q.excerpt }}" answerExcerpt="{{ q.answerExcerpt }}" tags="{{ q.tags }}" tagHref="{{ qnaTagHref }}" answerers="{{ q.answerers }}" answerCount="{{ q.answerCount }}" maxAvatars="{{ 3 }}" isNew="{{ q.isNewRow }}" views="{{ q.views }}" likes="{{ q.likesShown }}" liked="{{ q.liked }}" onLikeChange="{{ q.onLike }}" scraps="{{ q.scrapsShown }}" scrapped="{{ q.scrapped }}" onScrapChange="{{ q.onScrap }}" hint-size="100%,220px"></x-import>
+                      <sc-if value="{{ q.editable }}" hint-placeholder-val="{{ false }}">
+                        <!-- DS-121 질문 수정 · 삭제 글자 버튼 — Q&A 상세와 같다(14/400 · muted). 줄 머리 오른쪽. New 는 이 묶음 끝에 같은 Badge 로. -->
+                        <div data-temp="DS-121" style="position:absolute; top:var(--space-6); right:var(--space-4); height:20px; display:flex; align-items:center; gap:12px; z-index:3">
+                          <button type="button" onClick="{{ q.onEdit }}" style="padding:10px 0; margin:-10px 0; border:0; background:none; font-family:var(--font-sans); font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:400; color:var(--muted-foreground); cursor:pointer" style-hover="color:var(--foreground)">수정하기</button>
+                          <button type="button" onClick="{{ q.onDelete }}" style="padding:10px 0; margin:-10px 0; border:0; background:none; font-family:var(--font-sans); font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:400; color:var(--muted-foreground); cursor:pointer" style-hover="color:var(--foreground)">삭제하기</button>
+                          <sc-if value="{{ q.isNew }}" hint-placeholder-val="{{ false }}">
+                            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="accent" size="md" hint-size="auto,28px">New</x-import>
+                          </sc-if>
+                        </div>
+                      </sc-if>
+                    </div>
+                  </sc-for>
+                </sc-if>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- 3. 나의 1:1 멘토링 -->
+          <sc-if value="{{ showMentoring }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex; flex-direction:column; gap:32px">
+              <sc-for list="{{ mentoringGroups }}" as="g" hint-placeholder-count="2">
+                <section style="display:flex; flex-direction:column; gap:16px">
+                  <h3 style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600">{{ g.title }} <span class="tabular">({{ g.count }})</span></h3>
+                  <sc-for list="{{ g.cards }}" as="c" hint-placeholder-count="2">
+                    <dc-import name="MentoringCard" card="{{ c }}" perspective="{{ perspective }}" onDetail="{{ openDetail }}" onAction="{{ cardAction }}" hint-size="100%,360px"></dc-import>
+                  </sc-for>
+                  <sc-if value="{{ g.more }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex; justify-content:center; padding-top:8px">
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" onClick="{{ noop }}" hint-size="auto,40px">더보기</x-import>
+                    </div>
+                  </sc-if>
+                </section>
+              </sc-for>
+            </div>
+          </sc-if>
+
+          <!-- 4. 관심있는 멘토 · 나의 팔로워 -->
+          <sc-if value="{{ showFavMentors }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex; flex-direction:column; gap:16px">
+              <p style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); letter-spacing:var(--text-h3--letter-spacing); font-weight:700; color:var(--foreground)"><span class="tabular">{{ favCount }}</span>명의 관심있는 멘토</p>
+              <div style="display:grid; grid-template-columns:{{ mentorCols }}; gap:16px">
+                <sc-for list="{{ favoriteMentors }}" as="m" hint-placeholder-count="3">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.MentorCard" name="{{ m.name }}" role="{{ m.role }}" company="{{ m.company }}" intro="{{ m.intro }}" field="{{ m.field }}" country="{{ m.country }}" countryLabel="{{ m.countryLabel }}" photo="{{ m.photo }}" href="#" fluid="{{ true }}" bookmarked="{{ true }}" onBookmarkChange="{{ m.onBookmark }}" hint-size="296px,335px"></x-import>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ showFollowers }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex; flex-direction:column; gap:16px">
+              <p style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); letter-spacing:var(--text-h3--letter-spacing); font-weight:700; color:var(--foreground)"><span class="tabular">{{ followerCount }}</span>명의 팔로워</p>
+              <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:16px">
+                <sc-for list="{{ followers }}" as="f" hint-placeholder-count="4">
+                  <dc-import name="PersonCard" person="{{ f.person }}" href="#" fluid="{{ true }}" onClick="{{ f.onClick }}" hint-size="100%,82px"></dc-import>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- 5. 스크랩한 아티클 -->
+          <sc-if value="{{ showScrapArticles }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex; flex-direction:column">
+              <sc-for list="{{ scrapArticles }}" as="a" hint-placeholder-count="3">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ArticlePreview" variant="row" title="{{ a.title }}" excerpt="{{ a.excerpt }}" date="{{ a.date }}" tags="{{ a.tags }}" image="{{ a.image }}" bookmarked="{{ true }}" onBookmarkChange="{{ a.onBookmark }}" href="#" hint-size="100%,200px"></x-import>
+              </sc-for>
+            </div>
+          </sc-if>
+
+          <!-- 6. 결제 이력 / 정산 -->
+          <sc-if value="{{ showPayout }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex; flex-direction:column; gap:16px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,96px">
+                <div style="padding:20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
+                  <div style="display:flex; flex-direction:column; gap:4px">
+                    <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">현재 연동된 계좌 정보</div>
+                    <div class="tabular" style="font-size:var(--text-h2); line-height:var(--text-h2--line-height); font-weight:600">{{ bankLabel }}</div>
+                  </div>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" onClick="{{ openBank }}" hint-size="auto,32px">변경하기</x-import>
+                </div>
+              </x-import>
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,110px">
+                  <div style="padding:20px; display:flex; flex-direction:column; gap:6px">
+                    <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">총 선물 받은 꽃송이</div>
+                    <div class="tabular" style="display:flex; align-items:center; gap:8px; font-size:var(--text-h1); line-height:var(--text-h1--line-height); letter-spacing:var(--text-h1--letter-spacing); font-weight:600">
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="flower" size="{{ 22 }}" color="var(--primary)" hint-size="22px,22px"></x-import>
+                      {{ totalFlowers }}
+                    </div>
+                  </div>
+                </x-import>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,110px">
+                  <div style="padding:20px; display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap">
+                    <div style="display:flex; flex-direction:column; gap:6px">
+                      <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">미정산 금액</div>
+                      <div class="tabular" style="font-size:var(--text-h1); line-height:var(--text-h1--line-height); letter-spacing:var(--text-h1--letter-spacing); font-weight:600">{{ unsettledAmount }}</div>
+                    </div>
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" iconLeft="charity" onClick="{{ openDonate }}" disabled="{{ donateDisabled }}" hint-size="auto,32px">기부하기</x-import>
+                  </div>
+                </x-import>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:24px; padding-top:8px">
+                <sc-for list="{{ settlementYears }}" as="y" hint-placeholder-count="2">
+                  <section style="display:flex; flex-direction:column; gap:12px">
+                    <h3 style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600">{{ y.label }}</h3>
+                    <sc-for list="{{ y.rows }}" as="r" hint-placeholder-count="2">
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,96px">
+                        <div style="padding:20px; display:flex; align-items:center; justify-content:space-between; gap:16px">
+                          <div style="display:flex; flex-direction:column; gap:4px; min-width:0">
+                            <div class="tabular" style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">{{ r.datetime }}</div>
+                            <div class="tabular" style="font-size:var(--text-h2); line-height:var(--text-h2--line-height); font-weight:600">{{ r.amount }}</div>
+                            <div class="tabular" style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--sage-700)">{{ r.flowers }}</div>
+                          </div>
+                          <sc-if value="{{ r.unsettled }}" hint-placeholder-val="{{ true }}">
+                            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="accent" size="md" hint-size="auto,28px">미정산</x-import>
+                          </sc-if>
+                          <sc-if value="{{ r.settled }}" hint-placeholder-val="{{ false }}">
+                            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" size="md" hint-size="auto,28px">정산 완료</x-import>
+                          </sc-if>
+                        </div>
+                      </x-import>
+                    </sc-for>
+                  </section>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ showPayment }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex; flex-direction:column; gap:24px">
+              <sc-for list="{{ paymentYears }}" as="y" hint-placeholder-count="2">
+                <section style="display:flex; flex-direction:column; gap:12px">
+                  <h3 style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600">{{ y.label }}</h3>
+                  <sc-for list="{{ y.rows }}" as="r" hint-placeholder-count="2">
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,96px">
+                      <div style="padding:20px; display:flex; align-items:center; justify-content:space-between; gap:16px">
+                        <div style="display:flex; flex-direction:column; gap:4px; min-width:0">
+                          <div class="tabular" style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">{{ r.datetime }}</div>
+                          <div class="tabular" style="font-size:var(--text-h2); line-height:var(--text-h2--line-height); font-weight:600">{{ r.amount }}</div>
+                          <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--sage-700)">{{ r.method }}</div>
+                        </div>
+                        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" onClick="{{ r.onDetail }}" hint-size="auto,32px">상세 보기</x-import>
+                      </div>
+                    </x-import>
+                  </sc-for>
+                </section>
+              </sc-for>
+            </div>
+          </sc-if>
+
+          <!-- 7. 계정 설정 -->
+          <sc-if value="{{ showAccount }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex; flex-direction:column; gap:32px">
+              <section style="display:flex; flex-direction:column; gap:12px">
+                <div style="display:flex; flex-direction:column; gap:4px">
+                  <h3 style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600">연동된 메일</h3>
+                  <p style="margin:0; font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">멘토링 신청 현황 등 각종 알림이나 공지 사항에 사용됩니다.</p>
+                </div>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,96px">
+                  <div style="padding:20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
+                    <div style="display:flex; flex-direction:column; gap:4px; min-width:0">
+                      <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">현재 설정된 메일 주소</div>
+                      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap">
+                        <div style="font-size:var(--text-h2); line-height:var(--text-h2--line-height); font-weight:600; overflow-wrap:anywhere">{{ mailAddress }}</div>
+                        <sc-if value="{{ mailSubscribed }}" hint-placeholder-val="{{ true }}">
+                          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="status" status="active" size="sm" hint-size="auto,24px">메일 매거진 수신중</x-import>
+                        </sc-if>
+                      </div>
+                    </div>
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" onClick="{{ openMail }}" hint-size="auto,32px">변경하기</x-import>
+                  </div>
+                </x-import>
+              </section>
+              <section style="display:flex; flex-direction:column; gap:12px">
+                <div style="display:flex; flex-direction:column; gap:4px">
+                  <h3 style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600">시간대 변경</h3>
+                  <p style="margin:0; font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">현재 거주중인 시간대를 표시합니다. 글로벌 멘토링 매칭 등에 사용됩니다.</p>
+                </div>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,96px">
+                  <div style="padding:20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
+                    <div style="display:flex; flex-direction:column; gap:4px">
+                      <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">현재 설정된 시간대</div>
+                      <div class="tabular" style="font-size:var(--text-h2); line-height:var(--text-h2--line-height); font-weight:600">{{ tzValue }}</div>
+                    </div>
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" onClick="{{ openTimezone }}" hint-size="auto,32px">변경하기</x-import>
+                  </div>
+                </x-import>
+              </section>
+              <sc-if value="{{ isMentor }}" hint-placeholder-val="{{ false }}">
+                <section style="display:flex; flex-direction:column; gap:12px">
+                  <div style="display:flex; flex-direction:column; gap:4px">
+                    <h3 style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600">1:1 멘토링 최소 금액</h3>
+                    <p style="margin:0; font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">1:1 멘토링의 최소 금액을 설정합니다.</p>
+                  </div>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,96px">
+                    <div style="padding:20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
+                      <div style="display:flex; flex-direction:column; gap:4px">
+                        <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">현재 설정된 최소 금액 (30분 기준)</div>
+                        <div class="tabular" style="font-size:var(--text-h2); line-height:var(--text-h2--line-height); font-weight:600">{{ minPriceLabel }}</div>
+                      </div>
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" onClick="{{ openMinPrice }}" hint-size="auto,32px">변경하기</x-import>
+                    </div>
+                  </x-import>
+                </section>
+                <section style="display:flex; flex-direction:column; gap:12px">
+                  <div style="display:flex; flex-direction:column; gap:4px">
+                    <h3 style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600">자동 기부 설정</h3>
+                    <p style="margin:0; font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">멘토링 정산 금액을 자동으로 기부할 수 있습니다.</p>
+                  </div>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,80px">
+                    <div style="padding:20px; display:flex; align-items:center; justify-content:space-between; gap:16px">
+                      <div style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600">{{ autoDonateLabel }}</div>
+                      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Switch" checked="{{ autoDonate }}" onChange="{{ toggleAutoDonate }}" aria-label="자동 기부" hint-size="44px,24px"></x-import>
+                    </div>
+                  </x-import>
+                </section>
+              </sc-if>
+              <section style="display:flex; flex-direction:column; gap:12px; align-items:flex-start">
+                <div style="display:flex; flex-direction:column; gap:4px">
+                  <h3 style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600">알림 설정</h3>
+                  <p style="margin:0; font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">각종 알림의 범위를 설정할 수 있습니다.</p>
+                </div>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" onClick="{{ openNotify }}" hint-size="auto,40px">알림 설정하기</x-import>
+              </section>
+              <section style="display:flex; flex-direction:column; gap:12px; align-items:flex-start">
+                <div style="display:flex; flex-direction:column; gap:4px">
+                  <h3 style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600">비밀번호 변경</h3>
+                  <p style="margin:0; font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">비밀번호를 변경할 수 있습니다.</p>
+                </div>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" onClick="{{ openPassword }}" hint-size="auto,40px">비밀번호 변경하기</x-import>
+              </section>
+              <section style="display:flex; flex-direction:column; gap:12px; align-items:flex-start">
+                <div style="display:flex; flex-direction:column; gap:4px">
+                  <h3 style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600">어카운트 휴면 / 커뮤니티 탈퇴</h3>
+                  <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap">
+                    <p style="margin:0; font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">어카운트를 휴면계정으로 전환하거나 커뮤니티를 탈퇴할 수 있습니다.</p>
+                    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" iconLeft="help-circle" onClick="{{ noop }}" hint-size="auto,32px">계정 정보 취급에 대하여</x-import>
+                  </div>
+                </div>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; width:100%">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" onClick="{{ openDormant }}" fullWidth="{{ isMobile }}" hint-size="auto,40px">휴면 계정 전환하기</x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" onClick="{{ openLeave }}" fullWidth="{{ isMobile }}" hint-size="auto,40px">커뮤니티 탈퇴하기</x-import>
+                </div>
+              </section>
+              <div style="padding-top:8px">
+                <a href="#" onClick="{{ logout }}" style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground); text-decoration:underline">로그아웃</a>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- 쪽 넘기기 — Pagination 양 끝에 이전 · 다음(768 이하: 위 두 버튼 반반 + 아래 번호) -->
+          <sc-if value="{{ showPager }}" hint-placeholder-val="{{ false }}">
+            <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+              <div data-temp="DS-124" style="display:grid; grid-template-columns:1fr auto 1fr; column-gap:12px; align-items:center; margin-top:40px">
+                <div style="justify-self:start">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" iconLeft="arrow-left-01" onClick="{{ pagerPrev }}" disabled="{{ pagerPrevDisabled }}" hint-size="auto,40px">이전 페이지로</x-import>
+                </div>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Pagination" page="{{ pagerPage }}" totalPages="{{ pagerTotal }}" onPageChange="{{ pagerChange }}" hint-size="auto,44px"></x-import>
+                <div style="justify-self:end">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" iconRight="arrow-right-01" onClick="{{ pagerNext }}" disabled="{{ pagerNextDisabled }}" hint-size="auto,40px">다음 페이지로</x-import>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+              <div data-temp="DS-124" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); column-gap:12px; row-gap:16px; margin-top:40px">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" iconLeft="arrow-left-01" onClick="{{ pagerPrev }}" disabled="{{ pagerPrevDisabled }}" fullWidth="{{ true }}" hint-size="100%,40px">이전 페이지로</x-import>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" iconRight="arrow-right-01" onClick="{{ pagerNext }}" disabled="{{ pagerNextDisabled }}" fullWidth="{{ true }}" hint-size="100%,40px">다음 페이지로</x-import>
+                <div style="grid-column:1 / -1; display:flex; justify-content:center">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Pagination" page="{{ pagerPage }}" totalPages="{{ pagerTotal }}" onPageChange="{{ pagerChange }}" hint-size="auto,44px"></x-import>
+                </div>
+              </div>
+            </sc-if>
+          </sc-if>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" hint-size="100%,240px"></x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BottomTabBar" activeKey="my" authState="{{ role }}" hint-size="0px,0px"></x-import>
+</div>
+
+<!-- 멘토링 상세 모달 (상태 6 × 역할 2 + 갈아끼우는 화면) -->
+<dc-import name="MentoringDetailModal" open="{{ detailOpen }}" blink="{{ blink }}" modal="{{ modal }}" card="{{ detailCard }}" perspective="{{ detailPerspective }}" onClose="{{ closeModal }}" onGo="{{ goModal }}" onToast="{{ showToast }}" onCardUpdate="{{ updateCard }}" hint-size="0px,0px"></dc-import>
+
+<!-- 편집 대화상자 — 멘토 상세 편집 면과 같은 틀(520 · stack · 768 이하 전체 화면). 내용만 갈아끼운다 -->
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Dialog" open="{{ editOpen }}" onClose="{{ requestClose }}" title="{{ editTitle }}" description="{{ editDesc }}" width="{{ 520 }}" footer="{{ editFooter }}" footerLayout="stack" mobile="fullscreen" hint-size="0px,0px">
+  <div style="display:flex; flex-direction:column; gap:var(--space-6)">
+
+    <sc-if value="{{ mProfile }}" hint-placeholder-val="{{ false }}">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="이름" htmlFor="mp-f-name" required="{{ true }}" error="{{ fe.name }}" onBlur="{{ bl.name }}" hint-size="100%,96px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="mp-f-name" value="{{ form.name }}" onChange="{{ setName }}" invalid="{{ fi.name }}" limit="{{ limits.name }}" autoComplete="name" hint-size="100%,66px"></x-import>
+      </x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="현재 상태" htmlFor="mp-f-status" required="{{ true }}" error="{{ fe.statusType }}" hint-size="100%,72px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" id="mp-f-status" options="{{ statusOptions }}" value="{{ form.statusType }}" onChange="{{ setStatusType }}" placeholder="상태 선택" invalid="{{ fi.statusType }}" hint-size="100%,40px"></x-import>
+      </x-import>
+      <sc-if value="{{ isWorking }}" hint-placeholder-val="{{ false }}">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="재직중인 회사" htmlFor="mp-f-company" hint-size="100%,96px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="mp-f-company" value="{{ form.company }}" onChange="{{ setCompany }}" limit="{{ limits.company }}" autoComplete="organization" hint-size="100%,66px"></x-import>
+        </x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FieldGroup" label="재직중인 직종" columns="{{ 2 }}" hint-size="100%,96px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="대분류" htmlFor="mp-f-job-major" hint-size="100%,64px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" id="mp-f-job-major" options="{{ jobMajorOptions }}" value="{{ form.jobMajor }}" onChange="{{ setJobMajor }}" placeholder="대분류 선택" hint-size="100%,40px"></x-import>
+          </x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="소분류" htmlFor="mp-f-job-minor" hint-size="100%,64px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" id="mp-f-job-minor" options="{{ jobMinorOptions }}" value="{{ form.jobMinor }}" onChange="{{ setJobMinor }}" placeholder="소분류 선택" disabled="{{ jobMinorDisabled }}" hint-size="100%,40px"></x-import>
+          </x-import>
+        </x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="직종명" htmlFor="mp-f-job-name" hint-size="100%,96px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="mp-f-job-name" value="{{ form.jobName }}" onChange="{{ setJobName }}" placeholder="예) 데이터 애널리스트" limit="{{ limits.jobName }}" hint-size="100%,66px"></x-import>
+        </x-import>
+      </sc-if>
+      <sc-if value="{{ isStudent }}" hint-placeholder-val="{{ true }}">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="학교명" htmlFor="mp-f-school" hint-size="100%,96px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="mp-f-school" value="{{ form.school }}" onChange="{{ setSchool }}" limit="{{ limits.school }}" hint-size="100%,66px"></x-import>
+        </x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="전공" htmlFor="mp-f-major" hint-size="100%,96px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="mp-f-major" value="{{ form.major }}" onChange="{{ setMajor }}" limit="{{ limits.major }}" hint-size="100%,66px"></x-import>
+        </x-import>
+      </sc-if>
+      <sc-if value="{{ isOther }}" hint-placeholder-val="{{ false }}">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="커리어 소개" htmlFor="mp-f-career" hint-size="100%,96px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="mp-f-career" value="{{ form.careerIntro }}" onChange="{{ setCareerIntro }}" placeholder="한 줄로 소개해주세요" limit="{{ limits.careerIntro }}" hint-size="100%,66px"></x-import>
+        </x-import>
+      </sc-if>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FieldGroup" label="거주중인 국가" columns="{{ 2 }}" hint-size="100%,96px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="나라" htmlFor="mp-f-country" required="{{ true }}" error="{{ fe.country }}" hint-size="100%,64px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" id="mp-f-country" options="{{ countryOptions }}" value="{{ form.country }}" onChange="{{ setCountry }}" placeholder="나라 선택" invalid="{{ fi.country }}" hint-size="100%,40px"></x-import>
+        </x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="도시" htmlFor="mp-f-city" required="{{ true }}" error="{{ fe.city }}" hint-size="100%,64px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" id="mp-f-city" options="{{ cityOptions }}" value="{{ form.city }}" onChange="{{ setCity }}" placeholder="도시 선택" disabled="{{ cityDisabled }}" invalid="{{ fi.city }}" hint-size="100%,40px"></x-import>
+        </x-import>
+      </x-import>
+    </sc-if>
+
+    <sc-if value="{{ mPhoto }}" hint-placeholder-val="{{ false }}">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ImageCropper" src="{{ photoSrc }}" onPick="{{ pickPhoto }}" onRemove="{{ removePhoto }}" onChange="{{ markDirty }}" hint-size="100%,320px"></x-import>
+    </sc-if>
+
+    <sc-if value="{{ mIntro }}" hint-placeholder-val="{{ false }}">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="소개글" htmlFor="mp-f-intro" required="{{ true }}" description="멘토링 신청 시 멘토에게 함께 보여집니다." error="{{ fe.intro }}" onBlur="{{ bl.intro }}" hint-size="100%,300px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Textarea" id="mp-f-intro" value="{{ form.intro }}" onChange="{{ setIntroText }}" rows="{{ 8 }}" maxRows="{{ 14 }}" limit="{{ 500 }}" invalid="{{ fi.intro }}" hint-size="100%,240px"></x-import>
+      </x-import>
+    </sc-if>
+
+    <sc-if value="{{ mCountries }}" hint-placeholder-val="{{ false }}">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="흥미있는 국가" htmlFor="mp-f-countries" required="{{ true }}" error="{{ fe.countries }}" hint-size="100%,96px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.MultiSelect" id="mp-f-countries" groups="{{ countryGroups }}" value="{{ form.countries }}" onChange="{{ setCountries }}" placeholder="국가 선택" invalid="{{ fi.countries }}" hint-size="100%,88px"></x-import>
+      </x-import>
+    </sc-if>
+
+    <sc-if value="{{ mJobs }}" hint-placeholder-val="{{ false }}">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="흥미있는 직종" htmlFor="mp-f-jobs" required="{{ true }}" error="{{ fe.jobs }}" hint-size="100%,96px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.MultiSelect" id="mp-f-jobs" groups="{{ jobGroups }}" value="{{ form.jobs }}" onChange="{{ setJobs }}" placeholder="직종 선택" invalid="{{ fi.jobs }}" hint-size="100%,88px"></x-import>
+      </x-import>
+    </sc-if>
+
+    <sc-if value="{{ mTimezone }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:4px">
+        <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">현재 설정된 시간대</div>
+        <div class="tabular" style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600">{{ tzValue }}</div>
+      </div>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="변경할 시간대" htmlFor="mp-f-tz" hint-size="100%,72px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" id="mp-f-tz" options="{{ tzOptions }}" value="{{ form.tz }}" onChange="{{ setTz }}" placeholder="시간대 선택" hint-size="100%,40px"></x-import>
+      </x-import>
+    </sc-if>
+
+    <sc-if value="{{ mMail }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:4px">
+        <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">현재 등록된 메일 주소</div>
+        <div style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600; overflow-wrap:anywhere">{{ mailAddress }}</div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <div style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600">메일 매거진 수신 설정</div>
+        <div style="display:flex; gap:8px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterChip" selected="{{ mailYes }}" onChange="{{ setMailYes }}" hint-size="auto,32px">수신하기</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterChip" selected="{{ mailNo }}" onChange="{{ setMailNo }}" hint-size="auto,32px">수신하지 않기</x-import>
+        </div>
+        <p style="margin:0; font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">멘트리가 주최하는 이벤트 정보나 유저에게 맞는 추천 아티클을 보내드립니다.</p>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ mNotify }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0; border-bottom:1px solid var(--border)">
+          <div style="display:flex; flex-direction:column; gap:2px">
+            <div style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600">1:1 멘토링 신청</div>
+            <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">1:1 멘토링 신청이 왔을 때 알림</div>
+          </div>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Switch" checked="{{ form.notifyMentoring }}" onChange="{{ setNotifyMentoring }}" aria-label="1:1 멘토링 신청 알림" hint-size="44px,24px"></x-import>
+        </div>
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0; border-bottom:1px solid var(--border)">
+          <div style="display:flex; flex-direction:column; gap:2px">
+            <div style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600">Q&A 멘토링 답변</div>
+            <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">내가 작성한 Q&A 멘토링에 답변이 달렸을 때 알림</div>
+          </div>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Switch" checked="{{ form.notifyQna }}" onChange="{{ setNotifyQna }}" aria-label="Q&A 멘토링 답변 알림" hint-size="44px,24px"></x-import>
+        </div>
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0">
+          <div style="display:flex; flex-direction:column; gap:2px">
+            <div style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600">멘트리 소식</div>
+            <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">이벤트 · 공지 알림</div>
+          </div>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Switch" checked="{{ form.notifyNews }}" onChange="{{ setNotifyNews }}" aria-label="멘트리 소식 알림" hint-size="44px,24px"></x-import>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ mPassword }}" hint-placeholder-val="{{ false }}">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="현재 비밀번호" htmlFor="mp-f-pw1" required="{{ true }}" error="{{ fe.pw1 }}" onBlur="{{ bl.pw1 }}" hint-size="100%,72px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="mp-f-pw1" type="password" value="{{ form.pw1 }}" onChange="{{ setPw1 }}" invalid="{{ fi.pw1 }}" autoComplete="current-password" hint-size="100%,40px"></x-import>
+      </x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="새 비밀번호" htmlFor="mp-f-pw2" required="{{ true }}" description="영문 · 숫자 · 특수문자를 조합해 8자 이상" error="{{ fe.pw2 }}" onBlur="{{ bl.pw2 }}" hint-size="100%,92px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="mp-f-pw2" type="password" value="{{ form.pw2 }}" onChange="{{ setPw2 }}" invalid="{{ fi.pw2 }}" autoComplete="new-password" hint-size="100%,40px"></x-import>
+      </x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="새 비밀번호 확인" htmlFor="mp-f-pw3" required="{{ true }}" error="{{ fe.pw3 }}" onBlur="{{ bl.pw3 }}" hint-size="100%,72px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="mp-f-pw3" type="password" value="{{ form.pw3 }}" onChange="{{ setPw3 }}" invalid="{{ fi.pw3 }}" autoComplete="new-password" hint-size="100%,40px"></x-import>
+      </x-import>
+    </sc-if>
+    <sc-if value="{{ mPasswordDone }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:12px; padding:16px 0; text-align:center">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="checkmark-circle-02" size="{{ 48 }}" color="var(--primary)" hint-size="48px,48px"></x-import>
+        <p style="margin:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600">비밀번호 변경을 완료했습니다.</p>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ mLeave }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground)">탈퇴하면 작성한 질문 · 답변 · 리뷰와 받은 꽃송이가 모두 사라지며 되돌릴 수 없습니다. 조율중이거나 확정된 1:1 멘토링이 있으면 탈퇴할 수 없습니다.</p>
+      <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600; color:var(--foreground)">탈퇴는 멘트리 서포트 센터로 문의해 주세요</p>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Card" hint-size="100%,80px">
+        <div style="padding:16px 20px; display:flex; flex-direction:column; gap:2px">
+          <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">멘트리 서포트 센터</div>
+          <div style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600">support@mentree.club</div>
+        </div>
+      </x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" iconLeft="copy-01" onClick="{{ copySupportMail }}" fullWidth="{{ true }}" hint-size="100%,40px">서포트 센터 메일 주소 복사하기</x-import>
+    </sc-if>
+
+    <sc-if value="{{ mMinPrice }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:12px; padding:8px 0">
+        <div class="tabular" style="text-align:center; font-size:var(--text-h2); line-height:var(--text-h2--line-height); font-weight:700; color:var(--primary)">{{ minPriceDraftLabel }}</div>
+        <div class="mp-slider" data-temp="DS-120" style="position:relative; display:flex; align-items:center; height:24px">
+          <div style="position:absolute; left:0; right:0; height:6px; border-radius:999px; background:var(--sage-200)"></div>
+          <div style="{{ sliderFillStyle }}"></div>
+          <input type="range" class="mp-slider-input" min="20000" max="100000" step="20000" value="{{ form.minPrice }}" onChange="{{ setMinPrice }}" aria-label="멘토링 최소 금액" aria-valuetext="{{ minPriceDraftLabel }}">
+        </div>
+        <div class="tabular" style="display:flex; justify-content:space-between; font-size:var(--text-micro); line-height:var(--text-micro--line-height); font-weight:500; color:var(--muted-foreground)">
+          <span>2만원 (1송이)</span><span>4만원 (2송이)</span><span>6만원 (3송이)</span><span>8만원 (4송이)</span><span>10만원 (5송이)</span>
+        </div>
+      </div>
+      <div><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" iconLeft="help-circle" onClick="{{ noop }}" hint-size="auto,32px">멘토링 최소금액(꽃송이)에 대하여</x-import></div>
+    </sc-if>
+
+    <sc-if value="{{ mMenteeProfile }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; align-items:center; gap:16px; min-width:0">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" src="{{ follower.avatar }}" name="{{ follower.name }}" size="{{ 56 }}" hint-size="56px,56px"></x-import>
+        <div style="flex:1; display:flex; flex-direction:column; gap:2px; min-width:0">
+          <div style="display:flex; align-items:center; gap:8px; min-width:0">
+            <div title="{{ follower.name }}" style="min-width:0; font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ follower.name }}</div>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Flag" country="{{ follower.flag }}" label="{{ follower.flagLabel }}" size="md" shape="rect" hint-size="30px,20px"></x-import>
+          </div>
+          <div title="{{ followerOrgLine }}" style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground); white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ followerOrgLine }}</div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:6px">
+        <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">자기소개</div>
+        <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground)">{{ follower.intro }}</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">흥미있는 국가</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap">
+          <sc-for list="{{ followerCountries }}" as="c" hint-placeholder-count="2">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="category" tone="primary" size="lg" leading="flag" flag="{{ c.flag }}" hint-size="auto,32px">{{ c.value }}</x-import>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px">
+        <div style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:500; color:var(--muted-foreground)">흥미있는 직종</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap">
+          <sc-for list="{{ followerJobs }}" as="j" hint-placeholder-count="2">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="category" tone="primary" size="lg" leading="icon" icon="{{ j.icon }}" hint-size="auto,32px">{{ j.value }}</x-import>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ mBank }}" hint-placeholder-val="{{ false }}">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="은행" htmlFor="mp-f-bank" required="{{ true }}" error="{{ fe.bank }}" hint-size="100%,72px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" id="mp-f-bank" options="{{ bankOptions }}" value="{{ form.bank }}" onChange="{{ setBank }}" placeholder="은행 선택" invalid="{{ fi.bank }}" hint-size="100%,40px"></x-import>
+      </x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="계좌번호" htmlFor="mp-f-account" required="{{ true }}" description="숫자와 하이픈만 입력합니다." error="{{ fe.account }}" onBlur="{{ bl.account }}" hint-size="100%,116px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="mp-f-account" value="{{ form.account }}" onChange="{{ setAccount }}" inputMode="numeric" placeholder="000-0000-000000" invalid="{{ fi.account }}" limit="{{ limits.account }}" hint-size="100%,66px"></x-import>
+      </x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="예금주" htmlFor="mp-f-holder" required="{{ true }}" error="{{ fe.holder }}" onBlur="{{ bl.holder }}" hint-size="100%,96px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="mp-f-holder" value="{{ form.holder }}" onChange="{{ setHolder }}" invalid="{{ fi.holder }}" limit="{{ limits.holder }}" hint-size="100%,66px"></x-import>
+      </x-import>
+    </sc-if>
+
+  </div>
+</x-import>
+
+<!-- 확인 대화상자 — Q&A 와 같다(420 · 오른쪽 정렬 · 768 이하도 가운데 카드). 문장은 description, 본문 없음 -->
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Dialog" open="{{ confirmOpen }}" onClose="{{ closeModal }}" title="{{ confirmTitle }}" description="{{ confirmDesc }}" width="{{ 420 }}" footer="{{ confirmFooter }}" footerLayout="end" hint-size="0px,0px"></x-import>
+
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Toast" open="{{ toastOpen }}" message="{{ toastMessage }}" actions="{{ toastActions }}" onDismiss="{{ dismissToast }}" hint-size="0px,0px"></x-import>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultRole&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;mentee&quot;,&quot;options&quot;:[&quot;mentee&quot;,&quot;mentor&quot;],&quot;tsType&quot;:&quot;'mentee' | 'mentor'&quot;,&quot;section&quot;:&quot;데모&quot;},&quot;hideDemoBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;데모&quot;}}">
+class Component extends DCLogic {
+  static TABS = {
+    mentee: ["profile", "qna", "mentoring", "favorites", "scrap", "payment", "account"],
+    mentor: ["profile", "qna", "mentoring", "favorites", "scrap", "settlement", "account"],
+  };
+  static LABELS = {
+    mentee: { profile: "프로필", qna: "나의 Q&A 멘토링", mentoring: "나의 1:1 멘토링", favorites: "관심있는 멘토", scrap: "나의 스크랩", payment: "결제 이력", account: "계정 설정" },
+    mentor: { profile: "멘토 프로필", qna: "나의 Q&A 멘토링", mentoring: "나의 1:1 멘토링", favorites: "나의 팔로워 / 관심있는 멘토", scrap: "나의 스크랩", settlement: "정산 수단 / 이력", account: "계정 설정" },
+  };
+  static EDIT_MODALS = ["profile-edit", "photo", "intro", "countries", "jobs", "timezone", "mail", "notify", "password", "leave", "min-price", "mentee-profile", "bank"];
+  static CONFIRM_MODALS = ["dormant", "donate-confirm", "delete-question"];
+  static DETAIL_RE = /^(detail-|cancel-|fix-schedule|reschedule|accept|review|cheer-|mentor-message|my-review|mentee-review)/;
+  static IMG = "../../../ds-export/project/assets/img/";
+  // isNew(24시간)의 기준 시각 — 표본 날짜와 맞춘 고정값(시계에 따라 표본이 바뀌지 않게)
+  static NOW = Date.parse("2026-10-15T12:00:00+09:00");
+  // 쪽 번호 목록 — 전체 건수 · 한 쪽 건수
+  static TOTAL = { answered: 18, scrapQna: 42, article: 42 };
+  static PER = { answered: 8, scrapQna: 9, article: 7 };
+  // 본인이 바꾸는 칸의 글자 수 한도(넘치면 저장 막음)
+  static LIMITS = { name: 20, company: 40, jobName: 30, school: 40, major: 30, careerIntro: 60, intro: 500, account: 20, holder: 20 };
+  static REQUIRED = { "profile-edit": ["name", "statusType", "country", "city"], intro: ["intro"], countries: ["countries"], jobs: ["jobs"], password: ["pw1", "pw2", "pw3"], bank: ["bank", "account", "holder"] };
+  // 거주 도시 — 목록에서 고른다. 도시 목록은 멘토 상세 편집 §11 미결(표본).
+  static CITIES = {
+    "일본": ["도쿄", "오사카", "후쿠오카", "나고야", "교토"], "미국": ["뉴욕", "샌프란시스코", "시애틀", "로스앤젤레스", "보스턴"], "대한민국": ["서울", "부산", "인천", "대구", "대전"], "싱가포르": ["싱가포르"],
+    "네덜란드": ["암스테르담", "로테르담", "에인트호번"], "독일": ["베를린", "뮌헨", "프랑크푸르트", "함부르크"], "스페인": ["마드리드", "바르셀로나"], "영국": ["런던", "맨체스터", "에든버러"], "이탈리아": ["밀라노", "로마"],
+    "말레이시아": ["쿠알라룸푸르", "페낭"], "중국": ["상하이", "베이징", "선전"], "홍콩": ["홍콩"], "UAE": ["두바이", "아부다비"], "캐나다": ["토론토", "밴쿠버", "몬트리올"], "호주": ["시드니", "멜버른", "브리즈번"],
+  };
+  static QNA_AT = {
+    answered: ["2026-10-15T09:20:00+09:00", "2026-10-11T21:05:00+09:00", "2026-10-08T13:40:00+09:00", "2026-10-02T08:15:00+09:00", "2026-09-27T19:30:00+09:00", "2026-09-19T11:00:00+09:00", "2026-09-10T22:45:00+09:00", "2026-08-30T10:10:00+09:00"],
+    waiting: ["2026-10-15T08:10:00+09:00", "2026-10-12T17:25:00+09:00", "2026-10-09T20:00:00+09:00"],
+    mentorAnswered: ["2026-10-06T10:00:00+09:00", "2026-09-29T18:20:00+09:00", "2026-09-21T09:40:00+09:00", "2026-09-12T14:00:00+09:00"],
+    mentorAsked: ["2026-10-14T22:30:00+09:00", "2026-10-03T12:10:00+09:00", "2026-09-24T07:50:00+09:00", "2026-09-15T23:05:00+09:00", "2026-09-02T16:30:00+09:00", "2026-08-18T11:15:00+09:00"],
+    scrap: ["2026-10-13T10:00:00+09:00", "2026-10-10T19:30:00+09:00", "2026-10-07T08:45:00+09:00", "2026-10-01T21:10:00+09:00", "2026-09-25T12:00:00+09:00", "2026-09-18T17:40:00+09:00", "2026-09-09T09:15:00+09:00", "2026-08-28T20:20:00+09:00", "2026-08-15T14:35:00+09:00"],
+  };
+  static isEmptyV(v) { return Array.isArray(v) ? v.length === 0 : !String(v == null ? "" : v).trim(); }
+
+  constructor(props) {
+    super(props);
+    const q = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
+    const roleQ = q.get("role") || (props && props.defaultRole) || "mentee";
+    const role = roleQ === "mentor" ? "mentor" : "mentee";
+    let tab = q.get("tab") || "profile";
+    if (!Component.TABS[role].includes(tab)) tab = tab === "payment" || tab === "settlement" ? (role === "mentor" ? "settlement" : "payment") : "profile";
+    const sub = q.get("sub") || this.defaultSub(role, tab);
+    const mm = typeof window !== "undefined" && window.matchMedia ? window.matchMedia("(max-width: 768px)") : null;
+    const es = q.get("editState");
+    this.state = {
+      role, tab, sub,
+      uiState: ["normal", "loading", "empty", "error"].includes(q.get("state")) ? q.get("state") : "normal",
+      modal: q.get("modal") || "",
+      editState: ["dirty", "saving", "error"].includes(es) ? es : "",
+      view: q.get("view") === "mobile" ? "mobile" : "desktop",
+      frame: q.get("frame") === "1",
+      isMobile: !!(mm && mm.matches),
+      blink: false,
+      menuOpen: tab === "mentoring",
+      activeCardId: null, activeFollowerId: null, activeQuestionId: null,
+      cards: this.seedCards(),
+      favoriteIds: ["mt1", "mt2", "mt3", "mt4", "mt5", "mt6", "mt7", "mt8"],
+      scrapQnaIds: ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9"],
+      scrapArticleIds: ["a1", "a2", "a3", "a4", "a5", "a6", "a7"],
+      waitingIds: ["w1", "w2", "w3"],
+      liked: {}, scrapped: {},
+      toast: null,
+      pages: { answered: 1, scrapQna: 1, article: 1, payment: 1, payout: 1 },
+      qnaSort: "최신순",
+      me: { name: "김민지", avatar: undefined, statusType: "학생", school: "한양대학교", major: "데이터 사이언스", intro: "안녕하세요, 데이터 사이언스를 전공하는 대학생 김민지입니다. 현재 도쿄에서 교환학생으로 지내며 일본 IT 기업 취업을 준비하고 있습니다.\n데이터 분석과 프로덕트 디자인의 접점에 관심이 많고, 졸업 뒤에는 일본 또는 싱가포르에서 데이터 애널리스트로 커리어를 시작하고 싶습니다. 현지 취업 과정과 비자, 첫 직장에서의 커뮤니케이션에 대해 선배 멘토분들의 조언을 듣고 싶어요.", countries: ["일본", "싱가포르", "미국"], jobs: ["디자인", "개발", "마케팅/광고"], country: "일본", city: "도쿄" },
+      tz: "(GMT+09:00) 일본 표준시", mail: "abc123@gmail.com", mailSub: true,
+      notify: { mentoring: true, qna: true, news: false },
+      minPrice: 20000, autoDonate: true, donated: false,
+      bank: { bank: "카카오뱅크", account: "123-****-890123", holder: "박지훈" },
+      form: {}, edited: {}, touched: {}, photoDirty: false, pwDone: false, donateMode: "once", photoSrc: undefined,
+    };
+    this._mm = mm;
+    this._main = React.createRef();
+  }
+  componentDidMount() {
+    document.documentElement.lang = "ko";
+    // 데모 390 틀 — 실제 기기처럼 스크롤바가 폭을 먹지 않게
+    if (this.state.frame) document.documentElement.setAttribute("data-mp-frame", "1");
+    this._openedAt = performance.now();
+    // 열자마자 들어오는 뒤로가기(전체 화면 Dialog 의 기록 정리)를 가려내려고 popstate 시각을 적어 둔다
+    this._onPop = () => { this._popAt = performance.now(); };
+    window.addEventListener("popstate", this._onPop);
+    // 5-14 — 대화상자가 열린 채 768 을 건너면 한 프레임 닫았다 다시 연다(멘토 상세와 같은 가드)
+    if (this._mm) {
+      this._onMM = (e) => {
+        if (e.matches === this.state.isMobile) return;
+        const open = !!this.state.modal;
+        this.setState({ isMobile: e.matches, blink: open });
+        if (open) requestAnimationFrame(() => { this._openedAt = performance.now(); this.setState({ blink: false }); });
+      };
+      this._mm.addEventListener("change", this._onMM);
+    }
+    const m = this.state.modal, es = this.state.editState;
+    if (m && Component.EDIT_MODALS.includes(m)) {
+      const form = this.formFor(m);
+      const patch = { form, photoSrc: m === "photo" ? this.state.me.avatar : undefined };
+      if (es) Object.assign(patch, this.demoEdit(m, form));
+      this.setState(patch, () => { if (es === "error") this.showToast("저장하지 못했어요. 다시 시도해 주세요"); });
+    } else if (es) this.setState({ editState: "" });
+  }
+  componentWillUnmount() { if (this._mm && this._onMM) this._mm.removeEventListener("change", this._onMM); window.removeEventListener("popstate", this._onPop); clearTimeout(this._saveT); }
+  // 열고 1.5초 안에 popstate 로 들어온 닫기 요청 — 사용자의 뒤로가기가 아니라 Dialog 의 기록 정리다
+  earlyPop() { const now = performance.now(); return !!this._popAt && now - this._popAt < 100 && now - (this._openedAt || 0) < 1500; }
+  // 주소 · 데모 줄로 갈아끼우기 화면을 열 때 — 그 화면에 맞는 카드를 고른다(검수 ⑪).
+  pickCardFor(key) {
+    const s = this.state;
+    const all = Object.values(s.cards);
+    const mentee = all.filter(c => c.id.startsWith("mc")), received = all.filter(c => c.id.startsWith("mr"));
+    const isReceived = s.role === "mentor" && s.tab === "mentoring" && s.sub.startsWith("received");
+    const mentorOnly = /^(accept|cheer-write|cheer-sent|cheer-view|cancel-msg-|mentee-review)/.test(key);
+    const menteeOnly = /^(cheer-read|fix-schedule|reschedule|review|mentor-message|my-review)/.test(key);
+    const pool = mentorOnly ? received : menteeOnly ? mentee : isReceived ? received : mentee;
+    const done = c => c.status === "done" || c.status === "done-reviewed", cancelled = c => c.status === "cancelled";
+    let fs = [];
+    if (key.startsWith("detail-")) { const st = key.slice(7); fs = [c => c.status === st]; }
+    else if (key === "cheer-read") fs = [c => done(c) && c.cheerSent];
+    else if (key === "fix-schedule" || key === "reschedule") fs = [c => c.status === "scheduling-received"];
+    else if (key.startsWith("review")) fs = [c => c.status === "done"];
+    else if (key.startsWith("accept")) fs = [c => c.status === "applied"];
+    else if (key === "cheer-write") fs = [c => done(c) && !c.cheerSent];
+    // cheer-sent 는 보낸 본문을 보이므로 보낸 카드(cheer-view 와 같다)
+    else if (key === "cheer-sent" || key === "cheer-view") fs = [c => done(c) && c.cheerSent];
+    else if (key === "mentor-message") fs = [c => cancelled(c) && c.cancelMessage && c.cancelReason === "other", c => cancelled(c) && c.cancelMessage];
+    else if (key === "my-review") fs = [c => c.status === "done-reviewed" && c.review, c => c.status === "done-reviewed"];
+    else if (key === "mentee-review") fs = [c => c.status === "done-reviewed" && c.review];
+    else if (key === "cancel-msg-write") fs = [c => cancelled(c) && !c.cancelMessage];
+    else if (key === "cancel-msg-sent" || key === "cancel-msg-view") fs = [c => cancelled(c) && c.cancelMessage];
+    else if (key.startsWith("cancel-")) fs = [c => c.status === "applied"];
+    for (const f of fs) { const hit = pool.find(f); if (hit) return hit; }
+    return pool[0];
+  }
+
+  defaultSub(role, tab) {
+    if (tab === "qna") return "answered";
+    if (tab === "mentoring") return role === "mentor" ? "received-ongoing" : "ongoing";
+    if (tab === "favorites") return role === "mentor" ? "followers" : "";
+    if (tab === "scrap") return "qna";
+    if (tab === "settlement") return "payout";
+    return "";
+  }
+  writeUrl(s) {
+    if (typeof window === "undefined") return;
+    const p = new URLSearchParams();
+    p.set("role", s.role); p.set("tab", s.tab);
+    if (s.sub) p.set("sub", s.sub);
+    p.set("state", s.uiState);
+    if (s.modal) p.set("modal", s.modal);
+    if (s.modal && s.editState) p.set("editState", s.editState);
+    p.set("view", s.view);
+    if (s.frame) p.set("frame", "1");
+    history.replaceState(null, "", "?" + p.toString());
+  }
+  set(patch) { this.setState(patch, () => this.writeUrl(this.state)); }
+  go(tab, sub) { this.set({ tab, sub: sub != null ? sub : this.defaultSub(this.state.role, tab), menuOpen: tab === "mentoring" ? true : this.state.menuOpen }); }
+  scrollToMain() {
+    const el = this._main.current;
+    if (!el || typeof window === "undefined") return;
+    const y = el.getBoundingClientRect().top + window.scrollY - 96;
+    if (window.scrollY > y) window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+  }
+  // 2쪽부터 — 표본을 돌려 다른 줄처럼 보이게(마지막 쪽은 남은 건수만)
+  pageOf(list, page, total, per) {
+    if (page <= 1) return list.slice(0, per);
+    const n = Math.max(0, Math.min(per, total - (page - 1) * per));
+    const k = ((page - 1) * 3) % Math.max(1, list.length);
+    return list.slice(k).concat(list.slice(0, k)).reverse().slice(0, n).map(x => ({ ...x, notNew: true }));
+  }
+
+  // ---------- 대화상자 ----------
+  formFor(key) {
+    const s = this.state, me = s.me;
+    if (key === "profile-edit") return { name: me.name, statusType: me.statusType, company: me.company || "", jobMajor: me.jobMajor || "", jobMinor: me.jobMinor || "", jobName: me.jobName || "", school: me.school || "", major: me.major || "", careerIntro: me.careerIntro || "", country: me.country, city: me.city };
+    if (key === "intro") return { intro: me.intro };
+    if (key === "countries") return { countries: me.countries.slice() };
+    if (key === "jobs") return { jobs: me.jobs.slice() };
+    if (key === "timezone") return { tz: "" };
+    if (key === "mail") return { mailSub: s.mailSub };
+    if (key === "notify") return { notifyMentoring: s.notify.mentoring, notifyQna: s.notify.qna, notifyNews: s.notify.news };
+    if (key === "password") return { pw1: "", pw2: "", pw3: "" };
+    if (key === "bank") return { ...s.bank };
+    if (key === "min-price") return { minPrice: s.minPrice };
+    return {};
+  }
+  // 주소 editState=dirty|saving|error 로 열 때 — 바뀐 것이 있는 폼으로 연다
+  demoEdit(m, form) {
+    const s = this.state;
+    const d = { "profile-edit": { city: "오사카" }, intro: { intro: (form.intro || "") + "\n최근에는 일본어 비즈니스 회화를 준비하고 있습니다." }, countries: { countries: (form.countries || []).concat("독일") }, jobs: { jobs: (form.jobs || []).concat("HR") }, timezone: { tz: "(GMT+09:00) 한국 표준시" }, mail: { mailSub: !s.mailSub }, notify: { notifyNews: !s.notify.news }, password: { pw1: "mentree2025!", pw2: "Mentree2026!", pw3: "Mentree2026!" }, "min-price": { minPrice: 40000 }, bank: { bank: "토스뱅크" } }[m] || {};
+    const edited = {}; Object.keys(d).forEach(k => { edited[k] = true; });
+    return { form: { ...form, ...d }, edited, ...(m === "photo" ? { photoSrc: Component.IMG + "2.png", photoDirty: true } : null) };
+  }
+  isChanged(m, f, s) {
+    const me = s.me, eq = (a, b) => (a || "") === (b || ""), same = (a, b) => (a || []).join("|") === (b || []).join("|");
+    if (m === "profile-edit") return ["name", "statusType", "company", "jobMajor", "jobMinor", "jobName", "school", "major", "careerIntro", "country", "city"].some(k => !eq(f[k], me[k]));
+    if (m === "photo") return !!s.photoDirty;
+    if (m === "intro") return !eq(f.intro, me.intro);
+    if (m === "countries") return !same(f.countries, me.countries);
+    if (m === "jobs") return !same(f.jobs, me.jobs);
+    if (m === "timezone") return !!f.tz && f.tz !== s.tz;
+    if (m === "mail") return f.mailSub !== s.mailSub;
+    if (m === "notify") return f.notifyMentoring !== s.notify.mentoring || f.notifyQna !== s.notify.qna || f.notifyNews !== s.notify.news;
+    if (m === "password") return !!(f.pw1 || f.pw2 || f.pw3);
+    if (m === "min-price") return Number(f.minPrice) !== s.minPrice;
+    if (m === "bank") return ["bank", "account", "holder"].some(k => !eq(f[k], s.bank[k]));
+    return false;
+  }
+  // 5-2 — 바꾼 것이 없거나 · 필수가 비었거나 · 글자 수를 넘으면 저장을 막는다
+  canSave(m, f, s) {
+    if (!this.isChanged(m, f, s)) return false;
+    if ((Component.REQUIRED[m] || []).some(k => Component.isEmptyV(f[k]))) return false;
+    if (Object.keys(Component.LIMITS).some(k => f[k] != null && String(f[k]).length > Component.LIMITS[k])) return false;
+    if (m === "photo") return !!s.photoSrc;
+    if (m === "password") return f.pw2 === f.pw3 && String(f.pw2 || "").length >= 8;
+    return true;
+  }
+  openModal(key, extra) {
+    clearTimeout(this._saveT);
+    this._openedAt = performance.now();
+    this.set({ modal: key, form: this.formFor(key), edited: {}, touched: {}, editState: "", pwDone: false, photoDirty: false, photoSrc: key === "photo" ? this.state.me.avatar : undefined, ...(extra || {}) });
+  }
+  closeModal() { clearTimeout(this._saveT); this.set({ modal: "", editState: "", edited: {}, touched: {}, pwDone: false, photoDirty: false, photoSrc: undefined }); }
+  // 5-4 — 바꾼 뒤 닫을 때는 바닥만 「정말 닫으시겠습니까?」로. 저장 중에는 닫지 않는다.
+  requestClose() {
+    const s = this.state;
+    if (s.editState === "saving" || this.earlyPop()) return;
+    if (s.editState === "dirty" || s.pwDone || !this.isChanged(s.modal, s.form || {}, s)) { this.closeModal(); return; }
+    this.set({ editState: "dirty" });
+  }
+  // 5-3 — 「저장하는 중…」(닫기 막음) → 성공하면 닫고 Toast. 실패는 주소 editState=error 로 본다.
+  save(apply) {
+    clearTimeout(this._saveT);
+    this.set({ editState: "saving" });
+    this._saveT = setTimeout(() => {
+      if (apply) apply();
+      if (this.state.modal === "password") this.set({ editState: "", pwDone: true, form: this.formFor("password"), edited: {}, touched: {} });
+      else { this.closeModal(); this.showToast("저장했어요"); }
+    }, 900);
+  }
+  setForm(field, raw, touch) {
+    const v = raw && raw.target ? (raw.target.type === "checkbox" ? raw.target.checked : raw.target.value) : raw;
+    this.setState(s => ({ form: { ...s.form, [field]: v }, edited: { ...s.edited, [field]: true }, touched: touch ? { ...s.touched, [field]: true } : s.touched }));
+  }
+  // 5-5 — 고쳐서 비운 채 떠나면 에러(한 번도 건드리지 않은 칸은 에러를 내지 않는다)
+  leave(field) { this.setState(s => (s.edited[field] && !s.touched[field] ? { touched: { ...s.touched, [field]: true } } : null)); }
+  showToast(message, actions) { this.setState({ toast: { message, actions: actions || [] } }); }
+  undoable(message, undo) { this.showToast(message, [{ label: "실행취소", emphasis: "primary", onClick: () => { undo(); this.setState({ toast: null }); } }]); }
+  btn(label, variant, onClick, extra) {
+    const DS = window.MentreeDesignSystem_2f86cf;
+    return DS ? React.createElement(DS.Button, Object.assign({ key: label, variant, size: "md", onClick }, extra || {}), label) : null;
+  }
+
+  // ---------- 표본 데이터 ----------
+  seedCards() {
+    const IMG = Component.IMG;
+    const mentors = {
+      seo: { name: "이서연", org: "라쿠텐", title: "프로덕트 디자이너", avatar: IMG + "9.png" },
+      choi: { name: "최민호", org: "Google Japan", title: "데이터 애널리스트", avatar: IMG + "3.png" },
+      park: { name: "박수진", org: "Grab", title: "그로스 마케터", avatar: IMG + "2.png" },
+      oh: { name: "오세훈", org: "Amazon", title: "HR 매니저", avatar: IMG + "6.png" },
+      jung: { name: "정유진", org: "Zalando", title: "UX 리서처", avatar: IMG + "12.png" },
+    };
+    const mentees = {
+      jung: { name: "정하은", org: "XX상사", title: "데이터 애널리스트", flag: "japan", flagLabel: "일본" },
+      kim: { name: "김민지", org: "대학생", title: "데이터 사이언티스트 전공", flag: "japan", flagLabel: "일본" },
+      lee: { name: "이준호", org: "LINE Plus", title: "백엔드 개발자", flag: "south-korea", flagLabel: "대한민국" },
+      bak: { name: "박소연", org: "삼성전자", title: "UX 디자이너", flag: "south-korea", flagLabel: "대한민국" },
+      yoon: { name: "윤재민", org: "카카오", title: "서비스 기획자", flag: "south-korea", flagLabel: "대한민국" },
+    };
+    const T = [
+      { title: "일본 디자이너 면접과 포트폴리오 리뷰 요청드립니다.", flag: "japan", countryLabel: "일본", keyword: "해외취업", type: "포트폴리오 첨삭 및 면접 대비", flowers: 4,
+        request: "안녕하세요. 저는 서울의 모 대학교에서 디자인을 공부중인 학생입니다. 내년 봄 도쿄의 디자인 에이전시 신입 공채에 지원하려고 하는데, 포트폴리오 구성과 일본어 면접 준비 방향을 함께 봐주셨으면 합니다. 특히 UX 케이스 스터디를 어느 깊이까지 보여줘야 하는지 감이 잡히지 않습니다.",
+        requestFull: "안녕하세요. 저는 서울의 모 대학교에서 디자인을 공부중인 학생입니다. 내년 봄 도쿄의 디자인 에이전시 신입 공채에 지원하려고 하는데, 포트폴리오 구성과 일본어 면접 준비 방향을 함께 봐주셨으면 합니다.\n\n특히 UX 케이스 스터디를 어느 깊이까지 보여줘야 하는지, 그리고 일본 기업이 신입에게 기대하는 커뮤니케이션 방식이 한국과 어떻게 다른지 궁금합니다. 현재 포트폴리오 링크는 신청서에 첨부했습니다.",
+        scheduleNote: "평일 저녁 7시 이후나 주말 오전이 좋습니다. 일본 시간 기준입니다." },
+      { title: "도쿄 스타트업 이직, 레주메 첨삭 부탁드립니다.", flag: "japan", countryLabel: "일본", keyword: "이직", type: "이력서 첨삭", flowers: 2,
+        request: "현재 서울에서 3년차 백엔드 개발자로 일하고 있습니다. 도쿄의 시리즈 B 스타트업 몇 곳에 지원하려고 영문 레주메를 준비했는데, 성과를 숫자로 적는 방식과 일본 기업이 중요하게 보는 항목이 맞는지 봐주셨으면 합니다.",
+        requestFull: "현재 서울에서 3년차 백엔드 개발자로 일하고 있습니다. 도쿄의 시리즈 B 스타트업 몇 곳에 지원하려고 영문 레주메를 준비했는데, 성과를 숫자로 적는 방식과 일본 기업이 중요하게 보는 항목이 맞는지 봐주셨으면 합니다.\n\n레주메는 2장이며, 멘토링 전에 미리 공유드리겠습니다.",
+        scheduleNote: "주중 점심시간(12시~13시)도 가능합니다." },
+      { title: "싱가포르 EP 비자 준비 순서가 궁금합니다.", flag: "singapore", countryLabel: "싱가포르", keyword: "비자", type: "비자", flowers: 2,
+        request: "싱가포르 핀테크 회사에서 오퍼를 받았습니다. EP 비자 신청을 회사가 진행해준다고 하는데, 제가 미리 준비해야 할 서류와 COMPASS 점수에서 주의할 점을 알고 싶습니다. 가족 동반 비자도 함께 여쭙고 싶어요.",
+        requestFull: "싱가포르 핀테크 회사에서 오퍼를 받았습니다. EP 비자 신청을 회사가 진행해준다고 하는데, 제가 미리 준비해야 할 서류와 COMPASS 점수에서 주의할 점을 알고 싶습니다.\n\n배우자와 함께 이주할 예정이라 DP 비자 절차와 소요 기간도 함께 여쭙고 싶습니다.",
+        scheduleNote: "10월 셋째 주 안에 진행되면 좋겠습니다." },
+      { title: "해외 첫 연봉 협상, 어디까지 말해도 될까요?", flag: "united-states", countryLabel: "미국", keyword: "커리어", type: "커리어 상담", flowers: 6,
+        request: "시애틀 테크 기업에서 최종 오퍼를 앞두고 있습니다. 베이스와 RSU, 사이닝 보너스를 어떤 순서로 협상하는 것이 좋은지, 그리고 한국 연봉을 기준으로 이야기해도 되는지 멘토님의 경험을 듣고 싶습니다.",
+        requestFull: "시애틀 테크 기업에서 최종 오퍼를 앞두고 있습니다. 베이스와 RSU, 사이닝 보너스를 어떤 순서로 협상하는 것이 좋은지, 그리고 한국 연봉을 기준으로 이야기해도 되는지 멘토님의 경험을 듣고 싶습니다.\n\n리크루터와의 통화는 다음 주 화요일로 잡혀 있습니다.",
+        scheduleNote: "이번 주 안에 꼭 뵙고 싶습니다. 미국 서부 시간 저녁도 괜찮습니다." },
+      { title: "베를린 UX 리서처 최종 면접, 영어 발표를 봐주세요.", flag: "germany", countryLabel: "독일", keyword: "면접 준비", type: "면접 대비", flowers: 3,
+        request: "베를린의 커머스 기업 UX 리서처 포지션 최종 면접을 앞두고 있습니다. 영어로 리서치 케이스를 발표해야 하는데, 한국에서 진행한 사용성 테스트 사례를 어떤 구조로 설명하면 좋을지 조언을 듣고 싶습니다.",
+        requestFull: "베를린의 커머스 기업 UX 리서처 포지션 최종 면접을 앞두고 있습니다. 영어로 리서치 케이스를 발표해야 하는데, 한국에서 진행한 사용성 테스트 사례를 어떤 구조로 설명하면 좋을지 조언을 듣고 싶습니다.\n\n발표는 20분, 질의응답은 10분입니다. 발표 자료 초안은 멘토링 전에 공유드리겠습니다.",
+        scheduleNote: "독일 시간 기준 평일 오전이면 좋겠습니다." },
+    ];
+    const slots = [
+      { short: "2026.10.14 18:00", long: "2026년 10월 14일 (수) 18:00~18:30", other: "2026년 10월 14일 (수) 12:00~12:30", otherTime: "12:00" },
+      { short: "2026.10.16 20:00", long: "2026년 10월 16일 (금) 20:00~20:30", other: "2026년 10월 16일 (금) 14:00~14:30", otherTime: "14:00" },
+      { short: "2026.10.18 10:00", long: "2026년 10월 18일 (일) 10:00~10:30", other: "2026년 10월 18일 (일) 04:00~04:30", otherTime: "04:00" },
+    ];
+    // A1 — scheduledAt 은 확정까지 간 카드에만(취소 카드의 예정일/신청일을 가른다) · sessionAt=실시일 · cancelMessage=멘토가 보낸 취소 메세지
+    const base = { appliedDate: "2026.06.03", duration: "30분", scheduledLong: "2026년 10월 14일 (수) 18:00~18:30", scheduledOtherTz: "2026년 10월 14일 (수) 12:00~12:30", meetingUrl: "https://meet.google.com/kqx-mrpt-dvh", personHref: "#", applyHref: "#", slots, reproposed: false, cancelMessage: null, cheerSent: false, review: null };
+    const mk = (id, t, status, person, extra) => ({ id, ...base, ...T[t], status, person, ...(extra || {}) });
+    const thanks = "바쁘신 중에 시간 내주셔서 감사합니다. 말씀해주신 대로 레주메를 다시 정리해 보겠습니다.";
+    const noshowMsg = "예정된 시간에 멘토링이 열리지 못해 아쉽습니다. 혹시 접속에 문제가 있었다면 다음에는 시작 10분 전에 링크를 미리 열어두시면 좋겠습니다. 다시 신청해주시면 일정을 우선으로 맞춰드리겠습니다.";
+    const list = [
+      // 멘티(내가 신청) — 멘토의 「신청한 멘토링」과 공용
+      mk("mc1", 0, "applied", mentors.seo),
+      mk("mc2", 1, "applied", mentors.choi),
+      mk("mc3", 2, "scheduling-received", mentors.park, { message: "오퍼 수락 기한이 10월 말이라 그 전에 뵙고 싶습니다." }),
+      mk("mc10", 4, "scheduling-received", mentors.jung, { reproposed: true, message: "처음 제안해주신 일정이 모두 출장 기간과 겹칩니다. 다음 주 평일 저녁이면 언제든 괜찮습니다." }),
+      mk("mc4", 3, "scheduling-sent", mentors.oh, { message: "제안해주신 세 일정이 모두 회사 회의와 겹칩니다. 평일 저녁 9시 이후나 토요일 오전이 가능합니다." }),
+      mk("mc5", 0, "fixed", mentors.seo, { scheduledAt: "2026.10.14 18:00" }),
+      mk("mc6", 4, "done", mentors.jung, { message: thanks, sessionAt: "2026.09.24 17:00" }),
+      mk("mc11", 0, "done", mentors.seo, { message: thanks, sessionAt: "2026.08.27 19:00", cheerSent: true, cheerMessage: "오늘 이야기 나눠서 반가웠습니다. 포트폴리오에서 문제 정의 부분을 조금 더 앞으로 끌어오면 훨씬 설득력이 생길 거예요. 도쿄에서 뵙기를 기대하겠습니다." }),
+      mk("mc7", 2, "done-reviewed", mentors.park, { message: thanks, sessionAt: "2026.07.16 15:00", review: { writtenAt: "2026.07.18", main: "EP 비자 서류를 어떤 순서로 준비해야 하는지 체크리스트로 정리해주셔서 막막함이 많이 줄었습니다. COMPASS 점수에서 회사 규모 항목이 낮을 때 급여와 경력으로 보완하는 방법도 실제 사례로 설명해주셨습니다.", extra: "배우자 DP 비자 일정까지 함께 계산해주신 덕분에 이주 날짜를 현실적으로 잡을 수 있었습니다." } }),
+      mk("mc12", 3, "done-reviewed", mentors.oh, { message: thanks, sessionAt: "2026.05.21 21:00", cheerSent: true, cheerMessage: "협상 통화 전에 정리하신 숫자가 아주 탄탄했습니다. 베이스를 먼저 확정하고 RSU는 그다음에 이야기하는 순서만 지키시면 충분합니다. 좋은 결과가 나오면 꼭 알려주세요.", review: { writtenAt: "2026.05.23", main: "베이스, RSU, 사이닝 보너스를 어떤 순서로 이야기해야 하는지 통화 대본처럼 정리해주셔서 큰 도움이 되었습니다. 한국 연봉을 먼저 밝히지 않고도 대화를 이어가는 문장을 실제 통화에서 그대로 썼습니다.", extra: "리크루터 입장에서 어떤 답이 부담스러운지 알려주신 부분이 가장 인상깊었습니다." } }),
+      mk("mc8", 1, "cancelled", mentors.choi, { cancelReason: "me", message: "지원하려던 포지션이 마감되어 멘토링을 취소합니다. 죄송합니다.", cancelMessage: "취소 소식 잘 받았습니다. 지원하려던 포지션이 마감되어 아쉽지만, 다음 공고가 열리기 전에 레주메를 미리 다듬어 두시면 좋겠습니다. 준비되시면 언제든 다시 신청해주세요." }),
+      mk("mc9", 0, "cancelled", mentors.seo, { cancelReason: "other", scheduledAt: "2026.08.22 10:00", cancelMessage: "저의 피치 못할 사정으로 멘토링을 취소하게 되어 죄송합니다. 다음 주나 다다음 주 주말이라면 시간의 여유가 있으니, 괜찮으시면 다시 멘토링을 신청해주시겠어요? 정말 죄송합니다. 잘 부탁드립니다." }),
+      mk("mc13", 4, "cancelled", mentors.jung, { cancelReason: "noshow", scheduledAt: "2026.06.20 17:00", cancelMessage: noshowMsg }),
+      // 멘토(내가 신청받음) — 완료는 격려 전/뒤 × 리뷰 있음/없음 4조합
+      mk("mr1", 0, "applied", mentees.jung),
+      mk("mr2", 1, "applied", mentees.kim),
+      mk("mr3", 2, "scheduling-sent", mentees.lee, { message: "오퍼 수락 기한이 10월 말이라 그 전에 뵙고 싶습니다." }),
+      mk("mr4", 3, "scheduling-received", mentees.bak, { message: "제안해주신 세 일정이 모두 회사 회의와 겹칩니다. 평일 저녁 9시 이후나 토요일 오전이 가능합니다." }),
+      mk("mr5", 0, "fixed", mentees.jung, { scheduledAt: "2026.10.14 18:00" }),
+      mk("mr6", 1, "done-reviewed", mentees.lee, { message: thanks, sessionAt: "2026.09.02 20:00", review: { writtenAt: "2026.09.04", main: "레주메의 성과 항목을 숫자 중심으로 다시 쓰는 방법을 예시와 함께 알려주셔서 바로 적용할 수 있었습니다. 도쿄 스타트업이 실제로 어떤 항목을 먼저 보는지 들을 수 있어 지원 순서도 다시 정했습니다.", extra: "면접에서 '왜 일본인가'라는 질문에 답하는 방식을 함께 연습해주신 부분이 가장 기억에 남습니다." } }),
+      mk("mr7", 2, "done", mentees.bak, { message: thanks, sessionAt: "2026.08.19 19:00" }),
+      mk("mr8", 3, "done-reviewed", mentees.yoon, { message: thanks, sessionAt: "2026.07.30 21:00", cheerSent: true, cheerMessage: "멘토링에서 정리한 질문 순서대로만 진행하시면 충분히 좋은 조건을 이끌어내실 수 있을 거예요. 오퍼 레터를 받으면 서명 전에 조건을 한 번 더 확인해보시고, 궁금한 점은 언제든 남겨주세요. 응원하겠습니다.", review: { writtenAt: "2026.08.01", main: "첫 오퍼에서 무엇부터 물어봐야 하는지 순서를 잡아주셔서 협상 통화가 훨씬 편했습니다. 숫자를 말하기 전에 회사가 생각하는 범위를 먼저 확인하는 방법이 특히 실용적이었습니다.", extra: "협상이 끝난 뒤에도 관계를 해치지 않는 마무리 문장까지 알려주셔서 감사했습니다." } }),
+      mk("mr9", 0, "done", mentees.kim, { message: thanks, sessionAt: "2026.07.16 15:00", cheerSent: true, cheerMessage: "짧은 시간이었지만 준비를 많이 해오셔서 이야기가 깊어질 수 있었습니다. 오늘 고른 세 가지 프로젝트를 이번 달 안에 정리해보세요. 다음 단계에서 다시 뵙기를 기대합니다." }),
+      mk("mr11", 2, "cancelled", mentees.lee, { cancelReason: "me" }),
+      mk("mr12", 3, "cancelled", mentees.yoon, { cancelReason: "other", scheduledAt: "2026.09.12 11:00", message: "협상이 예정보다 빨리 끝났습니다. 다음에 다시 신청드리겠습니다." }),
+      mk("mr13", 1, "cancelled", mentees.bak, { cancelReason: "noshow", scheduledAt: "2026.06.27 18:00", cancelMessage: "예정된 시간에 접속하지 않으셔서 20분 정도 기다리다 멘토링을 종료했습니다. 사정이 있으셨다면 괜찮습니다. 아직 준비가 필요하시면 편한 일정으로 다시 신청해주세요." }),
+    ];
+    const map = {}; list.forEach(c => { map[c.id] = c; }); return map;
+  }
+  get mentorsData() {
+    const IMG = Component.IMG;
+    return [
+      { id: "mt1", name: "이서연", role: "프로덕트 디자이너", company: "라쿠텐", intro: "도쿄 10년차, 신입 디자이너 포트폴리오 300건 리뷰", field: "디자인", country: "japan", countryLabel: "일본", photo: IMG + "9.png" },
+      { id: "mt2", name: "김도현", role: "백엔드 엔지니어", company: "Shopify", intro: "토론토 이직 · 영문 레주메와 시스템 디자인 면접", field: "개발", country: "canada", countryLabel: "캐나다", photo: IMG + "1.png" },
+      { id: "mt3", name: "박수진", role: "그로스 마케터", company: "Grab", intro: "싱가포르 EP 비자부터 첫 연봉 협상까지", field: "마케팅/광고", country: "singapore", countryLabel: "싱가포르", photo: IMG + "2.png" },
+      { id: "mt4", name: "최민호", role: "데이터 애널리스트", company: "Google Japan", intro: "비전공자의 데이터 커리어 전환 이야기", field: "개발", country: "japan", countryLabel: "일본", photo: IMG + "3.png" },
+      { id: "mt5", name: "정유진", role: "UX 리서처", company: "Zalando", intro: "베를린 테크 씬의 리서치 문화와 영어 인터뷰", field: "디자인", country: "germany", countryLabel: "독일", photo: IMG + "12.png" },
+      { id: "mt6", name: "한지우", role: "투자 애널리스트", company: "DBS", intro: "금융권 해외 취업, 자격증보다 중요한 것", field: "금융", country: "singapore", countryLabel: "싱가포르", photo: IMG + "5.png" },
+      { id: "mt7", name: "오세훈", role: "HR 매니저", company: "Amazon", intro: "채용 담당자가 보는 레주메와 레퍼런스 체크", field: "HR", country: "united-states", countryLabel: "미국", photo: IMG + "6.png" },
+      { id: "mt8", name: "윤하린", role: "컨설턴트", company: "McKinsey", intro: "런던 오피스 케이스 인터뷰 준비법", field: "영업/컨설팅", country: "united-kingdom", countryLabel: "영국", photo: IMG + "7.png" },
+    ];
+  }
+  get followersData() {
+    const IMG = Component.IMG;
+    const mk = (id, name, org, title, flag, flagLabel, avatar, intro, countries, jobs) => ({ id, person: { name, org, title, flag, flagLabel, avatar }, intro, countries, jobs });
+    return [
+      mk("f1", "정하은", "XX상사", "데이터 애널리스트", "japan", "일본", undefined, "오사카 무역회사에서 데이터 분석을 맡고 있습니다. 도쿄 IT 기업으로의 이직을 준비 중입니다.", ["일본", "싱가포르"], ["개발", "마케팅/광고"]),
+      mk("f2", "이준호", "LINE Plus", "백엔드 개발자", "south-korea", "대한민국", IMG + "10.png", "서울에서 4년차 백엔드 개발자로 일하고 있습니다. 일본 또는 캐나다 이직을 알아보고 있습니다.", ["일본", "캐나다"], ["개발"]),
+      mk("f3", "박소연", "삼성전자", "UX 디자이너", "south-korea", "대한민국", undefined, "하드웨어 UX를 5년 했고, 소프트웨어 프로덕트 디자인으로 커리어를 옮기고 싶습니다.", ["미국", "독일"], ["디자인"]),
+      mk("f4", "윤재민", "카카오", "서비스 기획자", "south-korea", "대한민국", undefined, "서비스 기획 3년차. 싱가포르 핀테크로의 이직을 준비하고 있습니다.", ["싱가포르"], ["영업/컨설팅", "금융"]),
+      mk("f5", "김민지", "대학생", "데이터 사이언티스트 전공", "japan", "일본", undefined, "도쿄에서 교환학생으로 지내며 일본 IT 기업 취업을 준비하고 있습니다.", ["일본", "싱가포르", "미국"], ["디자인", "개발"]),
+      mk("f6", "장서우", "NC소프트", "게임 아티스트", "south-korea", "대한민국", undefined, "게임 아트 7년차. 북미 스튜디오 이직과 비자를 알아보고 있습니다.", ["미국", "캐나다"], ["디자인"]),
+      mk("f7", "한도윤", "대학원생", "컴퓨터공학 석사 과정", "united-states", "미국", undefined, "미국 대학원에서 석사 과정 중이며 졸업 후 현지 취업을 목표로 합니다.", ["미국"], ["개발"]),
+      mk("f8", "서지안", "현대자동차", "마케팅", "south-korea", "대한민국", undefined, "글로벌 마케팅 팀에서 일하며 유럽 주재원 또는 현지 이직을 고민하고 있습니다.", ["독일", "영국"], ["마케팅/광고"]),
+    ];
+  }
+  get qnaData() {
+    const IMG = Component.IMG;
+    const av = (...n) => n.map(i => ({ src: IMG + i + ".png", name: "멘토" }));
+    const Q = (title, country, countryLabel, keyword, tags, answerCount, views, likes, excerpt, extra) => ({ title, country, countryLabel, keyword, tags, answerCount, views, likes, excerpt, answerers: av(...[9, 3, 2].slice(0, Math.min(answerCount, 3))), ...(extra || {}) });
+    const S = (key, list) => list.map((q, i) => ({ id: key + "-" + (i + 1), at: (Component.QNA_AT[key] || [])[i], ...q }));
+    return {
+      answered: S("answered", [
+        Q("일본 신졸 채용에서 포트폴리오는 몇 개 프로젝트가 적당한가요?", "japan", "일본", "면접 준비", ["신졸채용", "포트폴리오", "디자인"], 3, 412, 28, "에이전시와 사업회사 모두 지원할 예정인데, 프로젝트 수와 깊이 중 무엇을 우선해야 할지 고민입니다."),
+        Q("영문 레주메에 한국 회사 이름은 어떻게 적나요?", "united-states", "미국", "이력서·지원서류", ["레주메", "영문이력서"], 2, 388, 19, "국내에서만 알려진 중견기업이라 회사 설명을 한 줄 넣어야 할지 모르겠습니다."),
+        Q("싱가포르 EP 비자, COMPASS 점수가 모자라면 어떻게 되나요?", "singapore", "싱가포르", "비자·영주권", ["EP비자", "COMPASS"], 2, 1024, 54, "오퍼는 받았는데 회사 규모가 작아 C5 항목에서 점수가 낮을 것 같습니다."),
+        Q("미국 오퍼 연봉 협상, 한국 연봉을 말해야 하나요?", "united-states", "미국", "연봉 협상", ["연봉협상", "오퍼"], 4, 2310, 97, "리크루터가 현재 연봉을 물어보는데 환율 환산해서 말하면 불리할 것 같아요."),
+        Q("일본 IT 기업 면접에서 자주 나오는 질문이 궁금합니다", "japan", "일본", "면접 준비", ["면접", "일본취업"], 3, 756, 41, "1차 면접이 다음 주인데 '지원 동기'와 '5년 뒤 모습' 외에 준비할 질문이 있을까요?"),
+        Q("독일 블루카드 조건에 학위가 꼭 필요한가요?", "germany", "독일", "비자·영주권", ["블루카드", "독일취업"], 1, 530, 22, "전문대 졸업 후 7년 경력이 있는데 학위 요건이 걸립니다."),
+        Q("해외 취업 준비 중 네트워킹은 어디서 시작하나요?", "japan", "일본", "네트워킹", ["네트워킹", "링크드인"], 2, 644, 35, "링크드인에 콜드 메세지를 보내는 것이 실례가 되지 않을까 걱정됩니다."),
+        Q("도쿄 1인 가구 생활비는 월 얼마쯤 잡아야 하나요?", "japan", "일본", "정착 생활", ["도쿄생활", "생활비"], 3, 1890, 76, "첫 월급 28만 엔 기준으로 집세와 생활비 비율이 궁금합니다."),
+      ]),
+      waiting: S("waiting", [
+        { id: "w1", ...Q("일본 기업 내정 뒤 입사 전까지 준비할 것이 있을까요?", "japan", "일본", "출국 준비", ["내정", "입사준비"], 0, 56, 2, "내년 4월 입사 예정입니다. 비자 외에 미리 해두면 좋은 것이 궁금합니다.") },
+        { id: "w2", ...Q("싱가포르 데이터 직군 신입 채용은 어디서 확인하나요?", "singapore", "싱가포르", "취업 전략", ["싱가포르취업", "데이터"], 0, 31, 1, "MyCareersFuture 말고 신입이 볼 만한 채널이 있을까요?") },
+        { id: "w3", ...Q("해외 인턴 경험이 없으면 신졸 지원에 불리한가요?", "japan", "일본", "취업 전략", ["인턴", "신졸채용"], 0, 18, 0, "교환학생 경험만 있고 현지 인턴 경험이 없습니다.") },
+      ]),
+      mentorAnswered: S("mentorAnswered", [
+        Q("일본 신졸 채용에서 포트폴리오는 몇 개 프로젝트가 적당한가요?", "japan", "일본", "면접 준비", ["신졸채용", "포트폴리오"], 3, 412, 28, "", { answerExcerpt: "3개면 충분합니다. 다만 하나는 반드시 문제 정의부터 검증까지 과정이 드러나는 프로젝트여야 합니다. 일본 사업회사는 결과물보다 '왜 그렇게 결정했는지'를 집요하게 묻습니다." }),
+        Q("일본 IT 기업 면접에서 자주 나오는 질문이 궁금합니다", "japan", "일본", "면접 준비", ["면접", "일본취업"], 3, 756, 41, "", { answerExcerpt: "'팀에서 의견이 갈렸을 때 어떻게 했나'는 거의 빠지지 않습니다. 결과보다 과정에서 상대를 어떻게 존중했는지를 보려는 질문이니 구체적인 에피소드 하나를 준비해두세요." }),
+        Q("도쿄 1인 가구 생활비는 월 얼마쯤 잡아야 하나요?", "japan", "일본", "정착 생활", ["도쿄생활", "생활비"], 3, 1890, 76, "", { answerExcerpt: "28만 엔이면 집세 9만, 생활비 10만, 저축 5만 정도가 현실적입니다. 입사 첫 달은 보증금과 가구 구입으로 50만 엔 정도가 더 필요하니 미리 준비해두세요." }),
+        Q("해외 취업 준비 중 네트워킹은 어디서 시작하나요?", "japan", "일본", "네트워킹", ["네트워킹", "링크드인"], 2, 644, 35, "", { answerExcerpt: "콜드 메세지는 실례가 아닙니다. 다만 '커피챗 해주세요'보다 '이 글을 읽고 이 부분이 궁금합니다'처럼 질문을 하나로 좁혀 보내면 답장률이 크게 올라갑니다." }),
+      ]),
+      mentorAsked: S("mentorAsked", [
+        Q("시니어 엔지니어의 일본 내 이직, 에이전트를 써야 할까요?", "japan", "일본", "이직하기", ["이직", "에이전트"], 2, 980, 44, "10년차 백엔드입니다. 직접 지원과 에이전트 중 어느 쪽이 연봉 협상에 유리한지 궁금합니다."),
+        Q("일본에서 매니저로 승진하려면 무엇이 필요한가요?", "japan", "일본", "승진", ["매니징", "승진"], 3, 1210, 58, "IC로만 8년을 일했고 처음으로 팀 리드 제안을 받았습니다."),
+        Q("한국 리턴을 고민 중입니다. 경력이 인정될까요?", "south-korea", "대한민국", "한국 리턴", ["한국리턴", "경력인정"], 4, 2050, 112, "일본 경력 10년이 한국 대기업 이직 시 어떻게 평가되는지 궁금합니다."),
+        Q("멘토링을 하면서 번아웃을 느낍니다", "japan", "일본", "번아웃", ["번아웃", "워라밸"], 2, 410, 31, "본업과 멘토링을 병행하며 주말이 사라졌습니다."),
+        Q("도쿄에서 창업 비자로 전환한 분 계신가요?", "japan", "일본", "창업", ["창업", "경영관리비자"], 1, 620, 27, "경영관리 비자 요건과 준비 기간이 궁금합니다."),
+        Q("미국 서부로 옮기려면 어떤 비자 경로가 현실적인가요?", "united-states", "미국", "비자·영주권", ["H1B", "L1"], 3, 1540, 88, "일본 법인에서 미국 본사로의 L1 전근과 H1B 중 고민입니다."),
+      ]),
+      scrap: S("scrap", [
+        Q("일본 신졸 채용에서 포트폴리오는 몇 개 프로젝트가 적당한가요?", "japan", "일본", "면접 준비", ["신졸채용", "포트폴리오", "디자인"], 3, 412, 28, "에이전시와 사업회사 모두 지원할 예정인데, 프로젝트 수와 깊이 중 무엇을 우선해야 할지 고민입니다.", { id: "s1", scraps: 41 }),
+        Q("미국 오퍼 연봉 협상, 한국 연봉을 말해야 하나요?", "united-states", "미국", "연봉 협상", ["연봉협상", "오퍼"], 4, 2310, 97, "리크루터가 현재 연봉을 물어보는데 환율 환산해서 말하면 불리할 것 같아요.", { id: "s2", scraps: 120 }),
+        Q("싱가포르 EP 비자, COMPASS 점수가 모자라면 어떻게 되나요?", "singapore", "싱가포르", "비자·영주권", ["EP비자", "COMPASS"], 2, 1024, 54, "오퍼는 받았는데 회사 규모가 작아 C5 항목에서 점수가 낮을 것 같습니다.", { id: "s3", scraps: 67 }),
+        Q("독일 블루카드 조건에 학위가 꼭 필요한가요?", "germany", "독일", "비자·영주권", ["블루카드", "독일취업"], 1, 530, 22, "전문대 졸업 후 7년 경력이 있는데 학위 요건이 걸립니다.", { id: "s4", scraps: 18 }),
+        Q("도쿄 1인 가구 생활비는 월 얼마쯤 잡아야 하나요?", "japan", "일본", "정착 생활", ["도쿄생활", "생활비"], 3, 1890, 76, "첫 월급 28만 엔 기준으로 집세와 생활비 비율이 궁금합니다.", { id: "s5", scraps: 93 }),
+        Q("한국 리턴을 고민 중입니다. 경력이 인정될까요?", "south-korea", "대한민국", "한국 리턴", ["한국리턴", "경력인정"], 4, 2050, 112, "일본 경력 10년이 한국 대기업 이직 시 어떻게 평가되는지 궁금합니다.", { id: "s6", scraps: 134 }),
+        Q("영국 Skilled Worker 비자 스폰서 회사는 어떻게 찾나요?", "united-kingdom", "영국", "비자·영주권", ["영국취업", "스폰서"], 2, 870, 39, "스폰서 라이선스 목록이 너무 길어서 어디부터 봐야 할지 모르겠습니다.", { id: "s7", scraps: 45 }),
+        Q("캐나다 토론토 개발자 연봉 수준이 궁금합니다", "canada", "캐나다", "연봉 협상", ["캐나다취업", "연봉"], 3, 1330, 61, "5년차 기준 현실적인 레인지와 세후 체감이 궁금합니다.", { id: "s8", scraps: 72 }),
+        Q("일본 회사에서 영어만으로 일할 수 있나요?", "japan", "일본", "커뮤니케이션", ["일본어", "영어"], 2, 690, 33, "JLPT N3 수준인데 외국계 또는 글로벌 팀이면 괜찮을까요?", { id: "s9", scraps: 29 }),
+      ]),
+    };
+  }
+  get articlesData() {
+    const IMG = Component.IMG;
+    return [
+      { id: "a1", title: "도쿄 디자인 에이전시 10년, 신입에게 바라는 단 한 가지", excerpt: "포트폴리오 300건을 리뷰하며 느낀 공통점은 하나였습니다. 결과물의 완성도보다 문제를 어떻게 정의했는지가 합격을 갈랐습니다.", date: "2026-09-28", tags: [{ label: "디자인", hue: "indigo" }, { label: "일본", hue: "amber" }] },
+      { id: "a2", title: "싱가포르 EP 비자 COMPASS, 점수표보다 중요한 세 가지", excerpt: "회사 규모와 급여 외에도 평가에 영향을 주는 항목이 있습니다. 오퍼를 받기 전에 확인해야 할 체크리스트를 정리했습니다.", date: "2026-09-15", tags: [{ label: "비자", hue: "teal" }, { label: "싱가포르", hue: "rose" }] },
+      { id: "a3", title: "미국 테크 기업 연봉 협상, 리크루터가 먼저 말하게 하는 법", excerpt: "현재 연봉을 묻는 질문에 바로 답하지 않아도 됩니다. 협상 테이블에서 순서를 바꾸는 세 문장을 소개합니다.", date: "2026-09-02", tags: [{ label: "연봉 협상", hue: "sky" }, { label: "미국", hue: "purple" }] },
+      { id: "a4", title: "베를린에서 UX 리서처로 일한다는 것", excerpt: "독일 테크 씬의 리서치 문화는 한국과 어떻게 다를까요. 회의 방식부터 피드백 문화까지 3년의 기록입니다.", date: "2026-08-20", tags: [{ label: "현지 생활", hue: "amber" }, { label: "독일", hue: "indigo" }] },
+      { id: "a5", title: "비전공자가 데이터 애널리스트가 되기까지, 2년의 로드맵", excerpt: "통계 기초부터 SQL, 그리고 첫 포트폴리오까지. 실제로 효과가 있었던 학습 순서와 그렇지 않았던 것을 솔직하게 적었습니다.", date: "2026-08-05", tags: [{ label: "커리어 전환", hue: "teal" }, { label: "데이터", hue: "sky" }] },
+      { id: "a6", title: "일본 회사의 '호렌소', 외국인 신입이 가장 많이 틀리는 지점", excerpt: "보고 · 연락 · 상담은 알고 있어도 타이밍을 놓치기 쉽습니다. 입사 첫 달에 신뢰를 쌓는 커뮤니케이션 습관을 정리했습니다.", date: "2026-07-22", tags: [{ label: "커뮤니케이션", hue: "rose" }, { label: "일본", hue: "amber" }] },
+      { id: "a7", title: "런던 컨설팅 케이스 인터뷰, 한국인 지원자의 강점과 약점", excerpt: "구조화는 강하지만 가설을 말로 밀고 나가는 데 약합니다. 실제 인터뷰어의 시선에서 준비 방법을 제안합니다.", date: "2026-07-08", tags: [{ label: "면접 준비", hue: "purple" }, { label: "영국", hue: "sky" }] },
+    ].map((a, i) => ({ ...a, image: IMG + (i + 1) + ".png" }));
+  }
+  get paymentData() {
+    return [
+      { label: "2026년 (3건)", rows: [{ datetime: "2026.04.30 12:34:31", amount: "40,000원", method: "카카오페이로 결제", cardId: "mc7" }, { datetime: "2026.03.12 09:12:05", amount: "60,000원", method: "카드로 결제", cardId: "mc6" }, { datetime: "2026.01.08 21:47:50", amount: "40,000원", method: "카카오페이로 결제", cardId: "mc7" }] },
+      { label: "2024년 (1건)", rows: [{ datetime: "2024.11.02 18:03:11", amount: "40,000원", method: "카드로 결제", cardId: "mc7" }] },
+      { label: "2021년 (2건)", rows: [{ datetime: "2021.06.14 10:20:44", amount: "40,000원", method: "카카오페이로 결제", cardId: "mc7" }, { datetime: "2021.02.27 15:55:09", amount: "60,000원", method: "카드로 결제", cardId: "mc6" }] },
+    ];
+  }
+  get settlementData() {
+    return [
+      { label: "2026년 (3건)", rows: [{ datetime: "2026.10.02 20:31:10", amount: "40,000원", flowers: "2송이", unsettled: true }, { datetime: "2026.09.18 19:02:47", amount: "40,000원", flowers: "2송이", unsettled: true }, { datetime: "2026.08.21 18:30:00", amount: "20,000원", flowers: "1송이", unsettled: false }] },
+      { label: "2024년 (1건)", rows: [{ datetime: "2024.12.03 21:10:22", amount: "40,000원", flowers: "2송이", unsettled: false }] },
+      { label: "2021년 (1건)", rows: [{ datetime: "2021.05.11 19:45:38", amount: "20,000원", flowers: "1송이", unsettled: false }] },
+    ];
+  }
+  static COUNTRY_GROUPS = [
+    { label: "", options: [{ value: "일본", label: "일본", flag: "japan" }, { value: "미국", label: "미국", flag: "united-states" }, { value: "대한민국", label: "대한민국", flag: "south-korea" }, { value: "싱가포르", label: "싱가포르", flag: "singapore" }] },
+    { label: "유럽", options: [{ value: "네덜란드", label: "네덜란드", flag: "netherlands" }, { value: "독일", label: "독일", flag: "germany" }, { value: "스페인", label: "스페인", flag: "spain" }, { value: "영국", label: "영국", flag: "united-kingdom" }, { value: "이탈리아", label: "이탈리아", flag: "italy" }] },
+    { label: "아시아/중동", options: [{ value: "말레이시아", label: "말레이시아", flag: "malaysia" }, { value: "중국", label: "중국", flag: "china" }, { value: "홍콩", label: "홍콩", flag: "hong-kong" }, { value: "UAE", label: "UAE", flag: "uae" }] },
+    { label: "북미/오세아니아", options: [{ value: "캐나다", label: "캐나다", flag: "canada" }, { value: "호주", label: "호주", flag: "australia" }] },
+  ];
+  static JOB_GROUPS = [
+    { label: "", options: [["개발", "source-code"], ["디자인", "pen-tool-03"], ["마케팅/광고", "megaphone-01"], ["영업/컨설팅", "agreement-01"], ["금융", "bank"], ["HR", "user-search-01"], ["교육", "teacher"], ["엔지니어링/제조", "factory-01"]].map(([v, icon]) => ({ value: v, label: v, icon })) },
+    { label: "기타", options: [["고객서비스/리테일", "customer-support"], ["공공복지", "charity"], ["법률", "legal-hammer"], ["학생", "student"]].map(([v, icon]) => ({ value: v, label: v, icon })) },
+  ];
+  flagOf(v) { for (const g of Component.COUNTRY_GROUPS) for (const o of g.options) if (o.value === v) return o.flag; return undefined; }
+  jobIcon(v) { for (const g of Component.JOB_GROUPS) for (const o of g.options) if (o.value === v) return o.icon; return "briefcase-01"; }
+
+
+  // ---------- 렌더 ----------
+  renderVals() {
+    const s = this.state;
+    const role = s.role, tab = s.tab, sub = s.sub, isMentor = role === "mentor";
+    const isMobile = s.isMobile;
+    const noop = (e) => { if (e && e.preventDefault) e.preventDefault(); };
+    const DS = window.MentreeDesignSystem_2f86cf;
+    const h = React.createElement;
+    const isEmptyV = Component.isEmptyV;
+    const cards = Object.values(s.cards);
+    const menteeCards = cards.filter(c => c.id.startsWith("mc"));
+    const receivedCards = cards.filter(c => c.id.startsWith("mr"));
+    const pendingReceived = receivedCards.filter(c => c.status === "applied").length;
+    const isReceived = isMentor && tab === "mentoring" && sub.startsWith("received");
+    const perspective = isReceived ? "mentor" : "mentee";
+    const qd = this.qnaData;
+
+    // ---- 세로 메뉴 ----
+    const link = (t, subv) => ({ href: "#", onClick: (e) => { e.preventDefault(); this.go(t, subv); } });
+    const menu = Component.TABS[role].map(t => {
+      const selected = tab === t;
+      const item = { key: t, label: Component.LABELS[role][t], selected, ariaCurrent: selected ? "page" : undefined, expandable: false, showChildren: false, children: [], chevron: "arrow-down-01", ...link(t) };
+      if (isMentor && t === "mentoring") {
+        item.expandable = true; item.showChildren = s.menuOpen; item.chevron = s.menuOpen ? "arrow-up-01" : "arrow-down-01";
+        item.selected = false; item.ariaCurrent = undefined;
+        item.onClick = (e) => { e.preventDefault(); if (tab !== "mentoring") this.go("mentoring", "received-ongoing"); else this.setState({ menuOpen: !s.menuOpen }); };
+        const sel1 = selected && sub.startsWith("received"), sel2 = selected && sub.startsWith("sent");
+        item.children = [
+          { label: `신청받은 멘토링 (${receivedCards.filter(c => !["done", "done-reviewed", "cancelled"].includes(c.status)).length})`, selected: sel1, ariaCurrent: sel1 ? "page" : undefined, badge: pendingReceived ? String(pendingReceived) : "", ...link("mentoring", sub.startsWith("received") ? sub : "received-ongoing") },
+          { label: `신청한 멘토링 (${menteeCards.filter(c => !["done", "done-reviewed", "cancelled"].includes(c.status)).length})`, selected: sel2, ariaCurrent: sel2 ? "page" : undefined, badge: "", ...link("mentoring", sub.startsWith("sent") ? sub : "sent-ongoing") },
+        ];
+      }
+      return item;
+    });
+    const mobileMenuItems = [];
+    Component.TABS[role].forEach(t => {
+      if (isMentor && t === "mentoring") { mobileMenuItems.push({ value: "mentoring:received", label: "신청받은 멘토링", count: pendingReceived || undefined }); mobileMenuItems.push({ value: "mentoring:sent", label: "신청한 멘토링" }); }
+      else mobileMenuItems.push({ value: t, label: Component.LABELS[role][t] });
+    });
+    const mobileMenuValue = isMentor && tab === "mentoring" ? (sub.startsWith("sent") ? "mentoring:sent" : "mentoring:received") : tab;
+    const setMobileMenu = (v) => { if (v === "mentoring:received") this.go("mentoring", "received-ongoing"); else if (v === "mentoring:sent") this.go("mentoring", "sent-ongoing"); else this.go(v); };
+
+    // ---- 탭 머리(본문 열 h2) ----
+    const ongoingN = (list) => list.filter(c => !["done", "done-reviewed", "cancelled"].includes(c.status)).length;
+    const head = { eyebrow: "", title: "", desc: "", help: "", stats: [], chips: [] };
+    let subTabs = [];
+    if (tab === "profile") { head.title = isMentor ? "멘토 프로필" : "프로필"; head.desc = isMentor ? "멘토 프로필은 멘토 상세 페이지에서 편집합니다." : "내가 설정한 프로필 정보입니다. 멘토링 신청 시 아래 정보가 멘토에게 보여집니다."; }
+    else if (tab === "qna") {
+      head.title = "나의 Q&A 멘토링";
+      if (isMentor) { head.desc = "내가 답변하거나 작성한 Q&A 멘토링 리스트입니다."; head.stats = [{ label: "답변한 멘토링 수", value: "42" }, { label: "도움돼요 수", value: "162" }]; subTabs = [{ value: "answered", label: "답변한 질문", icon: "answer-done", count: qd.mentorAnswered.length }, { value: "asked", label: "내가 한 질문", icon: "bubble-chat-question", count: qd.mentorAsked.length }]; }
+      else { head.desc = "내가 질문한 Q&A멘토링 리스트입니다. 멘토의 답변이 달린 이후에는 수정/삭제할 수 없습니다."; subTabs = [{ value: "answered", label: "답변이 완료된 질문", icon: "answer-done", count: Component.TOTAL.answered }, { value: "waiting", label: "답변을 기다리는 질문", icon: "bubble-chat-question", count: s.waitingIds.length }]; }
+    }
+    else if (tab === "mentoring") {
+      if (isReceived) { head.eyebrow = "나의 1:1 멘토링"; head.title = "신청받은 멘토링"; head.desc = "내가 신청받은 멘토링의 진행상황을 확인할 수 있습니다."; head.stats = [{ label: "받은 총 꽃송이 수", value: "24송이" }]; subTabs = [{ value: "received-ongoing", label: "진행중", count: ongoingN(receivedCards) }, { value: "received-done", label: "완료", count: 12 }]; }
+      else if (isMentor) { head.eyebrow = "나의 1:1 멘토링"; head.title = "신청한 멘토링"; head.desc = "내가 신청한 멘토링의 진행상황을 확인할 수 있습니다."; subTabs = [{ value: "sent-ongoing", label: "진행중인 멘토링", count: ongoingN(menteeCards) }, { value: "sent-done", label: "완료된 멘토링", count: 12 }]; }
+      else { head.title = "나의 1:1 멘토링"; head.desc = "내가 신청한 1:1 멘토링 리스트입니다. 멘토가 멘토링을 수락한 이후 취소할 경우 취소 수수료가 부과됩니다."; head.help = "취소 수수료에 대하여"; subTabs = [{ value: "ongoing", label: "진행중인 멘토링", count: ongoingN(menteeCards) }, { value: "done", label: "완료된 멘토링", count: 12 }]; }
+    }
+    else if (tab === "favorites") {
+      if (isMentor) { head.title = "나의 팔로워 / 관심있는 멘토"; head.desc = "나의 팔로워와 내가 관심있는 등록한 멘토 리스트입니다."; subTabs = [{ value: "followers", label: "나의 팔로워", count: 8 }, { value: "mentors", label: "관심있는 멘토", count: s.favoriteIds.length }]; }
+      else { head.title = "관심있는 멘토"; head.desc = "관심있는 멘토로 등록한 멘토 리스트입니다."; }
+    }
+    else if (tab === "scrap") { head.title = "나의 스크랩"; head.desc = "스크랩한 Q&A와 아티클 리스트입니다."; subTabs = [{ value: "qna", label: "스크랩한 Q&A 멘토링", count: Component.TOTAL.scrapQna }, { value: "article", label: "스크랩한 아티클", count: Component.TOTAL.article }]; }
+    else if (tab === "payment") { head.title = "결제 이력"; head.desc = "결제 이력을 확인할 수 있습니다."; head.chips = [{ label: s.mail }]; }
+    else if (tab === "settlement") { head.title = "정산 수단 / 이력"; head.desc = "수익 이력을 확인하고 정산을 신청할 수 있습니다. 정산 시 등록된 정산 계좌로 정산됩니다."; subTabs = [{ value: "payout", label: "정산 받을 이력" }, { value: "payment", label: "결제 이력" }]; }
+    else if (tab === "account") { head.title = "계정 설정"; head.desc = "각종 계정 관련된 설정을 관리할 수 있습니다."; }
+    const hasSubTabs = subTabs.length > 0;
+
+    // ---- 상태 ----
+    const normalOnly = tab === "profile" && isMentor;
+    const st = normalOnly ? "normal" : s.uiState;
+    const isNormal = st === "normal", isLoading = st === "loading", isError = st === "error";
+    const profileMentee = tab === "profile" && !isMentor;
+    const profileEmpty = profileMentee && st === "empty";
+    const isEmpty = st === "empty" && tab !== "account" && !profileMentee;
+    const showNormal = isNormal || (st === "empty" && tab === "account");
+    const rowsTab = tab === "qna" || (tab === "scrap" && sub !== "article");
+    const favMentorsTab = tab === "favorites" && (!isMentor || sub === "mentors");
+    const followersTab = tab === "favorites" && isMentor && sub === "followers";
+    const L = isLoading && !rowsTab;
+    let emptyTitle = "", emptyDesc = "", emptyBtn = null, emptyIcon = "inbox";
+    const E = (label, extra) => this.btn(label, "primary", () => { location.href = "#"; }, extra);
+    if (tab === "qna") { emptyIcon = "message-question"; if (isMentor && sub !== "asked") { emptyTitle = "아직 답변한 질문이 없어요"; emptyBtn = E("Q&A 멘토링으로", { size: "sm" }); } else { emptyTitle = "아직 질문이 없어요"; emptyBtn = E("질문하기", { size: "sm" }); } }
+    else if (tab === "mentoring") { if (isReceived) { emptyTitle = "아직 받은 신청이 없어요"; } else { emptyTitle = "아직 신청한 멘토링이 없어요"; emptyBtn = E("멘토 찾기"); } emptyIcon = "mentoring"; }
+    else if (tab === "favorites") { if (followersTab) { emptyTitle = "아직 팔로워가 없어요"; } else { emptyTitle = "아직 관심있는 멘토가 없어요"; emptyBtn = E("멘토 찾기"); } emptyIcon = "user-search-01"; }
+    else if (tab === "scrap") { emptyTitle = "아직 스크랩한 것이 없어요"; emptyBtn = E(sub === "article" ? "멘트리 인사이트로" : "Q&A 멘토링으로"); emptyIcon = "bookmark-01"; }
+    else if (tab === "payment") { emptyTitle = "결제 이력이 없어요"; emptyIcon = "invoice-01"; }
+    else if (tab === "settlement") { emptyTitle = sub === "payment" ? "결제 이력이 없어요" : "아직 정산 받을 이력이 없어요"; emptyIcon = "invoice-01"; }
+    const errorAction = this.btn("다시 시도하기", "outline", () => this.set({ uiState: "normal" }));
+
+    // ---- Q&A 줄 목록(나의 Q&A · 스크랩한 Q&A) ----
+    const NOW = Component.NOW;
+    const isNewQ = (q) => !q.notNew && !!q.at && NOW >= Date.parse(q.at) && NOW - Date.parse(q.at) < 864e5;
+    const likeOf = (q) => ({ liked: !!s.liked[q.id], likesShown: (q.likes || 0) + (s.liked[q.id] ? 1 : 0), onLike: (next) => this.setState(st2 => ({ liked: { ...st2.liked, [q.id]: !!next } })) });
+    let rows = [], rowsVariant = "default", countN = 0, countNoun = "";
+    if (tab === "qna") {
+      if (isMentor) {
+        if (sub === "asked") { rows = qd.mentorAsked; countNoun = "내가 한 질문"; }
+        else { rows = qd.mentorAnswered; rowsVariant = "answer"; countNoun = "답변한 질문"; }
+        countN = rows.length;
+      } else if (sub === "waiting") {
+        rows = qd.waiting.filter(q => s.waitingIds.includes(q.id)); countN = rows.length; countNoun = "답변을 기다리는 질문";
+      } else {
+        countN = Component.TOTAL.answered; countNoun = "답변이 완료된 질문";
+        rows = this.pageOf(qd.answered, s.pages.answered, Component.TOTAL.answered, Component.PER.answered);
+      }
+      rows = rows.map(q => {
+        const editable = rowsVariant === "default" && !(q.answerCount > 0);
+        const isNew = isNewQ(q), on = !!s.scrapped[q.id], baseScraps = q.scraps != null ? q.scraps : Math.round((q.likes || 0) / 2);
+        return { ...q, ...likeOf(q), scrapped: on, scrapsShown: baseScraps + (on ? 1 : 0), onScrap: (next) => this.setState(st2 => ({ scrapped: { ...st2.scrapped, [q.id]: !!next } })), editable, isNew, isNewRow: isNew && !editable, onEdit: () => { location.href = "#"; }, onDelete: () => this.openModal("delete-question", { activeQuestionId: q.id }) };
+      });
+    } else if (tab === "scrap" && sub !== "article") {
+      // 스크랩을 끄면 묻지 않고 빼고 Toast 「실행취소」
+      const base = qd.scrap.filter(q => s.scrapQnaIds.includes(q.id));
+      rows = this.pageOf(base, s.pages.scrapQna, Component.TOTAL.scrapQna, Component.PER.scrapQna).map(q => ({ ...q, ...likeOf(q), scrapped: true, scrapsShown: q.scraps, onScrap: (next) => { if (next) return; const prev = s.scrapQnaIds; this.setState({ scrapQnaIds: prev.filter(x => x !== q.id) }); this.undoable("스크랩에서 뺐어요", () => this.setState({ scrapQnaIds: prev })); }, editable: false, isNew: false, isNewRow: isNewQ(q) }));
+    }
+
+    // ---- 1:1 멘토링 묶음 ----
+    const openDetail = (card, key) => this.set({ activeCardId: card.id, modal: key });
+    const cardAction = (key, card) => this.set({ activeCardId: card.id, modal: key });
+    let mentoringGroups = [];
+    if (tab === "mentoring") {
+      const list = isReceived ? receivedCards : menteeCards;
+      const isDone = sub.endsWith("done");
+      const by = (...sts) => list.filter(c => sts.includes(c.status));
+      if (!isDone) mentoringGroups = [{ title: "신청한 멘토링", cards: by("applied") }, { title: "일정 조율중인 멘토링", cards: by("scheduling-received", "scheduling-sent") }, { title: "확정된 멘토링", cards: by("fixed") }];
+      else if (isReceived) mentoringGroups = [{ title: "완료된 멘토링", cards: by("done", "done-reviewed").slice(0, 5), count: 12, more: true }, { title: "취소된 멘토링", cards: by("cancelled") }];
+      else mentoringGroups = [{ title: "완료된 멘토링", cards: by("done", "done-reviewed") }, { title: "취소된 멘토링", cards: by("cancelled") }];
+      mentoringGroups = mentoringGroups.filter(g => g.cards.length).map(g => ({ ...g, count: g.count || g.cards.length, more: !!g.more }));
+    }
+
+    // ---- 관심 멘토 · 팔로워 ----
+    const favoriteMentors = this.mentorsData.filter(m => s.favoriteIds.includes(m.id)).map(m => ({ ...m, onBookmark: (next) => { if (next) return; const prev = s.favoriteIds; this.setState({ favoriteIds: prev.filter(x => x !== m.id) }); this.undoable("관심 멘토에서 뺐어요", () => this.setState({ favoriteIds: prev })); } }));
+    const followersAll = this.followersData;
+    const followers = followersAll.map(f => ({ ...f, onClick: (e) => { e.preventDefault(); this.openModal("mentee-profile", { activeFollowerId: f.id }); } }));
+    const follower = followersAll.find(f => f.id === s.activeFollowerId) || followersAll[0];
+
+    // ---- 스크랩한 아티클 ----
+    const articlesAll = this.articlesData.filter(a => s.scrapArticleIds.includes(a.id)).map(a => ({ ...a, onBookmark: (next) => { if (next) return; const prev = s.scrapArticleIds; this.setState({ scrapArticleIds: prev.filter(x => x !== a.id) }); this.undoable("스크랩에서 뺐어요", () => this.setState({ scrapArticleIds: prev })); } }));
+    const scrapArticles = this.pageOf(articlesAll, s.pages.article, Component.TOTAL.article, Component.PER.article);
+
+    // ---- 결제 · 정산 — 1쪽 2026 · 2024 / 2쪽 2021 ----
+    const payData = this.paymentData, setData = this.settlementData;
+    const half = (list, p) => (p <= 1 ? list.slice(0, 2) : list.slice(2));
+    const paymentYears = half(payData, s.pages.payment).map(y => ({ ...y, rows: y.rows.map(r => ({ ...r, onDetail: () => this.set({ activeCardId: r.cardId, modal: "detail-" + (s.cards[r.cardId] || {}).status }) })) }));
+    const settlementYears = half(setData, s.pages.payout).map(y => ({ ...y, rows: y.rows.map(r => ({ ...r, unsettled: r.unsettled && !s.donated, settled: !r.unsettled || s.donated })) }));
+
+    // ---- 쪽 넘기기 ----
+    let pager = null;
+    if (showNormal) {
+      if (tab === "qna" && !isMentor && sub !== "waiting") pager = { key: "answered", total: Math.ceil(Component.TOTAL.answered / Component.PER.answered) };
+      else if (tab === "scrap" && sub === "article") pager = { key: "article", total: Math.ceil(Component.TOTAL.article / Component.PER.article) };
+      else if (tab === "scrap") pager = { key: "scrapQna", total: Math.ceil(Component.TOTAL.scrapQna / Component.PER.scrapQna) };
+      else if (tab === "payment" || (tab === "settlement" && sub === "payment")) pager = { key: "payment", total: 2 };
+      else if (tab === "settlement") pager = { key: "payout", total: 2 };
+    }
+    const pagerPage = pager ? Math.min(s.pages[pager.key] || 1, pager.total) : 1;
+    const toPage = (p) => { if (!pager) return; const n = Math.max(1, Math.min(pager.total, p)); this.setState(st2 => ({ pages: { ...st2.pages, [pager.key]: n } }), () => this.scrollToMain()); };
+
+    // ---- 상세 모달 ----
+    const isDetailModal = Component.DETAIL_RE.test(s.modal);
+    let detailCard = s.cards[s.activeCardId];
+    if (isDetailModal && !detailCard) detailCard = this.pickCardFor(s.modal);
+    const detailPerspective = detailCard && detailCard.id.startsWith("mr") ? "mentor" : "mentee";
+
+    // ---- 편집 대화상자 ----
+    const m = Component.EDIT_MODALS.includes(s.modal) ? s.modal : "";
+    const cm = Component.CONFIRM_MODALS.includes(s.modal) ? s.modal : "";
+    const f = s.form || {};
+    const saving = s.editState === "saving", asking = s.editState === "dirty";
+    const won = (n) => `${n / 10000}만원 (${n / 20000}송이)`;
+    const titles = { "profile-edit": "프로필 수정하기", photo: "프로필 사진 편집하기", intro: "소개글 편집하기", countries: "흥미있는 국가 편집하기", jobs: "흥미있는 직종 편집하기", timezone: "시간대 변경", mail: "메일 주소 확인 & 수신 설정", notify: "알림 설정", password: s.pwDone ? "비밀번호 변경" : "비밀번호를 변경하시겠습니까?", leave: "멘트리 커뮤니티 탈퇴하기", "min-price": "멘토링 최소금액 설정", "mentee-profile": "멘티 프로필", bank: "정산 계좌 변경" };
+    const descs = { photo: "프로필 사진은 멘토링을 신청한 멘토에게 보여집니다. 얼굴이 잘 보이는 사진을 올려주세요.", countries: "흥미있는 국가를 모두 선택해주세요. (복수선택 가능)", jobs: "흥미있는 직종을 모두 선택해주세요. (복수선택 가능)", "min-price": "멘토링 최소금액을 설정해 주세요. (30분 기준)" };
+    const lg = { size: "lg", fullWidth: true };
+    const close = () => this.closeModal();
+    const okSave = !!m && this.canSave(m, f, s);
+    const saveBtn = (label, apply) => (saving ? this.btn("저장하는 중…", "primary", noop, { ...lg, disabled: true }) : this.btn(label || "저장하기", "primary", () => this.save(apply), { ...lg, disabled: !okSave }));
+    const back = this.btn("이전 화면으로", "ghost", () => this.requestClose(), { size: "sm", iconLeft: "arrow-left-01", disabled: saving });
+    const closeLg = this.btn("닫기", "outline", close, lg);
+    let editFooter = null;
+    if (asking && DS) {
+      // DS-122 닫기 확인 바닥 — 제목 · 칸은 그대로, 바닥만 바꾼다
+      editFooter = [h("div", { key: "ask", "data-temp": "DS-122", style: { display: "flex", flexDirection: "column", gap: 16, width: "100%" } },
+        h("p", { style: { margin: 0, textAlign: "center", fontSize: "var(--text-body)", lineHeight: "var(--text-body--line-height)", letterSpacing: "var(--text-body--letter-spacing)", color: "var(--foreground)" } }, "편집 중인 내용이 있습니다. 정말 닫으시겠습니까?"),
+        h("div", { style: { display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 8 } },
+          h(DS.Button, { variant: "outline", size: "lg", fullWidth: true, onClick: close }, "닫기"),
+          h(DS.Button, { variant: "primary", size: "lg", fullWidth: true, onClick: () => this.set({ editState: "" }) }, "계속 편집하기")))];
+    }
+    else if (m === "profile-edit") editFooter = [saveBtn(null, () => this.setState(st2 => ({ me: { ...st2.me, name: String(f.name || "").trim(), statusType: f.statusType, company: f.company, jobMajor: f.jobMajor, jobMinor: f.jobMinor, jobName: f.jobName, school: f.school, major: f.major, careerIntro: f.careerIntro, country: f.country, city: f.city } })))];
+    else if (m === "photo") editFooter = [saveBtn(null, () => this.setState(st2 => ({ me: { ...st2.me, avatar: st2.photoSrc } })))];
+    else if (m === "intro") editFooter = [saveBtn(null, () => this.setState(st2 => ({ me: { ...st2.me, intro: String(f.intro || "").trim() } })))];
+    else if (m === "countries") editFooter = [saveBtn(null, () => this.setState(st2 => ({ me: { ...st2.me, countries: f.countries || [] } })))];
+    else if (m === "jobs") editFooter = [saveBtn(null, () => this.setState(st2 => ({ me: { ...st2.me, jobs: f.jobs || [] } })))];
+    else if (m === "timezone") editFooter = [saveBtn(null, () => this.setState({ tz: f.tz })), back];
+    else if (m === "mail") editFooter = [saveBtn(null, () => this.setState({ mailSub: !!f.mailSub })), back];
+    else if (m === "notify") editFooter = [saveBtn(null, () => this.setState({ notify: { mentoring: !!f.notifyMentoring, qna: !!f.notifyQna, news: !!f.notifyNews } }))];
+    else if (m === "password") editFooter = s.pwDone ? [closeLg] : [saveBtn("비밀번호 변경하기", null)];
+    else if (m === "leave" || m === "mentee-profile") editFooter = [closeLg];
+    else if (m === "min-price") editFooter = [saveBtn(null, () => this.setState({ minPrice: Number(f.minPrice) }))];
+    else if (m === "bank") editFooter = [saveBtn(null, () => this.setState({ bank: { bank: f.bank, account: String(f.account || "").trim(), holder: String(f.holder || "").trim() } }))];
+
+    // 칸 에러 — 필수 칸을 고쳐서 비운 채 떠나면 「입력해 주세요」
+    const fe = {}, fi = {};
+    (Component.REQUIRED[m] || []).forEach(k => { if (s.touched[k] && isEmptyV(f[k])) fe[k] = "입력해 주세요"; });
+    if (m === "password" && f.pw3 && f.pw2 !== f.pw3) fe.pw3 = "새 비밀번호와 같지 않습니다";
+    Object.keys(fe).forEach(k => { fi[k] = true; });
+    const bl = {};
+    ["name", "intro", "pw1", "pw2", "pw3", "account", "holder"].forEach(k => { bl[k] = () => this.leave(k); });
+    const sf = (k) => (v) => this.setForm(k, v);
+    const ss = (k) => (v) => this.setForm(k, v, true);
+    const jobMajorOptions = ["개발", "디자인", "마케팅/광고", "영업/컨설팅", "금융", "HR", "교육", "엔지니어링/제조", "기타"];
+    const jobMinorMap = { "개발": ["백엔드", "프론트엔드", "모바일", "데이터", "인프라"], "디자인": ["프로덕트", "UX 리서치", "그래픽", "브랜드"], "마케팅/광고": ["그로스", "브랜드", "퍼포먼스", "콘텐츠"], "영업/컨설팅": ["B2B 영업", "전략 컨설팅", "IT 컨설팅"], "금융": ["투자", "리서치", "리스크", "회계"], "HR": ["채용", "HRBP", "교육"], "교육": ["강사", "교육 기획"], "엔지니어링/제조": ["기계", "전기", "생산 관리"], "기타": ["고객서비스/리테일", "공공복지", "법률"] };
+
+    // ---- 확인 대화상자(질문 삭제 · 휴면 전환 · 기부) ----
+    const backMd = this.btn("돌아가기", "outline", close);
+    let confirmTitle = "", confirmDesc = "", confirmFooter = null;
+    if (cm === "delete-question") { confirmTitle = "질문을 삭제할까요?"; confirmDesc = "되돌릴 수 없어요. 멘토의 답변이 달리기 전까지만 삭제할 수 있습니다."; confirmFooter = [backMd, this.btn("삭제", "destructive", () => { const id = s.activeQuestionId; this.setState(st2 => ({ waitingIds: st2.waitingIds.filter(x => x !== id) })); this.closeModal(); this.showToast("질문을 삭제했어요"); })]; }
+    else if (cm === "dormant") { confirmTitle = "휴면 계정으로 전환할까요?"; confirmDesc = "휴면 중에는 알림과 메일 매거진이 멈추고 프로필이 공개되지 않습니다. 조율중이거나 확정된 1:1 멘토링이 있으면 전환할 수 없습니다. 다시 로그인하면 휴면이 풀립니다."; confirmFooter = [backMd, this.btn("휴면 계정으로 전환", "destructive", () => { this.closeModal(); this.showToast("휴면 계정으로 전환했어요"); })]; }
+    else if (cm === "donate-confirm") { const auto = s.donateMode === "auto"; confirmTitle = auto ? "정산 금액을 자동으로 기부할까요?" : "미정산 금액을 기부할까요?"; confirmDesc = auto ? "앞으로 정산되는 금액을 전액 멘트리 장학 기금에 기부합니다. 언제든 끌 수 있습니다." : "80,000원을 멘트리 장학 기금에 기부합니다. 기부한 금액은 되돌릴 수 없습니다."; confirmFooter = [backMd, this.btn("기부하기", "primary", () => { if (auto) { this.setState({ autoDonate: true }); this.closeModal(); this.showToast("자동 기부를 켰어요"); } else { this.setState({ donated: true }); this.closeModal(); this.showToast("80,000원을 기부했어요"); } })]; }
+
+    const tzHelp = DS ? React.createElement(DS.Tooltip, { content: "1:1 멘토링 일정과 알림은 이 시간대 기준으로 표시됩니다", key: "tz" }, React.createElement(DS.IconButton, { icon: "help-circle", variant: "ghost", size: "sm", ariaLabel: "시간대 안내" })) : null;
+
+    // ---- 데모 줄 ----
+    const demoTabs = Component.TABS[role].map(t => ({ value: t, label: Component.LABELS[role][t] }));
+    const demoSubs = subTabs.map(t => ({ value: t.value, label: t.label }));
+    const detailKeys = ["detail-applied", "detail-scheduling-sent", "detail-scheduling-received", "detail-fixed", "detail-done", "detail-done-reviewed", "detail-cancelled", "cancel-1", "cancel-2", "fix-schedule", "reschedule", "accept", "accept-done", "review", "review-done", "cheer-read", "mentor-message", "my-review", "cheer-write", "cheer-sent", "cheer-view", "cancel-msg-write", "cancel-msg-sent", "cancel-msg-view", "mentee-review"];
+    const editKeys = ["profile-edit", "photo", "intro", "countries", "jobs", "timezone", "mail", "notify", "password", "dormant", "leave", "min-price", "donate-confirm", "mentee-profile", "bank"];
+    const demoModals = [{ value: "", label: "없음" }, ...detailKeys.map(k => ({ value: k, label: "멘토링 · " + k })), ...editKeys.map(k => ({ value: k, label: "편집 · " + k }))];
+    const demoPick = (field) => (e) => {
+      const v = e.target.value;
+      if (field === "role") { const nt = tab === "payment" || tab === "settlement" ? (v === "mentor" ? "settlement" : "payment") : tab; this.set({ role: v, tab: nt, sub: this.defaultSub(v, nt), modal: "", editState: "", activeCardId: null, menuOpen: nt === "mentoring" }); }
+      else if (field === "tab") this.go(v);
+      else if (field === "sub") this.set({ sub: v });
+      else if (field === "state") this.set({ uiState: v });
+      else if (field === "view") this.set({ view: v });
+      else if (field === "modal") { if (!v) this.closeModal(); else if (Component.EDIT_MODALS.includes(v) || Component.CONFIRM_MODALS.includes(v)) this.openModal(v); else this.set({ modal: v, editState: "", activeCardId: null }); }
+    };
+    const mobileParams = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
+    mobileParams.set("view", "desktop"); mobileParams.set("frame", "1");
+    const demoQuery = typeof window !== "undefined" ? window.location.search : "";
+
+    return {
+      // 데모 · 뷰
+      showDemo: !s.frame && !this.props.hideDemoBar, isMobileView: s.view === "mobile", isPageView: s.view !== "mobile",
+      mobileSrc: "MyPage.dc.html?" + mobileParams.toString(), demoQuery,
+      role, tab, sub, uiState: s.uiState, modal: s.modal, view: s.view,
+      demoRoles: [{ value: "mentee", label: "멘티" }, { value: "mentor", label: "멘토" }], demoTabs, demoSubs,
+      demoStates: [{ value: "normal", label: "normal" }, { value: "loading", label: "loading" }, { value: "empty", label: "empty" }, { value: "error", label: "error" }],
+      demoModals, demoViews: [{ value: "desktop", label: "desktop" }, { value: "mobile", label: "mobile (390)" }],
+      demoRole: demoPick("role"), demoTab: demoPick("tab"), demoSub: demoPick("sub"), demoState: demoPick("state"), demoModal: demoPick("modal"), demoView: demoPick("view"),
+      // 셸
+      isMentor, isMobile, isDesktop: !isMobile, noop, listTop: this._main,
+      pageDesc: isMentor ? "내 프로필과 멘토링 기록, 스크랩, 정산 이력을 한곳에서 관리합니다." : "내 프로필과 멘토링 기록, 스크랩, 결제 이력을 한곳에서 관리합니다.",
+      headerUser: isMentor ? { name: "박지훈", avatarUrl: Component.IMG + "8.png" } : { name: s.me.name, avatarUrl: s.me.avatar },
+      menu, mobileMenuItems, mobileMenuValue, setMobileMenu,
+      head, headHasEyebrow: !!head.eyebrow, headHasHelp: !!head.help, headStats: head.stats, headChips: head.chips,
+      tzValue: s.tz, tzHelp, openTimezone: () => this.openModal("timezone"),
+      hasSubTabs, subTabs, setSub: (v) => this.set({ sub: v }), subTabSize: isMobile ? "s" : "l",
+      showTz: ["profile", "qna", "mentoring"].includes(tab),
+      goMentorProfile: () => { location.href = "#"; },
+      // 상태
+      loadingOther: L, loadingCards: L && tab === "mentoring", loadingProfile: L && profileMentee, loadingArticles: L && tab === "scrap" && sub === "article", loadingMentors: L && favMentorsTab, loadingFollowers: L && followersTab, loadingRows: L && ["payment", "settlement", "account"].includes(tab),
+      three: [1, 2, 3], four: [1, 2, 3, 4], five: [1, 2, 3, 4, 5], six: [1, 2, 3, 4, 5, 6],
+      mentorCols: isMobile ? "repeat(2, minmax(0, 1fr))" : "repeat(auto-fill, 296px)",
+      isEmpty, isError, emptyTitle, emptyDesc, emptyIcon, emptyAction: emptyBtn, errorAction,
+      // 탭 본문 표시
+      showProfileMentee: profileMentee && (isNormal || profileEmpty),
+      showProfileMentor: tab === "profile" && isMentor,
+      showRowsTab: rowsTab && (isNormal || isLoading), showCountRow: tab === "qna", rowsLoading: rowsTab && isLoading, rowsNormal: rowsTab && isNormal,
+      showMentoring: showNormal && tab === "mentoring",
+      showFavMentors: showNormal && favMentorsTab,
+      showFollowers: showNormal && followersTab,
+      showScrapArticles: showNormal && tab === "scrap" && sub === "article",
+      showPayout: showNormal && tab === "settlement" && sub !== "payment",
+      showPayment: showNormal && (tab === "payment" || (tab === "settlement" && sub === "payment")),
+      showAccount: showNormal && tab === "account",
+      // 프로필
+      me: { ...s.me, flag: this.flagOf(s.me.country) || "japan", flagLabel: s.me.country, location: `${s.me.country}, ${s.me.city}에서 활동중`, statusLine: s.me.statusType === "학생" ? `대학생 · ${s.me.major} 전공` : s.me.statusType === "재직" ? [s.me.jobName, s.me.company].filter(Boolean).join(" · ") : s.me.careerIntro || "" },
+      avatarSize: isMobile ? 64 : 88,
+      meCountries: s.me.countries.map(v => ({ value: v, flag: this.flagOf(v) })), meJobs: s.me.jobs.map(v => ({ value: v, icon: this.jobIcon(v) })),
+      hasIntro: !profileEmpty && !!s.me.intro, noIntro: profileEmpty || !s.me.intro,
+      hasCountries: !profileEmpty && s.me.countries.length > 0, noCountries: profileEmpty || !s.me.countries.length,
+      hasJobs: !profileEmpty && s.me.jobs.length > 0, noJobs: profileEmpty || !s.me.jobs.length,
+      openProfileEdit: () => this.openModal("profile-edit"), openPhoto: () => this.openModal("photo"), openIntro: () => this.openModal("intro"), openCountries: () => this.openModal("countries"), openJobs: () => this.openModal("jobs"),
+      // Q&A 줄
+      rows, rowsVariant, countN, countNoun, qnaTagHref: (t) => "#tag=" + encodeURIComponent(t),
+      qnaSortOptions: ["최신순"], qnaSort: s.qnaSort, setQnaSort: (v) => this.setState({ qnaSort: v }),
+      // 1:1
+      mentoringGroups, perspective, openDetail, cardAction,
+      // 관심 · 팔로워
+      favoriteMentors, favCount: favoriteMentors.length, followers, followerCount: followers.length,
+      // 스크랩 아티클
+      scrapArticles,
+      // 결제 · 정산
+      paymentYears, settlementYears, bankLabel: `${s.bank.bank} ${s.bank.account}`, totalFlowers: "133", unsettledAmount: s.donated ? "0원" : "80,000원", donateDisabled: s.donated,
+      openBank: () => this.openModal("bank"), openDonate: () => this.openModal("donate-confirm", { donateMode: "once" }),
+      // 쪽 넘기기
+      showPager: !!pager && pager.total > 1, pagerPage, pagerTotal: pager ? pager.total : 1, pagerChange: (p) => toPage(p),
+      pagerPrev: () => toPage(pagerPage - 1), pagerNext: () => toPage(pagerPage + 1), pagerPrevDisabled: pagerPage <= 1, pagerNextDisabled: !pager || pagerPage >= pager.total,
+      // 계정 설정
+      mailAddress: s.mail, mailSubscribed: s.mailSub, minPriceLabel: won(s.minPrice), autoDonate: s.autoDonate, autoDonateLabel: s.autoDonate ? "자동 기부 설정 중" : "기부 설정하지 않음",
+      toggleAutoDonate: (next) => { if (next) this.openModal("donate-confirm", { donateMode: "auto" }); else { this.setState({ autoDonate: false }); this.undoable("자동 기부를 껐어요", () => this.setState({ autoDonate: true })); } },
+      openMail: () => this.openModal("mail"), openNotify: () => this.openModal("notify"), openPassword: () => this.openModal("password"), openDormant: () => this.openModal("dormant"), openLeave: () => this.openModal("leave"), openMinPrice: () => this.openModal("min-price"),
+      logout: (e) => { e.preventDefault(); this.showToast("로그아웃했어요"); },
+      // 상세 모달
+      detailOpen: isDetailModal && !!detailCard, blink: s.blink, detailCard, detailPerspective,
+      closeModal: () => { if (!this.earlyPop()) this.closeModal(); }, goModal: (k) => this.set({ modal: k, activeCardId: detailCard ? detailCard.id : s.activeCardId }), showToast: (msg) => this.showToast(msg),
+      updateCard: (id, patch) => this.setState(st2 => ({ cards: { ...st2.cards, [id]: { ...st2.cards[id], ...patch } } })),
+      // 편집 대화상자
+      editOpen: !!m && !s.blink, requestClose: () => this.requestClose(), editTitle: titles[m] || "", editDesc: descs[m] || undefined, editFooter,
+      mProfile: m === "profile-edit", mPhoto: m === "photo", mIntro: m === "intro", mCountries: m === "countries", mJobs: m === "jobs", mTimezone: m === "timezone", mMail: m === "mail", mNotify: m === "notify",
+      mPassword: m === "password" && !s.pwDone, mPasswordDone: m === "password" && s.pwDone, mLeave: m === "leave", mMinPrice: m === "min-price", mMenteeProfile: m === "mentee-profile", mBank: m === "bank",
+      form: f, fe, fi, bl, limits: Component.LIMITS,
+      statusOptions: ["재직", "학생", "그 밖"], isWorking: f.statusType === "재직", isStudent: f.statusType === "학생", isOther: f.statusType === "그 밖",
+      jobMajorOptions, jobMinorOptions: jobMinorMap[f.jobMajor] || [], jobMinorDisabled: !f.jobMajor,
+      countryOptions: Component.COUNTRY_GROUPS.flatMap(g => g.options.map(o => o.value)), cityOptions: Component.CITIES[f.country] || [], cityDisabled: !f.country,
+      setName: sf("name"), setStatusType: ss("statusType"), setCompany: sf("company"), setJobName: sf("jobName"), setSchool: sf("school"), setMajor: sf("major"), setCareerIntro: sf("careerIntro"),
+      setJobMajor: (v) => this.setState(st2 => ({ form: { ...st2.form, jobMajor: v, jobMinor: st2.form.jobMajor === v ? st2.form.jobMinor : "" }, edited: { ...st2.edited, jobMajor: true } })), setJobMinor: sf("jobMinor"),
+      // 나라를 바꾸면 도시를 비운다(사용자가 비운 것이 아니라 에러는 내지 않는다)
+      setCountry: (v) => this.setState(st2 => { const keep = st2.form.country === v; return { form: { ...st2.form, country: v, city: keep ? st2.form.city : "" }, edited: { ...st2.edited, country: true }, touched: { ...st2.touched, country: true, city: keep ? st2.touched.city : false } }; }),
+      setCity: ss("city"),
+      photoSrc: s.photoSrc, pickPhoto: (file) => { try { const url = URL.createObjectURL(file); this.setState({ photoSrc: url, photoDirty: true }); } catch (e) {} }, removePhoto: () => this.setState({ photoSrc: undefined, photoDirty: true }), markDirty: () => { if (!this.state.photoDirty && this.state.photoSrc) this.setState({ photoDirty: true }); },
+      setIntroText: sf("intro"),
+      countryGroups: Component.COUNTRY_GROUPS, jobGroups: Component.JOB_GROUPS, setCountries: ss("countries"), setJobs: ss("jobs"),
+      tzOptions: ["(GMT+09:00) 일본 표준시", "(GMT+09:00) 한국 표준시", "(GMT+08:00) 싱가포르 표준시", "(GMT+08:00) 중국 표준시", "(GMT+01:00) 중부 유럽 표준시", "(GMT+00:00) 영국 표준시", "(GMT-05:00) 미국 동부 표준시", "(GMT-08:00) 미국 태평양 표준시", "(GMT+10:00) 호주 동부 표준시"], setTz: ss("tz"),
+      mailYes: !!f.mailSub, mailNo: f.mailSub === false, setMailYes: () => this.setForm("mailSub", true), setMailNo: () => this.setForm("mailSub", false),
+      setNotifyMentoring: sf("notifyMentoring"), setNotifyQna: sf("notifyQna"), setNotifyNews: sf("notifyNews"),
+      setPw1: sf("pw1"), setPw2: sf("pw2"), setPw3: sf("pw3"),
+      copySupportMail: () => { if (navigator.clipboard) navigator.clipboard.writeText("support@mentree.club").catch(() => {}); this.showToast("메일 주소를 복사했어요"); },
+      minPriceDraftLabel: won(Number(f.minPrice || s.minPrice)), setMinPrice: sf("minPrice"),
+      sliderFillStyle: { position: "absolute", left: 0, height: 6, borderRadius: 999, background: "var(--primary)", width: `calc((100% - 24px) * ${(Number(f.minPrice || s.minPrice) - 20000) / 80000} + 12px)` },
+      follower: { ...follower.person, intro: follower.intro }, followerOrgLine: [follower.person.title, follower.person.org].filter(Boolean).join(" · "), followerCountries: follower.countries.map(v => ({ value: v, flag: this.flagOf(v) })), followerJobs: follower.jobs.map(v => ({ value: v, icon: this.jobIcon(v) })),
+      bankOptions: ["카카오뱅크", "국민은행", "신한은행", "우리은행", "하나은행", "토스뱅크"], setBank: ss("bank"), setAccount: sf("account"), setHolder: sf("holder"),
+      // 확인 대화상자
+      confirmOpen: !!cm && !s.blink, confirmTitle, confirmDesc, confirmFooter,
+      // 토스트
+      toastOpen: !!s.toast, toastMessage: s.toast ? s.toast.message : "", toastActions: s.toast ? s.toast.actions : [], dismissToast: () => this.setState({ toast: null }),
+    };
+  }
+}
+</script>
+</body>
+</html>

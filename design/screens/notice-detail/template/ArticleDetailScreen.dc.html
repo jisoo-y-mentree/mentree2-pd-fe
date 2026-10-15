@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+  <script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <style>
+    html, body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+    a { color: var(--primary); } a:hover { color: var(--brand-ink); }
+    mark { background: var(--green-100); color: inherit; padding: 0 2px; border-radius: 3px; }
+  </style>
+</helmet>
+<div data-screen-label="공지사항 상세" style="min-height: 100vh; display: flex; flex-direction: column;">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" brand="{{ brandEl }}" on-navigate="{{ navigate }}" hint-size="100%,64px"></x-import>
+
+  <main style="flex: 1; width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 32px var(--container-pad) 96px; box-sizing: border-box;">
+    <!-- variant="notice": 좌측 레일 · 우측 목차 · 카테고리 배너 · 관련 아티클 · 참여 멘토 · 구독 카드 · 태그 · 공유 없음. 가운데 1단 720. -->
+    <div style="max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px;">
+
+      <!-- ← + Breadcrumb -->
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="arrow-left-01" variant="ghost" size="md" aria-label="공지사항으로 돌아가기" on-click="{{ backToList }}" hint-size="40px,40px"></x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Breadcrumb" items="{{ crumbs }}" hint-size="160px,20px"></x-import>
+      </div>
+
+      <!-- 정상 · 배너 판 -->
+      <sc-if value="{{ hasArticle }}" hint-placeholder-val="{{ true }}">
+        <article style="display: flex; flex-direction: column; gap: 32px;">
+          <header style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px;">
+            <h1 style="margin: 0; font-size: var(--text-display); line-height: var(--text-display--line-height); letter-spacing: var(--text-display--letter-spacing); font-weight: 600; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; text-wrap: pretty;">{{ article.title }}</h1>
+            <time class="tabular" style="font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); color: var(--muted-foreground);">{{ article.date }}</time>
+          </header>
+
+          <sc-if value="{{ article.image }}" hint-placeholder-val="{{ false }}">
+            <div style="width: 100%; aspect-ratio: 16 / 9; border-radius: var(--card-media-radius); overflow: hidden; background: var(--sage-100);">
+              <img src="{{ article.image }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            </div>
+          </sc-if>
+
+          <div style="display: flex; flex-direction: column; gap: 20px; font-size: var(--text-article); line-height: var(--text-article--line-height); letter-spacing: var(--text-article--letter-spacing);">
+            <sc-for list="{{ blocks }}" as="b" hint-placeholder-count="4">
+              <sc-if value="{{ b.isH2 }}" hint-placeholder-val="{{ false }}">
+                <h2 style="margin: 12px 0 0; font-size: var(--text-h2); line-height: var(--text-h2--line-height); letter-spacing: var(--text-h2--letter-spacing); font-weight: 600;">{{ b.text }}</h2>
+              </sc-if>
+              <sc-if value="{{ b.isP }}" hint-placeholder-val="{{ true }}">
+                <p style="margin: 0; text-wrap: pretty;"><sc-for list="{{ b.parts }}" as="s" hint-placeholder-count="1"><sc-if value="{{ s.plain }}" hint-placeholder-val="{{ true }}"><span>{{ s.text }}</span></sc-if><sc-if value="{{ s.mark }}" hint-placeholder-val="{{ false }}"><mark>{{ s.text }}</mark></sc-if><sc-if value="{{ s.href }}" hint-placeholder-val="{{ false }}"><a href="{{ s.href }}" style="color: var(--primary); text-decoration: underline; text-underline-offset: 3px;">{{ s.text }}</a></sc-if></sc-for></p>
+              </sc-if>
+              <sc-if value="{{ b.isUl }}" hint-placeholder-val="{{ false }}">
+                <ul style="margin: 0; padding-left: 24px; display: flex; flex-direction: column; gap: 8px;">
+                  <sc-for list="{{ b.items }}" as="li" hint-placeholder-count="3"><li>{{ li }}</li></sc-for>
+                </ul>
+              </sc-if>
+            </sc-for>
+          </div>
+
+          <!-- 외부 링크 배너 — banner 판에만 -->
+          <!-- 외부 링크 배너 — banner 판에만. 인사이트 배너 조립(옅은 초록 채움 + --primary 테두리 · Banner 외곽 규칙 radius 22) -->
+          <sc-if value="{{ showBannerDesktop }}" hint-placeholder-val="{{ false }}">
+            <aside data-temp="banner" style="display: flex; box-sizing: border-box; width: 100%; padding: 20px; border-radius: 22px; background: var(--green-50); border: 1px solid var(--primary); align-items: center; justify-content: space-between; gap: 16px;">
+              <p style="margin: 0; font-size: var(--text-body); line-height: var(--text-body--line-height); color: var(--foreground); font-weight: 500;">자세한 내용은 협약 안내 페이지에서 확인해 주세요</p>
+              <a href="#" target="_blank" rel="noopener noreferrer" style="text-decoration: none; flex: 0 0 auto;">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="md" icon-right="arrow-up-right-01" hint-size="160px,40px">안내 페이지 열기</x-import>
+              </a>
+            </aside>
+          </sc-if>
+          <sc-if value="{{ showBannerMobile }}" hint-placeholder-val="{{ false }}">
+            <aside data-temp="banner" style="display: flex; box-sizing: border-box; width: 100%; padding: 20px; border-radius: 22px; background: var(--green-50); border: 1px solid var(--primary); flex-direction: column; gap: 12px;">
+              <p style="margin: 0; font-size: var(--text-body); line-height: var(--text-body--line-height); color: var(--foreground); font-weight: 500;">자세한 내용은 협약 안내 페이지에서 확인해 주세요</p>
+              <a href="#" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block; width: 100%;">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="md" full-width="true" icon-right="arrow-up-right-01" style="width: 100%;" hint-size="100%,40px">안내 페이지 열기</x-import>
+              </a>
+            </aside>
+          </sc-if>
+
+          <div style="display: flex; justify-content: center; padding-top: 16px;">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" icon-left="arrow-left-01" on-click="{{ backToList }}" hint-size="180px,40px">목록으로 돌아가기</x-import>
+          </div>
+        </article>
+      </sc-if>
+
+      <!-- 로딩 -->
+      <sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}">
+        <div aria-busy="true" style="display: flex; flex-direction: column; gap: 32px;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="80%" height="36px" radius="md" hint-size="80%,36px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="55%" height="36px" radius="md" hint-size="55%,36px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="88px" height="14px" hint-size="88px,14px"></x-import>
+          </div>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="6" hint-size="100%,160px"></x-import>
+        </div>
+      </sc-if>
+
+      <!-- 404 -->
+      <sc-if value="{{ is404 }}" hint-placeholder-val="{{ false }}">
+        <div style="padding: 64px 0;">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" icon="file-not-found" title="글을 찾을 수 없어요" description="주소가 잘못되었거나 삭제된 공지일 수 있어요." action="{{ toListBtn }}" hint-size="100%,220px"></x-import>
+        </div>
+      </sc-if>
+
+      <!-- 오류 -->
+      <sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
+        <div style="padding: 64px 0;">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" icon="alert-02" title="글을 불러오지 못했어요" description="네트워크 연결을 확인한 뒤 다시 시도해 주세요." action="{{ retryBtn }}" hint-size="100%,220px"></x-import>
+        </div>
+      </sc-if>
+    </div>
+  </main>
+
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" brand="{{ footerBrandEl }}" on-navigate="{{ navigate }}" hint-size="100%,240px"></x-import>
+  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+    <div style="height: 72px;"></div>
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BottomTabBar" on-navigate="{{ navigateTab }}" hint-size="100%,56px"></x-import>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;notice&quot;],&quot;default&quot;:&quot;notice&quot;,&quot;tsType&quot;:&quot;'article'|'notice'&quot;,&quot;section&quot;:&quot;판&quot;},&quot;state&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;normal&quot;,&quot;banner&quot;,&quot;loading&quot;,&quot;404&quot;,&quot;error&quot;],&quot;default&quot;:&quot;normal&quot;,&quot;tsType&quot;:&quot;'normal'|'banner'|'loading'|'404'|'error'&quot;,&quot;section&quot;:&quot;화면 상태&quot;},&quot;article&quot;:{&quot;editor&quot;:null,&quot;default&quot;:&quot;normal&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;pageTitle&quot;:{&quot;editor&quot;:null,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { article: null, isMobile: false, loaded: false };
+  componentDidMount() {
+    document.documentElement.lang = "ko";
+    this.mq = window.matchMedia("(max-width: 768px)");
+    this.onMq = () => this.setState({ isMobile: this.mq.matches });
+    this.onMq();
+    this.mq.addEventListener("change", this.onMq);
+    // variant="notice" 는 아티클 전용 블록(레일·목차·구독 카드 IntersectionObserver 등)을 세우지 않는다.
+    const st = this.props.state ?? "normal";
+    if (st === "normal" || st === "banner") {
+      import("./notice-data.js").then((m) => {
+        const a = m.DETAILS[this.props.article ?? st] || m.DETAILS.normal;
+        this.setState({ article: a, loaded: true });
+        document.title = (this.props.pageTitle) || (a.title + " · 공지사항");
+      });
+    } else {
+      this.setState({ loaded: true });
+      document.title = this.props.pageTitle || "공지사항 · 멘트리";
+    }
+  }
+  componentWillUnmount() { this.mq && this.mq.removeEventListener("change", this.onMq); }
+  backToList() {
+    if (document.referrer && document.referrer.includes("notice-list")) history.back();
+    else window.location.href = "../../notice-list/template/notice-list-normal.dc.html";
+  }
+  renderVals() {
+    const DS = window.MentreeDesignSystem_2f86cf || {};
+    const st = this.props.state ?? "normal";
+    const { article, isMobile, loaded } = this.state;
+    const ROUTES = { notices: "../../notice-list/template/notice-list-normal.dc.html", insights: "../../insight-list/template/InsightList.dc.html" };
+    const logoImg = () => React.createElement("img", { src: "../../../ds-export/project/assets/logo/mentree-logo.svg", alt: "mentree", style: { height: 24, display: "block" } });
+    const blocks = (article ? article.blocks : []).map((b) => ({
+      isH2: b.type === "h2", isP: b.type === "p", isUl: b.type === "ul", text: b.text, items: b.items,
+      parts: (b.parts || []).map((s) => ({ text: s.text, mark: !!s.mark, href: s.href, plain: !s.mark && !s.href })),
+    }));
+    return {
+      isMobile, isDesktop: !isMobile,
+      crumbs: [{ label: "공지사항", href: "../../notice-list/template/notice-list-normal.dc.html" }, { label: "상세" }],
+      hasArticle: !!article, article: article || {}, blocks,
+      showBannerDesktop: st === "banner" && !isMobile, showBannerMobile: st === "banner" && isMobile,
+      isLoading: st === "loading",
+      is404: st === "404" && loaded,
+      isError: st === "error" && loaded,
+      backToList: () => this.backToList(),
+      toListBtn: DS.Button ? React.createElement(DS.Button, { variant: "primary", size: "md", onClick: () => { window.location.href = "../../notice-list/template/notice-list-normal.dc.html"; } }, "공지사항으로") : null,
+      retryBtn: DS.Button ? React.createElement(DS.Button, { variant: "outline", size: "md", onClick: () => window.location.reload() }, "다시 시도") : null,
+      brandEl: logoImg(), footerBrandEl: logoImg(),
+      navigate: (item) => { const h = ROUTES[item.key]; if (h) window.location.href = h; },
+      navigateTab: (tab) => { const h = ROUTES[tab.key]; if (h) window.location.href = h; },
+    };
+  }
+}
+</script>
+</body>
+</html>

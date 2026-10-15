@@ -6,6 +6,8 @@ export interface TabItem {
   label: string;
   /** 라벨 뒤 카운트 배지(Badge sm). 넘기지 않으면 배지가 붙지 않는다. 선택 탭은 green tint, 미선택은 뉴트럴. */
   count?: number;
+  /** size="l"일 때 라벨 왼쪽 아이콘(22 · 간격 8). HugeIcons 이름 또는 DS 자체 "answer-done". size="s"에서는 그리지 않는다. */
+  icon?: string;
   disabled?: boolean;
 }
 
@@ -13,7 +15,7 @@ export interface TabItem {
  * Tabs — 같은 셸 안에서 내용을 바꾸는 전환(화면을 떠나지 않는다). WAI-ARIA tabs 패턴.
  *
  * ToggleGroup과의 경계: ToggleGroup=같은 목록의 조건을 바꾼다(면을 채운다) · Tabs=내용 자체가 바뀐다(밑줄).
- * 선택 표시는 밑줄(--primary 2px) + 라벨 색·굵기 — 색만으로 가르지 않는다(WCAG 1.4.1).
+ * 선택 표시는 높이 4 · 양끝 반원 · --primary 막대(내용 폭, 1px 구분선 위 — DS-96) + 라벨 색·굵기 — 색만으로 가르지 않는다(WCAG 1.4.1).
  * 탭 수 2~10. 줄바꿈하지 않고 가로 스크롤(스크롤바 감춤 + 가장자리 페이드), 선택 탭은 보이는 자리로 스크롤.
  * 키보드: ←/→ 이동(disabled 건너뜀) · Home/End · roving tabindex. 제어형(value + onChange).
  */
@@ -26,6 +28,12 @@ export interface TabsProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "o
   idBase?: string;
   /** tablist의 접근 이름. 기본 "탭". */
   ariaLabel?: string;
+  /** DS-96. "s"(기본 · 멘토 상세 탭 바) 라벨 폭 · 높이 42 · --text-body.
+   *  "l"(Q&A 피드의 두 목록) 컨테이너를 같은 폭으로 나눔 · 높이 60 · --text-h3 선택 700/미선택 500 · 항목 icon(선택만 --primary). */
+  size?: "s" | "l";
+  /** DS-111. true면 탭들이 줄 폭을 똑같이 나누고(둘이면 반씩) 라벨(아이콘 + 글자)은 탭 가운데, 선택 막대가 그 탭의 폭 전체.
+   *  막대 높이 4 · 양끝 반원 · 색 · 글자색 · 아이콘 규칙은 그대로. size "s" · "l" 둘 다. 기본 false(글자 폭 탭 · 라벨 폭 막대). */
+  fill?: boolean;
 }
 
 export interface TabPanelProps extends React.HTMLAttributes<HTMLDivElement> {

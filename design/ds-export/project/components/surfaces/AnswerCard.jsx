@@ -1,32 +1,31 @@
 import React from "react";
 import { Avatar } from "../core/Avatar.jsx";
-import { Badge } from "../core/Badge.jsx";
 import { Button } from "../core/Button.jsx";
 import { IconButton } from "../core/IconButton.jsx";
 import { CountToggle } from "../core/CountToggle.jsx";
+import { Flag } from "../core/Flag.jsx";
 import { Icon } from "../core/Icon.jsx";
 import { Popover, popoverMenuItemStyle } from "../overlays/Popover.jsx";
 
 /**
- * AnswerCard — Q&A 상세의 멘토 답변 1건. QnaCard(질문)와 다르다: 답변은 갈 곳이 없다
- *  (답변 상세 페이지가 없다) — 그래서 스트레치 링크를 만들지 않는다. href를 받지 않는다. 루트는 <article>.
+ * AnswerCard — Q&A 상세의 멘토 답변 1건(DS-23 개정 · Figma 1695:90003 / 90005 / 90004). 루트는 <article>.
+ *  답변은 갈 곳이 없다(답변 상세 페이지 없음) — 카드 전체 링크를 만들지 않는다. 링크는 머리 상자 하나뿐.
  *
- * [구조] 멘토 헤더(아바타 큰 사이즈 + 이름 + 국가 flag 배지 + 활동지 + 헤드라인 — 헤더 블록 전체가 이름에 걸린 스트레치
- *  링크로 멘토 상세行, 새 창. 접근 이름="멘토명" 하나) → "이 멘토의 다른 답변 보기"(outline, 헤더 링크 밖·독립 클릭 —
- *  이 카드에서 테두리를 가진 것은 이 버튼 하나뿐. 헤드라인과는 좁은 간격으로 한 덩어리, 본문과는 넓은 간격으로 분리) →
- *  본문(전문, line-clamp 없음·禁則 유지) → 날짜(연월일만) →
- *  액션 줄 한 줄(좌: 도움돼요 CountToggle tone="rose"·공유(Popover) / 우: 채택 배지+감사인사 보내기, space-between).
- *  이 카드의 유일한 primary 버튼은 "감사인사 보내기"뿐 — 멘토 프로필 이동은 버튼이 아니라 헤더 블록 자체가 링크.
- *  공유·더보기는 overlays/Popover(앵커·닫힘·ESC·포커스 복귀 공통 컴포넌트)를 쓴다 — 각자 자신을 가지지 않는다.
- * [스크랩 없음] 스크랩의 목록 단위는 질문이라 답변마다 두면 한 질문에 여러 개가 동시에 켜진다 — 스크랩은 QnaCard(질문)에만.
- * [채택 표시] 질문자가 도움돼요를 누른 답변에만. 질문자는 "김**"로 익명화되므로 질문자 아바타는 병기하지 않는다.
- * [상태] 기본 · accepted(채택) · isQuestionerView(질문자 시점 → 감사인사 버튼) · isMine(내 답변 → 더보기 메뉴).
- *  네 상태는 배타가 아니다 — 동시에 겹칠 수 있다.
- * [범위 밖] 답변 작성 폼(qna-detail 화면이 Card+Avatar+RichTextEditor+Button으로 조립) · 답변 0건 표시(EmptyState).
- *
- * QnaCard와의 경계: QnaCard=질문(카드 전체 클릭 → 상세로 이동) · AnswerCard=답변(갈 곳이 없어 카드 전체 클릭이 없다).
+ * [구조] 위에서 아래로.
+ *  카드 = 1px --border · 흰 면 · 안쪽 여백 10 · 바깥 반경 = --radius-lg + 10(머리 상자와 동심원, DESIGN.md §7).
+ *  ① 머리 상자 = --green-50 · --radius-lg · 16/20. 상자 전체가 멘토 상세로 가는 <a> 하나(새 창).
+ *     Avatar 60 | 이름 --text-h2 700 + Flag rect md / 「국가 · 직무 @회사 (연차)」 --text-body-sm muted | 「멘토 프로필 보기 ›」 --primary h3 700(글자일 뿐).
+ *  ② 도움 표시(accepted) — checkmark-circle-02 14 + caption 500 --primary.
+ *  ③ 본문 --text-article 전문 · ④ 날짜 caption muted. ③〜⑥ 의 왼쪽 끝은 카드 가장자리에서 18(머리 상자보다 8 안쪽).
+ *  ⑤ 동작 줄(간격 8) — 하트 박스(CountToggle box repeat · dark) → 「감사인사 작성」(질문자 시점 · thanks 없을 때) → 공유(IconButton outline lg).
+ *  ⑥ 감사 인사(thanks) — 왼쪽 3px --primary 줄 · 이니셜 Avatar sm · 이름 body 600 · 날짜 caption muted · 글 body.
+ *  내 답변 ⋯ 메뉴는 머리 상자 오른쪽 위 — 링크 위에서 따로 눌린다.
+ * [좁은 폭 < 560] 머리 상자: 「멘토 프로필 보기 ›」가 이름 묶음 아래 한 줄로 내려간다(아바타 48).
+ *  동작 줄: 하트 · 공유가 첫 줄, 「감사인사 작성」은 다음 줄 전체 폭.
+ * [빼는 것] 「이 멘토의 다른 답변 보기」 · 오른쪽 채택 배지 + 「감사인사 보내기」 · activityLocation — prop 은 받되 그리지 않는다.
  */
-const clampNone = { wordBreak: "keep-all", overflowWrap: "break-word" }; // 禁則: break-all 금지. line-clamp 없음(전문 노출)
+const NARROW = 560;
+const clampNone = { wordBreak: "keep-all", overflowWrap: "break-word" };
 
 function formatDate(d) {
   if (!d) return "";
@@ -36,58 +35,56 @@ function formatDate(d) {
   return `${dt.getFullYear()}.${p(dt.getMonth() + 1)}.${p(dt.getDate())}`;
 }
 
-// Button은 <button> 고정(새 창 이동이 불가) — 멘토 이동 버튼 2개만 같은 sm 레시피를 쓰는 <a>로 직접 구현.
-function linkButtonStyle(variant) {
-  const v = variant === "primary"
-    ? { background: "var(--primary)", color: "var(--primary-foreground)", border: "1px solid transparent" }
-    : { background: "var(--card)", color: "var(--foreground)", border: "1px solid var(--border)" }; // outline — 이 카드에서 테두리를 가진 유일한 요소. secondary(sage-100 채움) 금지: Chip과 같은 채움이라 버튼·칩이 같아 보인다.
-  return {
-    display: "inline-flex", alignItems: "center", justifyContent: "center", height: 32, padding: "0 12px",
-    fontFamily: "var(--font-sans)", fontSize: "var(--text-caption)", fontWeight: 500, lineHeight: 1,
-    letterSpacing: "-0.01em", borderRadius: "var(--radius-md)", textDecoration: "none", whiteSpace: "nowrap", ...v,
-  };
-}
-
 if (typeof document !== "undefined" && !document.getElementById("mt-answercard-link-style")) {
   const s = document.createElement("style");
   s.id = "mt-answercard-link-style";
   s.textContent =
-    ".mt-ac-mentor-link{position:relative;color:inherit;text-decoration:none;}" +
-    ".mt-ac-mentor-link::after{content:'';position:absolute;inset:0;z-index:1;}" +
-    ".mt-ac-mentor-link:hover .mt-ac-mentor-name{color:var(--primary);text-decoration:underline;}" +
-    ".mt-ac-mentor-link:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:4px;}";
+    ".mt-ac-head{color:inherit;text-decoration:none;transition:filter 150ms ease;}" +
+    ".mt-ac-head:hover{filter:brightness(0.985);}" +
+    ".mt-ac-head:hover .mt-ac-go{text-decoration:underline;text-underline-offset:3px;}" +
+    ".mt-ac-head:focus-visible{outline:2px solid var(--ring);outline-offset:2px;}";
   document.head.appendChild(s);
 }
+
+const cap = { fontSize: "var(--text-caption)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)" };
 
 export function AnswerCard({
   mentorName,
   mentorPhoto,
   country,
   countryLabel,
-  activityLocation,
+  activityLocation, // eslint-disable-line no-unused-vars — DS-23: 그리지 않는다
   headline,
   mentorProfileHref = "#",
-  mentorAnswersHref = "#",
+  mentorAnswersHref, // eslint-disable-line no-unused-vars — DS-23: 그리지 않는다
   body,
   date,
   liked = false,
-  onLikeChange,
+  onLike,
+  onLikeChange, // eslint-disable-line no-unused-vars — 남겨 두되 쓰지 않는다
   likeCount = 0,
   answerUrl,
   onCopyLink,
   accepted = false,
   isQuestionerView = false,
   onThanks,
+  thanks,
   isMine = false,
   onEdit,
   onDelete,
   style,
   ...rest
 }) {
-  const likeControlled = onLikeChange != null;
-  const [likedU, setLikedU] = React.useState(liked);
-  const isLiked = likeControlled ? liked : likedU;
-  const setLiked = (n) => { if (likeControlled) onLikeChange(n); else setLikedU(n); };
+  const rootRef = React.useRef(null);
+  const [narrow, setNarrow] = React.useState(false);
+  React.useEffect(() => {
+    const el = rootRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return undefined;
+    const ro = new ResizeObserver(([e]) => setNarrow(e.contentRect.width < NARROW));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
 
   const [shareOpen, setShareOpen] = React.useState(false);
   const [moreOpen, setMoreOpen] = React.useState(false);
@@ -100,29 +97,37 @@ export function AnswerCard({
     setShareOpen(false);
   };
 
+  const sub = [countryLabel, headline].filter(Boolean).join(" · ");
+  const showThanksBtn = isQuestionerView && !thanks;
+
+  const go = (
+    <span className="mt-ac-go" style={{ display: "inline-flex", alignItems: "center", gap: 2, flex: "0 0 auto", color: "var(--primary)", fontSize: "var(--text-h3)", lineHeight: "var(--text-h3--line-height)", letterSpacing: "var(--text-h3--letter-spacing)", fontWeight: 700, whiteSpace: "nowrap" }}>
+      멘토 프로필 보기
+      <Icon name="arrow-right-01" size={18} aria-hidden="true" aria-label={undefined} role={undefined} />
+    </span>
+  );
+
   return (
     <article
+      ref={rootRef}
       style={{
         position: "relative",
         display: "flex",
         flexDirection: "column",
-        gap: 16,
         width: "100%",
         boxSizing: "border-box",
+        padding: 10,
         color: "var(--foreground)",
         fontFamily: "var(--font-sans)",
         background: "var(--card)",
-        border: "1px solid var(--sage-200)",
-        borderRadius: "var(--card-radius)",
-        boxShadow: "var(--card-shadow)",
-        padding: "var(--card-content-padding)",
+        border: "1px solid var(--border)",
+        borderRadius: "calc(var(--radius-lg) + 10px)",
         ...style,
       }}
       {...rest}
     >
-      {/* 더보기(⋯) — 내 답변에만, 카드 우상단. Popover: 수정·삭제. */}
       {isMine && (
-        <div style={{ position: "absolute", top: 14, right: 14, zIndex: 2 }}>
+        <div style={{ position: "absolute", top: 18, right: 18, zIndex: 2 }}>
           <IconButton ref={moreTriggerRef} icon="more-horizontal-circle-01" variant="ghost" size="sm" ariaLabel="더보기" onClick={() => setMoreOpen((v) => !v)} />
           <Popover open={moreOpen} onClose={() => setMoreOpen(false)} role="menu" side="bottom" align="end" triggerRef={moreTriggerRef}>
             <button type="button" className="mt-popover-menuitem" style={popoverMenuItemStyle} onClick={() => { setMoreOpen(false); onEdit && onEdit(); }}>수정</button>
@@ -131,46 +136,66 @@ export function AnswerCard({
         </div>
       )}
 
-      {/* 1) 멘토 헤더 — 전환의 핵심 루트. 헤더 블록 전체가 이름에만 걸린 <a>의 ::after로 덮인다(카드 전체 아님, 본문·액션줄 제외).
-          접근 이름 = "멘토명" 하나(블록을 통챏로 감싸지 않음). hover 시 이름이 primary+밑줄 — 버튼이 사라진 유일한 "눈린다" 신호. */}
-      {/* 헤더 블록 + "다른 답변 보기" 버튼을 한 덬어리로 묶는다(좌은 간격). 이 덬어리 아래 본문과는 article의 기본 gap(넘은 간격)으로 분리된다. */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 8, paddingRight: isMine ? 32 : 0 }}>
-        <a href={mentorProfileHref} target="_blank" rel="noopener noreferrer" className="mt-ac-mentor-link" aria-label={mentorName} style={{ display: "flex", flexDirection: "column", gap: 10, cursor: "pointer" }}>
-          <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-            <Avatar src={mentorPhoto} name={mentorName} size="lg" />
-            <div style={{ display: "flex", flexDirection: "column", gap: 4, minWidth: 0 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
-                <span className="mt-ac-mentor-name" style={{ fontSize: "var(--text-h3)", fontWeight: 600 }}>{mentorName}</span>
-                {(country || countryLabel) && <Badge size="sm" leading="flag" flag={country}>{countryLabel}</Badge>}
-                {activityLocation && <span style={{ fontSize: "var(--text-caption)", color: "var(--muted-foreground)" }}>{activityLocation}</span>}
-              </div>
-              {headline && <span style={{ fontSize: "var(--text-body)", fontWeight: 500, color: "var(--muted-foreground)" }}>{headline}</span>}
+      {/* ① 머리 상자 — 상자 전체가 링크 하나. 안의 국기는 tooltip 없음(링크 안에 포커스 둘을 만들지 않는다). */}
+      <a
+        href={mentorProfileHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-ac-head"
+        aria-label={`${mentorName} 멘토 프로필 보기`}
+        style={{
+          display: "flex",
+          flexDirection: narrow ? "column" : "row",
+          alignItems: narrow ? "stretch" : "flex-end", /* R4 — 「멘토 프로필 보기 ›」는 메타 줄과 같은 높이(오른쪽 아래) */
+          gap: narrow ? 12 : 16,
+          padding: "16px 20px",
+          paddingRight: isMine ? 52 : 20,
+          borderRadius: "var(--radius-lg)",
+          background: "var(--green-50)",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: 14, flex: "1 1 auto", minWidth: 0 }}>
+          <Avatar src={mentorPhoto} name={mentorName} size={narrow ? 48 : 60} />
+          <div style={{ display: "flex", flexDirection: "column", gap: 4, minWidth: 0 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, minWidth: 0 }}>
+              <span style={{ fontSize: "var(--text-h2)", lineHeight: "var(--text-h2--line-height)", letterSpacing: "var(--text-h2--letter-spacing)", fontWeight: 700, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{mentorName}</span>
+              {country && <Flag country={country} label={countryLabel} shape="rect" size="md" tooltip={false} aria-hidden="true" />}
             </div>
+            {sub && <span style={{ fontSize: "var(--text-body-sm)", lineHeight: "var(--text-body-sm--line-height)", letterSpacing: "var(--text-body-sm--letter-spacing)", color: "var(--muted-foreground)", ...clampNone }}>{sub}</span>}
           </div>
-        </a>
+        </div>
+        {go}
+      </a>
 
-        {/* 이 멘토의 다른 답변 보기 — outline(이 카드에서 테두리를 가진 유일한 요소). secondary 금지(sage-100 채움이라 Chip과 같아 보임).
-            헤더 덮개 밖(z-index:2)에서 독립 클릭. 이 카드의 primary는 감사인사 버튼 하나뿐. */}
-        <a href={mentorAnswersHref} target="_blank" rel="noopener noreferrer" style={{ position: "relative", zIndex: 2, alignSelf: "flex-start", ...linkButtonStyle("outline") }}>
-          이 멘토의 다른 답변 보기
-          <Icon name="arrow-up-right-01" size={14} style={{ marginLeft: 4 }} />
-        </a>
-      </div>
+      <div style={{ display: "flex", flexDirection: "column", padding: "20px 8px 10px" }}>
+        {accepted && (
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, marginBottom: 12, ...cap, fontWeight: 500, color: "var(--primary)" }}>
+            <Icon name="checkmark-circle-02" size={14} aria-hidden="true" aria-label={undefined} role={undefined} />
+            질문자가 도움된다고 한 답변입니다
+          </span>
+        )}
 
-      {/* 2) 본문 — 전문, line-clamp 없음(QnaCard와 다름). 禁則 유지. */}
-      <div style={{ fontSize: "var(--text-body)", fontWeight: 400, color: "var(--foreground)", lineHeight: 1.7, whiteSpace: "pre-wrap", ...clampNone }}>{body}</div>
+        <div style={{ fontSize: "var(--text-article)", lineHeight: "var(--text-article--line-height)", letterSpacing: "var(--text-article--letter-spacing)", whiteSpace: "pre-wrap", ...clampNone }}>{body}</div>
 
-      {/* 3) 날짜 — 연월일만 */}
-      {date && <span style={{ fontSize: "var(--text-caption)", color: "var(--muted-foreground)" }}>{formatDate(date)}</span>}
+        {date && <span style={{ marginTop: 12, ...cap, color: "var(--muted-foreground)" }}>{formatDate(date)}</span>}
 
-      {/* 4)+5)+6) 액션 줄 — 한 줄, 좌우 양끝 정렬(space-between). 좌: 도움돼요·공유. 우: 채택 배지+감사인사 보내기(함께 내려간다, 갈라지지 않음). */}
-      <div style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <CountToggle icon="favourite" tone="rose" selected={isLiked} count={likeCount} onChange={setLiked} />
-          {/* ⚠️ 모바일 분기(OS 공유로 대체)는 이 카드가 아니라 화면 책임 — 지금 거동은 그대로(항상 Popover),
-              모바일 대응은 화면이 이 onClick을 가로채 navigator.share로 바꿔치기한다(Popover.prompt.md 참조). */}
-          <div style={{ position: "relative" }}>
-            <IconButton ref={shareTriggerRef} icon="share-08" variant="ghost" size="sm" ariaLabel="공유" onClick={() => setShareOpen((v) => !v)} />
+        {/* ⑤ 동작 줄 */}
+        <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginTop: 20 }}>
+          <CountToggle
+            appearance="box"
+            repeat
+            icon="favourite"
+            tone="dark"
+            // DS-116 — 하트는 likeCount · liked 만 따른다. 누르면 onLike 만(부품 안 상태로 채움을 켜지 않는다).
+            selected={liked}
+            count={likeCount}
+            onIncrement={onLike}
+          />
+          {showThanksBtn && (
+            <Button variant="outline" size="lg" iconLeft="bubble-chat-favourite" onClick={onThanks} style={narrow ? { order: 3, flex: "1 1 100%" } : undefined}>감사인사 작성</Button>
+          )}
+          <div style={{ position: "relative", order: narrow ? 2 : undefined }}>
+            <IconButton ref={shareTriggerRef} icon="share-08" variant="outline" size="lg" ariaLabel="공유" onClick={() => setShareOpen((v) => !v)} />
             <Popover open={shareOpen} onClose={() => setShareOpen(false)} role="menu" side="bottom" align="start" triggerRef={shareTriggerRef}>
               <button type="button" className="mt-popover-menuitem" style={popoverMenuItemStyle} onClick={copyLink}>
                 <Icon name="link-square-01" size={16} style={{ color: "var(--muted-foreground)" }} />
@@ -180,17 +205,17 @@ export function AnswerCard({
           </div>
         </div>
 
-        {(accepted || isQuestionerView) && (
-          <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", justifyContent: "flex-end" }}>
-            {accepted && (
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: "var(--text-caption)", fontWeight: 500, color: "var(--primary)", whiteSpace: "nowrap" }}>
-                <Icon name="checkmark-circle-02" size={15} />
-                질문자가 도움된다고 한 답변입니다
-              </span>
-            )}
-            {isQuestionerView && (
-              <Button variant="primary" size="sm" onClick={onThanks}>감사인사 보내기</Button>
-            )}
+        {/* ⑥ 감사 인사 */}
+        {thanks && (
+          <div style={{ display: "flex", gap: 12, marginTop: 24, paddingLeft: 14, borderLeft: "3px solid var(--primary)" }}>
+            <Avatar name={thanks.author} size="sm" />
+            <div style={{ display: "flex", flexDirection: "column", gap: 4, minWidth: 0 }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 8, flexWrap: "wrap" }}>
+                <span style={{ fontSize: "var(--text-body)", lineHeight: "var(--text-body--line-height)", fontWeight: 600 }}>{thanks.author}</span>
+                {thanks.date && <span style={{ ...cap, color: "var(--muted-foreground)" }}>{formatDate(thanks.date)}</span>}
+              </div>
+              <div style={{ fontSize: "var(--text-body)", lineHeight: "var(--text-body--line-height)", letterSpacing: "var(--text-body--letter-spacing)", whiteSpace: "pre-wrap", ...clampNone }}>{thanks.text}</div>
+            </div>
           </div>
         )}
       </div>

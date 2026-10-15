@@ -33,7 +33,7 @@ export function CardHeader({ children, style, ...rest }) {
 
 export function CardTitle({ children, style, ...rest }) {
   return (
-    <div style={{ fontSize: "var(--text-h3)", fontWeight: 600, lineHeight: 1.5, color: "var(--foreground)", ...style }} {...rest}>
+    <div style={{ fontSize: "var(--text-h3)", fontWeight: 600, lineHeight: "var(--text-h3--line-height)", letterSpacing: "var(--text-h3--letter-spacing)", color: "var(--foreground)", ...style }} {...rest}>
       {children}
     </div>
   );
@@ -41,7 +41,7 @@ export function CardTitle({ children, style, ...rest }) {
 
 export function CardDescription({ children, style, ...rest }) {
   return (
-    <div style={{ fontSize: "var(--text-caption)", color: "var(--muted-foreground)", ...style }} {...rest}>
+    <div style={{ fontSize: "var(--text-caption)", lineHeight: "var(--text-caption--line-height)", letterSpacing: "var(--text-caption--letter-spacing)", color: "var(--muted-foreground)", ...style }} {...rest}>
       {children}
     </div>
   );

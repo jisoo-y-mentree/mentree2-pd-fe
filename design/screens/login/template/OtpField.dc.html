@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+<script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <style>
+    .au-otp{display:flex;gap:8px;align-items:flex-start}
+    .au-otp-box{position:relative;flex:1 1 auto;min-width:0}
+    .au-otp-timer{position:absolute;right:12px;top:0;height:40px;display:flex;align-items:center;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--muted-foreground);pointer-events:none}
+    .au-otp-timer.au-over{color:var(--destructive)}
+    .au-otp-timer.au-hide{display:none}
+    .au-otp-bad input{color:var(--destructive)}
+    .au-otp-box input{text-overflow:ellipsis}
+  </style>
+</helmet>
+<div data-temp="DS-122">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="인증 번호" html-for="au-otp-input" required="{{ true }}" error="{{ error }}" hint-size="100%,68px">
+    <div class="au-otp">
+      <div class="{{ boxClass }}">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="au-otp-input" placeholder="인증 번호 6자리" value="{{ code }}" on-change="{{ onInput }}" disabled="{{ inputDisabled }}" read-only="{{ readOnly }}" invalid="{{ invalid }}" input-mode="numeric" dc-props="{{ padTimer }}" hint-size="100%,40px"></x-import>
+        <span class="{{ timerClass }}" aria-live="polite">{{ timerText }}</span>
+      </div>
+      <div style="{{ btnBox }}"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="{{ btnVariant }}" full-width="{{ true }}" disabled="{{ btnDisabled }}" icon-left="{{ btnIcon }}" on-click="{{ onButton }}" hint-size="100%,40px">{{ btnLabel }}</x-import></div>
+    </div>
+  </x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:400,&quot;height&quot;:90},&quot;status&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;before&quot;,&quot;options&quot;:[&quot;before&quot;,&quot;sent&quot;,&quot;verified&quot;,&quot;timeout&quot;,&quot;mismatch&quot;,&quot;invalid&quot;,&quot;unregistered&quot;,&quot;limit&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;code&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;emailOk&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;mobile&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;startSeconds&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:180,&quot;tsType&quot;:&quot;number&quot;},&quot;onSend&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;onVerify&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(code: string) =&gt; void&quot;},&quot;onCode&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(code: string) =&gt; void&quot;},&quot;onTimeout&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { remaining: 180 };
+  componentDidMount() { this.sync(null); if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { this._fontsOk = true; this._mc = {}; this.forceUpdate(); }); }
+  componentDidUpdate(prev) { if (prev.status !== this.props.status) this.sync(prev.status); }
+  componentWillUnmount() { clearInterval(this.t); }
+  sync(prevStatus) {
+    const s = this.props.status || "before";
+    const running = s === "sent" || s === "mismatch" || s === "invalid";
+    if (s === "sent" && prevStatus !== "mismatch" && prevStatus !== "invalid") {
+      this.setState({ remaining: Number(this.props.startSeconds ?? 180) });
+    }
+    clearInterval(this.t);
+    if (running) {
+      this.t = setInterval(() => {
+        this.setState(st => {
+          const n = st.remaining - 1;
+          if (n <= 0) { clearInterval(this.t); this.props.onTimeout && this.props.onTimeout(); return { remaining: 0 }; }
+          return { remaining: n };
+        });
+      }, 1000);
+    }
+  }
+  measure(t) {
+    this._mc = this._mc || {};
+    if (this._mc[t] != null) return this._mc[t];
+    let w = 0;
+    try { const c = (this._cv = this._cv || document.createElement("canvas")).getContext("2d"); c.font = "600 14px " + getComputedStyle(document.body).fontFamily; w = c.measureText(t).width; } catch (e) {}
+    if (this._fontsOk) this._mc[t] = w;
+    return w;
+  }
+  renderVals() {
+    const p = this.props;
+    const s = p.status || "before";
+    const code = p.code ?? "";
+    const emailOk = !!p.emailOk;
+    const r = this.state.remaining;
+    const mm = String(Math.floor(r / 60)).padStart(2, "0"), ss = String(r % 60).padStart(2, "0");
+    const sentLike = s === "sent" || s === "mismatch" || s === "invalid";
+    const six = /^\d{6}$/.test(code);
+    let btnLabel = "인증 번호 전송", btnVariant = "secondary", btnDisabled = false, btnIcon = undefined;
+    if (s === "before") { btnVariant = emailOk ? "primary" : "secondary"; btnDisabled = !emailOk; }
+    else if (s === "unregistered") { btnVariant = "secondary"; }
+    else if (sentLike) { btnLabel = "인증"; btnVariant = six ? "primary" : "secondary"; btnDisabled = !six; }
+    else if (s === "verified") { btnLabel = "인증 완료"; btnVariant = "secondary"; btnDisabled = true; btnIcon = "tick-02"; }
+    else if (s === "timeout") { btnLabel = "인증 번호 재전송"; btnVariant = "primary"; }
+    else if (s === "limit") { btnDisabled = true; }
+    const errors = {
+      timeout: "인증 요청 시간을 초과했습니다.",
+      mismatch: "인증 번호가 일치하지 않습니다.",
+      invalid: "사용할 수 없는 문자열이 포함되어 있습니다.",
+      limit: "오늘 인증 요청 횟수(5회)를 넘었습니다. 24시간 뒤에 다시 시도해주세요.",
+    };
+    const timerText = s === "timeout" ? "00:00" : sentLike ? `${mm}:${ss}` : "03:00";
+    return {
+      code,
+      error: errors[s] || undefined,
+      inputDisabled: s === "before" || s === "unregistered" || s === "limit",
+      readOnly: s === "verified",
+      invalid: s === "mismatch" || s === "invalid",
+      boxClass: "au-otp-box" + ((s === "mismatch" || s === "invalid") ? " au-otp-bad" : ""),
+      timerText,
+      timerClass: "au-otp-timer" + (s === "timeout" ? " au-over" : "") + (s === "verified" ? " au-hide" : ""),
+      btnLabel, btnVariant, btnDisabled, btnIcon,
+      padTimer: { style: { paddingRight: 64 } },
+      btnBox: (() => { const base = p.mobile ? 104 : 120; const need = Math.ceil(this.measure(btnLabel) + (btnIcon ? 26 : 0) + 26); const w = Math.min(136, Math.max(base, need)); return { flex: "0 0 " + w + "px", width: w, display: "flex" }; })(),
+      onInput: (e) => p.onCode && p.onCode(e.target.value),
+      onButton: () => {
+        if (s === "before" || s === "unregistered" || s === "timeout") p.onSend && p.onSend();
+        else if (sentLike) p.onVerify && p.onVerify(code);
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

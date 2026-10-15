@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+<script src="../../../ds-export/project/_ds_bundle.js"></script>
+</helmet>
+<div style="display:flex;flex-direction:column;gap:12px">
+  <div style="display:flex;align-items:center;height:32px">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Checkbox" id="au-consent-all" checked="{{ all }}" on-change="{{ setAll }}" label="{{ allLabel }}" hint-size="auto,24px"></x-import>
+  </div>
+  <div style="height:1px;background:var(--border)"></div>
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <div style="display:flex;align-items:center;justify-content:space-between;min-height:32px">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Checkbox" checked="{{ age }}" on-change="{{ setAge }}" label="만 14세 이상입니다 (필수)" hint-size="auto,24px"></x-import>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;min-height:32px;gap:12px">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Checkbox" checked="{{ terms }}" on-change="{{ setTerms }}" label="멘트리 이용 약관 동의 (필수)" hint-size="auto,24px"></x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" tone="primary" on-click="{{ openTerms }}" hint-size="auto,32px">내용보기</x-import>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;min-height:32px;gap:12px">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Checkbox" checked="{{ privacy }}" on-change="{{ setPrivacy }}" label="개인정보 수집 이용 동의 (필수)" hint-size="auto,24px"></x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" tone="primary" on-click="{{ openPrivacy }}" hint-size="auto,32px">내용보기</x-import>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;min-height:32px">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Checkbox" checked="{{ marketing }}" on-change="{{ setMarketing }}" label="마케팅 정보 수신 동의 (선택)" hint-size="auto,24px"></x-import>
+    </div>
+  </div>
+  <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+    <p role="alert" style="margin:0;font-size:var(--text-caption);line-height:var(--text-caption--line-height);color:var(--destructive)">{{ error }}</p>
+  </sc-if>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Dialog" open="{{ dlgOpen }}" on-close="{{ closeDlg }}" title="{{ dlgTitle }}" mobile="fullscreen" footer="{{ dlgFooter }}" hint-size="0,0">
+    <div style="display:flex;flex-direction:column;gap:16px;font-size:var(--text-body);line-height:var(--text-body--line-height);color:var(--foreground)">
+      <p style="margin:0">제1조 (목적) 이 약관은 멘트리가 제공하는 멘토링 · Q&amp;A · 인사이트 서비스의 이용 조건과 절차, 회원과 멘트리의 권리 · 의무를 정합니다.</p>
+      <p style="margin:0">제2조 (회원 가입) 회원 가입은 이메일 인증 또는 소셜 계정으로 진행합니다. 만 14세 미만은 가입할 수 없습니다. 가입 시 입력한 정보는 사실이어야 하며, 변경된 경우 바로 고쳐주세요.</p>
+      <p style="margin:0">제3조 (서비스 이용) 멘트리는 멘토 검색, 질문 등록, 아티클 열람 기능을 제공합니다. 서비스 내용은 운영상 필요에 따라 바뀔 수 있으며, 바뀌는 경우 미리 알려드립니다.</p>
+      <p style="margin:0">제4조 (회원의 의무) 타인의 정보를 도용하거나, 멘토와 다른 회원을 비방하는 글을 올리지 마세요. 서비스를 상업적으로 이용하려면 멘트리의 사전 동의가 필요합니다.</p>
+      <p style="margin:0">제5조 (개인정보) 수집하는 항목은 이름, 이메일, 프로필 사진, 자기 소개, 관심 국가 · 직종입니다. 수집한 정보는 멘토 · 아티클 추천과 커뮤니티 운영에만 사용하며, 회원 탈퇴 시 지체 없이 파기합니다.</p>
+      <p style="margin:0">제6조 (계약 해지) 회원은 언제든지 탈퇴할 수 있습니다. 약관을 위반한 회원에게는 이용을 제한하거나 계약을 해지할 수 있습니다.</p>
+      <p style="margin:0">제7조 (분쟁 해결) 이 약관은 대한민국 법률에 따릅니다. 서비스 이용과 관련한 분쟁은 멘트리 소재지 관할 법원에서 다룹니다.</p>
+      <p style="margin:0;color:var(--muted-foreground);font-size:var(--text-caption);line-height:var(--text-caption--line-height)">시행일 2026년 10월 1일</p>
+    </div>
+  </x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:400,&quot;height&quot;:220},&quot;age&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;terms&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;privacy&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;marketing&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;error&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onChange&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(key: string, value: boolean) =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { dlg: null };
+  renderVals() {
+    const p = this.props;
+    const v = (k) => !!p[k];
+    const set = (k) => (next) => p.onChange && p.onChange(k, !!next);
+    const all = v("age") && v("terms") && v("privacy") && v("marketing");
+    const DS = window.MentreeDesignSystem_2f86cf || {};
+    const close = () => this.setState({ dlg: null });
+    const footer = DS.Button ? React.createElement(DS.Button, { variant: "outline", onClick: close }, "닫기") : null;
+    return {
+      all, allLabel: React.createElement("span", { style: { fontWeight: 600 } }, "전체 동의"), age: v("age"), terms: v("terms"), privacy: v("privacy"), marketing: v("marketing"),
+      setAll: (next) => { ["age", "terms", "privacy", "marketing"].forEach(k => p.onChange && p.onChange(k, !!next)); },
+      setAge: set("age"), setTerms: set("terms"), setPrivacy: set("privacy"), setMarketing: set("marketing"),
+      hasError: !!p.error, error: p.error,
+      dlgOpen: !!this.state.dlg,
+      dlgTitle: this.state.dlg === "privacy" ? "개인정보 수집 이용 동의" : "멘트리 이용 약관",
+      dlgFooter: footer,
+      openTerms: () => this.setState({ dlg: "terms" }),
+      openPrivacy: () => this.setState({ dlg: "privacy" }),
+      closeDlg: close,
+    };
+  }
+}
+</script>
+</body>
+</html>
