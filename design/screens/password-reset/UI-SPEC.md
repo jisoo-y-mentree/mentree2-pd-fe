@@ -56,7 +56,7 @@
 
 | `otp` | 입력 칸 | 타이머 | 버튼 | 아래 글자 |
 |---|---|---|---|---|
-| `before` | disabled · 「전송된 인증 번호를 입력해주세요」 | 03:00 muted | `secondary` 「인증 번호 전송」 → 이메일 유효하면 `primary` | (미가입이면 이메일 칸 아래 「가입되지 않은 메일 주소입니다.」) |
+| `before` | disabled · 「인증 번호 6자리」(3판 · 검수 2차 ⑦) | 03:00 muted | `secondary` 「인증 번호 전송」 → 이메일 유효하면 `primary` | (미가입이면 이메일 칸 아래 「가입되지 않은 메일 주소입니다.」) |
 | `sent` | 활성 | 02:31 ↓ | 「인증」 `secondary` → 6자리면 `primary` | — |
 | `verified` | 읽기 전용 「123456」 | 숨김 | `secondary disabled` 「인증 완료」 ＋ 체크 | — |
 | `timeout` | 활성 | 00:00 `--destructive` | `primary` 「인증 번호 재전송」 | 「인증 요청 시간을 초과했습니다.」 |

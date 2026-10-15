@@ -101,7 +101,7 @@
 | 스위치 | `Switch` | 컴포넌트. forms |
 | 스켈레톤 | `Skeleton` | 컴포넌트. surfaces. 로딩 중의 자리표시 |
 | 스크랩 | `Scrap` | Q&A·아티클을 모아두는 것. 비로그인은 로그인으로 유도한다 |
-| 스테퍼 | `Stepper` | **미구현**(`DS-14`). 다단계 플로우의 진행 표시 |
+| 스테퍼 | `StepBar` | **미구현**(`DS-121` · 옛 `DS-14` 를 합쳤다 2026-10-15). 다단계 플로우의 진행 막대. 인증 사양 · template 이 이 이름을 쓴다 |
 | 시트 | `Sheet` | 컴포넌트. overlays |
 | 아바타 | `Avatar` | 컴포넌트. core. `AvatarGroup` 을 함께 export 한다 |
 | 아이콘 | `Icon` | 컴포넌트. core. HugeIcons 모노 |
