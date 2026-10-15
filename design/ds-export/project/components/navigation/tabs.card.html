@@ -1,4 +1,4 @@
-<!-- @dsCard group="Navigation" viewport="880x620" name="Tabs" subtitle="같은 셸 안에서 내용을 바꾸는 전환 — 선택 탭에 --primary 밑줄(면 채움 아님, ToggleGroup과 구별). 카운트 배지·가로 스크롤·WAI-ARIA 탭 패턴" -->
+<!-- @dsCard group="Navigation" viewport="900x960" name="Tabs" subtitle="DS-96 선택 막대(높이 4 · 반원 · 내용 폭) · size s(라벨 폭 42) · l(같은 폭 60 · h3 · 아이콘)(면 채움 아님, ToggleGroup과 구별). 카운트 배지·가로 스크롤·WAI-ARIA 탭 패턴" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -42,9 +42,24 @@
     const [ten, setTen] = React.useState("q");
     const [mixed, setMixed] = React.useState("profile");
     const [cond, setCond] = React.useState("done");
+    const [qna, setQna] = React.useState("waiting");
+    const [qf, setQf] = React.useState("done");
 
     return (
       <div className="stack">
+        <div className="block">
+          <span className="lbl">size="l" · Q&amp;A 피드 두 목록 — 같은 폭 · 60 · --text-h3 700/500 · 아이콘 22(선택만 --primary)</span>
+          <Tabs idBase="qnafeed" ariaLabel="Q&A 목록" size="l" value={qna} onChange={setQna}
+            items={[{ value: "waiting", label: "답변을 기다리는 질문", icon: "bubble-chat-question" }, { value: "done", label: "답변이 완료된 질문", icon: "answer-done" }]} />
+          <TabPanel idBase="qnafeed" value={qna} className="panel">선택: {qna} — answer-done 은 DS 자체 아이콘(꼬리 오른쪽 아래 · 체크)</TabPanel>
+        </div>
+
+        <div className="block" style={{ maxWidth: 860, width: 860 }}>
+          <span className="lbl">DS-111 · fill · L · 두 탭 — 폭 860 · 탭 430씩 · 선택 막대 = 탭 폭 전체</span>
+          <Tabs idBase="qnafill" ariaLabel="Q&A 목록(fill)" size="l" fill value={qf} onChange={setQf}
+            items={[{ value: "done", label: "답변이 완료된 질문", icon: "answer-done" }, { value: "waiting", label: "답변을 기다리는 질문", icon: "bubble-chat-question" }]} />
+        </div>
+
         <div className="block">
           <span className="lbl">2탭 · 카운트 없음</span>
           <Tabs idBase="feed" ariaLabel="Q&A 피드" value={two} onChange={setTwo}
@@ -90,12 +105,12 @@
             <ToggleGroup size="sm" value={cond} onChange={setCond}
               options={[{ value: "done", label: "답변 완료된 질문" }, { value: "waiting", label: "답변 기다리는 질문" }]} />
           </div>
-          <span className="cap">위=Tabs(내용이 바뀐다·밑줄) / 아래=ToggleGroup(같은 목록의 조건이 바뀐다·면 채움)</span>
+          <span className="cap">위=Tabs(내용이 바뀐다·선택 막대) / 아래=ToggleGroup(같은 목록의 조건이 바뀐다·면 채움)</span>
         </div>
 
         <div className="note">
           WAI-ARIA 탭 패턴 — role=tablist/tab/tabpanel · aria-selected · aria-controls · roving tabindex(선택 탭만 Tab 순서) ·
-          ←/→ 이동, Home/End. 선택 표시는 밑줄 + 라벨 굵기 + 색으로, 색만으로 가르지 않는다.
+          ←/→ 이동, Home/End. 선택 표시는 막대(높이 4 · 반원 · 내용 폭) + 라벨 굵기 + 색으로, 색만으로 가르지 않는다.
         </div>
       </div>
     );

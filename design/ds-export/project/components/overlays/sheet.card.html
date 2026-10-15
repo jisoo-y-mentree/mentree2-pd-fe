@@ -1,0 +1,65 @@
+<!-- @dsCard group="Components" viewport="1280x760" name="Sheet · 오른쪽 패널" subtitle="DS-114 Sheet 위에 Dialog(Esc 는 맨 위 층만) · DS-113 오른쪽 · 640 · headerAction(전체 페이지에서 보기 + ✕) · Esc · 포커스 가두기/되돌림 · 뒤 문서 스크롤 잠금" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+html,body{margin:0}
+body{padding:24px;background:var(--sage-50);font-family:var(--font-sans);color:var(--foreground);min-height:1800px;box-sizing:border-box}
+a{color:var(--primary)}a:hover{color:var(--primary)}
+.cap{font-size:var(--text-caption);line-height:var(--text-caption--line-height);color:var(--muted-foreground)}
+.lead{display:flex;flex-direction:column;gap:12px;align-items:flex-start;max-width:560px}
+.page p{max-width:560px;font-size:var(--text-body);line-height:var(--text-body--line-height);color:var(--muted-foreground)}
+.full{display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 8px;border-radius:var(--radius-sm);color:var(--primary);font-size:var(--text-caption);line-height:var(--text-caption--line-height);font-weight:600;text-decoration:none;white-space:nowrap}
+.full:hover{background:var(--green-50, var(--accent))}
+.full:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+.body p{margin:0 0 14px;font-size:var(--text-body);line-height:var(--text-body--line-height);word-break:keep-all}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { Sheet, Dialog, Button, Icon } = window.MentreeDesignSystem_2f86cf;
+function Readout() {
+  const [t, setT] = React.useState('');
+  React.useEffect(() => { const f = () => { const b = document.body; const l = b.dataset.mtScrollLock; const a = document.activeElement; const d = a && a !== document.body ? (a.getAttribute('aria-label') || (a.textContent || '').trim().slice(0, 16) || a.tagName.toLowerCase()) : '-'; setT((l != null ? '잠금 · 뒤 위치 ' + l : '잠금 없음') + ' · scrollY ' + Math.round(scrollY) + ' · 포커스: ' + d); }; f(); const i = setInterval(f, 200); return () => clearInterval(i); }, []);
+  return <div style={{ position: 'fixed', left: 8, bottom: 8, zIndex: 100, padding: '4px 8px', borderRadius: 'var(--radius-sm)', background: 'var(--sage-900)', color: 'var(--sage-50)', fontSize: 'var(--text-micro)', fontFamily: 'var(--font-mono, monospace)' }}>{t}</div>;
+}
+const PARAS = Array.from({ length: 14 }, (_, i) => `${i + 1}. 해외 취업을 준비하면서 가장 오래 고민한 것은 이력서의 첫 문단이었습니다. 현지 채용 담당자가 몇 초 안에 읽고 판단할 수 있도록 경력과 성과를 숫자로 정리하고, 지원하는 직무와 직접 이어지는 경험만 남겼습니다. 면접에서는 같은 이야기를 짧게 말하는 연습을 반복했습니다.`);
+function Stacked() {
+  const [open, setOpen] = React.useState(false);
+  const [dlg, setDlg] = React.useState(false);
+  return <>
+    <Button variant="outline" onClick={() => setOpen(true)}>Sheet 위에 Dialog 열기</Button>
+    <Sheet open={open} onClose={() => setOpen(false)} side="right" size={640} title="감사인사 남기기" description="DS-114 — Esc 1번: 모달만 닫힘 · 포커스는 「답변 등록」 · Esc 2번: 패널 닫힘">
+      <div className="body"><p>패널 안 버튼으로 확인 모달을 연다.</p><Button id="open-confirm" onClick={() => setDlg(true)}>답변 등록</Button>{PARAS.slice(0, 4).map((p, i) => <p key={i} style={{ marginTop: 14 }}>{p}</p>)}</div>
+      <Dialog open={dlg} onClose={() => setDlg(false)} width={400} title="답변을 등록하시겠습니까?"
+        footer={<><Button variant="ghost" onClick={() => setDlg(false)}>취소하기</Button><Button onClick={() => setDlg(false)}>등록하기</Button></>} />
+    </Sheet>
+  </>;
+}
+function App() {
+  const [open, setOpen] = React.useState(false);
+  return <div className="page">
+    <div className="lead">
+      <div className="cap">DS-113 · side="right" · size={640} · headerAction — 열면 첫 조작 요소(「전체 페이지에서 보기」)로 포커스 · Tab 은 패널 안에서만 · Esc / 막 / ✕ 로 닫으면 「간단보기 열기」로 포커스가 돌아온다 · 열린 동안 뒤 문서가 움직이지 않는다</div>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}><Button onClick={() => setOpen(true)}>간단보기 열기</Button><Stacked /></div>
+    </div>
+    {Array.from({ length: 10 }, (_, i) => <p key={i}>뒤 문서 {i + 1} — 스크롤 잠금을 보려면 조금 내린 뒤 여세요. 닫으면 같은 위치로 돌아옵니다.</p>)}
+    <Sheet open={open} onClose={() => setOpen(false)} side="right" size={640} title="미국 간호사 취업, 영어 점수는 어느 정도 필요할까요?" description="Q&A · 답변 3"
+      headerAction={<a className="full" href="#full" onClick={(e) => e.preventDefault()}><Icon name="link-square-02" size={16} color="var(--primary)" />전체 페이지에서 보기</a>}>
+      <div className="body">{PARAS.map((p, i) => <p key={i}>{p}</p>)}</div>
+    </Sheet>
+    <Readout />
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

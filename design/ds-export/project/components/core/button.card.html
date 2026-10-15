@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="700x180" name="Button" subtitle="primary · secondary · outline · ghost · destructive / 크기 sm·md·lg" -->
+<!-- @dsCard group="Components" viewport="820x360" name="Button" subtitle="primary · secondary · outline · ghost · destructive · tone(outline·ghost) / 크기 sm·md·lg" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -29,6 +29,33 @@
           <Button variant="destructive" iconLeft="delete-02">삭제</Button>
           <Button variant="primary" disabled>비활성</Button>
         </div>
+        <div className="row"><span className="label">tone (DS-81) — outline · ghost × neutral · primary</span>
+          <Button variant="outline">이어서 보기</Button>
+          <Button variant="outline" tone="primary">이어서 보기</Button>
+          <Button variant="ghost">더보기</Button>
+          <Button variant="ghost" tone="primary">더보기</Button>
+        </div>
+        <div className="row"><span className="label">ghost + primary + 쉐브론 · hover(밑줄) · outline + primary hover(면 --green-50) · 포커스 · 비활성</span>
+          <Button variant="ghost" tone="primary" iconRight="arrow-down-01">더보기</Button>
+          <Button variant="ghost" tone="primary" iconRight="arrow-up-01">접기</Button>
+          <Button variant="ghost" tone="primary" iconRight="arrow-down-01" style={{ textDecoration: "underline", textUnderlineOffset: "3px" }}>hover</Button>
+          <Button variant="outline" tone="primary" style={{ background: "var(--green-50)" }}>hover</Button>
+          <Button variant="outline" tone="primary" id="tone-focus">포커스</Button>
+          <Button variant="outline" tone="primary" disabled>비활성</Button>
+        </div>
+        <div className="row"><span className="label">tone="primary" — sm · md · lg</span>
+          <Button variant="outline" tone="primary" size="sm">이어서 보기</Button>
+          <Button variant="outline" tone="primary" size="md">이어서 보기</Button>
+          <Button variant="outline" tone="primary" size="lg">이어서 보기</Button>
+          <Button variant="ghost" tone="primary" size="sm" iconRight="arrow-down-01">모두 보기</Button>
+          <Button variant="ghost" tone="primary" size="md" iconRight="arrow-down-01">모두 보기</Button>
+          <Button variant="ghost" tone="primary" size="lg" iconRight="arrow-down-01">모두 보기</Button>
+        </div>
+        <div className="row"><span className="label">위계 — primary 옆</span>
+          <Button variant="primary">멘토링 신청</Button>
+          <Button variant="outline" tone="primary" iconRight="arrow-right-01">이어서 보기</Button>
+          <Button variant="ghost" tone="primary" iconRight="arrow-down-01">더보기</Button>
+        </div>
         <div className="row"><span className="label">sizes</span>
           <Button size="sm" variant="outline">Small</Button>
           <Button size="md" variant="outline">Medium</Button>
@@ -38,6 +65,7 @@
     );
   }
   ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+  setTimeout(() => { const f = document.getElementById("tone-focus"); if (f) f.focus({ preventScroll: true }); }, 300);
 </script>
 </body>
 </html>
