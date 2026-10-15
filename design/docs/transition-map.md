@@ -118,6 +118,8 @@ flowchart TD
   fix["멘토링 일정 확정"]
   resch["멘토링 일정 재조정 요청"]
   cheer["멘토의 격려 메세지"]
+  mmsg["멘토로부터의 메세지 : 취소"]
+  myrev["작성한 리뷰 보기"]
   review["리뷰 작성 → 완료"]
   meet["화상회의"]
 
@@ -132,6 +134,10 @@ flowchart TD
   det --> resch
   det --> cheer
   det --> review
+  det --> mmsg
+  det --> myrev
+  mmsg -->|"1:1 멘토링 다시 신청하기"| ap
+  mpe -->|"다시 신청하기"| ap
   review -->|"후속 멘토링 신청하기"| ap
   mpe -->|"멘토링 참가하기"| meet
 
@@ -140,7 +146,7 @@ flowchart TD
   classDef x fill:#eeeeee,stroke:#888888,stroke-dasharray:4 3,color:#000
   classDef q fill:#ffd9d9,stroke:#dd3333,stroke-dasharray:5 3,color:#000
   class mdet,ap,mpe s
-  class apdone,det,cancel,fix,resch,cheer,review,aperr m
+  class apdone,det,cancel,fix,resch,cheer,review,aperr,mmsg,myrev m
   class pay q
   class meet x
 ```
@@ -151,6 +157,7 @@ flowchart TD
 | 상세 모달 안에서 비가역 조작이 필요하다 | **모달을 겹치지 않는다.** 같은 모달의 화면을 갈아끼운다(취소는 `사유 → 확인` 2스텝) |
 | 신청완료 뒤 어디로 보내나 | **「나의 멘토링」이면 `mypage-mentee`, 「닫기」면 멘토 상세로 되돌린다.** 둘 다 와이어에 있다 |
 | 「멘토링 참가하기」를 누른다 | **외부 화상회의로 나간다.** 링크는 확정된 멘토링에만 있다 |
+| 취소된 카드다 | **사유와 상관없이 「다시 신청하기」를 둔다.** 멘토의 메세지가 있으면 「멘토 메세지 보기」. 그 모달 바닥에도 「1:1 멘토링 다시 신청하기」(카드 일람 `878:57647` · 2026-10-15) |
 
 **근거**: 취소·확정·재조정·리뷰·격려가 전부 「1:1 멘토링 신청 내용」 모달의 액션으로 그려져 있다(`1059:33087` 계열). 신청은 결제가 걸려 페이지로 되돌렸다(2026-09-10).
 
@@ -171,6 +178,8 @@ flowchart TD
   resch["멘토링 일정 재조정"]
   cancel["멘토링 취소 : 사유 → 확인"]
   cheer["격려 메세지 작성 → 전송 완료"]
+  cmsg["취소 메세지 작성 → 전송 완료"]
+  rev["멘티의 리뷰 보기"]
   meet["화상회의"]
 
   mpm -->|"자세히 보기"| det
@@ -179,6 +188,8 @@ flowchart TD
   det --> resch
   det --> cancel
   det --> cheer
+  det --> cmsg
+  det --> rev
   mpm -->|"멘토링 참가하기"| meet
   mpm -.->|"멘토도 멘티가 된다"| mmy
 
@@ -186,15 +197,15 @@ flowchart TD
   classDef m fill:#fff6d6,stroke:#c9a227,color:#000
   classDef x fill:#eeeeee,stroke:#888888,stroke-dasharray:4 3,color:#000
   class mpm,mmy s
-  class det,acc,accdone,decline,resch,cancel,cheer m
+  class det,acc,accdone,decline,resch,cancel,cheer,cmsg,rev m
   class meet x
 ```
 
 | 판정 조건 | 아크션 |
 |---|---|
 | 멘토가 자기 멘토링을 신청한다 | **`mypage-mentor` 의 「신청한 멘토링」**으로 간다. 멘티판과 같은 모달을 쓴다 |
-| 멘토가 취소했다 | **격려 메세지를 보낼 수 있게 남긴다.** 와이어의 주석이 「재구매 유도 동선을 확보」로 이유를 적는다 |
-| 메세지를 이미 보냈다 | **「멘티에게 메세지 보내기」 버튼을 지운다.** 와이어의 주석대로다 |
+| 멘토링이 취소됐다 | **사유와 상관없이 취소 메세지를 보낼 수 있게 남긴다.** 격려 메세지와 다른 모달이다. 와이어의 주석이 「재구매 유도 동선을 확보」로 이유를 적는다(`883:60454`) |
+| 메세지를 이미 보냈다 | **버튼이 「작성한 메세지 보기」 · 「작성한 격려 메세지 보기」로 바뀐다.** 카드 일람 `878:57047`(2026-10-15)이 1059 판의 「지운다」 주석보다 새 판이다 |
 
 **근거**: LNB 의 「나의 1:1 멘토링」이 접히는 항목이고 하위가 2개다(`1059:44700`).
 
