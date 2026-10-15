@@ -1,7 +1,7 @@
 # template 의 출처 — 마이페이지는 멘티 · 멘토가 한 장이다
 
 - Claude Design: 프로젝트 **`Mentree 2.0 My Page`**(radarlab 계정). 공개 공유 링크는 적지 않는다([ADR-0002](../../../../docs/adr/0002-rebuild-design-system-instead-of-sharing.md))
-- 원본: `design/_import/export-1008/Mentree 2.0 My Page (1014).zip` · SHA-256 `d86d01a26a42` · **생성 2026-10-14 23:56 · 1판**. 프롬프트는 [mypage-1014.md](../../../_import/prompts/mypage-1014.md) 2판
+- 원본: `design/_import/export-1008/Mentree 2.0 My Page (1014).zip` · SHA-256 `d86d01a26a42` · **생성 2026-10-14 23:56 · 1판**. 프롬프트는 `design/_import/prompts/mypage-1014.md` 2판
 - 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md)(틀) · [`../../mypage-mentor/UI-SPEC.md`](../../mypage-mentor/UI-SPEC.md)(멘토의 차이) — 둘 다 기안 · UX승인 대기. 미결 14건은 §11 의 기본값대로 만들어졌다
 - 디자인 시스템: `ds-export/` 의 **2026-10-14 판**(53본 · zip `af278860480b`). export 의 `_ds` 사본(12파일)은 번들 · 토큰이 이 판과 **바이트까지 같다.** 경로만 `../../../ds-export/project/` 로 돌렸다
 - 검수: [`../UI-REVIEW.md`](../UI-REVIEW.md) 1차(2026-10-15)
@@ -49,11 +49,11 @@ open "http://127.0.0.1:8765/design/screens/mypage-mentee/template/MyPage.dc.html
 | `../../assets/img/` (표본 사진 · 상수 `IMG` · 부품 기본값 안) | `../../../ds-export/project/assets/img/` |
 | DS 부품의 기본 자산 경로 | `ds-asset-path.js` 를 번들 앞에 넣었다 |
 
-배치는 [place-mypage.sh](../../../_import/place-mypage.sh) 가 한다. **새 export 가 오기 전에 다시 돌리면 리포에서 손본 것이 덮인다**(지금은 손본 것이 없다).
+배치는 `design/_import/place-mypage.sh` 가 한다. **새 export 가 오기 전에 다시 돌리면 리포에서 손본 것이 덮인다**(지금은 손본 것이 없다).
 
 ## 사양과 다른 곳 · 넘긴 것
 
-UI-REVIEW 1차의 표가 정본이다. 요지 — 2판 Claude Design 프롬프트([mypage-r2-1015.md](../../../_import/prompts/mypage-r2-1015.md))로 고친다. 리포에서 CSS 로 손보지 않는다.
+UI-REVIEW 1차의 표가 정본이다. 요지 — 2판 Claude Design 프롬프트(`design/_import/prompts/mypage-r2-1015.md`)로 고친다. 리포에서 CSS 로 손보지 않는다.
 
 - `html` 의 `lang="ko"` 는 스크립트가 넣는다(정적 속성 없음)
 - 최소 금액 슬라이더는 브라우저 기본 `input[type=range]` 다 — DS 에 Slider 가 없다(`DS-120`)
