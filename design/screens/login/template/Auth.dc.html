@@ -31,7 +31,7 @@
   </div>
 </sc-if>
 <div style="{{ frameStyle }}">
-<dc-import name="AuthShell" mobile="{{ isMobile }}" hide-logo="{{ isLogin }}" hint-size="100%,100vh">
+<dc-import name="AuthShell" mobile="{{ isMobile }}" hide-header="{{ isLogin }}" hint-size="100%,100vh">
 
   <sc-if value="{{ isLogin }}" hint-placeholder-val="{{ true }}">
     <section data-screen-label="로그인" style="display:flex;flex-direction:column;align-items:stretch">

@@ -25,7 +25,7 @@
   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="인증 번호" html-for="au-otp-input" error="{{ error }}" hint-size="100%,68px">
     <div class="au-otp">
       <div class="{{ boxClass }}">
-        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="au-otp-input" placeholder="전송된 인증 번호를 입력해주세요" value="{{ code }}" on-change="{{ onInput }}" disabled="{{ inputDisabled }}" read-only="{{ readOnly }}" invalid="{{ invalid }}" input-mode="numeric" dc-props="{{ padTimer }}" hint-size="100%,40px"></x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="au-otp-input" placeholder="인증 번호 6자리" value="{{ code }}" on-change="{{ onInput }}" disabled="{{ inputDisabled }}" read-only="{{ readOnly }}" invalid="{{ invalid }}" input-mode="numeric" dc-props="{{ padTimer }}" hint-size="100%,40px"></x-import>
         <span class="{{ timerClass }}" aria-live="polite">{{ timerText }}</span>
       </div>
       <div style="{{ btnBox }}"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="{{ btnVariant }}" full-width="{{ true }}" disabled="{{ btnDisabled }}" icon-left="{{ btnIcon }}" on-click="{{ onButton }}" hint-size="100%,40px">{{ btnLabel }}</x-import></div>
