@@ -1,7 +1,7 @@
 # template 의 출처 — 마이페이지는 멘티 · 멘토가 한 장이다
 
 - Claude Design: 프로젝트 **`Mentree 2.0 My Page`**(radarlab 계정). 공개 공유 링크는 적지 않는다([ADR-0002](../../../../docs/adr/0002-rebuild-design-system-instead-of-sharing.md))
-- 원본: `design/_import/export-1008/Mentree 2.0 My Page (1015 r2).zip` · SHA-256 `cca8ac9dce3d` · **생성 2026-10-15 15:04 · 2판**. 프롬프트는 `design/_import/prompts/mypage-r2-1015.md`(카드 일람 반영 A ＋ 1차 검수 B 합본 · export 의 `uploads/` 에 같은 파일이 있다). 1판(10-14 23:56 · `d86d01a26a42`)은 `Mentree 2.0 My Page (1014).zip` 에 남는다
+- 원본: `design/_import/export-1008/Mentree 2.0 My Page (1015 r2).zip` · SHA-256 `cca8ac9dce3d` · **생성 2026-10-15 15:04 · 2판**. 프롬프트는 `design/_import/prompts/mypage-r2-1015.md`(카드 일람 반영 A ＋ 1차 검수 B 합본). export 의 `uploads/` 에 든 사본은 합본 전 판(B 15건만)이다 — 출처는 리포의 합본이다. 1판(10-14 23:56 · `d86d01a26a42`)은 `Mentree 2.0 My Page (1014).zip` 에 남는다
 - 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md)(틀) · [`../../mypage-mentor/UI-SPEC.md`](../../mypage-mentor/UI-SPEC.md)(멘토의 차이) — 둘 다 기안 · UX승인 대기. 미결 14건은 §11 의 기본값대로 만들어졌다
 - 디자인 시스템: `ds-export/` 의 **2026-10-14 판**(53본 · zip `af278860480b`). export 의 `_ds` 사본(12파일)은 번들 · 토큰이 이 판과 **바이트까지 같다.** 경로만 `../../../ds-export/project/` 로 돌렸다
 - 검수: [`../UI-REVIEW.md`](../UI-REVIEW.md) 1차 · 카드 일람 대조 · 2차(모두 2026-10-15)
