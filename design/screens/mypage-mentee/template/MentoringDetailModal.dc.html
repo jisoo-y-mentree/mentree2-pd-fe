@@ -18,7 +18,7 @@
   <script src="ds-asset-path.js"></script>
 <script src="../../../ds-export/project/_ds_bundle.js"></script>
 </helmet>
-<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Dialog" open="{{ isOpen }}" onClose="{{ close }}" title="{{ title }}" width="{{ 640 }}" footer="{{ footer }}" footerLayout="stack" mobile="fullscreen" hint-size="0px,0px">
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Dialog" open="{{ isOpen }}" onClose="{{ close }}" title="{{ title }}" description="{{ description }}" width="{{ 640 }}" footer="{{ footer }}" footerLayout="stack" mobile="fullscreen" hint-size="0px,0px">
   <div style="display:flex; flex-direction:column; gap:20px">
 
     <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ true }}">
@@ -159,12 +159,11 @@
     </sc-if>
 
     <sc-if value="{{ isReview }}" hint-placeholder-val="{{ false }}">
-      <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground)">이번 멘토링의 리뷰를 작성해주세요. 감사의 마음을 담은 정성스러운 리뷰는 멘토에게 큰 힘이 됩니다.</p>
-      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="전반적인 멘토링 내용은 어땠나요? (필수)" hint-size="100%,150px">
-        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Textarea" value="{{ reviewMain }}" onChange="{{ setReviewMain }}" rows="{{ 4 }}" limit="{{ 1000 }}" placeholder="멘토링에서 도움이 된 점을 적어주세요" hint-size="100%,120px"></x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="전반적인 멘토링 내용은 어땠나요?" htmlFor="mp-rv-main" required="{{ true }}" hint-size="100%,150px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Textarea" id="mp-rv-main" value="{{ reviewMain }}" onChange="{{ setReviewMain }}" rows="{{ 4 }}" limit="{{ 1000 }}" placeholder="멘토링에서 도움이 된 점을 적어주세요" hint-size="100%,120px"></x-import>
       </x-import>
-      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="특별히 인상깊었던 부분이 있다면 적어주세요 (임의)" hint-size="100%,150px">
-        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Textarea" value="{{ reviewExtra }}" onChange="{{ setReviewExtra }}" rows="{{ 4 }}" limit="{{ 1000 }}" placeholder="기억에 남는 조언이나 순간이 있었나요?" hint-size="100%,120px"></x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="특별히 인상깊었던 부분이 있다면 적어주세요" htmlFor="mp-rv-extra" hint-size="100%,150px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Textarea" id="mp-rv-extra" value="{{ reviewExtra }}" onChange="{{ setReviewExtra }}" rows="{{ 4 }}" limit="{{ 1000 }}" placeholder="기억에 남는 조언이나 순간이 있었나요?" hint-size="100%,120px"></x-import>
       </x-import>
     </sc-if>
 
@@ -342,9 +341,11 @@ class Component extends DCLogic {
     const tv = (f) => (e) => this.setState({ [f]: e && e.target ? e.target.value : e });
 
     return {
-      isOpen: open,
+      // blink — 창이 768 을 건너면 한 프레임 닫았다 다시 연다(입력값은 그대로)
+      isOpen: open && !this.props.blink,
       title: titles[screen] || "1:1 멘토링 신청 내용",
-      footer: footer.length ? footer.map((b, i) => (i === 0 && b ? React.cloneElement(b, { fullWidth: true }) : b)) : null,
+      description: screen === "review" ? "이번 멘토링의 리뷰를 작성해주세요. 감사의 마음을 담은 정성스러운 리뷰는 멘토에게 큰 힘이 됩니다." : undefined,
+      footer: footer.length ? footer : null,
       close: () => this.close(),
       card,
       statusText,
