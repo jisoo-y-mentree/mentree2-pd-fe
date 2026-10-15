@@ -30,12 +30,12 @@
   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" src="{{ avatar }}" name="{{ name }}" size="{{ 56 }}" hint-size="56px,56px"></x-import>
   <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:2px">
     <div style="display:flex; align-items:center; gap:6px; min-width:0">
-      <span style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600; color:var(--foreground); white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ name }}</span>
+      <span title="{{ name }}" style="min-width:0; font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600; color:var(--foreground); white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ name }}</span>
       <sc-if value="{{ hasFlag }}" hint-placeholder-val="{{ false }}">
-        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Flag" country="{{ flag }}" label="{{ flagLabel }}" size="sm" hint-size="16px,16px"></x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Flag" country="{{ flag }}" label="{{ flagLabel }}" size="md" shape="rect" hint-size="30px,20px"></x-import>
       </sc-if>
     </div>
-    <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:500; color:var(--muted-foreground); white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ orgLine }}</span>
+    <span title="{{ orgLine }}" style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:500; color:var(--muted-foreground); white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ orgLine }}</span>
   </div>
   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="arrow-right-01" size="{{ 20 }}" color="var(--muted-foreground)" hint-size="20px,20px"></x-import>
 </a>
@@ -44,7 +44,8 @@
 class Component extends DCLogic {
   renderVals() {
     const p = this.props.person || {};
-    const parts = [p.org, p.title].filter(Boolean);
+    // 6-5 — 둘째 줄은 「직함 · 소속」(멘토 상세 · MentorCard 와 같은 순서)
+    const parts = [p.title, p.org].filter(Boolean);
     return {
       name: p.name || "",
       avatar: p.avatar,
