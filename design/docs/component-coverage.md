@@ -107,6 +107,9 @@
 | 테이블 | `mypage-*`(결제·정산 이력) | ✅ `Table` | |
 | 북마크 토글 | `top` · `mentor-search` · `mypage-*` | ✅ `BookmarkToggle` | **미디어 오버레이 전용**. 메타 줄은 `CountToggle` 이다([DESIGN.md](../DESIGN.md) §8.1) |
 | 칩 | `qna-feed` · `qna-detail` · `top` · `mentor-search` | ✅ `Chip` | **09-12 신규**(`DS-20`). 해시태그·걸린 조건 |
+| 브레드크럼 | `qna-detail` · `article-detail` | ✅ `Breadcrumb` | **2단 고정**(`DS-16` 완료) |
+| 검색 인풋 | `qna-feed` · `mentor-search` · `insight-list` | ✅ `SearchInput` | 자동완성 ＋ 최근 검색어 |
+| 필터 셀렉트 | `mentor-search` · `insight-list` | ✅ `FilterSelect` | **다중 선택 ＋ 확정 버튼.** `qna-feed` 는 단일·즉시라 `Select` 를 쓴다 |
 | 카운트 토글 | `qna-*` · `top` | ✅ `CountToggle` | **09-12 신규**(`DS-21`). 도움돼요·스크랩 |
 | 답변 카드 | `qna-detail` | ✅ `AnswerCard` | **09-12 신규**(`DS-23`) |
 | 탭 | `mentor-detail` · `mypage-*` · `qna-*` · `insight-list` | ✅ `Tabs` | **09-12 신규**(`DS-02`) |

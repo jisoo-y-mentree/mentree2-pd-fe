@@ -66,3 +66,7 @@ const [tab, setTab] = React.useState("questions");
 />
 <TabPanel idBase="mypage" value={tab}>…</TabPanel>
 ```
+- 선택 표시(DS-96): 높이 4 · 양끝 반원 · `--primary` 막대, 내용 폭, 1px 구분선 위. 글자색·굵기는 그대로.
+- `size="l"`(Q&A 피드의 두 목록): 같은 폭 · 높이 60 · `--text-h3` 700/500 · 항목 `icon` 22(선택만 `--primary`). 「답변을 기다리는 질문」 `bubble-chat-question` · 「답변이 완료된 질문」 `answer-done`(DS 자체).
+
+- **DS-111 — `fill`**: 탭들이 줄 폭을 똑같이 나누고(둘이면 반씩) 라벨은 가운데, 선택 막대가 탭 폭 전체. `size` s · l 둘 다. 기본은 그대로(글자 폭 탭 · 라벨 폭 막대). Q&A 피드: `<Tabs size="l" fill …/>`.

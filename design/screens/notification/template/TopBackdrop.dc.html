@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+<link rel="stylesheet" href="../../../ds-export/project/styles.css">
+<script src="ds-asset-path.js"></script>
+<script src="../../../ds-export/project/_ds_bundle.js"></script>
+<link rel="stylesheet" href="notification.css">
+<style>a{color:var(--primary)}a:hover{color:var(--green-800)}</style>
+</helmet>
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" auth-state="{{ role }}" unread="{{ unread }}" user="{{ user }}" on-notify="{{ onNotify }}" on-navigate="{{ noop }}" hint-size="100%,64px"></x-import>
+<main data-screen-label="TOP 바탕" style="font-family:var(--font-sans);color:var(--foreground)">
+  <section class="tb-hero" aria-label="히어로">
+    <div class="tb-globe" aria-hidden="true">
+      <svg viewBox="0 0 800 800" fill="none" stroke="var(--green-300)" stroke-width="1.25">
+        <circle cx="400" cy="400" r="396" stroke="var(--green-400)" stroke-width="1.5"></circle>
+        <ellipse cx="400" cy="400" rx="300" ry="396"></ellipse>
+        <ellipse cx="400" cy="400" rx="200" ry="396"></ellipse>
+        <ellipse cx="400" cy="400" rx="100" ry="396"></ellipse>
+        <line x1="400" y1="4" x2="400" y2="796"></line>
+        <line x1="4" y1="400" x2="796" y2="400"></line>
+        <ellipse cx="400" cy="400" rx="396" ry="300"></ellipse>
+        <ellipse cx="400" cy="400" rx="396" ry="200"></ellipse>
+        <ellipse cx="400" cy="400" rx="396" ry="100"></ellipse>
+      </svg>
+    </div>
+    <div class="tb-container tb-hero-grid">
+      <div style="display:flex;flex-direction:column;gap:16px;position:relative;z-index:1">
+        <h1 style="margin:0;font-size:var(--text-display);line-height:var(--text-display--line-height);letter-spacing:var(--text-display--letter-spacing);font-weight:700"><span style="color:var(--primary)">해외 커리어,</span><br>먼저 경험한 선배와 함께</h1>
+        <p style="margin:0;font-size:var(--text-body);line-height:var(--text-body--line-height);letter-spacing:var(--text-body--letter-spacing)"><span class="tabular" style="color:var(--primary);font-weight:700">141</span>명의 글로벌 멘토들을 만나보세요</p>
+        <div style="display:flex;gap:12px;margin-top:12px">
+          <a class="tb-entry" href="#"><img src="../../../ds-export/project/assets/img/a.png" alt=""><span>1:1 멘토링 신청</span></a>
+          <a class="tb-entry" href="#"><img src="../../../ds-export/project/assets/img/b.png" alt=""><span>무엇이든 질문</span></a>
+          <a class="tb-entry" href="#"><img src="../../../ds-export/project/assets/img/c.png" alt=""><span>필독 콘텐츠</span></a>
+        </div>
+      </div>
+      <div class="tb-faces" aria-hidden="true">
+        <sc-for list="{{ faces }}" as="f" hint-placeholder-count="7">
+          <span class="tb-face" style="{{ f.style }}">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" src="{{ f.src }}" name="{{ f.name }}" size="{{ f.size }}" hint-size="96px,96px"></x-import>
+            <span><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Flag" country="{{ f.country }}" label="{{ f.label }}" size="lg" tooltip="{{ false }}" hint-size="24px,24px"></x-import></span>
+          </span>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CalloutBar" variant="event" href="#" image="assets/logo/mentree-logo-white.svg" heading="10월 멘토링 위크" hint-size="100%,56px">첫 멘토링 50% 할인 · 10/31까지</x-import>
+  <section class="tb-section" aria-label="멘토의 이야기">
+    <div class="tb-container" style="display:flex;flex-direction:column;gap:24px">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" title="멘토의 이야기" view-all="{{ true }}" on-view-all="{{ noop }}" carousel="{{ true }}" on-prev="{{ prevCover }}" on-next="{{ nextCover }}" prev-disabled="{{ atStart }}" next-disabled="{{ atEnd }}" hint-size="100%,40px"></x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Carousel" ref="{{ coverRef }}" gap="{{ 24 }}" snap="card" mode="snap-fit" fade="{{ false }}" on-edge-change="{{ setEdges }}" hint-size="100%,440px">
+        <sc-for list="{{ covers }}" as="cv" hint-placeholder-count="1">
+          <div style="flex:0 0 100%;width:100%;min-width:100%"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CoverCard" dc-props="{{ cv }}" hint-size="100%,440px"></x-import></div>
+        </sc-for>
+      </x-import>
+    </div>
+  </section>
+  <section class="tb-section" aria-label="지금 주목받는 Q&amp;A 멘토링" style="background:var(--sage-50)">
+    <div class="tb-container tb-qna-grid">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:var(--text-body);line-height:var(--text-body--line-height);letter-spacing:var(--text-body--letter-spacing);color:var(--foreground)">지금 주목받는</span>
+        <h2 style="margin:0;font-size:var(--text-h0);line-height:var(--text-h0--line-height);letter-spacing:var(--text-h0--letter-spacing);font-weight:700">Q&amp;A 멘토링</h2>
+        <p style="margin:8px 0 12px;font-size:var(--text-caption);line-height:var(--text-caption--line-height);letter-spacing:var(--text-caption--letter-spacing);color:var(--muted-foreground);text-wrap:pretty">취업 준비, 커리어, 현지 생활<br>해외 커리어에 대해서라면 무엇이든<br>경험 있는 선배에게 물어보세요</p>
+        <div style="display:flex;align-items:center;gap:8px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="sm" onClick="{{ noop }}" hint-size="auto,32px">질문하러 가기</x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" icon-right="arrow-right-01" onClick="{{ noop }}" hint-size="auto,32px">전체보기</x-import>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <sc-for list="{{ qnas }}" as="q" hint-placeholder-count="3">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaListItem" variant="question" dc-props="{{ q }}" hint-size="100%,96px"></x-import>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  <section class="tb-section" aria-label="멘토 둘러보기">
+    <div class="tb-container" style="display:flex;flex-direction:column;gap:20px">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" title="멘토 둘러보기" view-all="{{ true }}" on-view-all="{{ noop }}" hint-size="100%,40px"></x-import>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px">
+          <span class="tb-filter-label">국가</span>
+          <sc-for list="{{ countries }}" as="co" hint-placeholder-count="7">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterChip" leading="{{ co.leading }}" flag="{{ co.flag }}" selected="{{ co.selected }}" on-change="{{ co.toggle }}" hint-size="auto,32px">{{ co.label }}</x-import>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px">
+          <span class="tb-filter-label">직종</span>
+          <sc-for list="{{ jobs }}" as="jb" hint-placeholder-count="9">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterChip" selected="{{ jb.selected }}" on-change="{{ jb.toggle }}" hint-size="auto,32px">{{ jb.label }}</x-import>
+          </sc-for>
+        </div>
+      </div>
+      <div class="tb-mentor-row">
+        <sc-for list="{{ mentors }}" as="m" hint-placeholder-count="4">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.MentorCard" dc-props="{{ m }}" fluid="{{ true }}" hint-size="100%,400px"></x-import>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  <section class="tb-section" aria-label="멘트리 인사이트">
+    <div class="tb-container" style="display:flex;flex-direction:column;gap:24px">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" title="멘트리 인사이트" view-all="{{ true }}" on-view-all="{{ noop }}" hint-size="100%,40px"></x-import>
+      <div class="tb-insight-grid">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ArticlePreview" dc-props="{{ featured }}" hint-size="100%,520px"></x-import>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <sc-for list="{{ articles }}" as="ar" hint-placeholder-count="4">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ArticlePreview" variant="compact" dc-props="{{ ar }}" hint-size="100%,130px"></x-import>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="tb-section" aria-label="세계 곳곳의 멘토" style="background:var(--sage-50)">
+    <div class="tb-container" style="display:flex;flex-direction:column;align-items:center;text-align:center">
+      <span style="font-size:var(--text-body);line-height:var(--text-body--line-height);letter-spacing:var(--text-body--letter-spacing)">세계 곳곳에서 활약하고 있는</span>
+      <h2 style="margin:4px 0 0;font-size:var(--text-h0);line-height:var(--text-h0--line-height);letter-spacing:var(--text-h0--letter-spacing);font-weight:700"><span class="tabular" style="color:var(--primary)">141명</span>의 멘토</h2>
+      <p style="margin:12px 0 20px;font-size:var(--text-caption);line-height:var(--text-caption--line-height);letter-spacing:var(--text-caption--letter-spacing);color:var(--muted-foreground)">국가를 선택하면 해당 국가의 멘토 리스트 페이지로 이동합니다</p>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="sm" onClick="{{ noop }}" hint-size="auto,32px">멘토 리스트 보기</x-import>
+      <div class="tb-map">
+        <iframe class="tb-map-frame" src="world-map.html" title="세계지도" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        <sc-for list="{{ pins }}" as="pn" hint-placeholder-count="6">
+          <div class="tb-pin" style="{{ pn.style }}">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.AvatarGroup" items="{{ pn.items }}" max="{{ 2 }}" size="sm" hint-size="40px,24px"></x-import>
+            <span class="tabular">{{ pn.more }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  <section class="tb-section" aria-label="기업 서비스" style="background:var(--biz-surface)">
+    <div class="tb-container tb-biz-grid">
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:12px">
+        <span style="font-size:var(--text-caption);line-height:var(--text-caption--line-height);letter-spacing:var(--text-caption--letter-spacing);color:var(--muted-foreground)">Mentree Biz</span>
+        <h2 style="margin:0;font-size:var(--text-display);line-height:var(--text-display--line-height);letter-spacing:var(--text-display--letter-spacing);font-weight:700">해외 진출 기업을 위한<br><span style="color:var(--biz-primary)">비즈니스 서포트</span> 서비스</h2>
+        <p style="margin:4px 0 8px;font-size:var(--text-caption);line-height:var(--text-caption--line-height);letter-spacing:var(--text-caption--letter-spacing);color:var(--muted-foreground);text-wrap:pretty">현지 경력이 풍부한 각 분야별 전문가가<br>사업의 개별적인 상황에 따른 맞춤형 서포트를 제공합니다</p>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="sm" icon-right="arrow-up-right-01" dc-props="{{ bizBtn }}" onClick="{{ noop }}" hint-size="auto,32px">자세히 알아보기</x-import>
+      </div>
+      <div class="tb-biz-art" aria-hidden="true">
+        <span style="width:300px;height:300px"></span>
+        <span style="width:240px;height:240px"></span>
+        <span style="width:180px;height:180px"></span>
+        <img src="../../../ds-export/project/assets/logo/biz.svg" alt="" style="position:relative;width:200px;height:auto;display:block">
+      </div>
+    </div>
+  </section>
+</main>
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" on-navigate="{{ noop }}" hint-size="100%,220px"></x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;role&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;mentee&quot;,&quot;mentor&quot;],&quot;default&quot;:&quot;mentee&quot;,&quot;tsType&quot;:&quot;\&quot;mentee\&quot; | \&quot;mentor\&quot;&quot;},&quot;unread&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;user&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;{ name?: string; avatarUrl?: string }&quot;},&quot;onNotify&quot;:{&quot;editor&quot;:null,&quot;default&quot;:null,&quot;tsType&quot;:&quot;(e: MouseEvent) =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { atStart: true, atEnd: false, country: null, job: null };
+  coverRef = React.createRef();
+  renderVals() {
+    const p = this.props;
+    const IMG = "../../../ds-export/project/assets/img/";
+    const noop = () => {};
+    // 히어로 오른쪽 — 멘토 얼굴 7개(밴드 기준 %). 지구본 선 위에 흩어진다.
+    const faces = [
+      { src: IMG + "8.png", name: "박지훈", country: "south-korea", label: "대한민국", size: 96, x: 60, y: 78 },
+      { src: IMG + "9.png", name: "이서연", country: "japan", label: "일본", size: 96, x: 76, y: 48 },
+      { src: IMG + "11.png", name: "최민석", country: "singapore", label: "싱가포르", size: 104, x: 92, y: 30 },
+      { src: IMG + "12.png", name: "강현우", country: "united-states", label: "미국", size: 104, x: 95, y: 76 },
+      { src: IMG + "14.png", name: "박도윤", country: "united-kingdom", label: "영국", size: 72, x: 59, y: 32 },
+      { src: IMG + "5.png", name: "서명진", country: "germany", label: "독일", size: 80, x: 80, y: 6 },
+      { src: IMG + "3.png", name: "Lee Wen", country: "australia", label: "호주", size: 80, x: 81, y: 100 },
+    ].map((f) => ({ ...f, style: { left: f.x + "%", top: f.y + "%" } }));
+    const covers = [
+      { tone: "green", href: "#", image: IMG + "1.png", badge: "디자인", title: "늦은 출발은 없다! BX 디자이너 커리어 개척기", excerpt: "늦은 나이에 한국에서의 탄탄한 커리어를 버리고 일본에 건너와 성공적으로 BX 디자이너로의 커리어 전환을 할 수 있었던 비결은?", person: { name: "서명진", country: "japan", countryLabel: "일본", role: "BX 디자이너", company: "Dentsu Digital inc." } },
+      { tone: "sky", href: "#", image: IMG + "2.png", badge: "개발", title: "도쿄에서 백엔드 개발자로 5년, 이직까지의 기록", excerpt: "신졸 입사부터 두 번의 이직까지, 일본 IT 시장에서 몸값을 올린 과정을 정리했습니다.", person: { name: "박서연", country: "japan", countryLabel: "일본", role: "백엔드 엔지니어", company: "Mercari" } },
+      { tone: "rose", href: "#", image: IMG + "3.png", badge: "금융", title: "싱가포르 은행 애널리스트가 말하는 첫 해", excerpt: "EP 비자, 첫 월급, 그리고 팀에서 신뢰를 얻기까지의 12개월.", person: { name: "Lee Wen", country: "singapore", countryLabel: "싱가포르", role: "애널리스트", company: "DBS" } },
+      { tone: "gray", href: "#", image: IMG + "5.png", badge: "컨설팅", title: "런던 컨설팅 펌, 비자 스폰서십을 받기까지", excerpt: "스폰서십이 되는 회사를 고르는 법과 인터뷰에서 비자 이야기를 꺼내는 타이밍.", person: { name: "박도윤", country: "united-kingdom", countryLabel: "영국", role: "컨설턴트", company: "McKinsey" } },
+    ];
+    const qnas = [
+      { href: "#", keyword: "취업준비", country: "united-states", countryLabel: "미국", title: "이력서에 영어 점수가 없어도 미국 취업이 가능할까요?", answerCount: 6, answerers: [{ name: "강현우" }, { name: "Sarah Kim" }, { name: "정하늘" }, { name: "김도윤" }, { name: "오세훈" }], views: 2489, likes: 20 },
+      { href: "#", keyword: "취업준비", country: "japan", countryLabel: "일본", title: "일본 IT 기업 신졸 채용, 한국 대학 졸업생도 지원할 수 있나요?", answerCount: 4, answerers: [{ name: "박서연" }, { name: "이서연" }, { name: "윤지호" }, { name: "배수진" }], views: 1832, likes: 46 },
+      { href: "#", keyword: "현지 생활", country: "singapore", countryLabel: "싱가포르", title: "싱가포르 EP 갱신, 회사를 옮기는 중이면 언제 신청합니까?", answerCount: 5, answerers: [{ name: "Lee Wen" }, { name: "최민석" }, { name: "문가영" }, { name: "황준서" }, { name: "김하늘" }], views: 1440, likes: 51 },
+    ];
+    const countryList = [
+      { label: "일본", flag: "japan" }, { label: "미국", flag: "united-states" }, { label: "대한민국", flag: "south-korea" }, { label: "싱가포르", flag: "singapore" },
+      { label: "아시아/중동" }, { label: "북미/오세아니아" }, { label: "유럽" },
+    ];
+    const countries = countryList.map((c) => ({ label: c.label, flag: c.flag || "", leading: c.flag ? "flag" : "none", selected: this.state.country === c.label, toggle: () => this.setState((s) => ({ country: s.country === c.label ? null : c.label })) }));
+    const jobs = ["개발", "디자인", "마케팅/광고", "영업/컨설팅", "금융", "HR", "교육", "엔지니어링/제조", "기타"].map((j) => ({ label: j, selected: this.state.job === j, toggle: () => this.setState((s) => ({ job: s.job === j ? null : j })) }));
+    const mentors = [
+      { href: "#", name: "박지훈", role: "시니어 백엔드 엔지니어", company: "네이버", field: "개발", country: "south-korea", countryLabel: "대한민국", photo: IMG + "8.png", publishedAt: "2026-10-01", intro: "10년차 백엔드, 이직 전략부터 코드 리뷰까지" },
+      { href: "#", name: "이서연", role: "프로덕트 디자이너", company: "라쿠텐", field: "디자인", country: "japan", countryLabel: "일본", photo: IMG + "9.png", publishedAt: "2026-10-05", intro: "도쿄에서 UX 리서치와 디자인 시스템을 합니다" },
+      { href: "#", name: "최민석", role: "브랜드 마케팅 리드", company: "Grab", field: "마케팅/광고", country: "singapore", countryLabel: "싱가포르", photo: IMG + "11.png", publishedAt: "2026-06-10", intro: "동남아 시장 진입, 브랜드부터 퍼포먼스까지" },
+      { href: "#", name: "강현우", role: "엔터프라이즈 세일즈 매니저", company: "Salesforce", field: "영업/컨설팅", country: "united-states", countryLabel: "미국", photo: IMG + "12.png", publishedAt: "2026-05-20", intro: "실리콘밸리 B2B 세일즈, 영어 인터뷰 체득법" },
+    ];
+    const featured = { href: "#", variant: "default", ratio: "3:2", label: "신규 아티클", image: IMG + "1.png", title: "영어보다 중요한 건 따로 있었다? 해외취업 언어 현실", excerpt: "현지에서 일하는 멘토들은 영어 점수보다 회의에서 내 생각을 끝까지 말하는 힘이 먼저였다고 말합니다. 언어 준비를 어디서부터 다시 잡을지 정리했습니다.", tags: [{ label: "취업 전략", hue: "indigo" }, { label: "커뮤니케이션", hue: "teal" }] };
+    const articles = [
+      { href: "#", image: IMG + "2.png", title: "토익보다 효과 있었던 해외취업 자격증은?", tags: [{ label: "이력서·지원서류", hue: "purple" }] },
+      { href: "#", image: IMG + "3.png", title: "해외취업 3년차들이 가장 많이 후회한 것", tags: [{ label: "현지 생활", hue: "amber" }] },
+      { href: "#", image: IMG + "5.png", title: "한국보다 덜 힘들까? 해외 직장인들의 진짜 워라밸", tags: [{ label: "워라밸·근무 방식", hue: "rose" }] },
+      { href: "#", image: IMG + "14.png", title: "도쿄에서 백엔드 개발자로 5년, 이직까지의 기록", tags: [{ label: "이직하기", hue: "sky" }] },
+    ];
+    const pins = [
+      { x: 14, y: 34, items: [{ name: "강현우" }, { name: "Sarah Kim" }], more: "+4" },
+      { x: 20, y: 60, items: [{ name: "김도윤" }, { name: "이민아" }], more: "+26" },
+      { x: 50, y: 30, items: [{ name: "박도윤" }, { name: "서지호" }], more: "+8" },
+      { x: 86, y: 32, items: [{ name: "박지훈" }, { name: "이서연" }], more: "+35" },
+      { x: 76, y: 44, items: [{ name: "박서연" }, { name: "최민석" }], more: "+43" },
+      { x: 75, y: 72, items: [{ name: "Lee Wen" }, { name: "한지민" }], more: "+7" },
+    ].map((pn) => ({ ...pn, style: { left: pn.x + "%", top: pn.y + "%" } }));
+    const car = () => this.coverRef.current;
+    return {
+      role: p.role ?? "mentee",
+      unread: !!p.unread,
+      user: p.user ?? { name: "멘트리" },
+      onNotify: p.onNotify ?? noop,
+      noop,
+      faces, covers, qnas, countries, jobs, mentors, featured, articles, pins,
+      coverRef: this.coverRef,
+      atStart: this.state.atStart, atEnd: this.state.atEnd,
+      // 리포 검수 2026-10-14 3차: 값이 바뀔 때만 setState — Carousel 이 렌더마다 onEdgeChange 를 다시 불러 무한 재렌더(CPU 100%)가 됐다. 지수의 Top.dc.html 과 같은 가드
+      setEdges: (e) => { const c = this.state; const ns = !!e.atStart, ne = !!e.atEnd; if (c.atStart !== ns || c.atEnd !== ne) this.setState({ atStart: ns, atEnd: ne }); },
+      prevCover: () => car() && car().scrollPrev(),
+      nextCover: () => car() && car().scrollNext(),
+      bizBtn: { style: { background: "var(--biz-primary)", color: "var(--biz-primary-foreground)", border: "1px solid transparent" } },
+    };
+  }
+}
+</script>
+</body>
+</html>
