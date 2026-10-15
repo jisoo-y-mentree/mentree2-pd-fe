@@ -1,10 +1,11 @@
 # template 의 출처 — 인증 4화면이 한 장이다
 
-- Claude Design: 프로젝트 **`Mentree 2.0 온보딩 진행`**(radarlab 계정 · 프롬프트는 `Mentree 2.0 Auth` 로 적었으나 상혁이 이 이름으로 만들었다). 공개 공유 링크는 적지 않는다([ADR-0002](../../../../docs/adr/0002-rebuild-design-system-instead-of-sharing.md))
-- 원본: `design/_import/export-1008/Mentree 2.0 Auth (1015).zip` · SHA-256 `e681a51f4616` · **생성 2026-10-15 12:26 · 1판**. 프롬프트는 [auth-1015.md](../../../_import/prompts/auth-1015.md)
-- 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md)(로그인 · 틀) · [`../../signup/UI-SPEC.md`](../../signup/UI-SPEC.md) · [`../../password-reset/UI-SPEC.md`](../../password-reset/UI-SPEC.md) · [`../../onboarding-survey/UI-SPEC.md`](../../onboarding-survey/UI-SPEC.md) — 전부 export 값으로 기안했다(2026-10-15)
+- Claude Design: 프로젝트 **`Mentree 2.0 Onboarding`**(radarlab 계정 · zip 이름 기준. 1판 때는 `Mentree 2.0 온보딩 진행`). 공개 공유 링크는 적지 않는다([ADR-0002](../../../../docs/adr/0002-rebuild-design-system-instead-of-sharing.md))
+- 원본: `design/_import/export-1008/Mentree 2.0 Auth (1015 r2).zip` · SHA-256 `cec0fba6b536` · **생성 2026-10-15 12:51 · 2판**. **상혁이 Claude Design 에서 결정 2건을 정한 판**이다(로그인 로고 · 소셜 버튼). 프롬프트는 [auth-1015.md](../../../_import/prompts/auth-1015.md) → [auth-r2-1015.md](../../../_import/prompts/auth-r2-1015.md)
+- 1판: `Mentree 2.0 Auth (1015).zip` · `e681a51f4616` · 12:26. 2판과 다른 파일은 3본(`Auth` · `AuthShell` · `OtpField`)이다
+- 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md)(로그인 · 틀) · [`../../signup/UI-SPEC.md`](../../signup/UI-SPEC.md) · [`../../password-reset/UI-SPEC.md`](../../password-reset/UI-SPEC.md) · [`../../onboarding-survey/UI-SPEC.md`](../../onboarding-survey/UI-SPEC.md) — export 값으로 기안했다(2026-10-15)
 - 디자인 시스템: `ds-export/` 의 **2026-10-14 판**(53본 · zip `af278860480b`). export 의 `_ds` 사본은 번들 · 토큰 · 매니페스트가 이 판과 **바이트까지 같다.** 경로만 `../../../ds-export/project/` 로 돌렸다
-- 검수: [`../UI-REVIEW.md`](../UI-REVIEW.md) 1차(2026-10-15)
+- 검수: [`../UI-REVIEW.md`](../UI-REVIEW.md) 1차 · 2차(2026-10-15)
 
 ## 무엇이 들어 있나
 
@@ -23,9 +24,9 @@
 
 | 파일 | 무엇 |
 |---|---|
-| `Auth.dc.html` | 입구 · 6화면 · 표본 · 토스트 |
-| `AuthShell.dc.html` | 로고만 있는 헤더 ＋ 가운데 기둥 400 |
-| `OtpField.dc.html` | 인증 번호 칸(`data-temp="DS-122"`) — 상태 8 |
+| `Auth.dc.html` | 입구 · 6화면 · 표본 · 토스트 · 소셜 브랜드 로고 3종(인라인 SVG) |
+| `AuthShell.dc.html` | 로고만 있는 헤더 ＋ 가운데 기둥 400. `hideLogo` 면 헤더 로고를 숨긴다(로그인) |
+| `OtpField.dc.html` | 인증 번호 칸(`data-temp="DS-122"`) — 상태 8 · 오른쪽 64 타이머 자리 · 버튼 폭은 글자 폭으로 잰다 |
 | `StepBar.dc.html` | 3스텝 진행 막대(`data-temp="DS-121"`) |
 | `ConsentGroup.dc.html` | 전체 동의 ＋ 4항목 |
 | `AgeDialog.dc.html` | 만 14세 확인 모달 |
@@ -50,8 +51,8 @@ open "http://127.0.0.1:8765/design/screens/login/template/Auth.dc.html?screen=lo
 | `../../assets/img/9.png` · `../../assets/logo/mentree-logo.svg` | `../../../ds-export/project/assets/…` |
 | DS 부품의 기본 자산 경로 | `ds-asset-path.js` 를 번들 앞에 넣었다 |
 
-배치는 [place-auth.sh](../../../_import/place-auth.sh) 가 한다. 새 export 가 오기 전에 다시 돌리면 리포에서 손본 것이 덮인다(지금은 손본 것이 없다).
+배치는 [place-auth.sh](../../../_import/place-auth.sh) 가 한다(2판을 가리킨다). 새 export 가 오기 전에 다시 돌리면 리포에서 손본 것이 덮인다(지금은 손본 것이 없다).
 
 ## 넘긴 것
 
-UI-REVIEW 1차의 표가 정본이다. 고칠 것은 2차 프롬프트([auth-r2-1015.md](../../../_import/prompts/auth-r2-1015.md))로 돌린다 — 소셜 버튼의 브랜드 로고가 첫째다(상혁 2026-10-15). 리포에서 CSS 로 손보지 않는다. 외부 라이브러리 없음.
+UI-REVIEW 2차의 표가 정본이다. 남은 것 2건(로그인의 빈 헤더 띠 · 인증 칸 자리글 말줄임)은 하이고, 다음에 Claude Design 을 만질 때 같이 고친다. 리포에서 CSS 로 손보지 않는다. 외부 라이브러리 없음 — 소셜 로고는 인라인 SVG 다.
