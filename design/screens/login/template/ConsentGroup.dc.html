@@ -13,9 +13,8 @@
 <script src="../../../ds-export/project/_ds_bundle.js"></script>
 </helmet>
 <div style="display:flex;flex-direction:column;gap:12px">
-  <div style="display:flex;align-items:center;gap:10px;height:32px">
-    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Checkbox" id="au-consent-all" checked="{{ all }}" on-change="{{ setAll }}" hint-size="20px,20px"></x-import>
-    <label for="au-consent-all" style="font-size:var(--text-body);line-height:var(--text-body--line-height);font-weight:600;cursor:pointer">전체 동의</label>
+  <div style="display:flex;align-items:center;height:32px">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Checkbox" id="au-consent-all" checked="{{ all }}" on-change="{{ setAll }}" label="{{ allLabel }}" hint-size="auto,24px"></x-import>
   </div>
   <div style="height:1px;background:var(--border)"></div>
   <div style="display:flex;flex-direction:column;gap:8px">
@@ -24,18 +23,18 @@
     </div>
     <div style="display:flex;align-items:center;justify-content:space-between;min-height:32px;gap:12px">
       <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Checkbox" checked="{{ terms }}" on-change="{{ setTerms }}" label="멘트리 이용 약관 동의 (필수)" hint-size="auto,24px"></x-import>
-      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" on-click="{{ openTerms }}" hint-size="auto,32px">내용보기</x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" tone="primary" on-click="{{ openTerms }}" hint-size="auto,32px">내용보기</x-import>
     </div>
     <div style="display:flex;align-items:center;justify-content:space-between;min-height:32px;gap:12px">
       <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Checkbox" checked="{{ privacy }}" on-change="{{ setPrivacy }}" label="개인정보 수집 이용 동의 (필수)" hint-size="auto,24px"></x-import>
-      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" on-click="{{ openPrivacy }}" hint-size="auto,32px">내용보기</x-import>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" tone="primary" on-click="{{ openPrivacy }}" hint-size="auto,32px">내용보기</x-import>
     </div>
     <div style="display:flex;align-items:center;justify-content:space-between;min-height:32px">
       <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Checkbox" checked="{{ marketing }}" on-change="{{ setMarketing }}" label="마케팅 정보 수신 동의 (선택)" hint-size="auto,24px"></x-import>
     </div>
   </div>
   <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
-    <p role="alert" style="margin:0;font-size:var(--text-caption);line-height:var(--text-caption--line-height);font-weight:500;color:var(--destructive)">{{ error }}</p>
+    <p role="alert" style="margin:0;font-size:var(--text-caption);line-height:var(--text-caption--line-height);color:var(--destructive)">{{ error }}</p>
   </sc-if>
   <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Dialog" open="{{ dlgOpen }}" on-close="{{ closeDlg }}" title="{{ dlgTitle }}" mobile="fullscreen" footer="{{ dlgFooter }}" hint-size="0,0">
     <div style="display:flex;flex-direction:column;gap:16px;font-size:var(--text-body);line-height:var(--text-body--line-height);color:var(--foreground)">
@@ -63,7 +62,7 @@ class Component extends DCLogic {
     const close = () => this.setState({ dlg: null });
     const footer = DS.Button ? React.createElement(DS.Button, { variant: "outline", onClick: close }, "닫기") : null;
     return {
-      all, age: v("age"), terms: v("terms"), privacy: v("privacy"), marketing: v("marketing"),
+      all, allLabel: React.createElement("span", { style: { fontWeight: 600 } }, "전체 동의"), age: v("age"), terms: v("terms"), privacy: v("privacy"), marketing: v("marketing"),
       setAll: (next) => { ["age", "terms", "privacy", "marketing"].forEach(k => p.onChange && p.onChange(k, !!next)); },
       setAge: set("age"), setTerms: set("terms"), setPrivacy: set("privacy"), setMarketing: set("marketing"),
       hasError: !!p.error, error: p.error,

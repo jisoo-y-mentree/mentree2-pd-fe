@@ -41,8 +41,8 @@ class Component extends DCLogic {
     let footer = null;
     if (DS.Button) {
       footer = asking
-        ? React.createElement(DS.Button, { variant: "primary", fullWidth: true, disabled: !a, onClick: () => p.onConfirm && p.onConfirm(a) }, a ? "확인" : "연령 확인 버튼을 선택해주세요")
-        : React.createElement(DS.Button, { variant: "outline", fullWidth: true, onClick: close }, "닫기");
+        ? React.createElement(DS.Button, { variant: "primary", size: "lg", fullWidth: true, disabled: !a, onClick: () => p.onConfirm && p.onConfirm(a) }, a ? "확인" : "연령 확인 버튼을 선택해주세요")
+        : React.createElement(DS.Button, { variant: "outline", size: "lg", fullWidth: true, onClick: close }, "닫기");
     }
     return {
       open: !!p.open, asking, denied: !asking, close, footer,

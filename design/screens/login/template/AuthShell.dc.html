@@ -20,8 +20,10 @@
   <style>body{margin:0;background:var(--background);} a{color:var(--primary);} a:hover{color:var(--primary);text-decoration:underline;}</style>
 </helmet>
 <div style="min-height:100vh;display:flex;flex-direction:column;background:var(--background);color:var(--foreground);font-family:var(--font-sans)">
-  <sc-if value="{{ showHeader }}" hint-placeholder-val="{{ true }}"><header style="height:64px;flex:0 0 auto;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px">
-    <a href="#" aria-label="mentree" style="display:inline-flex;align-items:center;height:64px"><img src="../../../ds-export/project/assets/logo/mentree-logo.svg" alt="mentree" style="height:24px;display:block"></a>
+  <sc-if value="{{ showHeader }}" hint-placeholder-val="{{ true }}"><header data-temp="DS-123" style="position:sticky;top:0;z-index:50;flex:0 0 auto;background:color-mix(in oklch, white 78%, transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)">
+    <div style="display:flex;align-items:center;height:64px;max-width:var(--container-max);margin:0 auto;padding:0 var(--container-pad);box-sizing:border-box">
+      <a href="#" aria-label="mentree" style="display:inline-flex;align-items:center;height:64px"><img src="../../../ds-export/project/assets/logo/mentree-logo.svg" alt="mentree" style="height:24px;display:block"></a>
+    </div>
   </header></sc-if>
   <main style="{{ mainStyle }}">
     <div style="{{ colStyle }}">{{ children }}</div>
@@ -34,7 +36,7 @@ class Component extends DCLogic {
     const m = !!this.props.mobile;
     return {
       showHeader: !this.props.hideHeader,
-      mainStyle: { flex: "1 1 auto", display: "flex", justifyContent: "center", alignItems: "flex-start", padding: m ? "32px 16px 48px" : "64px 24px 80px" },
+      mainStyle: { flex: "1 1 auto", display: "flex", justifyContent: "center", alignItems: "flex-start", padding: this.props.hideHeader ? (m ? "32px 16px 48px" : "64px 24px 80px") : (m ? "40px 16px 48px" : "40px 24px 80px") },
       colStyle: { width: "100%", maxWidth: m ? "100%" : 400, display: "flex", flexDirection: "column", minWidth: 0 },
     };
   }
