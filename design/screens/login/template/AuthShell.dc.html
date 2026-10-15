@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+<script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <style>body{margin:0;background:var(--background);} a{color:var(--primary);} a:hover{color:var(--primary);text-decoration:underline;}</style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-direction:column;background:var(--background);color:var(--foreground);font-family:var(--font-sans)">
+  <header style="height:64px;flex:0 0 auto;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px">
+    <a href="#" aria-label="mentree" style="display:inline-flex;align-items:center;height:64px"><img src="../../../ds-export/project/assets/logo/mentree-logo.svg" alt="mentree" style="height:24px;display:block"></a>
+  </header>
+  <main style="{{ mainStyle }}">
+    <div style="{{ colStyle }}">{{ children }}</div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mobile&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;children&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;ReactNode&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const m = !!this.props.mobile;
+    return {
+      mainStyle: { flex: "1 1 auto", display: "flex", justifyContent: "center", alignItems: "flex-start", padding: m ? "32px 16px 48px" : "64px 24px 80px" },
+      colStyle: { width: "100%", maxWidth: m ? "100%" : 400, display: "flex", flexDirection: "column", minWidth: 0 },
+    };
+  }
+}
+</script>
+</body>
+</html>

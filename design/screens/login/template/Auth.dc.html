@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+<script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <style>body{margin:0;background:var(--background);font-family:var(--font-sans);} a{color:var(--primary);} a:hover{color:var(--primary);text-decoration:underline;}</style>
+</helmet>
+<sc-if value="{{ showDemo }}" hint-placeholder-val="{{ true }}">
+  <div style="display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;padding:8px 16px;background:var(--muted);border-bottom:1px solid var(--border);font-size:13px;color:var(--muted-foreground);font-family:var(--font-sans)">
+    <sc-for list="{{ demoSelects }}" as="d" hint-placeholder-count="6">
+      <label style="display:inline-flex;align-items:center;gap:6px">{{ d.label }}
+        <select value="{{ d.value }}" onChange="{{ d.onChange }}" style="height:28px;padding:0 8px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--foreground);font:inherit">
+          <sc-for list="{{ d.options }}" as="o" hint-placeholder-count="2"><option value="{{ o }}">{{ o }}</option></sc-for>
+        </select>
+      </label>
+    </sc-for>
+  </div>
+</sc-if>
+<div style="{{ frameStyle }}">
+<dc-import name="AuthShell" mobile="{{ isMobile }}" hint-size="100%,100vh">
+
+  <sc-if value="{{ isLogin }}" hint-placeholder-val="{{ true }}">
+    <section data-screen-label="로그인" style="display:flex;flex-direction:column;align-items:stretch">
+      <img src="../../../ds-export/project/assets/logo/mentree-logo.svg" alt="mentree" style="height:48px;align-self:center;display:block">
+      <h1 style="margin:20px 0 0;text-align:center;font-size:var(--text-h0);line-height:var(--text-h0--line-height);letter-spacing:var(--text-h0--letter-spacing);font-weight:600;color:var(--foreground)">멘트리에 어서오세요.</h1>
+      <p style="margin:32px 0 12px;text-align:center;font-size:var(--text-caption);line-height:var(--text-caption--line-height);letter-spacing:var(--text-caption--letter-spacing);font-weight:500;color:var(--muted-foreground)">이메일로 로그인</p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="l-email" type="email" placeholder="이메일 주소" value="{{ lEmail }}" on-change="{{ setLEmail }}" invalid="{{ loginErr }}" hint-size="100%,40px"></x-import>
+        <div style="position:relative">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="l-pw" type="{{ pwType1 }}" placeholder="비밀번호" value="{{ lPw }}" on-change="{{ setLPw }}" invalid="{{ loginErr }}" style="padding-right:44px" hint-size="100%,40px"></x-import>
+          <div style="position:absolute;right:4px;top:4px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="{{ eye1 }}" variant="ghost" size="sm" dc-props="{{ eyeAria }}" on-click="{{ toggle1 }}" hint-size="32px,32px"></x-import>
+          </div>
+        </div>
+        <sc-if value="{{ loginErr }}" hint-placeholder-val="{{ false }}">
+          <p role="alert" style="margin:0;font-size:var(--text-caption);line-height:var(--text-caption--line-height);font-weight:500;color:var(--destructive)">이메일 또는 비밀번호가 맞지 않습니다.</p>
+        </sc-if>
+        <a href="#" onClick="{{ goPassword }}" style="align-self:flex-end;font-size:var(--text-caption);line-height:var(--text-caption--line-height);font-weight:500;color:var(--primary);text-decoration:none">비밀번호를 잊으셨나요?</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" full-width="{{ true }}" disabled="{{ loginDisabled }}" on-click="{{ login }}" hint-size="100%,40px">로그인</x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" full-width="{{ true }}" on-click="{{ goSignupEmail }}" hint-size="100%,40px">신규 회원 가입</x-import>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;margin:28px 0">
+        <span style="flex:1;height:1px;background:var(--border)"></span>
+        <span style="font-size:var(--text-caption);line-height:var(--text-caption--line-height);font-weight:500;color:var(--muted-foreground)">또는</span>
+        <span style="flex:1;height:1px;background:var(--border)"></span>
+      </div>
+      <p style="margin:0 0 12px;text-align:center;font-size:var(--text-caption);line-height:var(--text-caption--line-height);letter-spacing:var(--text-caption--letter-spacing);font-weight:500;color:var(--muted-foreground)">소셜 계정으로 시작하기</p>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" icon-left="google" full-width="{{ true }}" on-click="{{ goSignupSocial }}" hint-size="100%,40px">구글</x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" full-width="{{ true }}" on-click="{{ goSignupSocial }}" hint-size="100%,40px">네이버</x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" full-width="{{ true }}" on-click="{{ goSignupSocial }}" hint-size="100%,40px">카카오</x-import>
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isSignup }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="회원가입" style="display:flex;flex-direction:column">
+      <h1 style="margin:0;text-align:center;font-size:var(--text-h0);line-height:var(--text-h0--line-height);letter-spacing:var(--text-h0--letter-spacing);font-weight:600;color:var(--foreground)">신규 회원 가입</h1>
+      <sc-if value="{{ isSocial }}" hint-placeholder-val="{{ false }}">
+        <p style="margin:12px 0 0;text-align:center;font-size:var(--text-caption);line-height:var(--text-caption--line-height);font-weight:500;color:var(--muted-foreground)">구글 계정으로 처음 오셨네요. 이름과 약관 동의만 하면 끝나요.</p>
+      </sc-if>
+      <div style="display:flex;flex-direction:column;gap:20px;margin-top:32px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="이름" html-for="s-name" hint-size="100%,68px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="s-name" placeholder="이름을 입력해주세요" value="{{ sName }}" on-change="{{ setSName }}" hint-size="100%,40px"></x-import>
+        </x-import>
+        <sc-if value="{{ isEmailMode }}" hint-placeholder-val="{{ true }}">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="이메일" html-for="s-email" hint-size="100%,68px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="s-email" type="email" placeholder="로그인에 사용할 이메일 주소를 입력해주세요" value="{{ sEmail }}" on-change="{{ setSEmail }}" hint-size="100%,40px"></x-import>
+          </x-import>
+          <dc-import name="OtpField" status="{{ sOtp }}" code="{{ sCode }}" email-ok="{{ sEmailOk }}" start-seconds="{{ otpStart }}" on-send="{{ sendS }}" on-verify="{{ verifyS }}" on-code="{{ codeS }}" on-timeout="{{ timeoutS }}" hint-size="100%,68px"></dc-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="비밀번호 설정" html-for="s-pw" hint-size="100%,92px">
+            <div style="position:relative">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="s-pw" type="{{ pwType2 }}" placeholder="비밀번호를 설정해주세요" value="{{ sPw }}" on-change="{{ setSPw }}" style="padding-right:44px" hint-size="100%,40px"></x-import>
+              <div style="position:absolute;right:4px;top:4px"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="{{ eye2 }}" variant="ghost" size="sm" dc-props="{{ eyeAria }}" on-click="{{ toggle2 }}" hint-size="32px,32px"></x-import></div>
+            </div>
+            <p style="margin:6px 0 0;font-size:var(--text-caption);line-height:var(--text-caption--line-height);font-weight:500;color:var(--muted-foreground)">영문 · 숫자 · 특수문자를 조합해 8자 이상</p>
+          </x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="비밀번호 확인" html-for="s-pw2" error="{{ sPw2Err }}" hint-size="100%,68px">
+            <div style="position:relative">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="s-pw2" type="{{ pwType3 }}" placeholder="설정한 비밀번호를 한번 더 입력해주세요" value="{{ sPw2 }}" on-change="{{ setSPw2 }}" invalid="{{ sPw2Bad }}" style="padding-right:44px" hint-size="100%,40px"></x-import>
+              <div style="position:absolute;right:4px;top:4px"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="{{ eye3 }}" variant="ghost" size="sm" dc-props="{{ eyeAria }}" on-click="{{ toggle3 }}" hint-size="32px,32px"></x-import></div>
+            </div>
+          </x-import>
+        </sc-if>
+        <dc-import name="ConsentGroup" age="{{ cAge }}" terms="{{ cTerms }}" privacy="{{ cPrivacy }}" marketing="{{ cMarketing }}" error="{{ consentErr }}" on-change="{{ setConsent }}" hint-size="100%,200px"></dc-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" full-width="{{ true }}" disabled="{{ signupDisabled }}" on-click="{{ submitSignup }}" hint-size="100%,40px">{{ signupLabel }}</x-import>
+      </div>
+      <p style="margin:24px 0 0;text-align:center;font-size:var(--text-caption);line-height:var(--text-caption--line-height);font-weight:500;color:var(--muted-foreground)">이미 회원이신가요? <a href="#" onClick="{{ goLogin }}" style="color:var(--primary);text-decoration:none;margin-left:4px">로그인</a></p>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isSurvey }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="온보딩 설문" style="display:flex;flex-direction:column">
+      <dc-import name="StepBar" step="{{ step }}" hint-size="100%,6px"></dc-import>
+      <h1 style="margin:40px 0 0;text-align:center;font-size:var(--text-h0);line-height:var(--text-h0--line-height);letter-spacing:var(--text-h0--letter-spacing);font-weight:600;color:var(--foreground)">{{ surveyTitle }}</h1>
+      <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+        <p style="margin:8px 0 0;text-align:center;font-size:var(--text-caption);line-height:var(--text-caption--line-height);font-weight:500;color:var(--muted-foreground)">커뮤니티 활동을 위해 프로필 정보를 입력해주세요.<br>이 정보는 멘토만 볼 수 있습니다. 나중에 수정 가능합니다.</p>
+      </sc-if>
+      <sc-if value="{{ notStep3 }}" hint-placeholder-val="{{ true }}">
+        <p style="margin:8px 0 0;text-align:center;font-size:var(--text-caption);line-height:var(--text-caption--line-height);font-weight:500;color:var(--muted-foreground)">입력하신 내용을 토대로 당신에게 꼭 맞는 멘토와 아티클을 추천해드립니다.</p>
+      </sc-if>
+
+      <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+        <div style="margin-top:40px;display:flex;flex-direction:column;gap:16px">
+          <h2 style="margin:0;font-size:var(--text-body);line-height:var(--text-body--line-height);font-weight:600;color:var(--foreground)">당신의 해외 커리어에 대한 상황을 알려주세요</h2>
+          <div style="{{ cardGridStyle }}">
+            <sc-for list="{{ cards }}" as="c" hint-placeholder-count="4">
+              <label style="{{ c.style }}">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.RadioGroup" options="{{ c.options }}" value="{{ s1 }}" on-change="{{ pick1 }}" hint-size="100%,24px"></x-import>
+              </label>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:40px;display:flex;flex-direction:column;gap:32px">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <h2 style="margin:0;font-size:var(--text-body);line-height:var(--text-body--line-height);font-weight:600;color:var(--foreground)">흥미있는 국가는 어디인가요? (복수선택 가능)</h2>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{ countryChips }}" as="c" hint-placeholder-count="15">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterChip" leading="flag" flag="{{ c.flag }}" selected="{{ c.selected }}" on-change="{{ c.toggle }}" hint-size="88px,32px">{{ c.label }}</x-import>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <h2 style="margin:0;font-size:var(--text-body);line-height:var(--text-body--line-height);font-weight:600;color:var(--foreground)">흥미있는 직종이 있다면 선택해주세요 (복수선택 가능)</h2>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{ jobChips }}" as="c" hint-placeholder-count="12">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterChip" selected="{{ c.selected }}" on-change="{{ c.toggle }}" hint-size="72px,32px">{{ c.label }}</x-import>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:40px;display:flex;flex-direction:column;gap:24px">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" src="{{ avatarSrc }}" name="김민지" size="{{ 96 }}" hint-size="96px,96px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" size="sm" on-click="{{ openCrop }}" hint-size="auto,32px">프로필 이미지 등록하기</x-import>
+          </div>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="자기 소개 메시지" html-for="s-intro" hint-size="100%,140px">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Textarea" id="s-intro" value="{{ intro }}" on-change="{{ setIntro }}" limit="{{ 500 }}" placeholder="간단하게 커리어와 관련한 자기 소개를 적어주세요." hint-size="100%,96px"></x-import>
+          </x-import>
+        </div>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Dialog" open="{{ cropOpen }}" on-close="{{ closeCrop }}" title="프로필 사진 편집하기" width="{{ 560 }}" mobile="fullscreen" footer="{{ cropFooter }}" hint-size="0,0">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ImageCropper" src="{{ cropSrc }}" on-pick="{{ pickPhoto }}" on-remove="{{ removePhoto }}" hint-size="100%,260px"></x-import>
+        </x-import>
+      </sc-if>
+
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:32px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" full-width="{{ true }}" disabled="{{ nextDisabled }}" on-click="{{ surveyNext }}" hint-size="100%,40px">{{ nextLabel }}</x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" full-width="{{ true }}" on-click="{{ surveyNext }}" hint-size="100%,40px">건너뛰기</x-import>
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="가입 완료" style="display:flex;flex-direction:column;align-items:center;text-align:center">
+      <div style="width:160px;height:160px;border-radius:50%;background:var(--green-50);display:flex;align-items:center;justify-content:center">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="party" size="{{ 64 }}" style="color:var(--primary)" hint-size="64px,64px"></x-import>
+      </div>
+      <h1 style="margin:32px 0 0;font-size:var(--text-h0);line-height:var(--text-h0--line-height);letter-spacing:var(--text-h0--letter-spacing);font-weight:600;color:var(--foreground)">회원 가입이 완료되었어요</h1>
+      <p style="margin:12px 0 0;font-size:var(--text-caption);line-height:var(--text-caption--line-height);font-weight:500;color:var(--muted-foreground)">멘트리에 어서오세요.<br>이제부터 세계 각국에서 활약하는 한국인 멘토에게 생생한 멘토링을 받으실 수 있습니다.</p>
+      <div style="width:100%;margin-top:40px">
+        <a href="#" style="text-decoration:none;display:block"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" full-width="{{ true }}" hint-size="100%,40px">톱 화면으로</x-import></a>
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isPassword }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="비밀번호 재설정" style="display:flex;flex-direction:column;align-items:stretch">
+      <h1 style="margin:0;text-align:center;font-size:var(--text-h0);line-height:var(--text-h0--line-height);letter-spacing:var(--text-h0--letter-spacing);font-weight:600;color:var(--foreground)">비밀번호를 잊으셨나요?</h1>
+      <div style="width:120px;height:120px;border-radius:50%;background:var(--green-50);display:flex;align-items:center;justify-content:center;align-self:center;margin-top:24px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="lock-key" size="{{ 48 }}" style="color:var(--primary)" hint-size="48px,48px"></x-import>
+      </div>
+      <p style="margin:24px 0 0;text-align:center;font-size:var(--text-body);line-height:var(--text-body--line-height);color:var(--foreground)">가입하신 이메일 주소를 입력해주세요.<br>입력하신 주소로 재설정 인증 번호를 보내드립니다.</p>
+      <div style="display:flex;flex-direction:column;gap:20px;margin-top:32px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="이메일" html-for="p-email" error="{{ pEmailErr }}" hint-size="100%,68px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="p-email" type="email" placeholder="이메일 주소를 입력해주세요" value="{{ pEmail }}" on-change="{{ setPEmail }}" invalid="{{ pEmailBad }}" hint-size="100%,40px"></x-import>
+        </x-import>
+        <dc-import name="OtpField" status="{{ pOtp }}" code="{{ pCode }}" email-ok="{{ pEmailOk }}" start-seconds="{{ otpStart }}" on-send="{{ sendP }}" on-verify="{{ verifyP }}" on-code="{{ codeP }}" on-timeout="{{ timeoutP }}" hint-size="100%,68px"></dc-import>
+        <sc-if value="{{ pVerified }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="새 비밀번호 설정" html-for="n-pw" hint-size="100%,92px">
+            <div style="position:relative">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="n-pw" type="{{ pwType4 }}" placeholder="새 비밀번호를 설정해주세요" value="{{ nPw }}" on-change="{{ setNPw }}" style="padding-right:44px" hint-size="100%,40px"></x-import>
+              <div style="position:absolute;right:4px;top:4px"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="{{ eye4 }}" variant="ghost" size="sm" dc-props="{{ eyeAria }}" on-click="{{ toggle4 }}" hint-size="32px,32px"></x-import></div>
+            </div>
+            <p style="margin:6px 0 0;font-size:var(--text-caption);line-height:var(--text-caption--line-height);font-weight:500;color:var(--muted-foreground)">영문 · 숫자 · 특수문자를 조합해 8자 이상</p>
+          </x-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="새 비밀번호 확인" html-for="n-pw2" error="{{ nPw2Err }}" hint-size="100%,68px">
+            <div style="position:relative">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="n-pw2" type="{{ pwType5 }}" placeholder="새 비밀번호를 한번 더 입력해주세요" value="{{ nPw2 }}" on-change="{{ setNPw2 }}" invalid="{{ nPw2Bad }}" style="padding-right:44px" hint-size="100%,40px"></x-import>
+              <div style="position:absolute;right:4px;top:4px"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="{{ eye5 }}" variant="ghost" size="sm" dc-props="{{ eyeAria }}" on-click="{{ toggle5 }}" hint-size="32px,32px"></x-import></div>
+            </div>
+          </x-import>
+        </sc-if>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" full-width="{{ true }}" disabled="{{ resetDisabled }}" on-click="{{ goPasswordDone }}" hint-size="100%,40px">비밀번호 재설정하기</x-import>
+      </div>
+      <p style="margin:24px 0 0;text-align:center;font-size:var(--text-caption);line-height:var(--text-caption--line-height);font-weight:500;color:var(--muted-foreground)">비밀번호가 기억나셨나요? <a href="#" onClick="{{ goLogin }}" style="color:var(--primary);text-decoration:none;margin-left:4px">로그인</a></p>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isPasswordDone }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="비밀번호 재설정 완료" style="display:flex;flex-direction:column;align-items:center;text-align:center">
+      <div style="width:120px;height:120px;border-radius:50%;background:var(--green-50);display:flex;align-items:center;justify-content:center">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="checkmark-circle-02" size="{{ 48 }}" style="color:var(--primary)" hint-size="48px,48px"></x-import>
+      </div>
+      <h1 style="margin:32px 0 0;font-size:var(--text-h0);line-height:var(--text-h0--line-height);letter-spacing:var(--text-h0--letter-spacing);font-weight:600;color:var(--foreground)">비밀번호 재설정을 완료했습니다.</h1>
+      <div style="width:100%;margin-top:40px">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" full-width="{{ true }}" on-click="{{ goLogin }}" hint-size="100%,40px">로그인</x-import>
+      </div>
+      <a href="#" style="margin-top:20px;font-size:var(--text-caption);line-height:var(--text-caption--line-height);font-weight:500;color:var(--primary);text-decoration:none">톱 화면으로 가기</a>
+    </section>
+  </sc-if>
+
+</dc-import>
+</div>
+<dc-import name="AgeDialog" open="{{ ageOpen }}" phase="{{ agePhase }}" on-close="{{ ageClose }}" on-confirm="{{ ageConfirm }}" hint-size="0,0"></dc-import>
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Toast" open="{{ toastOpen }}" message="{{ toastMsg }}" on-dismiss="{{ dismissToast }}" hint-size="0,0"></x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SCREENS = ["login", "signup", "survey", "done", "password", "password-done"];
+const OTPS = ["before", "sent", "verified", "timeout", "mismatch", "invalid", "unregistered", "limit"];
+const STATES = ["normal", "filled", "error", "age", "age-no"];
+const SAMPLE = { name: "김민지", email: "kim123@mentree.club", code: "123456", pw: "mentree2026!" };
+const TITLES = { login: "로그인 · 멘트리", signup: "회원 가입 · 멘트리", survey: "회원 가입 · 멘트리", done: "멘트리에 어서오세요 · 멘트리", password: "비밀번호 재설정 · 멘트리", "password-done": "비밀번호 재설정 · 멘트리" };
+const CARDS = [
+  { value: "curious", label: "해외 커리어에 이제 막 흥미를 가지기 시작했어요" },
+  { value: "preparing", label: "해외 취업을 본격적으로 준비하고 있어요" },
+  { value: "leaving", label: "해외 취업이 결정되어 출국을 준비하고 있어요" },
+  { value: "abroad", label: "이미 해외에서 일하고 있고 커리어에 대한 고민이 있어요" },
+];
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const p = this.readParams();
+    this.state = { p, narrow: typeof window !== "undefined" && window.innerWidth <= 768, tax: null, ...this.seed(p) };
+  }
+  readParams() {
+    const q = new URLSearchParams(window.location.search);
+    const g = (k, d, ok) => { const v = q.get(k); return v && (!ok || ok.includes(v)) ? v : d; };
+    return {
+      screen: g("screen", "login", SCREENS), mode: g("mode", "email", ["email", "social"]),
+      step: Number(g("step", "1", ["1", "2", "3"])), otp: g("otp", "before", OTPS),
+      state: g("state", "normal", STATES), view: g("view", "desktop", ["desktop", "mobile"]), frame: q.get("frame") === "1",
+    };
+  }
+  writeUrl(p) {
+    const q = new URLSearchParams(window.location.search); q.delete("frame");
+    Object.entries({ screen: p.screen, mode: p.mode, step: p.step, otp: p.otp, state: p.state, view: p.view }).forEach(([k, v]) => q.set(k, String(v)));
+    if (p.frame) q.set("frame", "1");
+    try { window.history.replaceState(null, "", "?" + q.toString()); } catch (e) {}
+  }
+  codeFor(otp) { return otp === "verified" || otp === "mismatch" ? SAMPLE.code : otp === "invalid" ? "1234A#!r가" : ""; }
+  seed(p) {
+    const filled = p.state === "filled", err = p.state === "error", age = p.state === "age" || p.state === "age-no";
+    const otp = p.otp, hasOtp = otp !== "before";
+    const sOtp = filled ? "verified" : otp;
+    const pOtp = filled || err ? "verified" : otp;
+    return {
+      lEmail: filled || err || age ? SAMPLE.email : "", lPw: filled || err || age ? SAMPLE.pw : "",
+      show: {}, ageOpen: age, agePhase: p.state === "age-no" ? "no" : "ask",
+      sName: filled ? SAMPLE.name : "", sEmail: filled || hasOtp ? SAMPLE.email : "", sOtp, sCode: this.codeFor(sOtp),
+      sPw: filled || err ? SAMPLE.pw : "", sPw2: filled ? SAMPLE.pw : err ? "mentree2025!" : "",
+      consent: { age: filled, terms: filled, privacy: filled, marketing: filled }, consentErr: err,
+      s1: filled ? "preparing" : null, countries: filled ? ["일본", "독일", "이탈리아"] : [], jobs: filled ? ["개발", "디자인"] : [],
+      intro: filled ? "도쿄에서 프로덕트 디자이너로 일하고 있습니다. 해외 취업을 준비하는 분들과 현지 생활 · 이직 경험을 나누고 싶어요." : "",
+      avatarSrc: filled ? "../../../ds-export/project/assets/img/9.png" : undefined, cropOpen: false, cropSrc: filled ? "../../../ds-export/project/assets/img/9.png" : undefined,
+      pEmail: filled || err || hasOtp ? SAMPLE.email : "", pOtp, pCode: this.codeFor(pOtp),
+      nPw: filled || err ? SAMPLE.pw : "", nPw2: filled ? SAMPLE.pw : err ? "mentree2025!" : "",
+      otpStart: otp === "sent" ? 151 : 180, toast: null,
+    };
+  }
+  go(patch) { const p = { ...this.state.p, ...patch }; this.setState({ p, ...this.seed(p) }); this.writeUrl(p); }
+  componentDidMount() {
+    document.documentElement.lang = "ko";
+    this.applyTitle();
+    this.onResize = () => this.setState({ narrow: window.innerWidth <= 768 });
+    window.addEventListener("resize", this.onResize);
+    import(new URL("taxonomy.js", document.baseURI).href).then(m => this.setState({ tax: m })).catch(() => {});
+  }
+  componentWillUnmount() { window.removeEventListener("resize", this.onResize); }
+  componentDidUpdate() { this.applyTitle(); }
+  applyTitle() { const t = TITLES[this.state.p.screen]; if (t && document.title !== t) document.title = t; }
+  toggleShow(k) { this.setState(s => ({ show: { ...s.show, [k]: !s.show[k] } })); }
+  renderVals() {
+    const st = this.state, p = st.p;
+    const mobile = p.view === "mobile" || st.narrow;
+    const stop = (fn) => (e) => { if (e && e.preventDefault) e.preventDefault(); fn(); };
+    const sel = (key, options) => ({ key, label: key, options, value: String(p[key] ?? ""), onChange: (e) => this.go({ [key]: key === "step" ? Number(e.target.value) : e.target.value }) });
+    const demoSelects = [
+      { ...sel("screen", SCREENS), label: "화면" }, { ...sel("mode", ["email", "social"]), label: "모드" },
+      { ...sel("step", ["1", "2", "3"]), label: "스텝" }, { ...sel("otp", OTPS), label: "인증 상태" },
+      { ...sel("state", STATES), label: "상태" }, { ...sel("view", ["desktop", "mobile"]), label: "뷰" },
+    ];
+    const eye = (k) => (st.show[k] ? "view-off" : "view");
+    const pwType = (k) => (st.show[k] ? "text" : "password");
+    const loginErr = p.screen === "login" && p.state === "error";
+    const sEmailOk = EMAIL_RE.test(st.sEmail);
+    const sPw2Bad = st.sPw2.length > 0 && st.sPw !== st.sPw2;
+    const c = st.consent;
+    const social = p.mode === "social";
+    const signupOk = st.sName.trim().length > 0 && c.age && c.terms && c.privacy && (social || (st.sOtp === "verified" && st.sPw.length >= 8 && st.sPw === st.sPw2));
+    const pEmailOk = EMAIL_RE.test(st.pEmail);
+    const pVerified = st.pOtp === "verified";
+    const nPw2Bad = st.nPw2.length > 0 && st.nPw !== st.nPw2;
+    const resetOk = pVerified && st.nPw.length >= 8 && st.nPw === st.nPw2;
+    const step = p.step;
+    const DS = window.MentreeDesignSystem_2f86cf || {};
+    const cards = CARDS.map(cd => {
+      const on = st.s1 === cd.value;
+      return { options: [cd], style: { display: "block", padding: 20, borderRadius: 12, border: `1px solid ${on ? "var(--primary)" : "var(--border)"}`, background: on ? "var(--green-50)" : "var(--card)", cursor: "pointer", transition: "border-color 150ms ease, background 150ms ease" } };
+    });
+    const flat = (groups) => (groups || []).flatMap(g => g.options);
+    const countryChips = flat(st.tax && st.tax.COUNTRY_GROUPS).map(o => ({ label: o.label, flag: o.flag, selected: st.countries.includes(o.value), toggle: () => this.setState(s => ({ countries: s.countries.includes(o.value) ? s.countries.filter(v => v !== o.value) : [...s.countries, o.value] })) }));
+    const jobChips = flat(st.tax && st.tax.JOB_GROUPS).map(o => ({ label: o.label, selected: st.jobs.includes(o.value), toggle: () => this.setState(s => ({ jobs: s.jobs.includes(o.value) ? s.jobs.filter(v => v !== o.value) : [...s.jobs, o.value] })) }));
+    const otpVerify = (key, codeKey) => (code) => {
+      if (!/^\d{6}$/.test(code)) this.setState({ [key]: "invalid" });
+      else if (code === SAMPLE.code) this.setState({ [key]: "verified", toast: "메일이 인증되었습니다" });
+      else this.setState({ [key]: "mismatch" });
+    };
+    const otpCode = (key, codeKey) => (v) => this.setState(s => ({ [codeKey]: v, [key]: s[key] === "mismatch" || s[key] === "invalid" ? "sent" : s[key] }));
+    const otpSend = (key, codeKey) => () => this.setState({ [key]: "sent", [codeKey]: "", otpStart: 180, toast: "인증 번호를 전송했습니다" });
+    return {
+      showDemo: !p.frame, demoSelects,
+      frameStyle: p.view === "mobile" && !st.narrow ? { width: 390, margin: "24px auto", border: "1px solid var(--border)", borderRadius: 24, overflow: "hidden", boxShadow: "var(--shadow-sm)" } : {},
+      isMobile: mobile,
+      isLogin: p.screen === "login", isSignup: p.screen === "signup", isSurvey: p.screen === "survey", isDone: p.screen === "done", isPassword: p.screen === "password", isPasswordDone: p.screen === "password-done",
+      // login
+      lEmail: st.lEmail, lPw: st.lPw, setLEmail: (e) => this.setState({ lEmail: e.target.value }), setLPw: (e) => this.setState({ lPw: e.target.value }),
+      pwType1: pwType(1), eye1: eye(1), toggle1: () => this.toggleShow(1), eyeAria: { ariaLabel: "비밀번호 표시" },
+      loginErr, loginDisabled: !(st.lEmail && st.lPw),
+      login: () => this.go({ state: "age" }),
+      goPassword: stop(() => this.go({ screen: "password", otp: "before", state: "normal" })),
+      goSignupEmail: () => this.go({ screen: "signup", mode: "email", otp: "before", state: "normal" }),
+      goSignupSocial: () => this.go({ screen: "signup", mode: "social", state: "normal" }),
+      goLogin: stop(() => this.go({ screen: "login", state: "normal" })),
+      ageOpen: st.ageOpen, agePhase: st.agePhase,
+      ageClose: () => this.go({ state: "normal" }),
+      ageConfirm: (a) => this.go({ state: a === "no" ? "age-no" : "normal" }),
+      // signup
+      isSocial: social, isEmailMode: !social,
+      sName: st.sName, setSName: (e) => this.setState({ sName: e.target.value }),
+      sEmail: st.sEmail, setSEmail: (e) => this.setState(s => ({ sEmail: e.target.value, sOtp: s.sOtp === "verified" ? "before" : s.sOtp })), sEmailOk,
+      sOtp: st.sOtp, sCode: st.sCode, otpStart: st.otpStart,
+      sendS: otpSend("sOtp", "sCode"), verifyS: otpVerify("sOtp", "sCode"), codeS: otpCode("sOtp", "sCode"), timeoutS: () => this.setState({ sOtp: "timeout" }),
+      sPw: st.sPw, setSPw: (e) => this.setState({ sPw: e.target.value }), pwType2: pwType(2), eye2: eye(2), toggle2: () => this.toggleShow(2),
+      sPw2: st.sPw2, setSPw2: (e) => this.setState({ sPw2: e.target.value }), pwType3: pwType(3), eye3: eye(3), toggle3: () => this.toggleShow(3),
+      sPw2Bad, sPw2Err: sPw2Bad ? "비밀번호가 일치하지 않습니다." : undefined,
+      cAge: c.age, cTerms: c.terms, cPrivacy: c.privacy, cMarketing: c.marketing,
+      setConsent: (k, v) => this.setState(s => ({ consent: { ...s.consent, [k]: v }, consentErr: false })),
+      consentErr: st.consentErr ? "필수 항목에 동의해주세요." : "",
+      signupDisabled: !signupOk, signupLabel: social ? "다음" : "회원 가입",
+      submitSignup: () => this.go({ screen: "survey", step: 1 }),
+      // survey
+      step, isStep1: step === 1, isStep2: step === 2, isStep3: step === 3, notStep3: step !== 3,
+      surveyTitle: step === 3 ? "김민지 님의 프로필 정보를 등록해주세요" : "김민지 님에 대해 알려주세요",
+      cardGridStyle: { display: "grid", gridTemplateColumns: mobile ? "minmax(0,1fr)" : "repeat(2, minmax(0,1fr))", gap: 12 },
+      cards, s1: st.s1, pick1: (v) => this.setState({ s1: v }),
+      countryChips, jobChips,
+      avatarSrc: st.avatarSrc, intro: st.intro, setIntro: (e) => this.setState({ intro: e.target.value }),
+      cropOpen: st.cropOpen, cropSrc: st.cropSrc, openCrop: () => this.setState({ cropOpen: true }), closeCrop: () => this.setState({ cropOpen: false }),
+      pickPhoto: (file) => { try { this.setState({ cropSrc: URL.createObjectURL(file) }); } catch (e) {} },
+      removePhoto: () => this.setState({ cropSrc: undefined }),
+      cropFooter: DS.Button ? React.createElement(DS.Button, { variant: "primary", fullWidth: true, disabled: !st.cropSrc, onClick: () => this.setState({ avatarSrc: st.cropSrc, cropOpen: false }) }, "저장하기") : null,
+      nextDisabled: step === 1 && !st.s1, nextLabel: step === 3 ? "완료" : "다음",
+      surveyNext: () => (step === 3 ? this.go({ screen: "done" }) : this.go({ step: step + 1 })),
+      // password
+      pEmail: st.pEmail, setPEmail: (e) => this.setState(s => ({ pEmail: e.target.value, pOtp: s.pOtp === "verified" || s.pOtp === "unregistered" ? "before" : s.pOtp })), pEmailOk,
+      pEmailErr: st.pOtp === "unregistered" ? "가입되지 않은 메일 주소입니다." : undefined, pEmailBad: st.pOtp === "unregistered",
+      pOtp: st.pOtp, pCode: st.pCode,
+      sendP: otpSend("pOtp", "pCode"), verifyP: otpVerify("pOtp", "pCode"), codeP: otpCode("pOtp", "pCode"), timeoutP: () => this.setState({ pOtp: "timeout" }),
+      pVerified,
+      nPw: st.nPw, setNPw: (e) => this.setState({ nPw: e.target.value }), pwType4: pwType(4), eye4: eye(4), toggle4: () => this.toggleShow(4),
+      nPw2: st.nPw2, setNPw2: (e) => this.setState({ nPw2: e.target.value }), pwType5: pwType(5), eye5: eye(5), toggle5: () => this.toggleShow(5),
+      nPw2Bad, nPw2Err: nPw2Bad ? "비밀번호가 일치하지 않습니다." : undefined,
+      resetDisabled: !resetOk, goPasswordDone: () => this.go({ screen: "password-done" }),
+      // toast
+      toastOpen: !!st.toast, toastMsg: st.toast || "", dismissToast: () => this.setState({ toast: null }),
+    };
+  }
+}
+</script>
+</body>
+</html>
