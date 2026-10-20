@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>멘토링 신청 · 수락 · 확정 흐름 — Mentree 2.0</title>
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+<script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: var(--background); }
+    a { color: var(--primary); }
+    a:hover { color: var(--green-800); }
+  </style>
+</helmet>
+<div style="height:100vh; display:flex; flex-direction:column; font-family:var(--font-sans); color:var(--foreground); background:var(--background);">
+  <sc-if value="{{ showDemo }}" hint-placeholder-val="{{ true }}">
+    <div data-demo-bar="1" style="flex:none; display:flex; flex-wrap:wrap; align-items:center; gap:10px 20px; padding:10px 16px; background:var(--card); border-bottom:1px solid var(--border);">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:var(--text-micro); line-height:var(--text-micro--line-height); font-weight:600; color:var(--muted-foreground);">역할</span>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ToggleGroup" size="sm" options="{{ roleOpts }}" value="{{ role }}" on-change="{{ setRole }}" hint-size="112px,38px"></x-import>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:var(--text-micro); line-height:var(--text-micro--line-height); font-weight:600; color:var(--muted-foreground);">화면</span>
+        <div style="width:272px;">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ screenOpts }}" value="{{ screen }}" on-change="{{ setScreen }}" aria-label="화면" hint-size="100%,40px"></x-import>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:var(--text-micro); line-height:var(--text-micro--line-height); font-weight:600; color:var(--muted-foreground);">카드 상태</span>
+        <div style="width:248px;">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ statusOpts }}" value="{{ statusKey }}" disabled="{{ statusDisabled }}" on-change="{{ setStatus }}" aria-label="카드 상태" hint-size="100%,40px"></x-import>
+        </div>
+      </div>
+      <sc-if value="{{ showCancelOpts }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:var(--text-micro); line-height:var(--text-micro--line-height); font-weight:600; color:var(--muted-foreground);">cancelBy</span>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ToggleGroup" size="sm" options="{{ cancelByOpts }}" value="{{ cancelByKey }}" on-change="{{ setCancelBy }}" hint-size="180px,38px"></x-import>
+        </div>
+        <sc-if value="{{ showReply }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-size:var(--text-micro); line-height:var(--text-micro--line-height); font-weight:600; color:var(--muted-foreground);">reply</span>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ToggleGroup" size="sm" options="{{ yesNo }}" value="{{ replyKey }}" on-change="{{ setReply }}" hint-size="80px,38px"></x-import>
+          </div>
+        </sc-if>
+      </sc-if>
+      <sc-if value="{{ showDoneOpts }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:var(--text-micro); line-height:var(--text-micro--line-height); font-weight:600; color:var(--muted-foreground);">review</span>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ToggleGroup" size="sm" options="{{ yesNo }}" value="{{ reviewKey }}" on-change="{{ setReview }}" hint-size="80px,38px"></x-import>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:var(--text-micro); line-height:var(--text-micro--line-height); font-weight:600; color:var(--muted-foreground);">cheer</span>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ToggleGroup" size="sm" options="{{ yesNo }}" value="{{ cheerKey }}" on-change="{{ setCheer }}" hint-size="80px,38px"></x-import>
+        </div>
+      </sc-if>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:var(--text-micro); line-height:var(--text-micro--line-height); font-weight:600; color:var(--muted-foreground);">상태</span>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ToggleGroup" size="sm" options="{{ loadOpts }}" value="{{ loadState }}" on-change="{{ setLoad }}" hint-size="200px,38px"></x-import>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:var(--text-micro); line-height:var(--text-micro--line-height); font-weight:600; color:var(--muted-foreground);">보기</span>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ToggleGroup" size="sm" options="{{ viewOpts }}" value="{{ view }}" on-change="{{ setView }}" hint-size="150px,38px"></x-import>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:var(--text-micro); line-height:var(--text-micro--line-height); font-weight:600; color:var(--muted-foreground);">보내기</span>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ToggleGroup" size="sm" options="{{ failOpts }}" value="{{ failKey }}" on-change="{{ setFail }}" hint-size="112px,38px"></x-import>
+      </div>
+      <span style="margin-left:auto; font-size:var(--text-micro); line-height:var(--text-micro--line-height); color:var(--muted-foreground);">데모 쿠폰 MENTREE · 10,000원 할인</span>
+    </div>
+  </sc-if>
+  <div style="flex:1 1 auto; min-height:0; position:relative; overflow:hidden; transform:translateZ(0);">
+    <sc-if value="{{ showDevice }}" hint-placeholder-val="{{ false }}">
+      <div style="height:100%; box-sizing:border-box; overflow:auto; display:flex; justify-content:center; align-items:flex-start; padding:24px; background:var(--sage-200);">
+        <iframe ref="{{ frameRef }}" src="{{ frameSrc }}" onLoad="{{ onFrameLoad }}" title="모바일 보기 390 × 844" style="flex:none; width:390px; height:844px; max-height:100%; border:0; border-radius:28px; background:var(--background); box-shadow:var(--shadow-lg);"></iframe>
+      </div>
+    </sc-if>
+    <sc-if value="{{ showContent }}" hint-placeholder-val="{{ true }}">
+      <div ref="{{ scrollRef }}" data-mf-scroller="1" style="height:100%; overflow:auto;">
+        <sc-if value="{{ isApply }}" hint-placeholder-val="{{ false }}">
+          <dc-import name="ApplyPage" screen="{{ screen }}" load-state="{{ loadState }}" prefill="{{ prefill }}" is-mobile="{{ isMobile }}" on-go="{{ applyGo }}" on-finish="{{ applyFinish }}" on-exit="{{ applyExit }}" on-retry="{{ retry }}" hint-size="100%,100%"></dc-import>
+        </sc-if>
+        <sc-if value="{{ isCardStage }}" hint-placeholder-val="{{ false }}">
+          <div style="min-height:100%; box-sizing:border-box; padding:48px var(--container-pad) 64px; background:var(--muted);">
+            <div style="max-width:720px; margin:0 auto;">
+              <dc-import name="MentoringCard" card="{{ mc }}" perspective="{{ role }}" on-detail="{{ mcDetail }}" on-action="{{ mcAction }}" hint-size="100%,420px"></dc-import>
+            </div>
+          </div>
+          <dc-import name="FlowDialog" role="{{ role }}" screen="{{ screen }}" flow="{{ flow }}" load-state="{{ loadState }}" fail="{{ fail }}" people="{{ people }}" today="{{ today }}" sentence="{{ sentence }}" on-go="{{ go }}" on-back="{{ back }}" on-close="{{ close }}" on-retry="{{ retry }}" hint-size="0px,0px"></dc-import>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Toast" open="{{ noteOpen }}" message="{{ note }}" on-dismiss="{{ closeNote }}" hint-size="0px,0px"></x-import>
+        </sc-if>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const WD = ['일', '월', '화', '수', '목', '금', '토'];
+const pad = (n) => String(n).padStart(2, '0');
+const HOUR = 3600000;
+const utcOf = (y, m, d, hh, mm, off) => Date.UTC(y, m - 1, d, hh, mm) - off * HOUR;
+const partsOf = (ms, off) => { const t = new Date(ms + off * HOUR); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate(), wd: t.getUTCDay(), hh: t.getUTCHours(), mm: t.getUTCMinutes() }; };
+const fmtDot = (ms, off) => { const p = partsOf(ms, off); return `${p.y}.${pad(p.m)}.${pad(p.d)} (${WD[p.wd]}) ${pad(p.hh)}:${pad(p.mm)}`; };
+const KST = (m, d, hh, mm) => utcOf(2026, m, d, hh, mm, 9);
+
+const PEOPLE = {
+  mentee: { name: '김멘티', title: '커뮤니케이션 디자인학부', org: '한국대학교', country: 'south-korea', countryLabel: '대한민국', city: '서울', off: 9, tz: '(GMT+09:00) 서울', avatar: '' },
+  mentor: { name: '박멘토', title: '데이터 애널리스트', org: 'Google Japan', country: 'japan', countryLabel: '일본', city: '', off: 1, tz: '(GMT+01:00) 베를린', avatar: 'assets/img/mentor-park.png' },
+};
+const TODAY = { y: 2026, m: 10, d: 8 };
+const KEYWORD_ICONS = { '취업 전략': 'target-02', '이력서·지원서류': 'file-01', '면접 준비': 'conversation', '커리어 전환': 'direction-right-02', '비자·영주권': 'passport-01' };
+const RESCHEDULE_TEXT = '제시해주신 날짜에는 학교 기말 발표가 있어 참석이 어렵습니다. 10월 20일 이후 평일 저녁 7시(한국 시간) 이후로 가능하실까요?';
+const MENTOR_RESCHEDULE_TEXT = '갑자기 급한 해외 출장 일정이 잡혀서 예정된 일정에 멘토링을 진행하기 어렵게 되었습니다. 새 일정을 보냈으니 확인하시고 선택해주시면 열심히 멘토링 진행해드리겠습니다! 잘 부탁드립니다.';
+const CANCEL_TEXT = { mentee: '학교 시험 일정과 겹쳐 이번 멘토링은 취소하게 되었습니다. 시간 내주셔서 감사합니다.', mentor: '저의 피치 못할 사정으로 멘토링을 취소하게되어 죄송합니다. 다음주나 다다음주 주말이라면 시간의 여유가 있으니 혹시 괜찮으시면 다시 멘토링을 신청해주시겠어요? 정말 죄송합니다. 잘 부탁드립니다.' };
+const REPLY_TEXT = '면접 수고 많으셨습니다. 다음 기회에 멘토링 신청해주세요. 화이팅입니다!';
+const NOSHOW_REPLY_TEXT = '제가 시간을 착각해서 불참한 점 사과드립니다. 다시 신청해주시면 성의껏 답변드리겠습니다.';
+const SAMPLE_REVIEW = { main: '짧은 시간이었지만, 도움되는 여러 조언도 주시고, 어떻게하면 좋을지에 대해서 여러 가지 방향성도 제시해주셔서 너무 도움이 되었습니다! 포트폴리오에 관한부분이나 일본 회사에 관한 이야기도 해주셔서 이후 어떻게 방향을 잡을지 조금 확신이 드는 멘토링이었습니다. 정말 감사드립니다!', extra: '', writtenAt: '2026.10.07' };
+// 완료 · 취소의 갈래 — flow 에서 읽는다(cancelBy 는 절대값 mentee|mentor|noshow)
+const flowOpts = (flow) => { const ms = flow.messages || []; return { cancelBy: flow.cancelBy || null, reply: ms.some((m) => m.type === 'cancel-reply'), review: !!flow.review, cheer: ms.some((m) => m.type === 'cheer') }; };
+const relBy = (by, role) => (by === 'noshow' ? 'noshow' : by === role ? 'me' : 'other');
+const absBy = (rel, role) => (rel === 'noshow' ? 'noshow' : rel === 'other' ? (role === 'mentee' ? 'mentor' : 'mentee') : role);
+const SAMPLE = {
+  type: '면접 준비',
+  title: '일본 디자이너 면접과 포트폴리오 리뷰 요청드립니다.',
+  detail: '안녕하세요, 한국대학교 커뮤니케이션 디자인학부 4학년 김멘티입니다. 내년 봄 졸업 후 일본 IT 기업의 UX/UI 디자이너 포지션에 지원하려고 준비하고 있습니다.\n\n지금 포트폴리오에는 앱 리디자인 프로젝트 2개와 브랜딩 프로젝트 1개가 있습니다. 일본 기업 면접에서는 어떤 프로젝트를 앞에 두는 것이 좋은지, 디자인 과정을 어디까지 보여줘야 하는지 조언을 듣고 싶습니다. 일본어 면접에서 자주 나오는 질문과 답변 준비 방법도 여쭙고 싶습니다.',
+  duration: '30분',
+  schedule: '평일 저녁 6시 이후(한국 시간)나 주말 오전이 편합니다.',
+  flowers: 4,
+  appliedAt: '2026.06.03',
+  link: 'https://meet.jit.si/mentree-k7q2m9',
+};
+const PROPOSALS = [KST(10, 13, 20, 0), KST(10, 13, 20, 30), KST(10, 14, 18, 0), KST(10, 14, 18, 30), KST(10, 14, 19, 0), KST(10, 16, 19, 0), KST(10, 16, 19, 30), KST(10, 16, 20, 0)];
+const NEW_PROPOSALS = [KST(10, 20, 19, 0), KST(10, 20, 19, 30), KST(10, 21, 20, 0), KST(10, 21, 20, 30), KST(10, 23, 19, 0), KST(10, 23, 19, 30)];
+
+const SCREENS = {
+  mentee: [
+    { value: 'apply-1', label: 'apply-1 · 멘토링 신청 (1/2)' },
+    { value: 'apply-2', label: 'apply-2 · 꽃 선물하기 (2/2)' },
+    { value: 'apply-pay', label: 'apply-pay · 결제하기' },
+    { value: 'apply-done', label: 'apply-done · 신청 완료' },
+    { value: 'card', label: 'card · 카드만' },
+    { value: 'detail', label: 'detail · 멘토링 상세' },
+    { value: 'fix-schedule', label: 'fix-schedule · 일정 확정하기' },
+    { value: 'fix-done', label: 'fix-done · 일정 확정 완료' },
+    { value: 'reschedule-request', label: 'reschedule-request · 재조정 요청' },
+    { value: 'reschedule-sent', label: 'reschedule-sent · 재조정 요청 완료' },
+    { value: 'cancel', label: 'cancel · 취소' },
+    { value: 'cancel-done', label: 'cancel-done · 취소 완료' },
+    { value: 'cheer-read', label: 'cheer-read · 격려 메세지 보기' },
+    { value: 'review', label: 'review · 리뷰 작성하기' },
+    { value: 'review-done', label: 'review-done · 리뷰 작성 완료' },
+  ],
+  mentor: [
+    { value: 'card', label: 'card · 카드만' },
+    { value: 'detail', label: 'detail · 멘토링 상세' },
+    { value: 'accept', label: 'accept · 일정 조정하기(수락)' },
+    { value: 'accept-done', label: 'accept-done · 수락 완료' },
+    { value: 'decline', label: 'decline · 사양하기' },
+    { value: 'reschedule', label: 'reschedule · 일정 재조정하기' },
+    { value: 'reschedule-done', label: 'reschedule-done · 재조정 완료' },
+    { value: 'cancel', label: 'cancel · 취소' },
+    { value: 'cancel-done', label: 'cancel-done · 취소 완료' },
+    { value: 'cheer-write', label: 'cheer-write · 격려 메세지 작성' },
+    { value: 'cheer-sent', label: 'cheer-sent · 격려 메세지 전송 완료' },
+    { value: 'cheer-view', label: 'cheer-view · 보낸 격려 메세지' },
+    { value: 'cancel-msg-write', label: 'cancel-msg-write · 멘티에게 메세지 보내기' },
+    { value: 'cancel-msg-sent', label: 'cancel-msg-sent · 메세지 전송 완료' },
+  ],
+};
+const STATUSES = {
+  mentee: [
+    { value: 'applied', label: 'applied · 수락 전' },
+    { value: 'scheduling-received', label: 'scheduling-received · 일정 받음' },
+    { value: 'reschedule-requested', label: 'reschedule-requested · 재조정 요청함' },
+    { value: 'rescheduled', label: 'rescheduled · 새 일정 받음' },
+    { value: 'rescheduled-by-mentor', label: 'rescheduled-by-mentor · 멘토가 재조정 요청' },
+    { value: 'fixed', label: 'fixed · 확정' },
+    { value: 'fixed-24h', label: 'fixed-24h · 확정(24시간 안)' },
+    { value: 'done', label: 'done · 완료' },
+    { value: 'cancelled', label: 'cancelled · 취소됨' },
+  ],
+  mentor: [
+    { value: 'applied', label: 'applied · 수락 전' },
+    { value: 'scheduling-sent', label: 'scheduling-sent · 일정 보냄' },
+    { value: 'reschedule-requested', label: 'reschedule-requested · 재조정 요청 옴' },
+    { value: 'rescheduled', label: 'rescheduled · 새 일정 보냄' },
+    { value: 'fixed', label: 'fixed · 확정' },
+    { value: 'done', label: 'done · 완료' },
+    { value: 'cancelled', label: 'cancelled · 취소됨' },
+  ],
+};
+const VALID = {
+  mentee: {
+    'fix-schedule': ['scheduling-received', 'rescheduled'],
+    'fix-done': ['fixed'],
+    'reschedule-request': ['scheduling-received', 'rescheduled', 'fixed', 'fixed-24h'],
+    'reschedule-sent': ['reschedule-requested'],
+    'cancel': ['applied', 'scheduling-received', 'rescheduled', 'reschedule-requested', 'fixed', 'fixed-24h'],
+    'cancel-done': ['cancelled'],
+    'cheer-read': ['done'], 'review': ['done'], 'review-done': ['done'],
+  },
+  mentor: {
+    'accept': ['applied'],
+    'decline': ['applied'],
+    'accept-done': ['scheduling-sent'],
+    'reschedule': ['reschedule-requested', 'fixed'],
+    'reschedule-done': ['rescheduled'],
+    'cancel': ['scheduling-sent', 'rescheduled', 'reschedule-requested', 'fixed'],
+    'cancel-done': ['cancelled'],
+    'cheer-write': ['done'], 'cheer-sent': ['done'], 'cheer-view': ['done'],
+    'cancel-msg-write': ['cancelled'], 'cancel-msg-sent': ['cancelled'],
+  },
+};
+const CHEER_TEXT = '멘토링 시간 동안 준비해 오신 포트폴리오와 질문에서 진심이 느껴졌습니다. 오늘 이야기한 순서대로 프로젝트를 정리하고, 일본어 자기소개는 매일 한 번씩 소리 내어 연습해 보세요. 면접 결과와 상관없이 지금처럼 꾸준히 준비하시면 분명 좋은 기회가 올 거예요. 응원하겠습니다!';
+const CHEER_MSG = () => ({ from: 'mentor', type: 'cheer', text: CHEER_TEXT });
+const SENTENCES = {
+  mentee: {
+    'applied': '멘토의 수락을 기다리고 있습니다.',
+    'scheduling-received': '멘토가 멘토링 가능 일정을 보냈습니다. 일정을 선택해 멘토링을 확정해주세요.',
+    'reschedule-requested': '일정 재조정을 요청했습니다. 멘토가 새로운 일정을 제시할 때까지 기다려주세요.',
+    'rescheduled': '멘토가 새로운 일정을 보냈습니다. 일정을 선택해 멘토링을 확정해주세요.',
+    'fixed': '멘토링 일정이 확정되었습니다.',
+    'fixed-24h': '멘토링 일정이 확정되었습니다. 예정 시간까지 24시간이 남지 않았습니다.',
+    'done': '멘토링이 완료되었습니다.',
+    'cancelled': '취소된 멘토링입니다.',
+  },
+  mentor: {
+    'applied': '멘티로부터 멘토링 신청이 도착했습니다.',
+    'scheduling-sent': '멘티에게 일정을 제안했습니다. 멘티가 일정을 확정할 때까지 기다려주세요.',
+    'reschedule-requested': '멘티가 일정 재조정을 요청했습니다. 새로운 일정을 제시해주세요.',
+    'rescheduled': '새로운 일정을 보냈습니다. 멘티가 일정을 확정할 때까지 기다려주세요.',
+    'fixed': '멘토링 일정이 확정되었습니다.',
+    'fixed-24h': '멘토링 일정이 확정되었습니다.',
+    'done': '멘토링이 완료되었습니다.',
+    'cancelled': '취소된 멘토링입니다.',
+  },
+};
+// 흐름 상태 → MentoringCard(마이페이지) 상태
+const MC_STATUS = {
+  mentee: { 'applied': 'applied', 'scheduling-received': 'scheduling-received', 'reschedule-requested': 'scheduling-sent', 'rescheduled': 'scheduling-received', 'fixed': 'fixed', 'fixed-24h': 'fixed', 'done': 'done', 'cancelled': 'cancelled' },
+  mentor: { 'applied': 'applied', 'scheduling-sent': 'scheduling-sent', 'reschedule-requested': 'scheduling-received', 'rescheduled': 'scheduling-sent', 'fixed': 'fixed', 'done': 'done', 'cancelled': 'cancelled' },
+};
+function toCard(role, flow) {
+  const viewer = PEOPLE[role];
+  const other = role === 'mentee' ? PEOPLE.mentor : PEOPLE.mentee;
+  const msgs = flow.messages || [];
+  const cancelMsg = msgs.find((m) => m.type === 'cancel' || m.type === 'decline');
+  const last = msgs[msgs.length - 1];
+  const cheer = msgs.find((m) => m.type === 'cheer');
+  const reply = msgs.find((m) => m.type === 'cancel-reply');
+  const cancelBy = flow.cancelBy || (cancelMsg ? cancelMsg.from : flow.cancelStage === 'declined' ? 'mentor' : role);
+  const mentorMsg = reply || (cancelMsg && cancelMsg.from === 'mentor' ? cancelMsg : null);
+  let status = MC_STATUS[role][flow.status] || 'applied';
+  if (status === 'done' && flow.review) status = 'done-reviewed';
+  return {
+    id: 'flow', status,
+    title: flow.title, flag: other.country, countryLabel: other.countryLabel, keyword: flow.type,
+    appliedDate: flow.appliedAt, flowers: flow.flowers, request: flow.detail,
+    scheduledAt: flow.fixedSlot ? fmtDot(flow.fixedSlot, viewer.off) : '',
+    reproposed: flow.status === 'rescheduled',
+    rescheduleByMentor: flow.status === 'rescheduled' && !!last && last.type === 'reschedule-reason' && last.from === 'mentor',
+    meetingUrl: flow.link,
+    cheerSent: !!cheer, cheerMessage: cheer ? cheer.text : null,
+    cancelReason: relBy(cancelBy, role),
+    // 멘티: 멘토가 남긴 글(취소 사유 또는 답장) · 멘토: 취소 뒤 멘티에게 보낸 답장
+    cancelMessage: role === 'mentee' ? (mentorMsg ? mentorMsg.text : null) : (reply ? reply.text : null),
+    review: flow.review || null,
+    person: { name: other.name, org: other.org, title: other.title, avatar: other.avatar },
+    personHref: '#', applyHref: '?role=mentee&screen=apply-1',
+  };
+}
+// 카드와 같은 상태 문구(상세 대화상자 머리글)
+function sentenceFor(role, mc) {
+  const st = mc.status;
+  const cancelText = { me: '나의 요청에 의해 취소되었습니다.', other: role === 'mentee' ? '멘토의 사정에 의해 취소되었습니다.' : '멘티의 사정에 의해 취소되었습니다.', noshow: '멘토링이 예정대로 실행되지 않아서 취소되었습니다.' }[mc.cancelReason];
+  const fixed = `멘토링이 확정되었습니다.\n${mc.scheduledAt}에 멘토링이 진행됩니다.`;
+  if (role === 'mentee') return { applied: '멘토의 수락을 기다리는 중입니다.', 'scheduling-received': mc.rescheduleByMentor ? '멘토가 일정 재조정을 요청했습니다.' : mc.reproposed ? '멘토가 새 일정을 제시했습니다. 일정을 확정해주세요.' : '멘토가 멘토링을 수락했습니다. 일정을 확정해주세요.', 'scheduling-sent': '멘토에게 일정 재조정을 요청했습니다.', fixed, done: '멘토링이 완료되었습니다. 리뷰를 작성해주세요.', 'done-reviewed': '멘토링이 완료되었습니다.', cancelled: cancelText }[st] || '';
+  return { applied: '멘티로부터 멘토링 신청이 도착했습니다.', 'scheduling-sent': '멘티에게 일정 조율 요청을 보냈습니다.', 'scheduling-received': '멘티로부터 일정 재조정 요청이 도착했습니다.', fixed, done: '멘토링이 완료되었습니다.', 'done-reviewed': '멘토링이 완료되었습니다.', cancelled: cancelText }[st] || '';
+}
+
+function normStatus(role, st) {
+  if (st === 'rescheduled-by-mentor') return 'rescheduled';
+  if (role === 'mentor') { if (st === 'scheduling-received') return 'scheduling-sent'; if (st === 'fixed-24h') return 'fixed'; }
+  else if (st === 'scheduling-sent') return 'scheduling-received';
+  return st;
+}
+function validFor(role, screen, st) {
+  if (screen === 'card' || screen === 'detail' || screen.indexOf('apply') === 0) return true;
+  const list = VALID[role][screen];
+  return !list || list.indexOf(st) >= 0;
+}
+function sampleFlow(status, role, o) {
+  o = o || {};
+  if (status === 'rescheduled-by-mentor') return { ...SAMPLE, status: 'rescheduled', proposals: NEW_PROPOSALS, fixedSlot: null, messages: [{ from: 'mentor', type: 'reschedule-reason', text: MENTOR_RESCHEDULE_TEXT }], cancelStage: null, cancelBy: null, review: null };
+  const f = { ...SAMPLE, status, proposals: [], fixedSlot: null, messages: [], cancelStage: null, cancelBy: null, review: null };
+  if (status === 'scheduling-received' || status === 'scheduling-sent') f.proposals = PROPOSALS;
+  if (status === 'reschedule-requested') { f.proposals = PROPOSALS; f.messages = [{ from: 'mentee', type: 'reschedule', text: RESCHEDULE_TEXT }]; }
+  if (status === 'rescheduled') { f.proposals = NEW_PROPOSALS; f.messages = [{ from: 'mentee', type: 'reschedule', text: RESCHEDULE_TEXT }]; }
+  if (status === 'fixed') f.fixedSlot = KST(10, 14, 18, 0);
+  if (status === 'fixed-24h') f.fixedSlot = KST(10, 9, 18, 0);
+  if (status === 'done') {
+    f.fixedSlot = KST(10, 6, 18, 0);
+    if (o.cheer != null ? o.cheer : role === 'mentee') f.messages = [CHEER_MSG()];
+    if (o.review) f.review = SAMPLE_REVIEW;
+  }
+  if (status === 'cancelled') {
+    const by = o.cancelBy || role;
+    f.cancelBy = by;
+    if (by === 'noshow') { f.cancelStage = 'fixed'; f.fixedSlot = KST(10, 6, 18, 0); if (o.reply) f.messages = [{ from: 'mentor', type: 'cancel-reply', text: NOSHOW_REPLY_TEXT }]; }
+    else if (by === 'mentor') { f.cancelStage = 'fixed'; f.fixedSlot = KST(10, 14, 18, 0); f.messages = [{ from: 'mentor', type: 'cancel', text: CANCEL_TEXT.mentor }]; }
+    else { f.cancelStage = 'scheduling'; f.messages = [{ from: 'mentee', type: 'cancel', text: CANCEL_TEXT.mentee }]; if (o.reply) f.messages.push({ from: 'mentor', type: 'cancel-reply', text: REPLY_TEXT }); }
+  }
+  return f;
+}
+function cancelledFlow(before, role) {
+  const f = sampleFlow('cancelled', role, { cancelBy: role });
+  if (before === 'applied') { f.cancelStage = 'applied'; f.messages = []; }
+  else if (before === 'fixed' || before === 'fixed-24h') f.cancelStage = 'fixed';
+  return f;
+}
+
+class Component extends DCLogic {
+  state = this.initial();
+  hist = [];
+  scrollRef = React.createRef();
+  frameRef = React.createRef();
+
+  initial() {
+    const q = new URLSearchParams(window.location.search);
+    const role = q.get('role') === 'mentor' ? 'mentor' : 'mentee';
+    let screen = q.get('screen');
+    if (!SCREENS[role].some((s) => s.value === screen)) screen = role === 'mentee' ? 'apply-1' : 'detail';
+    const byMentor = role === 'mentee' && q.get('status') === 'rescheduled-by-mentor';
+    const raw = normStatus(role, q.get('status'));
+    let st = STATUSES[role].some((s) => s.value === raw) ? raw : null;
+    let flow;
+    if (screen === 'cancel-done' && st && st !== 'cancelled') flow = cancelledFlow(st, role);
+    else {
+      st = st || 'applied';
+      if (!validFor(role, screen, st)) st = VALID[role][screen][0];
+      const o = {
+        cancelBy: absBy(['me', 'other', 'noshow'].indexOf(q.get('cancelBy')) >= 0 ? q.get('cancelBy') : 'me', role),
+        reply: q.get('reply') === '1' || screen === 'cancel-msg-sent',
+        review: q.get('review') === '1' || screen === 'review-done',
+        cheer: screen === 'cheer-sent' || screen === 'cheer-view' ? true : q.has('cheer') ? q.get('cheer') === '1' : undefined,
+      };
+      if (screen === 'cancel-msg-write' && o.cancelBy === 'mentor') o.cancelBy = 'mentee';
+      flow = sampleFlow(byMentor && st === 'rescheduled' ? 'rescheduled-by-mentor' : st, role, o);
+    }
+    const loadState = q.get('state') === 'loading' || q.get('state') === 'error' ? q.get('state') : 'normal';
+    const view = q.get('view') === 'mobile' ? 'mobile' : 'desktop';
+    const embed = q.get('embed') === '1';
+    const frame = q.get('frame') === '1';
+    const fail = q.get('fail') === '1';
+    const prefill = screen === 'apply-2' ? 1 : (screen === 'apply-pay' || screen === 'apply-done') ? 2 : 0;
+    const base = { role, screen, flow, loadState, fail };
+    return { ...base, view, embed, frame, prefill, frameSrc: !embed && view === 'mobile' ? this.srcFor(base) : '', isMobile: window.matchMedia('(max-width: 768px)').matches };
+  }
+
+  params(s) {
+    const q = new URLSearchParams({ role: s.role, screen: s.screen, status: s.role === 'mentee' && toCard(s.role, s.flow).rescheduleByMentor ? 'rescheduled-by-mentor' : s.flow.status });
+    const o = flowOpts(s.flow);
+    if (s.flow.status === 'cancelled') { q.set('cancelBy', relBy(o.cancelBy || s.role, s.role)); if (o.reply) q.set('reply', '1'); }
+    if (s.flow.status === 'done') { if (o.review) q.set('review', '1'); q.set('cheer', o.cheer ? '1' : '0'); }
+    return q;
+  }
+  srcFor(s) {
+    const q = this.params(s);
+    q.set('embed', '1');
+    if (s.loadState !== 'normal') q.set('state', s.loadState);
+    if (s.fail) q.set('fail', '1');
+    return window.location.pathname + '?' + q.toString();
+  }
+
+  componentDidMount() {
+    this.mq = window.matchMedia('(max-width: 768px)');
+    this.onMq = () => this.setState({ isMobile: this.mq.matches });
+    this.mq.addEventListener('change', this.onMq);
+    this.onMsg = (e) => {
+      const d = e.data || {};
+      if (d.type === 'mf-set' && this.state.embed) {
+        this.hist = [];
+        this.setState({ role: d.role, screen: d.screen, flow: d.flow, loadState: d.loadState, fail: d.fail }, () => this.afterNav(false));
+      } else if (d.type === 'mf-state' && !this.state.embed) {
+        this.setState({ role: d.role, screen: d.screen, flow: d.flow, loadState: d.loadState }, () => this.syncUrl());
+      }
+    };
+    window.addEventListener('message', this.onMsg);
+    this.syncUrl();
+    this.dsWait = setInterval(() => { if (window.MentreeDesignSystem_2f86cf) { clearInterval(this.dsWait); this.forceUpdate(); } }, 60);
+  }
+
+  componentWillUnmount() {
+    if (this.mq) this.mq.removeEventListener('change', this.onMq);
+    window.removeEventListener('message', this.onMsg);
+    clearInterval(this.dsWait);
+  }
+
+  syncUrl() {
+    const s = this.state;
+    if (s.embed) return;
+    const q = this.params(s);
+    if (s.loadState !== 'normal') q.set('state', s.loadState);
+    if (s.view === 'mobile') q.set('view', 'mobile');
+    if (s.frame) q.set('frame', '1');
+    if (s.fail) q.set('fail', '1');
+    try { history.replaceState(history.state, '', window.location.pathname + '?' + q.toString()); } catch (e) {}
+  }
+
+  afterNav(post = true) {
+    const s = this.state;
+    this.syncUrl();
+    if (s.embed && post && window.parent !== window) window.parent.postMessage({ type: 'mf-state', role: s.role, screen: s.screen, flow: s.flow, loadState: s.loadState }, '*');
+    const el = this.scrollRef.current;
+    if (el && s.screen.indexOf('apply') === 0 && s.screen !== 'apply-done') el.scrollTop = 0;
+  }
+
+  pushInner() {
+    const s = this.state;
+    const f = this.frameRef.current;
+    if (s.view === 'mobile' && !s.embed && f && f.contentWindow) {
+      f.contentWindow.postMessage({ type: 'mf-set', role: s.role, screen: s.screen, flow: s.flow, loadState: s.loadState, fail: s.fail }, '*');
+    }
+  }
+
+  demo(patch) {
+    this.hist = [];
+    this.setState(patch, () => { this.afterNav(); this.pushInner(); });
+  }
+
+  setRole = (r) => {
+    const s = this.state;
+    if (!r || r === s.role) return;
+    const st = normStatus(r, s.flow.status);
+    let screen = s.screen;
+    if (!SCREENS[r].some((x) => x.value === screen) || !validFor(r, screen, st)) screen = 'detail';
+    this.demo({ role: r, screen, flow: { ...s.flow, status: st } });
+  };
+  setScreen = (sc) => {
+    const s = this.state;
+    let flow = s.flow;
+    if (!validFor(s.role, sc, flow.status)) flow = sampleFlow(VALID[s.role][sc][0], s.role);
+    this.demo({ screen: sc, flow });
+  };
+  setStatus = (st) => {
+    const s = this.state;
+    const screen = validFor(s.role, s.screen, st) ? s.screen : 'detail';
+    this.demo({ flow: sampleFlow(st, s.role), screen });
+  };
+  // 완료 · 취소 갈래 토글 — 같은 상태의 표본을 갈래만 바꿔 다시 만든다
+  setVariant = (patch) => {
+    const s = this.state;
+    const o = { ...flowOpts(s.flow), ...patch };
+    let screen = s.screen;
+    if ((screen === 'cancel-msg-write' || screen === 'cancel-msg-sent') && (o.reply || o.cancelBy === 'mentor')) screen = 'detail';
+    if ((screen === 'review' || screen === 'review-done') && o.review) screen = 'detail';
+    if (screen === 'cheer-write' && o.cheer) screen = 'detail';
+    if ((screen === 'cheer-sent' || screen === 'cheer-view' || screen === 'cheer-read') && !o.cheer) screen = 'detail';
+    this.demo({ flow: sampleFlow(s.flow.status, s.role, o), screen });
+  };
+  setCancelBy = (v) => { if (v) this.setVariant({ cancelBy: absBy(v, this.state.role) }); };
+  setReply = (v) => { if (v) this.setVariant({ reply: v === '1' }); };
+  setReview = (v) => { if (v) this.setVariant({ review: v === '1' }); };
+  setCheer = (v) => { if (v) this.setVariant({ cheer: v === '1' }); };
+  setLoad = (v) => { if (v) this.demo({ loadState: v }); };
+  setFail = (v) => { if (v) this.demo({ fail: v === 'fail' }); };
+  setView = (v) => {
+    if (!v || v === this.state.view) return;
+    if (v === 'mobile') this.setState({ view: v, frameSrc: this.srcFor(this.state) }, () => this.syncUrl());
+    else this.setState({ view: v }, () => this.syncUrl());
+  };
+  onFrameLoad = () => this.pushInner();
+
+  // MentoringCard 버튼 키 → 흐름 화면
+  mcAction = (key) => {
+    const st = this.state.flow.status;
+    if (key === 'cancel-1') return this.go(this.state.role === 'mentor' && st === 'applied' ? 'decline' : 'cancel');
+    if (key === 'fix-schedule') return this.go('fix-schedule');
+    if (key === 'accept') return this.go(st === 'applied' ? 'accept' : 'reschedule');
+    if (key === 'mentor-message' || key === 'cancel-msg-view') return this.go('detail');
+    if (key === 'cheer-write' || key === 'cheer-view' || key === 'cheer-read' || key === 'review' || key === 'cancel-msg-write') return this.go(key);
+    if (key === 'my-review' || key === 'mentee-review') return this.go('detail');
+    if (key === 'apply-again') return this.go('apply-1');
+    this.setState({ note: '이 프로토타입에 포함되지 않은 화면입니다.' });
+  };
+  closeNote = () => this.setState({ note: '' });
+  go = (screen, patch) => {
+    this.hist.push(this.state.screen);
+    this.setState((s) => ({ screen, flow: patch ? { ...s.flow, ...patch } : s.flow }), () => this.afterNav());
+  };
+  back = () => {
+    const cur = this.state.screen;
+    const prev = this.hist.pop() || (cur === 'detail' ? 'card' : 'detail');
+    this.setState({ screen: prev }, () => this.afterNav());
+  };
+  close = () => { this.hist = []; this.setState({ screen: 'card' }, () => this.afterNav()); };
+  retry = () => this.setState({ loadState: 'normal' }, () => { this.afterNav(); this.pushInner(); });
+  applyGo = (sc) => this.setState({ screen: sc }, () => this.afterNav());
+  applyFinish = (data) => {
+    this.hist = [];
+    this.setState({ screen: 'card', flow: { ...sampleFlow('applied'), ...(data || {}), appliedAt: `${TODAY.y}.${pad(TODAY.m)}.${pad(TODAY.d)}` } }, () => this.afterNav());
+  };
+  applyExit = (target) => {
+    if (target === 'mypage') { this.hist = []; this.setState({ screen: 'card' }, () => this.afterNav()); }
+  };
+
+  renderVals() {
+    const s = this.state;
+    const role = s.role;
+    const flow = s.flow;
+    const st = flow.status;
+    const viewer = PEOPLE[role];
+    const other = role === 'mentee' ? PEOPLE.mentor : PEOPLE.mentee;
+    const isApply = role === 'mentee' && s.screen.indexOf('apply') === 0;
+    const showDevice = !s.embed && s.view === 'mobile';
+    const mc = toCard(role, flow);
+    const sentence = sentenceFor(role, mc);
+    const vo = flowOpts(flow);
+    return {
+      showDemo: !s.embed && !s.frame,
+      roleOpts: [{ value: 'mentee', label: '멘티' }, { value: 'mentor', label: '멘토' }],
+      role,
+      screenOpts: SCREENS[role],
+      screen: s.screen,
+      statusOpts: STATUSES[role],
+      statusKey: role === 'mentee' && mc.rescheduleByMentor ? 'rescheduled-by-mentor' : st,
+      statusDisabled: isApply,
+      showCancelOpts: !isApply && st === 'cancelled',
+      showReply: !isApply && st === 'cancelled' && vo.cancelBy !== 'mentor',
+      showDoneOpts: !isApply && st === 'done',
+      cancelByOpts: [{ value: 'me', label: 'me' }, { value: 'other', label: 'other' }, { value: 'noshow', label: 'noshow' }],
+      yesNo: [{ value: '0', label: '0' }, { value: '1', label: '1' }],
+      cancelByKey: relBy(vo.cancelBy || role, role),
+      replyKey: vo.reply ? '1' : '0', reviewKey: vo.review ? '1' : '0', cheerKey: vo.cheer ? '1' : '0',
+      setCancelBy: this.setCancelBy, setReply: this.setReply, setReview: this.setReview, setCheer: this.setCheer,
+      loadOpts: [{ value: 'normal', label: 'normal' }, { value: 'loading', label: 'loading' }, { value: 'error', label: 'error' }],
+      loadState: s.loadState,
+      viewOpts: [{ value: 'desktop', label: 'desktop' }, { value: 'mobile', label: 'mobile' }],
+      view: s.view,
+      failOpts: [{ value: 'ok', label: '성공' }, { value: 'fail', label: '실패' }],
+      failKey: s.fail ? 'fail' : 'ok',
+      setRole: this.setRole, setScreen: this.setScreen, setStatus: this.setStatus, setLoad: this.setLoad, setView: this.setView, setFail: this.setFail,
+      showDevice,
+      frameSrc: s.frameSrc,
+      frameRef: this.frameRef,
+      onFrameLoad: this.onFrameLoad,
+      showContent: !showDevice,
+      scrollRef: this.scrollRef,
+      isApply,
+      isCardStage: !isApply,
+      prefill: s.prefill,
+      isMobile: s.isMobile,
+      applyGo: this.applyGo, applyFinish: this.applyFinish, applyExit: this.applyExit, retry: this.retry,
+      flow,
+      mc, sentence,
+      mcDetail: () => this.go('detail'),
+      mcAction: this.mcAction,
+      noteOpen: !!s.note, note: s.note || '', closeNote: this.closeNote,
+      fail: s.fail,
+      people: PEOPLE,
+      today: TODAY,
+      go: this.go, back: this.back, close: this.close,
+    };
+  }
+}
+</script>
+</body>
+</html>

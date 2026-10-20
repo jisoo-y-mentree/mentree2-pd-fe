@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+<script src="../../../ds-export/project/_ds_bundle.js"></script>
+</helmet>
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Dialog" open="{{ open }}" on-close="{{ onClose }}" title="{{ d.title }}" description="{{ d.description }}" footer="{{ footer }}" footer-layout="{{ d.layout }}" mobile="{{ d.mobile }}" width="{{ d.width }}" dc-props="{{ dialogExtra }}" hint-size="0px,0px">
+  <sc-if value="{{ hasBody }}">
+    <div style="display:flex; flex-direction:column; gap:var(--space-6); font-family:var(--font-sans); color:var(--foreground);">
+      <sc-if value="{{ isLoading }}">
+        <div aria-busy="true" style="display:flex; flex-direction:column; gap:24px;">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="{{ 88 }}" radius="md" hint-size="100%,88px"></x-import>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="{{ 40 }}" height="{{ 40 }}" radius="full" hint-size="40px,40px"></x-import>
+            <div style="flex:1 1 auto; min-width:0;">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ 2 }}" hint-size="100%,40px"></x-import>
+            </div>
+          </div>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ 5 }}" hint-size="100%,120px"></x-import>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isError }}">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" icon="alert-02" title="불러오지 못했습니다" action="{{ retryAction }}" hint-size="100%,220px"></x-import>
+      </sc-if>
+      <sc-if value="{{ detailLead }}">
+        <h3 style="margin:0; text-align:center; font-size:var(--text-h3); line-height:var(--text-h3--line-height); letter-spacing:var(--text-h3--letter-spacing); font-weight:600; color:var(--primary); text-wrap:pretty; white-space:pre-line;">{{ detailLead }}</h3>
+      </sc-if>
+      <sc-if value="{{ doneIcon }}">
+        <div style="display:flex; justify-content:center; padding-top:8px;">
+          <div style="width:120px; height:120px; border-radius:50%; background:var(--green-50); display:flex; align-items:center; justify-content:center;">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="{{ doneIcon }}" size="{{ 48 }}" color="var(--primary)" hint-size="48px,48px"></x-import>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ fx }}">
+        <div style="display:flex; flex-direction:column; gap:12px; padding:16px; border-radius:var(--radius-md); background:var(--green-50);">
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:600; color:var(--green-900);">멘토링 실시 예정 시간</span>
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+              <span style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600; color:var(--foreground); font-variant-numeric:tabular-nums;">{{ fx.mine }}</span>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" icon-left="calendar-add-01" on-click="{{ fx.addCalendar }}" hint-size="150px,32px">구글 캘린더 추가</x-import>
+            </div>
+            <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:500; color:var(--muted-foreground); font-variant-numeric:tabular-nums;">{{ fx.other }}</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:600; color:var(--green-900);">멘토링 실시 예정 링크</span>
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+              <a href="{{ fx.link }}" target="_blank" rel="noopener noreferrer" title="새 창에서 열립니다" style="min-width:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--primary); text-decoration:underline; overflow-wrap:anywhere;">{{ fx.link }}</a>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="sm" icon-left="copy-01" on-click="{{ fx.copyLink }}" hint-size="130px,32px">링크 복사하기</x-import>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+      <sc-for list="{{ boxes }}" as="b" hint-placeholder-count="0">
+        <div style="display:flex; flex-direction:column; gap:6px; padding:16px; border-radius:var(--radius-lg); background:var(--muted);">
+          <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:600; color:var(--foreground);">{{ b.label }}</span>
+          <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground); white-space:pre-line;">{{ b.text }}</p>
+        </div>
+      </sc-for>
+      <sc-if value="{{ guide }}">
+        <p style="margin:0; text-align:center; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--muted-foreground); text-wrap:pretty; white-space:pre-line;">{{ guide }}</p>
+      </sc-if>
+      <sc-if value="{{ showTz }}">
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <sc-for list="{{ tzRows }}" as="z" hint-placeholder-count="2">
+            <div style="display:flex; align-items:center; flex-wrap:wrap; gap:4px 8px;">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="status" status="{{ z.status }}" size="md" hint-size="80px,28px">{{ z.label }}</x-import>
+              <span style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600; color:{{ z.color }}; font-variant-numeric:tabular-nums;">{{ z.value }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ showPicker }}">
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; flex-direction:column; gap:2px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:32px;">
+              <span style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600;">멘토링 가능 일정 선택</span>
+              <sc-if value="{{ isMany }}">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" tone="primary" size="sm" disabled="{{ resetDisabled }}" on-click="{{ resetMany }}" hint-size="56px,32px">리셋하기</x-import>
+              </sc-if>
+            </div>
+            <sc-if value="{{ isMany }}">
+              <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); color:var(--muted-foreground);">원활한 스케줄 조정을 위해 최소 3일 이상의 날짜와 시간대를 선택해주세요.</span>
+            </sc-if>
+          </div>
+          <div data-temp="DS-13" style="padding:12px 12px 8px; border:1px solid var(--border); border-radius:var(--radius-lg); background:var(--card);">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; padding:0 4px 8px;">
+              <span style="font-size:var(--text-h3); line-height:var(--text-h3--line-height); letter-spacing:var(--text-h3--letter-spacing); font-weight:600; font-variant-numeric:tabular-nums;">{{ cal.label }}</span>
+              <div style="display:flex; gap:8px;">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="arrow-left-01" variant="outline" size="sm" ariaLabel="이전 달" disabled="{{ cal.prevDisabled }}" on-click="{{ cal.prev }}" hint-size="32px,32px"></x-import>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.IconButton" icon="arrow-right-01" variant="outline" size="sm" ariaLabel="다음 달" disabled="{{ cal.nextDisabled }}" on-click="{{ cal.next }}" hint-size="32px,32px"></x-import>
+              </div>
+            </div>
+            <div role="grid" aria-label="{{ cal.label }}" style="display:grid; grid-template-columns:repeat(7, minmax(0, 1fr));">
+              <sc-for list="{{ cal.weekdays }}" as="w" hint-placeholder-count="7">
+                <div style="height:32px; display:flex; align-items:center; justify-content:center; font-size:var(--text-micro); line-height:var(--text-micro--line-height); font-weight:600; color:var(--muted-foreground);">{{ w }}</div>
+              </sc-for>
+              <sc-for list="{{ cal.cells }}" as="c" hint-placeholder-count="35">
+                <div style="height:44px; display:flex; align-items:center; justify-content:center;">
+                  <sc-if value="{{ c.real }}">
+                    <button type="button" disabled="{{ c.disabled }}" aria-pressed="{{ c.pressed }}" aria-label="{{ c.aria }}" onClick="{{ c.onClick }}" style="position:relative; box-sizing:border-box; width:40px; height:40px; margin:0; padding:0; display:flex; align-items:center; justify-content:center; border-radius:var(--radius-md); font-family:var(--font-sans); font-size:var(--text-body); line-height:1; letter-spacing:0; font-variant-numeric:tabular-nums; outline-offset:2px; transition:background-color 150ms ease, color 150ms ease, box-shadow 150ms ease; background:{{ c.bg }}; color:{{ c.fg }}; border:1px solid {{ c.bd }}; font-weight:{{ c.fw }}; cursor:{{ c.cur }}; box-shadow:{{ c.ring }};">
+                      {{ c.label }}
+                      <sc-if value="{{ c.dot }}">
+                        <span aria-hidden="true" style="position:absolute; left:50%; bottom:5px; width:4px; height:4px; margin-left:-2px; border-radius:50%; background:var(--primary);"></span>
+                      </sc-if>
+                    </button>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <sc-if value="{{ chipTitle }}">
+              <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:600;">{{ chipTitle }}</span>
+              <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                <sc-for list="{{ chips }}" as="t" hint-placeholder-count="4">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterChip" selected="{{ t.selected }}" on-change="{{ t.onChange }}" hint-size="64px,32px">{{ t.label }}</x-import>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ chipEmpty }}">
+              <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); color:var(--muted-foreground);">날짜를 선택하면 가능한 시간이 표시됩니다.</span>
+            </sc-if>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ oneShow }}">
+        <div style="display:flex; flex-direction:column; gap:4px; padding:14px 16px; border-radius:var(--radius-lg); background:var(--green-50); border:1px solid var(--green-100);">
+          <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:600; color:var(--green-900);">선택한 시간</span>
+          <span style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600; font-variant-numeric:tabular-nums;">{{ oneMine }}</span>
+          <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); color:var(--sage-600); font-variant-numeric:tabular-nums;">{{ oneOther }}</span>
+        </div>
+      </sc-if>
+      <sc-if value="{{ sumShow }}">
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
+            <span style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600;">선택한 일정</span>
+            <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:600; font-variant-numeric:tabular-nums; color:{{ sumCountColor }};">{{ sumCount }}</span>
+          </div>
+          <sc-for list="{{ sumRows }}" as="r" hint-placeholder-count="1">
+            <div style="display:flex; flex-direction:column; gap:2px; padding:12px 14px; border:1px solid var(--border); border-radius:var(--radius-md);">
+              <span style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600; font-variant-numeric:tabular-nums;">{{ r.mine }}</span>
+              <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); color:var(--muted-foreground); font-variant-numeric:tabular-nums;">{{ r.other }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ rf }}">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="{{ rf.label }}" html-for="mf-reason" required="{{ rf.required }}" hint-size="100%,150px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Textarea" id="mf-reason" value="{{ reason }}" on-change="{{ onReason }}" placeholder="{{ rf.placeholder }}" limit="{{ rf.limit }}" rows="{{ rf.rows }}" hint-size="100%,120px"></x-import>
+        </x-import>
+      </sc-if>
+      <sc-if value="{{ rf2 }}">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="{{ rf2.label }}" html-for="mf-extra" required="{{ rf2.required }}" hint-size="100%,120px">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Textarea" id="mf-extra" value="{{ extra }}" on-change="{{ onExtra }}" placeholder="{{ rf2.placeholder }}" limit="{{ rf2.limit }}" rows="{{ rf2.rows }}" hint-size="100%,96px"></x-import>
+        </x-import>
+      </sc-if>
+      <sc-if value="{{ showDetail }}">
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:500; color:var(--muted-foreground);">{{ person.heading }}</span>
+          <dc-import name="PersonCard" person="{{ person }}" href="#" on-click="{{ noNav }}" fluid="{{ true }}" hint-size="100%,82px"></dc-import>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <sc-for list="{{ rows }}" as="r" hint-placeholder-count="7">
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:500; color:var(--muted-foreground);">{{ r.label }}</span>
+              <sc-if value="{{ r.text }}">
+                <span style="font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground); white-space:pre-line; font-variant-numeric:tabular-nums; font-weight:{{ r.weight }};">{{ r.value }}</span>
+              </sc-if>
+              <sc-if value="{{ r.flower }}">
+                <span style="display:flex; align-items:center; gap:6px; font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600; color:var(--foreground); font-variant-numeric:tabular-nums;">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="flower" size="{{ 18 }}" color="var(--primary)" hint-size="18px,18px"></x-import>
+                  <span>{{ r.value }}</span>
+                </span>
+              </sc-if>
+              <sc-if value="{{ r.muted }}">
+                <span style="font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--muted-foreground);">{{ r.value }}</span>
+              </sc-if>
+              <sc-if value="{{ r.review }}">
+                <div style="display:flex; flex-direction:column; gap:12px; padding:16px; border:1px solid var(--border); border-radius:var(--radius-lg);">
+                  <sc-if value="{{ r.writtenAt }}">
+                    <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:500; color:var(--muted-foreground); font-variant-numeric:tabular-nums;">{{ r.writtenAt }} 작성</span>
+                  </sc-if>
+                  <div style="display:flex; flex-direction:column; gap:4px;">
+                    <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:600; color:var(--foreground);">전반적인 멘토링 내용은 어땠나요?</span>
+                    <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground); white-space:pre-line;">{{ r.main }}</p>
+                  </div>
+                  <sc-if value="{{ r.extra }}">
+                    <div style="display:flex; flex-direction:column; gap:4px;">
+                      <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:600; color:var(--foreground);">특별히 인상깊었던 부분</span>
+                      <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--foreground); white-space:pre-line;">{{ r.extra }}</p>
+                    </div>
+                  </sc-if>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+</x-import>
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Toast" open="{{ toastOpen }}" message="{{ toastMsg }}" on-dismiss="{{ closeToast }}" hint-size="0px,0px"></x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const WD = ['일', '월', '화', '수', '목', '금', '토'];
+const pad = (n) => String(n).padStart(2, '0');
+const HOUR = 3600000;
+const MIN = 60000;
+const utcOf = (y, m, d, hh, mm, off) => Date.UTC(y, m - 1, d, hh, mm) - off * HOUR;
+const partsOf = (ms, off) => { const t = new Date(ms + off * HOUR); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate(), wd: t.getUTCDay(), hh: t.getUTCHours(), mm: t.getUTCMinutes() }; };
+const keyOf = (p) => `${p.y}-${pad(p.m)}-${pad(p.d)}`;
+const fromKey = (k) => { const [y, m, d] = k.split('-').map(Number); return { y, m, d, wd: new Date(Date.UTC(y, m - 1, d)).getUTCDay() }; };
+const dateLong = (p) => `${p.y}년 ${p.m}월 ${p.d}일 (${WD[p.wd]})`;
+const hm = (p) => `${pad(p.hh)}:${pad(p.mm)}`;
+const minLabel = (min) => `${pad(Math.floor(min / 60))}:${pad(min % 60)}`;
+const durOf = (d) => (d === '1시간' ? 60 : 30);
+const rangeOf = (ms, off, dur) => { const a = partsOf(ms, off); const b = partsOf(ms + dur * MIN, off); return `${dateLong(a)} ${hm(a)}~${hm(b)}`; };
+const addMonths = (ym, n) => { const t = ym.y * 12 + (ym.m - 1) + n; return { y: Math.floor(t / 12), m: (t % 12) + 1 }; };
+const monthDiff = (a, b) => (b.y * 12 + b.m) - (a.y * 12 + a.m);
+const MENTOR_TIMES = [];
+for (let h = 9; h <= 21; h++) MENTOR_TIMES.push(h * 60, h * 60 + 30);
+
+const D_FIX = '멘토가 제시한 일정중에 하나를 선택해 멘토링을 확정해주세요. 만약 맞는 일정이 없을 경우 [일정 재조정하기] 버튼을 눌러주세요.';
+const D_ACCEPT = '멘토링 일정을 조정하기 위해 진행 가능한 날짜를 최소 3일 이상 선택해주세요. 제시한 후보 중 하나를 멘티가 선택하면 멘토링 일정이 확정됩니다.';
+const D_APPLIED = '취소 시 선물할 예정인 꽃송이 값은 결제 수수료(3.4%)를 제하고 환불됩니다. 작성된 1:1 멘토링의 신청 내용은 모두 삭제됩니다.';
+const D_SCHED = '멘토에게 취소 사유를 설명해주세요. 멘토가 제시한 일정을 맞추기 어렵다면 일정 재조정 요청도 가능합니다. 취소 시 선물할 예정인 꽃송이 값은 결제 수수료(3.4%)를 제하고 환불됩니다.';
+const D_FIXED = '멘토링을 준비하고 있을 멘토에게 취소 사유를 설명해주세요. 예정된 멘토링 일정을 맞추기 어렵다면 일정 재조정 요청도 가능합니다. 취소 시 선물할 예정인 꽃송이 값은 결제 수수료(3.4%)를 제하고 환불됩니다.';
+const D_24H = '멘토링 예정시간까지 24시간도 채 남지 않았습니다. 멘토링을 준비하고 있을 멘토에게 취소 사유를 설명해주세요. 멘토링 직전의 취소이므로 환불이 되지 않는 점 양해 부탁드립니다.';
+const D_MENTOR_SCHED = '멘티에게 취소 사유를 설명해주세요.';
+const D_MENTOR_FIXED = '멘토링을 준비하고 있을 멘티에게 취소 사유를 설명해주세요. 예정된 멘토링 일정을 맞추기 어렵다면 일정 재조정 요청도 가능합니다.';
+const G_FIX = '[마이페이지 > 나의 1:1 멘토링] 화면에서\n자세한 일정과 접속 링크를 확인할 수 있습니다.';
+const G_REVIEW = '이 멘토에게 후속 멘토링을 의뢰하고 싶다면 [후속 멘토링 신청하기]를 눌러주세요';
+const D_REVIEW = '이번 멘토링의 리뷰를 작성해주세요. 감사의 마음을 담은 정성스러운 리뷰는 멘토에게 큰 힘이 됩니다.';
+const fmtDot = (ms, off) => { const q = partsOf(ms, off); return `${q.y}.${pad(q.m)}.${pad(q.d)} (${WD[q.wd]}) ${hm(q)}`; };
+const G_RESCHEDULE_SENT = '멘토링 일정 재조정 요청을 보냈습니다. 멘토가 새로운 일정을 제시할 때까지 조금만 기다려주세요.';
+const G_MENTOR = '[마이페이지 > 나의 1:1 멘토링 > 신청받은 1:1 멘토링] 화면에서 진행 상황을 확인하실 수 있습니다. 멘티의 응답이 없는 멘토링은 7일 후 자동으로 취소됩니다.';
+const EMPTY_CAL = { label: '', weekdays: [], cells: [], prevDisabled: true, nextDisabled: true, prev: null, next: null };
+
+class Component extends DCLogic {
+  state = { reason: '', extra: '', monthOff: 0, focus: null, one: null, many: {}, toast: false, toastMsg: '' };
+
+  componentDidMount() {
+    if (!window.MentreeDesignSystem_2f86cf) {
+      this.dsWait = setInterval(() => { if (window.MentreeDesignSystem_2f86cf) { clearInterval(this.dsWait); this.forceUpdate(); } }, 60);
+    }
+  }
+  componentWillUnmount() { clearInterval(this.dsWait); }
+  componentDidUpdate(prev) {
+    const a = prev.flow ? prev.flow.status : null;
+    const b = this.props.flow ? this.props.flow.status : null;
+    if (prev.screen !== this.props.screen || prev.role !== this.props.role || a !== b) {
+      this.setState({ reason: '', extra: '', monthOff: 0, focus: null, one: null, many: {} });
+    }
+  }
+
+  ctx() {
+    const p = this.props;
+    const role = p.role === 'mentor' ? 'mentor' : 'mentee';
+    const people = p.people || {};
+    return { p, role, isM: role === 'mentee', flow: p.flow, st: p.flow.status, me: people[role], other: people[role === 'mentee' ? 'mentor' : 'mentee'] };
+  }
+  lastOf(types, from) {
+    const ms = this.props.flow.messages || [];
+    for (let i = ms.length - 1; i >= 0; i--) { const m = ms[i]; if (types.indexOf(m.type) >= 0 && (!from || m.from === from)) return m; }
+    return null;
+  }
+  labelFor(m) {
+    if (m.type === 'reschedule') return '일정 재조정 요청사항';
+    const mine = m.from === this.props.role;
+    if (this.props.role === 'mentor') return mine ? '멘티에게 보낸 메세지' : '멘티로부터의 메세지';
+    return mine ? '멘토에게 보낸 메세지' : '멘토로부터의 메세지';
+  }
+  box(m) { return m ? [{ label: this.labelFor(m), text: m.text }] : []; }
+  msgs(add) { const list = this.props.flow.messages || []; return add ? [...list, add] : list; }
+  flash(msg) { this.setState({ toast: false }, () => this.setState({ toast: true, toastMsg: msg })); }
+  act(fn) { if (this.props.fail) { this.flash('보내지 못했어요. 다시 시도해 주세요'); return; } fn(); }
+  manySlots() {
+    const off = this.ctx().me.off;
+    const out = [];
+    Object.keys(this.state.many).sort().forEach((k) => { const d = fromKey(k); this.state.many[k].forEach((min) => out.push(utcOf(d.y, d.m, d.d, Math.floor(min / 60), min % 60, off))); });
+    return out;
+  }
+  toggle(key, min) {
+    this.setState((s) => {
+      const many = { ...s.many };
+      const arr = (many[key] || []).slice();
+      const i = arr.indexOf(min);
+      if (i >= 0) arr.splice(i, 1); else arr.push(min);
+      arr.sort((x, y) => x - y);
+      if (arr.length) many[key] = arr; else delete many[key];
+      return { many };
+    });
+  }
+
+  fix = () => this.act(() => this.props.onGo('fix-done', { status: 'fixed', fixedSlot: this.state.one }));
+  sendReschedule = () => this.act(() => this.props.onGo('reschedule-sent', { status: 'reschedule-requested', messages: this.msgs({ from: 'mentee', type: 'reschedule', text: this.state.reason.trim() }) }));
+  cancel = (withReason) => this.act(() => {
+    const st = this.props.flow.status;
+    const stage = st === 'applied' ? 'applied' : (st === 'fixed' || st === 'fixed-24h') ? 'fixed' : 'scheduling';
+    const text = withReason ? this.state.reason.trim() : '';
+    this.props.onGo('cancel-done', { status: 'cancelled', cancelStage: stage, cancelBy: this.props.role, messages: this.msgs(text ? { from: this.props.role, type: 'cancel', text } : null) });
+  });
+  sendReview = () => this.act(() => {
+    const t = this.props.today || { y: 2026, m: 10, d: 8 };
+    this.props.onGo('review-done', { review: { main: this.state.reason.trim(), extra: this.state.extra.trim(), writtenAt: `${t.y}.${pad(t.m)}.${pad(t.d)}` } });
+  });
+  sendCancelReply = () => this.act(() => this.props.onGo('cancel-msg-sent', { messages: this.msgs({ from: 'mentor', type: 'cancel-reply', text: this.state.reason.trim() }) }));
+  propose = () => this.act(() => this.props.onGo('accept-done', { status: 'scheduling-sent', proposals: this.manySlots() }));
+  resend = () => this.act(() => {
+    const text = this.state.reason.trim();
+    const add = this.props.flow.status === 'fixed' && text ? { from: 'mentor', type: 'reschedule-reason', text } : null;
+    this.props.onGo('reschedule-done', { status: 'rescheduled', proposals: this.manySlots(), fixedSlot: null, messages: this.msgs(add) });
+  });
+  decline = () => this.act(() => {
+    const text = this.state.reason.trim();
+    this.props.onGo('card', { status: 'cancelled', cancelStage: 'declined', cancelBy: 'mentor', messages: this.msgs(text ? { from: 'mentor', type: 'decline', text } : null) });
+    this.flash('멘토링을 사양했습니다.');
+  });
+  sendCheer = () => this.act(() => this.props.onGo('cheer-sent', { messages: this.msgs({ from: 'mentor', type: 'cheer', text: this.state.reason.trim() }) }));
+  onReason = (e) => this.setState({ reason: e && e.target ? e.target.value : String(e == null ? '' : e) });
+  onExtra = (e) => this.setState({ extra: e && e.target ? e.target.value : String(e == null ? '' : e) });
+  closeToast = () => this.setState({ toast: false });
+  // 확정 블록 편리 기능 — 링크 복사 · 구글 캘린더 「일정 만들기」 미리 채우기
+  copyLink = () => {
+    const link = this.props.flow.link || '';
+    if (navigator.clipboard && link) navigator.clipboard.writeText(link).catch(() => {});
+    this.flash('링크를 복사했어요');
+  };
+  addCalendar = () => {
+    const { flow, other } = this.ctx();
+    if (!flow.fixedSlot) return;
+    const z = (ms) => new Date(ms).toISOString().replace(/[-:]|\.\d{3}/g, '');
+    const start = flow.fixedSlot, end = start + durOf(flow.duration) * MIN;
+    const q = new URLSearchParams({
+      action: 'TEMPLATE',
+      text: `[멘트리] 1:1 멘토링 · ${other.name}`,
+      dates: `${z(start)}/${z(end)}`,
+      details: `${flow.title} · 접속 링크 ${flow.link}`,
+      location: flow.link,
+    });
+    window.open(`https://calendar.google.com/calendar/render?${q.toString()}`, '_blank', 'noopener');
+  };
+  resetMany = () => this.setState({ many: {}, focus: null });
+  noNav = (e) => { if (e && e.preventDefault) e.preventDefault(); };
+
+  conf() {
+    const { p, isM, flow, st, me, other } = this.ctx();
+    const s = this.state;
+    const fixed = st === 'fixed' || st === 'fixed-24h';
+    // 확정된 멘토링을 재조정할 때 — 지금 확정된 예정일을 먼저 보여준다
+    const currentBox = fixed && flow.fixedSlot
+      ? [{ label: '현재 확정된 멘토링 예정일', text: `${rangeOf(flow.fixedSlot, me.off, durOf(flow.duration))}\n${isM ? '멘토' : '멘티'} 시간대 : ${rangeOf(flow.fixedSlot, other.off, durOf(flow.duration))}` }]
+      : [];
+    const reasonOk = s.reason.trim().length > 0 && s.reason.length <= 200;
+    const reasonOver = s.reason.length > 200;
+    const days = Object.keys(s.many).length;
+    const go = (sc) => () => p.onGo(sc);
+    const primary = (label, on, disabled) => ({ variant: 'primary', size: 'lg', full: true, label, on, disabled });
+    const danger = (label, on, disabled) => ({ variant: 'destructive', size: 'lg', full: true, label, on, disabled });
+    const outlineLg = (label, on) => ({ variant: 'outline', size: 'lg', full: true, label, on });
+    const outlinePrimary = (label, on) => ({ variant: 'outline', tone: 'primary', size: 'lg', full: true, label, on });
+    const ghost = (label, on) => ({ variant: 'ghost', tone: 'neutral', size: 'sm', label, on });
+    const back = () => ghost('이전 화면으로', p.onBack);
+    const close = () => primary('닫기', p.onClose);
+    const edit = (o) => ({ kind: 'edit', width: 520, layout: 'stack', mobile: 'fullscreen', ...o });
+    const done = (o) => ({ kind: 'done', width: 520, layout: 'stack', mobile: 'fullscreen', buttons: [close()], ...o });
+    const confirm = (o) => ({ kind: 'confirm', width: 420, layout: 'end', mobile: 'center', ...o });
+    const cheer = this.lastOf(['cheer']);
+    const reply = this.lastOf(['cancel-reply']);
+    const review = flow.review || null;
+    const cheerBox = cheer ? [{ label: isM ? '멘토로부터의 격려 메세지' : '멘티에게 보낸 격려 메세지', text: cheer.text }] : [];
+    switch (p.screen) {
+      case 'cheer-write':
+        return edit({ title: '격려 메세지 작성하기', reasonField: { label: '멘티에게 격려 메세지를 작성해주세요', required: true, placeholder: '격려 메세지 입력하기', limit: 1000, rows: 8 },
+          buttons: [primary('격려 메세지 보내기', this.sendCheer, s.reason.trim().length === 0 || s.reason.length > 1000), back()] });
+      case 'cheer-sent':
+        return done({ title: '격려 메세지 전송 완료', lead: '멘티에게 격려 메세지를 보냈습니다.', doneIcon: 'party', boxes: cheerBox });
+      case 'cheer-view':
+        return done({ title: '격려 메세지', lead: '멘티에게 격려 메세지를 보냈습니다.', doneIcon: 'party', boxes: cheerBox });
+      case 'cheer-read':
+        return done({ title: '격려 메세지', lead: '멘토로부터 격려 메세지가 도착했습니다.', doneIcon: 'party', boxes: cheerBox });
+      case 'detail': {
+        let buttons = [];
+        if (isM) {
+          if (st === 'applied') buttons = [ghost('멘토링 취소하기', go('cancel'))];
+          else if (st === 'scheduling-received' || st === 'rescheduled') buttons = [primary('일정 확정하기', go('fix-schedule')), ghost('멘토링 취소하기', go('cancel'))];
+          else if (st === 'reschedule-requested') buttons = [ghost('멘토링 취소하기', go('cancel'))];
+          else if (fixed) buttons = [outlineLg('일정 재조정 요청하기', go('reschedule-request')), ghost('멘토링 취소하기', go('cancel'))];
+        } else {
+          if (st === 'applied') buttons = [primary('멘토링 수락하기', go('accept')), ghost('사양하기', go('decline'))];
+          else if (st === 'scheduling-sent' || st === 'rescheduled') buttons = [ghost('멘토링 취소하기', go('cancel'))];
+          else if (st === 'reschedule-requested') buttons = [primary('일정 재조정하기', go('reschedule')), ghost('멘토링 취소하기', go('cancel'))];
+          else if (fixed) buttons = [outlineLg('일정 재조정하기', go('reschedule')), ghost('멘토링 취소하기', go('cancel'))];
+        }
+        let boxes = [];
+        let lead = p.sentence || '';
+        if (st === 'reschedule-requested') boxes = this.box(this.lastOf(['reschedule']));
+        else if (st === 'rescheduled') boxes = this.box(this.lastOf(['reschedule-reason']));
+        else if (st === 'done') {
+          // 2차 — 완료 뒤: 멘티는 리뷰 · 멘토는 격려 메세지
+          if (isM) {
+            lead = review ? '멘토링이 완료되었습니다.' : '멘토링이 완료되었습니다. 리뷰를 작성해주세요.';
+            boxes = cheer ? [{ label: '멘토로부터 격려 메세지가 도착했습니다.', text: cheer.text }] : [];
+            buttons = [review ? primary('후속 멘토링 신청하기', go('apply-1')) : primary('리뷰 작성하기', go('review'))];
+            if (cheer) buttons.push(outlinePrimary('격려 메세지 보기', go('cheer-read')));
+          } else {
+            lead = cheer ? '멘토링이 완료되었습니다.' : '멘토링이 완료되었습니다. 격려 메세지를 작성해주세요.';
+            buttons = [cheer ? outlinePrimary('보낸 격려 메세지 보기', go('cheer-view')) : primary('격려 메세지 작성하기', go('cheer-write'))];
+          }
+        } else if (st === 'cancelled') {
+          // 2차 — 취소 뒤: 누가 취소했나(cancelBy) · 멘토의 답장(reply) 으로 갈린다
+          const otherRole = isM ? 'mentor' : 'mentee';
+          const by = flow.cancelBy || (this.lastOf(['cancel', 'decline']) ? this.lastOf(['cancel', 'decline']).from : flow.cancelStage === 'declined' ? 'mentor' : p.role);
+          const mine = by === p.role, noshow = by === 'noshow';
+          const myCancel = this.lastOf(['cancel', 'decline'], p.role);
+          const theirCancel = this.lastOf(['cancel', 'decline'], otherRole);
+          const NOSHOW = '멘토링이 예정대로 실행되지 않아서 취소되었습니다.';
+          if (isM) {
+            if (mine) { lead = '나의 요청에 의해 취소되었습니다.'; boxes = [...this.box(myCancel), ...this.box(reply)]; }
+            else if (noshow) { lead = reply ? `${NOSHOW} 멘토로부터 메세지가 도착했습니다.` : NOSHOW; boxes = this.box(reply); }
+            else { lead = theirCancel ? '멘토의 사정에 의해 취소되었습니다. 멘토로부터 메세지가 도착했습니다.' : '멘토의 사정에 의해 취소되었습니다.'; boxes = this.box(theirCancel); }
+            buttons = [primary('다시 신청하기', go('apply-1'))];
+          } else {
+            if (mine) { lead = '나의 요청에 의해 취소되었습니다.'; boxes = this.box(myCancel); }
+            else if (noshow) { lead = NOSHOW; boxes = this.box(reply); }
+            else { lead = '멘티의 사정에 의해 취소되었습니다.'; boxes = [...this.box(theirCancel), ...this.box(reply)]; }
+            buttons = !mine && !reply ? [outlinePrimary('멘티에게 메세지 보내기', go('cancel-msg-write'))] : [];
+          }
+        }
+        return { kind: 'detail', width: 640, layout: 'stack', mobile: 'fullscreen', title: '1:1 멘토링 신청 내용', lead, buttons, fixedBlock: fixed, boxes, detail: true };
+      }
+      case 'review':
+        return edit({ title: '리뷰 작성하기', description: D_REVIEW,
+          reasonField: { label: '전반적인 멘토링 내용은 어땠나요?', required: true, placeholder: '내용을 입력해주세요', limit: 1000, rows: 6 },
+          reasonField2: { label: '특별히 인상깊었던 부분이 있다면 적어주세요', required: false, placeholder: '', limit: 1000, rows: 4 },
+          buttons: [primary('리뷰 작성하기', this.sendReview, s.reason.trim().length === 0 || s.reason.length > 1000 || s.extra.length > 1000), back()] });
+      case 'review-done':
+        return done({ title: '리뷰 작성이 완료되었습니다.', doneIcon: 'favourite', guide: G_REVIEW, buttons: [primary('후속 멘토링 신청하기', go('apply-1')), ghost('닫기', go('detail'))] });
+      case 'cancel-msg-write':
+        return edit({ title: '멘티에게 메세지 보내기', reasonField: { label: '멘티에게 멘토링 취소 관련 메세지를 작성해주세요', required: true, placeholder: '메세지 입력하기', limit: 1000, rows: 8 },
+          buttons: [primary('메세지 보내기', this.sendCancelReply, s.reason.trim().length === 0 || s.reason.length > 1000), back()] });
+      case 'cancel-msg-sent':
+        return done({ title: '멘티에게 메세지를 보냈습니다.', doneIcon: 'mail-send-01', boxes: this.box(reply) });
+      case 'fix-schedule':
+        return edit({ title: '멘토링 일정 확정하기', description: D_FIX, boxes: st === 'rescheduled' ? this.box(this.lastOf(['reschedule-reason'])) : [], tz: true, picker: 'one',
+          buttons: [primary('일정 확정하기', this.fix, !s.one), ghost('일정 재조정하기', go('reschedule-request'))] });
+      case 'fix-done':
+        return done({ title: '1:1 멘토링 일정이 확정되었습니다.', doneIcon: 'calendar-03', fixedBlock: true, guide: G_FIX });
+      case 'reschedule-request':
+        return edit({ title: '멘토링 일정 재조정 요청', boxes: currentBox, reasonField: { label: '멘토링 일정 재조정을 위한 요청사항을 입력해주세요.', required: true, placeholder: '적합한 요일, 시간 등의 요청 내용을 적어주세요.' },
+          buttons: [primary('재조정 요청 보내기', this.sendReschedule, !reasonOk), back()] });
+      case 'reschedule-sent': {
+        const m = this.lastOf(['reschedule']);
+        return done({ title: '일정 재조정 요청이 완료되었습니다.', doneIcon: 'sent', boxes: m ? [{ label: '일정 재조정 요청사항', text: m.text }] : [], guide: G_RESCHEDULE_SENT });
+      }
+      case 'cancel': {
+        if (isM) {
+          if (st === 'applied') {
+            return confirm({ title: '멘토링 신청을 취소하시겠습니까?', description: D_APPLIED,
+              buttons: [{ variant: 'outline', size: 'md', label: '돌아가기', on: p.onBack }, { variant: 'destructive', size: 'md', label: '신청 취소하기', on: () => this.cancel(false) }] });
+          }
+          return edit({ title: fixed ? '확정된 멘토링을 정말 취소하시겠습니까?' : '멘토링을 정말 취소하시겠습니까?', description: st === 'fixed-24h' ? D_24H : fixed ? D_FIXED : D_SCHED,
+            reasonField: { label: '멘토링 취소 사유', required: false, placeholder: '' },
+            buttons: [danger('멘토링 취소하기', () => this.cancel(true), reasonOver), ghost('취소 사유 생략하기', () => this.cancel(false))] });
+        }
+        const buttons = [danger('멘토링 취소하기', () => this.cancel(true), !reasonOk)];
+        if (fixed) buttons.push(outlineLg('일정 재조정하기', go('reschedule')));
+        buttons.push(back());
+        return edit({ title: fixed ? '확정된 멘토링을 정말 취소하시겠습니까?' : '멘토링을 정말 취소하시겠습니까?', description: fixed ? D_MENTOR_FIXED : D_MENTOR_SCHED,
+          reasonField: { label: '멘토링 취소 사유', required: true, placeholder: '' }, buttons });
+      }
+      case 'cancel-done':
+        return done({ title: flow.cancelStage === 'applied' ? '멘토링 신청이 취소되었습니다.' : '멘토링이 취소되었습니다.', doneIcon: 'cancel-circle', boxes: this.box(this.lastOf(['cancel'], p.role)) });
+      case 'accept':
+        return edit({ title: '멘토링 일정 조정하기', description: D_ACCEPT, boxes: [{ label: '일정 조정 요청사항', text: flow.schedule }], tz: true, picker: 'many',
+          buttons: [primary('일정 제안 보내기', this.propose, days < 3), back()] });
+      case 'accept-done':
+        return done({ title: '멘토링 수락이 완료되었습니다.', doneIcon: 'checkmark-circle-02', guide: G_MENTOR });
+      case 'decline':
+        return edit({ title: '멘토링 사양하기', reasonField: { label: '사양 사유', required: false, placeholder: '사양하는 사정을 짧게 남겨주세요' },
+          buttons: [danger('사양하기', this.decline, reasonOver), back()] });
+      case 'reschedule': {
+        const boxes = [...currentBox, { label: '멘티로부터의 일정 조정 요청사항', text: flow.schedule }];
+        const m = this.lastOf(['reschedule']);
+        if (st === 'reschedule-requested' && m) boxes.push({ label: '일정 재조정 요청사항', text: m.text });
+        return edit({ title: '멘토링 일정 재조정하기', description: D_ACCEPT, boxes, tz: true, picker: 'many',
+          reasonField: fixed ? { label: '멘토링 일정 재조정 사유', required: true, placeholder: '멘티에게 멘토링 일정 재조정 사유를 설명해주세요.' } : null,
+          buttons: [primary('새 일정 보내기', this.resend, days < 3 || (fixed && !reasonOk)), back()] });
+      }
+      case 'reschedule-done':
+        return done({ title: '일정 재조정 요청이 완료되었습니다.', doneIcon: 'sent', guide: G_MENTOR });
+      default:
+        return { kind: 'detail', width: 640, layout: 'stack', mobile: 'fullscreen', title: '', buttons: [] };
+    }
+  }
+
+  calendar(mode) {
+    const { flow, me } = this.ctx();
+    const s = this.state;
+    const off = me.off;
+    const t = this.props.today || { y: 2026, m: 10, d: 8 };
+    const todayKey = keyOf(t);
+    const avail = {};
+    let base = { y: t.y, m: t.m };
+    let maxOff = 2;
+    if (mode === 'one') {
+      const list = (flow.proposals || []).slice().sort((x, y) => x - y);
+      list.forEach((ms) => { const k = keyOf(partsOf(ms, off)); (avail[k] = avail[k] || []).push(ms); });
+      if (list.length) {
+        const a = partsOf(list[0], off);
+        const z = partsOf(list[list.length - 1], off);
+        base = { y: a.y, m: a.m };
+        maxOff = Math.max(0, monthDiff(base, { y: z.y, m: z.m }));
+      } else maxOff = 0;
+    }
+    const mo = Math.min(Math.max(s.monthOff, 0), maxOff);
+    const ym = addMonths(base, mo);
+    const first = new Date(Date.UTC(ym.y, ym.m - 1, 1)).getUTCDay();
+    const days = new Date(Date.UTC(ym.y, ym.m, 0)).getUTCDate();
+    const cells = [];
+    for (let i = 0; i < first; i++) cells.push({ real: false });
+    for (let d = 1; d <= days; d++) {
+      const key = `${ym.y}-${pad(ym.m)}-${pad(d)}`;
+      const wd = (first + d - 1) % 7;
+      const isToday = key === todayKey;
+      const focused = s.focus === key;
+      let disabled, filled, dot = false;
+      if (mode === 'one') { disabled = !avail[key]; filled = focused && !disabled; dot = !disabled && !filled; }
+      else { disabled = key <= todayKey; filled = (s.many[key] || []).length > 0; }
+      let bg = 'transparent', fg = 'var(--foreground)', bd = 'transparent', fw = 500, ring = 'none';
+      if (disabled) { fg = 'var(--muted-foreground)'; fw = 400; }
+      else if (mode === 'one') fw = 600;
+      if (isToday && !filled) bd = 'var(--sage-400)';
+      if (filled) { bg = 'var(--primary)'; fg = 'var(--primary-foreground)'; bd = 'var(--primary)'; fw = 600; }
+      if (mode === 'many' && focused && !filled) { bg = 'var(--green-50)'; fg = 'var(--primary)'; bd = 'var(--primary)'; fw = 600; }
+      if (mode === 'many' && focused && filled) ring = '0 0 0 2px var(--card), 0 0 0 4px var(--green-300)';
+      const aria = `${ym.m}월 ${d}일 ${WD[wd]}요일${isToday ? ', 오늘' : ''}${mode === 'one' && !disabled ? ', 멘토가 제시한 날' : ''}${filled ? ', 선택됨' : ''}`;
+      cells.push({
+        real: true, key, label: String(d), disabled, bg, fg, bd, fw, ring, dot, aria,
+        cur: disabled ? 'default' : 'pointer',
+        pressed: !!(filled || focused),
+        onClick: () => {
+          if (disabled) return;
+          if (mode === 'one') this.setState((x) => ({ focus: key, one: x.focus === key ? x.one : null }));
+          else this.setState({ focus: key });
+        },
+      });
+    }
+    while (cells.length % 7) cells.push({ real: false });
+    let chips = [];
+    let chipTitle = '';
+    if (s.focus) {
+      chipTitle = `${dateLong(fromKey(s.focus))}의 가능한 시간`;
+      if (mode === 'one') chips = (avail[s.focus] || []).map((ms) => ({ label: hm(partsOf(ms, off)), selected: s.one === ms, onChange: () => this.setState({ one: ms }) }));
+      else {
+        const sel = s.many[s.focus] || [];
+        const key = s.focus;
+        chips = MENTOR_TIMES.map((min) => ({ label: minLabel(min), selected: sel.indexOf(min) >= 0, onChange: () => this.toggle(key, min) }));
+      }
+    }
+    return {
+      label: `${ym.y}년 ${ym.m}월`, weekdays: WD, cells,
+      prevDisabled: mo <= 0, nextDisabled: mo >= maxOff,
+      prev: () => this.setState({ monthOff: mo - 1 }), next: () => this.setState({ monthOff: mo + 1 }),
+      chips, chipTitle,
+    };
+  }
+
+  renderVals() {
+    const p = this.props;
+    if (!p.flow || !p.people) {
+      return { open: false, hasBody: false, d: { title: '', description: '', layout: 'end', mobile: 'center', width: 460 }, footer: null, boxes: [], rows: [], toastOpen: false, toastMsg: '' };
+    }
+    const c = this.ctx();
+    const s = this.state;
+    const open = !!p.screen && p.screen !== 'card' && p.screen.indexOf('apply') !== 0;
+    const d = open ? this.conf() : { kind: 'detail', title: '', buttons: [], width: 640, layout: 'stack', mobile: 'fullscreen' };
+    const ls = p.loadState || 'normal';
+    const busy = ls !== 'normal';
+    const DS = window.MentreeDesignSystem_2f86cf;
+    const h = React.createElement;
+    const footer = DS && !busy && d.buttons && d.buttons.length
+      ? h(React.Fragment, null, d.buttons.map((b, i) => h(DS.Button, { key: i, variant: b.variant, tone: b.tone || 'neutral', size: b.size, fullWidth: !!b.full, iconLeft: b.icon, disabled: !!b.disabled, onClick: b.on }, b.label)))
+      : null;
+    const retryAction = DS ? h(DS.Button, { variant: 'outline', onClick: p.onRetry }, '다시 시도하기') : null;
+    const cal = open && !busy && d.picker ? this.calendar(d.picker) : null;
+    const dur = durOf(c.flow.duration);
+    const otherWord = c.isM ? '멘토' : '멘티';
+    let fx = null;
+    if (open && !busy && d.fixedBlock && c.flow.fixedSlot) {
+      fx = { mine: rangeOf(c.flow.fixedSlot, c.me.off, dur), other: `${otherWord} 시간대 : ${rangeOf(c.flow.fixedSlot, c.other.off, dur)}`, link: c.flow.link, addCalendar: this.addCalendar, copyLink: this.copyLink };
+    }
+    const keys = Object.keys(s.many).sort();
+    const sumRows = keys.map((k) => {
+      const fd = fromKey(k);
+      const mins = s.many[k];
+      const groups = [];
+      const idx = {};
+      mins.forEach((min) => {
+        const q = partsOf(utcOf(fd.y, fd.m, fd.d, Math.floor(min / 60), min % 60, c.me.off), c.other.off);
+        const gk = keyOf(q);
+        if (idx[gk] == null) { idx[gk] = groups.length; groups.push({ label: dateLong(q), times: [] }); }
+        groups[idx[gk]].times.push(hm(q));
+      });
+      return { key: k, mine: `${dateLong(fd)} ${mins.map(minLabel).join(' · ')}`, other: `${otherWord} 시간대 : ${groups.map((g) => `${g.label} ${g.times.join(' · ')}`).join(' / ')}` };
+    });
+    const n = c.flow.flowers;
+    const done = c.st === 'done';
+    const flowerLabel = c.isM ? (done ? '선물한 꽃송이' : '선물 예정 꽃송이') : (done ? '선물받은 꽃송이' : '선물받을 꽃송이');
+    const row = (label, value, o) => { o = o || {}; return { label, value, text: !o.flower && !o.review && !o.muted, flower: !!o.flower, muted: !!o.muted, review: !!o.review, weight: o.bold ? 600 : 400, writtenAt: o.writtenAt || '', main: o.main || '', extra: o.extra || '' }; };
+    const rv = c.flow.review;
+    const rows = [
+      done && c.flow.fixedSlot ? row('멘토링 실시일', fmtDot(c.flow.fixedSlot, c.me.off)) : row('멘토링 신청일', c.flow.appliedAt),
+      row('멘토링 유형', c.flow.type),
+      row('멘토링 제목', c.flow.title, { bold: true }),
+      row('멘토링 요청 상세 내용', c.flow.detail),
+      row('멘토링 시간', c.flow.duration),
+      row('일정 조율 요청사항', c.flow.schedule),
+      row(flowerLabel, `${n}송이 (${n * 2}만원)`, { flower: true }),
+    ];
+    if (done && c.isM && rv) rows.push(row('작성한 리뷰', '', { review: true, writtenAt: rv.writtenAt, main: rv.main, extra: rv.extra }));
+    if (done && !c.isM) rows.push(rv ? row('작성된 리뷰', '', { review: true, main: rv.main, extra: rv.extra }) : row('작성된 리뷰', '아직 작성된 리뷰가 없습니다.', { muted: true }));
+    return {
+      open,
+      onClose: p.onClose,
+      d: { title: d.title || '', description: d.description || '', layout: d.layout, mobile: d.mobile, width: d.width },
+      footer,
+      dialogExtra: { style: { maxHeight: '100%' } },
+      hasBody: open && (busy || d.kind !== 'confirm'),
+      isLoading: ls === 'loading',
+      isError: ls === 'error',
+      retryAction,
+      doneIcon: !busy && d.doneIcon ? d.doneIcon : '',
+      detailLead: !busy && d.lead ? d.lead : '',
+      fx,
+      boxes: !busy && d.boxes ? d.boxes : [],
+      guide: !busy && d.guide ? d.guide : '',
+      showTz: !busy && !!d.tz,
+      tzRows: [{ label: '나의 시간대', status: 'active', color: 'var(--primary)', value: c.me.tz }, { label: c.isM ? '멘토 시간대' : '멘티 시간대', status: 'waiting', color: 'var(--muted-foreground)', value: c.other.tz }],
+      showPicker: !!cal,
+      isMany: d.picker === 'many',
+      cal: cal || EMPTY_CAL,
+      chips: cal ? cal.chips : [],
+      chipTitle: cal ? cal.chipTitle : '',
+      chipEmpty: !!cal && !cal.chipTitle,
+      resetDisabled: keys.length === 0 && !s.focus,
+      resetMany: this.resetMany,
+      oneShow: !!cal && d.picker === 'one' && s.one != null,
+      oneMine: s.one != null ? rangeOf(s.one, c.me.off, dur) : '',
+      oneOther: s.one != null ? `${otherWord} 시간대 : ${rangeOf(s.one, c.other.off, dur)}` : '',
+      sumShow: !!cal && d.picker === 'many' && keys.length > 0,
+      sumRows,
+      sumCount: `${keys.length}일 선택${keys.length < 3 ? ' · 최소 3일' : ''}`,
+      sumCountColor: keys.length >= 3 ? 'var(--primary)' : 'var(--muted-foreground)',
+      rf: !busy && d.reasonField ? { limit: 200, rows: 4, ...d.reasonField } : null,
+      reason: s.reason,
+      onReason: this.onReason,
+      showDetail: open && !busy && !!d.detail,
+      person: { heading: c.isM ? '멘토 정보' : '멘티 정보', name: c.other.name, avatar: c.other.avatar, org: c.other.org, title: c.other.title },
+      rows,
+      rf2: !busy && d.reasonField2 ? { limit: 1000, rows: 4, ...d.reasonField2 } : null,
+      extra: s.extra,
+      onExtra: this.onExtra,
+      noNav: this.noNav,
+      toastOpen: s.toast,
+      toastMsg: s.toastMsg,
+      closeToast: this.closeToast,
+    };
+  }
+}
+</script>
+</body>
+</html>
