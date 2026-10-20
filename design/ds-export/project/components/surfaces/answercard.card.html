@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="820x760" name="AnswerCard" subtitle="Q&A 답변 카드 — 멘토 헤더 블록 자체가 링크(버튼 없음), 다른 답변 보기=outline(유일한 테두리 버튼), 액션 한 줄(도움돼요+공유 / 채택+감사인사)" -->
+<!-- @dsCard group="Components" viewport="820x2260" name="AnswerCard" subtitle="DS-116 하트는 likeCount · liked 만 따른다(회원 오름 · 비로그인 그대로) · DS-23 개정 — 초록 머리 상자(상자 전체가 멘토 링크) · 도움 표시 · 하트 박스(누를수록 오름) · 감사인사 작성 · 감사 인사 · 4상태 + 좁은 폭" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="../../styles.css" />
 <style>
   body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
-  .stack { display: flex; flex-direction: column; gap: 20px; max-width: 560px; }
-  .cap { font-size: var(--text-caption); color: var(--muted-foreground); }
+  .stack { display: flex; flex-direction: column; gap: 20px; max-width: 760px; }
+  .cap { font-size: var(--text-caption); color: var(--muted-foreground); margin-bottom: 6px; }
 </style>
 </head>
 <body>
@@ -18,38 +18,32 @@
 <script src="../../_ds_bundle.js"></script>
 <script type="text/babel">
   const { AnswerCard } = window.MentreeDesignSystem_2f86cf;
+  const BODY = "말씀하신 상황이라면 우선 포트폴리오를 재구성하기 전에 타깃 직군을 좁히는 게 먼저입니다. 2년 차라면 아직 방향을 바꿀 수 있는 시기라 성장 정체를 이직으로 해결하려 하기보다, 지금 팀에서 새로운 프로젝트를 요청해보는 것도 방법입니다.";
+  const M = { mentorName: "서명진", mentorPhoto: "../../assets/img/1.png", country: "japan", countryLabel: "일본", headline: "데이터 애널리스트 @Google Japan (14년차)", body: BODY, date: "2026-07-04" };
+  function Live() {
+    const [guest, setGuest] = React.useState(false);
+    const [n, setN] = React.useState(18);
+    const [mine, setMine] = React.useState(0);
+    const [msg, setMsg] = React.useState("");
+    const onLike = () => { if (guest) { setMsg("로그인이 필요합니다(토스트 자리)"); return; } setMsg(""); setMine((m) => m + 1); setN((c) => c + 1); };
+    return <div>
+      <div className="cap" style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+        <span>⓪ DS-116 — 화면이 수를 들고 있다</span>
+        <label style={{ display: "inline-flex", gap: 6, alignItems: "center" }}><input type="checkbox" checked={guest} onChange={(e) => setGuest(e.target.checked)} />비로그인</label>
+        <span>{msg}</span>
+      </div>
+      <AnswerCard {...M} likeCount={n} liked={mine > 0} onLike={onLike} />
+    </div>;
+  }
   function Demo() {
     return (
       <div className="stack">
-        <div>
-          <AnswerCard
-            mentorName="서명진" country="japan" countryLabel="일본" activityLocation="도쿄에서 활동"
-            headline="데이터 애널리스트 @Google Japan (14년차)"
-            body={"말씀하신 상황이라면 우선 포트폴리오를 재구성하기 전에 타깃 직군을 좁히는 게 먼저입니다. 2년 차라면 아직 방향을 바꿀 수 있는 시기라 성장 정체를 이직으로 해결하려 하기보다, 지금 팀에서 새로운 프로젝트를 요청해보는 것도 방법입니다. 그럼에도 옮기기로 했다면 최근 6개월 안의 작업물 위주로 재구성을 권합니다."}
-            date="2026-07-04" likeCount={20} accepted isQuestionerView
-            onThanks={() => alert("감사인사 모달(화면이 조립)")}
-          />
-          <div className="cap">채택됨 + 질문자 시점 — 채택 표시와 감사인사 버튼이 함께</div>
-        </div>
-        <div>
-          <AnswerCard
-            mentorName="Sarah Kim" country="united-states" countryLabel="미국" activityLocation="샌프란시스코에서 활동"
-            headline="프로덕트 매니저 @Airbnb (9년차)"
-            body={"비자 얘기는 오퍼 레터를 받은 다음, 협상 테이블에서 꺼내는 걸 추천해요. 너무 일찍 꺼내면 리크루터가 다른 후보로 넘어갈 핑계를 줄 수 있습니다."}
-            date="2026-06-28" likeCount={9} isMine
-            onEdit={() => alert("수정")} onDelete={() => alert("삭제")}
-          />
-          <div className="cap">내 답변 — 우상단 더보기(⋯) → 수정/삭제</div>
-        </div>
-        <div>
-          <AnswerCard
-            mentorName="박지훈" activityLocation="서울에서 활동"
-            headline="시니어 프로덕트 디자이너 @Toss (7년차)"
-            body={"표지는 결과보다 문제 정의를 먼저 보여주는 게 좋습니다. 비전공자라면 특히 왜 이 문제를 풀었는지가 설득력을 만듭니다."}
-            date="2026-05-14" likeCount={3}
-          />
-          <div className="cap">기본 상태 — 채택·질문자 시점·내 답변 아님</div>
-        </div>
+        <Live />
+        <div><div className="cap">① 기본 — 다른 사람이 봄</div><AnswerCard {...M} likeCount={77} /></div>
+        <div><div className="cap">② 질문자 시점 · 감사 인사 작성 전 — 「감사인사 작성」</div><AnswerCard {...M} likeCount={77} isQuestionerView onThanks={() => alert("감사인사 모달(화면이 연다)")} /></div>
+        <div><div className="cap">③ 도움 표시 ＋ 감사 인사 — 「감사인사 작성」은 숨는다</div><AnswerCard {...M} likeCount={78} liked accepted isQuestionerView thanks={{ author: "김**", date: "2026-07-05", text: "덕분에 지금 팀에서 먼저 새 프로젝트를 요청해 봤어요. 정말 감사합니다!" }} /></div>
+        <div><div className="cap">④ 내 답변 — 머리 상자 오른쪽 위 ⋯(수정 · 삭제)</div><AnswerCard {...M} mentorName="Sarah Kim" country="united-states" countryLabel="미국" headline="프로덕트 매니저 @Airbnb (9년차)" likeCount={9} isMine onEdit={() => alert("수정")} onDelete={() => alert("삭제")} /></div>
+        <div style={{ maxWidth: 390 }}><div className="cap">좁은 폭(390) — 「멘토 프로필 보기 ›」 아래 줄 · 「감사인사 작성」 다음 줄 전체 폭</div><AnswerCard {...M} likeCount={77} isQuestionerView /></div>
       </div>
     );
   }

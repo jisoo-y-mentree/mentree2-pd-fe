@@ -9,6 +9,10 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
   alt?: string;
   /** xs(20) · sm(24) · md(32) · lg(40), 또는 px 숫자. */
   size?: "xs" | "sm" | "md" | "lg" | number;
+  /** "circle"(사람 사진) · "rounded"(둥근 사각 — 반경 --radius-md, 회사 · 학교 로고). rounded + 사진은 흰 바탕 · 1px --border 위에 contain(자르지 않음). 기본 "circle". DS-80 */
+  shape?: "circle" | "rounded";
+  /** 사진이 없을 때 이니셜 대신 쓸 HugeIcons 이름. 흰 바탕 · 1px --border · 아이콘 --primary. DS-80 */
+  icon?: string;
 }
 
 /**

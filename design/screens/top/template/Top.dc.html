@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+<link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+<link rel="stylesheet" href="../../../ds-export/project/styles.css">
+<script src="ds-asset-path.js"></script>
+<script src="../../../ds-export/project/_ds_bundle.js"></script>
+<style>
+html,body{margin:0}
+#dc-root,#dc-root>.sc-host{height:auto !important;min-height:100%}
+.t-c{max-width:var(--container-max);margin:0 auto;padding-left:var(--container-pad);padding-right:var(--container-pad);box-sizing:border-box}
+.t-sec{padding-top:var(--space-12);padding-bottom:var(--space-12)}
+.t-hero-in{position:relative;padding-top:var(--space-12);padding-bottom:var(--space-12)}
+.t-globe{position:absolute;top:50%;right:calc(var(--container-pad) - 380px);width:760px;height:760px;transform:translateY(-50%)}
+.t-entries{display:flex;gap:12px;margin-top:24px}
+.t-entry{width:110px;padding:12px 16px;box-sizing:border-box;border-radius:var(--radius-md);display:flex;flex-direction:column;align-items:center;gap:12px;text-decoration:none;color:var(--sage-800);transition:background 150ms ease}
+.t-entry:hover{background:var(--sage-100)}
+.t-entry>span{white-space:nowrap;text-align:center}
+.t-entry img{width:64px;height:64px;display:block;object-fit:contain}
+.t-qna{display:grid;grid-template-columns:247px 813px;justify-content:space-between;align-items:start}
+.t-ins{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+.t-chiprow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.t-map{width:100%;margin-top:24px;background:var(--background);border-radius:var(--card-radius);overflow:hidden}
+.t-map-box{position:relative;width:100%;aspect-ratio:1232/360}
+.t-biz-art{display:flex;justify-content:flex-end;align-items:center}
+.t-biz{display:grid;grid-template-columns:minmax(0,751fr) minmax(400px,417fr);gap:64px;height:320px;box-sizing:border-box}
+.t-cover-w{flex:0 0 100% !important;width:100% !important;scroll-snap-align:start}
+.t-cover-n{flex:0 0 310px !important;width:310px !important;scroll-snap-align:start}
+.t-biz-btn{background:var(--biz-primary) !important;color:var(--biz-primary-foreground) !important;border-color:transparent !important}
+@media (max-width:1279px){
+  .t-qna{grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:32px}
+}
+@media (max-width:1279px){.t-fl{display:none}}
+@media (max-width:1023px){.t-fm{display:none}}
+@media (max-width:768px){
+  .t-globe{width:420px;height:420px;right:calc(var(--container-pad) - 340px)}
+  .t-entries{flex-direction:column;align-items:flex-start;margin-left:-12px}
+  .t-entry{flex-direction:row;width:auto;padding:8px 12px;gap:8px}
+  .t-entry img{width:32px;height:32px}
+  .t-qna{grid-template-columns:minmax(0,1fr);gap:24px}
+  .t-ins{grid-template-columns:minmax(0,1fr);gap:32px}
+  .t-chiprow{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-left:calc(var(--container-pad) * -1);margin-right:calc(var(--container-pad) * -1);padding-left:var(--container-pad);padding-right:var(--container-pad)}
+  .t-chiprow::-webkit-scrollbar{display:none}
+  .t-map{overflow-x:auto;scrollbar-width:none}
+  .t-map::-webkit-scrollbar{display:none}
+  .t-map-box{width:calc(320px * 1232 / 360);height:320px;aspect-ratio:auto}
+  .t-biz-art{justify-content:center}
+  .t-biz{grid-template-columns:minmax(0,1fr);height:auto;gap:32px}
+  .t-page{padding-bottom:calc(56px + env(safe-area-inset-bottom))}
+}
+</style>
+</helmet>
+<sc-if value="{{ showBar }}" hint-placeholder-val="{{ true }}">
+<div data-demo-shell="bar" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:8px 16px;background:var(--muted);border-bottom:1px solid var(--border);font-family:var(--font-sans);font-size:var(--text-caption);color:var(--foreground)">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" size="sm" hint-size="40px,22px">데모</x-import>
+  <label style="display:flex;align-items:center;gap:8px">역할
+    <select value="{{ role }}" onChange="{{ onRole }}" style="height:32px;padding:0 8px;font-family:inherit;font-size:var(--text-caption);color:var(--foreground);background:var(--background);border:1px solid var(--border);border-radius:var(--radius-md)">
+      <option value="guest">비로그인</option><option value="mentee">멘티</option><option value="mentor">멘토</option>
+    </select></label>
+  <label style="display:flex;align-items:center;gap:8px">상태
+    <select value="{{ st }}" onChange="{{ onSt }}" style="height:32px;padding:0 8px;font-family:inherit;font-size:var(--text-caption);color:var(--foreground);background:var(--background);border:1px solid var(--border);border-radius:var(--radius-md)">
+      <option value="normal">정상</option><option value="loading">로딩</option><option value="empty">빈 상태</option><option value="error">에러</option>
+    </select></label>
+  <label style="display:flex;align-items:center;gap:8px">이벤트
+    <select value="{{ ev }}" onChange="{{ onEv }}" style="height:32px;padding:0 8px;font-family:inherit;font-size:var(--text-caption);color:var(--foreground);background:var(--background);border:1px solid var(--border);border-radius:var(--radius-md)">
+      <option value="on">있음</option><option value="off">없음</option>
+    </select></label>
+  <label style="display:flex;align-items:center;gap:8px">폭
+    <select value="{{ view }}" onChange="{{ onView }}" style="height:32px;padding:0 8px;font-family:inherit;font-size:var(--text-caption);color:var(--foreground);background:var(--background);border:1px solid var(--border);border-radius:var(--radius-md)">
+      <option value="desktop">데스크톱</option><option value="mobile">모바일 390</option>
+    </select></label>
+</div>
+</sc-if>
+<sc-if value="{{ showFrame }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;justify-content:center;padding:32px 16px;background:var(--sage-100)">
+  <iframe src="{{ frameSrc }}" title="모바일 미리보기 390" style="box-sizing:content-box;width:390px;height:844px;flex:0 0 auto;border:1px solid var(--border);border-radius:var(--radius-3xl);background:var(--background);box-shadow:var(--shadow-lg)"></iframe>
+</div>
+</sc-if>
+<sc-if value="{{ showContent }}" hint-placeholder-val="{{ true }}">
+<div class="t-page" style="background:var(--background);color:var(--foreground);font-family:var(--font-sans)" data-screen-label="TOP">
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" auth-state="{{ role }}" user="{{ user }}" on-navigate="{{ noop }}" on-auth="{{ noop }}" on-notify="{{ noop }}" hint-size="100%,65px"></x-import>
+
+<section data-screen-label="히어로" style="position:relative;overflow:hidden;background:var(--sage-50)">
+  <div class="t-c t-hero-in">
+    <sc-if value="{{ facesDesktop }}" hint-placeholder-val="{{ true }}">
+      <svg aria-hidden="true" viewBox="0 0 1070 1070" width="1070" height="1070" style="position:absolute;top:130px;left:calc(var(--container-pad) + 105px);display:block;fill:none;stroke:var(--green-200);stroke-width:1">
+        <circle cx="535" cy="535" r="534.5"></circle>
+        <sc-for list="{{ globePaths }}" as="g" hint-placeholder-count="16"><path d="{{ g }}"></path></sc-for>
+      </svg>
+      <svg aria-hidden="true" viewBox="0 0 1000 800" width="1000" height="800" style="position:absolute;top:-200px;right:calc(var(--container-pad) - 400px);display:block;fill:none;stroke:var(--border);stroke-width:1.5">
+        <circle class="t-fl" cx="472.5" cy="379.5" r="374.5"></circle>
+        <circle class="t-fm" cx="696.5" cy="379.5" r="374.5"></circle>
+        <circle cx="920.5" cy="379.5" r="374.5"></circle>
+      </svg>
+      <sc-for list="{{ faces }}" as="f" hint-placeholder-count="7">
+        <div aria-hidden="true" class="{{ f.cls }}" style="position:absolute;right:calc(var(--container-pad) + {{ f.r }}px);top:{{ f.y }}px;transform:translate(50%,-50%)">
+          <span style="position:relative;display:inline-flex;padding:4px;border-radius:50%;background:var(--background);box-shadow:var(--shadow-md)">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" src="{{ f.photo }}" name="{{ f.name }}" size="{{ 104 }}" hint-size="104px,104px"></x-import>
+            <span style="position:absolute;right:0;bottom:0;display:inline-flex">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Flag" shape="circle" size="xl" country="{{ f.country }}" label="{{ f.countryLabel }}" flag-base="{{ flagBase }}" tooltip="{{ false }}" hint-size="28px,28px"></x-import>
+            </span>
+          </span>
+        </div>
+      </sc-for>
+    </sc-if>
+    <sc-if value="{{ facesMobile }}" hint-placeholder-val="{{ false }}">
+      <div class="t-globe" aria-hidden="true">
+      <svg viewBox="0 0 762 762" width="100%" height="100%" style="display:block;fill:none;stroke:var(--green-200);stroke-width:1">
+        <circle cx="381" cy="381" r="380"></circle>
+        <ellipse cx="381" cy="381" rx="380" ry="46"></ellipse>
+        <ellipse cx="381" cy="191" rx="329" ry="39"></ellipse>
+        <ellipse cx="381" cy="571" rx="329" ry="39"></ellipse>
+        <ellipse cx="381" cy="52" rx="190" ry="23"></ellipse>
+        <ellipse cx="381" cy="710" rx="190" ry="23"></ellipse>
+        <line x1="381" y1="1" x2="381" y2="761"></line>
+        <ellipse cx="381" cy="381" rx="190" ry="380"></ellipse>
+        <ellipse cx="381" cy="381" rx="329" ry="380"></ellipse>
+      </svg>
+      </div>
+    </sc-if>
+    <sc-if value="{{ facesMobile }}" hint-placeholder-val="{{ false }}">
+      <div aria-hidden="true" style="position:absolute;right:var(--container-pad);bottom:40px;width:150px;height:204px">
+        <sc-for list="{{ facesM }}" as="f" hint-placeholder-count="4">
+          <div style="position:absolute;left:{{ f.x }}px;top:{{ f.y }}px;transform:translate(-50%,-50%)">
+            <span style="position:relative;display:inline-flex;padding:4px;border-radius:50%;background:var(--background);box-shadow:var(--shadow-md)">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Avatar" src="{{ f.photo }}" name="{{ f.name }}" size="{{ 56 }}" hint-size="56px,56px"></x-import>
+              <span style="position:absolute;right:0;bottom:0;display:inline-flex">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Flag" shape="circle" size="md" country="{{ f.country }}" label="{{ f.countryLabel }}" flag-base="{{ flagBase }}" tooltip="{{ false }}" hint-size="20px,20px"></x-import>
+              </span>
+            </span>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+    <div style="position:relative;z-index:1">
+      <h1 style="margin:0;font-size:var(--text-display-xl);line-height:var(--text-display-xl--line-height);letter-spacing:var(--text-display-xl--letter-spacing);font-weight:700;color:var(--green-950)"><span style="color:var(--primary)">해외 커리어</span>,<br>먼저 경험한 선배와 함께</h1>
+      <p style="margin:12px 0 0;font-size:var(--text-h2);line-height:var(--text-h2--line-height);letter-spacing:var(--text-h2--letter-spacing);font-weight:400;color:var(--sage-600)"><span style="color:var(--primary);font-weight:700">141명</span>의 글로벌 멘토들을 만나보세요</p>
+      <div class="t-entries">
+        <a class="t-entry" href="#mentor-search"><img src="assets/top/entry-mentoring.png" alt=""><span style="font-size:var(--text-caption);line-height:var(--text-caption--line-height);letter-spacing:var(--text-caption--letter-spacing);font-weight:500">1:1 멘토링 신청</span></a>
+        <a class="t-entry" href="#qna-compose"><img src="assets/top/entry-question.png" alt=""><span style="font-size:var(--text-caption);line-height:var(--text-caption--line-height);letter-spacing:var(--text-caption--letter-spacing);font-weight:500">무엇이든 질문</span></a>
+        <a class="t-entry" href="#insight-list"><img src="assets/top/entry-content.png" alt=""><span style="font-size:var(--text-caption);line-height:var(--text-caption--line-height);letter-spacing:var(--text-caption--letter-spacing);font-weight:500">필독 콘텐츠</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<sc-if value="{{ eventOn }}" hint-placeholder-val="{{ true }}">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CalloutBar" variant="event" href="#event" image="assets/top/event-mentree-white.svg" heading="10월 멘토링 위크" hint-size="100%,56px">첫 멘토링 50% 할인 · 10/31까지</x-import>
+</sc-if>
+
+<section class="t-sec" data-screen-label="멘토의 이야기" aria-busy="{{ storyBusy }}">
+  <div class="t-c"><div style="display:flex;flex-direction:column;gap:24px">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" size="lg" title="멘토의 이야기" view-all="{{ true }}" on-view-all="{{ goInsightList }}" carousel="{{ showArrows }}" on-prev="{{ ivPrev }}" on-next="{{ ivNext }}" prev-disabled="{{ ivAtStart }}" next-disabled="{{ ivAtEnd }}" hint-size="100%,40px"></x-import>
+    <sc-if value="{{ storyLoading }}" hint-placeholder-val="{{ false }}">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="100%" height="{{ 342 }}" radius="md" hint-size="100%,342px"></x-import>
+    </sc-if>
+    <sc-if value="{{ storyWide }}" hint-placeholder-val="{{ true }}">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Carousel" ref="{{ ivRef }}" fade="{{ false }}" mode="snap-fit" gap="{{ 24 }}" on-edge-change="{{ setIvEdges }}" hint-size="100%,342px">
+        <sc-for list="{{ stories }}" as="s" hint-placeholder-count="1">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CoverCard" href="#article-detail" image="{{ s.image }}" tone="{{ s.tone }}" badge="{{ s.badge }}" title="{{ s.title }}" excerpt="{{ s.excerpt }}" person="{{ s.person }}" heading-level="{{ 3 }}" class-name="t-cover-w" hint-size="100%,342px"></x-import>
+        </sc-for>
+      </x-import>
+    </sc-if>
+    <sc-if value="{{ storyNarrow }}" hint-placeholder-val="{{ false }}">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Carousel" fade="{{ false }}" mode="peek" gap="{{ 12 }}" hint-size="100%,420px">
+        <sc-for list="{{ stories }}" as="s" hint-placeholder-count="2">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.CoverCard" class-name="t-cover-n" href="#article-detail" image="{{ s.image }}" tone="{{ s.tone }}" badge="{{ s.badge }}" title="{{ s.title }}" excerpt="{{ s.excerpt }}" person="{{ s.person }}" heading-level="{{ 3 }}" hint-size="310px,420px"></x-import>
+        </sc-for>
+      </x-import>
+    </sc-if>
+  </div></div>
+</section>
+
+<sc-if value="{{ showQna }}" hint-placeholder-val="{{ true }}">
+<section class="t-sec" data-screen-label="지금 주목받는 Q&amp;A" style="background:var(--green-50)">
+  <div class="t-c t-qna">
+    <div>
+      <p style="margin:0;font-size:var(--text-h2);line-height:var(--text-h2--line-height);letter-spacing:var(--text-h2--letter-spacing);font-weight:500;color:var(--foreground)">지금 주목받는</p>
+      <h2 style="margin:4px 0 0;font-size:var(--text-display-lg);line-height:var(--text-display-lg--line-height);letter-spacing:var(--text-display-lg--letter-spacing);font-weight:600;color:var(--foreground)">Q&amp;A 멘토링</h2>
+      <p style="margin:24px 0 0;font-size:var(--text-h3);line-height:var(--text-h3--line-height);letter-spacing:var(--text-h3--letter-spacing);font-weight:400;color:var(--sage-600)">취업 준비, 커리어, 현지 생활<br>해외 커리어에 대해서라면 무엇이든<br>경험 있는 선배에게 물어보세요</p>
+      <div style="display:flex;gap:8px;margin-top:24px;flex-wrap:wrap">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="md" on-click="{{ goQnaCompose }}" hint-size="120px,40px">질문하러 가기</x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" icon-right="arrow-right-01" on-click="{{ goQnaFeed }}" hint-size="100px,40px">전체보기</x-import>
+      </div>
+    </div>
+    <div aria-busy="{{ qnaBusy }}" style="display:flex;flex-direction:column;gap:16px;min-width:0">
+      <sc-if value="{{ qnaLoading }}" hint-placeholder-val="{{ false }}">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaListItem" variant="question" loading="{{ true }}" title="" hint-size="100%,120px"></x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaListItem" variant="question" loading="{{ true }}" title="" hint-size="100%,120px"></x-import>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaListItem" variant="question" loading="{{ true }}" title="" hint-size="100%,120px"></x-import>
+      </sc-if>
+      <sc-if value="{{ qnaReady }}" hint-placeholder-val="{{ true }}">
+        <sc-for list="{{ qnas }}" as="q" hint-placeholder-count="3">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.QnaListItem" variant="question" href="#qna-detail" country="{{ q.country }}" country-label="{{ q.countryLabel }}" keyword="{{ q.keyword }}" title="{{ q.title }}" excerpt="{{ q.excerpt }}" answerers="{{ q.answerers }}" answer-count="{{ q.answerCount }}" views="{{ q.views }}" likes="{{ q.likes }}" hint-size="100%,140px"></x-import>
+        </sc-for>
+      </sc-if>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<section class="t-sec" data-screen-label="멘토 둘러보기">
+  <div class="t-c"><div style="display:flex;flex-direction:column;gap:24px">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" size="lg" title="멘토 둘러보기" view-all="{{ true }}" on-view-all="{{ goMentorSearch }}" hint-size="100%,40px"></x-import>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="t-chiprow">
+        <span style="flex:0 0 28px;margin-right:8px;font-size:var(--text-caption);line-height:var(--text-caption--line-height);letter-spacing:var(--text-caption--letter-spacing);color:var(--muted-foreground)">국가</span>
+        <sc-for list="{{ countryChips }}" as="c" hint-placeholder-count="7">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterChip" leading="{{ c.leading }}" flag="{{ c.flag }}" flag-base="{{ flagBase }}" selected="{{ false }}" on-change="{{ c.go }}" style="flex:0 0 auto" hint-size="auto,32px">{{ c.label }}</x-import>
+        </sc-for>
+      </div>
+      <div class="t-chiprow">
+        <span style="flex:0 0 28px;margin-right:8px;font-size:var(--text-caption);line-height:var(--text-caption--line-height);letter-spacing:var(--text-caption--letter-spacing);color:var(--muted-foreground)">직종</span>
+        <sc-for list="{{ jobChips }}" as="j" hint-placeholder-count="9">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterChip" leading="none" selected="{{ false }}" on-change="{{ j.go }}" style="flex:0 0 auto" hint-size="auto,32px">{{ j.label }}</x-import>
+        </sc-for>
+      </div>
+    </div>
+    <div>
+      <sc-if value="{{ mentorError }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:32px 0;text-align:center">
+          <p style="margin:0;font-size:var(--text-body);line-height:var(--text-body--line-height);color:var(--muted-foreground)">멘토 목록을 불러오지 못했습니다.</p>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" on-click="{{ retry }}" hint-size="96px,40px">다시 시도</x-import>
+        </div>
+      </sc-if>
+      <sc-if value="{{ mentorRow }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;gap:16px">
+          <sc-for list="{{ mentors }}" as="m" hint-placeholder-count="4">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.MentorCard" href="#mentor-detail" name="{{ m.name }}" role="{{ m.role }}" company="{{ m.company }}" field="{{ m.field }}" country="{{ m.country }}" country-label="{{ m.countryLabel }}" photo="{{ m.photo }}" published-at="{{ m.publishedAt }}" intro="{{ m.intro }}" bookmarked="{{ m.bookmarked }}" on-bookmark-change="{{ m.onBm }}" hint-size="296px,335px"></x-import>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ mentorCarousel }}" hint-placeholder-val="{{ false }}">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Carousel" mode="peek" gap="{{ 16 }}" hint-size="100%,335px">
+          <sc-for list="{{ mentors }}" as="m" hint-placeholder-count="4">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.MentorCard" href="#mentor-detail" name="{{ m.name }}" role="{{ m.role }}" company="{{ m.company }}" field="{{ m.field }}" country="{{ m.country }}" country-label="{{ m.countryLabel }}" photo="{{ m.photo }}" published-at="{{ m.publishedAt }}" intro="{{ m.intro }}" bookmarked="{{ m.bookmarked }}" on-bookmark-change="{{ m.onBm }}" hint-size="296px,335px"></x-import>
+          </sc-for>
+        </x-import>
+      </sc-if>
+    </div>
+  </div></div>
+</section>
+
+<section class="t-sec" data-screen-label="멘트리 인사이트">
+  <div class="t-c"><div style="display:flex;flex-direction:column;gap:24px">
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.SectionHeader" size="lg" title="멘트리 인사이트" view-all="{{ true }}" on-view-all="{{ goInsightList }}" hint-size="100%,40px"></x-import>
+    <div class="t-ins">
+      <div style="min-width:0"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ArticlePreview" href="#article-detail" ratio="3:2" label="신규 아티클" image="assets/top/insight-language.png" title="영어보다 중요한 건 따로 있다? 해외취업 언어 현실" excerpt="현지에서 일하는 멘토들은 영어 점수보다 회의에서 내 생각을 끝까지 말하는 힘이 먼저였다고 말합니다. 언어 준비를 어디서부터 다시 잡을지 정리했습니다." tags="{{ featuredTags }}" hint-size="100%,560px"></x-import></div>
+      <div style="display:flex;flex-direction:column;gap:24px;min-width:0">
+        <sc-for list="{{ insightRows }}" as="a" hint-placeholder-count="4">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ArticlePreview" variant="compact" href="#article-detail" image="{{ a.image }}" title="{{ a.title }}" tags="{{ a.tags }}" hint-size="100%,131px"></x-import>
+        </sc-for>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<section class="t-sec" data-screen-label="세계지도" style="background:var(--green-50)">
+  <div class="t-c" style="display:flex;flex-direction:column;align-items:center;text-align:center">
+    <p style="margin:0;font-size:var(--text-h2);line-height:var(--text-h2--line-height);letter-spacing:var(--text-h2--letter-spacing);font-weight:500;color:var(--foreground)">세계 곳곳에서 활약하고 있는</p>
+    <h2 style="margin:4px 0 0;font-size:var(--text-display-lg);line-height:var(--text-display-lg--line-height);letter-spacing:var(--text-display-lg--letter-spacing);font-weight:600;color:var(--foreground)"><span style="color:var(--primary)">141명</span>의 멘토</h2>
+    <p style="margin:12px 0 0;font-size:var(--text-h2);line-height:var(--text-h2--line-height);letter-spacing:var(--text-h2--letter-spacing);font-weight:400;color:var(--sage-600)">국가를 선택하면 해당 국가의 멘토 리스트 페이지로 이동합니다</p>
+    <div style="margin-top:24px">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="md" on-click="{{ goMentorSearch }}" hint-size="130px,40px">멘토 리스트 보기</x-import>
+    </div>
+    <div class="t-map" ref="{{ mapRef }}"><div class="t-map-box">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" width="100%" height="100%" aria-hidden="true" style="position:absolute;inset:0;display:block">
+        <path style="fill:var(--green-100)" d="M0.6 10L8.3 7.1L20.8 5.7L25 8.6L30 14.3L31.9 21.4L28.9 25.7L26.1 32.1L24.7 39.3L22.2 36.4L20.3 38.6L20.3 42.9L21.7 46.4L24.2 50.7L25.3 51.4L23.1 47.9L18.1 42.9L16.1 35.7L14.4 32.9L12.8 28.6L12.5 22.1L9.7 15.7L5.6 14.3L1.4 14.3ZM30.6 0.7L40.3 0.7L41.7 7.1L35.6 14.3L32.8 10.7ZM25 50L30 49.3L33.3 57.1L37.5 61.4L36.1 72.9L33.9 77.1L31.1 84.3L29.2 96.4L27.2 92.9L27.5 78.6L26.1 67.1L24.7 60.7ZM44.4 31.4L44.7 26.4L46.7 25.7L45.8 22.9L47.8 20.7L48.6 19.3L49.4 16.4L48.6 12.9L51.4 7.9L55 6.4L58.3 9.3L58.3 17.9L55.6 25L55 27.9L53.3 30.7L51.4 30L50.6 25.7L49.4 25.7L48.1 27.1L45.8 31.4ZM42.5 42.1L44.4 35.7L45.8 32.1L50 30.7L52.8 34.3L56.1 35L56.9 37.1L59.2 48.6L61.4 48.6L58.9 58.6L58.3 67.9L56.9 75L55 80.7L52.8 82.1L51.4 77.1L50.6 67.9L49.7 58.6L49.7 54.3L45 54.3L43.1 50ZM58.3 9.3L63.9 7.1L69.4 5L76.4 2.1L86.1 5.7L94.4 8.6L97.2 10.7L91.7 14.3L90.3 17.9L86.7 19.3L84.7 26.4L83.1 32.1L81.1 35.7L80.8 40.7L77.8 42.9L77.2 48.6L76.1 50.7L75 47.9L75 55L76.1 56.4L74.4 51.4L72.8 41.4L69.4 46.4L68.6 51.4L67.2 42.9L65.6 39.3L63.1 39.3L61.7 37.1L60.6 35.7L62.8 40L63.6 41.4L61.7 45.7L59.2 47.9L56.9 35.7L57.2 31.4L55 27.9L55.6 25L58.3 17.9ZM83.3 35L84.7 32.9L86.1 32.1L86.4 27.9L87.5 25.7L86.7 24.3L85.8 28.6L85 30.7L83.6 32.9ZM78.9 72.9L81.1 69.3L83.6 65.7L85.3 65.7L86.7 65L87.8 70.7L89.7 75.7L88.9 83.6L86.4 84.3L83.6 79.3L79.2 81.4ZM45.8 21.4L47.5 20.7L47.2 19.3L46.4 15.7L45.6 16.4L46.1 18.6ZM73.6 53.6L76.4 61.4L79.2 62.9L80.6 63.6L77.8 58.6L75 57.1ZM77.5 55.7L79.7 52.1L80.3 56.4L79.4 60L77.8 59.3ZM95 82.1L96.7 84.3L95.6 86.4L93.6 90L94.4 88.6Z"></path>
+      </svg>
+      <sc-for list="{{ pins }}" as="pin" hint-placeholder-count="6">
+        <a href="{{ pin.href }}" aria-label="{{ pin.label }}" style="position:absolute;left:{{ pin.x }}%;top:{{ pin.y }}%;display:inline-flex;transform:translate(-50%,-50%);transition:transform 150ms ease;text-decoration:none" style-hover="transform:translate(-50%, calc(-50% - 2px))">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.AvatarGroup" items="{{ pin.items }}" max="{{ 3 }}" size="sm" aria-hidden="true" hint-size="80px,24px"></x-import>
+        </a>
+      </sc-for>
+    </div></div>
+  </div>
+</section>
+
+<section class="t-sec" data-screen-label="기업 서비스" style="background:var(--biz-surface)">
+  <div class="t-c t-biz">
+    <div style="display:flex;flex-direction:column;align-items:flex-start;padding-top:29px;box-sizing:border-box">
+      <span style="font-size:var(--text-caption);line-height:var(--text-caption--line-height);font-weight:400;letter-spacing:0;color:var(--muted-foreground);margin-bottom:12px">Mentree Biz</span>
+      <h2 style="margin:0;font-size:var(--text-display-lg);line-height:var(--text-display-lg--line-height);letter-spacing:var(--text-display-lg--letter-spacing);font-weight:600;color:var(--foreground)">해외 진출 기업을 위한<br><span style="color:var(--biz-primary)">비즈니스 서포트</span> 서비스</h2>
+      <p style="margin:14px 0 28px;font-size:var(--text-h3);line-height:var(--text-h3--line-height);letter-spacing:var(--text-h3--letter-spacing);color:var(--muted-foreground)">현지 경력이 풍부한 각 분야별 전문가가<br>사업의 개별적인 상황에 따른 맞춤형 서포트를 제공합니다</p>
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="md" icon-right="arrow-up-right-01" class-name="t-biz-btn" on-click="{{ noop }}" hint-size="140px,40px">자세히 알아보기</x-import>
+    </div>
+    <div class="t-biz-art">
+      <div style="position:relative;flex:0 0 auto;width:{{ biz.w }}px;height:{{ biz.h }}px">
+        <div aria-hidden="true" style="position:absolute;inset:1px;border-radius:24%;box-shadow:var(--shadow-sm)"></div>
+        <svg aria-hidden="true" viewBox="{{ biz.vb }}" width="{{ biz.w }}" height="{{ biz.h }}" style="position:absolute;inset:0;display:block;stroke:var(--biz-border);stroke-width:1">
+          <path d="{{ biz.outer }}" style="fill:var(--background)"></path>
+          <path d="{{ biz.mid }}" style="fill:none"></path>
+          <path d="{{ biz.inner }}" style="fill:none"></path>
+        </svg>
+        <img src="../../../ds-export/project/assets/logo/biz.svg" alt="Mentree Biz" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:{{ biz.logo }}px;height:auto;display:block">
+      </div>
+    </div>
+  </div>
+</section>
+
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" on-navigate="{{ noop }}" hint-size="100%,282px"></x-import>
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BottomTabBar" auth-state="{{ role }}" on-navigate="{{ noop }}" on-auth="{{ goLogin }}" hint-size="100%,56px"></x-import>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const DS = "../../../ds-export/project/";
+const IMG = (n) => `${DS}assets/img/${n}.png`;
+const FLAG_BASE = `${DS}assets/flags/`;
+
+// 멘토 8명 마스터 — 사진 번호에 사람이 못박혀 있다(top · mentor-search · qna-feed 공통).
+const MENTOR_MASTER = [
+  { photo: IMG(8),  name: "박지훈", country: "south-korea",    countryLabel: "대한민국", field: "개발",            company: "네이버",      role: "시니어 백엔드 엔지니어",   intro: "10년차 백엔드, 이직 전략부터 코드 리뷰까지" },
+  { photo: IMG(9),  name: "이서연", country: "japan",          countryLabel: "일본",     field: "디자인",          company: "라쿠텐",      role: "프로덕트 디자이너",        intro: "도쿄에서 UX 리서치와 디자인 시스템을 합니다" },
+  { photo: IMG(10), name: "최민석", country: "singapore",      countryLabel: "싱가포르", field: "마케팅/광고",     company: "Grab",        role: "브랜드 마케팅 리드",       intro: "동남아 시장 진입, 브랜드부터 퍼포먼스까지" },
+  { photo: IMG(11), name: "강현우", country: "united-states",  countryLabel: "미국",     field: "영업/컨설팅",     company: "Salesforce",  role: "엔터프라이즈 세일즈 매니저", intro: "실리콘밸리 B2B 세일즈, 영어 인터뷰 봐드립니다" },
+  { photo: IMG(12), name: "김수진", country: "netherlands",    countryLabel: "네덜란드", field: "HR",              company: "Booking.com", role: "People Partner",           intro: "네덜란드 취업 비자와 현지 HR 실무를 압니다" },
+  { photo: IMG(13), name: "서명진", country: "united-kingdom", countryLabel: "영국",     field: "금융",            company: "HSBC",        role: "리스크 애널리스트",        intro: "런던 금융권 커리어 전환을 도와드립니다" },
+  { photo: IMG(14), name: "임태경", country: "germany",        countryLabel: "독일",     field: "교육",            company: "베를린공대",  role: "커리어 코치",              intro: "베를린에서 커리어 코칭과 강의를 합니다" },
+  { photo: IMG(15), name: "한재호", country: "canada",         countryLabel: "캐나다",   field: "엔지니어링/제조", company: "Bombardier", role: "생산기술 엔지니어",        intro: "캐나다 제조업 현장, 정착까지 함께 봅니다" },
+];
+const M = (i) => MENTOR_MASTER[i - 8];
+const AV = (i) => ({ name: M(i).name, src: M(i).photo });
+
+// 히어로 얼굴(Figma 1567:22730) — [사람, 원, 컨테이너 오른쪽 끝에서 중심까지, 밴드 위에서 중심까지]. 바깥 지름 112.
+//  원 C · B · A — 반지름 374.5 · 중심 높이 179.5 · 중심 x 는 컨테이너 오른쪽 끝에서 +127.5 · -96.5 · -320.5(안쪽이 +).
+const COL_CLS = { C: "t-fl", B: "t-fm", A: "" };
+const FACES = [[9,"C",493.4,99.8],[8,"C",482.9,296.4],[15,"B",234.5,4.4],[12,"B",278.2,191.6],[14,"B",221.8,376.6],[10,"A",42.8,87.0],[11,"A",40.5,280.3]]
+  .map(([i,c,d,y]) => ({ ...M(i), col: c, cls: COL_CLS[c], d, r: d, y }));
+// 지구본 — 지름 1070 · 북극점이 실루엣 위 끝에서 20 아래(밴드 위에서 150). 경선 12 · 위선 4, 앞면만 그린다.
+const GR = 535, GSE = Math.sqrt(1 - Math.pow(515 / 535, 2)), GCE = 515 / 535;
+function gpt(lat, lon) {
+  const t = lat * Math.PI / 180, l = lon * Math.PI / 180;
+  const X = GR * Math.cos(t) * Math.sin(l), Y = GR * Math.sin(t), Z = GR * Math.cos(t) * Math.cos(l);
+  return { x: GR + X, y: GR - (Y * GCE - Z * GSE), v: Y * GSE + Z * GCE >= -0.01 };
+}
+function gpoly(pts) { let d = "", on = false; for (const p of pts) { if (p.v) { d += (on ? "L" : "M") + p.x.toFixed(1) + " " + p.y.toFixed(1); on = true; } else on = false; } return d; }
+const GLOBE_PATHS = [];
+for (let k = 0; k < 12; k++) { const pts = []; for (let a = -90; a <= 90; a += 2) pts.push(gpt(a, k * 30)); GLOBE_PATHS.push(gpoly(pts)); }
+for (const lat of [30, 45, 60, 75]) { const pts = []; for (let a = -180; a <= 180; a += 3) pts.push(gpt(lat, a)); GLOBE_PATHS.push(gpoly(pts)); }
+// 기업 서비스 그림 — 초타원(|x/a|^4 + |y/b|^4 = 1) 세 겹.
+function sq(w, h, inset) {
+  const a = w / 2 - inset - 0.5, b = h / 2 - inset - 0.5, n = 4, N = 160; let d = "";
+  for (let i = 0; i < N; i++) {
+    const t = i / N * 2 * Math.PI, c = Math.cos(t), s = Math.sin(t);
+    d += (i ? "L" : "M") + (w / 2 + a * Math.sign(c) * Math.pow(Math.abs(c), 2 / n)).toFixed(1) + " " + (h / 2 + b * Math.sign(s) * Math.pow(Math.abs(s), 2 / n)).toFixed(1);
+  }
+  return d + "Z";
+}
+const bizArt = (w, h, g, logo) => ({ w, h, vb: `0 0 ${w} ${h}`, outer: sq(w, h, 0), mid: sq(w, h, g), inner: sq(w, h, g * 2), logo });
+const BIZ_D = bizArt(400, 320, 24, 210), BIZ_M = bizArt(280, 224, 16, 147);
+const FACES_M = [[8,102,32],[9,32,80],[10,108,128],[11,42,172]].map(([i,x,y]) => ({ ...M(i), x, y }));
+
+const STORIES = [
+  { tone: "green", image: IMG(1),  badge: "디자인",     title: "늦은 출발은 없다! BX 디자이너 커리어 개척기", excerpt: "늦은 나이에 한국에서의 탄탄한 커리어를 버리고 일본에 건너와 성공적으로 BX 디자이너로의 커리어 전환을 할 수 있었던 비결은?", person: { name: "서명진", country: "japan", countryLabel: "일본", role: "BX 디자이너", company: "Dentsu Digital inc." } },
+  { tone: "sky",   image: IMG(2),  badge: "개발",       title: "도쿄에서 백엔드 개발자로 5년, 이직까지의 기록", excerpt: "신졸로 입사해 5년 동안 두 번의 팀 이동과 한 번의 이직을 거쳤습니다. 일본어 면접에서 가장 많이 받은 질문을 이야기합니다.", person: { name: "박서연", country: "japan", countryLabel: "일본", role: "백엔드 개발자", company: "메르카리" } },
+  { tone: "rose",  image: IMG(3),  badge: "금융",       title: "싱가포르 은행 애널리스트가 말하는 첫 해", excerpt: "입사 첫 해에 가장 낯설었던 것은 일보다 회의 방식이었습니다. 영어로 반대 의견을 내는 법을 이야기합니다.", person: { name: "Lee Wen", country: "singapore", countryLabel: "싱가포르", role: "Analyst", company: "DBS Bank" } },
+  { tone: "gray",  image: IMG(12), badge: "영업/컨설팅", title: "런던 컨설팅 펌, 비자 스폰서십을 받기까지", excerpt: "영국 취업에서 가장 높은 벽은 비자였습니다. 스폰서십을 주는 회사를 고른 방법을 정리했습니다.", person: { name: "박도윤", country: "united-kingdom", countryLabel: "영국", role: "Consultant", company: "Deloitte UK" } },
+];
+
+const QNAS = [
+  { country: "united-states", countryLabel: "미국",     keyword: "취업준비", title: "이력서에 영어 점수가 없어도 미국 취업이 가능할까요?", excerpt: "토익 · 토플 점수 없이 실무 경력만으로 지원하려고 합니다. 서류에서 영어 실력을 어떻게 보여 줘야 할지 모르겠습니다.", answerers: [AV(11), AV(8), AV(9), { name: "정하윤" }, { name: "오세진" }, { name: "한지우" }], answerCount: 6, views: 2489, likes: 20 },
+  { country: "japan",         countryLabel: "일본",     keyword: "취업준비", title: "일본 IT 기업 신졸 채용, 한국 대학 졸업생도 지원할 수 있나요?", excerpt: "내년 3월 한국 대학을 졸업합니다. 도쿄의 자사 서비스 기업 신졸 전형을 보고 있는데 지원 시점을 정하지 못했습니다.", answerers: [AV(9), AV(8), { name: "윤태호" }, { name: "배수진" }], answerCount: 4, views: 1832, likes: 46 },
+  { country: "singapore",     countryLabel: "싱가포르", keyword: "현지 생활", title: "싱가포르 EP 갱신, 회사를 옮기는 중이면 언제 신청합니까?", excerpt: "지금 회사의 EP 만료가 석 달 남았고 이직 오퍼를 받았습니다. 갱신과 새 신청 중 무엇을 먼저 해야 하는지 궁금합니다.", answerers: [AV(10), AV(12), { name: "문지호" }, { name: "황예린" }, { name: "임가영" }], answerCount: 5, views: 1440, likes: 51 },
+];
+
+const MENTORS = [
+  { ...M(8),  publishedAt: "2026-10-01" },
+  { ...M(9),  publishedAt: "2026-09-25" },
+  { ...M(10), publishedAt: "2026-05-12" },
+  { ...M(11), publishedAt: "2026-04-03" },
+];
+
+const FEATURED_TAGS = [{ label: "취업 전략", hue: "sky" }, { label: "커뮤니케이션", hue: "teal" }];
+const INSIGHT_ROWS = [
+  { image: "assets/top/insight-qualifications.png", title: "토익보다 효과 있었던 해외취업 자격증은?", tags: [{ label: "이력서·지원서류", hue: "purple" }] },
+  { image: "assets/top/insight-overseas-life.png", title: "해외취업 3년차들이 가장 많이 후회한 것", tags: [{ label: "정착 생활", hue: "amber" }] },
+  { image: "assets/top/insight-work-life.png", title: "한국보다 덜 힘들까? 해외 직장인들의 진짜 워라밸", tags: [{ label: "워라밸·근무 방식", hue: "rose" }] },
+  { image: IMG(2), title: "도쿄에서 백엔드 개발자로 5년, 이직까지의 기록", tags: [{ label: "이직하기", hue: "indigo" }] },
+];
+
+// 핀 — 첫 장은 그 나라의 마스터 사진, 나머지는 이름만(이니셜). 남은 수는 AvatarGroup 「+K」.
+function pin(label, x, y, total, mi, names) {
+  const items = [AV(mi)];
+  for (let i = 1; i < total; i++) items.push({ name: names[(i - 1) % names.length] });
+  return { x, y, items, href: `#mentor-search?국가=${label}`, label: `${label} 멘토 ${total}명` };
+}
+const PINS = [
+  pin("대한민국", 80, 35, 46, 8, ["김하늘", "정도현"]),
+  pin("일본", 89, 24, 38, 9, ["오유진", "신지우"]),
+  pin("미국", 20, 31, 28, 11, ["배수아", "조민호"]),
+  pin("독일", 50, 21, 12, 14, ["황예린", "문태오"]),
+  pin("싱가포르", 76, 56, 10, 10, ["류지민", "고은솔"]),
+  pin("캐나다", 17, 15, 7, 15, ["천서우", "구자현"]),
+];
+
+const go = (h) => () => { location.hash = h; };
+const OK = { role: ["guest", "mentee", "mentor"], state: ["normal", "loading", "empty", "error"], event: ["on", "off"], view: ["desktop", "mobile"] };
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    let q;
+    try { q = new URLSearchParams(location.search); } catch (e) { q = new URLSearchParams(); }
+    const pick = (k, d) => (OK[k].includes(q.get(k)) ? q.get(k) : d);
+    this.embed = q.has("embed");
+    this.ivRef = React.createRef();
+    this.mapRef = (el) => {
+      if (!el || el === this.mapEl) return;
+      this.mapEl = el; this.mapTouched = false;
+      const touch = () => { this.mapTouched = true; };
+      ["pointerdown", "wheel", "touchstart", "keydown"].forEach((t) => el.addEventListener(t, touch, { passive: true }));
+      if (typeof ResizeObserver !== "undefined") { this.mapRo && this.mapRo.disconnect(); this.mapRo = new ResizeObserver(() => { if (!this.mapTouched) this.mapToEnd(); }); this.mapRo.observe(el); if (el.firstElementChild) this.mapRo.observe(el.firstElementChild); }
+      requestAnimationFrame(() => this.mapToEnd());
+    };
+    this.state = {
+      role: pick("role", "guest"), st: pick("state", "normal"), ev: pick("event", "on"), view: pick("view", "desktop"),
+      bp: this.calcBp(), ivEdges: { atStart: true, atEnd: false }, bm: { 8: true },
+    };
+  }
+  mapToEnd() { if (this.mapEl && this.calcBp() === "M") this.mapEl.scrollLeft = this.mapEl.scrollWidth; }
+  calcBp() { const w = window.innerWidth; return w >= 1280 ? "L" : w >= 769 ? "S" : "M"; }
+  componentDidMount() {
+    this.onResize = () => { const bp = this.calcBp(); if (bp !== this.state.bp) this.setState({ bp }, () => { if (bp === "M") this.mapToEnd(); }); };
+    window.addEventListener("resize", this.onResize);
+    if (!this.tax().COUNTRY_TOP) this.taxTimer = setInterval(() => { if (this.tax().COUNTRY_TOP) { clearInterval(this.taxTimer); this.forceUpdate(); } }, 50);
+  }
+  componentWillUnmount() { window.removeEventListener("resize", this.onResize); clearInterval(this.taxTimer); }
+  tax() { return window.MentreeDesignSystem_2f86cf || {}; }
+  params(s) { return `role=${s.role}&state=${s.st}&event=${s.ev}&view=${s.view}`; }
+  set(patch) {
+    this.setState(patch, () => {
+      if (this.embed) return;
+      try { history.replaceState(null, "", `${location.pathname}?${this.params(this.state)}${location.hash}`); } catch (e) {}
+    });
+  }
+  renderVals() {
+    const s = this.state, bp = s.bp, loggedIn = s.role !== "guest";
+    const chip = (key) => (o) => ({ ...o, leading: o.flag ? "flag" : "none", flag: o.flag || "", go: go(`#mentor-search?${key}=${o.value}`) });
+    return {
+      noop: () => {},
+      role: s.role, st: s.st, ev: s.ev, view: s.view,
+      onRole: (e) => this.set({ role: e.target.value }),
+      onSt: (e) => this.set({ st: e.target.value }),
+      onEv: (e) => this.set({ ev: e.target.value }),
+      onView: (e) => this.set({ view: e.target.value }),
+      showBar: !this.embed,
+      showFrame: !this.embed && s.view === "mobile",
+      showContent: this.embed || s.view === "desktop",
+      frameSrc: `?${this.params({ ...s, view: "mobile" })}&embed=1`,
+      user: loggedIn ? { name: "김민지" } : undefined,
+      flagBase: FLAG_BASE,
+      facesDesktop: bp !== "M", facesMobile: bp === "M",
+      faces: FACES, facesM: FACES_M, globePaths: GLOBE_PATHS,
+      mapRef: this.mapRef,
+      biz: bp === "M" ? BIZ_M : BIZ_D,
+      eventOn: s.ev === "on" && s.st !== "empty",
+      storyLoading: s.st === "loading",
+      storyBusy: s.st === "loading" ? "true" : "false",
+      storyWide: s.st !== "loading" && bp !== "M",
+      storyNarrow: s.st !== "loading" && bp === "M",
+      stories: STORIES,
+      showArrows: bp !== "M",
+      ivRef: this.ivRef,
+      ivAtStart: s.st === "loading" || s.ivEdges.atStart,
+      ivAtEnd: s.st === "loading" || s.ivEdges.atEnd,
+      ivPrev: () => this.ivRef.current && this.ivRef.current.scrollPrev(),
+      ivNext: () => this.ivRef.current && this.ivRef.current.scrollNext(),
+      setIvEdges: (e) => { const c = this.state.ivEdges; if (c.atStart !== e.atStart || c.atEnd !== e.atEnd) this.setState({ ivEdges: e }); },
+      showQna: s.st !== "empty",
+      qnaLoading: s.st === "loading", qnaReady: s.st !== "loading",
+      qnaBusy: s.st === "loading" ? "true" : "false",
+      qnas: QNAS,
+      countryChips: (this.tax().COUNTRY_TOP || []).map(chip("국가")),
+      jobChips: (this.tax().JOB_TOP || []).map(chip("직종")),
+      mentorError: s.st === "error",
+      mentorRow: s.st !== "error" && bp === "L",
+      mentorCarousel: s.st !== "error" && bp !== "L",
+      mentors: MENTORS.map((m) => {
+        const i = MENTOR_MASTER.indexOf(MENTOR_MASTER.find((x) => x.photo === m.photo)) + 8;
+        return { ...m, bookmarked: loggedIn && !!s.bm[i], onBm: (next) => {
+          if (!loggedIn) { location.hash = "#login"; return; }
+          this.setState((p) => ({ bm: { ...p.bm, [i]: next } }));
+        } };
+      }),
+      retry: () => this.set({ st: "normal" }),
+      featuredTags: FEATURED_TAGS,
+      insightRows: INSIGHT_ROWS,
+      pins: PINS,
+      goInsightList: go("#insight-list"),
+      goMentorSearch: go("#mentor-search"),
+      goQnaFeed: go("#qna-feed"),
+      goQnaCompose: go("#qna-compose"),
+      goLogin: go("#login"),
+    };
+  }
+}
+</script>
+</body>
+</html>

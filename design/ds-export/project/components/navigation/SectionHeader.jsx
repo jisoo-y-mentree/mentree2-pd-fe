@@ -8,22 +8,21 @@ import { Icon } from "../core/Icon.jsx";
  * SectionHeader — 배치 컴포넌트. 가로 한 줄, 좌우 양끝 정렬(좌 제목 / 우 액션).
  *  중앙정렬형은 미포함(개별 대응). 배지·버튼·IconButton·아이콘은 기존 컴포넌트 재사용.
  *
- *  좌: [장식 아이콘 칩(옵션)] 제목(30 semibold, green 강조 조각 옵션) [부가 스트링(옵션)] [Badge(옵션)]
+ *  좌: [장식 아이콘 칩(옵션)] 제목(--text-h0 semibold, green 강조 조각 옵션) [부가 스트링(옵션)] [Badge(옵션)]
  *  우: 전체보기(고스트+화살표) / 아웃라인 버튼(옵션) / 캐러셀 화살표 IconButton 2개(옵션)
- *
- *  DS-GAP: 섹션 제목 30 은 현재 타입스케일(h1=24) 밖. 히어로·페이지 타이틀 등 큰 텍스트와
- *  함께 스케일 상단(h0/display) 정리 필요 — 별도 작업. 지금은 30/semibold 임시 지정.
  */
 export function SectionHeader({
   icon,
   title,
   titleAccent,
+  accentFirst = false,
   suffix,
   badge,
   viewAll,
   onViewAll,
   action,
   carousel = false,
+  size = "md",
   onPrev,
   onNext,
   prevDisabled = false,
@@ -31,6 +30,8 @@ export function SectionHeader({
   style,
   ...rest
 }) {
+  // DS-29 — size "md"(기본) = --text-h0 · "lg" = --text-display(32/40 · Mobile 26/34, TOP). 오른쪽 조작·부가 글자는 그대로, 세로 가운데만 맞춘다.
+  const tk = size === "lg" ? "display" : "h0";
   return (
     <div
       style={{
@@ -67,12 +68,22 @@ export function SectionHeader({
         )}
         <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0, flexWrap: "wrap" }}>
           {/* 제목 30 semibold — 일반 + green 강조 조각(옵션) */}
-          <h2 style={{ margin: 0, fontSize: "var(--text-h0)", fontWeight: 600, letterSpacing: "var(--text-h0--letter-spacing)", lineHeight: "var(--text-h0--line-height)", wordBreak: "keep-all", overflowWrap: "break-word" }}>
-            {title}
-            {titleAccent && <span style={{ color: "var(--primary)" }}>{titleAccent}</span>}
+          <h2 style={{ margin: 0, fontSize: `var(--text-${tk})`, fontWeight: 600, letterSpacing: `var(--text-${tk}--letter-spacing)`, lineHeight: `var(--text-${tk}--line-height)`, wordBreak: "keep-all", overflowWrap: "break-word" }}>
+            {/* accentFirst — 강조가 앞에 오는 제목(「멘토의 이야기를 읽어보세요」)을 위한 것. 기본은 뒤(「지금 주목받는 Q&A 멘토링」). */}
+            {accentFirst ? (
+              <>
+                {titleAccent && <span style={{ color: "var(--primary)" }}>{titleAccent}</span>}
+                {title}
+              </>
+            ) : (
+              <>
+                {title}
+                {titleAccent && <span style={{ color: "var(--primary)" }}>{titleAccent}</span>}
+              </>
+            )}
           </h2>
           {/* 부가 스트링(옵션) — muted */}
-          {suffix && <span style={{ fontSize: "var(--text-body)", color: "var(--muted-foreground)" }}>{suffix}</span>}
+          {suffix && <span style={{ fontSize: "var(--text-body)", lineHeight: "var(--text-body--line-height)", letterSpacing: "var(--text-body--letter-spacing)", color: "var(--muted-foreground)" }}>{suffix}</span>}
           {/* 배지(옵션) */}
           {badge}
         </div>
@@ -83,7 +94,10 @@ export function SectionHeader({
         <div style={{ flex: "0 0 auto", display: "flex", alignItems: "center", gap: 8 }}>
           {action}
           {viewAll && (
-            <Button variant="ghost" size="md" iconRight="circle-arrow-up-right" onClick={onViewAll}>
+            <Button variant="ghost" size="md" iconRight={
+              // DS-105 — 전체보기 아이콘 ›(아트디렉션 · 전 화면)
+              "arrow-right-01"
+            } onClick={onViewAll}>
               전체보기
             </Button>
           )}

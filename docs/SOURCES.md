@@ -84,6 +84,38 @@
 
 정리 페이지를 유지하면 **정본이 셋이 된다** — 원본 와이어 · 정리 페이지 · md.
 
+### 주석과 화면을 둘 다 읽는다
+
+**주석만 읽고 화면 사양을 쓰지 않는다.** 주석은 **예외와 조건**을 적는 곳이고 **무엇이 놓여 있는가는 화면에만 있다.**
+
+| 판정 조건 | 아크션 |
+|---|---|
+| 화면의 `UI-SPEC` §4·§6 을 쓴다 | **주석과 화면 프레임을 둘 다 연다.** 주석만으로 블록을 세지 않는다 |
+| 주석에 없는 요소가 화면에 있다 | **화면에 있는 것이 사실이다.** 빠뜨리지 않는다 |
+| 화면에 없는 규칙이 주석에 있다 | **주석이 사실이다.** 주석은 조건과 거동을 적는다 |
+
+**2026-09-14 에 이것을 안 지켜서 `qna-detail` 에서 어긋남이 9건 나왔다.** 주석 20건만 텍스트로 뽑고 화면은 `qna-feed` 1장만 열었다. 제목 앞의 `Q.`, 액션의 가운데 정렬, 맨 아래 「인기 태그」 섹션은 **전부 주석에 없고 화면에만 있었다.**
+
+### 어긋났을 때 — 한쪽을 버리지 않는다
+
+**와이어·주석·디자인 시스템이 서로 어긋난다.** 어느 하나를 「정본」으로 세워 나머지를 버리면 판단이 빨라지는 대신 **틀린 채로 멀리 간다.**
+
+| 판정 조건 | 아크션 |
+|---|---|
+| 와이어와 디자인 시스템이 어긋난다 | **멈추고 디자이너에게 묻는다.** 어느 쪽이 이기는지는 사안마다 다르다 |
+| 주석과 화면이 어긋난다 | **멈추고 묻는다** |
+| 와이어가 틀렸다고 판단했다 | **혼자 버리지 않는다.** 그렇게 본 근거를 붙여 묻는다 |
+| 물을 것이 쌓여 진도가 안 나간다 | **한 번에 모아 묻는다.** 건마다 멈추지 않는다 |
+
+**「무조건 피그마가 정본」도 「무조건 디자인 시스템이 정본」도 아니다.**
+
+- 디자인 시스템은 **최소 품질과 일관성의 바탕**이다. 화면마다 다시 정하지 않기 위해 있다
+- 와이어는 **무엇을 만들 것인가**다. 디자인 시스템에 없으면 **디자인 시스템을 고친다**
+- **와이어가 틀리는 일도 있다.** `qna-detail` 의 답변별 스크랩이 그것이다 — 와이어는 버튼을 답변마다 두지만 스크랩의 단위가 질문이라 한 질문에 여러 개가 동시에 켜진다. **디자이너가 와이어 오류로 판정했다**(2026-09-14)
+
+`[review]`
+**근거**: 한쪽을 버리면 **버린 쪽에 있던 정보가 영영 안 돌아온다.** 물어서 정한 것은 기록에 남고 다음 화면에서 재사용된다.
+
 ### Claude Design 산출물 — 무엇을 어디에 두는가
 
 컴포넌트는 표준 React ＋ CSS 변수 참조이며 외부 의존성이 0이다. **이 리포는 이식하지 않고 그대로 보관한다.** 이식은 엔지니어의 일이다.
@@ -177,7 +209,7 @@ DESIGN-CHARTER 원칙 8은 모든 규칙에 근거를 한 줄 붙이라고 요�
 |---|---|
 | **한/일 이중언어(i18n)** | UI-SPEC 을 쓸 때 문구를 직접 쓰지 않고 **키 기반**으로 짠다. UX 라이팅의 범위가 2개국어다 |
 | 해외 커리어 B2C 멘토링 | `PRODUCT.md` 의 첫 줄 |
-| **통화는 USD 다** | 신청·결제·정산의 전 화면. **와이어에 원화 표기가 남아 있다** — UI-SPEC 을 쓸 때 달러로 환산하고 §11 에 그 사실을 남긴다 |
+| **통화는 원이다**(2026-10-14 · 상혁 — 전에는 USD) | 신청·결제·정산의 전 화면. 와이어의 원화 표기(「24,000원 / 카카오페이」)가 맞다. 1송이 ＝ 2만원 |
 | **반응형 3구간** | `template/` 은 CSS 로 3구간을 처리한다. 구간마다 파일을 늘리지 않는다 |
 | 라이트 단일 테마 | `DESIGN.md`. 다크 대응을 전제하지 않는다 |
 | **이 리포는 구현하지 않는다** | 산출물 6종에서 끝난다([ADR-0005](adr/0005-design-team-deliverables.md)). 앱도 패키지도 만들지 않는다 |
@@ -364,3 +396,15 @@ DESIGN-CHARTER 원칙 8은 모든 규칙에 근거를 한 줄 붙이라고 요�
 | DS export 번들 — 컴포넌트 30본·토큰 6본·guidelines 17본 | Claude Design 디자인 시스템 | 2026-08-31 | radarlab 계정 / `Mentree2 Design System-handoff.zip` | `5e43bc6d53deaf104c3338fd9c2cea298b9b1ec0e55275492030658dcca6014c` | **`design/ds-export/`(커밋한다)** — 상세는 [SOURCE.md](../design/ds-export/SOURCE.md) | | |
 | 재개 팩 5본(이관·파이프라인·반응형·상태) | Claude Design 경위 | 2026-08-31 | radarlab 계정 | — | `design/_import/`(커밋하지 않는다) | — | — |
 | **DS export 번들 — 재반입.** 컴포넌트·토큰·guidelines 는 **무변경**(166본 바이트 동일). readme 2본만 다르다 | Claude Design 디자인 시스템 | **2026-09-10** | radarlab 계정 / **`M2-Design-System-handoff.zip`** | `727c5d60feaf7ca6846455c5ebe358725a1340f738b732077563af3c76799080` | **`design/ds-export/`(통째 교체)** — 이력은 [SOURCE.md](../design/ds-export/SOURCE.md) 「교체 이력」 | | |
+| **DS export 번들 — 52본 판.** 신규 7(`QnaListItem` · `Textarea` · `MultiSelect` · `ImageCropper` · `ReorderList` · `Tooltip` · `Flag`) · 개정 12. 09-12〜09-28 의 중간 판 4회는 이 표에 적지 않았다 — 이력은 SOURCE.md 가 갖는다 | Claude Design 디자인 시스템 | **2026-10-08** | radarlab 계정 / **`M2 Design System.zip`** | `5424904758ba37149d71cd29f368617e1ee78f4b69be960959923a89e5deee5d` | **`design/ds-export/`(통째 교체)** — 이력은 [SOURCE.md](../design/ds-export/SOURCE.md) 「교체 이력」 | | |
+| **DS export 번들 — 53본 판.** 신규 1(`CoverCard`) · 개정 22 · 토큰(그린 11단 · 주황 · 표지 4색 · 서체 3단). 지수의 10-13 Q&A export 에 든 `_ds` 와 같은 판 | Claude Design 디자인 시스템 | **2026-10-14** | radarlab 계정 / **`M2 Design System.zip`** | `af278860480b1d1c46a9bb4b99adc14ae74c1b9da3dfff3ac77e2dbf6031262a` | **`design/ds-export/`(통째 교체)** — 이력은 [SOURCE.md](../design/ds-export/SOURCE.md) 「교체 이력」 | | |
+| **Q&A 3화면 export — 28장.** 모바일 2판 ＋ 관점별 간단보기 5장 | Claude Design 프로젝트 `Mentree 2.0 Q&A Feed` | **2026-10-08** | radarlab 계정 / **`Mentree 2.0 Q&A Feed.zip`** | `7229ad43e6bf9a13252313920b42da51eb0788e5cd3e5aafcd62195e293afc91` | `design/screens/qna-*/template/`(28장 · `_ds` 사본은 넣지 않는다) | | |
+| **Q&A 3화면 export — 22장(2차 개정).** 피드 Figma `1646:33282` 3판(10-08 19:03) → 상세 · 멘토 피드 · 작성 Figma `1697:34438`(10-09 15:10). 간단보기 6장 삭제 | Claude Design 프로젝트 `Mentree 2.0 Q&A Feed` | **2026-10-09** | radarlab 계정 / **`Mentree 2.0 Q&A Feed.zip`**(4판) | `a883703b0d2cc041` 앞 16자 — 전체는 `template/SOURCE.md` | `design/screens/qna-*/template/`(22장) | | |
+| **Q&A 3화면 export — 단일 페이지(3차 개정).** `Qna.dc.html` 1장 · 주소로 상태. 키워드 축 삭제 · 모바일 추천 세로 · 감사인사 primary · DS 10-14 판 | Claude Design 프로젝트 `Mentree 2.0 Q&A Feed` | **2026-10-14** | radarlab 계정 / **`Mentree 2.0 Q&A Feed.zip`** | `a2d4b27dc9c8` | `design/screens/qna-feed/template/`(상세 · 작성은 같은 파일) | | |
+| **인사이트 2화면 export — 2본 ＋ 부품 2본(5판).** 얇은 페이지 삭제 · 이전 · 다음 자리 · 관련 멘토 섹션 통합 · DS 10-14 판 | Claude Design 프로젝트 `Mentree 2.0 Insight feed` | **2026-10-14** | radarlab 계정 / **`Mentree 2.0 Insight feed.zip`** | `ae1e7d3eb661` | `design/screens/{insight-list,article-detail}/template/` | | |
+| **알림 export — 입구 1장 ＋ 부품 3본(1판).** 간략형 · 전체형 · 주소로 상태 · DS 10-14 판(사본과 바이트 같음) | Claude Design 프로젝트 `Mentree 2.0 Notification` | **2026-10-14** | radarlab 계정 / **`Mentree 2.0 Notification build.zip`** | `7c575d85e1d6` | `design/screens/notification/template/`(2판으로 바뀜) | | |
+| **알림 export — 2판.** 상혁이 Claude Design 에서 직접 고친 판 · TOP 바탕 실물 · 지도 iframe(CDN) | Claude Design 프로젝트 `Mentree 2.0 Notification` | **2026-10-14 18:15** | radarlab 계정 / **`Mentree 2.0 Notification build (1).zip`** | `4f224844ada7` | `design/screens/notification/template/` | | |
+| **TOP export — 1장.** 최신 Figma `1856:25912` 오른쪽 판 · 사본은 DS 10-14 이전 판이라 ds-export(최신)를 가리키게 했다 | Claude Design(지수 · 프로젝트 이름 미확인) | **2026-10-14** | radarlab 계정 / **`top.zip`** | `f06be5a10cad` | `design/screens/top/template/`(UI-SPEC 은 #35) | | |
+| **마이페이지 export — 입구 1장 ＋ 부품 3본(1판).** 멘티 · 멘토 한 장(`role`) · 탭 7 · 모달 27 · 주소로 상태 · DS 10-14 판(사본과 바이트 같음) | Claude Design 프로젝트 `Mentree 2.0 My Page` | **2026-10-14 23:56** | radarlab 계정 / **`Mentree 2.0 My Page.zip`** | `d86d01a26a42` | `design/screens/mypage-mentee/template/`(멘토 폴더는 `SOURCE.md` 만) | | |
+| **인증 흐름 export — 입구 1장 ＋ 부품 5본(1판).** 로그인 · 회원가입(이메일 · 소셜) · 온보딩 설문 3스텝 · 비밀번호 재설정(인증 번호 8상태) · 주소로 상태 · DS 10-14 판(사본과 바이트 같음) | Claude Design 프로젝트 `Mentree 2.0 온보딩 진행` | **2026-10-15 12:26** | radarlab 계정 / **`Mentree 2.0 온보딩 진행.zip`** | `e681a51f4616` | `design/screens/login/template/`(signup · password-reset · onboarding-survey 폴더는 `SOURCE.md` 만) | | |
+| **인증 흐름 export — 2판.** 상혁이 Claude Design 에서 결정 2건을 정한 판(로그인 로고 · 소셜 버튼) ＋ 1차 고칠 것 5건 · 바뀐 파일 3본(`Auth` · `AuthShell` · `OtpField`) | Claude Design 프로젝트 `Mentree 2.0 Onboarding`(zip 이름 기준) | **2026-10-15 12:51** | radarlab 계정 / **`Mentree 2.0 Onboarding.zip`** | `cec0fba6b536` | `design/screens/login/template/` | | |

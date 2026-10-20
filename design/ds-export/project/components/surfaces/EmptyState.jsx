@@ -13,7 +13,7 @@ import { Icon } from "../core/Icon.jsx";
  * [크기] md=목록 자리 전체 · sm=좁은 자리(우측 위젯·알림 드롭다운). sm은 아이콘이 작고 설명을 생략해도 된다.
  */
 const SIZES = {
-  md: { icon: 34, padV: 44, gapIcon: 14, gapText: 8, gapAction: 18, title: "var(--text-h3)", desc: "var(--text-body)", maxW: 340 },
+  md: { icon: 34, padV: 44, gapIcon: 14, gapText: 8, gapAction: 18, title: "var(--text-h3)", desc: "var(--text-caption)", maxW: 340 },
   sm: { icon: 22, padV: 22, gapIcon: 10, gapText: 6, gapAction: 12, title: "var(--text-body)", desc: "var(--text-caption)", maxW: 220 },
 };
 

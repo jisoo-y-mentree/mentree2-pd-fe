@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="900x460" name="SectionHeader" subtitle="배치 컴포넌트 — 좌 제목 / 우 액션 양끝 정렬. 아이콘·강조·부가스트링·배지·전체보기·캐러셀 슬롯" -->
+<!-- @dsCard group="Components" viewport="900x600" name="SectionHeader" subtitle="배치 컴포넌트 — 좌 제목 / 우 액션 양끝 정렬. 아이콘·강조·부가스트링·배지·전체보기·캐러셀 슬롯" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -31,6 +31,12 @@
   function Demo() {
     return (
       <div className="stack">
+        <Row cap='size="lg" (DS-29) — 제목 --text-display 32/40 · 전체보기 + 캐러셀은 md와 같은 크기 · 세로 가운데'>
+          <SectionHeader size="lg" title="멘토의 이야기" viewAll carousel />
+        </Row>
+        <Row cap='size="lg" + 강조 앞(accentFirst) + 부가 스트링'>
+          <SectionHeader size="lg" titleAccent="멘트리 " title="인사이트" accentFirst suffix="매주 업데이트" viewAll />
+        </Row>
         <Row cap="아이콘 칩 + green 강조 + 부가 스트링 + 전체보기">
           <SectionHeader icon="user-group" title="지금 주목받는 " titleAccent="Q&A 멘토링" suffix="3,200명의 멘토" viewAll />
         </Row>

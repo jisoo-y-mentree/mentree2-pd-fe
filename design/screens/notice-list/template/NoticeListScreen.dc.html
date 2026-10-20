@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+  <script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <style>
+    html, body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+    a { color: var(--primary); } a:hover { color: var(--brand-ink); }
+  </style>
+</helmet>
+<div data-screen-label="공지사항 목록" style="min-height: 100vh; display: flex; flex-direction: column;">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" brand="{{ brandEl }}" on-navigate="{{ navigate }}" hint-size="100%,64px"></x-import>
+
+  <main style="flex: 1; width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 40px var(--container-pad) 96px; box-sizing: border-box;">
+    <div style="max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px;">
+
+      <!-- 제목 + 정렬: 데스크톱은 한 줄 양끝, 모바일은 제목 아래 오른쪽 -->
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+          <h1 style="margin: 0; font-size: var(--text-h0); line-height: var(--text-h0--line-height); letter-spacing: var(--text-h0--letter-spacing); font-weight: 600;">공지사항</h1>
+          <div style="width: 160px; flex: 0 0 160px;">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ sortOptions }}" value="{{ sort }}" on-change="{{ setSort }}" aria-label="정렬" hint-size="160px,40px"></x-import>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <h1 style="margin: 0; font-size: var(--text-h0); line-height: var(--text-h0--line-height); letter-spacing: var(--text-h0--letter-spacing); font-weight: 600;">공지사항</h1>
+          <div style="display: flex; justify-content: flex-end;">
+            <div style="width: 160px;">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" options="{{ sortOptions }}" value="{{ sort }}" on-change="{{ setSort }}" aria-label="정렬" hint-size="160px,40px"></x-import>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- 고정 공지 -->
+      <sc-if value="{{ hasPinned }}" hint-placeholder-val="{{ false }}">
+        <section aria-label="중요 공지" style="display: flex; flex-direction: column; gap: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border); margin-bottom: 8px;">
+          <sc-for list="{{ pinned }}" as="n" hint-placeholder-count="2">
+            <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+              <a href="{{ n.href }}" data-temp="DS-33" style="display: flex; gap: 24px; align-items: flex-start; color: inherit; text-decoration: none;" style-hover="color: var(--primary);">
+                <div style="flex: 0 0 296px; width: 296px; aspect-ratio: 16 / 9; border-radius: var(--card-media-radius); background: var(--sage-100); overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; color: var(--sage-400);">
+                  <sc-if value="{{ n.image }}" hint-placeholder-val="{{ false }}"><img src="{{ n.image }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;"></sc-if>
+                  <sc-if value="{{ n.noImage }}" hint-placeholder-val="{{ true }}"><span class="hgi" style="--hgi: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/image-01.svg'); font-size: 30px;"></span></sc-if>
+                </div>
+                <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+                  <div style="display: flex;"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="tag" hue="rose" leading="dot" size="sm" hint-size="auto,24px">중요</x-import></div>
+                  <div style="font-size: var(--text-h3); line-height: var(--text-h3--line-height); letter-spacing: var(--text-h3--letter-spacing); font-weight: 600; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;">{{ n.title }}</div>
+                  <div style="font-size: var(--text-body); line-height: var(--text-body--line-height); color: var(--muted-foreground); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;">{{ n.excerpt }}</div>
+                  <div class="tabular" style="font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); color: var(--muted-foreground);">{{ n.date }}</div>
+                </div>
+              </a>
+            </sc-if>
+            <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex;"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Badge" variant="tag" hue="rose" leading="dot" size="sm" hint-size="auto,24px">중요</x-import></div>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ArticlePreview" title="{{ n.title }}" excerpt="{{ n.excerpt }}" image="{{ n.image }}" tags="{{ noTags }}" href="{{ n.href }}" hint-size="100%,300px"></x-import>
+              </div>
+            </sc-if>
+          </sc-for>
+        </section>
+      </sc-if>
+
+      <!-- 공지 목록 -->
+      <sc-if value="{{ hasItems }}" hint-placeholder-val="{{ true }}">
+        <section aria-label="공지 목록" style="display: flex; flex-direction: column; gap: 24px;">
+          <sc-for list="{{ items }}" as="n" hint-placeholder-count="4">
+            <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+              <a href="{{ n.href }}" data-temp="DS-33" style="display: flex; gap: 24px; align-items: flex-start; color: inherit; text-decoration: none;" style-hover="color: var(--primary);">
+                <div style="flex: 0 0 296px; width: 296px; aspect-ratio: 16 / 9; border-radius: var(--card-media-radius); background: var(--sage-100); overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; color: var(--sage-400);">
+                  <sc-if value="{{ n.image }}" hint-placeholder-val="{{ false }}"><img src="{{ n.image }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;"></sc-if>
+                  <sc-if value="{{ n.noImage }}" hint-placeholder-val="{{ true }}"><span class="hgi" style="--hgi: url('https://cdn.jsdelivr.net/npm/@hugeicons/static/icons/image-01.svg'); font-size: 30px;"></span></sc-if>
+                </div>
+                <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+                  <div style="font-size: var(--text-h3); line-height: var(--text-h3--line-height); letter-spacing: var(--text-h3--letter-spacing); font-weight: 600; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;">{{ n.title }}</div>
+                  <div style="font-size: var(--text-body); line-height: var(--text-body--line-height); color: var(--muted-foreground); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;">{{ n.excerpt }}</div>
+                  <div class="tabular" style="font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); color: var(--muted-foreground);">{{ n.date }}</div>
+                </div>
+              </a>
+            </sc-if>
+            <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.ArticlePreview" title="{{ n.title }}" excerpt="{{ n.excerpt }}" image="{{ n.image }}" tags="{{ noTags }}" href="{{ n.href }}" hint-size="100%,300px"></x-import>
+            </sc-if>
+          </sc-for>
+        </section>
+      </sc-if>
+
+      <!-- 로딩 스켈레톤 (loading 판 5장 · 더보기 중 3장) -->
+      <sc-if value="{{ showSkeleton }}" hint-placeholder-val="{{ false }}">
+        <div aria-busy="true" style="display: flex; flex-direction: column; gap: 24px;">
+          <sc-for list="{{ skeletons }}" as="s" hint-placeholder-count="3">
+            <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+              <div style="display: flex; gap: 24px; align-items: flex-start;">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="{{ thumbW }}" height="{{ thumbH }}" radius="md" hint-size="296px,166px"></x-import>
+                <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; padding-top: 4px;">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="22px" width="70%" hint-size="70%,22px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="2" hint-size="100%,44px"></x-import>
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="14px" width="80px" hint-size="80px,14px"></x-import>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div style="width: 100%; aspect-ratio: 16 / 9;"><x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="100%" height="100%" radius="md" hint-size="100%,180px"></x-import></div>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="22px" width="70%" hint-size="70%,22px"></x-import>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="2" hint-size="100%,44px"></x-import>
+              </div>
+            </sc-if>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <!-- 빈 상태 -->
+      <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="padding: 64px 0;">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" icon="notification-off-01" title="아직 공지가 없어요" hint-size="100%,160px"></x-import>
+        </div>
+      </sc-if>
+
+      <!-- 오류 -->
+      <sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
+        <div style="padding: 64px 0;">
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" icon="alert-02" title="공지를 불러오지 못했어요" description="네트워크 연결을 확인한 뒤 다시 시도해 주세요." action="{{ retryBtn }}" hint-size="100%,220px"></x-import>
+        </div>
+      </sc-if>
+
+      <!-- 더보기 -->
+      <sc-if value="{{ hasMore }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; justify-content: center; padding-top: 16px;">
+          <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="md" disabled="{{ loadingMore }}" on-click="{{ loadMore }}" hint-size="120px,40px">더보기</x-import>
+          </sc-if>
+          <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="md" full-width="{{ true }}" disabled="{{ loadingMore }}" on-click="{{ loadMore }}" style="width: 100%;" hint-size="100%,40px">더보기</x-import>
+          </sc-if>
+        </div>
+      </sc-if>
+    </div>
+  </main>
+
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" brand="{{ footerBrandEl }}" on-navigate="{{ navigate }}" hint-size="100%,240px"></x-import>
+  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+    <div style="height: 72px;"></div>
+    <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BottomTabBar" on-navigate="{{ navigateTab }}" hint-size="100%,56px"></x-import>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;state&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;normal&quot;,&quot;end&quot;,&quot;loading&quot;,&quot;empty&quot;,&quot;error&quot;],&quot;default&quot;:&quot;normal&quot;,&quot;tsType&quot;:&quot;'normal'|'end'|'loading'|'empty'|'error'&quot;,&quot;section&quot;:&quot;화면 상태&quot;},&quot;pageTitle&quot;:{&quot;editor&quot;:null,&quot;default&quot;:&quot;공지사항 · 멘트리&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { sort: "latest", pinned: [], items: [], all: [], loadingMore: false, hasMore: false, isMobile: false, loaded: false };
+  componentDidMount() {
+    if (this.props.pageTitle) document.title = this.props.pageTitle;
+    document.documentElement.lang = "ko";
+    this.mq = window.matchMedia("(max-width: 768px)");
+    this.onMq = () => this.setState({ isMobile: this.mq.matches });
+    this.onMq();
+    this.mq.addEventListener("change", this.onMq);
+    import("./notice-data.js").then((m) => {
+      const st = this.props.state ?? "normal";
+      const withFlags = (a) => a.map((n) => ({ ...n, noImage: !n.image }));
+      const all = withFlags(m.NOTICES);
+      if (st === "normal") this.setState({ all, pinned: withFlags(m.PINNED), items: all.slice(0, 10), hasMore: all.length > 10, loaded: true });
+      else if (st === "end") this.setState({ all, items: all.slice(8, 12), hasMore: false, loaded: true });
+      else this.setState({ loaded: true });
+    });
+  }
+  componentWillUnmount() { this.mq && this.mq.removeEventListener("change", this.onMq); }
+  sorted(items, sort) {
+    return [...items].sort((a, b) => (sort === "latest" ? b.date.localeCompare(a.date) : a.date.localeCompare(b.date)));
+  }
+  go(href) { window.location.href = href; }
+  renderVals() {
+    const DS = window.MentreeDesignSystem_2f86cf || {};
+    const st = this.props.state ?? "normal";
+    const { sort, items, pinned, loadingMore, hasMore, isMobile, loaded } = this.state;
+    const isLoading = st === "loading";
+    const ROUTES = { notices: "notice-list-normal.dc.html", insights: "../../insight-list/template/InsightList.dc.html" };
+    const logoImg = (h) => React.createElement("img", { src: "../../../ds-export/project/assets/logo/mentree-logo.svg", alt: "mentree", style: { height: h, display: "block" } });
+    return {
+      isMobile, isDesktop: !isMobile,
+      sort, sortOptions: [{ value: "latest", label: "최신순" }, { value: "oldest", label: "오래된순" }],
+      setSort: (v) => this.setState({ sort: v }),
+      pinned, hasPinned: pinned.length > 0,
+      items: this.sorted(items, sort), hasItems: items.length > 0,
+      noTags: [],
+      showSkeleton: isLoading || loadingMore,
+      skeletons: isLoading ? [1, 2, 3, 4, 5] : [1, 2, 3],
+      thumbW: 296, thumbH: 166,
+      isEmpty: st === "empty" && loaded,
+      isError: st === "error" && loaded,
+      hasMore, loadingMore,
+      loadMore: () => {
+        if (this.state.loadingMore) return;
+        this.setState({ loadingMore: true });
+        setTimeout(() => {
+          const next = this.state.all.slice(this.state.items.length, this.state.items.length + 10);
+          const merged = [...this.state.items, ...next];
+          this.setState({ items: merged, loadingMore: false, hasMore: merged.length < this.state.all.length });
+        }, 900);
+      },
+      retryBtn: DS.Button ? React.createElement(DS.Button, { variant: "outline", size: "md", onClick: () => window.location.reload() }, "다시 시도") : null,
+      brandEl: logoImg(24),
+      footerBrandEl: logoImg(24),
+      navigate: (item) => { const h = ROUTES[item.key]; if (h) this.go(h); },
+      navigateTab: (tab) => { const h = ROUTES[tab.key]; if (h) this.go(h); },
+    };
+  }
+}
+</script>
+</body>
+</html>

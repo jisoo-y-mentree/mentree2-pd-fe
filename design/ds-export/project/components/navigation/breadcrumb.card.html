@@ -1,0 +1,53 @@
+<!-- @dsCard group="Components" viewport="640x260" name="Breadcrumb" subtitle="목록→상세 2단 경로. 마지막은 현재 페이지(링크 아님). 긴 제목만 말줄임 — 링크 항목은 안 줄어든다" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .stack { display: flex; flex-direction: column; gap: 24px; }
+  .frame { max-width: 420px; }
+  .lbl { font-size: var(--text-caption); font-weight: 600; color: var(--muted-foreground); margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Breadcrumb } = window.MentreeDesignSystem_2f86cf;
+
+  function Demo() {
+    return (
+      <div className="stack">
+        <div>
+          <div className="lbl">① 짧은 현재 페이지 — qna-detail</div>
+          <div className="frame">
+            <Breadcrumb items={[{ label: "Q&A 목록", href: "/qna" }, { label: "비자 질문 있어요" }]} />
+          </div>
+        </div>
+        <div>
+          <div className="lbl">② 긴 현재 페이지 — 말줄임(링크는 안 줄어듦), 420px 프레임</div>
+          <div className="frame">
+            <Breadcrumb items={[
+              { label: "Q&A 목록", href: "/qna" },
+              { label: "일본 IT 취업, 비자는 어떻게 준비하나요? 준비 기간과 서류까지 전부 궁금합니다" },
+            ]} />
+          </div>
+        </div>
+        <div>
+          <div className="lbl">③ article-detail</div>
+          <div className="frame">
+            <Breadcrumb items={[{ label: "멘트리 인사이트", href: "/insights" }, { label: "해외 이직 전 꼭 확인할 5가지" }]} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

@@ -1,11 +1,17 @@
 import React from "react";
 import { Badge } from "../core/Badge.jsx";
+import { Icon } from "../core/Icon.jsx";
 
 /**
  * Tabs — 같은 셸 안에서 내용을 바꾸는 전환(화면을 떠나지 않는다). WAI-ARIA tabs 패턴.
  * [ToggleGroup과의 경계] ToggleGroup=같은 목록의 조건을 바꾼다(면을 채운다) ·
  *  Tabs=내용 자체가 바뀐다(밑줄을 긋는다). 이 시각 차이로 둘을 구별한다 — Tabs는 면을 채우지 않는다.
- * [선택 표시] 밑줄(--primary 2px) + 라벨 색(--foreground/600). 색만으로 가르지 않는다(WCAG 1.4.1).
+ * [선택 표시] DS-96 — 높이 4 · 양끝 반원 · --primary 막대, 내용(아이콘 + 라벨 + 카운트) 폭. 아래 1px 구분선 위에 얹는다.
+ *  + 라벨 색(--foreground)·굵기. 색만으로 가르지 않는다(WCAG 1.4.1).
+ * [크기] size="s"(기본 · 멘토 상세) 라벨 폭 · 높이 42 · --text-body 600/500.
+ *  size="l"(Q&A 피드) 컨테이너를 같은 폭으로 나눈다 · 높이 60 · --text-h3 700/500 ·
+ *  항목 icon을 라벨 왼쪽에 22 · 간격 8(선택일 때만 --primary, 아니면 --muted-foreground).
+ * [fill] DS-111 — 탭들이 줄 폭을 똑같이 나누고(둘이면 반씩) 라벨은 탭 가운데 · 선택 막대가 탭 폭 전체. s · l 둘 다. 기본(없음)은 그대로.
  * [카운트] count를 넘기면 라벨 뒤에 Badge sm — 선택 탭은 status/active(green tint), 미선택은 분류(뉴트럴).
  *  배지는 눌리지 않는다(탭 버튼 안의 표시).
  * [폭] 탭 수 2~10. 줄바꿈하지 않는다(두 줄이 되면 셸 높이가 탭 수에 따라 변한다) — 가로 스크롤 +
@@ -31,6 +37,8 @@ export function Tabs({
   onChange,
   idBase = "tabs",
   ariaLabel = "탭",
+  size = "s",
+  fill = false,
   style,
   ...rest
 }) {
@@ -98,7 +106,8 @@ export function Tabs({
         style={{
           display: "flex",
           alignItems: "stretch",
-          gap: 4,
+          // DS-111 — fill 이면 탭 사이 간격 없이 줄 폭을 똑같이 나눈다
+          gap: size === "l" || fill ? 0 : 4,
           overflowX: "auto",
           overflowY: "hidden",
           flexWrap: "nowrap",
@@ -113,6 +122,8 @@ export function Tabs({
               key={t.value}
               tab={t}
               selected={on}
+              size={size}
+              fill={fill}
               idBase={idBase}
               onSelect={() => { if (!t.disabled && onChange) onChange(t.value); }}
               buttonRef={(el) => { btnRefs.current[t.value] = el; }}
@@ -127,8 +138,9 @@ export function Tabs({
   );
 }
 
-function TabButton({ tab, selected, idBase, onSelect, buttonRef }) {
+function TabButton({ tab, selected, size, fill, idBase, onSelect, buttonRef }) {
   const [hover, setHover] = React.useState(false);
+  const L = size === "l";
   const color = tab.disabled
     ? "var(--sage-400)"
     : selected ? "var(--foreground)" : hover ? "var(--sage-700)" : "var(--muted-foreground)";
@@ -149,33 +161,43 @@ function TabButton({ tab, selected, idBase, onSelect, buttonRef }) {
       onMouseLeave={() => setHover(false)}
       style={{
         display: "inline-flex",
-        alignItems: "center",
-        gap: 6,
-        flex: "0 0 auto",
-        height: 42,
+        alignItems: "stretch",
+        justifyContent: "center",
+        // DS-111 — fill: 같은 폭(1 1 0) · 막대 기준이 되도록 relative
+        flex: L || fill ? "1 1 0" : "0 0 auto",
+        minWidth: L || fill ? 0 : undefined,
+        position: fill ? "relative" : undefined,
+        height: L ? 60 : 42,
         padding: "0 12px",
         margin: 0,
         border: "none",
         background: "transparent",
-        borderBottom: `2px solid ${selected ? "var(--primary)" : "transparent"}`,
         marginBottom: -1,
         color,
         fontFamily: "var(--font-sans)",
-        fontSize: "var(--text-body)",
-        fontWeight: selected ? 600 : 500,
+        fontSize: L ? "var(--text-h3)" : "var(--text-body)",
+        fontWeight: selected ? (L ? 700 : 600) : 500,
         lineHeight: 1,
         whiteSpace: "nowrap",
         cursor: tab.disabled ? "not-allowed" : "pointer",
         opacity: tab.disabled ? 0.6 : 1,
-        transition: "color 150ms ease, border-color 150ms ease",
+        transition: "color 150ms ease",
       }}
     >
-      {tab.label}
-      {tab.count != null && (
-        <Badge size="sm" variant={selected ? "status" : "category"} status={selected ? "active" : undefined}>
-          {tab.count}
-        </Badge>
-      )}
+      <span style={{ position: "relative", display: "inline-flex", alignItems: "center", gap: L ? 8 : 6 }}>
+        {L && tab.icon && <Icon name={tab.icon} size={22} aria-hidden="true" aria-label={undefined} role={undefined} style={{ color: selected ? "var(--primary)" : "var(--muted-foreground)", transition: "background-color 150ms ease" }} />}
+        {tab.label}
+        {tab.count != null && (
+          <Badge size="sm" variant={selected ? "status" : "category"} status={selected ? "active" : undefined}>
+            {tab.count}
+          </Badge>
+        )}
+        {selected && !fill && <span aria-hidden="true" style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 4, borderRadius: 2, background: "var(--primary)" }} />}
+      </span>
+      {selected && fill && <span aria-hidden="true" style={{
+        // DS-111 — fill: 선택 막대가 탭 폭 전체(높이 4 · 양끝 반원 · --primary 그대로)
+        position: "absolute", left: 0, right: 0, bottom: 0, height: 4, borderRadius: 2, background: "var(--primary)",
+      }} />}
     </button>
   );
 }

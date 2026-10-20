@@ -7,8 +7,15 @@ import React from "react";
  * 얇은 한 줄 기준(44 전후), 텍스트 2줄까지 허용. variant는 옅은 배경 + 진한 텍스트(Badge 50/700 상속).
  */
 export interface CalloutBarProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** 역할. info(sage 중립·기본) · success(green) · warning(amber) · error(destructive). */
-  variant?: "info" | "success" | "warning" | "error";
+  /** 역할. info(sage 중립·기본) · success(green) · warning(amber) · error(destructive) ·
+   *  event(DS-92 — 이벤트 띠: --green-950 · 띠 전체가 링크 · image 32 + heading 700 + 설명 + arrow-right-double · 닫기 없음). */
+  variant?: "info" | "success" | "warning" | "error" | "event";
+  /** event — 띠 전체의 링크. */
+  href?: string;
+  /** event — 앞 그림(높이 32, 로고 배지 등). 장식이라 alt="". */
+  image?: string;
+  /** event — 제목(caption 700 흰). 설명은 children(caption 400). */
+  heading?: React.ReactNode;
   /** 텍스트 정렬. center(기본) / left(아이콘과 함께 왼쪽 정렬). */
   align?: "center" | "left";
   /** 아이콘 이름(HugeIcons). 미지정 시 variant 기본 아이콘. */

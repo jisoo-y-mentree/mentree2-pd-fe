@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/fonts.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/colors.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/typography.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/spacing.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/icons.css">
+  <link rel="stylesheet" href="../../../ds-export/project/tokens/base.css">
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+<script src="../../../ds-export/project/_ds_bundle.js"></script>
+</helmet>
+<div style="min-height:100%; display:flex; flex-direction:column; background:var(--background); font-family:var(--font-sans); color:var(--foreground); padding-bottom:{{ tabPad }};">
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Header" auth-state="mentee" user="{{ user }}" active-key="mentors" on-navigate="{{ onHeaderNav }}" on-notify="{{ noop }}" hint-size="100%,64px"></x-import>
+  <main style="flex:1 0 auto; padding:24px 0 80px;">
+    <div style="max-width:640px; margin:0 auto; padding:0 var(--container-pad); display:flex; flex-direction:column; gap:24px;">
+      <div style="display:flex;">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" tone="primary" size="sm" icon-left="arrow-left-01" on-click="{{ toMentor }}" hint-size="150px,32px">박멘토 멘토 상세로</x-import>
+      </div>
+      <sc-if value="{{ isLoading }}">
+        <div aria-busy="true" style="display:flex; flex-direction:column; gap:32px;">
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="{{ 6 }}" hint-size="100%,6px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" width="{{ 160 }}" height="{{ 30 }}" hint-size="160px,30px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" count="{{ 2 }}" hint-size="100%,48px"></x-import>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:24px;">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="{{ 72 }}" radius="md" hint-size="100%,72px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="{{ 72 }}" radius="md" hint-size="100%,72px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="{{ 220 }}" radius="md" hint-size="100%,220px"></x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Skeleton" height="{{ 72 }}" radius="md" hint-size="100%,72px"></x-import>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isError }}">
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.EmptyState" icon="alert-02" title="신청 화면을 불러오지 못했습니다" action="{{ retryAction }}" hint-size="100%,240px"></x-import>
+      </sc-if>
+      <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex; flex-direction:column; gap:32px;">
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div data-temp="DS-121" style="display:flex; align-items:center; gap:12px;">
+              <div style="flex:1 1 auto; display:flex; gap:6px;">
+                <div style="flex:1; height:6px; border-radius:var(--radius-sm); background:var(--primary);"></div>
+                <div style="flex:1; height:6px; border-radius:var(--radius-sm); background:var(--border);"></div>
+              </div>
+              <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:600; color:var(--muted-foreground); font-variant-numeric:tabular-nums;">1/2</span>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center;">
+              <h1 style="margin:0; font-size:var(--text-h1); line-height:var(--text-h1--line-height); letter-spacing:var(--text-h1--letter-spacing); font-weight:600;">멘토링 신청</h1>
+              <p style="margin:0; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--muted-foreground); text-wrap:pretty;">간단한 본인 소개와 멘토링 받고 싶은 내용을 진솔하고 구체적으로 적어주세요. 작성한 내용을 기반으로 더 정확하고 상세하게 멘토링을 받으실 수 있습니다.</p>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:var(--space-6);">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="멘토링 유형" html-for="mf-type" required="{{ true }}" hint-size="100%,72px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" id="mf-type" options="{{ typeOpts }}" value="{{ type }}" placeholder="멘토링 유형 선택" on-change="{{ onType }}" hint-size="100%,40px"></x-import>
+            </x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="멘토링 신청 제목" html-for="mf-title" required="{{ true }}" hint-size="100%,92px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="mf-title" value="{{ title }}" limit="{{ 40 }}" on-change="{{ onTitle }}" hint-size="100%,60px"></x-import>
+            </x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="멘토링 받고 싶은 상세 내용" html-for="mf-detail" required="{{ true }}" hint-size="100%,250px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Textarea" id="mf-detail" value="{{ detail }}" limit="{{ 1000 }}" rows="{{ 8 }}" placeholder="본인 소개 및 멘토링 받고 싶은 상세 내용 입력하기" on-change="{{ onDetail }}" hint-size="100%,220px"></x-import>
+            </x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="멘토링 시간" required="{{ true }}" description="이 멘토의 멘토링 최소 금액 : 30분당 1송이(2만원)" hint-size="100%,92px">
+              <div role="group" aria-label="멘토링 시간" style="display:flex; flex-wrap:wrap; gap:8px;">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterChip" selected="{{ dur30 }}" on-change="{{ pick30 }}" hint-size="64px,32px">30분</x-import>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterChip" selected="{{ dur60 }}" on-change="{{ pick60 }}" hint-size="64px,32px">1시간</x-import>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.FilterChip" selected="{{ dur120 }}" on-change="{{ pick120 }}" hint-size="64px,32px">2시간</x-import>
+              </div>
+            </x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="멘토링 일정 조율을 위한 정보" html-for="mf-schedule" required="{{ true }}" hint-size="100%,150px">
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Textarea" id="mf-schedule" value="{{ schedule }}" limit="{{ 200 }}" rows="{{ 4 }}" placeholder="적합한 요일, 시간 등의 요청 내용을 적어주세요." on-change="{{ onSchedule }}" hint-size="100%,120px"></x-import>
+            </x-import>
+          </div>
+          <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="lg" full-width="{{ true }}" disabled="{{ step1Disabled }}" on-click="{{ next }}" hint-size="100%,48px">다음 단계로</x-import>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isStep2 }}">
+        <div style="display:flex; flex-direction:column; gap:32px;">
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div data-temp="DS-121" style="display:flex; align-items:center; gap:12px;">
+              <div style="flex:1 1 auto; display:flex; gap:6px;">
+                <div style="flex:1; height:6px; border-radius:var(--radius-sm); background:var(--primary);"></div>
+                <div style="flex:1; height:6px; border-radius:var(--radius-sm); background:var(--primary);"></div>
+              </div>
+              <span style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); font-weight:600; color:var(--muted-foreground); font-variant-numeric:tabular-nums;">2/2</span>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center;">
+              <h1 style="margin:0; font-size:var(--text-h1); line-height:var(--text-h1--line-height); letter-spacing:var(--text-h1--letter-spacing); font-weight:600;">꽃 선물하기</h1>
+              <p style="margin:0; display:flex; flex-direction:column; align-items:center; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--muted-foreground); text-wrap:pretty;">
+                <span>멘토링에 대한 감사함을 담아 멘토에게 꽃을 선물해보세요.</span>
+                <span>꽃 한송이의 금액은 2만원이며 멘토링 시간에 따라 최소로 선물할 수 있는 꽃송이 수가 달라집니다.</span>
+                <span>책정된 꽃 금액은 멘토링이 성공적으로 매칭된 이후 결제됩니다.</span>
+              </p>
+              <div style="display:flex; justify-content:center;">
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" tone="primary" size="sm" icon-left="help-circle" on-click="{{ noop }}" hint-size="160px,32px">과금/환불 규정에 대하여</x-import>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:var(--space-6);">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="프로모션 코드(쿠폰)" html-for="mf-coupon" error="{{ couponError }}" hint-size="100%,72px">
+              <div style="display:flex; gap:8px; align-items:flex-start;">
+                <div style="flex:1 1 auto; min-width:0;">
+                  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Input" id="mf-coupon" value="{{ coupon }}" placeholder="쿠폰 코드 입력" invalid="{{ couponInvalid }}" on-change="{{ onCoupon }}" hint-size="100%,40px"></x-import>
+                </div>
+                <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="outline" size="md" disabled="{{ couponBtnDisabled }}" on-click="{{ applyCoupon }}" hint-size="116px,40px">쿠폰 코드 적용</x-import>
+              </div>
+              <sc-if value="{{ couponOk }}">
+                <span role="status" style="font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:500; color:var(--primary);">{{ couponMsg }}</span>
+              </sc-if>
+            </x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Field" label="멘토에게 꽃을 몇 송이 선물하시겠습니까?" html-for="mf-flowers" required="{{ true }}" hint-size="100%,112px">
+              <span style="display:block; margin-bottom:8px; font-size:var(--text-caption); line-height:var(--text-caption--line-height); letter-spacing:var(--text-caption--letter-spacing); font-weight:500; color:var(--primary);">선택한 멘토링 시간에 따라 최소금액은 변경됩니다. 현재: {{ minLabel }}</span>
+              <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" id="mf-flowers" options="{{ flowerOpts }}" value="{{ flowers }}" placeholder="꽃송이 수 선택" on-change="{{ onFlowers }}" hint-size="100%,40px"></x-import>
+            </x-import>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <span style="font-size:var(--text-body); line-height:var(--text-body--line-height); font-weight:600;">결제할 금액</span>
+              <sc-if value="{{ noAmount }}">
+                <span style="font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--muted-foreground);">미정</span>
+              </sc-if>
+              <sc-if value="{{ hasAmount }}">
+                <div style="display:flex; flex-direction:column; gap:8px; padding:16px; border:1px solid var(--border); border-radius:var(--radius-lg); font-size:var(--text-body); line-height:var(--text-body--line-height); font-variant-numeric:tabular-nums;">
+                  <div style="display:flex; justify-content:space-between; gap:12px;">
+                    <span>{{ amt.baseLabel }}</span>
+                    <span style="font-weight:600;">{{ amt.base }}</span>
+                  </div>
+                  <sc-if value="{{ amt.hasDisc }}">
+                    <div style="display:flex; justify-content:space-between; gap:12px;">
+                      <span>쿠폰 할인</span>
+                      <span style="font-weight:600; color:var(--primary);">{{ amt.disc }}</span>
+                    </div>
+                    <div style="height:1px; background:var(--border);"></div>
+                    <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px;">
+                      <span style="font-weight:600;">합계</span>
+                      <span style="font-size:var(--text-h3); line-height:var(--text-h3--line-height); font-weight:600;">{{ amt.total }}</span>
+                    </div>
+                  </sc-if>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="lg" full-width="{{ true }}" disabled="{{ step2Disabled }}" on-click="{{ toPay }}" hint-size="100%,48px">결제 화면으로</x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" tone="neutral" size="sm" on-click="{{ toStep1 }}" hint-size="110px,32px">이전 화면으로</x-import>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isPay }}">
+        <div style="display:flex; flex-direction:column; gap:32px;">
+          <h1 style="margin:0; text-align:center; font-size:var(--text-h1); line-height:var(--text-h1--line-height); letter-spacing:var(--text-h1--letter-spacing); font-weight:600;">결제하기</h1>
+          <div data-temp="PG" style="height:420px; box-sizing:border-box; display:flex; align-items:center; justify-content:center; border:1px dashed var(--sage-300); border-radius:var(--radius-lg); font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--muted-foreground);">결제 모듈 UI</div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="primary" size="lg" full-width="{{ true }}" on-click="{{ pay }}" hint-size="100%,48px">결제하기</x-import>
+            <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Button" variant="ghost" tone="neutral" size="sm" on-click="{{ toStep2 }}" hint-size="110px,32px">이전 화면으로</x-import>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </main>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Footer" on-navigate="{{ onFooterNav }}" hint-size="100%,240px"></x-import>
+  <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.BottomTabBar" active-key="mentors" auth-state="mentee" on-navigate="{{ onTabNav }}" hint-size="0px,0px"></x-import>
+</div>
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Dialog" open="{{ doneOpen }}" on-close="{{ finish }}" title="멘토링 신청이 성공적으로 완료되었습니다." footer="{{ doneFooter }}" footer-layout="stack" mobile="fullscreen" width="{{ 520 }}" dc-props="{{ dialogExtra }}" hint-size="0px,0px">
+  <div style="display:flex; flex-direction:column; align-items:center; gap:24px; padding-top:8px; font-family:var(--font-sans);">
+    <div style="width:120px; height:120px; border-radius:50%; background:var(--green-50); display:flex; align-items:center; justify-content:center;">
+      <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Icon" name="party" size="{{ 48 }}" color="var(--primary)" hint-size="48px,48px"></x-import>
+    </div>
+    <p style="margin:0; text-align:center; font-size:var(--text-body); line-height:var(--text-body--line-height); color:var(--muted-foreground); text-wrap:pretty;">[마이페이지 &gt; 나의 1:1 멘토링] 화면에서 신청 현황을 확인하실 수 있습니다. 매칭되지 않은 멘토링은 7일 후 자동으로 취소됩니다.</p>
+  </div>
+</x-import>
+<x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Dialog" open="{{ leaveOpen }}" on-close="{{ stay }}" title="작성 중인 신청서가 있어요" description="나가면 입력한 내용이 사라집니다." footer="{{ leaveFooter }}" footer-layout="end" mobile="center" width="{{ 420 }}" hint-size="0px,0px"></x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const MENTOR_KEYWORDS = ['취업 전략', '이력서·지원서류', '면접 준비', '커리어 전환', '비자·영주권'];
+const SAMPLE = {
+  type: '면접 준비',
+  title: '일본 디자이너 면접과 포트폴리오 리뷰 요청드립니다.',
+  detail: '안녕하세요, 한국대학교 커뮤니케이션 디자인학부 4학년 김멘티입니다. 내년 봄 졸업 후 일본 IT 기업의 UX/UI 디자이너 포지션에 지원하려고 준비하고 있습니다.\n\n지금 포트폴리오에는 앱 리디자인 프로젝트 2개와 브랜딩 프로젝트 1개가 있습니다. 일본 기업 면접에서는 어떤 프로젝트를 앞에 두는 것이 좋은지, 디자인 과정을 어디까지 보여줘야 하는지 조언을 듣고 싶습니다. 일본어 면접에서 자주 나오는 질문과 답변 준비 방법도 여쭙고 싶습니다.',
+  duration: '30분',
+  schedule: '평일 저녁 6시 이후(한국 시간)나 주말 오전이 편합니다.',
+};
+const COUPONS = { MENTREE: 10000 };
+const MIN_FLOWERS = { '30분': 1, '1시간': 2, '2시간': 4 };
+const won = (n) => `${n.toLocaleString('ko-KR')}원`;
+const val = (e) => (e && e.target ? e.target.value : String(e == null ? '' : e));
+
+class Component extends DCLogic {
+  state = this.blank(this.props.prefill || 0);
+
+  blank(level) {
+    const s = { type: '', title: '', detail: '', duration: '', schedule: '', coupon: '', couponState: null, discount: 0, flowers: '', leave: null };
+    if (level >= 1) Object.assign(s, SAMPLE);
+    if (level >= 2) s.flowers = '2';
+    return s;
+  }
+  componentDidMount() {
+    if (!window.MentreeDesignSystem_2f86cf) {
+      this.dsWait = setInterval(() => { if (window.MentreeDesignSystem_2f86cf) { clearInterval(this.dsWait); this.forceUpdate(); } }, 60);
+    }
+  }
+  componentWillUnmount() { clearInterval(this.dsWait); }
+
+  dirty() {
+    const s = this.state;
+    return (this.props.screen || 'apply-1') !== 'apply-done' && !!(s.type || s.title || s.detail || s.duration || s.schedule || s.coupon || s.flowers);
+  }
+  requestLeave(target) {
+    if (this.dirty()) { this.setState({ leave: target }); return; }
+    if (target === 'mypage') this.props.onExit && this.props.onExit('mypage');
+  }
+
+  onType = (v) => this.setState({ type: v });
+  onTitle = (e) => this.setState({ title: val(e) });
+  onDetail = (e) => this.setState({ detail: val(e) });
+  onSchedule = (e) => this.setState({ schedule: val(e) });
+  pickDuration(v) {
+    this.setState((s) => {
+      const min = MIN_FLOWERS[v] || 1;
+      return { duration: v, flowers: s.flowers && Number(s.flowers) < min ? '' : s.flowers };
+    });
+  }
+  pick30 = () => this.pickDuration('30분');
+  pick60 = () => this.pickDuration('1시간');
+  pick120 = () => this.pickDuration('2시간');
+  onCoupon = (e) => this.setState({ coupon: val(e), couponState: null, discount: 0 });
+  applyCoupon = () => {
+    const code = this.state.coupon.trim().toUpperCase();
+    if (COUPONS[code]) this.setState({ couponState: 'ok', discount: COUPONS[code] });
+    else this.setState({ couponState: 'err', discount: 0 });
+  };
+  onFlowers = (v) => this.setState({ flowers: v });
+  next = () => this.props.onGo('apply-2');
+  toStep1 = () => this.props.onGo('apply-1');
+  toPay = () => this.props.onGo('apply-pay');
+  toStep2 = () => this.props.onGo('apply-2');
+  pay = () => this.props.onGo('apply-done');
+  finish = () => {
+    const s = this.state;
+    this.props.onFinish({ type: s.type || SAMPLE.type, title: s.title || SAMPLE.title, detail: s.detail || SAMPLE.detail, duration: s.duration || '30분', schedule: s.schedule || SAMPLE.schedule, flowers: Number(s.flowers) || 1 });
+  };
+  toMentor = () => this.requestLeave('mentor');
+  onHeaderNav = (item) => this.requestLeave(item && String(item.key || '').indexOf('mypage') === 0 ? 'mypage' : 'other');
+  onFooterNav = () => this.requestLeave('other');
+  onTabNav = (tab) => this.requestLeave(tab && tab.key === 'my' ? 'mypage' : 'other');
+  stay = () => this.setState({ leave: null });
+  confirmLeave = () => {
+    const target = this.state.leave;
+    this.setState(this.blank(0));
+    if (target === 'mypage') this.props.onExit && this.props.onExit('mypage');
+    else if ((this.props.screen || 'apply-1') !== 'apply-1') this.props.onGo('apply-1');
+  };
+  noop = () => {};
+
+  renderVals() {
+    const p = this.props;
+    const s = this.state;
+    const screen = p.screen || 'apply-1';
+    const ls = p.loadState || 'normal';
+    const ready = ls === 'normal';
+    const min = MIN_FLOWERS[s.duration] || 1;
+    const step1Ok = !!s.type && !!s.title.trim() && s.title.length <= 40 && !!s.detail.trim() && s.detail.length <= 1000 && !!s.duration && !!s.schedule.trim() && s.schedule.length <= 200;
+    const n = Number(s.flowers) || 0;
+    const base = n * 20000;
+    const disc = s.couponState === 'ok' ? Math.min(s.discount, base) : 0;
+    const flowerOpts = [];
+    for (let k = min; k <= 20; k++) flowerOpts.push({ value: String(k), label: `${k}송이 (${k * 2}만원)` });
+    const DS = window.MentreeDesignSystem_2f86cf;
+    const h = React.createElement;
+    return {
+      user: { name: '김멘티' },
+      tabPad: p.isMobile ? 'var(--mt-bottom-bar-height, 56px)' : '0px',
+      isLoading: ls === 'loading',
+      isError: ls === 'error',
+      retryAction: DS ? h(DS.Button, { variant: 'outline', onClick: p.onRetry }, '다시 시도하기') : null,
+      isStep1: ready && screen === 'apply-1',
+      isStep2: ready && screen === 'apply-2',
+      isPay: ready && (screen === 'apply-pay' || screen === 'apply-done'),
+      typeOpts: MENTOR_KEYWORDS,
+      type: s.type, title: s.title, detail: s.detail, schedule: s.schedule,
+      onType: this.onType, onTitle: this.onTitle, onDetail: this.onDetail, onSchedule: this.onSchedule,
+      dur30: s.duration === '30분', dur60: s.duration === '1시간', dur120: s.duration === '2시간', pick30: this.pick30, pick60: this.pick60, pick120: this.pick120,
+      minLabel: `${s.duration || '30분'}(${min}송이)`,
+      step1Disabled: !step1Ok,
+      next: this.next,
+      coupon: s.coupon, onCoupon: this.onCoupon, applyCoupon: this.applyCoupon,
+      couponBtnDisabled: !s.coupon.trim(),
+      couponInvalid: s.couponState === 'err',
+      couponError: s.couponState === 'err' ? '사용할 수 없는 쿠폰 코드입니다' : '',
+      couponOk: s.couponState === 'ok',
+      couponMsg: `쿠폰이 적용되었습니다 — ${won(s.discount)} 할인`,
+      flowerOpts, flowers: s.flowers, onFlowers: this.onFlowers,
+      noAmount: n === 0,
+      hasAmount: n > 0,
+      amt: { baseLabel: `${n}송이 × 2만원`, base: won(base), hasDisc: disc > 0, disc: `−${won(disc)}`, total: won(base - disc) },
+      step2Disabled: n < min,
+      toPay: this.toPay, toStep1: this.toStep1, toStep2: this.toStep2, pay: this.pay,
+      toMentor: this.toMentor, onHeaderNav: this.onHeaderNav, onFooterNav: this.onFooterNav, onTabNav: this.onTabNav, noop: this.noop,
+      doneOpen: ready && screen === 'apply-done',
+      finish: this.finish,
+      doneFooter: DS ? h(React.Fragment, null,
+        h(DS.Button, { key: 'a', variant: 'primary', size: 'lg', fullWidth: true, onClick: this.finish }, '나의 1:1 멘토링 보기'),
+        h(DS.Button, { key: 'b', variant: 'ghost', tone: 'neutral', size: 'sm', onClick: this.finish }, '닫기')) : null,
+      dialogExtra: { style: { maxHeight: '100%' } },
+      leaveOpen: !!s.leave,
+      stay: this.stay,
+      leaveFooter: DS ? h(React.Fragment, null,
+        h(DS.Button, { key: 'a', variant: 'outline', size: 'md', onClick: this.stay }, '돌아가기'),
+        h(DS.Button, { key: 'b', variant: 'destructive', size: 'md', onClick: this.confirmLeave }, '나가기')) : null,
+    };
+  }
+}
+</script>
+</body>
+</html>

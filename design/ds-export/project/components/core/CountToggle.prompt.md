@@ -54,6 +54,13 @@ Toggle 계열은 "selected = 반전"이 원칙(FilterChip = green 채움)이지�
 
 아이콘+숫자가 인라인이라 세로가 얇다. 투명 패딩(위아래 4px)으로 터치 영역 24 이상을 확보한다.
 
+## appearance="box" · repeat (DS-86 · DS-23)
+
+- `appearance="box"` — 높이 48 · 반경 `--radius-md`(12) · 1px `--border` · 흰 면 · 좌우 16 · 아이콘 18 + 간격 6 + 수(`--text-caption` · tabular). `IconButton` lg 와 나란히 서면 높이 · 반경이 같다. `tone="dark"` 켜짐은 `--foreground` 로 채운다. 기본 `"inline"` 은 그대로다.
+- `repeat` — 누를 때마다 `onIncrement()` 를 부르고 수를 하나 올린다. **끄는 동작이 없다**(「1.0 의 박수」). `selected` 는 「내가 한 번 이상 눌렀다」. 상한은 부품이 정하지 않는다.
+- `repeat` 이면 `aria-pressed` 를 달지 않는다. 접근 이름은 「도움돼요 77」, 수가 바뀌면 `aria-live="polite"`.
+- 쓰는 곳: `AnswerCard` 의 하트 박스.
+
 ## 어디에 쓰나
 
 - `icon="favourite"` — 도움돼요

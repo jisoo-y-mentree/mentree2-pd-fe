@@ -1,0 +1,163 @@
+/* notification.css — 알림 카드(DS-117) · 공지 띠 · 간략형 바닥 글자 링크 조립. 화면 전용 .nt- 접두사. 토큰 값을 덮어쓰지 않는다.
+   수치는 Figma 간략형 1059:41331 · 전체형 1059:40860 에서 읽은 값. */
+
+.nt-list { display: flex; flex-direction: column; gap: 12px; }
+
+/* 쓸기(768 이하) — 카드 뒤에 깔리는 삭제 면 */
+.nt-swipe { position: relative; border-radius: 16px; }
+.nt-swipe-bg {
+  position: absolute; inset: 0; border-radius: 16px;
+  display: flex; align-items: center; justify-content: flex-end; padding-right: 24px;
+  background: var(--destructive); color: var(--destructive-foreground);
+  font-size: var(--text-caption); line-height: var(--text-caption--line-height); font-weight: 600;
+}
+
+/* 카드 — 반경 16 · 안쪽 16 · 1px --sage-300 · 「앞자리(점 또는 아이콘) · 본문 · 액션」 세 칸 */
+.nt-card {
+  position: relative; display: grid; column-gap: 12px; row-gap: 6px; align-items: start;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "lead text text" "lead meta action";
+  padding: 16px; border-radius: 16px;
+  border: 1px solid var(--sage-300); background: var(--card); color: var(--foreground);
+  touch-action: pan-y; transition: transform 160ms ease;
+}
+.nt-card.nt-dragging { transition: none; }
+.nt-l2 { background: var(--green-100); }
+.nt-l3 { background: color-mix(in oklch, var(--destructive) 6%, var(--card)); border-color: var(--destructive); }
+
+.nt-lead { grid-area: lead; display: flex; align-items: center; justify-content: center; align-self: start; }
+.nt-dot { width: 8px; height: 8px; margin-top: 8px; border-radius: 50%; background: var(--primary); }
+.nt-read .nt-dot { visibility: hidden; }
+.nt-icon { display: inline-flex; color: var(--foreground); }
+.nt-l3 .nt-icon { color: var(--destructive); }
+
+.nt-text {
+  grid-area: text; margin: 0;
+  font-size: var(--text-body); line-height: var(--text-body--line-height); letter-spacing: var(--text-body--letter-spacing); font-weight: 600;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+}
+/* L1 · L2 본문 오른쪽에 ✕ 자리(28px) — 글자와 겹치지 않게. L3 에는 ✕ 가 없다. */
+.nt-l1 .nt-text, .nt-l2 .nt-text { padding-right: 28px; }
+.nt-read .nt-text { color: var(--muted-foreground); font-weight: 400; }
+/* 빨강 카드는 읽어도 흐려지지 않는다 — 해결 전까지 */
+.nt-l3.nt-read .nt-text { color: var(--foreground); font-weight: 600; }
+
+.nt-meta {
+  grid-area: meta; min-width: 0; min-height: 20px; display: flex; align-items: center; gap: 8px;
+  font-size: var(--text-micro); line-height: var(--text-micro--line-height); letter-spacing: var(--text-micro--letter-spacing); font-weight: 500; color: var(--muted-foreground);
+}
+.nt-deadline { color: var(--destructive); }
+.nt-more { color: var(--primary); }
+.nt-action { grid-area: action; display: flex; align-items: center; justify-self: end; }
+.nt-l2:not(.nt-card--wide) { grid-template-areas: "lead text action" "lead meta action"; }
+.nt-l2:not(.nt-card--wide) .nt-action { align-self: center; margin-left: 12px; }
+.nt-l3:not(.nt-card--wide) { grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "lead text" "lead meta" "lead action"; }
+.nt-l3:not(.nt-card--wide) .nt-action { justify-self: start; margin-top: 2px; }
+
+/* 「자세히 보기」 — 글자 링크 ＋ 아이콘. 읽으면 글자만 muted(아이콘은 그대로). */
+.nt-link { display: inline-flex; align-items: center; gap: 4px; min-height: 20px; font-size: var(--text-micro); line-height: var(--text-micro--line-height); letter-spacing: var(--text-micro--letter-spacing); font-weight: 600; color: var(--primary); text-decoration: none; }
+.nt-link:hover { text-decoration: underline; text-underline-offset: 3px; color: var(--primary); }
+.nt-link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 6px; }
+.nt-read .nt-link { color: var(--muted-foreground); }
+.nt-read .nt-link:hover { color: var(--muted-foreground); }
+.nt-link-ico { color: var(--primary); }
+
+/* 삭제 ✕ — 769 이상에서 hover · focus-within 에만, 768 이하는 늘 */
+.nt-del { position: absolute; top: 8px; right: 8px; opacity: 0; transition: opacity 120ms ease; }
+.nt-card:hover .nt-del, .nt-card:focus-within .nt-del { opacity: 1; }
+
+/* 전체형 769 이상: 안쪽 24 · 본문 h2 · 메타 body · 액션은 오른쪽 끝 세로 가운데(와이어 1059:40860) */
+@media (min-width: 769px) {
+  .nt-card--wide { grid-template-areas: "lead text action" "lead meta action"; padding: 20px; column-gap: 12px; min-height: 112px; }
+  .nt-card--wide .nt-meta { font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); font-weight: 400; }
+  .nt-card--wide .nt-action { align-self: center; margin-left: 16px; }
+  .nt-card--wide .nt-link { gap: 6px; font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); }
+  .nt-card--wide .nt-del { top: 8px; right: 8px; }
+}
+@media (max-width: 768px) {
+  .nt-del { opacity: 1; }
+  .nt-desktop-only { display: none !important; }
+}
+
+/* 간략형 마운트 — Popover(flex column · maxHeight)의 상자에 flex 로 줄어든다. 백분율 높이는 .sc-host 가 block 이라 안 먹는다. */
+.sc-host[data-sc-name="NotificationPanel"] { display: flex; flex-direction: column; flex: 0 1 auto; min-height: 0; }
+
+/* 간략형 바닥 — 글자 링크 「전체보기」 ｜ 「알림 설정」 20 · Bold · --primary */
+.nt-foot-link { font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); font-weight: 600; color: var(--primary); text-decoration: none; }
+.nt-foot-link:hover { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
+.nt-foot-link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 6px; }
+
+/* 화면 골격 — 전체형 바닥 여백(모바일 탭바만큼) */
+.nt-page { padding-top: 20px; padding-bottom: 96px; }
+.nt-page-title { margin-top: 12px; }
+.nt-page-body { margin-top: 16px; }
+@media (max-width: 768px) {
+  .nt-page { padding-top: 8px; padding-bottom: calc(var(--mt-bottom-bar-height, 56px) + 40px); }
+  .nt-page-title { margin-top: 8px; }
+  .nt-page-body { margin-top: 12px; }
+}
+
+/* 공지 · 프로모션 띠 — 점선 2px --sage-300 · 반경 16 · 안쪽 16(전체형 769 이상 24) · 띠 전체가 링크 */
+.nt-banner { position: relative; display: flex; align-items: center; gap: 12px; padding: 16px; border: 2px dashed var(--sage-300); border-radius: 16px; background: var(--card); }
+.nt-banner-link { position: absolute; inset: 0; border-radius: 16px; }
+.nt-banner-link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+.nt-banner:hover .nt-banner-title { text-decoration: underline; text-underline-offset: 3px; }
+.nt-banner-icon { flex: 0 0 auto; width: 52px; height: 52px; border-radius: 16px; background: var(--muted); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--foreground); }
+.nt-banner-copy { min-width: 0; flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px; }
+.nt-banner-label { font-size: var(--text-micro); line-height: var(--text-micro--line-height); letter-spacing: var(--text-micro--letter-spacing); font-weight: 500; color: var(--muted-foreground); }
+.nt-banner-title { font-size: var(--text-body); line-height: var(--text-body--line-height); letter-spacing: var(--text-body--letter-spacing); font-weight: 700; color: var(--foreground); }
+.nt-banner-close { position: relative; z-index: 1; flex: 0 0 auto; }
+@media (min-width: 769px) {
+  .nt-banner--page { padding: 20px; gap: 14px; }
+  .nt-banner--page .nt-banner-icon { width: 52px; height: 52px; }
+  .nt-banner--page .nt-banner-label { font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); }
+}
+
+/* 낭독기 전용 — 시각적으로 숨김(clip 방식) */
+.nt-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+/* TOP 바탕(TopBackdrop) — 간략형이 얹히는 진짜 TOP(지수의 Top 10-14 구성). 769 이상 전용 */
+.tb-section { padding: 56px 0; }
+.tb-container { width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-pad); }
+.tb-hero { position: relative; overflow: hidden; background: var(--sage-50); }
+.tb-hero-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: center; padding-top: 40px; padding-bottom: 40px; min-height: 300px; }
+.tb-entry { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 104px; text-decoration: none; color: var(--foreground); }
+.tb-entry:hover { color: var(--foreground); }
+.tb-entry img { width: 64px; height: 64px; display: block; }
+.tb-entry span { font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); font-weight: 500; text-align: center; }
+/* 지구본 선 — 밴드보다 크게 두고 오른쪽 · 위아래를 잘라낸다 */
+.tb-globe { position: absolute; z-index: 0; width: 800px; height: 800px; right: calc(50% - 560px); top: 50%; transform: translateY(-46%); pointer-events: none; }
+.tb-globe svg { width: 100%; height: 100%; display: block; }
+.tb-faces { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.tb-face { position: absolute; transform: translate(-50%, -50%); display: flex; border-radius: 50%; box-shadow: 0 0 0 4px var(--card), var(--shadow-md); }
+.tb-face > span:last-child { position: absolute; right: -2px; bottom: 2px; }
+.tb-filter-label { font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); font-weight: 600; color: var(--muted-foreground); min-width: 28px; }
+.tb-qna-grid { display: grid; grid-template-columns: 247px minmax(0, 1fr); gap: 40px; align-items: start; }
+.tb-mentor-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.tb-insight-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.tb-map { position: relative; width: 100%; height: 420px; margin-top: 32px; border-radius: 24px; background: var(--green-50); border: 1px solid var(--green-100); overflow: hidden; }
+.tb-map-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+.tb-pin { position: absolute; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 6px; padding: 4px 10px 4px 4px; border-radius: 999px; background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow-sm); font-size: var(--text-micro); line-height: var(--text-micro--line-height); font-weight: 600; color: var(--foreground); }
+.tb-biz-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+.tb-biz-art { position: relative; height: 320px; display: flex; align-items: center; justify-content: center; }
+.tb-biz-art > span { position: absolute; border-radius: 48px; border: 1px solid var(--biz-border); background: color-mix(in oklch, var(--card) 70%, transparent); box-shadow: var(--shadow-xs); }
+@media (max-width: 1100px) {
+  .tb-hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .tb-globe, .tb-faces { display: none; }
+  .tb-qna-grid, .tb-insight-grid, .tb-biz-grid { grid-template-columns: minmax(0, 1fr); }
+  .tb-mentor-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* 간략형 축소판(≈0.8) — 패널 안의 카드 · 띠만. 전체형은 그대로 */
+.nt-compact .nt-list { gap: 10px; }
+.nt-compact .nt-swipe, .nt-compact .nt-swipe-bg, .nt-compact .nt-card { border-radius: 12px; }
+.nt-compact .nt-card { padding: 12px; column-gap: 10px; row-gap: 4px; }
+.nt-compact .nt-text { font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); font-weight: 600; }
+.nt-compact .nt-l1 .nt-text, .nt-compact .nt-l2 .nt-text { padding-right: 24px; }
+.nt-compact .nt-dot { width: 6px; height: 6px; margin-top: 7px; }
+.nt-compact .nt-meta { min-height: 18px; }
+.nt-compact .nt-del { top: 4px; right: 4px; }
+.nt-compact .nt-banner { padding: 12px; border-radius: 12px; gap: 10px; }
+.nt-compact .nt-banner-link { border-radius: 12px; }
+.nt-compact .nt-banner-icon { width: 40px; height: 40px; border-radius: 12px; }
+.nt-compact .nt-banner-title { font-size: var(--text-caption); line-height: var(--text-caption--line-height); letter-spacing: var(--text-caption--letter-spacing); }

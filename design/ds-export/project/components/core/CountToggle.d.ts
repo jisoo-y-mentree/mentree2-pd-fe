@@ -18,8 +18,14 @@ export interface CountToggleProps {
   selected?: boolean;
   /** 토글 콜백. 다음 selected 값을 넘긴다. */
   onChange?: (next: boolean) => void;
-  /** 카운트 숫자. tabular로 표시. 메타 줄 자리라 필수. */
+  /** 카운트 숫자. tabular로 표시. 메타 줄 자리라 필수. DS-116 — repeat 도 이 값만 보인다(부품이 로컬로 올리지 않는다). 올리기 · 거절 · 되돌림은 바깥이 count 로 정한다. */
   count: number;
+  /** DS-86. "inline"(기본 · 지금 그대로) · "box"(높이 48 · --radius-md · 1px --border · 흰 면 · 좌우 16 · 아이콘 18 + 6 + 수 caption). IconButton lg와 높이·반경이 같다. box의 dark 켜짐은 --foreground. */
+  appearance?: "inline" | "box";
+  /** DS-23. true면 누를 때마다 onIncrement()를 부르고 수를 하나 올린다 — 끄는 동작이 없다(「1.0의 박수」). selected = 한 번 이상 눌렀다. aria-pressed 없음 · 접근 이름에 수 포함 · aria-live="polite". */
+  repeat?: boolean;
+  /** repeat일 때 누를 때마다 부른다. DS-116 — 부르기만 한다. 수 · 채움(selected)은 바깥이 넘긴다. */
+  onIncrement?: () => void;
   disabled?: boolean;
   /** 접근성 라벨. 기본 icon에 따라 "도움돼요"/"스크랩". */
   ariaLabel?: string;

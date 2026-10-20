@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=390" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+html,body{margin:0}
+body{background:var(--background);font-family:var(--font-sans);color:var(--foreground)}
+.scroller{height:100vh;overflow:auto}
+.page{padding:16px var(--container-pad);display:flex;flex-direction:column;gap:12px}
+.line{height:12px;border-radius:6px;background:var(--sage-100)}
+.blk{height:120px;border-radius:var(--radius-md);background:var(--sage-100)}
+.cap{font-size:var(--text-caption);line-height:var(--text-caption--line-height);color:var(--muted-foreground)}
+.strip{position:sticky;top:var(--mt-header-offset,0px);transition:top 200ms ease-out;z-index:40;height:56px;box-sizing:border-box;display:flex;align-items:center;padding:0 var(--container-pad);background:var(--card);border-bottom:1px solid var(--border);font-size:var(--text-caption);color:var(--foreground)}
+.readout{position:fixed;left:8px;bottom:8px;z-index:60;padding:4px 8px;border-radius:var(--radius-sm);background:var(--sage-900);color:var(--sage-50);font-family:var(--font-mono,monospace);font-size:var(--text-micro)}
+@media (prefers-reduced-motion:reduce){.strip{transition:none}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Header } = window.MentreeDesignSystem_2f86cf;
+  const state = new URLSearchParams(location.search).get("state") || "1";
+  function Filler({ n, note }) {
+    return (
+      <div className="page">
+        {note && <div className="cap">{note}</div>}
+        {Array.from({ length: n }).map((_, i) => i % 4 === 0 ? <div key={i} className="blk"></div> : <div key={i} className="line" style={{ width: `${60 + (i * 17) % 40}%` }}></div>)}
+      </div>
+    );
+  }
+  function Readout({ scroller }) {
+    const [txt, setTxt] = React.useState("");
+    React.useEffect(() => {
+      const r = document.documentElement;
+      const upd = () => { const cs = getComputedStyle(r); setTxt(`scroll ${Math.round(scroller.current ? scroller.current.scrollTop : 0)} · height ${cs.getPropertyValue("--mt-header-height").trim()} · offset ${cs.getPropertyValue("--mt-header-offset").trim()}`); };
+      const mo = new MutationObserver(upd); mo.observe(r, { attributes: true, attributeFilter: ["style"] });
+      const el = scroller.current; if (el) el.addEventListener("scroll", upd, { passive: true });
+      upd();
+      return () => { mo.disconnect(); if (el) el.removeEventListener("scroll", upd); };
+    }, []);
+    return <div className="readout">{txt}</div>;
+  }
+  function Demo() {
+    const ref = React.useRef(null);
+    const [sc, setSc] = React.useState(null);
+    React.useEffect(() => { setSc(ref.current); }, []);
+    React.useEffect(() => {
+      if (state !== "3" || !sc) return;
+      const btn = document.querySelector('[aria-label="메뉴 열기"]');
+      if (btn) btn.click();
+      const t = setTimeout(() => { sc.scrollTop = 200; sc.dispatchEvent(new Event("scroll")); setTimeout(() => { sc.scrollTop = 600; sc.dispatchEvent(new Event("scroll")); }, 120); }, 200);
+      return () => clearTimeout(t);
+    }, [sc]);
+    const note = state === "1"
+      ? "아래로 스크롤하면 헤더가 위로 비켜 주고, 위로 8px 이상 올리면 돌아온다."
+      : state === "2" ? "띠(멘토 바 자리)는 top: var(--mt-header-offset) + 200ms — 헤더와 함께 올라가 맨 위에 붙는다."
+      : "모바일 메뉴를 연 채로 600까지 스크롤 — 헤더는 숨지 않는다(offset 그대로).";
+    return (
+      <div className="scroller" ref={ref}>
+        {sc && <Header activeKey="mentors" authState="guest" onNavigate={() => {}} hideOnScroll scrollContainer={sc} />}
+        {state === "2" && <div className="strip">멘토 바 자리 — top: var(--mt-header-offset)</div>}
+        <Filler n={48} note={note} />
+        <Readout scroller={ref} />
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

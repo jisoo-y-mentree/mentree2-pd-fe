@@ -16,3 +16,7 @@
   - `warning` — amber(Badge amber 규칙 상속, 라벨 800 대비 보정).
   - `error` — destructive red(옅은 배경 / 진한 red).
 - 풀폭이라 배경 면적이 커 옅은 색도 존재감이 큼 — error가 과하면 톤 낮출 여지(일단 옅은 배경 레시피). **테두리선 없음 — 배경색(옅은 variant 색)만으로 경계 표현.** hex 금지·시맨틱/`--badge-*` 토큰만, HugeIcons, 禁則 유지.
+
+## variant="event" (DS-92)
+
+이벤트 띠 — 면 `--green-950` · 위아래 12 · 가운데 · **띠 전체가 링크 하나**(`href`). `image`(높이 32) → 12 → `heading` caption 700 흰 → 12 → 설명(children) caption 400 흰 → 8 → `arrow-right-double` 16. 닫기 없음 — 이벤트가 있을 때 화면이 세운다. 좁은 폭에서 2줄까지.

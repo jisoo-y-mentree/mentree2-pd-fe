@@ -7,7 +7,8 @@ import React, { useState, useEffect } from "react";
  *  한 번 합쳤다가 되돌렸다(2026-09-11 CountToggle로 흡수 → 2026-09-12 되돌림). 이 줄이 없으면 또 합치게 된다.
  *
  *  형태는 IconButton default(md)를 그대로 쓴다 — 같은 박스 38·아이콘 18·radius-md.
- *  미선택=outline(card+sage 아웃라인), 선택=반전(배경 --sage-900 채움 + 아이콘 --sage-50).
+ *  미선택=outline(card+sage 아웃라인), 선택=초록(DS-94 — 면 --green-50 · 1px --green-700 · 채운 --green-700 아이콘).
+ *   검정 반전(--sage-900)은 버렸다. 반경 12 그대로(Button의 10과 다르다 — IconButton과 같다).
  *  HugeIcons 정적 CDN에 solid 북마크가 없어 stroke 1.6 라운드 인라인 SVG로 outline↔fill을 토글한다.
  *  제어형: selected + onChange(next). 서버 저장 로직은 범위 밖. count는 받지 않는다(그 자리는 CountToggle).
  */
@@ -33,11 +34,11 @@ export function BookmarkToggle({
   }, []);
 
   const bg = selected
-    ? "var(--sage-900)"
+    ? "var(--green-50)"
     : hover ? "var(--secondary)" : "var(--card)";
-  const border = selected ? "1px solid transparent" : "1px solid var(--border)";
-  const color = selected ? "var(--sage-50)" : "var(--foreground)";
-  const filter = !disabled && selected && hover ? "brightness(0.92)" : "none";
+  const border = selected ? "1px solid var(--green-700)" : "1px solid var(--border)";
+  const color = selected ? "var(--green-700)" : "var(--foreground)";
+  const filter = !disabled && selected && hover ? "brightness(0.97)" : "none";
 
   return (
     <button

@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="800x420" name="ArticlePreview" subtitle="투명 콘텐츠 프리뷰(카드 아님) — 썸네일이 경계. 16:9 + radius 14, hover 시 sage-50 틴트" -->
+<!-- @dsCard group="Components" viewport="1000x2220" name="ArticlePreview" subtitle="투명 콘텐츠 프리뷰 — default(16:9 · 3:2 큰 카드 · label) · row(인사이트 목록 · BookmarkToggle) · compact(TOP 밴드 작은 줄) · DS-33" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,8 +7,8 @@
 <style>
   body { margin: 0; padding: 24px; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
   .row { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
-  .cell { display: flex; flex-direction: column; gap: 8px; width: 300px; }
-  .cap { font-size: var(--text-caption); color: var(--muted-foreground); }
+  .sec { display: flex; flex-direction: column; gap: 8px; }
+  .cap { font-size: var(--text-caption); color: var(--muted-foreground); margin-bottom: 8px; }
 </style>
 </head>
 <body>
@@ -19,23 +19,46 @@
 <script src="../../_ds_bundle.js"></script>
 <script type="text/babel">
   const { ArticlePreview } = window.MentreeDesignSystem_2f86cf;
-  const COVER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180'%3E%3Crect width='320' height='180' fill='%23d7dbd6'/%3E%3Cg stroke='%23c4c9c2' stroke-width='16'%3E%3Cpath d='M-40 60 L80 -40 M-40 160 L160 -40 M20 200 L220 -20 M120 200 L320 0'/%3E%3C/g%3E%3C/svg%3E";
+  const P = (n) => "../../assets/img/" + n + ".png";
+  const EX = "멘토와 멘티가 오래 함께 성장하는 관계에는 공통점이 있습니다. 첫 만남에서 서로의 기대를 맞추고, 정기적인 리듬을 만들며, 피드백을 두려워하지 않는 것이 시작입니다. 이 글은 그 다섯 가지 신호를 실제 사례와 함께 정리했습니다.";
+  const T1 = [{ label: "일본", hue: "rose" }, { label: "취업 전략", hue: "indigo" }];
+  const T2 = [{ label: "커리어", hue: "teal" }, { label: "회고", hue: "amber" }];
   function Demo() {
     return (
-      <div className="row">
-        <div className="cell">
-          <ArticlePreview href="#" image={COVER}
-            title="좋은 멘토링 관계를 만드는 다섯 가지 신호"
-            excerpt="멘토와 멘티가 오래 함께 성장하는 관계에는 공통점이 있습니다. 첫 만남에서 서로의 기대를 맞추고, 정기적인 리듬을 만들며, 피드백을 두려워하지 않는 것이 시작입니다." />
-          <div className="cap">투명 — 썸네일이 경계 (indigo·amber)</div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+        <div className="sec"><div className="cap">row — 스크랩 켜짐 · 꺼짐 · 이미지 없음 (폭 920)</div>
+          <div style={{ maxWidth: 920 }}>
+            <ArticlePreview variant="row" image={P(6)} tags={T1} title="도쿄 신졸 채용, 외국인이 서류에서 떨어지는 세 가지 이유" excerpt={EX} date="2026-10-02" bookmarked />
+            <ArticlePreview variant="row" image={P(7)} tags={T2} title="비전공자에서 프로덕트 디자이너로: 6개월 회고" excerpt={EX} date="2026-09-21" />
+            <ArticlePreview variant="row" tags={T2} title="이미지가 없는 아티클도 줄 높이가 같다" excerpt={EX} date="2026-09-10" />
+          </div></div>
+        <div className="sec"><div className="cap">row — 좁은 폭 375(썸네일 128 · 발췌 2줄)</div>
+          <div style={{ width: 343 }}>
+            <ArticlePreview variant="row" image={P(6)} tags={T1} title="도쿄 신졸 채용, 외국인이 서류에서 떨어지는 세 가지 이유" excerpt={EX} date="2026-10-02" />
+          </div></div>
+        <div className="row" style={{ alignItems: "flex-start", gap: 40 }}>
+          <div style={{ width: 604 }}><div className="cap">default · ratio="3:2" · label · 폭 604(제목 h0 · 발췌 body 500)</div>
+            <ArticlePreview ratio="3:2" label="신규 아티클" image={P(8)} tags={T1} title="해외 첫 이직, 오퍼 레터에서 꼭 확인할 다섯 줄" excerpt={EX} /></div>
+          <div style={{ width: 300 }}><div className="cap">default 16:9 · 폭 300(h3 · caption)</div>
+            <ArticlePreview image={P(9)} tags={T2} title="좋은 멘토링 관계를 만드는 다섯 가지 신호" excerpt={EX} /></div>
         </div>
-        <div className="cell">
-          <ArticlePreview href="#"
-            title="비전공자에서 프로덕트 디자이너로: 6개월 회고"
-            excerpt="부트캠프 수료 후 첫 취업까지의 기록. 포트폴리오 구성, 멘토링에서 얻은 것, 그리고 다시 돌아간다면 바꾸고 싶은 선택들에 대해 정리했습니다."
-            tags={[{label:"커리어",hue:"teal"},{label:"회고",hue:"rose"}]} />
-          <div className="cap">이미지 없음 → sage placeholder</div>
-        </div>
+        <div className="sec"><div className="cap">compact — TOP 인사이트 밴드 4줄(줄 사이 24)</div>
+          <div style={{ maxWidth: 560 }}>
+            <ArticlePreview variant="compact" image={P(10)} tags={T1} title="도쿄 신졸 채용, 외국인이 서류에서 떨어지는 세 가지 이유" />
+            <ArticlePreview variant="compact" image={P(11)} tags={T2} title="비전공자에서 프로덕트 디자이너로" />
+            <ArticlePreview variant="compact" image={P(12)} tags={T1} title="네덜란드 30% 룰, 2026년부터 달라지는 것" />
+            <ArticlePreview variant="compact" tags={T2} title="이미지 없음 → placeholder" />
+          </div></div>
+        <div className="sec"><div className="cap">DS-103 · compact 폭 476 · 358 — 560 미만이라 썸네일 120 × 80 · 제목 2줄</div>
+          <div style={{ display: "flex", gap: 32, alignItems: "flex-start", flexWrap: "wrap" }}>
+            {[476, 358].map((w) => (
+              <div key={w} style={{ width: w }}>
+                <ArticlePreview variant="compact" image={P(10)} tags={T1} title="도쿄 신졸 채용, 외국인이 서류에서 떨어지는 세 가지 이유" />
+                <ArticlePreview variant="compact" image={P(11)} tags={T2} title="비전공자에서 프로덕트 디자이너로" />
+                <ArticlePreview variant="compact" image={P(12)} tags={T1} title="네덜란드 30% 룰, 2026년부터 달라지는 것" />
+              </div>
+            ))}
+          </div></div>
       </div>
     );
   }

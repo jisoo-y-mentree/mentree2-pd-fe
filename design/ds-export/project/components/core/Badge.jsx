@@ -4,21 +4,26 @@ import { Icon } from "./Icon.jsx";
 
 /**
  * Badge — 계열 × leading × 사이즈 색 시스템.
- *  계열(variant): "category"(분류·뉴트럴 sage) · "status"(상태) · "tag"(질적태그 8색).
+ *  계열(variant): "category"(분류·뉴트럴 sage · tone="primary"면 초록 외곽선, DS-91) · "status"(상태) · "tag"(질적태그 8색)
+ *   · "accent"(DS-83 — 주황 「New」. 면 orange-50 · 테두리/글자 orange-700 · 600 · 양끝 반원).
  *  status(상태값): "active"(진행중·green) · "new"(신규·green tint) · "closed"(마감·destructive) · "waiting"(대기·muted) · "hold"(보류·muted).
  *  hue(질적태그 8색): neutral·blue·sky·indigo·amber·rose·purple·teal.
- *  leading(전 계열 공통 앞자리 슬롯): "none" · "dot" · "flag"(국기) · "avatar".
+ *  leading(전 계열 공통 앞자리 슬롯): "none" · "dot" · "flag"(국기) · "avatar" · "icon"(DS-79 — HugeIcons, 아이콘만 --primary).
  *  패딩(접면 기반·좌우 독립): 텍스트 접면 sm8/md10/lg12 · 슬롯(flag/avatar/dot/"+N ⌄") 접면 sm5/md6/lg7.
  *  size: sm·md·lg. 형태: radius-md(완전 pill 아님). 라벨은 텍스트(tabular 불필요).
  */
 const SIZES = {
-  sm: { h: 22, radius: 6,  padText: 8,  padSlot: 5, fs: 12, gap: 5, slot: 15, dot: 5 },
-  md: { h: 28, radius: 8,  padText: 10, padSlot: 6, fs: 13, gap: 6, slot: 18, dot: 6 },
-  lg: { h: 34, radius: 10, padText: 12, padSlot: 7, fs: 14, gap: 7, slot: 22, dot: 7 },
+  sm: { h: 24, radius: 6,  padText: 8,  padSlot: 5, fs: "var(--text-micro)",   gap: 5, slot: 16, dot: 5, icon: 14, rectW: 21, rectH: 14 },
+  md: { h: 28, radius: 8,  padText: 10, padSlot: 6, fs: "var(--text-caption)", gap: 6, slot: 18, dot: 6, icon: 16, rectW: 24, rectH: 16 },
+  lg: { h: 34, radius: 10, padText: 12, padSlot: 7, fs: 14,                    gap: 7, slot: 22, dot: 7, icon: 18, rectW: 30, rectH: 20 },
 };
 
 // flag 국기 에셋 기본 경로(DS 카드 기준). 소비처는 flagBase prop으로 재정의.
 const FLAG_BASE = "../../assets/flags/";
+// DS-99 — flagShape="rect" 기본 경로(30×20 자산)
+const FLAG_RECT_BASE = "../../assets/flags-rect/";
+// 라벨이 숨어도 접근 이름으로 남긴다
+const SR_ONLY = { position: "absolute", width: 1, height: 1, padding: 0, margin: -1, overflow: "hidden", clip: "rect(0 0 0 0)", whiteSpace: "nowrap", border: 0 };
 
 // 질적 태그 8색 — [배경 50, 아웃라인 200, 라벨 700(밝은 hue는 800)]
 const HUES = {
@@ -43,20 +48,27 @@ const STATUS = {
   hold:    { bg: "var(--muted)", line: "var(--sage-200)", text: "var(--muted-foreground)" },
 };
 
-function palette(variant, status, hue) {
+function palette(variant, status, hue, tone) {
   if (variant === "status") return STATUS[status] || STATUS.waiting;
+  // DS-83 — 주황 「New」. 대비로 단을 골랐다(700 글자 4.88:1 — 500은 2.64:1로 모자라다)
+  if (variant === "accent") return { bg: "var(--orange-50)", line: "var(--orange-700)", text: "var(--orange-700)" };
+  // DS-91 — 초록 외곽선. 흰 면 · green-200 테두리 · green-900 글자(MultiSelect 고른 칩과 같다)
+  if (variant === "category" && tone === "primary") return { bg: "var(--card)", line: "var(--green-200)", text: "var(--green-900)" };
   const h = variant === "tag" ? (HUES[hue] || HUES.neutral) : HUES.neutral;
   return { bg: `var(${h[0]})`, line: `var(${h[1]})`, text: `var(${h[2]})` };
 }
 
 export function Badge({
   variant = "category",
+  tone = "neutral",
   status,
   hue = "neutral",
   leading = "none",
   flag,
-  flagBase = FLAG_BASE,
+  flagShape = "circle",
+  flagBase,
   avatar,
+  icon,
   size = "md",
   labelHidden = false,
   extraItems,
@@ -65,9 +77,10 @@ export function Badge({
   ...rest
 }) {
   const s = SIZES[size] || SIZES.md;
-  const p = palette(variant, status, hue);
+  const p = palette(variant, status, hue, tone);
+  const accent = variant === "accent";
   // 접면 기반 좌우 패딩 — 각 변을 독립 판단: 텍스트 접면=padText, 슬롯(국기·아바타·dot·"+N ⌄") 접면=padSlot.
-  const hasLead = leading !== "none" && !(leading === "avatar" && !avatar);
+  const hasLead = leading !== "none" && !(leading === "avatar" && !avatar) && !(leading === "icon" && !icon);
   const labelShown = !labelHidden && children != null && children !== "";
   // 우변 접면: "+N ⌄" 있으면 슬롯, 없으면 라벨(텍스트), 라벨도 없으면(국기만 등) 슬롯.
   // "+N" 펼침(팝오버) — extraItems 있을 때만. 바깥 클릭 시 닫힘.
@@ -85,12 +98,18 @@ export function Badge({
   if (leading === "dot") {
     lead = <span style={{ width: s.dot, height: s.dot, borderRadius: "50%", background: "currentColor", flex: "0 0 auto" }} />;
   } else if (leading === "flag") {
-    // 원형 국기 SVG(assets/flags/{국가명}.svg). 미등록/실패 시 빈 원형 placeholder.
+    // circle: 원형 국기 SVG(assets/flags/). rect(DS-99): 직사각 국기(assets/flags-rect/) · 크기 sm21×14 · md24×16 · lg30×20
+    //  · 반경 2 · 1px --border 링(흰 국기가 흰 면에 묻히지 않게). Flag 의 2px 흰 여백 틀은 쓰지 않는다. 미등록/실패 시 빈 placeholder.
+    const rect = flagShape === "rect";
+    const base = flagBase || (rect ? FLAG_RECT_BASE : FLAG_BASE);
+    const frame = rect
+      ? { width: s.rectW, height: s.rectH, borderRadius: 2, boxShadow: "0 0 0 1px var(--border)" }
+      : { width: s.slot, height: s.slot, borderRadius: "50%", boxShadow: "0 0 0 1px color-mix(in oklch, var(--sage-950) 8%, transparent)" };
     lead = (
-      <span style={{ width: s.slot, height: s.slot, borderRadius: "50%", overflow: "hidden", flex: "0 0 auto", background: "var(--sage-100)", display: "inline-flex", boxShadow: "0 0 0 1px color-mix(in oklch, var(--sage-950) 8%, transparent)" }}>
+      <span style={{ ...frame, overflow: "hidden", flex: "0 0 auto", background: "var(--sage-100)", display: "inline-flex" }}>
         {flag && (
           <img
-            src={`${flagBase}${flag}.svg`}
+            src={`${base}${flag}.svg`}
             alt=""
             onError={(e) => { e.currentTarget.style.display = "none"; }}
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -98,6 +117,9 @@ export function Badge({
         )}
       </span>
     );
+  } else if (leading === "icon" && icon) {
+    // DS-79 — 아이콘만 --primary. 면 · 글자 · 경계는 계열의 모양 그대로. 접면 패딩은 flag와 같은 padSlot.
+    lead = <Icon name={icon} size={s.icon} aria-hidden="true" aria-label={undefined} role={undefined} style={{ color: "var(--primary)" }} />;
   } else if (leading === "avatar" && avatar) {
     lead = <Avatar {...avatar} size={s.slot} />;
   }
@@ -109,7 +131,7 @@ export function Badge({
     <span
       ref={rootRef}
       style={{
-        position: hasExtra ? "relative" : undefined,
+        position: hasExtra || labelHidden ? "relative" : undefined,
         display: "inline-flex",
         alignItems: "center",
         gap: s.gap,
@@ -118,9 +140,9 @@ export function Badge({
         paddingRight: hasExtra || !labelShown ? s.padSlot : s.padText,
         fontFamily: "var(--font-sans)",
         fontSize: s.fs,
-        fontWeight: 500,
+        fontWeight: accent ? 600 : 500,
         lineHeight: 1,
-        borderRadius: s.radius,
+        borderRadius: accent ? 9999 : s.radius,
         background: p.bg,
         color: p.text,
         border: `1px solid ${p.line}`,
@@ -130,7 +152,7 @@ export function Badge({
       {...rest}
     >
       {lead}
-      {!labelHidden && children}
+      {labelHidden ? (children != null && children !== "" ? <span style={SR_ONLY}>{children}</span> : null) : children}
       {hasExtra && (
         <button
           type="button"

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../../../ds-export/project/styles.css">
+  <script src="ds-asset-path.js"></script>
+  <script src="../../../ds-export/project/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+    a { color: var(--primary); }
+    a:hover { color: var(--primary); }
+  </style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-direction:column">
+  <sc-if value="{{ showBar }}" hint-placeholder-val="{{ false }}">
+    <div data-temp="demo" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:12px 24px;background:var(--card);border-bottom:1px solid var(--border)">
+      <div style="font-size:var(--text-h3);font-weight:600;margin-right:8px">멘트리 인사이트 · 데모</div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <label for="ad-demo-screen" style="font-size:var(--text-caption);color:var(--muted-foreground)">화면</label>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" id="ad-demo-screen" options="{{ screenOptions }}" value="{{ screen }}" on-change="{{ setScreen }}" dc-props="{{ w120 }}" hint-size="120px,40px"></x-import>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <label for="ad-demo-type" style="font-size:var(--text-caption);color:var(--muted-foreground)">종류</label>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" id="ad-demo-type" options="{{ typeOptions }}" value="{{ type }}" on-change="{{ setType }}" dc-props="{{ w180 }}" hint-size="180px,40px"></x-import>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <label for="ad-demo-state" style="font-size:var(--text-caption);color:var(--muted-foreground)">상태</label>
+        <x-import component-from-global-scope="MentreeDesignSystem_2f86cf.Select" id="ad-demo-state" options="{{ stateOptions }}" value="{{ stateKey }}" on-change="{{ setStateKey }}" dc-props="{{ w140 }}" hint-size="140px,40px"></x-import>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button type="button" onClick="{{ setDesktop }}" aria-pressed="{{ isDesktop }}" style="{{ desktopPill }}">데스크톱</button>
+        <button type="button" onClick="{{ setMobile }}" aria-pressed="{{ isMobile }}" style="{{ mobilePill }}">모바일</button>
+      </div>
+      <div class="tabular" style="margin-left:auto;font-size:var(--text-caption);color:var(--muted-foreground)">{{ query }}</div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ false }}">
+    <div style="flex:1;display:flex;flex-direction:column">
+      <dc-import name="ArticleDetailScreen" variant="{{ type }}" state="{{ screenState }}" data-screen-label="{{ screenLabel }}" hint-size="100%,100%"></dc-import>
+    </div>
+  </sc-if>
+  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+    <div style="flex:1;display:flex;justify-content:center;padding:24px 16px;background:var(--sage-50)">
+      <div style="{{ holderStyle }}">
+        <iframe src="{{ frameSrc }}" title="{{ screenLabel }}" style="{{ frameStyle }}"></iframe>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+// 주소가 유일한 길 — ?type=insight|event|interview|plain&state=normal|loading|404|error&view=desktop|mobile (&frame=1 이면 데모 줄 숨김)
+const TYPES = [{ value: "insight", label: "인사이트(B)" }, { value: "event", label: "이벤트 기사(A)" }, { value: "interview", label: "멘토 인터뷰(C)" }, { value: "plain", label: "목차 없음(B)" }];
+const STATES = [{ value: "normal", label: "기본" }, { value: "loading", label: "로딩" }, { value: "404", label: "404" }, { value: "error", label: "에러" }];
+// 주소의 state → 공용 부품(ArticleDetailScreen)의 state
+const SCREEN = { normal: "ok", loading: "loading", "404": "notfound", error: "error" };
+
+class Component extends DCLogic {
+  state = { scale: 1 };
+
+  params() {
+    const s = new URLSearchParams(location.search);
+    const pick = (k, list, d) => { const v = s.get(k); return list.some(o => o.value === v) ? v : d; };
+    return {
+      type: pick("type", TYPES, "insight"),
+      state: pick("state", STATES, "normal"),
+      view: s.get("view") === "mobile" ? "mobile" : "desktop",
+      frame: s.get("frame") === "1"
+    };
+  }
+
+  componentDidMount() {
+    this.onResize = () => {
+      const scale = Math.min(1, (window.innerHeight - 140) / 844);
+      if (scale !== this.state.scale) this.setState({ scale });
+    };
+    window.addEventListener("resize", this.onResize);
+    this.onResize();
+  }
+
+  componentWillUnmount() { window.removeEventListener("resize", this.onResize); }
+
+  go(next) {
+    const p = { ...this.params(), ...next };
+    location.href = "ArticleDetail.dc.html?type=" + p.type + "&state=" + p.state + "&view=" + p.view;
+  }
+
+  pill(on) {
+    return "height:32px;padding:0 14px;border-radius:999px;background:var(--card);cursor:pointer;" +
+      "font-family:inherit;font-size:var(--text-caption);font-weight:500;" +
+      (on ? "border:1px solid var(--primary);color:var(--primary)" : "border:1px solid var(--border);color:var(--muted-foreground)");
+  }
+
+  renderVals() {
+    const p = this.params(), mobile = p.view === "mobile", s = this.state.scale;
+    const typeLabel = TYPES.find(t => t.value === p.type).label;
+    const stLabel = STATES.find(x => x.value === p.state).label;
+    return {
+      showBar: !p.frame,
+      screenOptions: [{ value: "list", label: "목록" }, { value: "detail", label: "상세" }],
+      screen: "detail",
+      setScreen: v => { if (v === "list") location.href = "../../insight-list/template/InsightList.dc.html?category=all&state=normal&view=" + p.view; },
+      typeOptions: TYPES, type: p.type, setType: v => this.go({ type: v }),
+      stateOptions: STATES, stateKey: p.state, setStateKey: v => this.go({ state: v }),
+      isDesktop: !mobile, isMobile: mobile,
+      desktopPill: this.pill(!mobile), mobilePill: this.pill(mobile),
+      setDesktop: () => this.go({ view: "desktop" }), setMobile: () => this.go({ view: "mobile" }),
+      query: "?type=" + p.type + "&state=" + p.state + "&view=" + p.view,
+      screenState: SCREEN[p.state],
+      screenLabel: "상세 · " + typeLabel + " · " + stLabel,
+      frameSrc: "ArticleDetail.dc.html?type=" + p.type + "&state=" + p.state + "&frame=1",
+      holderStyle: "width:" + 390 * s + "px;height:" + 844 * s + "px",
+      frameStyle: "width:390px;height:844px;border:1px solid var(--border);border-radius:24px;" +
+        "background:var(--background);display:block;transform:scale(" + s + ");transform-origin:top left",
+      w120: { style: { width: 120 } }, w140: { style: { width: 140 } }, w180: { style: { width: 180 } }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -23,7 +23,7 @@ user-invocable: true
 - **AI 밴드:** 보라/틴트 그라데이션 금지 → sage/green 시맨틱 토큰으로만.
 - **컴포넌트:** `window.MentreeDesignSystem_2f86cf` (41개) — Button · IconButton · Icon · Badge · Avatar/AvatarGroup · CountToggle · FilterChip · Input · Field/FieldGroup · Select · Checkbox · RadioGroup · Switch · ToggleGroup · Card(+Header/Title/Description/Content/Footer) · Table · Dialog · Sheet · Header · Footer · SectionHeader · Carousel · CalloutBar · Banner · BottomTabBar · MentorCard · QnaCard · ArticlePreview · InterviewCard · Sidebar(레거시). `components/*/*.prompt.md` 참조.
 - **DS-GAP 후보(미구현):** Pagination.
-- **타입 상단:** display 40 / h0 30 (모바일 24 / 20).
+- **타입 상단:** display 40 (모바일 30) / h0 30 (모바일 24) / h1 24 (모바일 20) / h2 20 (모바일 18) / h3 18 (모바일 17). article 18(모바일 17)·body 16·caption 14·micro 12는 body 이하 폭과 무관하게 고정. **카드 제목은 카드 폭이 정한다**(~280→body16 · 280–360→h3 18 · 360–430→h2 20 · 430+→h1 24).
 - **브레이크포인트:** Desktop L 1280+ / Desktop S 769–1279(헤더에서 기업 서비스 버튼만 숨김) / Mobile ~768(헤더 축약 + 하단 탭바 4탭). 상세는 `guidelines/03-responsive.md`.
 - **컨테이너:** max 1280, 좌우 패딩 24(모바일 16). 배경 풀블리드, 콘텐츠만 1280 정렬.
 - **UI kit:** `ui_kits/mentree-top/` — TOP(메인) 화면, canon. `ui_kits/mentree-app-legacy/` — 참조·레거시 앱 셸(canon 아님).
