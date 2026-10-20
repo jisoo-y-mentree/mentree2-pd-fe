@@ -1,11 +1,12 @@
 # template 의 출처 — 마이페이지는 멘티 · 멘토가 한 장이다
 
 - Claude Design: 프로젝트 **`Mentree 2.0 My Page`**(radarlab 계정). 공개 공유 링크는 적지 않는다([ADR-0002](../../../../docs/adr/0002-rebuild-design-system-instead-of-sharing.md))
-- 원본: `design/_import/export-1008/Mentree 2.0 My Page (1015 r3).zip` · SHA-256 `de4c15a257e4` · **생성 2026-10-15 18:31 · 3판**. 3차 프롬프트 `design/_import/prompts/mypage-r3-1015.md`(기준 화면 일원화 9묶음)를 상혁이 돌린 판이다. 부품 4본이 바뀌고 표본 사진 `12.png` 가 더해졌다(ds-export 의 것과 바이트가 같아 그쪽을 가리킨다)
+- 원본: `design/_import/export-1008/Mentree 2.0 My Page (1020 r5).zip` · SHA-256 `acc5339b70fc` · **생성 2026-10-20 13:14 · 5판**. 5차 프롬프트 `design/_import/prompts/mypage-r5-1020.md`(「나의 1:1 멘토링은 카드만」)를 상혁이 돌린 판이다. **1:1 카드의 버튼 · 「자세히 보기」 · 사람 줄은 눌러도 아무 일도 없고, 1:1 상세 모달(`MentoringDetailModal`)은 걷어냈다.** 카드를 누른 뒤의 화면은 전부 [`mentoring-apply`](../../mentoring-apply/template/SOURCE.md) 의 것이다(상혁 결정 2026-10-20)
+- 4판은 없다 — 4차(`mypage-r4-1015.md`)의 제목 크기 · 스크랩 건수 줄은 10-19 17:39 판에 들어 있었고, 모달 관련 3건은 5판에서 모달이 걷히며 닫혔다. 3판: `(1015 r3).zip` · `de4c15a257e4` · 10-15 18:31(기준 화면 일원화)
 - 2판: `(1015 r2).zip` · `cca8ac9dce3d` · 15:04(카드 일람 · 1차 검수). 1판: `(1014).zip` · `d86d01a26a42` · 10-14 23:56
 - 대응 UI-SPEC: [`../UI-SPEC.md`](../UI-SPEC.md)(틀) · [`../../mypage-mentor/UI-SPEC.md`](../../mypage-mentor/UI-SPEC.md)(멘토의 차이) — 둘 다 기안 · UX승인 대기. 미결 14건은 §11 의 기본값대로 만들어졌다
 - 디자인 시스템: `ds-export/` 의 **2026-10-14 판**(53본 · zip `af278860480b`). export 의 `_ds` 사본(12파일)은 번들 · 토큰이 이 판과 **바이트까지 같다.** 경로만 `../../../ds-export/project/` 로 돌렸다
-- 검수: [`../UI-REVIEW.md`](../UI-REVIEW.md) 1차 · 카드 일람 대조 · 2차 · 기준 화면 대조 · 3차(모두 2026-10-15)
+- 검수: [`../UI-REVIEW.md`](../UI-REVIEW.md) 1차 · 카드 일람 대조 · 2차 · 기준 화면 대조 · 3차(모두 2026-10-15) · **5판(2026-10-20 · 카드 동작 끊김 확인)**
 
 ## 무엇이 들어 있나
 
@@ -17,19 +18,18 @@
 | `tab` | `profile` · `qna` · `mentoring` · `favorites` · `scrap` · `payment`(멘티) ／ `settlement`(멘토) · `account` |
 | `sub` | qna: `answered` · `waiting`(멘티) ／ `answered` · `asked`(멘토) ／ mentoring: `ongoing` · `done`(멘티) ／ `received-ongoing` · `received-done` · `sent-ongoing` · `sent-done`(멘토) ／ favorites(멘토): `followers` · `mentors` ／ scrap: `qna` · `article` ／ settlement: `payout` · `payment` |
 | `state` | `normal` · `loading` · `empty` · `error` |
-| `modal` | 상세 `detail-applied` · `detail-scheduling-received` · `detail-scheduling-sent` · `detail-fixed` · `detail-done` · `detail-done-reviewed` · `detail-cancelled` ／ 갈아끼우기 `cancel-1` · `cancel-2` · `fix-schedule` · `reschedule` · `accept` · `accept-done` · `review` · `review-done` · `cheer-read` · `cheer-write` · `cheer-sent` ／ 메세지 · 리뷰(2판) `mentor-message` · `my-review` · `cheer-view` · `cancel-msg-write` · `cancel-msg-sent` · `cancel-msg-view` · `mentee-review` ／ 편집 `profile-edit` · `photo` · `intro` · `countries` · `jobs` · `timezone` · `mail` · `notify` · `password` · `leave` · `min-price` · `mentee-profile` · `bank` ／ 확인(3판 · Q&A 식) `dormant` · `donate-confirm` · `delete-question` |
+| `modal` | 편집 대화상자만 — `profile-edit` · `photo` · `intro` · `countries` · `jobs` · `timezone` · `mail` · `notify` · `password` · `dormant` · `leave` · `min-price` · `donate-confirm` · `mentee-profile` · `bank` · `bank-form` · `bank-done` · `bank-email` · `bank-email-done` · `settle-done` · `delete-question`. **1:1 멘토링의 모달 값은 5판부터 받지 않는다**(주소로 와도 목록만 보인다) |
 | `editState` | 편집 대화상자의 상태(3판) — `dirty`(닫기 확인) · `saving` · `error` |
 | `view` | `desktop` · `mobile`(390 iframe) |
 
 예: `MyPage.dc.html?frame=1&role=mentor&tab=mentoring&sub=received-ongoing&state=normal&view=desktop`
 
-**상세 모달 · 갈아끼우기 화면을 주소로 열면** 그 화면에 맞는 카드를 고른다(2판 · `pickCardFor` · 1차 검수 ⑪). 1판은 갈아끼우기 화면에서 첫 카드를 골라 격려 메세지처럼 카드 값이 필요한 화면이 비어 보였다.
+**1:1 카드는 상태별 모양까지만 보여 준다(5판).** 버튼 · 「자세히 보기」 · 사람 줄의 모양은 그대로이고 동작만 없다. 어느 버튼이 흐름의 어느 화면을 여는지는 [`../UI-SPEC.md`](../UI-SPEC.md) §6 3 의 대응표에 있다.
 
 | 파일 | 무엇 |
 |---|---|
 | `MyPage.dc.html` | 입구 · 셸(헤더 · 세로 메뉴 `data-temp="DS-17"` · 탭 머리 · 하단 탭바) · 탭 7 의 본문 · 편집 모달 16 · 표본 데이터 · 토스트 |
 | `MentoringCard.dc.html` | 멘토링 카드(`data-temp="DS-18"`) — 상태 6 × 역할 2 |
-| `MentoringDetailModal.dc.html` | 멘토링 상세 모달 ＋ 갈아끼우는 화면(2판에서 메세지 · 리뷰 모달 7 이 더해졌다) |
 | `PersonCard.dc.html` | 사람 미니카드(`data-temp="DS-119"`) |
 | `support.js` | Claude Design 런타임(dc-import 로더). 손대지 않는다 |
 | `ds-asset-path.js` | **리포 배치용 심.** DS 부품의 기본 자산 경로를 `ds-export` 로 돌린다 |

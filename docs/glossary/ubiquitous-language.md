@@ -77,8 +77,8 @@
 | 멘토 찾기 | `mentor-search` | 화면 |
 | 멘토 카드 | `MentorCard` | 컴포넌트. surfaces. 296 고정·미디어 3:2/5:4 |
 | 멘토링 | `Mentoring` | 1:1 유료 세션. 신청 → 수락 → 일정 확정 → 완료 |
-| 멘토링 상세 모달 | `MentoringDetailModal` | **모달.** 상태 6. `mypage-mentee`·`mypage-mentor` 의 §6 이다. 역할로 액션이 갈린다 |
-| 멘토링 신청 | `mentoring-apply` | 화면. 2스텝 ＋ 결제. 진입은 `mentor-detail`. **멘티와 멘토가 모두 신청한다** |
+| 멘토링 상세 모달 | `MentoringDetailModal` | **모달.** 상태 6 × 갈래(취소 사유 · 답장 · 리뷰 · 격려). **정본 사양은 `mentoring-apply` §6**(2026-10-20 — 마이페이지는 카드까지). 역할로 액션이 갈린다 |
+| 멘토링 신청 | `mentoring-apply` | 화면. 2스텝 ＋ 결제. 진입은 `mentor-detail`. **멘티와 멘토가 모두 신청한다.** 카드를 누른 뒤의 대화상자(두 역할)까지 이 화면의 사양이 맡는다(2026-10-20) |
 | 멘토링 카드 | `MentoringCard` | **미구현**(`DS-18`). 멘토링 1건의 상태·상대·액션. `MentorCard` 와 다르다 |
 | 멘트리 인사이트 | `Insight` | 멘트리가 발행하는 아티클 카테고리의 하나 |
 | 멘트리 인사이트 목록 | `insight-list` | 화면. 카테고리 4 |
